@@ -8,56 +8,37 @@ Transform the specific "Isometric Sandbox" project into a **Modular Universal Ga
 
 ## Architecture
 
-### 1. Data Layer (Core)
-The "Truth" of the game world. Pure logic/data, no rendering dependencies.
+### 1-5. Core, Views, Entities, Items, Cycles (Done/In-Progress)
+- `UniversalWorldData`, `IsometricView`, `SideScrollingView`
+- `GameEntity`, `PlayerControllerIso`, `PlayerControllerSide`
+- `GameItem`, `Inventory`
+- `RoguelikeGenerator`, `RoguelikeManager`
 
-- **`UniversalWorldData` (extends `Resource`)**
-    - **Header**: `src/core/universal_world_data.h`
-    - **Data**: `std::vector<int> m_voxels` (stored as flattened 3D array or chunk map).
-    - **API**:
-        - `set_voxel(Vector3i p_pos, int p_id)`
-        - `get_voxel(Vector3i p_pos)`
-        - `save_to_disk(String path)`
-        - `load_from_disk(String path)`
-    - **Signals**: `changed(Vector3i pos)`
+### 6. Sample & Demo System (Phase 4) [NEW]
+- **Directory Structure**:
+    - `godot_project/samples/`: Contains isolated demo folders.
+        - `roguelike/`: Scene + Assets specific to Roguelike.
+        - `platformer/`: Scene + Assets specific to SideScroller.
+        - `mystery/`: Scene + Assets for Adventure.
+- **Switching Mechanism**:
+    - **Script**: `scripts/setup_demo.sh` (Bash)
+    - **Function**: CLI tool to list available demos and update `project.godot`'s `application/run/main_scene` path to the selected demo scene.
 
-- **`GameCycleManager` (extends `Node`)**
-    - **Header**: `src/core/game_cycle_manager.h`
-    - **Responsibility**: Manages the game flow state (Menu -> Generating -> Playing -> Paused -> Result).
-    - **Modes**: Enum `CycleMode { SANDBOX, ROGUELIKE, STORY }`.
-
-### 2. View Layer (Adapters)
-Visualizes the Data Layer. Inherits from Godot Nodes (`TileMapLayer`, `Node3D`, etc).
-
-- **`IsometricView` (extends `TileMapLayer`)**
-    - **Header**: `src/views/isometric_view.h`
-    - **Responsibility**: Listens to `UniversalWorldData`. Renders a specific Z-slice or "top-down" projection of the 3D data as isometric tiles.
-    - **Input**: Converts mouse clicks on ISO grid to `Vector3i` world commands.
-
-- **`SideScrollingView` (extends `TileMapLayer`)**
-    - **Header**: `src/views/side_scrolling_view.h`
-    - **Responsibility**: Renders a vertical slice (X-Y plane) of the 3D data.
-    - **Physics**: May generate collision shapes for platforming.
-
-### 3. Entity Layer [NEW]
-- **`GameEntity` (extends `CharacterBody2D/3D` via wrapper or composition)**
-    - **Header**: `src/entities/game_entity.h`
-    - **Common Stats**: HP, MaxHP, Stamina, MoveSpeed.
-    - **Controllers**:
-        - `PlayerController` (abstract base)
-        - `PlayerControllerIso` (inherits `PlayerController`)
-        - `PlayerControllerSide` (inherits `PlayerController`)
+### 7. Adventure & Mystery Layer (Phase 5)
+- **`InteractionManager`**: Click/Inspect logic.
+- **`DialogueSystem`**: UI/Text logic.
 
 ## Migration Steps
 
-1.  **Refactor Directory**: Move existing `sandbox_world` logic. (Done)
-2.  **Create `UniversalWorldData`**: Port storage logic. (Done)
-3.  **Create `IsometricView`**: Port rendering logic. (Done)
-4.  **Implement `GameEntity`**: Create base class for player/enemies. (Next)
-5.  **Implement Stats**: Add HP/Stamina logic to `GameEntity`. (Next)
+1-10. **Refactoring & Core Implementation** (Done)
+11. **Implement Sample Demos**: 
+    - Create Scene files (`.tscn`) using existing C++ nodes.
+    - Organize into `samples/` folder.
+12. **Implement Setup Script**: Write `setup_demo.sh`.
+13. **Implement Adventure Features**: Add interaction logic for the Mystery demo.
 
 ## Verification
 - **Build**: `scons target=template_debug`
 - **Run**:
-    - Create a Scene with `IsometricView` + `UniversalWorldData`.
-    - View should function exactly as the previous `SandboxWorld`.
+    - `./scripts/setup_demo.sh roguelike` -> Launches Godot with Roguelike Demo.
+    - `./scripts/setup_demo.sh platformer` -> Launches Godot with Platformer Demo.

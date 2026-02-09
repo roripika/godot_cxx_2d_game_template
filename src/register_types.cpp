@@ -1,8 +1,15 @@
 #include "register_types.h"
 
+#include "core/cycles/roguelike_generator.h"
+#include "core/cycles/roguelike_manager.h"
 #include "core/universal_world_data.h"
 #include "entities/game_entity.h"
+#include "entities/player_controller_iso.h"
+#include "entities/player_controller_side.h"
+#include "items/game_item.h"
+#include "items/inventory.h"
 #include "views/isometric_view.h"
+#include "views/side_scrolling_view.h"
 #include "world_generator.h"
 
 #include <godot_cpp/core/class_db.hpp>
@@ -17,8 +24,15 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   }
 
   ClassDB::register_class<UniversalWorldData>();
+  ClassDB::register_class<RoguelikeGenerator>();
+  ClassDB::register_class<RoguelikeManager>();
   ClassDB::register_class<IsometricView>();
+  ClassDB::register_class<SideScrollingView>();
   ClassDB::register_class<GameEntity>();
+  ClassDB::register_class<PlayerControllerIso>();
+  ClassDB::register_class<PlayerControllerSide>();
+  ClassDB::register_class<GameItem>();
+  ClassDB::register_class<Inventory>();
   ClassDB::register_class<WorldGenerator>();
 }
 
