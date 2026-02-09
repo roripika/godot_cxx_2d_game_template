@@ -1,0 +1,7 @@
+entry_symbol = "sandbox_library_init"
+compatibility_minimum = "4.3"
+
+[libraries]
+
+macos.debug = "res://bin/isometric_sandbox.macos.debug.framework"
+macos.release = "res://bin/isometric_sandbox.macos.release.framework"

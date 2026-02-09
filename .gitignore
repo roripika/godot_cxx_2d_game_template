@@ -1,0 +1,20 @@
+# SCons
+.sconsign.dblite
+
+# Godot-CPP (Dependencies)
+godot-cpp/
+
+# Build Artifacts
+bin/
+gen/
+*.o
+*.os
+*.a
+*.dylib
+*.framework
+
+# Environment
+env.sh
+.DS_Store
+
+
