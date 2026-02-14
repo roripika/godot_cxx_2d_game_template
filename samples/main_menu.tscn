@@ -1,0 +1,86 @@
+[gd_scene format=3]
+
+[sub_resource type="GDScript" id="GDScript_blx11"]
+script/source = "
+extends Control
+
+func _ready():
+    var vbox = $CenterContainer/VBoxContainer
+    for child in vbox.get_children():
+        if child is Button:
+            if child.name == \"BtnQuit\":
+                child.pressed.connect(_on_quit_pressed)
+            elif child.has_meta(\"scene_path\"):
+                child.pressed.connect(_on_demo_pressed.bind(child.get_meta(\"scene_path\")))
+
+func _on_demo_pressed(path):
+    if FileAccess.file_exists(path):
+        get_tree().change_scene_to_file(path)
+    else:
+        print(\"Demo scene not found: \" + path)
+
+func _on_quit_pressed():
+    get_tree().quit()
+"
+
+[node name="GlobalMainMenu" type="Control" unique_id=353257257]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource("GDScript_blx11")
+
+[node name="@ColorRect@2" type="ColorRect" parent="." unique_id=176725090]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1189526687]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=253674493]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=92016565]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 2
+text = "Universal Game Template Demos"
+horizontal_alignment = 1
+
+[node name="BtnRhythmGame" type="Button" parent="CenterContainer/VBoxContainer" unique_id=678690778]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Rhythm Game"
+metadata/scene_path = "res://samples/rhythm/rhythm_demo.tscn"
+
+[node name="BtnFightingGame" type="Button" parent="CenterContainer/VBoxContainer" unique_id=310518650]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Fighting Game"
+metadata/scene_path = "res://samples/fighting/fighting_demo.tscn"
+
+[node name="BtnSandbox(MiningBuilding)" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1079780194]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Sandbox (Mining/Building)"
+metadata/scene_path = "res://samples/sandbox/sandbox_demo.tscn"
+
+[node name="BtnMysteryAdventure" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1427604034]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Mystery Adventure"
+metadata/scene_path = "res://samples/mystery/demo_adv.tscn"
+
+[node name="BtnPixelArtGallery" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1851131665]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Pixel Art Gallery"
+metadata/scene_path = "res://samples/gallery/gallery_demo.tscn"
+
+[node name="BtnQuit" type="Button" parent="CenterContainer/VBoxContainer" unique_id=951827966]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Quit Game"

@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://samples/common/common_demo_ui.gd" id="1_m1dvw"]
+
+[sub_resource type="GDScript" id="GDScript_7rul4"]
+script/source = "
+extends Node2D
+
+@onready var conductor = $Conductor
+@onready var listener = $RhythmCommandListener
+@onready var feedback_label = $UI/FeedbackLabel
+@onready var command_log = $UI/CommandLog
+
+func _ready():
+    print(\"Rhythm Demo Type B Started\")
+    
+    listener.rhythm_input.connect(_on_rhythm_input)
+    listener.command_executed.connect(_on_command_executed)
+    listener.rhythm_failed.connect(_on_rhythm_failed)
+    
+    # Start music loop
+    conductor.play(null, 120.0, 0.0, 4)
+
+func _on_rhythm_input(type, judgment):
+    feedback_label.text = type.to_upper() + \" (\" + judgment + \")\"
+    if judgment == \"miss\":
+        feedback_label.modulate = Color(1, 0, 0)
+    else:
+        feedback_label.modulate = Color(0, 1, 0)
+
+func _on_command_executed(command):
+    command_log.text = \"Executed: \" + str(command)
+    feedback_label.text = \"FEVER!!\"
+    feedback_label.modulate = Color(1, 1, 0)
+    
+func _on_rhythm_failed():
+    feedback_label.text = \"FAIL\"
+    feedback_label.modulate = Color(0.5, 0.5, 0.5)
+"
+
+[node name="RhythmDemoTypeB" type="Node2D" unique_id=1469665173]
+script = SubResource("GDScript_7rul4")
+
+[node name="Conductor" type="Conductor" parent="." unique_id=576685077]
+
+[node name="RhythmCommandListener" type="RhythmCommandListener" parent="." unique_id=58931649]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1003982375]
+
+[node name="FeedbackLabel" type="Label" parent="UI" unique_id=1002563519]
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 400.0
+offset_bottom = 200.0
+text = "Press SPACE (Pon) or ESC (Pata) on beat!"
+
+[node name="CommandLog" type="Label" parent="UI" unique_id=1185141678]
+offset_left = 400.0
+offset_top = 250.0
+offset_right = 400.0
+offset_bottom = 250.0
+
+[node name="CommonDemoUI" type="Node" parent="." unique_id=292815812]
+script = ExtResource("1_m1dvw")

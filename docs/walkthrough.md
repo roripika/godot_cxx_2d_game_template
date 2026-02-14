@@ -1,51 +1,67 @@
-# Universal Game Template Walkthrough
+# ユニバーサル・ゲームテンプレート ウォークスルー
 
-## Overview
-This project separates core logic from views, allowing for both Isometric RPGs and Side-Scrolling Platformers using the same data.
+## 概要
+このプロジェクトは、コアロジックとビューを分離し、同じデータを使ってアイソメトリックRPGと横スクロールプラットフォーマーの両方を実現します。
 
-## Key Components
+## 主要コンポーネント
 
-### 1. View Layer (`src/views`)
-- **`IsometricView`**: Renders Top-Down/Iso view.
-- **`SideScrollingView`**: Renders Side-View (Platformer).
+### 1. ビュー層 (`src/views`)
+- **`IsometricView`**: トップダウン/アイソメトリック表示。
+- **`SideScrollingView`**: サイドビュー (プラットフォーマー) 表示。
 
-### 2. Entity Layer (`src/entities`)
-- **`PlayerControllerIso`**: Isometric controls.
-- **`PlayerControllerSide`**: Platformer controls.
+### 2. エンティティ層 (`src/entities`)
+- **`PlayerControllerIso`**: アイソメトリック操作。
+- **`PlayerControllerSide`**: プラットフォーマー操作。
 
-### 3. Loop & Cycle (`src/core/cycles`)
-- **`RoguelikeGenerator`**: Algorithms for generating map data.
-- **`RoguelikeManager`**: A Node that orchestrates the level generation and player spawning.
+### 3. ループ & サイクル (`src/core/cycles`)
+- **`RoguelikeGenerator`**: マップデータを生成するアルゴリズム。
+- **`RoguelikeManager`**: レベル生成とプレイヤースポーンを統括するノード。
 
-## Sample System
+### 4. アドベンチャー機能 (`src/core`)
+- **`InteractionManager`**: マウスインタラクションを処理。
+    - シグナル: `clicked_at(position)`
+    - 使い方: `active` プロパティでインタラクションの有効/無効を切り替え。
+- **`DialogueUI`**: 名前ラベル付きのテキストメッセージを表示。
+    - 関数: `show_message(name, text)`、`hide_dialogue()`。
+    - 使い方: シーンに追加し、スクリプトから `show_message` を呼び出す。
 
-The project now includes a Demo System to easily switch between different game templates.
+## サンプルシステム
 
-### Layout
-- **`samples/roguelike/`**: Roguelike Demos.
-- **`samples/platformer/`**: Side-scroller Demos.
-- **`samples/mystery/`**: Adventure Game Demos.
+このプロジェクトには、異なるゲームテンプレートを簡単に切り替えられるデモシステムが含まれています。
 
-### Switching Demos
-Use the provided script to switch the project's startup scene:
+### レイアウト
+- **`samples/roguelike/`**: ローグライクデモ。
+- **`samples/platformer/`**: 横スクロールデモ。
+- **`samples/mystery/`**: アドベンチャーゲームデモ。
+- **`samples/sandbox/`**: 採掘 & クラフトデモ。
+- **`samples/fighting/`**: 格闘ゲームデモ。
+
+### デモの切り替え
+提供されているスクリプトを使ってプロジェクトの起動シーンを切り替えます。
 
 ```bash
-# Switch to Roguelike Demo
+# ローグライクデモに切り替え
 ./scripts/setup_demo.sh roguelike
 
-# Switch to Platformer Demo
+# プラットフォーマーデモに切り替え
 ./scripts/setup_demo.sh platformer
 
-# Switch to Mystery Demo (coming soon)
+# ミステリーデモに切り替え
 ./scripts/setup_demo.sh mystery
+
+# サンドボックスデモに切り替え
+./scripts/setup_demo.sh sandbox
+
+# 格闘デモに切り替え
+./scripts/setup_demo.sh fighting
 ```
 
-## Usage Guide: creating a Roguelike Demo
+## 使い方ガイド: ローグライクデモの作成
 
-To create a playable demo scene manually:
+手動でプレイ可能なデモシーンを作成するには:
 
-1. Create a new Scene with Root Node: **`PlayerControllerIso`**.
-2. Add a `Sprite2D` and `CollisionShape2D` to it.
-3. Save as `res://player.tscn`.
-4. Create a new Level Scene with `RoguelikeManager` and `IsometricView`.
-5. Link them in the Inspector and run.
+1. ルートノードに **`PlayerControllerIso`** を持つ新しいシーンを作成。
+2. `Sprite2D` と `CollisionShape2D` を追加。
+3. `res://player.tscn` として保存。
+4. `RoguelikeManager` と `IsometricView` を持つ新しいレベルシーンを作成。
+5. インスペクターでリンクして実行。

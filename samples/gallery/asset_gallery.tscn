@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://galleryscene"]
+
+[ext_resource type="Script" path="res://samples/gallery/asset_gallery.gd" id="1_gallery"]
+
+[node name="AssetGallery" type="Node2D"]
+script = ExtResource("1_gallery")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LabelFlat" type="Label" parent="CanvasLayer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Flat Vector Assets (Zodiac V2)"
+horizontal_alignment = 1
+
+[node name="FlatGrid" type="HFlowContainer" parent="CanvasLayer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelPixel" type="Label" parent="CanvasLayer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pixel Art Assets (Zodiac Pixel)"
+horizontal_alignment = 1
+
+[node name="PixelGrid" type="HFlowContainer" parent="CanvasLayer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3

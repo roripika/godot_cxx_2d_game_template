@@ -1,9 +1,14 @@
 # Godot 4.x GDExtension Isometric Sandbox
 
-## 環境構築 (Environment Setup)
+## 目的
+
+このプロジェクトは、Godot + C++ (GDExtension) でゲーム開発するための再利用可能な環境を構築するものです。
+このリポジトリを、AIとアイディアを考えながら多様なゲームを作るための基盤として利用します。
+
+## 環境構築
 
 
-### 前提条件 (Prerequisites)
+### 前提条件
 - **Godot 4.3+** (必須: TileMapLayerを使用するため)
 - SCons
 - Python 3
@@ -32,20 +37,86 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-このスクリプトは以下を行います:
-- `godot-cpp` リポジトリのクローン (4.3ブランチ)
-- SConsの存在確認及び `env.sh` (環境変数設定ファイル) の生成
+## クイックスタート (CLI/エディタ両対応)
 
-## ビルド方法 (Build Helper)
-
-セットアップ完了後、以下のコマンドでビルドします。
+このテンプレートは「デモ切替 → GDExtensionビルド → 実行/エディタ起動」をワンコマンドで回せるように `dev.sh` を用意しています。
 
 ```bash
-# 環境変数を読み込んでビルド (Mac M1/M2/M3)
-source ./env.sh && scons platform=macos target=template_debug arch=arm64
+# 依存セットアップ (godot-cpp 取得など)
+./dev.sh setup
+
+# デザイナー/プランナー向け: メインメニューをエディタで開く
+./dev.sh edit menu
+
+# CLIで即実行 (例: mystery)
+./dev.sh run mystery
 ```
 
-## Godotエディタ設定 (Editor Setup)
+## 環境構築 (macOS)
+
+### 1. 前提ツールのインストール
+
+HomebrewでGodotとビルドシステム (SCons) をインストールします。
+
+```bash
+# Godot Engineをインストール
+brew install --cask godot
+
+# SConsをインストール (GDExtensionのビルドシステム)
+brew install scons
+```
+
+### 2. C++拡張のビルド
+
+このプロジェクトはGDExtension (C++) を利用します。エディタで開く前にソースをビルドしてください。
+
+```bash
+# デバッグ向けビルド (開発用)
+./dev.sh build
+
+# (手動) デバッグ向けビルド (開発用)
+# scons platform=macos target=template_debug arch=arm64
+```
+
+### 3. プロジェクトの実行
+
+#### CLI (推奨)
+エディタを開かずに直接ゲームを起動できます。
+
+```bash
+# ヘルパースクリプトを使用
+./scripts/launch_game.sh
+
+# もしくはgodotコマンドで直接実行
+godot --path .
+```
+
+#### Godotエディタ
+1. Godotを開きます。
+2. **Import** をクリックします。
+3. このフォルダを選択し、`project.godot` を開きます。
+4. **Import & Edit** をクリックします。
+5. `F5` または再生ボタンで実行します。
+
+## デモ切り替え
+
+このテンプレートには複数ジャンルのデモが含まれています。セットアップスクリプトで切り替えます。
+
+```bash
+# 利用可能なデモ一覧
+ls samples/
+
+# アクティブなデモを切り替え
+./scripts/setup_demo.sh menu        # メインメニュー (閲覧に推奨)
+./scripts/setup_demo.sh gallery     # アセットギャラリー
+./scripts/setup_demo.sh mystery     # アドベンチャー / ビジュアルノベル
+./scripts/setup_demo.sh roguelike   # アイソメトリック・ダンジョンクローラー
+./scripts/setup_demo.sh platformer  # 横スクロールアクション
+./scripts/setup_demo.sh sandbox     # 採掘 & クラフト
+./scripts/setup_demo.sh fighting    # 1v1格闘
+./scripts/setup_demo.sh rhythm      # リズムゲーム
+```
+## Godotエディタ設定
 
 ### SandboxWorld ノードの設定
 1. GDExtensionをビルド後、Godotエディタを開きます (または再起動)。
@@ -56,7 +127,4 @@ source ./env.sh && scons platform=macos target=template_debug arch=arm64
     - `Tile Size` は使用するタイルのピクセルサイズに合わせて調整してください (例: 64x32)。
 5. `y_sort_enabled` を `true` に設定すると、キャラクターやオブジェクトの描画順序が正しく処理されます。
 
-## ディレクトリ構成
-- `src/`: C++ ソースコード
-- `godot-cpp/`: Godot C++ Bindings (setup.shで取得)
 - `bin/`: ビルド成果物 (.framework)

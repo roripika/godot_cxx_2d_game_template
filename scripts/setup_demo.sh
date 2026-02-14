@@ -7,17 +7,25 @@ DEMO_TYPE=$1
 PROJECT_FILE="project.godot"
 
 if [ -z "$DEMO_TYPE" ]; then
-    echo "Usage: ./scripts/setup_demo.sh [roguelike|platformer|mystery]"
+    echo "Usage: ./scripts/setup_demo.sh [menu|gallery|roguelike|platformer|mystery|sandbox|fighting|rhythm]"
     echo "Available demos:"
+    echo "  - menu"
+    echo "  - gallery"
     echo "  - roguelike"
     echo "  - platformer"
-    echo "  - mystery (coming soon)"
+    echo "  - mystery"
+    echo "  - sandbox"
+    echo "  - fighting"
+    echo "  - rhythm"
     exit 1
 fi
 
 SCENE_PATH=""
 
 case "$DEMO_TYPE" in
+    "menu"|"main_menu")
+        SCENE_PATH="res://samples/main_menu.tscn"
+        ;;
     "roguelike")
         SCENE_PATH="res://samples/roguelike/demo_rogue.tscn"
         ;;
@@ -26,6 +34,21 @@ case "$DEMO_TYPE" in
         ;;
     "mystery")
         SCENE_PATH="res://samples/mystery/demo_adv.tscn"
+        ;;
+    "sandbox")
+        SCENE_PATH="res://samples/sandbox/demo_sandbox.tscn"
+        ;;
+    "fighting")
+        SCENE_PATH="res://samples/fighting/fighting_demo.tscn"
+        echo "Setting up Fighting Game Demo..."
+        ;;
+    "rhythm")
+        SCENE_PATH="res://samples/rhythm/rhythm_demo.tscn"
+        echo "Setting up Rhythm Game Demo..."
+        ;;
+    "gallery")
+        SCENE_PATH="res://samples/gallery/gallery_demo.tscn"
+        echo "Setting up Asset Gallery..."
         ;;
     *)
         echo "Error: Unknown demo type '$DEMO_TYPE'"

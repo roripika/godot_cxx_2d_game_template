@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://mystery_office_scene"]
+
+[node name="OfficeScene" type="OfficeSceneLogic"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.2, 0.2, 0.25, 1.0)
+
+[node name="InteractionManager" type="InteractionManager" parent="."]
+
+[node name="Door" type="ColorRect" parent="."]
+offset_left = 900.0
+offset_top = 200.0
+offset_right = 1000.0
+offset_bottom = 500.0
+color = Color(0.4, 0.2, 0.1, 1.0)
+
+[node name="Label" type="Label" parent="Door"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 59.0
+offset_right = 81.0
+offset_bottom = 82.0
+text = "EXIT"
+
+[node name="Boss" type="ColorRect" parent="."]
+offset_left = 100.0
+offset_top = 200.0
+offset_right = 250.0
+offset_bottom = 500.0
+color = Color(0.1, 0.1, 0.5, 1.0)
+
+[node name="Label" type="Label" parent="Boss"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 27.0
+offset_right = 100.0
+offset_bottom = 50.0
+text = "BOSS"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" type="DialogueUI" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DialogueUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.7
+anchor_right = 0.9
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/DialogueUI/Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -30.0
+offset_right = 110.0
+offset_bottom = -7.0
+text = "Name"
+
+[node name="TextLabel" type="RichTextLabel" parent="CanvasLayer/DialogueUI/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+text = "Message..."

@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://samples/gallery/asset_gallery.gd" id="1_gallery"]
+[ext_resource type="Script" path="res://samples/common/common_demo_ui.gd" id="2_k23ey"]
+
+[node name="AssetGallery" type="Node2D" unique_id=2055009443]
+script = ExtResource("1_gallery")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=568485920]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1740569239]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer" unique_id=1809631147]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer" unique_id=197124058]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LabelFlat" type="Label" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=932938063]
+layout_mode = 2
+text = "Flat Vector Assets (Zodiac V2)"
+horizontal_alignment = 1
+
+[node name="FlatGrid" type="HFlowContainer" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=782530691]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=2054172043]
+layout_mode = 2
+
+[node name="LabelPixel" type="Label" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=1543184222]
+layout_mode = 2
+text = "Pixel Art Assets (Zodiac Pixel)"
+horizontal_alignment = 1
+
+[node name="PixelGrid" type="HFlowContainer" parent="CanvasLayer/ScrollContainer/VBoxContainer" unique_id=628752305]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CommonDemoUI" type="Node" parent="." unique_id=2044335177]
+script = ExtResource("2_k23ey")

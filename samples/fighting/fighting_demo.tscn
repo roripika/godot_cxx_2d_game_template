@@ -1,0 +1,204 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Script" path="res://samples/common/common_demo_ui.gd" id="2_kyhwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(1200, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fighter"]
+size = Vector2(40, 80)
+
+[node name="FightingDemo" type="FightingGameManager" unique_id=117271802]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1772318638]
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=442316243]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/HUD" unique_id=2046773830]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "99"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer/HUD" unique_id=897914520]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P1HealthrBar" type="TextureProgressBar" parent="CanvasLayer/HUD" unique_id=764080539]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 20.0
+offset_right = 450.0
+offset_bottom = 50.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("1_icon")
+texture_progress = ExtResource("1_icon")
+tint_under = Color(0.2, 0.2, 0.2, 1)
+tint_progress = Color(0, 0.8, 0, 1)
+
+[node name="P2HealthBar" type="TextureProgressBar" parent="CanvasLayer/HUD" unique_id=516116274]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -450.0
+offset_top = 20.0
+offset_right = -50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+value = 100.0
+fill_mode = 1
+nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
+texture_under = ExtResource("1_icon")
+texture_progress = ExtResource("1_icon")
+tint_under = Color(0.2, 0.2, 0.2, 1)
+tint_progress = Color(0.8, 0, 0, 1)
+
+[node name="P1ComboLabel" type="Label" parent="CanvasLayer/HUD" unique_id=1560139542]
+visible = false
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 83.0
+text = "2 HITS!"
+
+[node name="P2ComboLabel" type="Label" parent="CanvasLayer/HUD" unique_id=844124803]
+visible = false
+modulate = Color(1, 1, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 60.0
+offset_right = -50.0
+offset_bottom = 83.0
+grow_horizontal = 0
+text = "2 HITS!"
+horizontal_alignment = 2
+
+[node name="Stage" type="Node2D" parent="." unique_id=1865146482]
+
+[node name="Floor" type="StaticBody2D" parent="Stage" unique_id=952156732]
+position = Vector2(576, 600)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Floor" unique_id=858869210]
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="ColorRect" type="ColorRect" parent="Stage/Floor" unique_id=547137844]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -25.0
+offset_right = 600.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="FighterP1" type="FighterController" parent="." unique_id=1337895069]
+position = Vector2(300, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="FighterP1" unique_id=1176532835]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_icon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterP1" unique_id=979390535]
+shape = SubResource("RectangleShape2D_fighter")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FighterP1" unique_id=30195707]
+
+[node name="Hitbox" type="HitboxComponent" parent="FighterP1" unique_id=1634458731]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterP1/Hitbox" unique_id=1809111929]
+position = Vector2(40, 0)
+shape = SubResource("RectangleShape2D_fighter")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Hurtbox" type="HurtboxComponent" parent="FighterP1" unique_id=983369951]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterP1/Hurtbox" unique_id=615773768]
+shape = SubResource("RectangleShape2D_fighter")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="FighterP2" type="FighterController" parent="." unique_id=1924590515]
+player_id = 2
+position = Vector2(852, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="FighterP2" unique_id=528723140]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_icon")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterP2" unique_id=1009017438]
+shape = SubResource("RectangleShape2D_fighter")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FighterP2" unique_id=951602671]
+
+[node name="Hitbox" type="HitboxComponent" parent="FighterP2" unique_id=982069374]
+collision_layer = 0
+collision_mask = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterP2/Hitbox" unique_id=101040573]
+position = Vector2(-40, 0)
+shape = SubResource("RectangleShape2D_fighter")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Hurtbox" type="HurtboxComponent" parent="FighterP2" unique_id=2000609615]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FighterP2/Hurtbox" unique_id=2144692734]
+shape = SubResource("RectangleShape2D_fighter")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="CommonDemoUI" type="Node" parent="." unique_id=805941635]
+script = ExtResource("2_kyhwu")

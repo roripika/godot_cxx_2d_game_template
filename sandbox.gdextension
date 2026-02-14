@@ -1,7 +1,8 @@
+[configuration]
 entry_symbol = "sandbox_library_init"
-compatibility_minimum = "4.3"
+compatibility_minimum = "4.2"
 
 [libraries]
 
-macos.debug = "res://bin/isometric_sandbox.macos.debug.framework"
-macos.release = "res://bin/isometric_sandbox.macos.release.framework"
+macos.debug = "res://bin/isometric_sandbox.macos.template_debug.framework/libisometric_sandbox.macos.template_debug"
+macos.release = "res://bin/isometric_sandbox.macos.template_release.framework/libisometric_sandbox.macos.template_release"

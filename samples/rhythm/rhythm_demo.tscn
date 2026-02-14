@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://samples/common/common_demo_ui.gd" id="1_36dff"]
+
+[sub_resource type="GDScript" id="GDScript_fuuhw"]
+script/source = "
+extends Control
+
+@onready var btn_type_a = $VBoxContainer/BtnTypeA
+@onready var btn_type_b = $VBoxContainer/BtnTypeB
+
+func _ready():
+    btn_type_a.pressed.connect(_on_type_a_pressed)
+    btn_type_b.pressed.connect(_on_type_b_pressed)
+    print(\"Rhythm Demo Menu Loaded\")
+
+func _on_type_a_pressed():
+    get_tree().change_scene_to_file(\"res://samples/rhythm/rhythm_demo_type_a.tscn\")
+
+func _on_type_b_pressed():
+    get_tree().change_scene_to_file(\"res://samples/rhythm/rhythm_demo_type_b.tscn\")
+"
+
+[node name="RhythmGameDemo" type="Control" unique_id=1762900567]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource("GDScript_fuuhw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1760927181]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=904524162]
+layout_mode = 2
+text = "Rhythm Game Tech Demo"
+horizontal_alignment = 1
+
+[node name="BtnTypeA" type="Button" parent="VBoxContainer" unique_id=1278639061]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Type A: Scrolling Notes"
+
+[node name="BtnTypeB" type="Button" parent="VBoxContainer" unique_id=780998985]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Type B: Command (Patapon)"
+
+[node name="CommonDemoUI" type="Node" parent="." unique_id=1156875480]
+script = ExtResource("1_36dff")

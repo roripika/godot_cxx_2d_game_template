@@ -20,6 +20,17 @@ void PlayerControllerSide::_bind_methods() {
                "get_gravity");
 }
 
+// Accessors
+void PlayerControllerSide::set_jump_force(float p_force) {
+  jump_force = p_force;
+}
+
+float PlayerControllerSide::get_jump_force() const { return jump_force; }
+
+void PlayerControllerSide::set_gravity(float p_gravity) { gravity = p_gravity; }
+
+float PlayerControllerSide::get_gravity() const { return gravity; }
+
 PlayerControllerSide::PlayerControllerSide() {
   set_speed(200.0f);
   jump_force = 400.0f;

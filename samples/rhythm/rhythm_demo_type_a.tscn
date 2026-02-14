@@ -1,0 +1,146 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://samples/common/common_demo_ui.gd" id="1_ukjce"]
+
+[sub_resource type="GDScript" id="GDScript_707re"]
+script/source = "
+extends Node2D
+
+@onready var conductor = $Conductor
+@onready var manager = $RhythmGameManager
+@onready var score_label = $UI/ScoreLabel
+@onready var combo_label = $UI/ComboLabel
+@onready var judgment_label = $UI/JudgmentLabel
+@onready var lanes = $Lanes
+
+func _ready():
+    print(\"Rhythm Demo Started\")
+    
+    # Connect signals
+    manager.score_changed.connect(_on_score_changed)
+    manager.combo_changed.connect(_on_combo_changed)
+    manager.judgment.connect(_on_judgment)
+    
+    # Load notes
+    # Simple pattern: every beat on different lanes
+    var lane1_notes: PackedFloat64Array = [1.0, 5.0, 9.0]
+    var lane2_notes: PackedFloat64Array = [2.0, 6.0, 10.0]
+    var lane3_notes: PackedFloat64Array = [3.0, 7.0, 11.0]
+    var lane4_notes: PackedFloat64Array = [4.0, 8.0, 12.0]
+    
+    $Lanes/Lane_1.load_notes(lane1_notes)
+    $Lanes/Lane_2.load_notes(lane2_notes)
+    $Lanes/Lane_3.load_notes(lane3_notes)
+    $Lanes/Lane_4.load_notes(lane4_notes)
+    
+    # Start music (silence/dummy if none)
+    conductor.play(null, 120.0, 0.0, 4) # 4 beats lead-in
+    
+func _on_score_changed(score):
+    score_label.text = \"Score: \" + str(score)
+
+func _on_combo_changed(combo):
+    combo_label.text = \"Combo: \" + str(combo)
+
+func _on_judgment(type):
+    judgment_label.text = type.to_upper()
+    # Simple animation via Tween could be added here
+"
+
+[node name="RhythmDemo" type="Node2D" unique_id=237097899]
+script = SubResource("GDScript_707re")
+
+[node name="Conductor" type="Conductor" parent="." unique_id=115170664]
+
+[node name="RhythmGameManager" type="RhythmGameManager" parent="." unique_id=1186206342]
+
+[node name="Lanes" type="Node2D" parent="." unique_id=2053906796]
+
+[node name="Lane_1" type="NoteLane" parent="Lanes" unique_id=1344948233]
+position = Vector2(100, 0)
+
+[node name="Line" type="ColorRect" parent="Lanes/Lane_1" unique_id=510444219]
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 600.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="Target" type="ColorRect" parent="Lanes/Lane_1" unique_id=730123874]
+offset_left = -30.0
+offset_top = 495.0
+offset_right = 30.0
+offset_bottom = 505.0
+color = Color(1, 0, 0, 0.5)
+
+[node name="Lane_2" type="NoteLane" parent="Lanes" unique_id=1156122039]
+position = Vector2(200, 0)
+
+[node name="Line" type="ColorRect" parent="Lanes/Lane_2" unique_id=879688458]
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 600.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="Target" type="ColorRect" parent="Lanes/Lane_2" unique_id=1712297192]
+offset_left = -30.0
+offset_top = 495.0
+offset_right = 30.0
+offset_bottom = 505.0
+color = Color(1, 0, 0, 0.5)
+
+[node name="Lane_3" type="NoteLane" parent="Lanes" unique_id=1037938041]
+position = Vector2(300, 0)
+
+[node name="Line" type="ColorRect" parent="Lanes/Lane_3" unique_id=685446609]
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 600.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="Target" type="ColorRect" parent="Lanes/Lane_3" unique_id=887466860]
+offset_left = -30.0
+offset_top = 495.0
+offset_right = 30.0
+offset_bottom = 505.0
+color = Color(1, 0, 0, 0.5)
+
+[node name="Lane_4" type="NoteLane" parent="Lanes" unique_id=1779837156]
+position = Vector2(400, 0)
+
+[node name="Line" type="ColorRect" parent="Lanes/Lane_4" unique_id=1611149710]
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 600.0
+color = Color(1, 1, 1, 0.2)
+
+[node name="Target" type="ColorRect" parent="Lanes/Lane_4" unique_id=1148566906]
+offset_left = -30.0
+offset_top = 495.0
+offset_right = 30.0
+offset_bottom = 505.0
+color = Color(1, 0, 0, 0.5)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=165580247]
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=1719926215]
+offset_left = 500.0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 50.0
+text = "Score: 0"
+
+[node name="ComboLabel" type="Label" parent="UI" unique_id=1030251543]
+offset_left = 500.0
+offset_top = 80.0
+offset_right = 500.0
+offset_bottom = 80.0
+text = "Combo: 0"
+
+[node name="JudgmentLabel" type="Label" parent="UI" unique_id=221543069]
+offset_left = 500.0
+offset_top = 110.0
+offset_right = 500.0
+offset_bottom = 110.0
+
+[node name="CommonDemoUI" type="Node" parent="." unique_id=1862189760]
+script = ExtResource("1_ukjce")
