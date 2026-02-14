@@ -1,0 +1,70 @@
+keys,en,ja
+# Office Scene
+office_title,Detective Office,探偵事務所
+office_info,"You are a detective investigating mysterious incidents in the city.
+
+A suspicious incident occurred at the warehouse district.",あなたは街で起こる怪事件を調査する探偵だ。
+
+倉庫街で不審な事件が起きた。
+office_goto_warehouse,Go to Warehouse,倉庫に向かう
+
+# Warehouse Investigation
+warehouse_title,Warehouse Investigation,倉庫の捜査
+warehouse_intro,Let's investigate the warehouse thoroughly!,倉庫を徹底的に調べよう！
+hotspot_floor_area,Strange substance on the floor...,床には何か妙な物質が落ちている...
+hotspot_footprints,Lots of footprints. They don't look human.,大量の足跡がある。人間のものではなさそうだ。
+hotspot_memo,A torn memo. It says '3 AM...',メモが落ちている。「午前3時に...」という文字が見える。
+hotspot_exit,Return to office,オフィスに戻る
+hotspot_ectoplasm,Suspicious Ectoplasm,怪しいエクトプラズム
+hotspot_footprint,Strange Footprints,奇妙な足跡
+evidence_found,Evidence found!,証拠を発見した！
+investigation_complete,Investigation complete. Returning to office.,調査完了。事務所に戻る。
+return_to_office,Return to Office,事務所に戻る
+
+# Evidence Items
+evidence_ectoplasm,Ectoplasm,エクトプラズム
+evidence_ectoplasm_desc,Strange glowing substance,奇妙に光る物質
+evidence_footprint,Footprints,足跡
+evidence_footprint_desc,Non-human footprints,人間ではない足跡
+evidence_memo,Torn Memo,破られたメモ
+evidence_memo_desc,Partially readable text,一部読める文章
+
+# Office Deduction
+deduction_title,Deduction Time,推理タイム
+deduction_question,What is most important for a detective?,探偵にとって最も重要なものは？
+deduction_choice1,Evidence,証拠
+deduction_choice2,Intuition,直感
+deduction_choice3,Luck,運
+deduction_correct,Correct! To the confrontation!,正解だ！対決に向かおう！
+deduction_wrong,Wrong... But let's proceed.,不正解だが…進もう。
+deduction_hp_lost,Lost 1 HP,HPを1失った
+
+# Warehouse Confrontation
+confrontation_title,Confrontation,対決
+confrontation_intro,Review the testimony and find contradictions!,証言を確認し、矛盾を見つけ出せ！
+testimony_label,Testimony,証言
+testimony_1,"I was at the warehouse all day yesterday.",昨日は一日倉庫にいました。
+testimony_2,I never left the warehouse district.,倉庫街から一歩も出ていません。
+testimony_3,I don't know anything about that memo.,そのメモのことは知りません。
+button_present,Present Evidence,証拠を提示
+button_press,Press Witness,揺さぶる
+button_next,Next Statement,次の証言
+action_present,Present,提示
+action_press,Press,揺さぶる
+select_evidence,Select evidence to present,提示する証拠を選択してください
+correct_evidence,Correct! Contradiction found!,正解！矛盾を見つけた！
+wrong_evidence,Wrong evidence...,証拠が違う…
+press_response,The witness seems nervous...,証人が動揺している…
+victory,Victory! Case solved!,勝利！事件解決だ！
+defeat,Too many mistakes... Investigation failed.,ミスが多すぎる…捜査失敗。
+
+# Ending
+ending_title,Case Complete,事件完了
+ending_perfect,Perfect! You solved the case flawlessly!,完璧だ！完全に事件を解決した！
+ending_normal,Case solved. The mystery is unraveled.,事件解決。謎は解明された。
+ending_failure,Investigation failed... The mystery remains unsolved.,捜査失敗…謎は未解決のまま。
+ending_restart,Restart,最初から
+
+# Common
+hp_label,HP: %d,HP: %d
+close,Close,閉じる

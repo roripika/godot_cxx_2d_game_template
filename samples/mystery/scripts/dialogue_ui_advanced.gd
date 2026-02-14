@@ -61,10 +61,14 @@ func show_choices(choices: Array[String]) -> int:
 	"""
 	choices_container.clear()
 	
+	var choice_selected_signal = Signal(self, "choice_selected")
+	
 	for i in range(choices.size()):
 		var choice_btn = Button.new()
 		choice_btn.text = choices[i]
-		choice_btn.pressed.connect(func(): _on_choice_selected(i, choices[i]))
+		choice_btn.pressed.connect(func(): 
+			_on_choice_selected(i, choices[i])
+		)
 		choices_container.add_child(choice_btn)
 	
 	# 選択されるまで待つ

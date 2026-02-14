@@ -45,10 +45,11 @@ func add_evidence(evidence_id: String):
 
 func remove_evidence(evidence_id: String):
 	"""証拠品を削除"""
-	var idx = evidence_list.find_by_id(evidence_id)
-	if idx != -1:
-		evidence_list.remove_at(idx)
-		_refresh_ui()
+	for i in range(evidence_list.size()):
+		if evidence_list[i].id == evidence_id:
+			evidence_list.remove_at(i)
+			_refresh_ui()
+			break
 
 func has_evidence(evidence_id: String) -> bool:
 	"""証拠品を所持しているか確認"""
@@ -75,7 +76,7 @@ func _refresh_ui():
 	# 証拠品ボタンを追加
 	for evidence in evidence_list:
 		var btn = Button.new()
-		btn.text = evidence.display_name
+		btn.text = tr("evidence_" + evidence.id)  # 翻訳キーを使用
 		btn.custom_minimum_size = Vector2(100, 50)
 		if evidence.icon:
 			btn.icon = evidence.icon
@@ -86,8 +87,8 @@ func _on_evidence_selected(evidence: EvidenceItem):
 	"""証拠品が選択された"""
 	selected_evidence = evidence
 	detail_panel.visible = true
-	detail_name.text = evidence.display_name
-	detail_desc.text = evidence.description
+	detail_name.text = tr("evidence_" + evidence.id)  # 翻訳キーを使用
+	detail_desc.text = tr("evidence_" + evidence.id + "_desc")  # 翻訳キーを使用
 	if evidence.icon:
 		detail_icon.texture = evidence.icon
 

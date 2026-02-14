@@ -121,10 +121,23 @@ func _on_present_pressed():
 	# インベントリUIを表示して選択待ち
 	if inventory_ui:
 		inventory_ui.show_inventory()
-		var selected = await inventory_ui.evidence_selected
-		var evidence_id = selected
 		
-		_check_evidence(evidence_id)
+		# 証拠品が選択されるまで待つ（最大10秒）
+		var selected_evidence = await _wait_for_evidence_selection(10.0)
+		if selected_evidence:
+			_check_evidence(selected_evidence)
+
+func _wait_for_evidence_selection(timeout: float) -> String:
+	"""証拠品選択を待機"""
+	var start_time = Time.get_ticks_msec()
+	
+	while Time.get_ticks_msec() - start_time < timeout * 1000:
+		if inventory_ui and inventory_ui.selected_evidence:
+			return inventory_ui.selected_evidence.id
+		
+		await get_tree().process_frame
+	
+	return ""
 
 func _check_evidence(evidence_id: String):
 	"""証拠品が正しいか確認"""
@@ -133,7 +146,7 @@ func _check_evidence(evidence_id: String):
 	if evidence_id == testimony.contradiction_evidence:
 		# 正解！
 		if dialogue_ui:
-			dialogue_ui.show_message(testimony.speaker, "あ!...これは...")
+			dialogue_ui.show_message(testimony.speaker, tr("correct_evidence"))
 		testimony.correct_evidence_presented = true
 		current_testimony_idx += 1
 		
@@ -149,7 +162,7 @@ func _check_evidence(evidence_id: String):
 		AdventureGameState.take_damage()
 		
 		if dialogue_ui:
-			dialogue_ui.show_message(testimony.speaker, "その証拠は関係ない!")
+			dialogue_ui.show_message(testimony.speaker, tr("wrong_evidence"))
 		
 		if round_errors >= 3:
 			# ゲームオーバー

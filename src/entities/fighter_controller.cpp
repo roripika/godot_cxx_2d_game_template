@@ -30,7 +30,6 @@ void FighterController::_bind_methods() {
   ClassDB::bind_method(D_METHOD("take_damage", "amount"),
                        &FighterController::take_damage);
   ClassDB::bind_method(D_METHOD("get_health"), &FighterController::get_health);
-  ClassDB::bind_method(D_METHOD("get_health"), &FighterController::get_health);
   ClassDB::bind_method(
       D_METHOD("_on_taken_hit", "hitbox", "damage", "hit_stun", "knockback"),
       &FighterController::_on_taken_hit);

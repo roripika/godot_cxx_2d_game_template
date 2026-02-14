@@ -22,9 +22,9 @@ func _on_clicked_at(pos: Vector2):
 		if AdventureGameState.get_flag("case_solved"):
 			dialogue_ui.show_message("System", "Case Closed. Thanks for playing!")
 		else:
-			dialogue_ui.show_message("System", "Going to the Haunted Spot...")
+			dialogue_ui.show_message("System", "Going to the Warehouse...")
 			await get_tree().create_timer(1.0).timeout
-			AdventureGameState.change_scene("res://samples/mystery/demo_adv.tscn")
+			AdventureGameState.change_scene("res://samples/mystery/warehouse_investigation.tscn")
 			
 	elif boss_rect.has_point(pos):
 		if AdventureGameState.get_flag("has_evidence"):
