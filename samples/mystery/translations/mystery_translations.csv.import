@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cnyf123f4e7fo"
+
+[deps]
+
+files=["res://samples/mystery/translations/mystery_translations.en.translation", "res://samples/mystery/translations/mystery_translations.ja.translation"]
+
+source_file="res://samples/mystery/translations/mystery_translations.csv"
+dest_files=["res://samples/mystery/translations/mystery_translations.en.translation", "res://samples/mystery/translations/mystery_translations.ja.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

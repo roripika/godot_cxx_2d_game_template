@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://mystery_office_scene"]
+[gd_scene load_steps=2 format=3 uid="uid://mystery_office_scene"]
+
+[ext_resource type="Script" path="res://samples/mystery/scripts/language_switcher_scene.gd" id="1_lang"]
 
 [node name="OfficeScene" type="OfficeSceneLogic"]
 
@@ -40,6 +42,15 @@ offset_bottom = 50.0
 text = "BOSS"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LanguageSwitcher" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lang")
 
 [node name="DialogueUI" type="DialogueUI" parent="CanvasLayer"]
 anchors_preset = 15
