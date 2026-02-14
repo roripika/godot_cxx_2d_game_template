@@ -24,7 +24,10 @@ func _create_buttons():
 	var hbox = HBoxContainer.new()
 	hbox.name = "LanguageButtons"
 	hbox.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-	hbox.position = Vector2(900, 10)
+	hbox.offset_left = -220  # 右から220px
+	hbox.offset_top = 10
+	hbox.offset_right = -10  # 右から10px
+	hbox.offset_bottom = 60
 	add_child(hbox)
 	
 	# English button
