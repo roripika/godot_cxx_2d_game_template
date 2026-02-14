@@ -4,10 +4,20 @@
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
 #include <godot_cpp/classes/time.hpp>
+#include <godot_cpp/classes/translation_server.hpp>
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/string_name.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
+
+static String tr_key(const char *key) {
+  TranslationServer *ts = TranslationServer::get_singleton();
+  if (!ts) {
+    return String(key);
+  }
+  return String(ts->translate(StringName(key)));
+}
 
 HauntedSpotSceneLogic::HauntedSpotSceneLogic() {
   dialogue_ui = nullptr;
@@ -51,9 +61,7 @@ void HauntedSpotSceneLogic::_ready() {
   }
 
   if (dialogue_ui) {
-    dialogue_ui->show_message("System",
-                              "You arrived at the Haunted Spot.\nFind the "
-                              "source of the paranormal activity.");
+    dialogue_ui->show_message("System", tr_key("haunted_system_arrived"));
   }
 }
 
@@ -84,17 +92,17 @@ void HauntedSpotSceneLogic::_on_clicked_at(Vector2 pos) {
 
   if (ghost_rect.has_point(pos)) {
     if (state->get_flag("has_evidence")) {
-      dialogue_ui->show_message(
-          "Detective",
-          "I already have the evidence. I should report to the Boss.");
+      dialogue_ui->show_message("Detective",
+                                tr_key("haunted_detective_already_have_evidence"));
     } else {
-      dialogue_ui->show_message(
-          "Detective", "Aha! This ectoplasm proves it.\n(Evidence Collected)");
+      dialogue_ui->show_message("Detective",
+                                tr_key("haunted_detective_collected"));
       state->set_flag("has_evidence", true);
-      state->add_item("Ectoplasm Sample");
+      // Use stable evidence id to match other systems.
+      state->add_item("ectoplasm");
     }
   } else if (exit_rect.has_point(pos)) {
-    dialogue_ui->show_message("System", "Returning to Office...");
+    dialogue_ui->show_message("System", tr_key("haunted_system_returning_office"));
 
     Ref<SceneTreeTimer> timer = get_tree()->create_timer(1.0);
     timer->connect("timeout", Callable(this, "_change_scene_callback"));

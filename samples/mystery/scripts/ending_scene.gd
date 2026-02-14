@@ -7,12 +7,14 @@ class_name EndingScene
 
 func _ready():
 	# フラグに基づいてエンディングを分岐
-	if AdventureGameState.get_flag("perfect_ending"):
-		_show_perfect_ending()
+	if AdventureGameState.get_flag("game_over"):
+		await _show_failure_ending()
+	elif AdventureGameState.get_flag("perfect_ending"):
+		await _show_perfect_ending()
 	elif AdventureGameState.get_flag("case_solved"):
-		_show_normal_ending()
+		await _show_normal_ending()
 	else:
-		_show_failure_ending()
+		await _show_failure_ending()
 
 func _show_perfect_ending():
 	"""完全勝利エンディング"""
@@ -25,7 +27,7 @@ func _show_perfect_ending():
 		dialogue_ui.show_message("System", tr("ending_perfect") + "\n\n〜THE END〜")
 	
 	await get_tree().create_timer(3.0).timeout
-	_create_retry_menu()
+	await _create_retry_menu()
 
 func _show_normal_ending():
 	"""通常クリアエンディング"""
@@ -38,7 +40,7 @@ func _show_normal_ending():
 		dialogue_ui.show_message("System", tr("ending_normal") + "\n\n〜THE END〜")
 	
 	await get_tree().create_timer(3.0).timeout
-	_create_retry_menu()
+	await _create_retry_menu()
 
 func _show_failure_ending():
 	"""失敗エンディング"""
@@ -46,23 +48,26 @@ func _show_failure_ending():
 		dialogue_ui.show_message("Boss", tr("ending_failure"))
 	
 	await get_tree().create_timer(2.0).timeout
-	_create_retry_menu()
+	await _create_retry_menu()
 
 func _create_retry_menu():
-	"""リトライメニューを作成"""
+	"""リトライ/メニュー遷移"""
 	if not dialogue_ui:
 		return
 	
-	var choices = [
-		"もう一度プレイ",
-		"メニューに戻る"
+	var choices: Array[String] = [
+		tr("ending_choice_retry"),
+		tr("ending_choice_menu")
 	]
 	
-	# 簡易版：メッセージで表示
-	dialogue_ui.show_message("System", "ゲーム終了")
-	
-	await get_tree().create_timer(1.0).timeout
-	
-	# メニューに戻る
-	AdventureGameState.reset_game()
-	AdventureGameState.change_scene("res://samples/main_menu.tscn")
+	dialogue_ui.show_message("System", tr("ending_title"))
+	var choice_idx := 1
+	if dialogue_ui.has_method("show_choices"):
+		choice_idx = await dialogue_ui.show_choices(choices)
+
+	if choice_idx == 0:
+		AdventureGameState.reset_game()
+		AdventureGameState.change_scene("res://samples/mystery/office_scene.tscn")
+	else:
+		AdventureGameState.reset_game()
+		AdventureGameState.change_scene("res://samples/main_menu.tscn")

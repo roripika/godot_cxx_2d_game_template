@@ -65,19 +65,26 @@ func set_hotspot_callback(hotspot_id: String, callback: Callable):
 func _on_clicked_at(pos: Vector2):
 	"""クリック位置をチェック"""
 	for hs in hotspots:
-		if hs.area and hs.area.get_overlapping_areas().size() > 0:
-			var hs_pos = hs.area.global_position
-			var hs_shape = hs.area.get_node("CollisionShape2D").shape as Shape2D
-			# 簡易判定：円形で判定
-			if hs_shape is CircleShape2D:
-				var dist = hs_pos.distance_to(pos)
-				if dist <= hs_shape.radius:
-					_trigger_hotspot(hs)
-			# または矩形判定
-			elif hs_shape is RectangleShape2D:
-				var rect = Rect2(hs_pos - hs_shape.size / 2, hs_shape.size)
-				if rect.has_point(pos):
-					_trigger_hotspot(hs)
+		if not hs.area:
+			continue
+		var hs_pos = hs.area.global_position
+		var col = hs.area.get_node_or_null("CollisionShape2D")
+		if not col:
+			continue
+		var hs_shape = col.shape as Shape2D
+		
+		# 簡易判定：円形で判定
+		if hs_shape is CircleShape2D:
+			var dist = hs_pos.distance_to(pos)
+			if dist <= hs_shape.radius:
+				_trigger_hotspot(hs)
+				return
+		# または矩形判定
+		elif hs_shape is RectangleShape2D:
+			var rect = Rect2(hs_pos - hs_shape.size / 2, hs_shape.size)
+			if rect.has_point(pos):
+				_trigger_hotspot(hs)
+				return
 
 func _trigger_hotspot(hotspot: Hotspot):
 	"""ホットスポットを発動"""

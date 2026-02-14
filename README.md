@@ -116,6 +116,11 @@ ls samples/
 ./scripts/setup_demo.sh fighting    # 1v1格闘
 ./scripts/setup_demo.sh rhythm      # リズムゲーム
 ```
+
+## ドキュメント
+- `docs/demo_plan.md`: 各デモで「何を作るか」「共通Utilityをどう再利用するか」の計画書
+- `docs/mystery_design.md`: Adventure(Mystery) デモの詳細設計
+
 ## Godotエディタ設定
 
 ### SandboxWorld ノードの設定

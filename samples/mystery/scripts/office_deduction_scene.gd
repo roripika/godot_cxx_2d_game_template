@@ -12,7 +12,7 @@ func _ready():
 		dialogue_ui.show_message("Boss", tr("deduction_title"))
 	
 	await get_tree().create_timer(1.0).timeout
-	_show_choices()
+	await _show_choices()
 
 func _show_choices():
 	"""推理の選択肢を表示"""
@@ -24,7 +24,7 @@ func _show_choices():
 	await get_tree().create_timer(1.0).timeout
 	
 	# 選択肢を表示
-	var choices = [
+	var choices: Array[String] = [
 		tr("deduction_choice1"),
 		tr("deduction_choice2"),
 		tr("deduction_choice3")
@@ -51,14 +51,19 @@ func _on_choice_made(choice_index: int):
 		AdventureGameState.take_damage()
 		if dialogue_ui:
 			dialogue_ui.show_message("Boss", tr("deduction_wrong"))
+		if AdventureGameState.get_health() <= 0:
+			AdventureGameState.set_flag("game_over", true)
+			await get_tree().create_timer(1.0).timeout
+			AdventureGameState.change_scene("res://samples/mystery/ending.tscn")
+			return
 	
 	await get_tree().create_timer(1.0).timeout
-	_go_to_confrontation()
+	_go_to_confrontation(is_correct)
 
-func _go_to_confrontation():
+func _go_to_confrontation(is_correct: bool):
 	"""対決シーンへ"""
-	if dialogue_ui:
-		dialogue_ui.show_message("Boss", tr("deduction_correct"))
+	if dialogue_ui and not is_correct:
+		dialogue_ui.show_message("System", tr("deduction_hp_lost"))
 	
 	await get_tree().create_timer(1.0).timeout
 	AdventureGameState.change_scene("res://samples/mystery/warehouse_confrontation.tscn")

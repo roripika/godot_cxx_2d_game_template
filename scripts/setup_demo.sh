@@ -33,7 +33,8 @@ case "$DEMO_TYPE" in
         SCENE_PATH="res://samples/platformer/demo_side.tscn"
         ;;
     "mystery")
-        SCENE_PATH="res://samples/mystery/demo_adv.tscn"
+        # Mystery/Adventure demo entry point (Karakuri scenario runner shell).
+        SCENE_PATH="res://samples/mystery/karakuri_mystery_shell.tscn"
         ;;
     "sandbox")
         SCENE_PATH="res://samples/sandbox/demo_sandbox.tscn"

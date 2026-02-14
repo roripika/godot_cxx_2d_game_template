@@ -1,0 +1,95 @@
+# Mystery scenario (planner-authored)
+# This YAML is parsed by Basic Game Karakuri (C++ GDExtension).
+#
+# Supported YAML subset: maps, sequences, simple scalars.
+
+start_scene: office
+
+scenes:
+  office:
+    scene_path: res://samples/mystery/office_base.tscn
+    on_enter:
+      - dialogue:
+          speaker: Boss
+          text_key: office_boss_intro
+    hotspots:
+      door:
+        node_id: hs_door
+        on_click:
+          - dialogue:
+              speaker: System
+              text_key: office_system_going_to_warehouse
+          - goto: warehouse
+      boss:
+        node_id: hs_boss
+        on_click:
+          - if_flag:
+              key: all_evidence_collected
+              value: true
+              then:
+                - dialogue:
+                    speaker: Boss
+                    text_key: deduction_title
+              else:
+                - dialogue:
+                    speaker: Boss
+                    text_key: office_boss_go_warehouse
+
+  warehouse:
+    scene_path: res://samples/mystery/warehouse_base.tscn
+    on_enter:
+      - dialogue:
+          speaker: System
+          text_key: warehouse_intro
+    hotspots:
+      floor_area:
+        node_id: hs_floor_area
+        on_click:
+          - dialogue:
+              speaker: Detective
+              text_key: hotspot_floor_area
+          - give_evidence: ectoplasm
+          - dialogue:
+              speaker: System
+              text_key: evidence_found
+      footprints:
+        node_id: hs_footprints
+        on_click:
+          - dialogue:
+              speaker: Detective
+              text_key: hotspot_footprints
+          - give_evidence: footprint
+          - dialogue:
+              speaker: System
+              text_key: evidence_found
+      memo:
+        node_id: hs_memo
+        on_click:
+          - dialogue:
+              speaker: Detective
+              text_key: hotspot_memo
+          - give_evidence: torn_memo
+          - dialogue:
+              speaker: System
+              text_key: evidence_found
+      exit:
+        node_id: hs_exit
+        on_click:
+          - if_has_items:
+              items:
+                - ectoplasm
+                - footprint
+                - torn_memo
+              then:
+                - set_flag:
+                    key: all_evidence_collected
+                    value: true
+                - dialogue:
+                    speaker: System
+                    text_key: investigation_complete
+                - goto: office
+              else:
+                - dialogue:
+                    speaker: System
+                    text_key: need_more_evidence
+

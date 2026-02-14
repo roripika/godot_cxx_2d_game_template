@@ -1,6 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://samples/common/common_demo_ui.gd" id="1_76g5x"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/language_switcher_scene.gd" id="2_lang"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(64, 64)
@@ -48,6 +49,14 @@ offset_bottom = 324.0
 text = "BACK"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=321991130]
+
+[node name="LanguageSwitcher" type="Control" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_lang")
 
 [node name="DialogueUI" type="DialogueUI" parent="CanvasLayer" unique_id=1816209965]
 offset_right = 40.0

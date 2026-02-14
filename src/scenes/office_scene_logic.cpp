@@ -3,10 +3,20 @@
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
+#include <godot_cpp/classes/translation_server.hpp>
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/string_name.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
+
+static String tr_key(const char *key) {
+  TranslationServer *ts = TranslationServer::get_singleton();
+  if (!ts) {
+    return String(key);
+  }
+  return String(ts->translate(StringName(key)));
+}
 
 OfficeSceneLogic::OfficeSceneLogic() {
   dialogue_ui = nullptr;
@@ -45,12 +55,10 @@ void OfficeSceneLogic::_ready() {
     AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
     if (state) {
       if (!state->get_flag("intro_done")) {
-        dialogue_ui->show_message(
-            "Boss", "Detectives! We have a new case.\nA Level 3 Apparition at "
-                    "the old warehouse.\nGo investigate properly.");
+        dialogue_ui->show_message("Boss", tr_key("office_boss_intro"));
         state->set_flag("intro_done", true);
       } else {
-        dialogue_ui->show_message("Boss", "Back already? Did you solve it?");
+        dialogue_ui->show_message("Boss", tr_key("office_boss_back"));
       }
     }
   }
@@ -68,9 +76,9 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
 
   if (door_rect.has_point(pos)) {
     if (state->get_flag("case_solved")) {
-      dialogue_ui->show_message("System", "Case Closed. Thanks for playing!");
+      dialogue_ui->show_message("System", tr_key("office_system_case_closed"));
     } else {
-      dialogue_ui->show_message("System", "Going to the Haunted Spot...");
+      dialogue_ui->show_message("System", tr_key("office_system_going_to_warehouse"));
 
       // Create timer for delay
       Ref<SceneTreeTimer> timer = get_tree()->create_timer(1.0);
@@ -78,13 +86,10 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
     }
   } else if (boss_rect.has_point(pos)) {
     if (state->get_flag("has_evidence")) {
-      dialogue_ui->show_message("Boss",
-                                "Great work! That evidence proves it was a "
-                                "poltergeist.\nYou solved the case!");
+      dialogue_ui->show_message("Boss", tr_key("office_boss_great_work"));
       state->set_flag("case_solved", true);
     } else {
-      dialogue_ui->show_message(
-          "Boss", "What are you doing here? Go to the warehouse!");
+      dialogue_ui->show_message("Boss", tr_key("office_boss_go_warehouse"));
     }
   }
 }

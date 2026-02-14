@@ -78,13 +78,11 @@ func _on_testimony_complete(success: bool):
 func _on_victory():
 	"""勝利"""
 	if dialogue_ui:
-		dialogue_ui.show_message("容疑者", "わかりました...全て白状します！")
+		dialogue_ui.show_message("容疑者", tr("victory"))
 	
 	AdventureGameState.set_flag("case_solved", true)
-	
-	# エラーの数でエンディングを分岐
-	var errors = testimony_system.get_total_errors() if testimony_system else 0
-	if testimony_system and testimony_system.is_perfect_round():
+	# Perfect = 全証拠 + ノーダメージ（=HPが減っていない）
+	if AdventureGameState.get_flag("all_evidence_collected") and AdventureGameState.get_health() >= 3:
 		AdventureGameState.set_flag("perfect_ending", true)
 	
 	await get_tree().create_timer(2.0).timeout
@@ -93,10 +91,8 @@ func _on_victory():
 func _on_defeat():
 	"""敗北"""
 	if dialogue_ui:
-		dialogue_ui.show_message("System", "HP が 0 になってしまった...")
+		dialogue_ui.show_message("System", tr("ending_failure"))
 	
 	await get_tree().create_timer(2.0).timeout
-	
-	# ゲームリセット
-	AdventureGameState.reset_game()
-	AdventureGameState.change_scene("res://samples/mystery/office_scene.tscn")
+	AdventureGameState.set_flag("game_over", true)
+	AdventureGameState.change_scene("res://samples/mystery/ending.tscn")

@@ -1,84 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://warehouse_investigation"]
+[gd_scene load_steps=4 format=3 uid="uid://karakuri_mystery_shell"]
 
-[ext_resource type="Script" path="res://samples/mystery/scripts/warehouse_investigation_scene.gd" id="1_warehouse_investigation_scene"]
-[ext_resource type="Script" path="res://samples/mystery/scripts/dialogue_ui_advanced.gd" id="2_dialogue_adv"]
-[ext_resource type="Script" path="res://samples/mystery/scripts/inventory_ui.gd" id="3_evidence_inventory"]
-[ext_resource type="Script" path="res://samples/mystery/scripts/hotspot_manager.gd" id="4_hotspot_manager"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/dialogue_ui_advanced.gd" id="1_dialogue_adv"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/inventory_ui.gd" id="2_evidence_inventory"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/language_switcher_scene.gd" id="3_lang"]
 
-[node name="WarehouseInvestigation" type="Node2D"]
-script = ExtResource("1_warehouse_investigation_scene")
+[node name="KarakuriMysteryShell" type="Node2D"]
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1024.0
-offset_bottom = 600.0
-color = Color(0.2, 0.2, 0.2, 1)
+[node name="ScenarioRunner" type="KarakuriScenarioRunner" parent="."]
+scene_container_path = NodePath("../SceneContainer")
+dialogue_ui_path = NodePath("../CanvasLayer/DialogueUI")
+evidence_ui_path = NodePath("../CanvasLayer/InventoryUI")
+interaction_manager_path = NodePath("../InteractionManager")
+
+[node name="SceneContainer" type="Node2D" parent="."]
+
+[node name="InteractionManager" type="InteractionManager" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="LanguageSwitcher" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_lang")
+
 [node name="DialogueUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1024.0
-offset_bottom = 200.0
-script = ExtResource("2_dialogue_adv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dialogue_adv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DialogueUI"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 200.0
+anchor_bottom = 1.0
 
 [node name="NameLabel" type="Label" parent="CanvasLayer/DialogueUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Detective"
-theme_override_font_sizes/font_size = 18
+text = "System"
+theme_override_font_sizes/font_size = 20
 
 [node name="TextLabel" type="Label" parent="CanvasLayer/DialogueUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 5
-text = "テキストがここに表示されます"
-theme_override_font_sizes/font_size = 14
+text = "..."
+theme_override_font_sizes/font_size = 16
 auto_wrapping_enabled = true
 
 [node name="ChoicesContainer" type="VBoxContainer" parent="CanvasLayer/DialogueUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PortraitRect" type="TextureRect" parent="CanvasLayer/DialogueUI"]
-layout_mode = 0
-anchor_left = 0.8
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 50.0
-size_flags_expand_margin_left = 50.0
-size_flags_expand_margin_top = 50.0
-
 [node name="InventoryUI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.2
+anchor_right = 0.25
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-script = ExtResource("3_evidence_inventory")
+script = ExtResource("2_evidence_inventory")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InventoryUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
 
 [node name="Label" type="Label" parent="CanvasLayer/InventoryUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "証拠品"
+text = "Evidence"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryUI/VBoxContainer"]
 layout_mode = 2
@@ -94,19 +93,14 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
 layout_mode = 2
-text = "証拠品名"
+text = "Name"
 
 [node name="DescriptionLabel" type="Label" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
 layout_mode = 2
-text = "説明"
+text = "Description"
 auto_wrapping_enabled = true
 
 [node name="IconRect" type="TextureRect" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
-
-[node name="InteractionManager" type="InteractionManager" parent="."]
-
-[node name="HotspotManager" type="Node" parent="."]
-script = ExtResource("4_hotspot_manager")

@@ -1,7 +1,7 @@
 # InventoryUI.gd
 # 証拠品インベントリUI
 extends Control
-class_name InventoryUI
+class_name EvidenceInventoryUI
 
 signal evidence_selected(evidence_id: String)
 

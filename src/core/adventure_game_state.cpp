@@ -48,6 +48,7 @@ void AdventureGameStateBase::_bind_methods() {
                        &AdventureGameStateBase::take_damage);
   ClassDB::bind_method(D_METHOD("heal", "amount"),
                        &AdventureGameStateBase::heal);
+  ADD_SIGNAL(MethodInfo("health_changed", PropertyInfo(Variant::INT, "hp")));
   
   // Game reset
   ClassDB::bind_method(D_METHOD("reset_game"),
@@ -95,6 +96,7 @@ void AdventureGameStateBase::change_scene(const String &path) {
 void AdventureGameStateBase::set_health(int hp) {
   health = hp;
   UtilityFunctions::print("Health set to: ", health);
+  emit_signal("health_changed", health);
 }
 
 int AdventureGameStateBase::get_health() const {
@@ -105,12 +107,14 @@ void AdventureGameStateBase::take_damage() {
   if (health > 0) {
     health--;
     UtilityFunctions::print("Took damage. Health now: ", health);
+    emit_signal("health_changed", health);
   }
 }
 
 void AdventureGameStateBase::heal(int amount) {
   health += amount;
   UtilityFunctions::print("Healed by ", amount, ". Health now: ", health);
+  emit_signal("health_changed", health);
 }
 
 void AdventureGameStateBase::reset_game() {
@@ -118,4 +122,5 @@ void AdventureGameStateBase::reset_game() {
   inventory.clear();
   health = 3;
   UtilityFunctions::print("Game reset. Health: ", health);
+  emit_signal("health_changed", health);
 }

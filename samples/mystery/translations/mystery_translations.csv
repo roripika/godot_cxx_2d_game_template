@@ -7,6 +7,12 @@ A suspicious incident occurred at the warehouse district.",あなたは街で起
 
 倉庫街で不審な事件が起きた。
 office_goto_warehouse,Go to Warehouse,倉庫に向かう
+office_boss_intro,"Detectives! We have a new case.\nA Level 3 Apparition at the old warehouse.\nGo investigate properly.","諸君！新しい事件だ。\n旧倉庫でレベル3の怪異が発生した。\nしっかり調査してこい。"
+office_boss_back,Back already? Did you solve it?,もう戻ったのか？解決したのか？
+office_system_case_closed,Case Closed. Thanks for playing!,事件解決。プレイありがとう！
+office_system_going_to_warehouse,Going to the Warehouse...,倉庫に向かう...
+office_boss_great_work,"Great work! That evidence proves it was a poltergeist.\nYou solved the case!","よくやった！その証拠でポルターガイストだと証明できる。\n事件解決だ！"
+office_boss_go_warehouse,What are you doing here? Go to the warehouse!,何をしている？倉庫へ行け！
 
 # Warehouse Investigation
 warehouse_title,Warehouse Investigation,倉庫の捜査
@@ -20,14 +26,19 @@ hotspot_footprint,Strange Footprints,奇妙な足跡
 evidence_found,Evidence found!,証拠を発見した！
 investigation_complete,Investigation complete. Returning to office.,調査完了。事務所に戻る。
 return_to_office,Return to Office,事務所に戻る
+need_more_evidence,You still need more evidence.,まだ証拠が足りない。
+haunted_system_arrived,"You arrived at the warehouse.\nFind the source of the paranormal activity.","倉庫に到着した。\n怪異の原因を突き止めよう。"
+haunted_detective_already_have_evidence,I already have the evidence. I should report to the Boss.,証拠はもう手に入れた。ボスに報告しよう。
+haunted_detective_collected,"Aha! This ectoplasm proves it.\n(Evidence Collected)","なるほど…このエクトプラズムが証拠だ。\n（証拠を入手した）"
+haunted_system_returning_office,Returning to Office...,事務所に戻る...
 
 # Evidence Items
 evidence_ectoplasm,Ectoplasm,エクトプラズム
 evidence_ectoplasm_desc,Strange glowing substance,奇妙に光る物質
 evidence_footprint,Footprints,足跡
 evidence_footprint_desc,Non-human footprints,人間ではない足跡
-evidence_memo,Torn Memo,破られたメモ
-evidence_memo_desc,Partially readable text,一部読める文章
+evidence_torn_memo,Torn Memo,破られたメモ
+evidence_torn_memo_desc,Partially readable text,一部読める文章
 
 # Office Deduction
 deduction_title,Deduction Time,推理タイム
@@ -54,6 +65,7 @@ action_press,Press,揺さぶる
 select_evidence,Select evidence to present,提示する証拠を選択してください
 correct_evidence,Correct! Contradiction found!,正解！矛盾を見つけた！
 wrong_evidence,Wrong evidence...,証拠が違う…
+testimony_incomplete,You still haven't pointed out all contradictions.,まだ矛盾を全て指摘できていない。
 press_response,The witness seems nervous...,証人が動揺している…
 victory,Victory! Case solved!,勝利！事件解決だ！
 defeat,Too many mistakes... Investigation failed.,ミスが多すぎる…捜査失敗。
@@ -64,6 +76,8 @@ ending_perfect,Perfect! You solved the case flawlessly!,完璧だ！完全に事
 ending_normal,Case solved. The mystery is unraveled.,事件解決。謎は解明された。
 ending_failure,Investigation failed... The mystery remains unsolved.,捜査失敗…謎は未解決のまま。
 ending_restart,Restart,最初から
+ending_choice_retry,Play Again,もう一度プレイ
+ending_choice_menu,Back to Menu,メニューに戻る
 
 # Common
 hp_label,HP: %d,HP: %d

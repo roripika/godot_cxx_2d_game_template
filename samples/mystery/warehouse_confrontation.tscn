@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://warehouse_confrontation"]
+[gd_scene load_steps=6 format=3 uid="uid://warehouse_confrontation"]
 
-[ext_resource type="Script" path="res://samples/mystery/scripts/warehouse_confrontation_scene.gd"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/warehouse_confrontation_scene.gd" id="1_warehouse_confrontation_scene"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/dialogue_ui_advanced.gd" id="2_dialogue_adv"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/inventory_ui.gd" id="3_evidence_inventory"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/testimony_system.gd" id="4_testimony_system"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/health_bar.gd" id="5_health_bar"]
 
 [node name="WarehouseConfrontation" type="Node2D"]
-script = ExtResource("res://samples/mystery/scripts/warehouse_confrontation_scene.gd")
+script = ExtResource("1_warehouse_confrontation_scene")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1024.0
@@ -17,6 +21,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1024.0
 offset_bottom = 250.0
+script = ExtResource("2_dialogue_adv")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DialogueUI"]
 layout_mode = 1
@@ -45,30 +50,51 @@ size_flags_vertical = 3
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 0.0
-anchor_top = 0.25
-anchor_right = 0.15
+anchor_top = 0.0
+anchor_right = 0.2
 anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+script = ExtResource("3_evidence_inventory")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InventoryUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Label" type="Label" parent="CanvasLayer/InventoryUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "証拠品"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/InventoryUI/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="DetailPanel" type="PanelContainer" parent="CanvasLayer/InventoryUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryUI/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
+layout_mode = 2
+text = "証拠品名"
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
+layout_mode = 2
+text = "説明"
+auto_wrapping_enabled = true
+
+[node name="IconRect" type="TextureRect" parent="CanvasLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-size_flags_vertical = 2
-columns = 1
+size_flags_vertical = 3
 
 [node name="TestimonySystem" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -79,6 +105,7 @@ offset_left = -200.0
 offset_top = 300.0
 offset_right = 200.0
 offset_bottom = 550.0
+script = ExtResource("4_testimony_system")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TestimonySystem"]
 layout_mode = 1
@@ -124,3 +151,4 @@ anchor_right = 0.2
 anchor_bottom = 0.05
 offset_top = 10.0
 offset_left = 10.0
+script = ExtResource("5_health_bar")

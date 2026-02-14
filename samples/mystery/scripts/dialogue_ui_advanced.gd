@@ -8,10 +8,10 @@ signal choice_selected(index: int, text: String)
 signal dialogue_finished()
 
 # UI コンポーネント
-@onready var name_label = $VBoxContainer/NameLabel
-@onready var text_label = $VBoxContainer/TextLabel
-@onready var choices_container = $VBoxContainer/ChoicesContainer
-@onready var portrait_rect = $PortraitRect
+@onready var name_label: Label = get_node_or_null("VBoxContainer/NameLabel")
+@onready var text_label: Label = get_node_or_null("VBoxContainer/TextLabel")
+@onready var choices_container: VBoxContainer = get_node_or_null("VBoxContainer/ChoicesContainer")
+@onready var portrait_rect: TextureRect = get_node_or_null("PortraitRect")
 
 # 設定
 @export var typing_speed: float = 0.05  # 文字表示速度（秒）
@@ -24,16 +24,17 @@ var current_text: String = ""
 func _ready():
 	# UIを初期状態で非表示
 	visible = false
-	choices_container.clear()
+	_clear_choices()
 
 func show_message(speaker: String, text: String):
 	"""基本的なメッセージ表示"""
 	visible = true
-	name_label.text = speaker
-	name_label.modulate = name_color
+	if name_label:
+		name_label.text = speaker
+		name_label.modulate = name_color
 	
 	# 前回のテキストがあればクリア
-	choices_container.clear()
+	_clear_choices()
 	
 	# タイプライター効果で表示
 	_type_text(text)
@@ -45,40 +46,42 @@ func _type_text(text: String):
 	
 	is_typing = true
 	current_text = text
-	text_label.text = ""
+	if text_label:
+		text_label.text = ""
 	
 	for i in range(len(text)):
-		text_label.text += text[i]
+		if text_label:
+			text_label.text += str(text[i])
 		await get_tree().create_timer(typing_speed).timeout
 	
 	is_typing = false
 	dialogue_finished.emit()
 
-func show_choices(choices: Array[String]) -> int:
+func show_choices(choices: Array) -> int:
 	"""
 	選択肢を表示して、選択されるまで待つ
 	戻り値: 選択されたインデックス
 	"""
-	choices_container.clear()
-	
-	var choice_selected_signal = Signal(self, "choice_selected")
+	_clear_choices()
 	
 	for i in range(choices.size()):
 		var choice_btn = Button.new()
-		choice_btn.text = choices[i]
+		var choice_text := str(choices[i])
+		choice_btn.text = choice_text
 		choice_btn.pressed.connect(func(): 
-			_on_choice_selected(i, choices[i])
+			_on_choice_selected(i, choice_text)
 		)
-		choices_container.add_child(choice_btn)
+		if choices_container:
+			choices_container.add_child(choice_btn)
 	
 	# 選択されるまで待つ
-	var result = await choice_selected
-	return result[0]
+	var args = await choice_selected
+	return int(args[0])
 
 func _on_choice_selected(index: int, text: String):
 	"""選択肢がクリックされた時"""
-	choices_container.clear()
-	choice_selected.emit([index, text])
+	_clear_choices()
+	choice_selected.emit(index, text)
 
 func set_portrait(texture: Texture2D):
 	"""立ち絵を設定"""
@@ -94,12 +97,13 @@ func clear_portrait():
 func hide_dialogue():
 	"""会話UIを非表示"""
 	visible = false
-	choices_container.clear()
+	_clear_choices()
 
 func skip_typing():
 	"""タイピングアニメーションをスキップ"""
 	if is_typing:
-		text_label.text = current_text
+		if text_label:
+			text_label.text = current_text
 		is_typing = false
 		dialogue_finished.emit()
 
@@ -109,3 +113,10 @@ func _input(event: InputEvent):
 		if is_typing:
 			skip_typing()
 			get_tree().root.set_input_as_handled()
+
+func _clear_choices():
+	"""選択肢ボタンを全削除"""
+	if not choices_container:
+		return
+	for child in choices_container.get_children():
+		child.queue_free()

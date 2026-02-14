@@ -15,7 +15,7 @@ env = SConscript("godot-cpp/SConstruct")
 # Tweaks for the binding layout
 env.Append(CPPPATH=["src"])
 env.Append(CPPPATH=["src"])
-sources = Glob("src/*.cpp") + Glob("src/core/*.cpp") + Glob("src/core/cycles/*.cpp") + Glob("src/core/ui/*.cpp") + Glob("src/core/rhythm/*.cpp") + Glob("src/views/*.cpp") + Glob("src/views/rhythm/*.cpp") + Glob("src/entities/*.cpp") + Glob("src/entities/components/*.cpp") + Glob("src/features/sandbox/*.cpp") + Glob("src/features/rhythm/*.cpp") + Glob("src/items/*.cpp") + Glob("src/scenes/*.cpp")
+sources = Glob("src/*.cpp") + Glob("src/core/*.cpp") + Glob("src/core/cycles/*.cpp") + Glob("src/core/ui/*.cpp") + Glob("src/core/rhythm/*.cpp") + Glob("src/views/*.cpp") + Glob("src/views/rhythm/*.cpp") + Glob("src/entities/*.cpp") + Glob("src/entities/components/*.cpp") + Glob("src/features/sandbox/*.cpp") + Glob("src/features/rhythm/*.cpp") + Glob("src/items/*.cpp") + Glob("src/scenes/*.cpp") + Glob("src/karakuri/*.cpp") + Glob("src/karakuri/scenario/*.cpp") + Glob("src/karakuri/yaml/*.cpp")
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(

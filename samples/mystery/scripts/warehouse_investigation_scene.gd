@@ -14,25 +14,33 @@ var hotspots_data = [
 		"id": "floor_area",
 		"name": "床",
 		"description": "床には何か妙な物質が落ちている...",
-		"evidence": "ectoplasm"
+		"evidence": "ectoplasm",
+		"pos": Vector2(520, 380),
+		"radius": 60
 	},
 	{
 		"id": "footprints",
 		"name": "足跡",
 		"description": "大量の足跡がある。人間のものではなさそうだ。",
-		"evidence": "footprint"
+		"evidence": "footprint",
+		"pos": Vector2(330, 450),
+		"radius": 60
 	},
 	{
 		"id": "memo",
 		"name": "破れたメモ",
 		"description": "メモが落ちている。「午前3時に...」という文字が見える。",
-		"evidence": "torn_memo"
+		"evidence": "torn_memo",
+		"pos": Vector2(740, 310),
+		"radius": 60
 	},
 	{
 		"id": "exit",
 		"name": "出口",
 		"description": "オフィスに戻る",
-		"evidence": ""
+		"evidence": "",
+		"pos": Vector2(70, 320),
+		"radius": 90
 	}
 ]
 
@@ -58,12 +66,14 @@ func _setup_hotspots():
 		# ホットスポット用のエリアを作成（簡易版）
 		var area = Area2D.new()
 		area.name = hs_data["id"]
+		if hs_data.has("pos"):
+			area.position = hs_data["pos"]
 		add_child(area)
 		
 		# CollisionShape2D を追加
 		var collision = CollisionShape2D.new()
 		var shape = CircleShape2D.new()
-		shape.radius = 50
+		shape.radius = hs_data.get("radius", 50)
 		collision.shape = shape
 		area.add_child(collision)
 		
@@ -111,7 +121,7 @@ func _get_evidence_name(evidence_id: String) -> String:
 func _exit_warehouse():
 	"""倉庫から出る"""
 	if dialogue_ui:
-		dialogue_ui.show_message("System", "オフィスに戻る...")
+		dialogue_ui.show_message("System", tr("return_to_office"))
 	
 	await get_tree().create_timer(1.0).timeout
 	AdventureGameState.change_scene("res://samples/mystery/office_scene.tscn")
@@ -124,4 +134,4 @@ func _process(delta):
 		if not AdventureGameState.get_flag("all_evidence_collected"):
 			AdventureGameState.set_flag("all_evidence_collected", true)
 			if dialogue_ui:
-				dialogue_ui.show_message("System", "証拠品を全て集めた。\nオフィスに戻ろう。")
+				dialogue_ui.show_message("System", tr("investigation_complete"))

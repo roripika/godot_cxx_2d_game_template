@@ -36,11 +36,14 @@ var max_rounds: int = 3
 var round_errors: int = 0
 var total_errors: int = 0
 
-var inventory_ui: InventoryUI = null
-var dialogue_ui: DialogueUIAdvanced = null
+# NOTE: Keep these loosely typed to avoid dependency on global script class cache
+# during CLI/headless runs.
+var inventory_ui: Control = null
+var dialogue_ui: Control = null
 
 func _ready():
 	visible = false
+	max_rounds = 1  # 現状のデモは1セットの証言を通す想定
 	_setup_buttons()
 
 func _setup_buttons():
@@ -58,11 +61,11 @@ func add_testimony(speaker: String, text: String, evidence_id: String = "", shak
 	testimonies.append(t)
 	return t
 
-func set_inventory_ui(ui: InventoryUI):
+func set_inventory_ui(ui: Control):
 	"""インベントリUIを設定"""
 	inventory_ui = ui
 
-func set_dialogue_ui(ui: DialogueUIAdvanced):
+func set_dialogue_ui(ui: Control):
 	"""ダイアログUIを設定"""
 	dialogue_ui = ui
 
@@ -106,7 +109,7 @@ func _on_shake_pressed():
 	var testimony = testimonies[current_testimony_idx]
 	if testimony.shake_result != "":
 		# ダイアログUIで追加情報を表示
-		if dialogue_ui:
+		if dialogue_ui and dialogue_ui.has_method("show_message"):
 			dialogue_ui.show_message(testimony.speaker, testimony.shake_result)
 		else:
 			print("追加情報: ", testimony.shake_result)
@@ -119,7 +122,7 @@ func _on_present_pressed():
 	evidence_required.emit()
 	
 	# インベントリUIを表示して選択待ち
-	if inventory_ui:
+	if inventory_ui and inventory_ui.has_method("show_inventory"):
 		inventory_ui.show_inventory()
 		
 		# 証拠品が選択されるまで待つ（最大10秒）
@@ -132,8 +135,12 @@ func _wait_for_evidence_selection(timeout: float) -> String:
 	var start_time = Time.get_ticks_msec()
 	
 	while Time.get_ticks_msec() - start_time < timeout * 1000:
-		if inventory_ui and inventory_ui.selected_evidence:
-			return inventory_ui.selected_evidence.id
+		if inventory_ui:
+			var sel = inventory_ui.get("selected_evidence")
+			if sel != null and sel is Object:
+				var eid = sel.get("id")
+				if eid != null and str(eid) != "":
+					return str(eid)
 		
 		await get_tree().process_frame
 	
@@ -145,7 +152,7 @@ func _check_evidence(evidence_id: String):
 	
 	if evidence_id == testimony.contradiction_evidence:
 		# 正解！
-		if dialogue_ui:
+		if dialogue_ui and dialogue_ui.has_method("show_message"):
 			dialogue_ui.show_message(testimony.speaker, tr("correct_evidence"))
 		testimony.correct_evidence_presented = true
 		current_testimony_idx += 1
@@ -161,11 +168,10 @@ func _check_evidence(evidence_id: String):
 		total_errors += 1
 		AdventureGameState.take_damage()
 		
-		if dialogue_ui:
+		if dialogue_ui and dialogue_ui.has_method("show_message"):
 			dialogue_ui.show_message(testimony.speaker, tr("wrong_evidence"))
 		
-		if round_errors >= 3:
-			# ゲームオーバー
+		if AdventureGameState.get_health() <= 0:
 			_on_game_over()
 		else:
 			# 証言を最初から
@@ -175,6 +181,16 @@ func _check_evidence(evidence_id: String):
 
 func _on_round_complete():
 	"""ラウンド完了"""
+	# 全ての矛盾が指摘されていなければ終了させない（Next連打での抜け防止）
+	for t in testimonies:
+		if t.contradiction_evidence != "" and not t.correct_evidence_presented:
+			if dialogue_ui and dialogue_ui.has_method("show_message"):
+				dialogue_ui.show_message("System", tr("testimony_incomplete"))
+			current_testimony_idx = 0
+			await get_tree().create_timer(0.8).timeout
+			_show_testimony()
+			return
+
 	current_round_idx += 1
 	
 	if current_round_idx >= max_rounds:
@@ -197,6 +213,7 @@ func _on_all_complete():
 func _on_game_over():
 	"""ゲームオーバー"""
 	visible = false
+	all_rounds_complete.emit(false)
 	testimony_finished.emit(false)
 
 func _enable_buttons():

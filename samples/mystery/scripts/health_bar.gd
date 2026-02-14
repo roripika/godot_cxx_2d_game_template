@@ -9,15 +9,19 @@ class_name HealthBar
 @export var empty_color: Color = Color.GRAY
 
 var current_health: int = 3
-var heart_icons: Array[TextureRect] = []
+var heart_icons: Array[ColorRect] = []
 
 func _ready():
 	current_health = max_health
 	_create_hearts()
 	
 	# AdventureGameStateの変更を監視
-	if not AdventureGameState.is_connected("health_changed", Callable(self, "_on_health_changed")):
-		pass  # シグナルが存在しない場合はスキップ
+	if AdventureGameState and AdventureGameState.has_signal("health_changed"):
+		if not AdventureGameState.is_connected("health_changed", Callable(self, "_on_health_changed")):
+			AdventureGameState.health_changed.connect(_on_health_changed)
+		# 初期値を反映
+		if AdventureGameState.has_method("get_health"):
+			update_health(AdventureGameState.get_health())
 
 func _create_hearts():
 	"""ハートUI を作成"""
@@ -27,12 +31,9 @@ func _create_hearts():
 	heart_icons.clear()
 	
 	for i in range(max_health):
-		var heart = TextureRect.new()
+		var heart = ColorRect.new()
 		heart.custom_minimum_size = Vector2(32, 32)
-		
-		# ハート画像を作成（簡易版：色つきrect）
-		var canvas = CanvasItem.new()
-		heart.modulate = heart_color
+		heart.color = heart_color
 		
 		add_child(heart)
 		heart_icons.append(heart)
@@ -57,9 +58,9 @@ func _refresh_display():
 	"""表示を更新"""
 	for i in range(heart_icons.size()):
 		if i < current_health:
-			heart_icons[i].modulate = heart_color
+			heart_icons[i].color = heart_color
 		else:
-			heart_icons[i].modulate = empty_color
+			heart_icons[i].color = empty_color
 
 func _play_damage_animation():
 	"""ダメージアニメーション"""
