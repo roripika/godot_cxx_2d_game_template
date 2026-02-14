@@ -46,6 +46,15 @@ func _ready():
 	max_rounds = 1  # 現状のデモは1セットの証言を通す想定
 	_setup_buttons()
 
+func clear_testimonies():
+	"""証言データと進行状態をクリア（YAML駆動で再利用するため）"""
+	testimonies.clear()
+	current_round_idx = 0
+	current_testimony_idx = 0
+	round_errors = 0
+	total_errors = 0
+	visible = false
+
 func _setup_buttons():
 	"""ボタンの接続"""
 	if next_btn:

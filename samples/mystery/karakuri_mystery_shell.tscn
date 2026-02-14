@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://karakuri_mystery_shell"]
+[gd_scene load_steps=6 format=3 uid="uid://karakuri_mystery_shell"]
 
 [ext_resource type="Script" path="res://samples/mystery/scripts/dialogue_ui_advanced.gd" id="1_dialogue_adv"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/inventory_ui.gd" id="2_evidence_inventory"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/language_switcher_scene.gd" id="3_lang"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/testimony_system.gd" id="4_testimony_system"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/health_bar.gd" id="5_health_bar"]
 
 [node name="KarakuriMysteryShell" type="Node2D"]
 
@@ -11,6 +13,7 @@ scene_container_path = NodePath("../SceneContainer")
 dialogue_ui_path = NodePath("../CanvasLayer/DialogueUI")
 evidence_ui_path = NodePath("../CanvasLayer/InventoryUI")
 interaction_manager_path = NodePath("../InteractionManager")
+testimony_system_path = NodePath("../CanvasLayer/TestimonySystem")
 
 [node name="SceneContainer" type="Node2D" parent="."]
 
@@ -104,3 +107,62 @@ auto_wrapping_enabled = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 3
+
+[node name="TestimonySystem" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 320.0
+offset_right = 220.0
+offset_bottom = 600.0
+script = ExtResource("4_testimony_system")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TestimonySystem"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="SpeakerLabel" type="Label" parent="CanvasLayer/TestimonySystem/VBoxContainer"]
+layout_mode = 2
+text = "Witness"
+theme_override_font_sizes/font_size = 14
+
+[node name="TestimonyText" type="Label" parent="CanvasLayer/TestimonySystem/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "..."
+auto_wrapping_enabled = true
+
+[node name="ActionContainer" type="HBoxContainer" parent="CanvasLayer/TestimonySystem/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="NextButton" type="Button" parent="CanvasLayer/TestimonySystem/VBoxContainer/ActionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next"
+
+[node name="ShakeButton" type="Button" parent="CanvasLayer/TestimonySystem/VBoxContainer/ActionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Press"
+
+[node name="PresentButton" type="Button" parent="CanvasLayer/TestimonySystem/VBoxContainer/ActionContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Present"
+
+[node name="HealthBar" type="HBoxContainer" parent="CanvasLayer"]
+layout_mode = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.25
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 0.0
+offset_bottom = 0.0
+script = ExtResource("5_health_bar")

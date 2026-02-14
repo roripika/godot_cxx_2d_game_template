@@ -53,6 +53,10 @@ public:
   void set_interaction_manager_path(const godot::NodePath &path);
   godot::NodePath get_interaction_manager_path() const;
 
+  /** @brief NodePath to TestimonySystem node (optional, for confrontation mode). */
+  void set_testimony_system_path(const godot::NodePath &path);
+  godot::NodePath get_testimony_system_path() const;
+
   /** @brief Godot lifecycle hook. */
   void _ready() override;
   /** @brief Godot lifecycle hook. */
@@ -76,6 +80,8 @@ private:
       godot::NodePath("CanvasLayer/InventoryUI");
   godot::NodePath interaction_manager_path_ =
       godot::NodePath("InteractionManager");
+  godot::NodePath testimony_system_path_ =
+      godot::NodePath("../CanvasLayer/TestimonySystem");
 
   godot::Dictionary scenario_root_;
   godot::Dictionary scenes_; // scene_id -> scene dict
@@ -85,6 +91,7 @@ private:
   godot::Node *dialogue_ui_ = nullptr;
   godot::Node *evidence_ui_ = nullptr;
   godot::Node *interaction_manager_ = nullptr;
+  godot::Node *testimony_system_ = nullptr;
   godot::Node *current_scene_instance_ = nullptr;
 
   godot::Array pending_actions_;
@@ -93,6 +100,13 @@ private:
   bool is_executing_actions_ = false;
 
   godot::Array hotspot_bindings_;
+
+  bool waiting_for_choice_ = false;
+  godot::Array pending_choice_actions_; // Array<Array<action>>
+
+  bool waiting_for_testimony_ = false;
+  godot::Array pending_testimony_success_actions_;
+  godot::Array pending_testimony_failure_actions_;
 
   bool load_scenario();
   bool load_scene_by_id(const godot::String &scene_id);
@@ -103,6 +117,8 @@ private:
   bool execute_single_action(const godot::Variant &action);
 
   void on_clicked_at(const godot::Vector2 &pos);
+  void on_choice_selected(int index, const godot::String &text);
+  void on_testimony_complete(bool success);
   bool hotspot_matches_click(const HotspotBinding &hs,
                              const godot::Vector2 &pos) const;
   void trigger_hotspot(const HotspotBinding &hs);

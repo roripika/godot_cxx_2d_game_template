@@ -30,6 +30,7 @@ scenes:
                 - dialogue:
                     speaker: Boss
                     text_key: deduction_title
+                - goto: deduction
               else:
                 - dialogue:
                     speaker: Boss
@@ -93,3 +94,144 @@ scenes:
                     speaker: System
                     text_key: need_more_evidence
 
+  deduction:
+    scene_path: res://samples/mystery/office_deduction_base.tscn
+    on_enter:
+      - dialogue:
+          speaker: Boss
+          text_key: deduction_title
+      - dialogue:
+          speaker: Detective
+          text_key: deduction_question
+      - choice:
+          choices:
+            - option:
+                text_key: deduction_choice1
+                actions:
+                  - set_flag:
+                      key: deduction_complete
+                      value: true
+                  - dialogue:
+                      speaker: Boss
+                      text_key: deduction_correct
+                  - goto: confrontation
+            - option:
+                text_key: deduction_choice2
+                actions:
+                  - take_damage: 1
+                  - dialogue:
+                      speaker: Boss
+                      text_key: deduction_wrong
+                  - if_health_leq:
+                      value: 0
+                      then:
+                        - set_flag:
+                            key: game_over
+                            value: true
+                        - goto: ending
+                      else:
+                        - goto: confrontation
+            - option:
+                text_key: deduction_choice3
+                actions:
+                  - take_damage: 1
+                  - dialogue:
+                      speaker: Boss
+                      text_key: deduction_wrong
+                  - if_health_leq:
+                      value: 0
+                      then:
+                        - set_flag:
+                            key: game_over
+                            value: true
+                        - goto: ending
+                      else:
+                        - goto: confrontation
+
+  confrontation:
+    scene_path: res://samples/mystery/warehouse_confrontation_base.tscn
+    on_enter:
+      - dialogue:
+          speaker: System
+          text_key: confrontation_intro
+      - testimony:
+          max_rounds: 1
+          testimonies:
+            - line:
+                speaker: 容疑者
+                text_key: testimony_1
+                evidence: footprint
+                shake_key: press_response
+            - line:
+                speaker: 容疑者
+                text_key: testimony_2
+                evidence: torn_memo
+                shake_key: press_response
+            - line:
+                speaker: 容疑者
+                text_key: testimony_3
+                evidence: ectoplasm
+                shake_key: press_response
+          on_success:
+            - set_flag:
+                key: case_solved
+                value: true
+            - if_flag:
+                key: all_evidence_collected
+                value: true
+                then:
+                  - if_health_ge:
+                      value: 3
+                      then:
+                        - set_flag:
+                            key: perfect_ending
+                            value: true
+            - goto: ending
+          on_failure:
+            - set_flag:
+                key: game_over
+                value: true
+            - goto: ending
+
+  ending:
+    scene_path: res://samples/mystery/ending_base.tscn
+    on_enter:
+      - if_flag:
+          key: game_over
+          value: true
+          then:
+            - dialogue:
+                speaker: Boss
+                text_key: ending_failure
+          else:
+            - if_flag:
+                key: perfect_ending
+                value: true
+                then:
+                  - dialogue:
+                      speaker: Boss
+                      text_key: ending_perfect
+                else:
+                  - if_flag:
+                      key: case_solved
+                      value: true
+                      then:
+                        - dialogue:
+                            speaker: Boss
+                            text_key: ending_normal
+                      else:
+                        - dialogue:
+                            speaker: Boss
+                            text_key: ending_failure
+      - choice:
+          choices:
+            - option:
+                text_key: ending_choice_retry
+                actions:
+                  - reset_game: true
+                  - goto: office
+            - option:
+                text_key: ending_choice_menu
+                actions:
+                  - reset_game: true
+                  - change_root_scene: res://samples/main_menu.tscn

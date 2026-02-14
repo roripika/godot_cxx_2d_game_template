@@ -39,7 +39,7 @@ func _run() -> void:
 	var im := _interaction_manager()
 	_assert(im.has_signal("clicked_at"), "InteractionManager has no clicked_at")
 
-	# Door -> warehouse
+	# Door -> warehouse (investigation)
 	im.emit_signal("clicked_at", Vector2(960, 360))
 	await _wait_frames(10)
 	_assert(_scene_container().get_child(0).name == "WarehouseBase", "expected WarehouseBase after door click")
@@ -63,6 +63,39 @@ func _run() -> void:
 	_assert(_scene_container().get_child(0).name == "OfficeBase", "expected OfficeBase after exit")
 	_assert(gs.call("get_flag", "all_evidence_collected", false), "all_evidence_collected not set")
 
+	# Boss -> deduction scene.
+	im.emit_signal("clicked_at", Vector2(180, 360))
+	await _wait_frames(20)
+	_assert(_scene_container().get_child(0).name == "OfficeDeductionBase", "expected OfficeDeductionBase after boss click")
+
+	# Pick the correct deduction choice (index 0).
+	var dui := current_scene.get_node("CanvasLayer/DialogueUI")
+	var cc := dui.get_node("VBoxContainer/ChoicesContainer")
+	var waited := 0
+	while waited < 200 and cc.get_child_count() == 0:
+		await process_frame
+		waited += 1
+	_assert(cc.get_child_count() > 0, "deduction choices did not appear")
+	dui._on_choice_selected(0, "")
+	await _wait_frames(30)
+	_assert(_scene_container().get_child(0).name == "WarehouseConfrontationBase", "expected WarehouseConfrontationBase after deduction")
+
+	# Force-win the testimony quickly by presenting the correct evidence for each statement.
+	var ts := current_scene.get_node("CanvasLayer/TestimonySystem")
+	waited = 0
+	while waited < 200 and int(ts.get("testimonies").size()) < 3:
+		await process_frame
+		waited += 1
+	_assert(int(ts.get("testimonies").size()) >= 3, "testimonies not populated")
+
+	ts._check_evidence("footprint")
+	await create_timer(1.2).timeout
+	ts._check_evidence("torn_memo")
+	await create_timer(1.2).timeout
+	ts._check_evidence("ectoplasm")
+	await create_timer(2.0).timeout
+
+	_assert(_scene_container().get_child(0).name == "EndingBase", "expected EndingBase after testimony completion")
+
 	print("[KARAKURI_SMOKE] passed")
 	quit(0)
-

@@ -140,10 +140,22 @@ NodePath KarakuriScenarioRunner::get_interaction_manager_path() const {
   return interaction_manager_path_;
 }
 
+void KarakuriScenarioRunner::set_testimony_system_path(const NodePath &path) {
+  testimony_system_path_ = path;
+}
+
+NodePath KarakuriScenarioRunner::get_testimony_system_path() const {
+  return testimony_system_path_;
+}
+
 void KarakuriScenarioRunner::_bind_methods() {
   // Signal handlers (must be bound to be callable through Callable connections).
   ClassDB::bind_method(D_METHOD("on_clicked_at", "pos"),
                        &KarakuriScenarioRunner::on_clicked_at);
+  ClassDB::bind_method(D_METHOD("on_choice_selected", "index", "text"),
+                       &KarakuriScenarioRunner::on_choice_selected);
+  ClassDB::bind_method(D_METHOD("on_testimony_complete", "success"),
+                       &KarakuriScenarioRunner::on_testimony_complete);
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),
                        &KarakuriScenarioRunner::set_scenario_path);
@@ -179,6 +191,13 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::get_interaction_manager_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "interaction_manager_path"),
                "set_interaction_manager_path", "get_interaction_manager_path");
+
+  ClassDB::bind_method(D_METHOD("set_testimony_system_path", "path"),
+                       &KarakuriScenarioRunner::set_testimony_system_path);
+  ClassDB::bind_method(D_METHOD("get_testimony_system_path"),
+                       &KarakuriScenarioRunner::get_testimony_system_path);
+  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "testimony_system_path"),
+               "set_testimony_system_path", "get_testimony_system_path");
 }
 
 void KarakuriScenarioRunner::_ready() {
@@ -189,6 +208,7 @@ void KarakuriScenarioRunner::_ready() {
   dialogue_ui_ = resolve_node_path(dialogue_ui_path_);
   evidence_ui_ = resolve_node_path(evidence_ui_path_);
   interaction_manager_ = resolve_node_path(interaction_manager_path_);
+  testimony_system_ = resolve_node_path(testimony_system_path_);
 
   if (!scene_container_) {
     UtilityFunctions::push_error(
@@ -211,6 +231,27 @@ void KarakuriScenarioRunner::_ready() {
   if (err != OK && err != ERR_ALREADY_EXISTS) {
     UtilityFunctions::push_warning(
         "KarakuriScenarioRunner: failed to connect clicked_at: ", err);
+  }
+
+  if (dialogue_ui_ && dialogue_ui_->has_signal("choice_selected")) {
+    const Callable cb2(this, "on_choice_selected");
+    const Error err2 = dialogue_ui_->connect("choice_selected", cb2);
+    if (err2 != OK && err2 != ERR_ALREADY_EXISTS) {
+      UtilityFunctions::push_warning(
+          "KarakuriScenarioRunner: failed to connect choice_selected: ", err2);
+    }
+  }
+
+  if (testimony_system_ &&
+      testimony_system_->has_signal("all_rounds_complete")) {
+    const Callable cb3(this, "on_testimony_complete");
+    const Error err3 =
+        testimony_system_->connect("all_rounds_complete", cb3);
+    if (err3 != OK && err3 != ERR_ALREADY_EXISTS) {
+      UtilityFunctions::push_warning(
+          "KarakuriScenarioRunner: failed to connect all_rounds_complete: ",
+          err3);
+    }
   }
 
   if (!load_scenario()) {
@@ -314,6 +355,11 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   current_scene_id_ = scene_id;
   current_scene_instance_ = inst;
 
+  // Confrontation UI should not persist across scenes unless started by actions.
+  if (testimony_system_) {
+    testimony_system_->set("visible", false);
+  }
+
   bind_scene_hotspots(scene_dict);
 
   // Scene on_enter actions.
@@ -366,10 +412,15 @@ void KarakuriScenarioRunner::start_actions(const Array &actions) {
   pending_action_index_ = 0;
   wait_remaining_sec_ = 0.0;
   is_executing_actions_ = true;
+  waiting_for_choice_ = false;
+  waiting_for_testimony_ = false;
 }
 
 void KarakuriScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_) {
+    return;
+  }
+  if (waiting_for_choice_ || waiting_for_testimony_) {
     return;
   }
   if (wait_remaining_sec_ > 0.0) {
@@ -517,6 +568,173 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
     return true;
   }
 
+  if (kind == "choice") {
+    if (!dialogue_ui_ || !dialogue_ui_->has_method("show_choices") ||
+        !dialogue_ui_->has_signal("choice_selected")) {
+      UtilityFunctions::push_error(
+          "KarakuriScenarioRunner: choice requires DialogueUIAdvanced with "
+          "show_choices + choice_selected");
+      return false;
+    }
+
+    const Dictionary payload = as_dict(payload_v);
+    const Array choices = as_array(payload.get("choices", Array()));
+    if (choices.is_empty()) {
+      return false;
+    }
+
+    Array choice_texts;
+    Array choice_actions; // Array<Array>
+    for (int i = 0; i < choices.size(); i++) {
+      Dictionary c = as_dict(choices[i]);
+      if (c.has("option")) {
+        c = as_dict(c["option"]);
+      }
+      const String key = dict_get_string(c, "text_key", "");
+      const String txt =
+          key.is_empty() ? dict_get_string(c, "text", "") : tr_key(key);
+      choice_texts.append(txt);
+      choice_actions.append(as_array(c.get("actions", Array())));
+    }
+
+    pending_choice_actions_ = choice_actions;
+    waiting_for_choice_ = true;
+
+    // Fire-and-forget; show_choices itself waits for the signal internally.
+    dialogue_ui_->call("show_choices", choice_texts);
+    return true;
+  }
+
+  if (kind == "take_damage") {
+    int amount = 1;
+    if (payload_v.get_type() == Variant::INT) {
+      amount = int(payload_v);
+    } else if (payload_v.get_type() == Variant::DICTIONARY) {
+      amount = int(as_dict(payload_v).get("amount", 1));
+    }
+    if (amount < 1) {
+      amount = 1;
+    }
+    Node *gs = get_adventure_state();
+    if (gs && gs->has_method("take_damage")) {
+      for (int i = 0; i < amount; i++) {
+        gs->call("take_damage");
+      }
+    }
+    return true;
+  }
+
+  if (kind == "reset_game") {
+    Node *gs = get_adventure_state();
+    if (gs && gs->has_method("reset_game")) {
+      gs->call("reset_game");
+    }
+    return true;
+  }
+
+  if (kind == "if_health_ge") {
+    const Dictionary payload = as_dict(payload_v);
+    const int threshold = int(payload.get("value", 0));
+    const Array then_actions = as_array(payload.get("then", Array()));
+    const Array else_actions = as_array(payload.get("else", Array()));
+
+    int hp = 0;
+    Node *gs = get_adventure_state();
+    if (gs && gs->has_method("get_health")) {
+      hp = int(gs->call("get_health"));
+    }
+
+    const Array chosen = (hp >= threshold) ? then_actions : else_actions;
+    for (int i = chosen.size() - 1; i >= 0; i--) {
+      pending_actions_.insert(pending_action_index_, chosen[i]);
+    }
+    return true;
+  }
+
+  if (kind == "if_health_leq") {
+    const Dictionary payload = as_dict(payload_v);
+    const int threshold = int(payload.get("value", 0));
+    const Array then_actions = as_array(payload.get("then", Array()));
+    const Array else_actions = as_array(payload.get("else", Array()));
+
+    int hp = 0;
+    Node *gs = get_adventure_state();
+    if (gs && gs->has_method("get_health")) {
+      hp = int(gs->call("get_health"));
+    }
+
+    const Array chosen = (hp <= threshold) ? then_actions : else_actions;
+    for (int i = chosen.size() - 1; i >= 0; i--) {
+      pending_actions_.insert(pending_action_index_, chosen[i]);
+    }
+    return true;
+  }
+
+  if (kind == "testimony") {
+    if (!testimony_system_ || !testimony_system_->has_method("add_testimony") ||
+        !testimony_system_->has_method("start_testimony") ||
+        !testimony_system_->has_signal("all_rounds_complete")) {
+      UtilityFunctions::push_error(
+          "KarakuriScenarioRunner: testimony requires TestimonySystem node");
+      return false;
+    }
+
+    const Dictionary payload = as_dict(payload_v);
+    const Array testimonies = as_array(payload.get("testimonies", Array()));
+    pending_testimony_success_actions_ =
+        as_array(payload.get("on_success", Array()));
+    pending_testimony_failure_actions_ =
+        as_array(payload.get("on_failure", Array()));
+
+    if (testimony_system_->has_method("clear_testimonies")) {
+      testimony_system_->call("clear_testimonies");
+    }
+
+    // Wire UIs.
+    if (testimony_system_->has_method("set_dialogue_ui") && dialogue_ui_) {
+      testimony_system_->call("set_dialogue_ui", dialogue_ui_);
+    }
+    if (testimony_system_->has_method("set_inventory_ui") && evidence_ui_) {
+      testimony_system_->call("set_inventory_ui", evidence_ui_);
+    }
+
+    if (payload.has("max_rounds")) {
+      testimony_system_->set("max_rounds", payload.get("max_rounds", 1));
+    }
+
+    for (int i = 0; i < testimonies.size(); i++) {
+      Dictionary t = as_dict(testimonies[i]);
+      if (t.has("line")) {
+        t = as_dict(t["line"]);
+      }
+      const String speaker = dict_get_string(t, "speaker", "Witness");
+      const String text_key = dict_get_string(t, "text_key", "");
+      const String text =
+          text_key.is_empty() ? dict_get_string(t, "text", "")
+                              : tr_key(text_key);
+      const String evidence = dict_get_string(t, "evidence", "");
+      const String shake_key = dict_get_string(t, "shake_key", "");
+      const String shake =
+          shake_key.is_empty() ? dict_get_string(t, "shake", "")
+                               : tr_key(shake_key);
+
+      testimony_system_->call("add_testimony", speaker, text, evidence, shake);
+    }
+
+    waiting_for_testimony_ = true;
+    testimony_system_->call("start_testimony");
+    return true;
+  }
+
+  if (kind == "change_root_scene") {
+    const String path = String(payload_v);
+    if (path.is_empty() || !get_tree()) {
+      return false;
+    }
+    get_tree()->change_scene_to_file(path);
+    return true;
+  }
+
   UtilityFunctions::push_warning("KarakuriScenarioRunner: unknown action: ",
                                  kind);
   return false;
@@ -541,6 +759,39 @@ void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
       trigger_hotspot(hs);
       return;
     }
+  }
+}
+
+void KarakuriScenarioRunner::on_choice_selected(int index, const String &text) {
+  (void)text;
+  if (!waiting_for_choice_) {
+    return;
+  }
+  waiting_for_choice_ = false;
+
+  if (index < 0 || index >= pending_choice_actions_.size()) {
+    return;
+  }
+  const Array chosen = as_array(pending_choice_actions_[index]);
+  for (int i = chosen.size() - 1; i >= 0; i--) {
+    pending_actions_.insert(pending_action_index_, chosen[i]);
+  }
+}
+
+void KarakuriScenarioRunner::on_testimony_complete(bool success) {
+  if (!waiting_for_testimony_) {
+    return;
+  }
+  waiting_for_testimony_ = false;
+
+  const Array chosen = success ? pending_testimony_success_actions_
+                               : pending_testimony_failure_actions_;
+  for (int i = chosen.size() - 1; i >= 0; i--) {
+    pending_actions_.insert(pending_action_index_, chosen[i]);
+  }
+
+  if (testimony_system_) {
+    testimony_system_->set("visible", false);
   }
 }
 
