@@ -1,0 +1,50 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/testimony_system.gd" id="1_k826n"]
+
+[node name="TestimonySystem" type="Control" unique_id=1395083928]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_k826n")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=500361936]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.4)
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1090649144]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 20.0
+offset_right = 980.0
+offset_bottom = 40.0
+value = 100.0
+show_percentage = false
+
+[node name="LabelMode" type="Label" parent="." unique_id=1969639149]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 60.0
+text = "Witness Testimony"
+
+[node name="ButtonPress" type="Button" parent="." unique_id=590057317]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 350.0
+offset_right = 400.0
+offset_bottom = 390.0
+text = "Press"
+
+[node name="ButtonPresent" type="Button" parent="." unique_id=1244436752]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 350.0
+offset_right = 700.0
+offset_bottom = 390.0
+text = "Present"

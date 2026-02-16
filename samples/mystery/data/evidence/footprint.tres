@@ -1,11 +1,19 @@
-[gd_resource type="Resource" script_class="EvidenceItem" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="EvidenceItem" format=3]
 
-[ext_resource type="Script" path="res://samples/mystery/scripts/evidence_item.gd" id="1_evidence_item"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/evidence_item.gd" id="1_ofjkx"]
+
+[sub_resource type="Gradient" id="Gradient_ndhdt"]
+colors = PackedColorArray(0.8, 0.2, 0.2, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y43e6"]
+gradient = SubResource("Gradient_ndhdt")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [resource]
-script = ExtResource("1_evidence_item")
+script = ExtResource("1_ofjkx")
 id = "footprint"
-display_name = "Footprints"
-description = "Non-human footprints"
-category = "物証"
-
+display_name = "evidence_footprint"
+description = "evidence_footprint_desc"
+icon = SubResource("GradientTexture2D_y43e6")

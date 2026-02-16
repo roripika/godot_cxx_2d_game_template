@@ -1,237 +1,88 @@
-# Mystery scenario (planner-authored)
-# This YAML is parsed by Basic Game Karakuri (C++ GDExtension).
-#
-# Supported YAML subset: maps, sequences, simple scalars.
-
-start_scene: office
+start_scene: "warehouse_investigation"
 
 scenes:
-  office:
-    scene_path: res://samples/mystery/office_base.tscn
+  warehouse_investigation:
+    scene_path: "res://samples/mystery/warehouse_investigation.tscn"
     on_enter:
+      - dialogue: 
+          speaker: "System"
+          text: "調査を開始します..."
       - dialogue:
-          speaker: Boss
-          text_key: office_boss_intro
+          speaker: "Detective"
+          text: "ここは倉庫だ。なんだか…寒いな。"
+    
     hotspots:
-      door:
-        node_id: hs_door
+      ectoplasm_spot:
+        node_id: "EctoplasmSpot"
+        on_click:
+          - if_has_items:
+              items: ["ectoplasm"]
+              then:
+                - dialogue: { speaker: "Detective", text: "エクトプラズムはもう回収した。" }
+              else:
+                - dialogue: { speaker: "Detective", text: "この光る粘液はなんだ？" }
+                - dialogue: { speaker: "System", text: "エクトプラズムを見つけた！" }
+                - give_evidence: "ectoplasm"
+                - set_flag: { key: "found_ecto", value: true }
+
+      footprint_spot:
+        node_id: "FootprintSpot"
         on_click:
           - dialogue:
-              speaker: System
-              text_key: office_system_going_to_warehouse
-          - goto: warehouse
-      boss:
-        node_id: hs_boss
-        on_click:
+              speaker: "Detective"
+              text: "巨大な足跡だ。"
           - if_flag:
-              key: all_evidence_collected
+              key: "found_footprint"
               value: true
               then:
                 - dialogue:
-                    speaker: Boss
-                    text_key: deduction_title
-                - goto: deduction
+                    speaker: "Detective"
+                    text: "おい！これ誰がやったか見たか？"
+                - testimony:
+                    max_rounds: 3
+                    testimonies:
+                      - 
+                        speaker: "Rat Witness"
+                        text: "何も見てないッス！隠れてたッスから！"
+                        shake: "隠れてた？なんで？"
+                      - 
+                        speaker: "Rat Witness"
+                        text: "一晩中静かだったッスよ、マジで！"
+                        evidence: "footprint"
+                        shake: "静かだった？こんなデカい化け物がいてか？"
+                    on_success:
+                      - dialogue:
+                          speaker: "Rat Witness"
+                          text: "わかったッス！デカい獣が通ったッス！"
+                      - set_flag:
+                          key: "beast_revealed"
+                          value: true
+                    on_failure:
+                      - dialogue:
+                          speaker: "Rat Witness"
+                          text: "ほら、何もなかったって言ったじゃないッスか。"
+                      - take_damage: 20
               else:
                 - dialogue:
-                    speaker: Boss
-                    text_key: office_boss_go_warehouse
-
-  warehouse:
-    scene_path: res://samples/mystery/warehouse_base.tscn
-    on_enter:
-      - dialogue:
-          speaker: System
-          text_key: warehouse_intro
-    hotspots:
-      floor_area:
-        node_id: hs_floor_area
-        on_click:
-          - dialogue:
-              speaker: Detective
-              text_key: hotspot_floor_area
-          - give_evidence: ectoplasm
-          - dialogue:
-              speaker: System
-              text_key: evidence_found
-      footprints:
-        node_id: hs_footprints
-        on_click:
-          - dialogue:
-              speaker: Detective
-              text_key: hotspot_footprints
-          - give_evidence: footprint
-          - dialogue:
-              speaker: System
-              text_key: evidence_found
-      memo:
-        node_id: hs_memo
-        on_click:
-          - dialogue:
-              speaker: Detective
-              text_key: hotspot_memo
-          - give_evidence: torn_memo
-          - dialogue:
-              speaker: System
-              text_key: evidence_found
-      exit:
-        node_id: hs_exit
-        on_click:
-          - if_has_items:
-              items:
-                - ectoplasm
-                - footprint
-                - torn_memo
-              then:
+                    speaker: "System"
+                    text: "血のついた足跡を見つけた！"
+                - give_evidence: "footprint"
                 - set_flag:
-                    key: all_evidence_collected
+                    key: "found_footprint"
                     value: true
-                - dialogue:
-                    speaker: System
-                    text_key: investigation_complete
-                - goto: office
-              else:
-                - dialogue:
-                    speaker: System
-                    text_key: need_more_evidence
 
-  deduction:
-    scene_path: res://samples/mystery/office_deduction_base.tscn
-    on_enter:
-      - dialogue:
-          speaker: Boss
-          text_key: deduction_title
-      - dialogue:
-          speaker: Detective
-          text_key: deduction_question
-      - choice:
-          choices:
-            - option:
-                text_key: deduction_choice1
-                actions:
-                  - set_flag:
-                      key: deduction_complete
-                      value: true
-                  - dialogue:
-                      speaker: Boss
-                      text_key: deduction_correct
-                  - goto: confrontation
-            - option:
-                text_key: deduction_choice2
-                actions:
-                  - take_damage: 1
-                  - dialogue:
-                      speaker: Boss
-                      text_key: deduction_wrong
-                  - if_health_leq:
-                      value: 0
-                      then:
-                        - set_flag:
-                            key: game_over
-                            value: true
-                        - goto: ending
-                      else:
-                        - goto: confrontation
-            - option:
-                text_key: deduction_choice3
-                actions:
-                  - take_damage: 1
-                  - dialogue:
-                      speaker: Boss
-                      text_key: deduction_wrong
-                  - if_health_leq:
-                      value: 0
-                      then:
-                        - set_flag:
-                            key: game_over
-                            value: true
-                        - goto: ending
-                      else:
-                        - goto: confrontation
-
-  confrontation:
-    scene_path: res://samples/mystery/warehouse_confrontation_base.tscn
-    on_enter:
-      - dialogue:
-          speaker: System
-          text_key: confrontation_intro
-      - testimony:
-          max_rounds: 1
-          testimonies:
-            - line:
-                speaker: 容疑者
-                text_key: testimony_1
-                evidence: footprint
-                shake_key: press_response
-            - line:
-                speaker: 容疑者
-                text_key: testimony_2
-                evidence: torn_memo
-                shake_key: press_response
-            - line:
-                speaker: 容疑者
-                text_key: testimony_3
-                evidence: ectoplasm
-                shake_key: press_response
-          on_success:
-            - set_flag:
-                key: case_solved
-                value: true
-            - if_flag:
-                key: all_evidence_collected
-                value: true
-                then:
-                  - if_health_ge:
-                      value: 3
-                      then:
-                        - set_flag:
-                            key: perfect_ending
-                            value: true
-            - goto: ending
-          on_failure:
-            - set_flag:
-                key: game_over
-                value: true
-            - goto: ending
-
-  ending:
-    scene_path: res://samples/mystery/ending_base.tscn
-    on_enter:
-      - if_flag:
-          key: game_over
-          value: true
-          then:
-            - dialogue:
-                speaker: Boss
-                text_key: ending_failure
-          else:
-            - if_flag:
-                key: perfect_ending
-                value: true
-                then:
-                  - dialogue:
-                      speaker: Boss
-                      text_key: ending_perfect
-                else:
-                  - if_flag:
-                      key: case_solved
-                      value: true
-                      then:
-                        - dialogue:
-                            speaker: Boss
-                            text_key: ending_normal
-                      else:
-                        - dialogue:
-                            speaker: Boss
-                            text_key: ending_failure
-      - choice:
-          choices:
-            - option:
-                text_key: ending_choice_retry
-                actions:
-                  - reset_game: true
-                  - goto: office
-            - option:
-                text_key: ending_choice_menu
-                actions:
-                  - reset_game: true
-                  - change_root_scene: res://samples/main_menu.tscn
+      memo_spot:
+        node_id: "MemoSpot"
+        on_click:
+          - dialogue: { speaker: "Detective", text: "木箱の下に紙切れがある。" }
+          - choice:
+              choices:
+                - option:
+                    text: "拾う"
+                    actions:
+                      - give_evidence: "torn_memo"
+                      - dialogue: { speaker: "System", text: "破れたメモを入手した。" }
+                - option:
+                    text: "放っておく"
+                    actions:
+                      - dialogue: { speaker: "Detective", text: "まだ触らないほうがいいか。" }
