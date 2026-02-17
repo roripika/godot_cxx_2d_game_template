@@ -91,3 +91,7 @@
   - （確認コマンド、スクリーンショット、ログ）
 - Next:
   - （次PRでやること）
+
+## 11. 関連資料
+- M1チケット本文: `docs/mystery_m1_ticket_antigravity.md`
+- M1レビュー観点: `docs/mystery_m1_review_checklist.md`
