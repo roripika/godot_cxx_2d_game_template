@@ -3,6 +3,62 @@
 ## Project Maintenance
 - [x] Create/Move Agent Rules to `.agent/AGENTS.md`
 
+## Priority: Mystery Demo Execution (Owner: antigravity)
+
+### 運用ルール（固定）
+- [ ] 作業者は antigravity に固定し、PR本文に `Scope / Out of Scope / 検証結果` を必ず記載する
+- [ ] `src/karakuri/**` の C++ は公開 API に Doxygen コメントを必須化する
+- [ ] Basic Game Karakuri にデモ固有ロジックを入れない（依存は `samples -> karakuri` のみ）
+
+### 現状確認（2026-02-17）
+- [x] ミステリーの起動入口は `res://samples/mystery/karakuri_mystery_shell.tscn`
+- [x] `KarakuriScenarioRunner` は `samples/mystery/scenario/mystery.yaml` を読む構成
+- [x] 推理・対決の進行データは YAML 側に追加済み（commit: `bcaa936`）
+
+### M1: 入口統一と旧導線の整理
+- [ ] 正式導線を `karakuri_mystery_shell.tscn` に一本化し、旧導線の扱い（削除/互換）を明記する
+- [ ] `samples/mystery/main_mystery.tscn` など旧シーン参照の棚卸しを実施する
+- [ ] `README.md` と `docs/mystery_design.md` の起動手順を一本化する
+
+### M2: YAML スキーマ契約（Planner編集用）
+- [ ] `docs/` に YAML v1 仕様（モード、分岐、証拠、対決、終了条件）を明文化する
+- [ ] 必須キー不足時のエラーポリシー（ログ/停止/フォールバック）を決める
+- [ ] サンプルテンプレート YAML（最小1本）を用意し、プランナーがコピーして増やせる状態にする
+
+### M3: C++責務寄せ（Basic Game Karakuri）
+- [ ] YAML 読込・状態遷移・フラグ/所持品/HP の正を C++ 側に固定する
+- [ ] GDScript は UI 表示と入力受け取りに限定する
+- [ ] 文章直書きを削減し、翻訳キーまたはデータ参照に統一する
+
+### M4: モード分離（Investigation / Deduction / Confrontation / Ending）
+- [ ] 各モードの共通インターフェース（入力、UI更新、遷移）を定義する
+- [ ] モード遷移を YAML 記述のみで制御できるようにする
+- [ ] 失敗時（HP 0）と成功時（複数エンディング）の分岐を固定する
+
+### M5: 多言語切替（EN/JA）再実装
+- [ ] 実行中の言語切替で「会話・選択肢・インベントリ・ボタン」が即時更新される
+- [ ] 起動時 locale 復元（永続化）が動作する
+- [ ] ミステリー用翻訳キーの未登録チェック手順を定義する
+
+### M6: 役割分離（Designer / Planner）
+- [ ] Designer の編集対象を `samples/mystery/ui/**` と `tscn/theme` に限定する運用を文書化する
+- [ ] Planner の編集対象を `samples/mystery/scenario/**` と翻訳データに限定する運用を文書化する
+- [ ] ノード名契約（UI差し替え時に壊してはいけない NodePath）を明記する
+
+### M7: 受け入れテスト固定
+- [ ] `./dev.sh run mystery` で開始からエンディングまで到達する
+- [ ] 証拠提示の正解/不正解、ゆさぶり、HP減少、ゲームオーバーを確認する
+- [ ] 実行中の EN/JA 切替を各モードで確認する
+- [ ] PRごとに手動テスト結果をチェックリストで添付する
+
+### M8: ドキュメント同期
+- [ ] `TASK.md`、`docs/mystery_design.md`、`README.md`、引き継ぎ資料を同一内容に同期する
+- [ ] 完了済み項目はコミットID付きで `[x]` に更新する
+- [ ] 未完項目は次PRの先頭タスクに繰り越す
+
+### 参照
+- [ ] 引き継ぎ資料 `docs/mystery_antigravity_handover.md` を更新し続ける
+
 ## Phase 1: Core Architecture (Logic/View Separation)
 - [x] **Refactor Project Structure**
     - [x] Create `src/core`, `src/views`, `src/entities` directories
