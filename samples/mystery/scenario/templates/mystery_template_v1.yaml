@@ -1,0 +1,79 @@
+# Mystery YAML v1 Template
+# See: docs/mystery_yaml_schema_v1.md
+
+start_scene: "prologue"
+
+scenes:
+  prologue:
+    scene_path: "res://samples/mystery/office_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "System", text_key: "demo.mystery.prologue.start" }
+      - goto: "investigation"
+
+  investigation:
+    scene_path: "res://samples/mystery/warehouse_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "Detective", text_key: "demo.mystery.investigation.enter" }
+
+    hotspots:
+      clue_spot:
+        node_id: "hs_floor_area"
+        on_click:
+          - if_has_items:
+              items: ["sample_clue"]
+              then:
+                - dialogue: { speaker: "Detective", text_key: "demo.mystery.investigation.clue_already" }
+              else:
+                - give_evidence: "sample_clue"
+                - dialogue: { speaker: "System", text_key: "demo.mystery.investigation.clue_found" }
+
+      exit_spot:
+        node_id: "hs_exit"
+        on_click:
+          - if_has_items:
+              items: ["sample_clue"]
+              then:
+                - goto: "deduction"
+              else:
+                - dialogue: { speaker: "Detective", text_key: "demo.mystery.investigation.need_more" }
+
+  deduction:
+    scene_path: "res://samples/mystery/office_base.tscn"
+    on_enter:
+      - choice:
+          choices:
+            - option:
+                text_key: "demo.mystery.deduction.choice_a"
+                actions:
+                  - set_flag: { key: "deduction_ok", value: true }
+                  - goto: "confrontation"
+            - option:
+                text_key: "demo.mystery.deduction.choice_b"
+                actions:
+                  - take_damage: 1
+                  - goto: "deduction"
+
+  confrontation:
+    scene_path: "res://samples/mystery/warehouse_base.tscn"
+    on_enter:
+      - testimony:
+          max_rounds: 1
+          testimonies:
+            - speaker: "Witness"
+              text_key: "demo.mystery.confront.line1"
+              evidence: "sample_clue"
+              shake_key: "demo.mystery.confront.shake1"
+          on_success:
+            - goto: "ending_good"
+          on_failure:
+            - goto: "ending_bad"
+
+  ending_good:
+    scene_path: "res://samples/mystery/ending_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "System", text_key: "demo.mystery.ending.good" }
+
+  ending_bad:
+    scene_path: "res://samples/mystery/ending_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "System", text_key: "demo.mystery.ending.bad" }

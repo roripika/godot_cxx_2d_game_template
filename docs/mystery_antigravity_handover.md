@@ -97,6 +97,8 @@
 - M1レビュー観点: `docs/mystery_m1_review_checklist.md`
 - UI共通ポリシー: `docs/ui_layout_policy.md`
 - UIレイアウト方針: `docs/mystery_ui_layout_policy.md`
+- YAML v1仕様: `docs/mystery_yaml_schema_v1.md`
+- YAMLテンプレート: `samples/mystery/scenario/templates/mystery_template_v1.yaml`
 
 ## 12. M1レビュー指摘事項（2026-02-17）
 M1完了報告に対してレビューを実施した時点では **M1完了判定は保留**。

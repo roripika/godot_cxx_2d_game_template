@@ -66,6 +66,7 @@
   - 直書きテキストが残らない（原則：翻訳キー経由）
 
 詳細は `docs/mystery_design.md` にまとめる（この計画書ではスコープ/完了条件を固定する）。
+YAML運用仕様は `docs/mystery_yaml_schema_v1.md` を参照する。
 
 ### 2. Roguelike（Iso）
 **狙い**: Coreのワールドデータ生成と、Viewの描画アダプタを示す（PCGのテンプレ）。

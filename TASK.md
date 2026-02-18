@@ -21,9 +21,9 @@
 - [x] `README.md` と `docs/mystery_design.md` の起動手順を一本化する
 
 ### M2: YAML スキーマ契約（Planner編集用）
-- [ ] `docs/` に YAML v1 仕様（モード、分岐、証拠、対決、終了条件）を明文化する
-- [ ] 必須キー不足時のエラーポリシー（ログ/停止/フォールバック）を決める
-- [ ] サンプルテンプレート YAML（最小1本）を用意し、プランナーがコピーして増やせる状態にする
+- [x] `docs/` に YAML v1 仕様（モード、分岐、証拠、対決、終了条件）を明文化する（`docs/mystery_yaml_schema_v1.md`）
+- [x] 必須キー不足時のエラーポリシー（ログ/停止/フォールバック）を決める（`docs/mystery_yaml_schema_v1.md`）
+- [x] サンプルテンプレート YAML（最小1本）を用意し、プランナーがコピーして増やせる状態にする（`samples/mystery/scenario/templates/mystery_template_v1.yaml`）
 
 ### M3: C++責務寄せ（Basic Game Karakuri）
 - [ ] YAML 読込・状態遷移・フラグ/所持品/HP の正を C++ 側に固定する
