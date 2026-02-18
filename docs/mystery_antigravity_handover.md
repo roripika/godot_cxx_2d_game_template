@@ -95,6 +95,8 @@
 ## 11. 関連資料
 - M1チケット本文: `docs/mystery_m1_ticket_antigravity.md`
 - M1レビュー観点: `docs/mystery_m1_review_checklist.md`
+- UI共通ポリシー: `docs/ui_layout_policy.md`
+- UIレイアウト方針: `docs/mystery_ui_layout_policy.md`
 
 ## 12. M1レビュー指摘事項（2026-02-17）
 M1完了報告に対してレビューを実施した時点では **M1完了判定は保留**。

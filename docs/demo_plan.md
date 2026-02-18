@@ -39,6 +39,10 @@
 - Evidence/Item ID: `snake_case`（表示名は翻訳で出す）
 - フラグ: `snake_case`（プレフィクスで衝突回避: `mystery.case_solved` 等）
 
+### 4. UIルール（全デモ共通）
+- UIのグループ分け/重なり順/アンカー設計は `docs/ui_layout_policy.md` を必須準拠とする。
+- デモ固有の詳細は各デモの UI 拡張ポリシーに追記する（例: `docs/mystery_ui_layout_policy.md`）。
+
 ---
 
 ## デモ一覧（何を作るか）

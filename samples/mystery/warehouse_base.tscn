@@ -21,10 +21,10 @@ color = Color(0.15, 0.15, 0.15, 1.0)
 
 [node name="Hint" type="Label" parent="."]
 offset_left = 16.0
-offset_top = 16.0
-offset_right = 520.0
-offset_bottom = 48.0
-text = "Click hotspots to investigate"
+offset_top = 612.0
+offset_right = 420.0
+offset_bottom = 640.0
+text = "調査ポイントをクリック"
 
 [node name="hs_floor_area" type="Area2D" parent="."]
 position = Vector2(520, 380)
@@ -85,4 +85,3 @@ offset_top = 300.0
 offset_right = 100.0
 offset_bottom = 330.0
 text = "EXIT"
-

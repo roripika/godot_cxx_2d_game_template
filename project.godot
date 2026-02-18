@@ -27,6 +27,13 @@ AdventureGameState="*res://samples/mystery/adventure_game_state.gd"
 
 project/assembly_name="Godot C++ 2D Game Template"
 
+[display]
+
+window/size/viewport_width=1152
+window/size/viewport_height=648
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 p1_move_left={
