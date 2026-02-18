@@ -104,6 +104,15 @@ private:
   bool waiting_for_choice_ = false;
   godot::Array pending_choice_actions_; // Array<Array<action>>
 
+  /**
+   * @brief True while waiting for Dialogue UI to finish presenting a message.
+   *
+   * If the Dialogue UI provides a `dialogue_finished` signal, the runner will
+   * block subsequent actions until it fires, to avoid fast "overwrite" of
+   * dialogue text when multiple `dialogue` actions are queued.
+   */
+  bool waiting_for_dialogue_ = false;
+
   bool waiting_for_testimony_ = false;
   godot::Array pending_testimony_success_actions_;
   godot::Array pending_testimony_failure_actions_;
@@ -118,6 +127,7 @@ private:
 
   void on_clicked_at(const godot::Vector2 &pos);
   void on_choice_selected(int index, const godot::String &text);
+  void on_dialogue_finished();
   void on_testimony_complete(bool success);
   bool hotspot_matches_click(const HotspotBinding &hs,
                              const godot::Vector2 &pos) const;

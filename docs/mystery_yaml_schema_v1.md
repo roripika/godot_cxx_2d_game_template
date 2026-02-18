@@ -54,6 +54,10 @@ action は「1キーの辞書」で表現する。
     text_key: "demo..."        # 推奨
 ```
 
+実行時の待機:
+- `DialogueUI` が `dialogue_finished` signal を提供する場合、ランタイムは **signal 発火まで次の action に進まない**（テキスト上書き防止）。
+- signal がない場合は待機せず、即座に次の action に進む。
+
 ### 5.2 `set_flag`
 ```yaml
 - set_flag: { key: "found_item", value: true }

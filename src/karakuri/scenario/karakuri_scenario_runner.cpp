@@ -154,6 +154,8 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::on_clicked_at);
   ClassDB::bind_method(D_METHOD("on_choice_selected", "index", "text"),
                        &KarakuriScenarioRunner::on_choice_selected);
+  ClassDB::bind_method(D_METHOD("on_dialogue_finished"),
+                       &KarakuriScenarioRunner::on_dialogue_finished);
   ClassDB::bind_method(D_METHOD("on_testimony_complete", "success"),
                        &KarakuriScenarioRunner::on_testimony_complete);
 
@@ -239,6 +241,16 @@ void KarakuriScenarioRunner::_ready() {
     if (err2 != OK && err2 != ERR_ALREADY_EXISTS) {
       UtilityFunctions::push_warning(
           "KarakuriScenarioRunner: failed to connect choice_selected: ", err2);
+    }
+  }
+
+  if (dialogue_ui_ && dialogue_ui_->has_signal("dialogue_finished")) {
+    const Callable cbdf(this, "on_dialogue_finished");
+    const Error errdf = dialogue_ui_->connect("dialogue_finished", cbdf);
+    if (errdf != OK && errdf != ERR_ALREADY_EXISTS) {
+      UtilityFunctions::push_warning(
+          "KarakuriScenarioRunner: failed to connect dialogue_finished: ",
+          errdf);
     }
   }
 
@@ -392,7 +404,10 @@ void KarakuriScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
     if (node_id.is_empty()) {
       continue;
     }
-    Node *area_node = current_scene_instance_->find_child(node_id, true, true);
+    // Do not filter by "owned" here: at runtime, PackedScene instances can
+    // have null owners, and we still want to bind hotspots by name.
+    Node *area_node =
+        current_scene_instance_->find_child(node_id, true, false);
     Area2D *area = Object::cast_to<Area2D>(area_node);
     if (!area) {
       continue;
@@ -413,6 +428,7 @@ void KarakuriScenarioRunner::start_actions(const Array &actions) {
   wait_remaining_sec_ = 0.0;
   is_executing_actions_ = true;
   waiting_for_choice_ = false;
+  waiting_for_dialogue_ = false;
   waiting_for_testimony_ = false;
 }
 
@@ -420,7 +436,7 @@ void KarakuriScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_) {
     return;
   }
-  if (waiting_for_choice_ || waiting_for_testimony_) {
+  if (waiting_for_choice_ || waiting_for_dialogue_ || waiting_for_testimony_) {
     return;
   }
   if (wait_remaining_sec_ > 0.0) {
@@ -459,6 +475,9 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
                                        : tr_key(key);
 
     if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
+      // Set this before calling into GDScript to avoid missing an immediate
+      // synchronous `dialogue_finished` emission (e.g. typing_speed <= 0).
+      waiting_for_dialogue_ = dialogue_ui_->has_signal("dialogue_finished");
       dialogue_ui_->call("show_message", speaker, text);
     } else {
       UtilityFunctions::print("[Dialogue] ", speaker, ": ", text);
@@ -778,6 +797,13 @@ void KarakuriScenarioRunner::on_choice_selected(int index, const String &text) {
   }
 }
 
+void KarakuriScenarioRunner::on_dialogue_finished() {
+  if (!waiting_for_dialogue_) {
+    return;
+  }
+  waiting_for_dialogue_ = false;
+}
+
 void KarakuriScenarioRunner::on_testimony_complete(bool success) {
   if (!waiting_for_testimony_) {
     return;
@@ -800,7 +826,7 @@ bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,
   if (!current_scene_instance_) {
     return false;
   }
-  Node *n = current_scene_instance_->find_child(hs.node_id, true, true);
+  Node *n = current_scene_instance_->find_child(hs.node_id, true, false);
   Area2D *area = Object::cast_to<Area2D>(n);
   if (!area) {
     return false;

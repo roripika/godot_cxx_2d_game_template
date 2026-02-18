@@ -48,6 +48,14 @@ func _type_text(text: String):
 	current_text = text
 	if text_label:
 		text_label.text = ""
+
+	# Fast path for headless tests / scripted skips.
+	if typing_speed <= 0.0:
+		if text_label:
+			text_label.text = text
+		is_typing = false
+		dialogue_finished.emit()
+		return
 	
 	for i in range(len(text)):
 		if text_label:
