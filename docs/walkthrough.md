@@ -20,6 +20,7 @@
 ### 4. アドベンチャー機能 (`src/core`)
 - **`InteractionManager`**: マウスインタラクションを処理。
     - シグナル: `clicked_at(position)`
+    - 座標空間: `position` は Canvas/World 座標（`Area2D.global_position` と同じ空間）。
     - 使い方: `active` プロパティでインタラクションの有効/無効を切り替え。
 - **`DialogueUI`**: 名前ラベル付きのテキストメッセージを表示。
     - 関数: `show_message(name, text)`、`hide_dialogue()`。

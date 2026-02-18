@@ -194,3 +194,4 @@ action は「1キーの辞書」で表現する。
 - すべての hotspot `node_id` がベースシーン上に存在する
 - `goto` 先 scene が定義されている
 - `testimony` の `evidence` が inventory ID と一致する
+- クリック座標契約が一致している（`clicked_at` は Canvas/World 座標として扱う）

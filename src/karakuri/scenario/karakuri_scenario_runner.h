@@ -49,7 +49,12 @@ public:
   void set_evidence_ui_path(const godot::NodePath &path);
   godot::NodePath get_evidence_ui_path() const;
 
-  /** @brief NodePath to InteractionManager node that emits clicked_at(Vector2). */
+  /**
+   * @brief NodePath to InteractionManager node that emits clicked_at(Vector2).
+   *
+   * Expected coordinate space is Canvas/World coordinates (compatible with
+   * `Area2D.global_position` in loaded mystery scenes).
+   */
   void set_interaction_manager_path(const godot::NodePath &path);
   godot::NodePath get_interaction_manager_path() const;
 

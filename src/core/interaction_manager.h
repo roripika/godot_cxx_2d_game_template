@@ -24,7 +24,8 @@ public:
   void _input(const Ref<InputEvent> &p_event) override;
 
   // Signals
-  // emitted when a "clickable" area/object is clicked
+  // emitted when a "clickable" area/object is clicked.
+  // `position` is in Canvas/World coordinates (same space as Area2D global_position).
   // signal clicked_at(position)
 
   void set_active(bool p_active);

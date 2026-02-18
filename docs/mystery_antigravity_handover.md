@@ -82,6 +82,7 @@
 - NodePath変更で UI とランナー接続が壊れやすい。
 - YAML 拡張時に後方互換を壊しやすい。
 - `dialogue` が UI 側で待機できないと、連続テキストが上書きされやすい（`dialogue_finished` 契約）。
+- `clicked_at` の座標空間が実装間で不一致だと hotspot 判定が壊れる（Canvas/World 座標で統一）。
 
 ## 10. 最小報告フォーマット（作業完了時）
 - Done:

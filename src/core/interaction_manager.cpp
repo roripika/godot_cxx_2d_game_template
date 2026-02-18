@@ -26,11 +26,20 @@ void InteractionManager::_input(const Ref<InputEvent> &p_event) {
   if (!active)
     return;
 
+  Ref<InputEventMouseMotion> motion_event = p_event;
+  if (motion_event.is_valid()) {
+    cursor_position = get_global_mouse_position();
+  }
+
   Ref<InputEventMouseButton> mouse_event = p_event;
   if (mouse_event.is_valid()) {
     if (mouse_event->is_pressed() &&
         mouse_event->get_button_index() == MOUSE_BUTTON_LEFT) {
-      emit_signal("clicked_at", mouse_event->get_position());
+      // Emit Canvas/World coordinates so listeners can compare directly with
+      // Area2D global positions even when camera/viewport transforms change.
+      const Vector2 canvas_pos = get_global_mouse_position();
+      cursor_position = canvas_pos;
+      emit_signal("clicked_at", canvas_pos);
       // TODO: Raycast logic here if needed, or rely on Area2D inputs elsewhere
       // handled by this signal? "Urban Myth Dissolution Center" style ->
       // usually simpler point & click.
