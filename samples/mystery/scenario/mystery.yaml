@@ -87,16 +87,28 @@ scenes:
                 text: "人間 (証拠: 足跡)"
                 actions:
                   - dialogue: { speaker: "Boss", text: "人間にしては足跡が大きすぎないか？" }
-                  - take_damage: 20
-                  - dialogue: { speaker: "Boss", text: "もう一度考えろ。" }
-                  - goto: "deduction"
+                  - take_damage: 1
+                  - if_health_leq:
+                      value: 0
+                      then:
+                        - set_flag: { key: "game_over", value: true }
+                        - goto: "ending_bad"
+                      else:
+                        - dialogue: { speaker: "Boss", text: "もう一度考えろ。" }
+                        - goto: "deduction"
             - option:
                 text: "宇宙人 (証拠: なし)"
                 actions:
                   - dialogue: { speaker: "Boss", text: "ふざけているのか？" }
-                  - take_damage: 40
-                  - dialogue: { speaker: "Boss", text: "真面目にやれ。" }
-                  - goto: "deduction"
+                  - take_damage: 1
+                  - if_health_leq:
+                      value: 0
+                      then:
+                        - set_flag: { key: "game_over", value: true }
+                        - goto: "ending_bad"
+                      else:
+                        - dialogue: { speaker: "Boss", text: "真面目にやれ。" }
+                        - goto: "deduction"
 
   confrontation:
     scene_path: "res://samples/mystery/warehouse_base.tscn"
