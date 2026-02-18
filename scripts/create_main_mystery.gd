@@ -12,7 +12,7 @@ func _init():
 
     # Root
     var root = Node2D.new()
-    root.name = "MainMystery"
+    root.name = "KarakuriMysteryShell"
 
     # Scene Container (Where investigation scenes are loaded)
     var container = Node2D.new()
@@ -113,7 +113,7 @@ func _pressed():
     # Save
     var scene = PackedScene.new()
     scene.pack(root)
-    var path = "res://samples/mystery/main_mystery.tscn"
+    var path = "res://samples/mystery/karakuri_mystery_shell.tscn"
     ResourceSaver.save(scene, path)
-    print("Main Mystery Scene saved to: " + path)
+    print("Karakuri Mystery shell saved to: " + path)
     quit()

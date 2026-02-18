@@ -52,6 +52,8 @@ chmod +x setup.sh
 ./dev.sh run mystery
 ```
 
+`mystery` の正式エントリーポイントは `samples/mystery/karakuri_mystery_shell.tscn` です。
+
 ## 環境構築 (macOS)
 
 ### 1. 前提ツールのインストール

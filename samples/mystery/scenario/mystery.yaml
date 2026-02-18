@@ -1,19 +1,23 @@
-start_scene: "warehouse_investigation"
+start_scene: "prologue"
 
 scenes:
-  warehouse_investigation:
-    scene_path: "res://samples/mystery/warehouse_investigation.tscn"
+  prologue:
+    scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
-      - dialogue: 
-          speaker: "System"
-          text: "調査を開始します..."
-      - dialogue:
-          speaker: "Detective"
-          text: "ここは倉庫だ。なんだか…寒いな。"
+      - dialogue: { speaker: "System", text: "プロローグ" }
+      - dialogue: { speaker: "Detective", text: "探偵事務所だ。平和な日だな。" }
+      - dialogue: { speaker: "Boss", text: "おい！事件だぞ！倉庫街へ行け！" }
+      - dialogue: { speaker: "Detective", text: "了解です。行ってきます。" }
+      - goto: "warehouse_investigation"
+
+  warehouse_investigation:
+    scene_path: "res://samples/mystery/warehouse_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "Detective", text: "ここが現場の倉庫か…何か手がかりを探そう。" }
     
     hotspots:
       ectoplasm_spot:
-        node_id: "EctoplasmSpot"
+        node_id: "hs_floor_area"
         on_click:
           - if_has_items:
               items: ["ectoplasm"]
@@ -26,53 +30,21 @@ scenes:
                 - set_flag: { key: "found_ecto", value: true }
 
       footprint_spot:
-        node_id: "FootprintSpot"
+        node_id: "hs_footprints"
         on_click:
-          - dialogue:
-              speaker: "Detective"
-              text: "巨大な足跡だ。"
+          - dialogue: { speaker: "Detective", text: "巨大な足跡だ。" }
           - if_flag:
               key: "found_footprint"
               value: true
               then:
-                - dialogue:
-                    speaker: "Detective"
-                    text: "おい！これ誰がやったか見たか？"
-                - testimony:
-                    max_rounds: 3
-                    testimonies:
-                      - 
-                        speaker: "Rat Witness"
-                        text: "何も見てないッス！隠れてたッスから！"
-                        shake: "隠れてた？なんで？"
-                      - 
-                        speaker: "Rat Witness"
-                        text: "一晩中静かだったッスよ、マジで！"
-                        evidence: "footprint"
-                        shake: "静かだった？こんなデカい化け物がいてか？"
-                    on_success:
-                      - dialogue:
-                          speaker: "Rat Witness"
-                          text: "わかったッス！デカい獣が通ったッス！"
-                      - set_flag:
-                          key: "beast_revealed"
-                          value: true
-                    on_failure:
-                      - dialogue:
-                          speaker: "Rat Witness"
-                          text: "ほら、何もなかったって言ったじゃないッスか。"
-                      - take_damage: 20
+                - dialogue: { speaker: "Detective", text: "血痕がついている…。" }
               else:
-                - dialogue:
-                    speaker: "System"
-                    text: "血のついた足跡を見つけた！"
+                - dialogue: { speaker: "System", text: "血のついた足跡を見つけた！" }
                 - give_evidence: "footprint"
-                - set_flag:
-                    key: "found_footprint"
-                    value: true
+                - set_flag: { key: "found_footprint", value: true }
 
       memo_spot:
-        node_id: "MemoSpot"
+        node_id: "hs_memo"
         on_click:
           - dialogue: { speaker: "Detective", text: "木箱の下に紙切れがある。" }
           - choice:
@@ -86,3 +58,86 @@ scenes:
                     text: "放っておく"
                     actions:
                       - dialogue: { speaker: "Detective", text: "まだ触らないほうがいいか。" }
+
+      exit_spot:
+        node_id: "hs_exit"
+        on_click:
+          - if_has_items:
+              items: ["ectoplasm", "footprint", "torn_memo"]
+              then:
+                - dialogue: { speaker: "Detective", text: "よし、十分な証拠が集まった。" }
+                - dialogue: { speaker: "Detective", text: "事務所に戻って情報を整理しよう。" }
+                - goto: "deduction"
+              else:
+                - dialogue: { speaker: "Detective", text: "まだ調査が終わっていない気がする。" }
+
+  deduction:
+    scene_path: "res://samples/mystery/office_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "Boss", text: "戻ったか。で、犯人は誰だと思う？" }
+      - choice:
+          choices:
+            - option:
+                text: "幽霊 (証拠: エクトプラズム)"
+                actions:
+                  - dialogue: { speaker: "Boss", text: "幽霊だと？非科学的だが…そのエクトプラズムは本物か？" }
+                  - dialogue: { speaker: "Detective", text: "間違いありません。倉庫にいた目撃者を問い詰めましょう。" }
+                  - goto: "confrontation"
+            - option:
+                text: "人間 (証拠: 足跡)"
+                actions:
+                  - dialogue: { speaker: "Boss", text: "人間にしては足跡が大きすぎないか？" }
+                  - take_damage: 20
+                  - dialogue: { speaker: "Boss", text: "もう一度考えろ。" }
+                  - goto: "deduction"
+            - option:
+                text: "宇宙人 (証拠: なし)"
+                actions:
+                  - dialogue: { speaker: "Boss", text: "ふざけているのか？" }
+                  - take_damage: 40
+                  - dialogue: { speaker: "Boss", text: "真面目にやれ。" }
+                  - goto: "deduction"
+
+  confrontation:
+    scene_path: "res://samples/mystery/warehouse_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "Detective", text: "そこにいるのは分かっている！出てこい！" }
+      - dialogue: { speaker: "Rat Witness", text: "ヒェッ！見つかったッス！" }
+      - testimony:
+          max_rounds: 3
+          testimonies:
+            - 
+              speaker: "Rat Witness"
+              text: "オイラはただ隠れてただけッス！何もしてないッス！"
+              shake: "隠れてた？何から隠れてたんだ？"
+            - 
+              speaker: "Rat Witness"
+              text: "あの時間は静かだったッス。誰も来てないッスよ。"
+              evidence: "footprint"
+              shake: "静かだった？この足跡を見てみろ！"
+            - 
+              speaker: "Rat Witness"
+              text: "メモなんて知らないッス！字も読めないッスから！"
+              evidence: "torn_memo"
+              shake: "とぼけるな！これがお前のポケットから落ちたんだろ！"
+          on_success:
+            - dialogue: { speaker: "Rat Witness", text: "参ったッス…。実は見たんッス…。" }
+            - goto: "ending_good"
+          on_failure:
+            - dialogue: { speaker: "Rat Witness", text: "へへっ、証拠がないなら帰るッスよ。" }
+            - goto: "ending_bad"
+
+  ending_good:
+    scene_path: "res://samples/mystery/ending_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "System", text: "事件解決！" }
+      - dialogue: { speaker: "Boss", text: "よくやった！ボーナスだ！" }
+      - dialogue: { speaker: "System", text: "Thank you for playing!" }
+      # Could loop back or stay here.
+
+  ending_bad:
+    scene_path: "res://samples/mystery/ending_base.tscn"
+    on_enter:
+      - dialogue: { speaker: "System", text: "捜査失敗..." }
+      - dialogue: { speaker: "Boss", text: "何をやっているんだ…クビだ！" }
+      - dialogue: { speaker: "System", text: "Game Over" }

@@ -73,5 +73,4 @@ p2_attack={
 [internationalization]
 
 locale/translations=PackedStringArray("res://samples/mystery/translations/mystery_translations.en.translation", "res://samples/mystery/translations/mystery_translations.ja.translation")
-locale/test="ja"
 locale/locale_filter_mode=0

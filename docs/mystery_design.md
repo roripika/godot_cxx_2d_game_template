@@ -263,13 +263,12 @@ var testimonies = [
 
 ```
 samples/mystery/
-├── main_mystery.tscn              # エントリーポイント
-├── scenes/
-│   ├── office_intro.tscn          # プロローグ
-│   ├── warehouse_investigation.tscn  # 調査パート
-│   ├── office_deduction.tscn      # 推理パート
-│   ├── warehouse_confrontation.tscn  # 対決パート
-│   └── ending.tscn                # エンディング
+├── karakuri_mystery_shell.tscn    # エントリーポイント（固定）
+├── office_base.tscn               # オフィス基底シーン
+├── warehouse_base.tscn            # 倉庫基底シーン
+├── ending_base.tscn               # エンディング基底シーン
+├── scenario/
+│   └── mystery.yaml               # シーン遷移/会話/分岐データ
 ├── scripts/
 │   ├── adventure_game_state.gd    # 状態管理（既存）
 │   ├── evidence_item.gd           # 証拠品リソース
@@ -282,13 +281,10 @@ samples/mystery/
 │   ├── health_bar.gd              # HP表示
 │   └── portrait_manager.gd        # 立ち絵管理
 ├── data/
-│   ├── evidence_database.json     # 全証拠品データ
-│   └── testimonies.json           # 証言データ
-└── assets/
-    ├── backgrounds/               # 背景画像
-    ├── portraits/                 # キャラクター立ち絵
-    ├── evidence/                  # 証拠品アイコン
-    └── ui/                        # UIパーツ
+│   └── evidence/                  # 証拠品リソース（.tres）
+└── ui/
+    ├── evidence_inventory_ui.tscn # 証拠品UI（補助）
+    └── testimony_ui.tscn          # 証言UI（補助）
 ```
 
 ---

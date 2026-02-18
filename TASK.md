@@ -16,9 +16,9 @@
 - [x] 推理・対決の進行データは YAML 側に追加済み（commit: `bcaa936`）
 
 ### M1: 入口統一と旧導線の整理
-- [ ] 正式導線を `karakuri_mystery_shell.tscn` に一本化し、旧導線の扱い（削除/互換）を明記する
-- [ ] `samples/mystery/main_mystery.tscn` など旧シーン参照の棚卸しを実施する
-- [ ] `README.md` と `docs/mystery_design.md` の起動手順を一本化する
+- [x] 正式導線を `karakuri_mystery_shell.tscn` に一本化し、旧導線の扱い（削除/互換）を明記する
+- [x] `samples/mystery/main_mystery.tscn` など旧シーン参照の棚卸しを実施する
+- [x] `README.md` と `docs/mystery_design.md` の起動手順を一本化する
 
 ### M2: YAML スキーマ契約（Planner編集用）
 - [ ] `docs/` に YAML v1 仕様（モード、分岐、証拠、対決、終了条件）を明文化する
