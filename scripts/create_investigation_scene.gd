@@ -9,12 +9,6 @@ func _init():
         print("Script not found: res://scripts/hotspot.gd")
         quit(1)
         return
-        
-    var dialogue_script = load("res://scripts/dialogue_ui_advanced.gd")
-    if not dialogue_script:
-        print("Script not found: res://scripts/dialogue_ui_advanced.gd")
-        quit(1)
-        return
 
     # Root Node
     var root = Node2D.new()

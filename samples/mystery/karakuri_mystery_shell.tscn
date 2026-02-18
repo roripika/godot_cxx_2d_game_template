@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://karakuri_mystery_shell"]
 
 [ext_resource type="Script" path="res://samples/mystery/scripts/dialogue_ui_advanced.gd" id="1_dialogue_adv"]
-[ext_resource type="Script" path="res://samples/mystery/scripts/inventory_ui.gd" id="2_evidence_inventory"]
+[ext_resource type="PackedScene" path="res://samples/mystery/ui/evidence_inventory_ui.tscn" id="2_evidence_inventory"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/language_switcher_scene.gd" id="3_lang"]
-[ext_resource type="Script" path="res://samples/mystery/scripts/testimony_system.gd" id="4_testimony_system"]
+[ext_resource type="PackedScene" path="res://samples/mystery/ui/testimony_ui.tscn" id="4_testimony_system"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/health_bar.gd" id="5_health_bar"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/ui_capture_driver.gd" id="6_ui_capture_driver"]
 
@@ -75,70 +75,7 @@ script = ExtResource("5_health_bar")
 [node name="InstantSubInfoUiLayer" type="CanvasLayer" parent="."]
 layer = 20
 
-[node name="InventoryUI" type="Control" parent="InstantSubInfoUiLayer"]
-visible = false
-layout_mode = 0
-anchor_left = 0.08
-anchor_top = 0.12
-anchor_right = 0.52
-anchor_bottom = 0.88
-script = ExtResource("2_evidence_inventory")
-
-[node name="Background" type="ColorRect" parent="InstantSubInfoUiLayer/InventoryUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color(0.08, 0.1, 0.16, 0.86)
-
-[node name="UiPartLabel" type="Label" parent="InstantSubInfoUiLayer/InventoryUI"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 320.0
-offset_bottom = 30.0
-text = "証拠インベントリUI（インスタント表示）"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="InstantSubInfoUiLayer/InventoryUI"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 36.0
-offset_right = -10.0
-offset_bottom = -10.0
-theme_override_constants/separation = 8
-
-[node name="Label" type="Label" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer"]
-layout_mode = 2
-text = "証拠品一覧（クリックで詳細表示）"
-
-[node name="GridContainer" type="GridContainer" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-columns = 2
-
-[node name="DetailPanel" type="PanelContainer" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer/DetailPanel"]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
-layout_mode = 2
-text = "Name"
-
-[node name="DescriptionLabel" type="Label" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
-layout_mode = 2
-text = "Description"
-auto_wrapping_enabled = true
-
-[node name="IconRect" type="TextureRect" parent="InstantSubInfoUiLayer/InventoryUI/VBoxContainer/DetailPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 3
+[node name="InventoryUI" parent="InstantSubInfoUiLayer" instance=ExtResource("2_evidence_inventory")]
 
 [node name="MainInfoUiLayer" type="CanvasLayer" parent="."]
 layer = 10
@@ -194,71 +131,7 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_constants/separation = 6
 
-[node name="TestimonySystem" type="Control" parent="MainInfoUiLayer"]
-visible = false
-layout_mode = 0
-anchor_left = 0.66
-anchor_top = 0.12
-anchor_right = 0.98
-anchor_bottom = 0.58
-script = ExtResource("4_testimony_system")
-
-[node name="Background" type="ColorRect" parent="MainInfoUiLayer/TestimonySystem"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color(0.2, 0.07, 0.07, 0.84)
-
-[node name="UiPartLabel" type="Label" parent="MainInfoUiLayer/TestimonySystem"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 240.0
-offset_bottom = 30.0
-text = "証言UI（メイン情報）"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainInfoUiLayer/TestimonySystem"]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 36.0
-offset_right = -10.0
-offset_bottom = -10.0
-theme_override_constants/separation = 8
-
-[node name="SpeakerLabel" type="Label" parent="MainInfoUiLayer/TestimonySystem/VBoxContainer"]
-layout_mode = 2
-text = "証言者"
-theme_override_font_sizes/font_size = 14
-
-[node name="TestimonyText" type="Label" parent="MainInfoUiLayer/TestimonySystem/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "ここに証言文が表示されます"
-auto_wrapping_enabled = true
-
-[node name="ActionContainer" type="HBoxContainer" parent="MainInfoUiLayer/TestimonySystem/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_constants/separation = 6
-
-[node name="NextButton" type="Button" parent="MainInfoUiLayer/TestimonySystem/VBoxContainer/ActionContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "次へ"
-
-[node name="ShakeButton" type="Button" parent="MainInfoUiLayer/TestimonySystem/VBoxContainer/ActionContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "ゆさぶる"
-
-[node name="PresentButton" type="Button" parent="MainInfoUiLayer/TestimonySystem/VBoxContainer/ActionContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "つきつける"
+[node name="TestimonySystem" parent="MainInfoUiLayer" instance=ExtResource("4_testimony_system")]
 
 [node name="SubInfoUiLayer" type="CanvasLayer" parent="."]
 layer = 0

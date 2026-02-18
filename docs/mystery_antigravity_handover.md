@@ -106,19 +106,18 @@ M1完了報告に対してレビューを実施した時点では **M1完了判�
 
 ### 重大（先に修正）
 - `choice` のシグナル引数契約不一致
-  - 現象: `res://scripts/dialogue_ui_advanced.gd` は `choice_selected(index)` だが、ランナーは `on_choice_selected(index, text)` を想定。
+  - 現象: `res://samples/mystery/scripts/dialogue_ui_advanced.gd` 側の `choice_selected(index, text)` 契約とランナー契約が一致していないと分岐が壊れる。
   - 影響: 選択肢分岐でコールバック不整合が起きる可能性。
-  - 該当: `samples/mystery/karakuri_mystery_shell.tscn`, `scripts/dialogue_ui_advanced.gd`, `src/karakuri/scenario/karakuri_scenario_runner.cpp`
+  - 該当: `samples/mystery/karakuri_mystery_shell.tscn`, `samples/mystery/scripts/dialogue_ui_advanced.gd`, `src/karakuri/scenario/karakuri_scenario_runner.cpp`
 
 - `testimony` 必須APIの欠落
-  - 現象: `res://scripts/testimony_system.gd` に `add_testimony` / `start_testimony` がない。
+  - 現象: `res://samples/mystery/scripts/testimony_system.gd` が `add_testimony` / `start_testimony` / `all_rounds_complete` を満たさないと対決が起動できない。
   - 影響: YAMLの `testimony` アクション実行時にランナー側要件を満たせず進行停止。
-  - 該当: `samples/mystery/karakuri_mystery_shell.tscn`, `scripts/testimony_system.gd`, `src/karakuri/scenario/karakuri_scenario_runner.cpp`
+  - 該当: `samples/mystery/karakuri_mystery_shell.tscn`, `samples/mystery/scripts/testimony_system.gd`, `src/karakuri/scenario/karakuri_scenario_runner.cpp`
 
 - InventoryUIがランナー契約未達
-  - 現象: `samples/mystery/ui/evidence_inventory_ui.tscn` にスクリプト未アタッチ。`refresh` 接続や `add_evidence/show_inventory` 契約が成立しない。
-  - 影響: 証拠追加/提示フローが壊れる。
-  - 該当: `samples/mystery/karakuri_mystery_shell.tscn`, `samples/mystery/ui/evidence_inventory_ui.tscn`
+  - 現象: InventoryUI が `add_evidence/show_inventory` 契約を満たさないと証拠追加/提示フローが壊れる。
+  - 該当: `samples/mystery/karakuri_mystery_shell.tscn`, `samples/mystery/ui/evidence_inventory_ui.tscn`, `samples/mystery/scripts/inventory_ui.gd`
 
 ### 中（M1範囲管理）
 - M1スコープ外変更の混入
