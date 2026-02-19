@@ -1,335 +1,123 @@
-# Mystery Demo 設計ドキュメント
-## 目標
-逆転裁判/都市伝説解体センタースタイルの完全なアドベンチャーゲームデモを作成する。
+# Mystery Demo 設計ドキュメント（現行実装準拠）
 
----
+## 1. 目的
+- Mystery デモを「再利用可能なアドベンチャー基盤」の参照実装として維持する。
+- プランナーは YAML、デザイナーは UI シーン、エンジニアは C++ ランタイムと接続契約を担当する。
+- 本ドキュメントは実装の一次情報とし、差分が出たら本書を更新する。
 
-## デモストーリー構成
+## 2. 現在の正式導線
+- 実行入口: `project.godot` の `run/main_scene`
+- メインシーン: `res://samples/mystery/karakuri_mystery_shell.tscn`
+- シナリオ実行: `KarakuriScenarioRunner`（`src/karakuri/scenario/karakuri_scenario_runner.cpp`）
+- シナリオデータ: `samples/mystery/scenario/mystery.yaml`
 
-### プロローグ：オフィス（導入）
-- **場所**: 探偵事務所
-- **目的**: 事件の概要を聞く
-- **内容**:
-  - 所長から依頼を受ける（「古い倉庫で怪奇現象が発生」）
-  - 調査に必要な道具を入手（初期証拠品）
-  - 倉庫への移動
+## 3. アーキテクチャ概要
+### 3.1 構成
+- Core State: `AdventureGameStateBase`（C++ / Autoload）
+- Scenario Runtime: `KarakuriScenarioRunner`（C++）
+- View/UI: `samples/mystery/karakuri_mystery_shell.tscn` と `samples/mystery/ui/*.tscn`
+- Planner Data: `samples/mystery/scenario/*.yaml`
 
-### 第1章：調査パート
-- **場所**: 廃倉庫
-- **目的**: 証拠を集める
-- **内容**:
-  - ホットスポットをクリックして調査
-  - 証拠品を3つ収集（エクトプラズム、足跡、破れたメモ）
-  - 目撃者と会話（選択肢あり）
-  - 証拠が揃ったら次へ
+### 3.2 処理フロー
+1. `KarakuriScenarioRunner` が YAML をロード。
+2. `start_scene` の `scene_path` を `SceneContainer` 配下にインスタンス化。
+3. `on_enter` アクション配列を順次実行。
+4. `hotspots` の `node_id` とクリック入力を照合し、`on_click` アクションを実行。
+5. `goto` / `choice` / `testimony` で進行を分岐。
 
-### 第2章：推理パート
-- **場所**: オフィス（復帰）
-- **目的**: 証拠を整理して仮説を立てる
-- **内容**:
-  - 収集した証拠を確認
-  - 所長との会話で選択肢
-  - 正しい推理をすると次へ進む
-  - 間違えるとペナルティ（HP減少）
+## 4. 役割分担（運用契約）
+### 4.1 Designer
+- 主編集対象: `samples/mystery/ui/**`, `samples/mystery/karakuri_mystery_shell.tscn`
+- 責務: レイアウト、視認性、アンカー、CanvasLayer 優先順位
+- 制約: Node 名や NodePath 契約を壊さない
 
-### 第3章：対決パート（法廷スタイル）
-- **場所**: 倉庫（再訪）
-- **目的**: 犯人を追い詰める
-- **内容**:
-  - 犯人（？）の証言を聞く
-  - 矛盾点を見つけて証拠品をつきつける
-  - 「ゆさぶる」で追加情報を引き出す
-  - 3回の証言ラウンド
-  - 正解でクリア、3回ミスでゲームオーバー
+### 4.2 Planner
+- 主編集対象: `samples/mystery/scenario/**`, 翻訳データ
+- 責務: 進行分岐、台詞、証拠配置、失敗条件
+- 制約: YAML v1 契約を守る（`docs/mystery_yaml_schema_v1.md`）
 
-### エピローグ：結末
-- **場所**: オフィス
-- **内容**:
-  - フラグに応じて3種類のエンディング
-    1. **完全勝利**: 全証拠収集 + ノーミス
-    2. **通常クリア**: クリアしたが証拠漏れやミスあり
-    3. **バッドエンド**: HP0でゲームオーバー
+### 4.3 Engineer
+- 主編集対象: `src/karakuri/**`, `src/core/**`, 接続用 GDScript
+- 責務: 実行ランタイム、座標契約、UI API 契約、互換性維持
+- 制約: `src/karakuri/**` の公開 API は Doxygen コメント必須
 
----
+## 5. 実行時契約
+### 5.1 NodePath 契約（Shell）
+対象: `samples/mystery/karakuri_mystery_shell.tscn`
 
-## システム設計
+| 用途 | NodePath | 要件 |
+|---|---|---|
+| SceneContainer | `../SceneContainer` | Base scene の差し替え先 |
+| Dialogue UI | `../MainInfoUiLayer/DialogueUI` | `show_message`, `show_choices`, `choice_selected`, `dialogue_finished` |
+| Evidence UI | `../InstantSubInfoUiLayer/InventoryUI` | `add_evidence`, `show_inventory`（任意） |
+| InteractionManager | `../InteractionManager` | `clicked_at(Vector2)` signal |
+| TestimonySystem | `../MainInfoUiLayer/TestimonySystem` | `add_testimony`, `start_testimony`, `all_rounds_complete` |
 
-### 1. 状態管理（GlobalState）
-```gdscript
-# シングルトン: AdventureGameState
-- flags: Dictionary<String, bool>  # フラグ管理
-- variables: Dictionary<String, Variant>  # 変数（HPなど）
-- evidence: Array<String>  # 所持証拠品ID
-- current_scene: String  # 現在のシーン
-- health: int = 3  # HP（ミス回数）
-```
+### 5.2 クリック座標契約
+- `InteractionManager.clicked_at(position)` の `position` は Canvas/World 座標。
+- Hotspot 判定は `Area2D.global_position` と同一座標空間で比較する。
+- 参照: `src/core/interaction_manager.cpp`, `src/karakuri/scenario/karakuri_scenario_runner.cpp`
 
-**機能**:
-- `set_flag(name, value)`: フラグ設定
-- `get_flag(name)`: フラグ取得
-- `add_evidence(id)`: 証拠品追加
-- `has_evidence(id)`: 証拠品所持確認
-- `change_scene(path)`: シーン遷移
-- `take_damage()`: HP減少
-- `reset_game()`: ゲームリセット
+### 5.3 dialogue 待機契約
+- `dialogue` action 実行時、UI が `dialogue_finished` を提供する場合は signal 発火まで次 action に進まない。
+- UI が signal を持たない場合は待機せず進行する。
 
-### 2. 証拠品システム
+## 6. ゲームモード構成（現行 YAML）
+現状 `samples/mystery/scenario/mystery.yaml` では以下の scene_id で構成する。
+- `prologue`
+- `warehouse_investigation`
+- `deduction`
+- `confrontation`
+- `ending_good`
+- `ending_bad`
 
-#### EvidenceItem（Resource）
-```gdscript
-class_name EvidenceItem extends Resource
+備考:
+- 現行データはエンディング 2 系統（good/bad）。
+- `take_damage` は HP ストライク制（`AdventureGameStateBase.health`）に合わせて 1 単位で運用。
 
-@export var id: String  # 一意ID
-@export var display_name: String  # 表示名
-@export var description: String  # 説明
-@export var icon: Texture2D  # アイコン
-@export var category: String  # カテゴリ（物証/証言/その他）
-```
+## 7. YAML 設計方針
+- 仕様書: `docs/mystery_yaml_schema_v1.md`
+- テンプレート: `samples/mystery/scenario/templates/mystery_template_v1.yaml`
+- action は 1 キー辞書で記述する。
+- `text` 直書きは許容だが、最終的には `text_key` 優先で運用する。
+- `scene_id`, `flag`, `item` は `snake_case` を推奨。
 
-#### InventoryUI（Control）
-- 証拠品リストを表示（グリッド or リスト形式）
-- クリックで詳細表示
-- 「つきつける」モード時は選択可能に
+## 8. UI 設計方針
+- 共通ポリシー: `docs/ui_layout_policy.md`
+- Mystery 拡張: `docs/mystery_ui_layout_policy.md`
+- レイヤー実装値（現行）:
+  - `SystemUiLayer.layer = 30`
+  - `InstantSubInfoUiLayer.layer = 20`
+  - `MainInfoUiLayer.layer = 10`
+  - `SubInfoUiLayer.layer = 0`
 
-**配置**: CanvasLayerとして常駐、必要時に表示
-
-### 3. 会話・選択システム
-
-#### DialogueUI（拡張版）
-**現在の機能**:
-- `show_message(name, text)`: 基本表示
-
-**追加機能**:
-- `show_choices(choices: Array<String>)`: 選択肢表示
-- `set_portrait(texture)`: 立ち絵表示
-- `set_expression(expr)`: 表情変更
-- `type_text(text, speed)`: タイプライター効果
-
-**レイアウト**:
-```
-┌─────────────────────────────┐
-│   [立ち絵]                  │
-│                             │
-│  ┌─────────────────────┐   │
-│  │ [名前]              │   │
-│  │ テキスト内容...     │   │
-│  │                    │   │
-│  └─────────────────────┘   │
-│  [選択肢1]                  │
-│  [選択肢2]                  │
-└─────────────────────────────┘
-```
-
-#### ChoiceManager（Node）
-- 選択肢を管理
-- 選択結果をシグナルで返す
-- フラグに応じて選択肢の表示/非表示を制御
-
-### 4. 調査システム
-
-#### InvestigationScene（Node2D）
-- 背景画像
-- ホットスポット定義（Area2D or Rect2の配列）
-- クリック処理
-
-#### HotspotManager（Node）
-```gdscript
-class Hotspot:
-    var id: String
-    var rect: Rect2  # クリック領域
-    var description: String  # 初回調査時の説明
-    var evidence_id: String  # 取得可能な証拠品ID（あれば）
-    var requires_flag: String  # 必要なフラグ
-    var examined: bool = false  # 調査済みか
-```
-
-**動作**:
-1. クリック位置をチェック
-2. ホットスポットと一致したら説明を表示
-3. 証拠品があれば入手
-4. フラグを設定
-
-### 5. 対決システム（法廷モード）
-
-#### TestimonySystem（Control）
-**構成要素**:
-- 証言データ（配列）
-- 現在の証言インデックス
-- コマンドボタン（「次へ」「ゆさぶる」「つきつける」）
-
-#### Testimony（データ構造）
-```gdscript
-class Testimony:
-    var speaker: String  # 話者
-    var text: String  # 証言内容
-    var contradiction_evidence: String  # この証言に矛盾する証拠品ID
-    var shake_result: String  # ゆさぶった時の反応
-    var correct_evidence: bool = false  # 正解の証拠品が提示されたか
-```
-
-**フロー**:
-1. 証言を1つずつ表示
-2. プレイヤーは「次へ」「ゆさぶる」「つきつける」を選択
-3. **つきつける**:
-   - 証拠品選択UI表示
-   - 正解なら次フェーズへ進む
-   - 不正解ならHP-1、証言を最初から
-4. **ゆさぶる**:
-   - 追加情報を表示（ヒント）
-5. 全ラウンドクリアで勝利
-
-#### ContradictionDetector（ロジック）
-```gdscript
-func check_evidence(testimony: Testimony, evidence_id: String) -> bool:
-    return testimony.contradiction_evidence == evidence_id
-```
-
-### 6. UI/UXコンポーネント
-
-#### HealthBar（HBoxContainer）
-- ハート or ゲージ表示
-- HP減少でアニメーション
-
-#### TextAnimator（Label拡張）
-- 1文字ずつ表示
-- 速度調整可能
-- クリックでスキップ
-
-#### PortraitManager（TextureRect）
-- 立ち絵の表示/非表示
-- 表情差分の切り替え
-- フェードイン/アウト
-
----
-
-## データ構造
-
-### 証拠品定義（JSON or Resource）
-```json
-{
-  "evidence_list": [
-    {
-      "id": "ectoplasm",
-      "display_name": "エクトプラズム",
-      "description": "幽霊が出た証拠となる物質。倉庫の床に落ちていた。",
-      "icon": "res://assets/evidence/ectoplasm.png",
-      "category": "物証"
-    },
-    {
-      "id": "footprint",
-      "display_name": "血の足跡",
-      "description": "倉庫の奥に続く足跡。人間のものではない。",
-      "icon": "res://assets/evidence/footprint.png",
-      "category": "物証"
-    },
-    {
-      "id": "torn_memo",
-      "display_name": "破れたメモ",
-      "description": "「午前3時に...」と書かれている。",
-      "icon": "res://assets/evidence/memo.png",
-      "category": "物証"
-    }
-  ]
-}
-```
-
-### 証言データ
-```gdscript
-var testimonies = [
-    {
-        "speaker": "倉庫管理人",
-        "text": "あの夜は何も見ていません。",
-        "contradiction": "footprint",
-        "shake": "いや...何か音は聞こえたかも..."
-    },
-    {
-        "speaker": "倉庫管理人",
-        "text": "私は午後10時には帰宅しました。",
-        "contradiction": "torn_memo",
-        "shake": "本当です！信じてください！"
-    },
-    {
-        "speaker": "倉庫管理人",
-        "text": "幽霊なんているわけがない。",
-        "contradiction": "ectoplasm",
-        "shake": "...科学的にありえないでしょ？"
-    }
-]
-```
-
----
-
-## ディレクトリ構成
-
-```
+## 9. ディレクトリ責務（現行）
+```text
 samples/mystery/
-├── karakuri_mystery_shell.tscn    # エントリーポイント（固定）
-├── office_base.tscn               # オフィス基底シーン
-├── warehouse_base.tscn            # 倉庫基底シーン
-├── ending_base.tscn               # エンディング基底シーン
-├── scenario/
-│   └── mystery.yaml               # シーン遷移/会話/分岐データ
-├── scripts/
-│   ├── adventure_game_state.gd    # 状態管理（既存）
-│   ├── evidence_item.gd           # 証拠品リソース
-│   ├── inventory_ui.gd            # 証拠品表示UI
-│   ├── dialogue_ui_advanced.gd    # 拡張会話UI
-│   ├── choice_manager.gd          # 選択肢管理
-│   ├── hotspot_manager.gd         # ホットスポット管理
-│   ├── testimony_system.gd        # 証言システム
-│   ├── contradiction_detector.gd  # 矛盾検出
-│   ├── health_bar.gd              # HP表示
-│   └── portrait_manager.gd        # 立ち絵管理
-├── data/
-│   └── evidence/                  # 証拠品リソース（.tres）
-└── ui/
-    ├── evidence_inventory_ui.tscn # 証拠品UI（補助）
-    └── testimony_ui.tscn          # 証言UI（補助）
+├── karakuri_mystery_shell.tscn          # 正式エントリ
+├── scenario/mystery.yaml                # Planner が編集する進行データ
+├── ui/evidence_inventory_ui.tscn        # Inventory UI（デザイナー主担当）
+├── ui/testimony_ui.tscn                 # Testimony UI（デザイナー主担当）
+├── scripts/dialogue_ui_advanced.gd      # 会話 UI ロジック
+├── scripts/inventory_ui.gd              # 証拠 UI ロジック
+├── scripts/testimony_system.gd          # 対決 UI ロジック
+└── data/evidence/*.tres                 # 証拠マスタ
 ```
 
----
+## 10. 受け入れチェック（最低限）
+- `./dev.sh run mystery` で起動できる。
+- `samples/mystery/scripts/karakuri_scenario_smoke.gd` が成功する。
+- 証拠取得/選択肢/対決/エンディング遷移が破綻しない。
+- UI 変更時に `docs/mystery_ui_layout_policy.md` の台帳を更新する。
 
-## 実装順序
+## 11. 既知ギャップ（次期対応）
+- `text_key` 移行は未完（直書き台詞が残る）。
+- Testimony のゲーム仕様詳細は暫定（ランタイム接続は成立済み）。
+- 旧サンプル（`office_scene.tscn` など）は参照用途として残存しており、正式導線は shell 固定で運用する。
 
-### フェーズ1: 基盤システム（1-2時間）
-1. ✅ AdventureGameState の機能拡張（HP、証拠品管理）
-2. EvidenceItem リソース作成
-3. InventoryUI 実装（シンプル版）
-4. DialogueUI 拡張（選択肢表示）
-
-### フェーズ2: 調査システム（1時間）
-5. HotspotManager 実装
-6. 調査シーン作成（warehouse_investigation.tscn）
-7. 証拠品3つのデータ作成
-
-### フェーズ3: 対決システム（1-2時間）
-8. TestimonySystem 実装
-9. ContradictionDetector 実装
-10. 対決シーン作成（warehouse_confrontation.tscn）
-11. HealthBar UI
-
-### フェーズ4: ストーリー統合（1時間）
-12. 5つのシーンを繋げる
-13. フラグ分岐の実装
-14. エンディング3種類
-
-### フェーズ5: 演出・UI（1時間）
-15. 立ち絵表示
-16. タイプライター効果
-17. BGM/SE統合
-18. トランジション演出
-
----
-
-## 成功基準
-- [x] プロローグから対決まで一通りプレイ可能
-- [x] 証拠品の収集と提示が動作
-- [x] 選択肢による分岐が動作
-- [x] 3種類のエンディングが表示される
-- [x] HP管理とゲームオーバーが機能
-- [x] 証言・矛盾検出システムが動作
-
----
-
-## 次のステップ
-この設計を元に、フェーズ1から順に実装を開始します。
+## 12. 関連資料
+- `docs/demo_plan.md`
+- `docs/mystery_antigravity_handover.md`
+- `docs/mystery_yaml_schema_v1.md`
+- `docs/mystery_ui_layout_policy.md`
+- `TASK.md`
