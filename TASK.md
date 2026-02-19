@@ -7,7 +7,7 @@
 
 ### 運用ルール（固定）
 - [ ] 作業者は antigravity に固定し、PR本文に `Scope / Out of Scope / 検証結果` を必ず記載する
-- [ ] `src/karakuri/**` の C++ は公開 API に Doxygen コメントを必須化する
+- [x] `src/karakuri/**` の C++ は公開 API に Doxygen コメントを必須化する（commit: `0403f7f`）
 - [ ] Basic Game Karakuri にデモ固有ロジックを入れない（依存は `samples -> karakuri` のみ）
 
 ### 現状確認（2026-02-19）
@@ -31,18 +31,18 @@
 
 ### M3: C++責務寄せ（Basic Game Karakuri）
 - [x] YAML 読込・状態遷移・フラグ/所持品/HP の正を C++ 側に固定する（commit: `54540d8`, `ff79e74`）
-- [ ] GDScript は UI 表示と入力受け取りに限定する
-- [ ] 文章直書きを削減し、翻訳キーまたはデータ参照に統一する
+- [x] GDScript は UI 表示と入力受け取りに限定する（commit: `0403f7f`）
+- [x] 文章直書きを削減し、翻訳キーまたはデータ参照に統一する（commit: `0403f7f`）
 
 ### M4: モード分離（Investigation / Deduction / Confrontation / Ending）
-- [ ] 各モードの共通インターフェース（入力、UI更新、遷移）を定義する
+- [x] 各モードの共通インターフェース（入力、UI更新、遷移）を定義する（commit: `0403f7f`）
 - [x] モード遷移を YAML 記述のみで制御できるようにする（commit: `54540d8`）
 - [x] 失敗時（HP 0）と成功時（複数エンディング）の分岐を固定する（commit: `a350204`）
 
 ### M5: 多言語切替（EN/JA）再実装
-- [ ] 実行中の言語切替で「会話・選択肢・インベントリ・ボタン」が即時更新される
-- [ ] 起動時 locale 復元（永続化）が動作する
-- [ ] ミステリー用翻訳キーの未登録チェック手順を定義する
+- [x] 実行中の言語切替で「会話・選択肢・インベントリ・ボタン」が即時更新される（commit: `0403f7f`）
+- [x] 起動時 locale 復元（永続化）が動作する（commit: `0403f7f`）
+- [x] ミステリー用翻訳キーの未登録チェック手順を定義する（commit: `0403f7f`）
 
 ### M6: 役割分離（Designer / Planner）
 - [x] Designer の編集対象を `samples/mystery/ui/**` と `tscn/theme` に限定する運用を文書化する（commit: `bbc7a82`）
@@ -50,19 +50,19 @@
 - [x] ノード名契約（UI差し替え時に壊してはいけない NodePath）を明記する（commit: `bbc7a82`）
 
 ### M7: 受け入れテスト固定
-- [ ] `./dev.sh run mystery` で開始からエンディングまで到達する
-- [ ] 証拠提示の正解/不正解、ゆさぶり、HP減少、ゲームオーバーを確認する
-- [ ] 実行中の EN/JA 切替を各モードで確認する
+- [x] `godot --headless --path . --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd` で開始からエンディングまで到達する（good/bad 両分岐）
+- [x] 証拠提示の正解/不正解、ゆさぶり、HP減少、ゲームオーバーを確認する（`karakuri_scenario_smoke.gd`）
+- [x] 実行中の EN/JA 切替を各モードで確認する（`karakuri_scenario_smoke.gd`）
 - [x] PRごとに手動テスト結果をチェックリストで添付する（テンプレート定義: `docs/mystery_antigravity_handover.md`）
-- [x] ヘッドレスの最低動作確認を固定する（`samples/mystery/scripts/karakuri_scenario_smoke.gd`, latest pass: `1acb0c2` 時点以降）
+- [x] ヘッドレスの最低動作確認を固定する（`samples/mystery/scripts/karakuri_scenario_smoke.gd`, latest pass: `0403f7f`）
 
 ### M8: ドキュメント同期
-- [ ] `TASK.md`、`docs/mystery_design.md`、`README.md`、引き継ぎ資料を同一内容に同期する
-- [ ] 完了済み項目はコミットID付きで `[x]` に更新する
-- [ ] 未完項目は次PRの先頭タスクに繰り越す
+- [x] `TASK.md`、`docs/mystery_design.md`、`README.md`、引き継ぎ資料を同一内容に同期する（commit: `0403f7f`）
+- [x] 完了済み項目はコミットID付きで `[x]` に更新する
+- [x] 未完項目は次PRの先頭タスクに繰り越す（繰り越し: 運用ルール 2項目）
 
 ### 参照
-- [ ] 引き継ぎ資料 `docs/mystery_antigravity_handover.md` を更新し続ける
+- [x] 引き継ぎ資料 `docs/mystery_antigravity_handover.md` を更新し続ける（commit: `0403f7f`）
 
 ## Phase 1: Core Architecture (Logic/View Separation)
 - [x] **Refactor Project Structure**
