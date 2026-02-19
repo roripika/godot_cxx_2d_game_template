@@ -10,10 +10,14 @@
 - [ ] `src/karakuri/**` の C++ は公開 API に Doxygen コメントを必須化する
 - [ ] Basic Game Karakuri にデモ固有ロジックを入れない（依存は `samples -> karakuri` のみ）
 
-### 現状確認（2026-02-17）
+### 現状確認（2026-02-19）
 - [x] ミステリーの起動入口は `res://samples/mystery/karakuri_mystery_shell.tscn`
 - [x] `KarakuriScenarioRunner` は `samples/mystery/scenario/mystery.yaml` を読む構成
 - [x] 推理・対決の進行データは YAML 側に追加済み（commit: `bcaa936`）
+- [x] `dialogue` は `dialogue_finished` 契約で待機する（commit: `31a6cfe`）
+- [x] `clicked_at` は Canvas/World 座標契約に統一（commit: `1acb0c2`）
+- [x] Legacy 重複 UI 実装を整理し、`samples/mystery/ui/*.tscn` を正式化（commit: `1aeefb7`）
+- [x] `docs/mystery_design.md` を現行実装契約へ同期（commit: `bbc7a82`）
 
 ### M1: 入口統一と旧導線の整理
 - [x] 正式導線を `karakuri_mystery_shell.tscn` に一本化し、旧導線の扱い（削除/互換）を明記する
@@ -26,14 +30,14 @@
 - [x] サンプルテンプレート YAML（最小1本）を用意し、プランナーがコピーして増やせる状態にする（`samples/mystery/scenario/templates/mystery_template_v1.yaml`）
 
 ### M3: C++責務寄せ（Basic Game Karakuri）
-- [ ] YAML 読込・状態遷移・フラグ/所持品/HP の正を C++ 側に固定する
+- [x] YAML 読込・状態遷移・フラグ/所持品/HP の正を C++ 側に固定する（commit: `54540d8`, `ff79e74`）
 - [ ] GDScript は UI 表示と入力受け取りに限定する
 - [ ] 文章直書きを削減し、翻訳キーまたはデータ参照に統一する
 
 ### M4: モード分離（Investigation / Deduction / Confrontation / Ending）
 - [ ] 各モードの共通インターフェース（入力、UI更新、遷移）を定義する
-- [ ] モード遷移を YAML 記述のみで制御できるようにする
-- [ ] 失敗時（HP 0）と成功時（複数エンディング）の分岐を固定する
+- [x] モード遷移を YAML 記述のみで制御できるようにする（commit: `54540d8`）
+- [x] 失敗時（HP 0）と成功時（複数エンディング）の分岐を固定する（commit: `a350204`）
 
 ### M5: 多言語切替（EN/JA）再実装
 - [ ] 実行中の言語切替で「会話・選択肢・インベントリ・ボタン」が即時更新される
@@ -41,15 +45,16 @@
 - [ ] ミステリー用翻訳キーの未登録チェック手順を定義する
 
 ### M6: 役割分離（Designer / Planner）
-- [ ] Designer の編集対象を `samples/mystery/ui/**` と `tscn/theme` に限定する運用を文書化する
-- [ ] Planner の編集対象を `samples/mystery/scenario/**` と翻訳データに限定する運用を文書化する
-- [ ] ノード名契約（UI差し替え時に壊してはいけない NodePath）を明記する
+- [x] Designer の編集対象を `samples/mystery/ui/**` と `tscn/theme` に限定する運用を文書化する（commit: `bbc7a82`）
+- [x] Planner の編集対象を `samples/mystery/scenario/**` と翻訳データに限定する運用を文書化する（commit: `bbc7a82`）
+- [x] ノード名契約（UI差し替え時に壊してはいけない NodePath）を明記する（commit: `bbc7a82`）
 
 ### M7: 受け入れテスト固定
 - [ ] `./dev.sh run mystery` で開始からエンディングまで到達する
 - [ ] 証拠提示の正解/不正解、ゆさぶり、HP減少、ゲームオーバーを確認する
 - [ ] 実行中の EN/JA 切替を各モードで確認する
-- [ ] PRごとに手動テスト結果をチェックリストで添付する
+- [x] PRごとに手動テスト結果をチェックリストで添付する（テンプレート定義: `docs/mystery_antigravity_handover.md`）
+- [x] ヘッドレスの最低動作確認を固定する（`samples/mystery/scripts/karakuri_scenario_smoke.gd`, latest pass: `1acb0c2` 時点以降）
 
 ### M8: ドキュメント同期
 - [ ] `TASK.md`、`docs/mystery_design.md`、`README.md`、引き継ぎ資料を同一内容に同期する
