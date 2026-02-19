@@ -43,6 +43,7 @@
 #include "scenes/haunted_spot_scene_logic.h"
 #include "scenes/office_scene_logic.h"
 
+#include "karakuri/karakuri_localization_service.h"
 #include "karakuri/scenario/karakuri_scenario_runner.h"
 
 #include <godot_cpp/core/class_db.hpp>
@@ -88,6 +89,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<RhythmNote>();
   ClassDB::register_class<NoteLane>();
   ClassDB::register_class<RhythmCommandListener>();
+  ClassDB::register_class<karakuri::KarakuriLocalizationService>();
   ClassDB::register_class<karakuri::KarakuriScenarioRunner>();
 }
 

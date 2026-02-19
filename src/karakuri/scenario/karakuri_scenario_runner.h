@@ -134,13 +134,48 @@ private:
   void on_choice_selected(int index, const godot::String &text);
   void on_dialogue_finished();
   void on_testimony_complete(bool success);
+  void on_testimony_next_requested();
+  void on_testimony_shake_requested();
+  void on_testimony_present_requested();
+  void on_evidence_selected(const godot::String &evidence_id);
   bool hotspot_matches_click(const HotspotBinding &hs,
                              const godot::Vector2 &pos) const;
   void trigger_hotspot(const HotspotBinding &hs);
+  void show_current_testimony_line();
+  bool are_all_testimony_contradictions_solved() const;
+  void complete_testimony(bool success);
+
+  void set_mode_input_enabled(bool enabled);
+  void notify_mode_exit(const godot::String &next_scene_id);
+  void notify_mode_enter(const godot::String &scene_id,
+                         const godot::Dictionary &scene_dict);
+  godot::String resolve_mode_id(const godot::String &scene_id,
+                                const godot::Dictionary &scene_dict) const;
 
   godot::String tr_key(const godot::String &key) const;
   godot::Node *resolve_node_path(const godot::NodePath &path) const;
   godot::Node *get_adventure_state() const;
+
+  struct TestimonyLine {
+    godot::String speaker_key;
+    godot::String speaker_text;
+    godot::String text_key;
+    godot::String text_text;
+    godot::String evidence_id;
+    godot::String shake_key;
+    godot::String shake_text;
+    bool solved = false;
+  };
+
+  godot::String current_mode_id_;
+  bool mode_input_enabled_ = true;
+
+  godot::Array testimony_lines_;
+  int testimony_index_ = 0;
+  int testimony_max_rounds_ = 1;
+  int testimony_round_ = 0;
+  bool testimony_active_ = false;
+  bool waiting_for_evidence_selection_ = false;
 };
 
 } // namespace karakuri

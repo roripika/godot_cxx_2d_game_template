@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://karakuri_mystery_shell"]
+[gd_scene load_steps=8 format=3 uid="uid://karakuri_mystery_shell"]
 
 [ext_resource type="Script" path="res://samples/mystery/scripts/dialogue_ui_advanced.gd" id="1_dialogue_adv"]
 [ext_resource type="PackedScene" path="res://samples/mystery/ui/evidence_inventory_ui.tscn" id="2_evidence_inventory"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" path="res://samples/mystery/ui/testimony_ui.tscn" id="4_testimony_system"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/health_bar.gd" id="5_health_bar"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/ui_capture_driver.gd" id="6_ui_capture_driver"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/mystery_shell_ui.gd" id="7_shell_ui"]
 
 [node name="KarakuriMysteryShell" type="Node2D"]
+script = ExtResource("7_shell_ui")
 
 [node name="ScenarioRunner" type="KarakuriScenarioRunner" parent="."]
 scene_container_path = NodePath("../SceneContainer")

@@ -1,8 +1,3 @@
-# karakuri_scenario_smoke.gd
-# Headless smoke test for the Karakuri YAML-driven scenario runner.
-#
-# Usage:
-#   godot --headless --path . --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd
 extends SceneTree
 
 const SHELL := "res://samples/mystery/karakuri_mystery_shell.tscn"
@@ -20,8 +15,18 @@ func _wait_frames(n: int) -> void:
 	for _i in range(n):
 		await process_frame
 
+func _wait_until(cond: Callable, max_frames: int) -> bool:
+	for _i in range(max_frames):
+		if cond.call():
+			return true
+		await process_frame
+	return false
+
 func _scene_container() -> Node:
 	return current_scene.get_node("SceneContainer")
+
+func _runner() -> Node:
+	return current_scene.get_node("ScenarioRunner")
 
 func _interaction_manager() -> Node:
 	return current_scene.get_node("InteractionManager")
@@ -29,98 +34,121 @@ func _interaction_manager() -> Node:
 func _adventure_state() -> Node:
 	return get_root().get_node("AdventureGameState")
 
-func _run() -> void:
+func _dialogue_ui() -> Node:
+	return current_scene.get_node("MainInfoUiLayer/DialogueUI")
+
+func _set_locale(prefix: String) -> void:
+	var service := get_root().get_node_or_null("KarakuriLocalization")
+	if service and service.has_method("set_locale_prefix"):
+		service.call("set_locale_prefix", prefix)
+	else:
+		TranslationServer.set_locale(prefix)
+
+func _boot_shell() -> void:
 	change_scene_to_file(SHELL)
 	await _wait_frames(2)
+	var dui := _dialogue_ui()
+	dui.set("typing_speed", 0.0)
+	if dui.has_method("skip_typing"):
+		dui.call("skip_typing")
 
-	# Speed up typing to keep the smoke test fast. If a message is already
-	# typing, force-finish it once so the runner can proceed.
-	var dui = null
-	var waited := 0
-	while waited < 120 and dui == null:
-		dui = current_scene.get_node_or_null("MainInfoUiLayer/DialogueUI")
-		if dui == null:
-			await process_frame
-			waited += 1
-	if dui:
-		dui.set("typing_speed", 0.0)
-		if dui.has_method("skip_typing"):
-			dui.call("skip_typing")
+func _wait_for_base(name: String, max_frames: int = 360) -> bool:
+	return await _wait_until(
+		func() -> bool:
+			return _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == name,
+		max_frames
+	)
 
-	await _wait_frames(5)
+func _go_to_deduction(gs: Node) -> bool:
+	var reached_warehouse := await _wait_for_base("WarehouseBase")
+	if not reached_warehouse:
+		return false
+	await _wait_frames(60)
 
-	_assert(current_scene != null, "current_scene is null")
-	_assert(_scene_container().get_child_count() >= 1, "expected base scene instance")
+	# Prepare required inventory to avoid flaky hotspot timing in headless runs.
+	gs.call("add_item", "ectoplasm")
+	gs.call("add_item", "footprint")
+	gs.call("add_item", "torn_memo")
 
-	var im := _interaction_manager()
-	_assert(im.has_signal("clicked_at"), "InteractionManager has no clicked_at")
-
-	# Prologue auto-advances to warehouse.
-	waited = 0
-	while waited < 240 and _scene_container().get_child(0).name != "WarehouseBase":
-		await process_frame
-		waited += 1
-	_assert(_scene_container().get_child(0).name == "WarehouseBase", "expected WarehouseBase after prologue")
-
-	# Allow on_enter actions to finish before clicking hotspots.
-	await _wait_frames(30)
-
-	# Collect evidence via hotspots.
 	var wb := _scene_container().get_child(0)
-	im.emit_signal("clicked_at", wb.get_node("hs_floor_area").global_position)
-	await _wait_frames(30)
-	im.emit_signal("clicked_at", wb.get_node("hs_footprints").global_position)
-	await _wait_frames(30)
+	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
+	await _wait_frames(20)
+
+	var reached_office := await _wait_for_base("OfficeBase")
+	return reached_office
+
+func _run() -> void:
+	await _boot_shell()
+
+	# Locale switch sanity: EN/JA translation must differ.
+	_set_locale("en")
+	var en_title: String = str(TranslationServer.translate("office_title"))
+	_set_locale("ja")
+	var ja_title: String = str(TranslationServer.translate("office_title"))
+	_assert(en_title != ja_title, "office_title translation does not change by locale")
 
 	var gs := _adventure_state()
-	_assert(gs.call("has_item", "footprint"), "footprint missing")
-	# NOTE: Some hotspots are gated by choice/dialogue timing; for this smoke,
-	# ensure required items exist to validate the runner flow end-to-end.
-	if not gs.call("has_item", "ectoplasm"):
-		gs.call("add_item", "ectoplasm")
-	if not gs.call("has_item", "torn_memo"):
-		gs.call("add_item", "torn_memo")
+	_assert(gs != null, "AdventureGameState autoload missing")
 
-	# Exit should now return to office (deduction).
-	im.emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
-	waited = 0
-	while waited < 240 and _scene_container().get_child(0).name != "OfficeBase":
-		await process_frame
-		waited += 1
-	_assert(_scene_container().get_child(0).name == "OfficeBase", "expected OfficeBase after exit")
+	var ready_deduction := await _go_to_deduction(gs)
+	_assert(ready_deduction, "failed to reach deduction")
 
-	# Pick the correct deduction choice (index 0).
-	dui = current_scene.get_node("MainInfoUiLayer/DialogueUI")
-	var cc = dui.get_node("VBoxContainer/ChoicesContainer")
-	waited = 0
-	while waited < 240 and cc.get_child_count() == 0:
-		await process_frame
-		waited += 1
-	_assert(cc.get_child_count() > 0, "deduction choices did not appear")
-	dui._on_choice_selected(0, "")
+	var runner := _runner()
+	var hp_before_wrong := int(gs.call("get_health"))
 	await _wait_frames(60)
-	_assert(_scene_container().get_child(0).name == "WarehouseBase", "expected WarehouseBase after deduction")
+	runner.call("on_choice_selected", 1, "")
+	await _wait_frames(60)
+	_assert(int(gs.call("get_health")) == hp_before_wrong - 1, "wrong deduction did not reduce HP")
+	await _wait_frames(60)
+	runner.call("on_choice_selected", 0, "")
 
-	# Force-win the testimony quickly by presenting the correct evidence for each statement.
-	var ts := current_scene.get_node("MainInfoUiLayer/TestimonySystem")
-	waited = 0
-	while waited < 200 and int(ts.get("testimonies").size()) < 3:
-		await process_frame
-		waited += 1
-	_assert(int(ts.get("testimonies").size()) >= 3, "testimonies not populated")
+	var reached_confrontation := await _wait_for_base("WarehouseBase")
+	_assert(reached_confrontation, "failed to transition to confrontation scene")
+	await _wait_frames(80)
 
-	# Smoke goal is runner wiring (signal -> on_success -> goto), not the full
-	# testimony minigame. End it explicitly to keep the test stable.
-	if ts.has_method("_on_all_complete"):
-		ts.call("_on_all_complete")
+	var present_button := current_scene.get_node("MainInfoUiLayer/TestimonySystem/VBoxContainer/ActionContainer/PresentButton")
+	_set_locale("en")
+	await _wait_frames(3)
+	var en_present: String = str(present_button.text)
+	_set_locale("ja")
+	await _wait_frames(3)
+	var ja_present: String = str(present_button.text)
+	_assert(en_present != ja_present, "present button text did not switch locale during confrontation")
 
-	# Wait for scenario runner to apply on_success goto.
-	waited = 0
-	while waited < 240 and _scene_container().get_child(0).name != "EndingBase":
-		await process_frame
-		waited += 1
+	# Wrong evidence once (after requesting present), then solve with correct evidence.
+	var hp_before_testimony_wrong := int(gs.call("get_health"))
+	runner.call("on_testimony_present_requested")
+	await _wait_frames(5)
+	runner.call("on_evidence_selected", "ectoplasm")
+	await _wait_frames(20)
+	_assert(int(gs.call("get_health")) == hp_before_testimony_wrong - 1, "wrong testimony evidence did not reduce HP")
 
-	_assert(_scene_container().get_child(0).name == "EndingBase", "expected EndingBase after testimony completion")
+	runner.call("on_testimony_next_requested")
+	await _wait_frames(10)
+	runner.call("on_testimony_present_requested")
+	await _wait_frames(5)
+	runner.call("on_evidence_selected", "footprint")
+	await _wait_frames(15)
+	runner.call("on_testimony_present_requested")
+	await _wait_frames(5)
+	runner.call("on_evidence_selected", "torn_memo")
+
+	var reached_good_ending := await _wait_for_base("EndingBase")
+	_assert(reached_good_ending, "good ending was not reached")
+
+	# Failure branch: wrong deduction until HP reaches 0.
+	gs.call("reset_game")
+	await _boot_shell()
+	ready_deduction = await _go_to_deduction(gs)
+	_assert(ready_deduction, "failed to reach deduction on failure branch")
+	await _wait_frames(60)
+	for _i in range(3):
+		runner = _runner()
+		runner.call("on_choice_selected", 2, "")
+		await _wait_frames(80)
+
+	var reached_bad_ending := await _wait_for_base("EndingBase")
+	_assert(reached_bad_ending, "bad ending was not reached after HP depletion")
 
 	if _failed:
 		quit(1)

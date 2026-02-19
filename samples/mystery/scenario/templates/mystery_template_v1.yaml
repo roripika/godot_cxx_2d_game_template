@@ -5,15 +5,17 @@ start_scene: "prologue"
 
 scenes:
   prologue:
+    mode: "investigation"
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
-      - dialogue: { speaker: "System", text_key: "demo.mystery.prologue.start" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "demo.mystery.prologue.start" }
       - goto: "investigation"
 
   investigation:
+    mode: "investigation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
-      - dialogue: { speaker: "Detective", text_key: "demo.mystery.investigation.enter" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "demo.mystery.investigation.enter" }
 
     hotspots:
       clue_spot:
@@ -22,10 +24,10 @@ scenes:
           - if_has_items:
               items: ["sample_clue"]
               then:
-                - dialogue: { speaker: "Detective", text_key: "demo.mystery.investigation.clue_already" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "demo.mystery.investigation.clue_already" }
               else:
                 - give_evidence: "sample_clue"
-                - dialogue: { speaker: "System", text_key: "demo.mystery.investigation.clue_found" }
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "demo.mystery.investigation.clue_found" }
 
       exit_spot:
         node_id: "hs_exit"
@@ -35,9 +37,10 @@ scenes:
               then:
                 - goto: "deduction"
               else:
-                - dialogue: { speaker: "Detective", text_key: "demo.mystery.investigation.need_more" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "demo.mystery.investigation.need_more" }
 
   deduction:
+    mode: "deduction"
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
       - choice:
@@ -54,12 +57,14 @@ scenes:
                   - goto: "deduction"
 
   confrontation:
+    mode: "confrontation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
       - testimony:
           max_rounds: 1
           testimonies:
-            - speaker: "Witness"
+            - speaker_key: "speaker.witness"
+              speaker: "Witness"
               text_key: "demo.mystery.confront.line1"
               evidence: "sample_clue"
               shake_key: "demo.mystery.confront.shake1"
@@ -69,11 +74,13 @@ scenes:
             - goto: "ending_bad"
 
   ending_good:
+    mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker: "System", text_key: "demo.mystery.ending.good" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "demo.mystery.ending.good" }
 
   ending_bad:
+    mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker: "System", text_key: "demo.mystery.ending.bad" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "demo.mystery.ending.bad" }

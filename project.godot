@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 AdventureGameState="*res://samples/mystery/adventure_game_state.gd"
+KarakuriLocalization="*res://samples/common/karakuri_localization_service.tscn"
 
 [dotnet]
 

@@ -10,6 +10,7 @@
 start_scene: "scene_id"
 scenes:
   scene_id:
+    mode: "investigation"
     scene_path: "res://..."
     on_enter: []
     hotspots: {}
@@ -23,6 +24,7 @@ scenes:
 - `scene_path` (string): `PackedScene` のパス
 
 ### 任意
+- `mode` (string): `investigation / deduction / confrontation / ending`
 - `on_enter` (array[action]): シーン突入時に実行
 - `hotspots` (map): クリック対象定義
 
@@ -49,9 +51,10 @@ action は「1キーの辞書」で表現する。
 ### 5.1 `dialogue`
 ```yaml
 - dialogue:
-    speaker: "System"          # 任意（既定: System）
-    text: "直書き文"           # text_key と排他推奨
-    text_key: "demo..."        # 推奨
+    speaker_key: "speaker.system" # 推奨（未指定時は speaker を利用）
+    speaker: "System"             # 任意（既定: System）
+    text_key: "demo..."           # Mystery運用では必須
+    text: "fallback text"         # 非推奨（互換用）
 ```
 
 実行時の待機:
@@ -101,7 +104,8 @@ action は「1キーの辞書」で表現する。
 - choice:
     choices:
       - option:
-          text: "拾う"          # text_key 推奨
+          text_key: "demo..."   # Mystery運用では必須
+          text: "拾う"          # 非推奨（互換用）
           actions: []
       - option:
           text_key: "demo..."
@@ -139,12 +143,13 @@ action は「1キーの辞書」で表現する。
     max_rounds: 3
     testimonies:
       - line:
+          speaker_key: "speaker.witness"
           speaker: "Witness"
-          text: "..."
-          text_key: "..."
+          text_key: "..."        # Mystery運用では必須
+          text: "..."            # 非推奨（互換用）
           evidence: "footprint"
-          shake: "..."
           shake_key: "..."
+          shake: "..."           # 非推奨（互換用）
       -
         speaker: "Witness"
         text: "..."
@@ -185,7 +190,7 @@ action は「1キーの辞書」で表現する。
 
 ## 7. 運用ルール（プランナー向け）
 - 新規シナリオは `samples/mystery/scenario/templates/mystery_template_v1.yaml` をコピーして作成。
-- `text` 直書きは許容するが、最終的には `text_key` 移行を推奨。
+- `text_key / speaker_key / shake_key` を必須運用とし、`text` は互換フォールバックとしてのみ使用する。
 - `scene_id`, `flag`, `item` は `snake_case` を推奨。
 
 ## 8. 最小検証チェック

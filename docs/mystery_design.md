@@ -24,6 +24,7 @@
 3. `on_enter` アクション配列を順次実行。
 4. `hotspots` の `node_id` とクリック入力を照合し、`on_click` アクションを実行。
 5. `goto` / `choice` / `testimony` で進行を分岐。
+6. `testimony` の正誤判定・HP減少・成功/失敗分岐は C++ ランナー側で処理する（UI は入力と表示のみ）。
 
 ## 4. 役割分担（運用契約）
 ### 4.1 Designer
@@ -62,6 +63,17 @@
 - `dialogue` action 実行時、UI が `dialogue_finished` を提供する場合は signal 発火まで次 action に進まない。
 - UI が signal を持たない場合は待機せず進行する。
 
+### 5.4 モード共通インターフェース契約
+対象 UI ノードが以下メソッドを実装する場合、ランナーは mode 遷移時に統一呼び出しする。
+
+| メソッド | 呼び出しタイミング | 目的 |
+|---|---|---|
+| `on_mode_enter(mode_id, scene_id)` | scene 読込後 | モード開始時の UI 初期化 |
+| `on_mode_exit(mode_id, next_scene_id)` | scene 切替前 | モード終了時の後始末 |
+| `set_mode_input_enabled(enabled)` | action 実行中/待機中の切替時 | 入力可否の統一制御 |
+
+`mode_id` は YAML の `scene.mode`（`investigation / deduction / confrontation / ending`）を優先し、未指定時は `scene_id` から推定する。
+
 ## 6. ゲームモード構成（現行 YAML）
 現状 `samples/mystery/scenario/mystery.yaml` では以下の scene_id で構成する。
 - `prologue`
@@ -79,7 +91,7 @@
 - 仕様書: `docs/mystery_yaml_schema_v1.md`
 - テンプレート: `samples/mystery/scenario/templates/mystery_template_v1.yaml`
 - action は 1 キー辞書で記述する。
-- `text` 直書きは許容だが、最終的には `text_key` 優先で運用する。
+- Mystery 本運用では `text_key / speaker_key / shake_key` を使用し、`text` は互換フォールバックとしてのみ許容する。
 - `scene_id`, `flag`, `item` は `snake_case` を推奨。
 
 ## 8. UI 設計方針
@@ -106,13 +118,12 @@ samples/mystery/
 
 ## 10. 受け入れチェック（最低限）
 - `./dev.sh run mystery` で起動できる。
-- `samples/mystery/scripts/karakuri_scenario_smoke.gd` が成功する。
+- `godot --headless --path . --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd` が成功する。
+- `./scripts/check_mystery_translation_keys.sh` が成功する。
 - 証拠取得/選択肢/対決/エンディング遷移が破綻しない。
 - UI 変更時に `docs/mystery_ui_layout_policy.md` の台帳を更新する。
 
 ## 11. 既知ギャップ（次期対応）
-- `text_key` 移行は未完（直書き台詞が残る）。
-- Testimony のゲーム仕様詳細は暫定（ランタイム接続は成立済み）。
 - 旧サンプル（`office_scene.tscn` など）は参照用途として残存しており、正式導線は shell 固定で運用する。
 
 ## 12. 関連資料

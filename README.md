@@ -54,6 +54,12 @@ chmod +x setup.sh
 
 `mystery` の正式エントリーポイントは `samples/mystery/karakuri_mystery_shell.tscn` です。
 
+ミステリーデモの受け入れスモーク:
+```bash
+godot --headless --path . --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd
+./scripts/check_mystery_translation_keys.sh
+```
+
 ## 環境構築 (macOS)
 
 ### 1. 前提ツールのインストール

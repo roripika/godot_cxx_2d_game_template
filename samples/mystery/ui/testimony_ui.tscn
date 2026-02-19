@@ -39,14 +39,18 @@ theme_override_constants/separation = 8
 
 [node name="SpeakerLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "証言者"
+text = "Speaker"
 theme_override_font_sizes/font_size = 14
 
 [node name="TestimonyText" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "ここに証言文が表示されます"
+text = "Testimony line"
 auto_wrapping_enabled = true
+
+[node name="ProgressLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "1 / 1"
 
 [node name="ActionContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -67,4 +71,3 @@ text = "ゆさぶる"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "つきつける"
-

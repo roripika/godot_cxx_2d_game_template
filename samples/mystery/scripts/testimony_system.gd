@@ -1,62 +1,78 @@
-# TestimonySystem.gd
-# 証言システム（法廷モード）
 extends Control
 class_name TestimonySystem
 
-class Testimony:
-	var speaker: String
-	var text: String
-	var contradiction_evidence: String  # この証言に矛盾する証拠品ID
-	var shake_result: String  # ゆさぶった時の追加情報
-	var correct_evidence_presented: bool = false
-	
-	func _init(p_speaker: String, p_text: String, p_evidence: String = "", p_shake: String = ""):
-		speaker = p_speaker
-		text = p_text
-		contradiction_evidence = p_evidence
-		shake_result = p_shake
+signal next_requested()
+signal shake_requested()
+signal present_requested()
 
-signal testimony_started()
-signal testimony_finished(success: bool)
-signal round_complete()
-signal all_rounds_complete(success: bool)
-signal evidence_required()
+@onready var ui_part_label: Label = get_node_or_null("UiPartLabel")
+@onready var speaker_label: Label = get_node_or_null("VBoxContainer/SpeakerLabel")
+@onready var testimony_text: Label = get_node_or_null("VBoxContainer/TestimonyText")
+@onready var progress_label: Label = get_node_or_null("VBoxContainer/ProgressLabel")
+@onready var next_btn: Button = get_node_or_null("VBoxContainer/ActionContainer/NextButton")
+@onready var shake_btn: Button = get_node_or_null("VBoxContainer/ActionContainer/ShakeButton")
+@onready var present_btn: Button = get_node_or_null("VBoxContainer/ActionContainer/PresentButton")
 
-@onready var speaker_label = $VBoxContainer/SpeakerLabel
-@onready var testimony_text = $VBoxContainer/TestimonyText
-@onready var action_buttons = $VBoxContainer/ActionContainer
-@onready var next_btn = $VBoxContainer/ActionContainer/NextButton
-@onready var shake_btn = $VBoxContainer/ActionContainer/ShakeButton
-@onready var present_btn = $VBoxContainer/ActionContainer/PresentButton
+var _speaker_key: String = ""
+var _speaker_text: String = ""
+var _text_key: String = ""
+var _text_text: String = ""
+var _mode_input_enabled: bool = true
+var _ui_ready: bool = false
 
-var testimonies: Array[Testimony] = []
-var current_round_idx: int = 0
-var current_testimony_idx: int = 0
-var max_rounds: int = 3
-var round_errors: int = 0
-var total_errors: int = 0
-
-# NOTE: Keep these loosely typed to avoid dependency on global script class cache
-# during CLI/headless runs.
-var inventory_ui: Control = null
-var dialogue_ui: Control = null
-
-func _ready():
+func _ready() -> void:
+	_ui_ready = true
 	visible = false
-	max_rounds = 1  # 現状のデモは1セットの証言を通す想定
-	_setup_buttons()
+	_connect_buttons()
+	_connect_localization_service()
+	_refresh_locale()
 
-func clear_testimonies():
-	"""証言データと進行状態をクリア（YAML駆動で再利用するため）"""
-	testimonies.clear()
-	current_round_idx = 0
-	current_testimony_idx = 0
-	round_errors = 0
-	total_errors = 0
+func show_panel() -> void:
+	visible = true
+
+func hide_panel() -> void:
 	visible = false
 
-func _setup_buttons():
-	"""ボタンの接続"""
+func show_testimony_line(speaker: String, text: String) -> void:
+	show_testimony_line_with_keys("", speaker, "", text)
+
+func show_testimony_line_with_keys(speaker_key: String, speaker: String, text_key: String, text: String) -> void:
+	_speaker_key = speaker_key
+	_speaker_text = speaker
+	_text_key = text_key
+	_text_text = text
+	_apply_texts()
+
+func set_line_progress(current_index: int, total_count: int) -> void:
+	if not _ui_ready or progress_label == null:
+		return
+	var fmt := tr("mystery.ui.testimony_progress")
+	if fmt.find("%") == -1:
+		fmt = "%d / %d"
+	progress_label.text = fmt % [current_index, total_count]
+
+func set_actions_enabled(enabled: bool) -> void:
+	if not _ui_ready:
+		return
+	if next_btn:
+		next_btn.disabled = not enabled
+	if shake_btn:
+		shake_btn.disabled = not enabled
+	if present_btn:
+		present_btn.disabled = not enabled
+
+func on_mode_enter(mode_id: String, _scene_id: String) -> void:
+	visible = (mode_id == "confrontation")
+	_refresh_locale()
+
+func on_mode_exit(_mode_id: String, _next_scene_id: String) -> void:
+	visible = false
+
+func set_mode_input_enabled(enabled: bool) -> void:
+	_mode_input_enabled = enabled
+	set_actions_enabled(enabled)
+
+func _connect_buttons() -> void:
 	if next_btn:
 		next_btn.pressed.connect(_on_next_pressed)
 	if shake_btn:
@@ -64,189 +80,57 @@ func _setup_buttons():
 	if present_btn:
 		present_btn.pressed.connect(_on_present_pressed)
 
-func add_testimony(speaker: String, text: String, evidence_id: String = "", shake_text: String = "") -> Testimony:
-	"""証言を追加"""
-	var t = Testimony.new(speaker, text, evidence_id, shake_text)
-	testimonies.append(t)
-	return t
+func _on_next_pressed() -> void:
+	if _mode_input_enabled:
+		next_requested.emit()
 
-func set_inventory_ui(ui: Control):
-	"""インベントリUIを設定"""
-	inventory_ui = ui
+func _on_shake_pressed() -> void:
+	if _mode_input_enabled:
+		shake_requested.emit()
 
-func set_dialogue_ui(ui: Control):
-	"""ダイアログUIを設定"""
-	dialogue_ui = ui
+func _on_present_pressed() -> void:
+	if _mode_input_enabled:
+		present_requested.emit()
 
-func start_testimony():
-	"""尋問開始"""
-	visible = true
-	current_round_idx = 0
-	current_testimony_idx = 0
-	round_errors = 0
-	total_errors = 0
-	
-	testimony_started.emit()
-	_show_testimony()
-
-func _show_testimony():
-	"""現在の証言を表示"""
-	if current_testimony_idx >= testimonies.size():
-		_on_round_complete()
+func _refresh_locale() -> void:
+	if not _ui_ready:
 		return
-	
-	var testimony = testimonies[current_testimony_idx]
-	speaker_label.text = testimony.speaker
-	testimony_text.text = testimony.text
-	
-	# ボタン有効化
-	_enable_buttons()
-
-func _on_next_pressed():
-	"""次の証言へ"""
-	current_testimony_idx += 1
-	if current_testimony_idx >= testimonies.size():
-		_on_round_complete()
-	else:
-		_show_testimony()
-
-func _on_shake_pressed():
-	"""証言をゆさぶる"""
-	if current_testimony_idx >= testimonies.size():
-		return
-	
-	var testimony = testimonies[current_testimony_idx]
-	if testimony.shake_result != "":
-		# ダイアログUIで追加情報を表示
-		if dialogue_ui and dialogue_ui.has_method("show_message"):
-			dialogue_ui.show_message(testimony.speaker, testimony.shake_result)
-		else:
-			print("追加情報: ", testimony.shake_result)
-
-func _on_present_pressed():
-	"""証拠品をつきつける"""
-	if current_testimony_idx >= testimonies.size():
-		return
-	
-	evidence_required.emit()
-	
-	# インベントリUIを表示して選択待ち
-	if inventory_ui and inventory_ui.has_method("show_inventory"):
-		inventory_ui.show_inventory()
-		
-		# 証拠品が選択されるまで待つ（最大10秒）
-		var selected_evidence = await _wait_for_evidence_selection(10.0)
-		if selected_evidence:
-			_check_evidence(selected_evidence)
-
-func _wait_for_evidence_selection(timeout: float) -> String:
-	"""証拠品選択を待機"""
-	var start_time = Time.get_ticks_msec()
-	
-	while Time.get_ticks_msec() - start_time < timeout * 1000:
-		if inventory_ui:
-			var sel = inventory_ui.get("selected_evidence")
-			if sel != null and sel is Object:
-				var eid = sel.get("id")
-				if eid != null and str(eid) != "":
-					return str(eid)
-		
-		await get_tree().process_frame
-	
-	return ""
-
-func _check_evidence(evidence_id: String):
-	"""証拠品が正しいか確認"""
-	var testimony = testimonies[current_testimony_idx]
-	
-	if evidence_id == testimony.contradiction_evidence:
-		# 正解！
-		if dialogue_ui and dialogue_ui.has_method("show_message"):
-			dialogue_ui.show_message(testimony.speaker, tr("correct_evidence"))
-		testimony.correct_evidence_presented = true
-		current_testimony_idx += 1
-		
-		if current_testimony_idx >= testimonies.size():
-			_on_round_complete()
-		else:
-			await get_tree().create_timer(1.0).timeout
-			_show_testimony()
-	else:
-		# 不正解
-		round_errors += 1
-		total_errors += 1
-		AdventureGameState.take_damage()
-		
-		if dialogue_ui and dialogue_ui.has_method("show_message"):
-			dialogue_ui.show_message(testimony.speaker, tr("wrong_evidence"))
-		
-		if AdventureGameState.get_health() <= 0:
-			_on_game_over()
-		else:
-			# 証言を最初から
-			current_testimony_idx = 0
-			await get_tree().create_timer(1.0).timeout
-			_show_testimony()
-
-func _on_round_complete():
-	"""ラウンド完了"""
-	# 全ての矛盾が指摘されていなければ終了させない（Next連打での抜け防止）
-	for t in testimonies:
-		if t.contradiction_evidence != "" and not t.correct_evidence_presented:
-			if dialogue_ui and dialogue_ui.has_method("show_message"):
-				dialogue_ui.show_message("System", tr("testimony_incomplete"))
-			current_testimony_idx = 0
-			await get_tree().create_timer(0.8).timeout
-			_show_testimony()
-			return
-
-	current_round_idx += 1
-	
-	if current_round_idx >= max_rounds:
-		# 全ラウンド完了
-		_on_all_complete()
-	else:
-		# 次のラウンド
-		current_testimony_idx = 0
-		round_errors = 0
-		await get_tree().create_timer(1.0).timeout
-		_show_testimony()
-	
-	round_complete.emit()
-
-func _on_all_complete():
-	"""全ラウンド完了"""
-	visible = false
-	all_rounds_complete.emit(true)
-
-func _on_game_over():
-	"""ゲームオーバー"""
-	visible = false
-	all_rounds_complete.emit(false)
-	testimony_finished.emit(false)
-
-func _enable_buttons():
-	"""ボタンを有効化"""
+	if ui_part_label:
+		ui_part_label.text = tr("mystery.ui.testimony_panel")
 	if next_btn:
-		next_btn.disabled = false
+		next_btn.text = tr("button_next")
 	if shake_btn:
-		shake_btn.disabled = false
+		shake_btn.text = tr("button_press")
 	if present_btn:
-		present_btn.disabled = false
+		present_btn.text = tr("button_present")
+	_apply_texts()
+	if progress_label and progress_label.text.is_empty():
+		var fmt := tr("mystery.ui.testimony_progress")
+		if fmt.find("%") == -1:
+			fmt = "%d / %d"
+		progress_label.text = fmt % [1, 1]
 
-func _disable_buttons():
-	"""ボタンを無効化"""
-	if next_btn:
-		next_btn.disabled = true
-	if shake_btn:
-		shake_btn.disabled = true
-	if present_btn:
-		present_btn.disabled = true
+func _apply_texts() -> void:
+	if not _ui_ready:
+		return
+	if speaker_label:
+		speaker_label.text = _resolve_text(_speaker_key, _speaker_text)
+	if testimony_text:
+		testimony_text.text = _resolve_text(_text_key, _text_text)
 
-func get_total_errors() -> int:
-	"""総ミス数を取得"""
-	return total_errors
+func _resolve_text(key: String, fallback: String) -> String:
+	if key.is_empty():
+		return fallback
+	return tr(key)
 
-func is_perfect_round() -> bool:
-	"""ノーミスクリアか"""
-	return total_errors == 0
+func _connect_localization_service() -> void:
+	var service := get_tree().root.get_node_or_null("KarakuriLocalization")
+	if service == null:
+		return
+	if service.has_signal("locale_changed"):
+		var cb := Callable(self, "_on_locale_changed")
+		if not service.is_connected("locale_changed", cb):
+			service.connect("locale_changed", cb)
+
+func _on_locale_changed(_locale: String) -> void:
+	_refresh_locale()

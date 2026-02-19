@@ -62,6 +62,7 @@
   - SceneFlow（戻る/フェード/スキップ）
 - 完了条件（MVP）
   - `./dev.sh run mystery` で最後まで通る
+  - `godot --headless --path . --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd` が成功する
   - 言語切替が「全UI」に反映される（現在表示中含む）
   - 直書きテキストが残らない（原則：翻訳キー経由）
 

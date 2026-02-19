@@ -43,6 +43,8 @@
 ## 6. Definition of Done（PR単位）
 - 対象タスクのチェック項目が `TASK.md` で更新されている。
 - `./dev.sh run mystery` で実行確認済み。
+- `godot --headless --path . --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd` 実行確認済み。
+- `./scripts/check_mystery_translation_keys.sh` 実行確認済み。
 - 影響範囲（UI/Scenario/C++）が PR 本文に記載されている。
 - 仕様差分がある場合、`docs/mystery_design.md` または本資料を同時更新している。
 
@@ -101,6 +103,22 @@
 - UIレイアウト方針: `docs/mystery_ui_layout_policy.md`
 - YAML v1仕様: `docs/mystery_yaml_schema_v1.md`
 - YAMLテンプレート: `samples/mystery/scenario/templates/mystery_template_v1.yaml`
+
+## 13. 最新実装メモ（2026-02-19 / Codex）
+- `KarakuriLocalizationService`（C++）を追加し、locale 永続化と runtime 切替を一本化。
+  - `src/karakuri/karakuri_localization_service.h`
+  - `src/karakuri/karakuri_localization_service.cpp`
+  - `samples/common/karakuri_localization_service.tscn`（autoload）
+- `KarakuriScenarioRunner` に mode 共通インターフェース呼び出しを追加。
+  - `on_mode_enter(mode_id, scene_id)`
+  - `on_mode_exit(mode_id, next_scene_id)`
+  - `set_mode_input_enabled(enabled)`
+- `testimony` の進行制御（正誤判定/HP/成功失敗分岐）を C++ 側へ移管。
+- `samples/mystery/scenario/mystery.yaml` を `text_key/speaker_key/shake_key` ベースへ移行。
+- 翻訳キー未登録チェック手順をスクリプト化。
+  - `scripts/check_mystery_translation_keys.sh`
+- 受け入れスモークを更新。
+  - `samples/mystery/scripts/karakuri_scenario_smoke.gd`
 
 ## 12. M1レビュー指摘事項（2026-02-17）
 M1完了報告に対してレビューを実施した時点では **M1完了判定は保留**。

@@ -40,3 +40,12 @@ bool change_scene(const godot::String &path);
 - SaveData（最小のセーブ/ロード、デモ別namespace）
 - Debug（オン/オフ、コマンド）
 
+## 現在の実装（2026-02-19）
+- `KarakuriLocalizationService`:
+  - 実装: `src/karakuri/karakuri_localization_service.h`, `src/karakuri/karakuri_localization_service.cpp`
+  - Autoload: `project.godot` の `KarakuriLocalization`
+  - 役割:
+    - locale prefix の `user://` 永続化
+    - 起動時の locale 復元
+    - 実行中切替 API（`set_locale_prefix`）
+    - `locale_changed(locale)` signal 通知

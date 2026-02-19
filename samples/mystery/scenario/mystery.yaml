@@ -2,19 +2,21 @@ start_scene: "prologue"
 
 scenes:
   prologue:
+    mode: "investigation"
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
-      - dialogue: { speaker: "System", text: "プロローグ" }
-      - dialogue: { speaker: "Detective", text: "探偵事務所だ。平和な日だな。" }
-      - dialogue: { speaker: "Boss", text: "おい！事件だぞ！倉庫街へ行け！" }
-      - dialogue: { speaker: "Detective", text: "了解です。行ってきます。" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.prologue.system" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_intro" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.prologue.boss_call" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_ack" }
       - goto: "warehouse_investigation"
 
   warehouse_investigation:
+    mode: "investigation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
-      - dialogue: { speaker: "Detective", text: "ここが現場の倉庫か…何か手がかりを探そう。" }
-    
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.intro" }
+
     hotspots:
       ectoplasm_spot:
         node_id: "hs_floor_area"
@@ -22,42 +24,42 @@ scenes:
           - if_has_items:
               items: ["ectoplasm"]
               then:
-                - dialogue: { speaker: "Detective", text: "エクトプラズムはもう回収した。" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.ecto.already" }
               else:
-                - dialogue: { speaker: "Detective", text: "この光る粘液はなんだ？" }
-                - dialogue: { speaker: "System", text: "エクトプラズムを見つけた！" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.ecto.inspect" }
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.ecto.found" }
                 - give_evidence: "ectoplasm"
                 - set_flag: { key: "found_ecto", value: true }
 
       footprint_spot:
         node_id: "hs_footprints"
         on_click:
-          - dialogue: { speaker: "Detective", text: "巨大な足跡だ。" }
+          - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.footprint.observe" }
           - if_flag:
               key: "found_footprint"
               value: true
               then:
-                - dialogue: { speaker: "Detective", text: "血痕がついている…。" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.footprint.detail" }
               else:
-                - dialogue: { speaker: "System", text: "血のついた足跡を見つけた！" }
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.footprint.found" }
                 - give_evidence: "footprint"
                 - set_flag: { key: "found_footprint", value: true }
 
       memo_spot:
         node_id: "hs_memo"
         on_click:
-          - dialogue: { speaker: "Detective", text: "木箱の下に紙切れがある。" }
+          - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.memo.observe" }
           - choice:
               choices:
                 - option:
-                    text: "拾う"
+                    text_key: "mystery.choice.pick_up"
                     actions:
                       - give_evidence: "torn_memo"
-                      - dialogue: { speaker: "System", text: "破れたメモを入手した。" }
+                      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.memo.found" }
                 - option:
-                    text: "放っておく"
+                    text_key: "mystery.choice.leave"
                     actions:
-                      - dialogue: { speaker: "Detective", text: "まだ触らないほうがいいか。" }
+                      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.memo.leave" }
 
       exit_spot:
         node_id: "hs_exit"
@@ -65,28 +67,29 @@ scenes:
           - if_has_items:
               items: ["ectoplasm", "footprint", "torn_memo"]
               then:
-                - dialogue: { speaker: "Detective", text: "よし、十分な証拠が集まった。" }
-                - dialogue: { speaker: "Detective", text: "事務所に戻って情報を整理しよう。" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.ready" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.return" }
                 - goto: "deduction"
               else:
-                - dialogue: { speaker: "Detective", text: "まだ調査が終わっていない気がする。" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.not_ready" }
 
   deduction:
+    mode: "deduction"
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
-      - dialogue: { speaker: "Boss", text: "戻ったか。で、犯人は誰だと思う？" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.question" }
       - choice:
           choices:
             - option:
-                text: "幽霊 (証拠: エクトプラズム)"
+                text_key: "mystery.deduction.choice.ghost"
                 actions:
-                  - dialogue: { speaker: "Boss", text: "幽霊だと？非科学的だが…そのエクトプラズムは本物か？" }
-                  - dialogue: { speaker: "Detective", text: "間違いありません。倉庫にいた目撃者を問い詰めましょう。" }
+                  - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.ghost.response1" }
+                  - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.deduction.ghost.response2" }
                   - goto: "confrontation"
             - option:
-                text: "人間 (証拠: 足跡)"
+                text_key: "mystery.deduction.choice.human"
                 actions:
-                  - dialogue: { speaker: "Boss", text: "人間にしては足跡が大きすぎないか？" }
+                  - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.human.wrong1" }
                   - take_damage: 1
                   - if_health_leq:
                       value: 0
@@ -94,12 +97,12 @@ scenes:
                         - set_flag: { key: "game_over", value: true }
                         - goto: "ending_bad"
                       else:
-                        - dialogue: { speaker: "Boss", text: "もう一度考えろ。" }
+                        - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.human.retry" }
                         - goto: "deduction"
             - option:
-                text: "宇宙人 (証拠: なし)"
+                text_key: "mystery.deduction.choice.alien"
                 actions:
-                  - dialogue: { speaker: "Boss", text: "ふざけているのか？" }
+                  - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.alien.wrong1" }
                   - take_damage: 1
                   - if_health_leq:
                       value: 0
@@ -107,49 +110,54 @@ scenes:
                         - set_flag: { key: "game_over", value: true }
                         - goto: "ending_bad"
                       else:
-                        - dialogue: { speaker: "Boss", text: "真面目にやれ。" }
+                        - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.alien.retry" }
                         - goto: "deduction"
 
   confrontation:
+    mode: "confrontation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
-      - dialogue: { speaker: "Detective", text: "そこにいるのは分かっている！出てこい！" }
-      - dialogue: { speaker: "Rat Witness", text: "ヒェッ！見つかったッス！" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.confrontation.start1" }
+      - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.start2" }
       - testimony:
           max_rounds: 3
           testimonies:
-            - 
+            -
+              speaker_key: "speaker.rat_witness"
               speaker: "Rat Witness"
-              text: "オイラはただ隠れてただけッス！何もしてないッス！"
-              shake: "隠れてた？何から隠れてたんだ？"
-            - 
+              text_key: "mystery.testimony.line1"
+              shake_key: "mystery.testimony.line1.shake"
+            -
+              speaker_key: "speaker.rat_witness"
               speaker: "Rat Witness"
-              text: "あの時間は静かだったッス。誰も来てないッスよ。"
+              text_key: "mystery.testimony.line2"
               evidence: "footprint"
-              shake: "静かだった？この足跡を見てみろ！"
-            - 
+              shake_key: "mystery.testimony.line2.shake"
+            -
+              speaker_key: "speaker.rat_witness"
               speaker: "Rat Witness"
-              text: "メモなんて知らないッス！字も読めないッスから！"
+              text_key: "mystery.testimony.line3"
               evidence: "torn_memo"
-              shake: "とぼけるな！これがお前のポケットから落ちたんだろ！"
+              shake_key: "mystery.testimony.line3.shake"
           on_success:
-            - dialogue: { speaker: "Rat Witness", text: "参ったッス…。実は見たんッス…。" }
+            - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.success" }
             - goto: "ending_good"
           on_failure:
-            - dialogue: { speaker: "Rat Witness", text: "へへっ、証拠がないなら帰るッスよ。" }
+            - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.failure" }
             - goto: "ending_bad"
 
   ending_good:
+    mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker: "System", text: "事件解決！" }
-      - dialogue: { speaker: "Boss", text: "よくやった！ボーナスだ！" }
-      - dialogue: { speaker: "System", text: "Thank you for playing!" }
-      # Could loop back or stay here.
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.good1" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.ending.good2" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.good3" }
 
   ending_bad:
+    mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker: "System", text: "捜査失敗..." }
-      - dialogue: { speaker: "Boss", text: "何をやっているんだ…クビだ！" }
-      - dialogue: { speaker: "System", text: "Game Over" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.bad1" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.ending.bad2" }
+      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.bad3" }

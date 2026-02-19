@@ -82,3 +82,76 @@ ending_choice_menu,Back to Menu,メニューに戻る
 # Common
 hp_label,HP: %d,HP: %d
 close,Close,閉じる
+
+# Mystery Shell UI
+mystery.ui.location_label,Detective Office / Warehouse Investigation,探偵事務所 / 倉庫の捜査
+mystery.ui.dialogue_panel,Dialogue UI (Main Info),会話UI（メイン情報）
+mystery.ui.inventory_panel,Evidence Inventory UI (Instant),証拠インベントリUI（インスタント表示）
+mystery.ui.inventory_list,Evidence List (Click to view detail),証拠品一覧（クリックで詳細表示）
+mystery.ui.detail_name_placeholder,Name,名称
+mystery.ui.detail_desc_placeholder,Description,説明
+mystery.ui.testimony_panel,Testimony UI (Main Info),証言UI（メイン情報）
+mystery.ui.testimony_progress,Line %d / %d,%d / %d 行目
+mystery.ui.guide,UI Guide: left=system / bottom=dialogue / right=testimony / left=inventory,UIガイド: 左=システム / 下=会話 / 右=証言 / 左=証拠
+mystery.ui.health_label,HP (Mistakes Remaining),HP（ミス可能回数）
+mystery.ui.office_door,DOOR,ドア
+mystery.ui.office_boss,BOSS,ボス
+mystery.ui.warehouse_hint,Click investigation points,調査ポイントをクリック
+mystery.ui.warehouse_exit,EXIT,出口
+
+# Speakers
+speaker.system,System,システム
+speaker.detective,Detective,探偵
+speaker.boss,Boss,ボス
+speaker.rat_witness,Rat Witness,ネズミ目撃者
+
+# YAML-driven Scenario Texts
+mystery.prologue.system,Prologue,プロローグ
+mystery.prologue.detective_intro,This is the detective office. Quiet as always.,探偵事務所だ。今日も平和だな。
+mystery.prologue.boss_call,Hey! We have a case. Head to the warehouse district now!,おい！事件だ。今すぐ倉庫街へ向かえ！
+mystery.prologue.detective_ack,Roger. I'll investigate right away.,了解です。すぐ調査に向かいます。
+
+mystery.warehouse.intro,So this is the warehouse. Let's look for clues.,ここが現場の倉庫か…手がかりを探そう。
+mystery.warehouse.ecto.already,I already collected the ectoplasm.,エクトプラズムはもう回収した。
+mystery.warehouse.ecto.inspect,What is this glowing slime?,この光る粘液はなんだ？
+mystery.warehouse.ecto.found,Found ectoplasm!,エクトプラズムを見つけた！
+mystery.warehouse.footprint.observe,These are huge footprints.,巨大な足跡だ。
+mystery.warehouse.footprint.detail,There is blood on them...,血痕がついている…。
+mystery.warehouse.footprint.found,Found bloody footprints!,血のついた足跡を見つけた！
+mystery.warehouse.memo.observe,There is a torn memo under this crate.,木箱の下に紙切れがある。
+mystery.choice.pick_up,Pick it up,拾う
+mystery.choice.leave,Leave it,放っておく
+mystery.warehouse.memo.found,Obtained torn memo.,破れたメモを入手した。
+mystery.warehouse.memo.leave,Maybe I should not touch it yet.,まだ触らないほうがよさそうだ。
+mystery.warehouse.exit.ready,Good. I have enough evidence.,よし、十分な証拠が集まった。
+mystery.warehouse.exit.return,Let's return to the office and organize this.,事務所に戻って情報を整理しよう。
+mystery.warehouse.exit.not_ready,I still have not finished the investigation.,まだ調査が終わっていない気がする。
+
+mystery.deduction.question,You're back. So who is the culprit?,戻ったか。で、犯人は誰だと思う？
+mystery.deduction.choice.ghost,Ghost (Evidence: Ectoplasm),幽霊（証拠: エクトプラズム）
+mystery.deduction.choice.human,Human (Evidence: Footprints),人間（証拠: 足跡）
+mystery.deduction.choice.alien,Alien (No evidence),宇宙人（証拠なし）
+mystery.deduction.ghost.response1,A ghost? Not very scientific... but is that ectoplasm real?,幽霊だと？非科学的だが…そのエクトプラズムは本物か？
+mystery.deduction.ghost.response2,No doubt. Let's confront the warehouse witness.,間違いありません。倉庫の目撃者を問い詰めましょう。
+mystery.deduction.human.wrong1,Isn't that footprint too large for a human?,人間にしては足跡が大きすぎないか？
+mystery.deduction.human.retry,Think again.,もう一度考えろ。
+mystery.deduction.alien.wrong1,Are you joking?,ふざけているのか？
+mystery.deduction.alien.retry,Take this seriously.,真面目にやれ。
+
+mystery.confrontation.start1,I know you're there! Show yourself!,そこにいるのは分かっている！出てこい！
+mystery.confrontation.start2,Eek! You found me!,ヒェッ！見つかったッス！
+mystery.testimony.line1,I was just hiding! I did nothing!,オイラはただ隠れてただけッス！何もしてないッス！
+mystery.testimony.line1.shake,Hiding? From what?,隠れてた？何から隠れてたんだ？
+mystery.testimony.line2,It was quiet then. Nobody came.,あの時間は静かだったッス。誰も来てないッスよ。
+mystery.testimony.line2.shake,Quiet? Then explain these footprints.,静かだった？この足跡を見てみろ！
+mystery.testimony.line3,I don't know anything about that memo!,メモなんて知らないッス！
+mystery.testimony.line3.shake,Don't play dumb. This fell from your pocket.,とぼけるな！それはお前のポケットから落ちただろ！
+mystery.confrontation.success,I give up... I saw everything.,参ったッス…。実は全部見てたッス…。
+mystery.confrontation.failure,Heh. No proof, no case.,へへっ、証拠がないなら帰るッスよ。
+
+mystery.ending.good1,Case solved!,事件解決！
+mystery.ending.good2,Great work! Bonus approved!,よくやった！ボーナスだ！
+mystery.ending.good3,Thank you for playing!,プレイありがとうございました！
+mystery.ending.bad1,Investigation failed...,捜査失敗...
+mystery.ending.bad2,What are you doing...? You're fired!,何をやっているんだ…クビだ！
+mystery.ending.bad3,Game Over,ゲームオーバー
