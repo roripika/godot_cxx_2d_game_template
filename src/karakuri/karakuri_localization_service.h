@@ -76,7 +76,7 @@ private:
   godot::String extract_prefix(const godot::String &locale) const;
   void emit_locale_changed();
 
-  godot::String locale_store_path_ = "user://karakuri_locale.txt";
+  godot::String locale_store_path_ = "user://karakuri/locale.txt";
 };
 
 } // namespace karakuri

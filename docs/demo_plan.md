@@ -25,6 +25,24 @@
 - `DebugService`
   - FPS表示、ログ、テスト用コマンド（例: フラグを立てる、シーンを飛ぶ）
 
+#### Autoload 命名・登録スコープルール（2026-02-20 決定）
+
+| autoload 名 | スコープ | 命名規則 | 例 |
+|---|---|---|---|
+| Karakuri共通 | global（全デモ） | `Karakuri` プレフィクス | `KarakuriLocalization` |
+| デモ固有 | そのデモのシーン内でのみ有効 | `<DemoId>` プレフィクス + `State/Manager` サフィックス | `AdventureGameState` |
+
+**ルール:**
+- **Karakuri共通 autoload** (`KarakuriLocalization` 等) は `project.godot` の `[autoload]` にグローバル登録してよい。
+- **デモ固有 autoload** (`AdventureGameState` 等) は同様にグローバル登録されているが、**将来的には各デモのシーンツリー内の子ノードへ移行する**方針。複数デモを1プロジェクトで同時起動する際の名前衝突を防ぐため。
+- 新デモを追加する際は、autoload をグローバル登録する代わりに、デモのルートシーンに直接 Node として配置することを優先する。
+
+**現状の登録（project.godot）:**
+```
+AdventureGameState  … デモ固有 ← 将来はシーン内ノードへ移行予定
+KarakuriLocalization … Karakuri共通 ← グローバル登録OK
+```
+
 ### 2. Common UI（samples/common）
 デモごとに作り直さないコンポーネント群。
 

@@ -5,6 +5,7 @@
  * @brief See karakuri_localization_service.h
  */
 
+#include <godot_cpp/classes/dir_access.hpp>
 #include <godot_cpp/classes/file_access.hpp>
 #include <godot_cpp/classes/translation_server.hpp>
 #include <godot_cpp/core/class_db.hpp>
@@ -108,6 +109,11 @@ bool KarakuriLocalizationService::save_current_locale_prefix() {
     return false;
   }
   Ref<FileAccess> file = FileAccess::open(locale_store_path_, FileAccess::WRITE);
+  if (file.is_null()) {
+    // Directory may not exist yet; ensure it before retrying.
+    DirAccess::make_dir_recursive_absolute("user://karakuri");
+    file = FileAccess::open(locale_store_path_, FileAccess::WRITE);
+  }
   if (file.is_null()) {
     UtilityFunctions::push_warning(
         "KarakuriLocalizationService: failed to open locale store path: ",

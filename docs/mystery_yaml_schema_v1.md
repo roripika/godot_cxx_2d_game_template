@@ -24,7 +24,9 @@ scenes:
 - `scene_path` (string): `PackedScene` のパス
 
 ### 任意
-- `mode` (string): `investigation / deduction / confrontation / ending`
+- `mode` (string): シーンの入力モードを指定する。値は **Mystery デモ固有語彙**（他デモへ流用する場合は任意の文字列を使用できるが、Runner はその値をロギング・フィルタリングには使わない）。
+  - Mystery 標準値: `investigation` / `deduction` / `confrontation` / `ending`
+  - 他デモで流用する場合: `dungeon` / `battle` 等の任意文字列を使ってよい。Runner は mode 値を入力制御フラグとして扱わず、GDScript 側で `get_mode_id()` を参照して挙動を分岐させる。
 - `on_enter` (array[action]): シーン突入時に実行
 - `hotspots` (map): クリック対象定義
 
@@ -163,7 +165,30 @@ action は「1キーの辞書」で表現する。
 - change_root_scene: "res://samples/main_menu.tscn"
 ```
 
-## 6. エラーポリシー（v1）
+### 5.14 `save`
+
+`AdventureGameStateBase`（flags / inventory / health）を  
+`user://karakuri/<demo_id>/save.json` に書き出す。  
+`demo_id` が空文字の場合は `user://karakuri/save.json` に保存。
+
+```yaml
+- save: "mystery"          # demo_id = "mystery"
+- save: ""                 # user://karakuri/save.json（共通セーブ）
+```
+
+### 5.15 `load`
+
+セーブファイルが存在すれば読み込んで `AdventureGameStateBase` を上書き復元する。  
+ファイルが存在しない場合は警告ログを出して後続アクションを継続（`false` 返却）。
+
+```yaml
+- load: "mystery"
+```
+
+> **セーブパス規約**: `user://karakuri/<demo_id>/save.json`  
+> GDScript から直接呼ぶ場合: `KarakuriSaveService.save_game("mystery")`
+
+
 
 ### 6.1 起動停止（Fatal）
 - YAML構文エラー
@@ -200,3 +225,29 @@ action は「1キーの辞書」で表現する。
 - `goto` 先 scene が定義されている
 - `testimony` の `evidence` が inventory ID と一致する
 - クリック座標契約が一致している（`clicked_at` は Canvas/World 座標として扱う）
+
+## 9. スキーマバージョンアップポリシー（2026-02-20 決定）
+
+### バージョン識別
+YAML ルートに `schema_version` フィールドを追加することを推奨する。現行ファイルは v1（未記載は v1 とみなす）。
+
+```yaml
+schema_version: 1
+start_scene: "office"
+scenes: ...
+```
+
+### 後方互換の保証範囲
+
+| 変更種別 | 扱い | 対応 |
+|---|---|---|
+| フィールド**追加**（任意） | 後方互換 ✅ | Runner は未知フィールドを無視する |
+| フィールドの**デフォルト値変更** | 破壊的変更 ❌ | v2 として扱い、`schema_version` を上げる |
+| フィールドの**削除・名前変更** | 破壊的変更 ❌ | v2 として扱い、移行スクリプトを用意する |
+| action の**kind 追加** | 後方互換 ✅ | 旧 Runner は `unknown action` 警告を出すが停止しない |
+| action の**payload 構造変更** | 破壊的変更 ❌ | v2 として扱う |
+
+### v2 移行ルール
+- `schema_version: 2` を指定した YAML は v2 Runner でのみ動作を保証する。
+- v2 Runner は `schema_version: 1` の YAML も読み込めるよう移行アダプタを実装する（デグレ防止）。
+- 移行スクリプトは `scripts/migrate_yaml_v1_to_v2.gd` に配置する。

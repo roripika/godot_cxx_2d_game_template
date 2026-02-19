@@ -3,6 +3,42 @@
 ## Project Maintenance
 - [x] Create/Move Agent Rules to `.agent/AGENTS.md`
 
+## アーキテクチャ決定・ドキュメント整備（今回の実装レビューから抽出）
+
+### 今すぐ決める（次PR前に必要）
+
+- [x] **①** `KarakuriScenarioRunner` の置き場を正式決定し `AGENTS.md § 3` と `docs/basic_game_karakuri.md` に明記する
+  - ~~A案: Runnerは `samples/mystery/` に移す（汎用ActionキューだけKarakuriに残す）~~
+  - **B案採用（2026-02-20）**: Runnerは `src/karakuri/` に置く。Mystery固有Action（`testimony`/`take_damage`/`if_health_ge`/`if_health_leq`）は `register_mystery_actions()` として公開し、Mystery shell `_ready()` から注入する。
+
+- [x] **②** C++バインディング変更時のGDScript更新ルールを `AGENTS.md § 3` に追記する
+  - 「公開APIを変えたら同一コミットで接続先GDScriptを全て更新する」規約を明文化する（2026-02-20 完了）
+
+- [x] **③** `user://` ファイル命名規約を `docs/basic_game_karakuri.md` に追記する
+  - `user://karakuri/<filename>`（共通）・`user://karakuri/<demo_id>/<filename>`（デモ固有）を規約化（2026-02-20 完了）
+  - `KarakuriLocalizationService` のパスを `user://karakuri_locale.txt` → `user://karakuri/locale.txt` に変更済み
+
+### 近いうちに文書化する
+
+- [x] **④** GDScriptに書いてよい処理の「正リスト」を `AGENTS.md § 2` に追記する
+  - 「ViewはGDScript、ロジックはC++」をテーブル例付きで具体化（2026-02-20 完了）
+
+- [x] **⑤** `mode_id`（investigation / deduction / confrontation / ending）がMystery専用か全Adventure共通語彙かを `docs/mystery_yaml_schema_v1.md` に明記する
+  - Mystery固有語彙だが、他デモが任意文字列を使うことは可能と明記（2026-02-20 完了）
+
+- [x] **⑥** autoload の命名・登録スコープルールを `docs/demo_plan.md § 共通Utility` に追記する
+  - Karakuri共通はグローバル登録OK、デモ固有は将来シーン内ノード化の方針を記載（2026-02-20 完了）
+
+### 将来設計として固めておく
+
+- [x] **⑦** YAML スキーマのバージョンアップポリシー（後方互換の保証範囲）を `docs/mystery_yaml_schema_v1.md` 末尾に追記する
+  - 後方互換テーブル・v2 移行ルール・`schema_version` フィールド導入方針を記載（2026-02-20 完了）
+
+- [x] **⑧** スモークテスト（`karakuri_scenario_smoke.gd`）のCI化方針を `AGENTS.md` に追記する
+  - C++ 変更を含む PR は必須、それ以外は任意推奨。CI化時は `./dev.sh smoke` をエントリポイントとする方針を記載（2026-02-20 完了）
+
+---
+
 ## Priority: Mystery Demo Execution (Owner: antigravity)
 
 ### 運用ルール（固定）
@@ -123,14 +159,31 @@
     - [x] `scripts/setup_demo.sh`: Script to switch `project.godot` main scene to selected demo.
 
 ## Phase 5: Adventure Features (逆転裁判/都市伝説スタイル)
+
+> **責務整理ノート（2026-02-20）**: 下記 "Core Adventure Systems" の多くは
+> `KarakuriScenarioRunner` + `AdventureGameStateBase` で実装済み。
+> 別途 GDScript クラスを作ると二重管理になるため、以下の代替方針を採用する。
+>
+> | Phase 5 項目 | 代替実装（実装済み） |
+> |---|---|
+> | `GlobalState` (Autoload) | `AdventureGameStateBase`（C++ singleton, flags/inventory/health） |
+> | `ChoiceManager` | `KarakuriScenarioRunner` の `choice` アクション |
+> | `FlagCondition` | `KarakuriScenarioRunner` の `if_flag` / `if_has_items` アクション |
+> | `TestimonySystem` | `KarakuriScenarioRunner` の `testimony` アクション + GDScript UI |
+> | `ContradictionDetector` | `testimony` アクション内の `present` signal 処理 |
+> | `HealthBar` | `AdventureGameStateBase::health` + `health_changed` signal |
+> | `SaveData` | `KarakuriSaveService`（C++, `save` / `load` YAML アクション） |
+>
+> 残り未実装の項目のみ別途実装すること。
+
 - [x] **Interaction System**
     - [x] `InteractionManager`: Mouse Input & Signal emission.
     - [x] `DialogueUI`: Text display components.
 - [ ] **Core Adventure Systems**
-    - [ ] `GlobalState` (Autoload): Manage flags, variables, and story progress.
+    - [x] `GlobalState` → `AdventureGameStateBase`（C++）で代替済み
     - [ ] `SceneTransitionManager`: Seamless scene switching with fade effects.
-    - [ ] `ChoiceManager`: Display choices and handle branching logic.
-    - [ ] `FlagCondition`: Conditional scene/dialogue display based on flags.
+    - [x] `ChoiceManager` → `KarakuriScenarioRunner::choice` アクションで代替済み
+    - [x] `FlagCondition` → `KarakuriScenarioRunner::if_flag` アクションで代替済み
 - [ ] **Evidence & Inventory**
     - [ ] `EvidenceItem` (Resource): Evidence data (Name, Description, Icon, Category).
     - [ ] `EvidenceManager`: Add/Remove/Check evidence.
@@ -145,13 +198,14 @@
     - [ ] `HotspotManager`: Define clickable areas with descriptions.
     - [ ] `LocationMap`: Visual map for scene navigation.
 - [ ] **Court/Confrontation Mode**
-    - [ ] `TestimonySystem`: Display witness testimony line-by-line.
-    - [ ] `ContradictionDetector`: Press/Present mechanics.
-    - [ ] `HealthBar`: Penalty system for wrong answers.
+    - [x] `TestimonySystem` → `KarakuriScenarioRunner::testimony` アクションで代替済み
+    - [x] `ContradictionDetector` → testimony 内 `present` signal 処理で代替済み
+    - [x] `HealthBar` penalty → `AdventureGameStateBase::health` で代替済み
 - [ ] **Demo Scenes**
     - [ ] **Scene 1: Investigation**: Office with clues and NPCs.
     - [ ] **Scene 2: Dialogue**: Conversation with choices.
     - [ ] **Scene 3: Presentation**: Court-style evidence presentation.
+
     - [ ] **Scene 4: Multiple Endings**: Flag-based story branches.
 
 ## Phase 6: Fighting Game Features [NEW]

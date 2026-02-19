@@ -52,7 +52,7 @@
 | Dialogue UI | `../MainInfoUiLayer/DialogueUI` | `show_message`, `show_choices`, `choice_selected`, `dialogue_finished` |
 | Evidence UI | `../InstantSubInfoUiLayer/InventoryUI` | `add_evidence`, `show_inventory`（任意） |
 | InteractionManager | `../InteractionManager` | `clicked_at(Vector2)` signal |
-| TestimonySystem | `../MainInfoUiLayer/TestimonySystem` | `add_testimony`, `start_testimony`, `all_rounds_complete` |
+| TestimonySystem | `../MainInfoUiLayer/TestimonySystem` | signal `next_requested`・`shake_requested`・`present_requested` を C++ が受信。GDScript 側は UI 表示のみ問喳い合わせなし。`set_actions_enabled(bool)` メソッド（任意） |
 
 ### 5.2 クリック座標契約
 - `InteractionManager.clicked_at(position)` の `position` は Canvas/World 座標。

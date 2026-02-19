@@ -53,6 +53,16 @@ void AdventureGameStateBase::_bind_methods() {
   // Game reset
   ClassDB::bind_method(D_METHOD("reset_game"),
                        &AdventureGameStateBase::reset_game);
+
+  // Snapshot API
+  ClassDB::bind_method(D_METHOD("get_flags_snapshot"),
+                       &AdventureGameStateBase::get_flags_snapshot);
+  ClassDB::bind_method(D_METHOD("restore_flags_snapshot", "snapshot"),
+                       &AdventureGameStateBase::restore_flags_snapshot);
+  ClassDB::bind_method(D_METHOD("get_inventory_snapshot"),
+                       &AdventureGameStateBase::get_inventory_snapshot);
+  ClassDB::bind_method(D_METHOD("restore_inventory_snapshot", "snapshot"),
+                       &AdventureGameStateBase::restore_inventory_snapshot);
 }
 
 void AdventureGameStateBase::set_flag(const String &key, bool value) {
@@ -123,4 +133,33 @@ void AdventureGameStateBase::reset_game() {
   health = 3;
   UtilityFunctions::print("Game reset. Health: ", health);
   emit_signal("health_changed", health);
+}
+
+// ---------------------------------------------------------------------------
+// Snapshot API
+// ---------------------------------------------------------------------------
+
+godot::Dictionary AdventureGameStateBase::get_flags_snapshot() const {
+  return flags.duplicate();
+}
+
+void AdventureGameStateBase::restore_flags_snapshot(
+    const godot::Dictionary &snapshot) {
+  flags.clear();
+  Array keys = snapshot.keys();
+  for (int i = 0; i < keys.size(); ++i) {
+    flags[keys[i]] = snapshot[keys[i]];
+  }
+}
+
+godot::Array AdventureGameStateBase::get_inventory_snapshot() const {
+  return inventory.duplicate();
+}
+
+void AdventureGameStateBase::restore_inventory_snapshot(
+    const godot::Array &snapshot) {
+  inventory.clear();
+  for (int i = 0; i < snapshot.size(); ++i) {
+    inventory.append(snapshot[i]);
+  }
 }

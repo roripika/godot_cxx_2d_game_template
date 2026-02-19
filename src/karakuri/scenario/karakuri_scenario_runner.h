@@ -12,9 +12,29 @@
  *
  * Designers own the visuals and hotspot nodes in the base scenes.
  * Planners own the YAML that binds hotspot IDs to actions and story flow.
+ *
+ * ## Action dispatch
+ * Built-in generic actions (dialogue, goto, choice, set_flag, …) are
+ * registered automatically in _init_builtin_actions().
+ *
+ * Demo-specific actions (testimony, take_damage, …) can be registered from
+ * outside via register_action().  This keeps the runner core free of
+ * demo-specific logic while still allowing full extensibility:
+ *
+ * @code
+ * runner->register_action("take_damage", [this](const Variant &payload) {
+ *     // demo-specific handler
+ *     return true;
+ * });
+ * @endcode
  */
 
+#include <functional>
+
+#include "karakuri_testimony_session.h"  // Architecture: testimony-session fields will move here
+
 #include <godot_cpp/classes/node.hpp>
+#include <godot_cpp/templates/hash_map.hpp>
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/node_path.hpp>
@@ -30,8 +50,38 @@ class KarakuriScenarioRunner : public godot::Node {
   GDCLASS(KarakuriScenarioRunner, godot::Node)
 
 public:
+  /**
+   * @brief Callable type for a single action handler.
+   *
+   * @param payload The value portion of the YAML action dictionary
+   *                (type varies per action: String, Dictionary, Array, ...).
+   * @return true if the action was handled, false to emit an unknown-action warning.
+   */
+  using ActionHandler = std::function<bool(const godot::Variant &payload)>;
+
   KarakuriScenarioRunner();
   ~KarakuriScenarioRunner();
+
+  /**
+   * @brief Register (or override) a handler for a YAML action kind.
+   *
+   * Call this from a parent/sibling _ready() to inject demo-specific actions
+   * without modifying the runner core.  Built-in generic actions can also be
+   * overridden this way if needed.
+   *
+   * @param kind    The action key as it appears in YAML (e.g. "take_damage").
+   * @param handler Callable that processes the action payload.
+   */
+  void register_action(const godot::String &kind, ActionHandler handler);
+
+  /**
+   * @brief Register the Mystery-demo action set (testimony, take_damage,
+   *        if_health_ge, if_health_leq).
+   *
+   * Call once from the Mystery shell scene's _ready() after initialising
+   * TestimonySystem.  Other demos should NOT call this.
+   */
+  void register_mystery_actions();
 
   /** @brief Path to the YAML scenario file (res://...). */
   void set_scenario_path(const godot::String &path);
@@ -118,9 +168,13 @@ private:
    */
   bool waiting_for_dialogue_ = false;
 
-  bool waiting_for_testimony_ = false;
-  godot::Array pending_testimony_success_actions_;
-  godot::Array pending_testimony_failure_actions_;
+  /**
+   * @brief Mystery testimony confrontation session state.
+   *
+   * Encapsulates all testimony-loop fields. See karakuri_testimony_session.h.
+   * Access via testimony_.active, testimony_.index, etc.
+   */
+  KarakuriTestimonySession testimony_{};  // @see KarakuriTestimonySession
 
   bool load_scenario();
   bool load_scene_by_id(const godot::String &scene_id);
@@ -129,6 +183,9 @@ private:
   void start_actions(const godot::Array &actions);
   void step_actions(double delta);
   bool execute_single_action(const godot::Variant &action);
+
+  /** @brief Register all built-in generic actions into action_handlers_. */
+  void init_builtin_actions();
 
   void on_clicked_at(const godot::Vector2 &pos);
   void on_choice_selected(int index, const godot::String &text);
@@ -156,26 +213,11 @@ private:
   godot::Node *resolve_node_path(const godot::NodePath &path) const;
   godot::Node *get_adventure_state() const;
 
-  struct TestimonyLine {
-    godot::String speaker_key;
-    godot::String speaker_text;
-    godot::String text_key;
-    godot::String text_text;
-    godot::String evidence_id;
-    godot::String shake_key;
-    godot::String shake_text;
-    bool solved = false;
-  };
-
   godot::String current_mode_id_;
   bool mode_input_enabled_ = true;
 
-  godot::Array testimony_lines_;
-  int testimony_index_ = 0;
-  int testimony_max_rounds_ = 1;
-  int testimony_round_ = 0;
-  bool testimony_active_ = false;
-  bool waiting_for_evidence_selection_ = false;
+  /** @brief Dispatch table: YAML action kind -> handler function. */
+  godot::HashMap<godot::String, ActionHandler> action_handlers_;
 };
 
 } // namespace karakuri

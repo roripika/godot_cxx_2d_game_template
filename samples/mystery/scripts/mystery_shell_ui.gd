@@ -2,8 +2,11 @@ extends Node2D
 
 @onready var ui_guide_label: Label = $SystemUiLayer/UiGuideLabel
 @onready var health_label: Label = $SystemUiLayer/HealthLabel
+@onready var scenario_runner = $ScenarioRunner
 
 func _ready() -> void:
+	if scenario_runner:
+		scenario_runner.register_mystery_actions()
 	_connect_localization_service()
 	_refresh_locale()
 

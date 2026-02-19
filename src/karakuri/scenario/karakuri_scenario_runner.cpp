@@ -5,6 +5,7 @@
  * @brief See karakuri_scenario_runner.h
  */
 
+#include "../karakuri_save_service.h"
 #include "../yaml/karakuri_yaml_lite.h"
 
 #include <godot_cpp/classes/area2d.hpp>
@@ -95,9 +96,16 @@ static CollisionShape2D *find_collision_shape(Area2D *area) {
 
 } // namespace
 
-KarakuriScenarioRunner::KarakuriScenarioRunner() {}
+KarakuriScenarioRunner::KarakuriScenarioRunner() {
+  init_builtin_actions();
+}
 
 KarakuriScenarioRunner::~KarakuriScenarioRunner() {}
+
+void KarakuriScenarioRunner::register_action(const String &kind,
+                                             ActionHandler handler) {
+  action_handlers_[kind] = handler;
+}
 
 void KarakuriScenarioRunner::set_scenario_path(const String &path) {
   scenario_path_ = path;
@@ -166,6 +174,10 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::on_testimony_present_requested);
   ClassDB::bind_method(D_METHOD("on_evidence_selected", "evidence_id"),
                        &KarakuriScenarioRunner::on_evidence_selected);
+
+  // Mystery-specific action injection (call from Mystery shell _ready()).
+  ClassDB::bind_method(D_METHOD("register_mystery_actions"),
+                       &KarakuriScenarioRunner::register_mystery_actions);
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),
                        &KarakuriScenarioRunner::set_scenario_path);
@@ -427,9 +439,7 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
       testimony_system_->set("visible", false);
     }
   }
-  testimony_active_ = false;
-  waiting_for_testimony_ = false;
-  waiting_for_evidence_selection_ = false;
+  testimony_.reset();
 
   bind_scene_hotspots(scene_dict);
   notify_mode_enter(scene_id, scene_dict);
@@ -489,7 +499,7 @@ void KarakuriScenarioRunner::start_actions(const Array &actions) {
   is_executing_actions_ = true;
   waiting_for_choice_ = false;
   waiting_for_dialogue_ = false;
-  waiting_for_testimony_ = false;
+  testimony_.waiting = false;
   set_mode_input_enabled(false);
 }
 
@@ -497,7 +507,7 @@ void KarakuriScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_) {
     return;
   }
-  if (waiting_for_choice_ || waiting_for_dialogue_ || waiting_for_testimony_) {
+  if (waiting_for_choice_ || waiting_for_dialogue_ || testimony_.waiting) {
     return;
   }
   if (wait_remaining_sec_ > 0.0) {
@@ -529,7 +539,19 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
   const String kind = String(keys[0]);
   const Variant payload_v = d[kind];
 
-  if (kind == "dialogue") {
+  const ActionHandler *handler = action_handlers_.getptr(kind);
+  if (handler != nullptr) {
+    return (*handler)(payload_v);
+  }
+
+  UtilityFunctions::push_warning("KarakuriScenarioRunner: unknown action: ",
+                                 kind);
+  return false;
+}
+
+void KarakuriScenarioRunner::init_builtin_actions() {
+  // ------------------------------------------------------------------ dialogue
+  register_action("dialogue", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const String speaker_key = dict_get_string(payload, "speaker_key", "");
     const String speaker = speaker_key.is_empty()
@@ -554,9 +576,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       UtilityFunctions::print("[Dialogue] ", speaker, ": ", text);
     }
     return true;
-  }
+  });
 
-  if (kind == "set_flag") {
+  // ------------------------------------------------------------------ set_flag
+  register_action("set_flag", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const String flag = dict_get_string(payload, "key", "");
     const bool value = dict_get_bool(payload, "value", true);
@@ -568,9 +591,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       gs->call("set_flag", flag, value);
     }
     return true;
-  }
+  });
 
-  if (kind == "give_evidence" || kind == "give_item") {
+  // ------------------------------------------------------- give_evidence / give_item
+  auto give_handler = [this](const Variant &payload_v) {
     const String item_id = String(payload_v);
     if (item_id.is_empty()) {
       return false;
@@ -586,30 +610,31 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       }
     }
     return true;
-  }
+  };
+  register_action("give_evidence", give_handler);
+  register_action("give_item", give_handler);
 
-  if (kind == "wait") {
-    wait_remaining_sec_ = dict_get_float(d, kind, 0.0);
-    if (wait_remaining_sec_ <= 0.0) {
-      // If payload is scalar, support it too.
-      if (payload_v.get_type() == Variant::FLOAT ||
-          payload_v.get_type() == Variant::INT) {
-        wait_remaining_sec_ = double(payload_v);
-      }
+  // --------------------------------------------------------------------- wait
+  register_action("wait", [this](const Variant &payload_v) {
+    if (payload_v.get_type() == Variant::FLOAT ||
+        payload_v.get_type() == Variant::INT) {
+      wait_remaining_sec_ = double(payload_v);
     }
     return true;
-  }
+  });
 
-  if (kind == "goto") {
+  // --------------------------------------------------------------------- goto
+  register_action("goto", [this](const Variant &payload_v) {
     const String next_id = String(payload_v);
     if (next_id.is_empty()) {
       return false;
     }
     load_scene_by_id(next_id);
     return true;
-  }
+  });
 
-  if (kind == "if_flag") {
+  // ------------------------------------------------------------------ if_flag
+  register_action("if_flag", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const String key = dict_get_string(payload, "key", "");
     const bool expected = dict_get_bool(payload, "value", true);
@@ -627,9 +652,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
     return true;
-  }
+  });
 
-  if (kind == "if_has_items") {
+  // --------------------------------------------------------------- if_has_items
+  register_action("if_has_items", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const Array items = as_array(payload.get("items", Array()));
     const Array then_actions = as_array(payload.get("then", Array()));
@@ -656,9 +682,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
     return true;
-  }
+  });
 
-  if (kind == "choice") {
+  // ------------------------------------------------------------------- choice
+  register_action("choice", [this](const Variant &payload_v) {
     if (!dialogue_ui_ || !dialogue_ui_->has_method("show_choices") ||
         !dialogue_ui_->has_signal("choice_selected")) {
       UtilityFunctions::push_error(
@@ -703,9 +730,49 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       dialogue_ui_->call("show_choices", choice_texts);
     }
     return true;
-  }
+  });
 
-  if (kind == "take_damage") {
+  // --------------------------------------------------------------- reset_game
+  register_action("reset_game", [this](const Variant &) {
+    Node *gs = get_adventure_state();
+    if (gs && gs->has_method("reset_game")) {
+      gs->call("reset_game");
+    }
+    return true;
+  });
+
+  // --------------------------------------------------------- change_root_scene
+  register_action("change_root_scene", [this](const Variant &payload_v) {
+    const String path = String(payload_v);
+    if (path.is_empty() || !get_tree()) {
+      return false;
+    }
+    get_tree()->change_scene_to_file(path);
+    return true;
+  });
+
+  // -------------------------------------------------------------------- save
+  // Payload: String demo_id (e.g. "mystery").
+  // Serializes AdventureGameStateBase (flags, inventory, health) to
+  //   user://karakuri/<demo_id>/save.json
+  register_action("save", [](const Variant &payload_v) {
+    const String demo_id = String(payload_v);
+    return karakuri::KarakuriSaveService::save_game(demo_id);
+  });
+
+  // -------------------------------------------------------------------- load
+  // Payload: String demo_id.
+  // Deserializes save file and restores AdventureGameStateBase state.
+  // Returns false when no save file exists (scenario continues unaffected).
+  register_action("load", [](const Variant &payload_v) {
+    const String demo_id = String(payload_v);
+    return karakuri::KarakuriSaveService::load_game(demo_id);
+  });
+}
+
+void KarakuriScenarioRunner::register_mystery_actions() {
+  // --------------------------------------------------------------- take_damage
+  register_action("take_damage", [this](const Variant &payload_v) {
     int amount = 1;
     if (payload_v.get_type() == Variant::INT) {
       amount = int(payload_v);
@@ -722,17 +789,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       }
     }
     return true;
-  }
+  });
 
-  if (kind == "reset_game") {
-    Node *gs = get_adventure_state();
-    if (gs && gs->has_method("reset_game")) {
-      gs->call("reset_game");
-    }
-    return true;
-  }
-
-  if (kind == "if_health_ge") {
+  // ------------------------------------------------------------- if_health_ge
+  register_action("if_health_ge", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const int threshold = int(payload.get("value", 0));
     const Array then_actions = as_array(payload.get("then", Array()));
@@ -749,9 +809,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
     return true;
-  }
+  });
 
-  if (kind == "if_health_leq") {
+  // ------------------------------------------------------------ if_health_leq
+  register_action("if_health_leq", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const int threshold = int(payload.get("value", 0));
     const Array then_actions = as_array(payload.get("then", Array()));
@@ -768,9 +829,10 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
     return true;
-  }
+  });
 
-  if (kind == "testimony") {
+  // --------------------------------------------------------------- testimony
+  register_action("testimony", [this](const Variant &payload_v) {
     if (!testimony_system_) {
       UtilityFunctions::push_error(
           "KarakuriScenarioRunner: testimony requires TestimonySystem node");
@@ -784,21 +846,21 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
           "KarakuriScenarioRunner: testimony action has empty testimonies");
       return false;
     }
-    pending_testimony_success_actions_ =
+    testimony_.success_actions =
         as_array(payload.get("on_success", Array()));
-    pending_testimony_failure_actions_ =
+    testimony_.failure_actions =
         as_array(payload.get("on_failure", Array()));
 
-    testimony_max_rounds_ = int(payload.get("max_rounds", 1));
-    if (testimony_max_rounds_ < 1) {
-      testimony_max_rounds_ = 1;
+    testimony_.max_rounds = int(payload.get("max_rounds", 1));
+    if (testimony_.max_rounds < 1) {
+      testimony_.max_rounds = 1;
     }
-    testimony_round_ = 0;
-    testimony_index_ = 0;
-    testimony_active_ = true;
-    waiting_for_testimony_ = true;
-    waiting_for_evidence_selection_ = false;
-    testimony_lines_.clear();
+    testimony_.round = 0;
+    testimony_.index = 0;
+    testimony_.active = true;
+    testimony_.waiting = true;
+    testimony_.waiting_for_evidence = false;
+    testimony_.lines.clear();
 
     for (int i = 0; i < testimonies.size(); i++) {
       Dictionary t = as_dict(testimonies[i]);
@@ -815,7 +877,7 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
       line["shake_key"] = shake_key;
       line["shake_text"] = dict_get_string(t, "shake", "");
       line["solved"] = false;
-      testimony_lines_.append(line);
+      testimony_.lines.append(line);
     }
 
     set_mode_input_enabled(true);
@@ -826,20 +888,7 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
     }
     show_current_testimony_line();
     return true;
-  }
-
-  if (kind == "change_root_scene") {
-    const String path = String(payload_v);
-    if (path.is_empty() || !get_tree()) {
-      return false;
-    }
-    get_tree()->change_scene_to_file(path);
-    return true;
-  }
-
-  UtilityFunctions::push_warning("KarakuriScenarioRunner: unknown action: ",
-                                 kind);
-  return false;
+  });
 }
 
 void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
@@ -893,16 +942,16 @@ void KarakuriScenarioRunner::on_testimony_complete(bool success) {
 }
 
 void KarakuriScenarioRunner::on_testimony_next_requested() {
-  if (!testimony_active_ || waiting_for_evidence_selection_) {
+  if (!testimony_.active || testimony_.waiting_for_evidence) {
     return;
   }
-  testimony_index_++;
-  if (testimony_index_ >= testimony_lines_.size()) {
+  testimony_.index++;
+  if (testimony_.index >= testimony_.lines.size()) {
     if (are_all_testimony_contradictions_solved()) {
       complete_testimony(true);
       return;
     }
-    testimony_round_++;
+    testimony_.round++;
     if (dialogue_ui_ && dialogue_ui_->has_method("show_message_with_keys")) {
       dialogue_ui_->call("show_message_with_keys", "speaker.system", "System",
                          "testimony_incomplete",
@@ -911,21 +960,21 @@ void KarakuriScenarioRunner::on_testimony_next_requested() {
       dialogue_ui_->call("show_message", "System", tr_key("testimony_incomplete"));
     }
 
-    if (testimony_round_ >= testimony_max_rounds_) {
+    if (testimony_.round >= testimony_.max_rounds) {
       complete_testimony(false);
       return;
     }
-    testimony_index_ = 0;
+    testimony_.index = 0;
   }
   show_current_testimony_line();
 }
 
 void KarakuriScenarioRunner::on_testimony_shake_requested() {
-  if (!testimony_active_ || testimony_index_ < 0 ||
-      testimony_index_ >= testimony_lines_.size()) {
+  if (!testimony_.active || testimony_.index < 0 ||
+      testimony_.index >= testimony_.lines.size()) {
     return;
   }
-  const Dictionary line = as_dict(testimony_lines_[testimony_index_]);
+  const Dictionary line = as_dict(testimony_.lines[testimony_.index]);
   const String speaker_key = dict_get_string(line, "speaker_key", "");
   const String speaker = speaker_key.is_empty()
                              ? dict_get_string(line, "speaker_text", "Witness")
@@ -938,6 +987,11 @@ void KarakuriScenarioRunner::on_testimony_shake_requested() {
     return;
   }
   if (dialogue_ui_ && dialogue_ui_->has_method("show_message_with_keys")) {
+    // Intentional: shake feedback shows dialogue but does NOT set
+    // waiting_for_dialogue_ = true. Testimony input (next/present) remains
+    // available immediately so the player can respond to the shake line.
+    // If a blocking shake dialogue is needed in future, add a
+    // waiting_for_shake_ flag paired with a shake_dialogue_finished signal.
     dialogue_ui_->call("show_message_with_keys", speaker_key, speaker, shake_key,
                        shake);
     return;
@@ -948,10 +1002,10 @@ void KarakuriScenarioRunner::on_testimony_shake_requested() {
 }
 
 void KarakuriScenarioRunner::on_testimony_present_requested() {
-  if (!testimony_active_ || waiting_for_evidence_selection_ || !evidence_ui_) {
+  if (!testimony_.active || testimony_.waiting_for_evidence || !evidence_ui_) {
     return;
   }
-  waiting_for_evidence_selection_ = true;
+  testimony_.waiting_for_evidence = true;
   if (testimony_system_ && testimony_system_->has_method("set_actions_enabled")) {
     testimony_system_->call("set_actions_enabled", false);
   }
@@ -963,10 +1017,10 @@ void KarakuriScenarioRunner::on_testimony_present_requested() {
 }
 
 void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
-  if (!testimony_active_ || !waiting_for_evidence_selection_) {
+  if (!testimony_.active || !testimony_.waiting_for_evidence) {
     return;
   }
-  waiting_for_evidence_selection_ = false;
+  testimony_.waiting_for_evidence = false;
   if (evidence_ui_ && evidence_ui_->has_method("hide_inventory")) {
     evidence_ui_->call("hide_inventory");
   }
@@ -974,30 +1028,30 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
     testimony_system_->call("set_actions_enabled", true);
   }
 
-  if (testimony_index_ < 0 || testimony_index_ >= testimony_lines_.size()) {
+  if (testimony_.index < 0 || testimony_.index >= testimony_.lines.size()) {
     return;
   }
 
-  Dictionary line = as_dict(testimony_lines_[testimony_index_]);
+  Dictionary line = as_dict(testimony_.lines[testimony_.index]);
   const String expected = dict_get_string(line, "evidence", "");
   const bool correct = !expected.is_empty() && expected == evidence_id;
 
   if (correct) {
     line["solved"] = true;
-    testimony_lines_[testimony_index_] = line;
+    testimony_.lines[testimony_.index] = line;
     if (dialogue_ui_ && dialogue_ui_->has_method("show_message_with_keys")) {
       dialogue_ui_->call("show_message_with_keys", "speaker.system", "System",
                          "correct_evidence", tr_key("correct_evidence"));
     } else if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
       dialogue_ui_->call("show_message", "System", tr_key("correct_evidence"));
     }
-    testimony_index_++;
-    if (testimony_index_ >= testimony_lines_.size()) {
+    testimony_.index++;
+    if (testimony_.index >= testimony_.lines.size()) {
       if (are_all_testimony_contradictions_solved()) {
         complete_testimony(true);
         return;
       }
-      testimony_index_ = 0;
+      testimony_.index = 0;
     }
     show_current_testimony_line();
     return;
@@ -1023,22 +1077,22 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
     return;
   }
 
-  testimony_index_ = 0;
+  testimony_.index = 0;
   show_current_testimony_line();
 }
 
 void KarakuriScenarioRunner::show_current_testimony_line() {
-  if (!testimony_active_ || !testimony_system_ || testimony_lines_.is_empty()) {
+  if (!testimony_.active || !testimony_system_ || testimony_.lines.is_empty()) {
     return;
   }
-  if (testimony_index_ < 0) {
-    testimony_index_ = 0;
+  if (testimony_.index < 0) {
+    testimony_.index = 0;
   }
-  if (testimony_index_ >= testimony_lines_.size()) {
-    testimony_index_ = testimony_lines_.size() - 1;
+  if (testimony_.index >= testimony_.lines.size()) {
+    testimony_.index = testimony_.lines.size() - 1;
   }
 
-  const Dictionary line = as_dict(testimony_lines_[testimony_index_]);
+  const Dictionary line = as_dict(testimony_.lines[testimony_.index]);
   const String speaker_key = dict_get_string(line, "speaker_key", "");
   const String speaker = speaker_key.is_empty()
                              ? dict_get_string(line, "speaker_text", "Witness")
@@ -1059,14 +1113,14 @@ void KarakuriScenarioRunner::show_current_testimony_line() {
     testimony_system_->call("show_testimony_line", speaker, text);
   }
   if (testimony_system_->has_method("set_line_progress")) {
-    testimony_system_->call("set_line_progress", testimony_index_ + 1,
-                            testimony_lines_.size());
+    testimony_system_->call("set_line_progress", testimony_.index + 1,
+                            testimony_.lines.size());
   }
 }
 
 bool KarakuriScenarioRunner::are_all_testimony_contradictions_solved() const {
-  for (int i = 0; i < testimony_lines_.size(); i++) {
-    const Dictionary line = as_dict(testimony_lines_[i]);
+  for (int i = 0; i < testimony_.lines.size(); i++) {
+    const Dictionary line = as_dict(testimony_.lines[i]);
     const String evidence = dict_get_string(line, "evidence", "");
     const bool solved = dict_get_bool(line, "solved", false);
     if (!evidence.is_empty() && !solved) {
@@ -1077,12 +1131,13 @@ bool KarakuriScenarioRunner::are_all_testimony_contradictions_solved() const {
 }
 
 void KarakuriScenarioRunner::complete_testimony(bool success) {
-  if (!waiting_for_testimony_) {
+  if (!testimony_.waiting) {
     return;
   }
-  testimony_active_ = false;
-  waiting_for_testimony_ = false;
-  waiting_for_evidence_selection_ = false;
+  // Capture chosen actions before reset clears them.
+  const Array chosen =
+      success ? testimony_.success_actions : testimony_.failure_actions;
+  testimony_.reset();
   set_mode_input_enabled(false);
 
   if (evidence_ui_ && evidence_ui_->has_method("hide_inventory")) {
@@ -1096,8 +1151,6 @@ void KarakuriScenarioRunner::complete_testimony(bool success) {
     }
   }
 
-  const Array chosen = success ? pending_testimony_success_actions_
-                               : pending_testimony_failure_actions_;
   for (int i = chosen.size() - 1; i >= 0; i--) {
     pending_actions_.insert(pending_action_index_, chosen[i]);
   }
@@ -1187,14 +1240,19 @@ bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,
   }
 
   if (CircleShape2D *c = Object::cast_to<CircleShape2D>(shape.ptr())) {
-    const double dist = hs_pos.distance_to(pos);
-    return dist <= c->get_radius();
+    // Use global transform of CollisionShape2D to handle non-1.0 parent scales.
+    const Transform2D gt = col->get_global_transform();
+    const Vector2 local_pos = gt.affine_inverse().xform(pos);
+    return local_pos.length() <= c->get_radius();
   }
 
   if (RectangleShape2D *r = Object::cast_to<RectangleShape2D>(shape.ptr())) {
-    const Vector2 size = r->get_size();
-    const Rect2 rect(hs_pos - size / 2.0, size);
-    return rect.has_point(pos);
+    // Map click into the shape's local (unscaled) space before rect test.
+    const Transform2D gt = col->get_global_transform();
+    const Vector2 local_pos = gt.affine_inverse().xform(pos);
+    const Vector2 half = r->get_size() / 2.0;
+    return local_pos.x >= -half.x && local_pos.x <= half.x &&
+           local_pos.y >= -half.y && local_pos.y <= half.y;
   }
 
   return false;

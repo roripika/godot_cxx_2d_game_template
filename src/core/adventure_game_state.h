@@ -42,6 +42,16 @@ public:
   
   // Game reset
   void reset_game();
+
+  // --- Snapshot API (used by KarakuriSaveService) ---
+  /** @brief flags 全体のコピーを返す (Dictionary<String, bool>)。 */
+  godot::Dictionary get_flags_snapshot() const;
+  /** @brief flags をスナップショットから一括復元して上書きする。 */
+  void restore_flags_snapshot(const godot::Dictionary &snapshot);
+  /** @brief inventory 全体のコピーを返す (Array<String>)。 */
+  godot::Array get_inventory_snapshot() const;
+  /** @brief inventory をスナップショットから一括復元して上書きする。 */
+  void restore_inventory_snapshot(const godot::Array &snapshot);
 };
 
 #endif // ADVENTURE_GAME_STATE_H

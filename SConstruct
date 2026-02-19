@@ -25,6 +25,10 @@ if env["platform"] == "macos":
         source=sources,
     )
     
+    # Use Apple's libc++ to avoid symbol mismatches with Homebrew LLVM
+    env.Append(CXXFLAGS=["-stdlib=libc++"])
+    env.Append(LINKFLAGS=["-stdlib=libc++"])
+
     # M2 / Apple Silicon optimization
     if env["arch"] == "arm64":
         env.Append(CCFLAGS=["-mcpu=apple-m2", "-O3"])
