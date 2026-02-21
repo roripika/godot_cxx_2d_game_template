@@ -1,7 +1,7 @@
 <map id="karakuri::KarakuriLocalizationService::load_saved_locale_prefix" name="karakuri::KarakuriLocalizationService::load_saved_locale_prefix">
-<area shape="rect" id="Node000001" title="Load saved locale prefix and apply it." alt="" coords="268,37,511,77"/>
+<area shape="rect" id="Node000001" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="268,37,511,77"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriLocalizationService.html#a8db81c9f3067ae9ad6ec9965ceedba17" title=" " alt="" coords="5,5,220,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,44,220,40,221,35,255,39"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriLocalizationService.html#ad16eaeead9e8a135f5e9297297112472" title="Godot lifecycle hook. Restores saved locale." alt="" coords="5,69,220,109"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriLocalizationService.html#ad16eaeead9e8a135f5e9297297112472" title="Godotのライフサイクルフック。保存されたロケールを復元する。" alt="" coords="5,69,220,109"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,76,221,80,220,74,254,70"/>
 </map>

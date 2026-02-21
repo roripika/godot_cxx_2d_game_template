@@ -2,6 +2,6 @@
 <area shape="rect" id="Node000001" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="109,5,263,45"/>
 <area shape="rect" id="Node000002" href="$karakuri__save__service_8cpp.html" title=" " alt="" coords="5,93,159,133"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,56,107,95,103,91,151,52"/>
-<area shape="rect" id="Node000003" href="$karakuri__scenario__runner_8cpp.html" title="See karakuri_scenario_runner.h." alt="" coords="183,93,397,133"/>
+<area shape="rect" id="Node000003" href="$karakuri__scenario__runner_8cpp.html" title="See karakuri_scenario_runner.h" alt="" coords="183,93,397,133"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="221,52,269,91,265,95,218,56"/>
 </map>

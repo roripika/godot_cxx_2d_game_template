@@ -1,5 +1,5 @@
 <map id="karakuri::KarakuriScenarioRunner" name="karakuri::KarakuriScenarioRunner">
-<area shape="rect" id="Node000001" title="Scenario runner that reads planner YAML and drives the adventure demo." alt="" coords="5,79,197,119"/>
+<area shape="rect" id="Node000001" title="プランナーが記述したYAMLを読み込み、アドベンチャーデモを駆動するシナリオランナー。" alt="" coords="5,79,197,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="51,5,152,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,44,104,79,99,79,99,44"/>
 </map>

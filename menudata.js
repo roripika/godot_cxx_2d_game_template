@@ -23,15 +23,15 @@
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
-{text:"Namespaces",url:"namespaces.html",children:[
-{text:"Namespace List",url:"namespaces.html"}]},
-{text:"Data Structures",url:"annotated.html",children:[
-{text:"Data Structures",url:"annotated.html"},
-{text:"Data Structure Index",url:"classes.html"},
-{text:"Class Hierarchy",url:"inherits.html"},
-{text:"Data Fields",url:"functions.html",children:[
-{text:"All",url:"functions.html",children:[
+{text:"総合概要",url:"index.html"},
+{text:"名前空間",url:"namespaces.html",children:[
+{text:"名前空間一覧",url:"namespaces.html"}]},
+{text:"データ構造",url:"annotated.html",children:[
+{text:"データ構造",url:"annotated.html"},
+{text:"データ構造索引",url:"classes.html"},
+{text:"クラス階層",url:"inherits.html"},
+{text:"データフィールド",url:"functions.html",children:[
+{text:"全て",url:"functions.html",children:[
 {text:"_",url:"functions.html#index__5F"},
 {text:"a",url:"functions.html#index_a"},
 {text:"b",url:"functions.html#index_b"},
@@ -53,7 +53,7 @@ var menudata={children:[
 {text:"t",url:"functions.html#index_t"},
 {text:"w",url:"functions.html#index_w"},
 {text:"~",url:"functions.html#index__7E"}]},
-{text:"Functions",url:"functions_func.html",children:[
+{text:"関数",url:"functions_func.html",children:[
 {text:"_",url:"functions_func.html#index__5F"},
 {text:"a",url:"functions_func.html#index_a"},
 {text:"b",url:"functions_func.html#index_b"},
@@ -73,7 +73,7 @@ var menudata={children:[
 {text:"t",url:"functions_func.html#index_t"},
 {text:"w",url:"functions_func.html#index_w"},
 {text:"~",url:"functions_func.html#index__7E"}]},
-{text:"Variables",url:"functions_vars.html",children:[
+{text:"変数",url:"functions_vars.html",children:[
 {text:"a",url:"functions_vars.html#index_a"},
 {text:"c",url:"functions_vars.html#index_c"},
 {text:"d",url:"functions_vars.html#index_d"},
@@ -91,9 +91,9 @@ var menudata={children:[
 {text:"s",url:"functions_vars.html#index_s"},
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"w",url:"functions_vars.html#index_w"}]},
-{text:"Typedefs",url:"functions_type.html"}]}]},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"},
-{text:"Globals",url:"globals.html",children:[
-{text:"All",url:"globals.html"},
-{text:"Macros",url:"globals_defs.html"}]}]}]}
+{text:"型定義",url:"functions_type.html"}]}]},
+{text:"ファイル",url:"files.html",children:[
+{text:"ファイル一覧",url:"files.html"},
+{text:"大域各種",url:"globals.html",children:[
+{text:"全て",url:"globals.html"},
+{text:"マクロ定義",url:"globals_defs.html"}]}]}]}

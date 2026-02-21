@@ -13,7 +13,7 @@
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="562,83,477,104,476,98,560,78"/>
 <area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="536,124,501,124,501,118,536,118"/>
 <area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="565,227,548,219,523,204,500,187,428,143,430,139,503,183,526,200,551,215,567,222"/>
-<area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="Register all built&#45;in generic actions into action_handlers_." alt="" coords="294,197,493,237"/>
+<area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="294,197,493,237"/>
 <area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="535,237,493,232,493,226,536,232"/>
 <area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="5,197,237,237"/>
 <area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="280,220,238,220,238,214,280,214"/>

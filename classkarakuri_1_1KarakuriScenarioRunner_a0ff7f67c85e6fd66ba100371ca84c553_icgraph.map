@@ -1,6 +1,6 @@
 <map id="karakuri::KarakuriScenarioRunner::tr_key" name="karakuri::KarakuriScenarioRunner::tr_key">
 <area shape="rect" id="Node000001" title=" " alt="" coords="840,143,1032,183"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="Register all built&#45;in generic actions into action_handlers_." alt="" coords="559,5,758,45"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="559,5,758,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="901,136,851,96,791,60,757,47,759,42,793,55,854,92,905,131"/>
 <area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af786df05bd8166307d97873d4556ab57" title=" " alt="" coords="251,132,471,172"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="826,163,472,157,472,151,826,158"/>
@@ -18,7 +18,7 @@
 <area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="540,94,398,99,321,108,246,123,187,144,137,170,134,166,185,139,245,117,320,102,397,94,539,89"/>
 <area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="560,202,446,175,447,170,561,197"/>
 <area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="571,249,463,278,462,273,569,244"/>
-<area shape="rect" id="Node000009" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="Register the Mystery&#45;demo action set (testimony, take_damage, if_health_ge, if_health_leq)." alt="" coords="265,197,457,251"/>
+<area shape="rect" id="Node000009" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="ミステリーデモ用のアクションセット（testimony, take_damage, if_health_ge, if_health_leq）を登録する。" alt="" coords="265,197,457,251"/>
 <area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="512,226,457,226,457,221,512,221"/>
 <area shape="poly" id="edge13_Node000009_Node000005" title=" " alt="" coords="251,211,197,204,198,199,252,206"/>
 </map>

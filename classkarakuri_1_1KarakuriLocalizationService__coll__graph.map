@@ -1,5 +1,5 @@
 <map id="karakuri::KarakuriLocalizationService" name="karakuri::KarakuriLocalizationService">
-<area shape="rect" id="Node000001" title="Shared locale service used by all demos." alt="" coords="5,79,220,119"/>
+<area shape="rect" id="Node000001" title="全デモで共通利用されるロケールサービス。" alt="" coords="5,79,220,119"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="62,5,163,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,44,115,79,110,79,110,44"/>
 </map>

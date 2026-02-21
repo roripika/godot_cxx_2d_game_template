@@ -1,6 +1,6 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdefghiklmnoprstvw~分切現",
+  0: "_abcdefghiklmnoprstvw~ア分切現",
   1: "hklv",
   2: "k",
   3: "k",
@@ -24,13 +24,13 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Data Structures",
-  2: "Namespaces",
-  3: "Files",
-  4: "Functions",
-  5: "Variables",
-  6: "Typedefs",
-  7: "Macros"
+  0: "全て",
+  1: "データ構造",
+  2: "名前空間",
+  3: "ファイル",
+  4: "関数",
+  5: "変数",
+  6: "型定義",
+  7: "マクロ定義"
 };
 

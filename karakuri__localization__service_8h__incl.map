@@ -1,5 +1,5 @@
 <map id="src/karakuri/karakuri_localization_service.h" name="src/karakuri/karakuri_localization_service.h">
-<area shape="rect" id="Node000001" title="Basic Game Karakuri: locale persistence and runtime switch service." alt="" coords="137,5,308,45"/>
+<area shape="rect" id="Node000001" title="Basic Game Karakuri: ロケールの保存とランタイム切り替えサービス。" alt="" coords="137,5,308,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,93,211,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,48,138,88,135,83,193,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="235,93,443,119"/>

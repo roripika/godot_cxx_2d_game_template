@@ -4,9 +4,9 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="758,109,724,105,724,99,759,104"/>
 <area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8b56bf438a9b86cb88cbb6ff628a0b74" title=" " alt="" coords="532,133,724,173"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="759,139,724,143,724,138,758,133"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godot lifecycle hook." alt="" coords="289,5,481,45"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godotのライフサイクルフック。" alt="" coords="289,5,481,45"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="537,68,461,48,462,43,539,63"/>
-<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="Register all built&#45;in generic actions into action_handlers_." alt="" coords="285,69,484,109"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="285,69,484,109"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="518,92,484,92,484,87,518,87"/>
 <area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="5,69,237,109"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="272,92,237,92,237,87,272,87"/>

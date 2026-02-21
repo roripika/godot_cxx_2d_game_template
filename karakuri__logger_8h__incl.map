@@ -1,5 +1,5 @@
 <map id="src/karakuri/karakuri_logger.h" name="src/karakuri/karakuri_logger.h">
-<area shape="rect" id="Node000001" title="Global Debug Logger for C++ and GDScript. This class provides static methods to log messages at diffe..." alt="" coords="246,5,399,45"/>
+<area shape="rect" id="Node000001" title="C++とGDScript向けに提供されるグローバルなデバッグロガー。 このクラスは各ログレベル（Debug, Info, Warn, Error）でメッセージを出力する静的メソッドを提供します。 Deb..." alt="" coords="246,5,399,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,101,219,126"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,48,154,98,152,93,275,43"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="243,93,402,133"/>

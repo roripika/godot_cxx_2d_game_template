@@ -1,5 +1,5 @@
 <map id="karakuri::KarakuriLocalizationService::save_current_locale_prefix" name="karakuri::KarakuriLocalizationService::save_current_locale_prefix">
-<area shape="rect" id="Node000001" title="Save the currently active locale prefix." alt="" coords="5,5,257,45"/>
+<area shape="rect" id="Node000001" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="5,5,257,45"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriLocalizationService.html#a0aca981d5f02074f492ac7fd5e2d1a46" title=" " alt="" coords="305,5,520,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,23,291,23,291,28,258,28"/>
 </map>

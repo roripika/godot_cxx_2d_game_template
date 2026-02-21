@@ -2,13 +2,13 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="1072,317,1264,371"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ab5e6cc0ea234b870cc7acbae19a143f5" title=" " alt="" coords="567,124,777,164"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1138,307,1089,251,1057,223,1023,201,963,176,899,160,836,150,777,146,778,141,836,145,900,155,964,171,1025,196,1061,219,1093,247,1142,304"/>
-<area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="Register all built&#45;in generic actions into action_handlers_." alt="" coords="303,445,501,485"/>
+<area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="303,445,501,485"/>
 <area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="1128,383,1080,416,1025,442,956,461,886,475,814,483,743,488,611,487,501,480,502,475,611,482,743,482,814,478,885,469,955,456,1023,438,1078,411,1124,378"/>
 <area shape="rect" id="Node000009" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a96abc1612fee2c2dcd8e30843c05159f" title=" " alt="" coords="825,388,1024,428"/>
 <area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="1059,375,1002,391,1001,385,1058,370"/>
 <area shape="rect" id="Node000012" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aaaf08bf2ec7c10d872b71bf22e906d53" title=" " alt="" coords="571,192,773,232"/>
 <area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="1131,309,1082,268,1054,249,1023,234,960,217,895,207,832,204,773,205,773,199,832,198,896,202,962,211,1025,230,1056,244,1085,264,1134,305"/>
-<area shape="rect" id="Node000013" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="Register the Mystery&#45;demo action set (testimony, take_damage, if_health_ge, if_health_leq)." alt="" coords="829,245,1021,299"/>
+<area shape="rect" id="Node000013" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="ミステリーデモ用のアクションセット（testimony, take_damage, if_health_ge, if_health_leq）を登録する。" alt="" coords="829,245,1021,299"/>
 <area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="1061,315,1017,302,1018,297,1063,310"/>
 <area shape="rect" id="Node000014" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a9ea13725cc66b56f432f0b5ac205a094" title=" " alt="" coords="829,324,1021,364"/>
 <area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="1058,347,1021,347,1021,341,1058,341"/>
@@ -29,7 +29,7 @@
 <area shape="rect" id="Node000010" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a4cd82c0baedca5359142cba8257f81e4" title=" " alt="" coords="576,384,768,424"/>
 <area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="811,409,768,408,768,403,812,404"/>
 <area shape="poly" id="edge13_Node000010_Node000007" title=" " alt="" coords="571,430,491,448,490,443,569,424"/>
-<area shape="rect" id="Node000011" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godot lifecycle hook." alt="" coords="306,381,498,421"/>
+<area shape="rect" id="Node000011" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godotのライフサイクルフック。" alt="" coords="306,381,498,421"/>
 <area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="562,406,498,405,498,400,562,400"/>
 <area shape="poly" id="edge15_Node000012_Node000004" title=" " alt="" coords="556,212,217,204,218,198,556,207"/>
 <area shape="poly" id="edge17_Node000013_Node000004" title=" " alt="" coords="815,267,566,247,217,212,218,206,567,241,816,262"/>

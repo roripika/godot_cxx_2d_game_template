@@ -1,5 +1,5 @@
 <map id="karakuri::KarakuriScenarioRunner::set_dialogue_ui_path" name="karakuri::KarakuriScenarioRunner::set_dialogue_ui_path">
-<area shape="rect" id="Node000001" title="NodePath to the Dialogue UI node that supports show_message(speaker, text)." alt="" coords="245,5,460,45"/>
+<area shape="rect" id="Node000001" title="show_message(speaker, text) をサポートするDialogue UIノードのNodePath。" alt="" coords="245,5,460,45"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="5,5,197,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,28,197,28,197,23,232,23"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="karakuri::KarakuriScenarioRunner::register_mystery_actions" name="karakuri::KarakuriScenarioRunner::register_mystery_actions">
-<area shape="rect" id="Node000001" title="Register the Mystery&#45;demo action set (testimony, take_damage, if_health_ge, if_health_leq)." alt="" coords="245,5,437,60"/>
+<area shape="rect" id="Node000001" title="ミステリーデモ用のアクションセット（testimony, take_damage, if_health_ge, if_health_leq）を登録する。" alt="" coords="245,5,437,60"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="5,13,197,53"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,35,197,35,197,30,232,30"/>
 </map>

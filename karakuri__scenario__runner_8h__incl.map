@@ -1,5 +1,5 @@
 <map id="src/karakuri/scenario/karakuri_scenario_runner.h" name="src/karakuri/scenario/karakuri_scenario_runner.h">
-<area shape="rect" id="Node000001" title="Basic Game Karakuri: YAML&#45;driven scenario runner (planner&#45;authored story + hooks)." alt="" coords="391,5,591,45"/>
+<area shape="rect" id="Node000001" title="Basic Game Karakuri: YAML駆動型のシナリオランナー（プランナー作成のストーリーと連携フック）。" alt="" coords="391,5,591,45"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,101,92,126"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,44,258,66,112,96,98,99,97,94,111,91,257,61,391,38"/>
 <area shape="rect" id="Node000003" href="$karakuri__testimony__session_8h.html" title="Testimony confrontation session state." alt="" coords="167,93,314,133"/>
