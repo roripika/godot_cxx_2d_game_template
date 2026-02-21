@@ -6,12 +6,17 @@ scenes:
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
       - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.prologue.system" }
+      - transition_object: { target: "speaker.detective", type: "page_turn", duration: 1.0, mode: "in" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_intro" }
+      - transition_object: { target: "speaker.boss", type: "wipe_radial_cw", duration: 0.8, mode: "in" }
       - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.prologue.boss_call" }
+      - transition_object: { target: "speaker.boss", type: "zoom_flip", duration: 0.5, mode: "out" }
+      - transition_object: { target: "speaker.detective", type: "roto_zoom", duration: 0.5, mode: "out" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_ack" }
       - goto:
           scene_id: "warehouse_investigation"
           fade_duration: 1.0
+          transition_type: "split_cols"
 
   warehouse_investigation:
     mode: "investigation"

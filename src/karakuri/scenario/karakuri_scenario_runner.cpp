@@ -643,10 +643,14 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     }
 
     if (fade_duration > 0.0 && transition_manager_ && transition_rect_) {
-      // 1. フェードアウト
+      // 1. フェードアウト (goto always uses basic fade currently, but we could
+      // make it configurable via 'transition_type')
+      String transition_type = dict_get_string(d, "transition_type", "fade");
+
       waiting_for_transition_ = true;
-      Variant tween = transition_manager_->call("fade", transition_rect_,
-                                                fade_duration, true);
+      Variant tween =
+          transition_manager_->call("apply_transition", transition_rect_,
+                                    transition_type, fade_duration, false);
       if (tween.get_type() == Variant::OBJECT) {
         Object *tween_obj = tween;
         // Tween完了後にシーンロードと明転を行うCallable
@@ -664,7 +668,6 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     return true;
   });
 
-  // ----------------------------------------------------------
   // transition_screen
   register_action("transition_screen", [this](const Variant &payload_v) {
     if (!transition_manager_ || !transition_rect_)
@@ -676,17 +679,8 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     bool is_in = dict_get_string(d, "mode", "in") == "in";
 
     waiting_for_transition_ = true;
-    Variant tween;
-    if (type == "fade") {
-      tween =
-          transition_manager_->call("fade", transition_rect_, duration, is_in);
-    } else if (type == "wipe_tile") {
-      Vector2 count = d.get("tile_count", Vector2(10, 10));
-      Vector2 dir = d.get("direction", Vector2(1, 0));
-      float scale_eff = dict_get_float(d, "scale_effect", 0.0);
-      tween = transition_manager_->call("wipe_tile", transition_rect_, count,
-                                        dir, scale_eff, duration, is_in);
-    }
+    Variant tween = transition_manager_->call(
+        "apply_transition", transition_rect_, type, duration, is_in);
 
     if (tween.get_type() == Variant::OBJECT) {
       Object *tween_obj = tween;
@@ -697,7 +691,6 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     return true;
   });
 
-  // ----------------------------------------------------------
   // transition_object
   register_action("transition_object", [this](const Variant &payload_v) {
     if (!transition_manager_ || !dialogue_ui_)
@@ -718,21 +711,8 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       return false;
 
     waiting_for_transition_ = true;
-    Variant tween;
-    if (type == "fade") {
-      tween = transition_manager_->call("fade", target_node, duration, is_in);
-    } else if (type == "slide") {
-      Vector2 dir = d.get("direction", Vector2(-1, 0));
-      float dist = dict_get_float(d, "distance", 100.0);
-      tween = transition_manager_->call("slide", target_node, dir, dist,
-                                        duration, is_in);
-    } else if (type == "wipe_tile") {
-      Vector2 count = d.get("tile_count", Vector2(10, 10));
-      Vector2 dir = d.get("direction", Vector2(1, 0));
-      float scale_eff = dict_get_float(d, "scale_effect", 0.0);
-      tween = transition_manager_->call("wipe_tile", target_node, count, dir,
-                                        scale_eff, duration, is_in);
-    }
+    Variant tween = transition_manager_->call("apply_transition", target_node,
+                                              type, duration, is_in);
 
     if (tween.get_type() == Variant::OBJECT) {
       Object *tween_obj = tween;
@@ -1340,28 +1320,28 @@ void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
 
   // arg1, arg2 は bindv で渡された引数 (goto用)
   if (arg1.get_type() == Variant::STRING && arg2.get_type() == Variant::FLOAT) {
+    // on_transition_finished に渡された args:
+    // [0] next_id, [1] fade_duration
     String next_id = String(arg1);
-    float fade_duration = float(arg2);
+    float duration = float(arg2);
 
-    if (!next_id.is_empty()) {
-      // 2. 暗転した状態でシーンロード
-      load_scene_by_id(next_id);
+    load_scene_by_id(next_id);
 
+    if (transition_manager_ && transition_rect_) {
       // 3. フェードイン
-      if (transition_manager_ && transition_rect_) {
-        waiting_for_transition_ = true;
-        Variant tween = transition_manager_->call("fade", transition_rect_,
-                                                  fade_duration, false);
-        if (tween.get_type() == Variant::OBJECT) {
-          Object *tween_obj = tween;
-          tween_obj->connect("finished",
-                             Callable(this, "on_transition_finished"));
-        } else {
-          waiting_for_transition_ = false;
-        }
+      waiting_for_transition_ = true;
+      Variant tween =
+          transition_manager_->call("fade", transition_rect_, duration, true);
+      if (tween.get_type() == Variant::OBJECT) {
+        Object *tween_obj = tween;
+        tween_obj->connect("finished",
+                           Callable(this, "on_transition_finished"));
+      } else {
+        waiting_for_transition_ = false;
       }
     }
   }
+}
 }
 
 bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,

@@ -4,13 +4,27 @@ class_name KarakuriTransitionManager
 ## アドベンチャーシーンやUIにおける汎用トランジションを管理するマネージャー。
 ## ShaderMaterialを使ったワイプやTweenによるスライド/フェードなどを提供します。
 
-# ワイプ用の共通シェーダーリソース（初期化時に一度だけロードされることを想定）
-const WIPE_SHADER_PATH = "res://src/karakuri/shaders/transition_wipe.gdshader"
-var wipe_shader: Shader = null
+# シェーダーリソース群
+const SHADER_DIR = "res://src/karakuri/shaders/"
+var shaders = {
+	"wipe": null,
+	"radial": null,
+	"split": null,
+	"page_turn": null
+}
 
 func _ready() -> void:
-	if ResourceLoader.exists(WIPE_SHADER_PATH):
-		wipe_shader = load(WIPE_SHADER_PATH) as Shader
+	# 利用可能なシェーダーを事前ロード
+	var paths = {
+		"wipe": SHADER_DIR + "transition_wipe.gdshader",
+		"radial": SHADER_DIR + "transition_radial.gdshader",
+		"split": SHADER_DIR + "transition_split.gdshader",
+		"page_turn": SHADER_DIR + "transition_page_turn.gdshader"
+	}
+	
+	for key in paths:
+		if ResourceLoader.exists(paths[key]):
+			shaders[key] = load(paths[key]) as Shader
 
 ## 指定ノードに対してフェード（透明度のAnimation）を行います。
 ## @param node: 対象の CanvasItem (Control, Node2D 等)
@@ -62,6 +76,63 @@ func slide(node: Control, direction: Vector2, distance: float, duration: float, 
 		
 	return tween
 
+# --- Cocos2d-x Style Transitions Dispatcher --- #
+
+## エフェクト名を指定して各種トランジションを実行します。
+## @param node: 対象ノード
+## @param type_name: エフェクト名 (例: "fade", "slide_left", "split_rows", "page_turn")
+## @param duration: なめらかな遷移にかける秒数
+## @param is_in: trueなら出現, falseなら消滅
+func apply_transition(node: CanvasItem, type_name: String, duration: float, is_in: bool) -> Tween:
+	if not node: return null
+	
+	match type_name:
+		# Shader: Wipe (Linear/CrossFade/TurnOffTiles)
+		"fade":
+			return fade(node, duration, is_in)
+		"cross_fade":
+			return wipe_tile(node, Vector2(1, 1), Vector2(0, 0), 0.0, duration, is_in)
+		"turn_off_tiles":
+			return wipe_tile(node, Vector2(12, 12), Vector2(0, 0), 1.0, duration, is_in)
+		"fade_tr": return wipe_tile(node, Vector2(1, 1), Vector2(1, -1), 0.0, duration, is_in)
+		"fade_bl": return wipe_tile(node, Vector2(1, 1), Vector2(-1, 1), 0.0, duration, is_in)
+		"fade_up": return wipe_tile(node, Vector2(1, 1), Vector2(0, -1), 0.0, duration, is_in)
+		"fade_down": return wipe_tile(node, Vector2(1, 1), Vector2(0, 1), 0.0, duration, is_in)
+		
+		# Shader: Radial / Linear
+		"wipe_radial_cw": return _apply_shader_transition(node, "radial", {"mode": 0}, duration, is_in)
+		"wipe_radial_ccw": return _apply_shader_transition(node, "radial", {"mode": 1}, duration, is_in)
+		"wipe_linear_h": return _apply_shader_transition(node, "radial", {"mode": 2}, duration, is_in)
+		"wipe_linear_v": return _apply_shader_transition(node, "radial", {"mode": 3}, duration, is_in)
+		"wipe_center_out": return _apply_shader_transition(node, "radial", {"mode": 4}, duration, is_in)
+		"wipe_center_in": return _apply_shader_transition(node, "radial", {"mode": 5}, duration, is_in)
+		
+		# Shader: Split
+		"split_rows": return _apply_shader_transition(node, "split", {"mode": 0, "splits": 10.0}, duration, is_in)
+		"split_cols": return _apply_shader_transition(node, "split", {"mode": 1, "splits": 10.0}, duration, is_in)
+		
+		# Shader: Page Turn
+		"page_turn": return _apply_shader_transition(node, "page_turn", {"mode": 1}, duration, is_in)
+		
+		# Tween: Move & Slide (requires Control node for size/position manipulation)
+		"slide_left": return slide(node as Control, Vector2(-1, 0), 100.0, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"slide_right": return slide(node as Control, Vector2(1, 0), 100.0, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"slide_up": return slide(node as Control, Vector2(0, -1), 100.0, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"slide_down": return slide(node as Control, Vector2(0, 1), 100.0, duration, is_in) if node is Control else fade(node, duration, is_in)
+		
+		# Tween: Scale, Rotate, Flip (require pivot adjustments)
+		"shrink_grow": return _animate_scale_rotate(node as Control, false, false, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"roto_zoom": return _animate_scale_rotate(node as Control, true, false, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"jump_zoom": return _animate_scale_rotate(node as Control, false, true, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"flip_x": return _animate_flip(node as Control, true, false, false, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"flip_y": return _animate_flip(node as Control, false, true, false, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"zoom_flip": return _animate_flip(node as Control, true, false, true, duration, is_in) if node is Control else fade(node, duration, is_in)
+		"flip_angular": return _animate_flip(node as Control, true, true, false, duration, is_in) if node is Control else fade(node, duration, is_in)
+		
+		_: # デフォルトフォールバック
+			push_warning("Transition type '%s' unknown, falling back to fade." % type_name)
+			return fade(node, duration, is_in)
+
 ## シェーダーを利用したタイル状ワイプ/グラデーションワイプエフェクトを適用します。
 ## @param node: 対象の CanvasItem
 ## @param tile_count: タイル分割数。Vector2(1,1)ならプレーンなグラデーション
@@ -70,45 +141,119 @@ func slide(node: Control, direction: Vector2, distance: float, duration: float, 
 ## @param duration: 遷移にかける秒数
 ## @param is_in: trueなら出現, falseなら消滅
 func wipe_tile(node: CanvasItem, tile_count: Vector2, wipe_dir: Vector2, scale_effect: float, duration: float, is_in: bool) -> Tween:
-	if not node or not wipe_shader: return null
+	var actual_dir = -wipe_dir if is_in else wipe_dir
+	var params = {
+		"tile_count": tile_count,
+		"wipe_direction": actual_dir,
+		"smooth_size": 0.1,
+		"scale_effect": scale_effect
+	}
+	return _apply_shader_transition(node, "wipe", params, duration, is_in)
+
+## 汎用のシェーダートランジション実行処理
+func _apply_shader_transition(node: CanvasItem, shader_key: String, params: Dictionary, duration: float, is_in: bool) -> Tween:
+	if not node or not shaders.get(shader_key): return null
 	
-	# シェーダーマテリアルの準備（既存のものを上書き）
 	var mat = ShaderMaterial.new()
-	mat.shader = wipe_shader
-	mat.set_shader_parameter("tile_count", tile_count)
+	mat.shader = shaders[shader_key]
+	
+	for k in params:
+		mat.set_shader_parameter(k, params[k])
+	
 	node.material = mat
+	node.modulate.a = 1.0 # Shader effects fully rely on the shader progress, not node alpha
 	
-	# "出現"のときは進行方向を逆にすることで、向かってきた方向から現れるようにする
-	var actual_dir = wipe_dir
-	if is_in:
-		actual_dir = -wipe_dir
-	
-	mat.set_shader_parameter("wipe_direction", actual_dir)
-	mat.set_shader_parameter("smooth_size", 0.1)
-	mat.set_shader_parameter("scale_effect", scale_effect)
-	
-	# is_in が true = progress は 1.0(消滅) から 0.0(出現) へ向かう
-	# is_in が false = progress は 0.0(出現) から 1.0(消滅) へ向かう
 	var start_progress = 1.0 if is_in else 0.0
 	var target_progress = 0.0 if is_in else 1.0
 	
 	mat.set_shader_parameter("progress", start_progress)
 	
-	# 念のためノード自体のアルファは1に戻す（見えなくならないように）
-	node.modulate.a = 1.0
-	
 	var tween = node.create_tween()
 	tween.tween_property(mat, "shader_parameter/progress", target_progress, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	
-	# Tween完了後にマテリアルを掃除する（重くならないように）
 	tween.tween_callback(func():
-		if is_in:
-			node.material = null
-			# 完全に表示されている状態に戻す
-		else:
-			# 消滅の場合は非表示を維持するためアルファ0にしてからマテリアルを外す
+		node.material = null
+		if not is_in:
 			node.modulate.a = 0.0
-			node.material = null
 	)
+	
+	return tween
+
+# --- Tween Based Cocos2d-x Transition Implementations --- #
+
+func _animate_scale_rotate(node: Control, do_rotation: bool, do_jump: bool, duration: float, is_in: bool) -> Tween:
+	var tween = node.create_tween()
+	node.pivot_offset = node.size / 2.0
+	
+	var base_scale = Vector2.ONE
+	var start_scale = Vector2.ZERO if is_in else base_scale
+	var target_scale = base_scale if is_in else Vector2.ZERO
+	
+	node.scale = start_scale
+	node.modulate.a = 0.0 if is_in else 1.0
+	
+	tween.parallel().tween_property(node, "scale", target_scale, duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT if is_in else Tween.EASE_IN)
+	tween.parallel().tween_property(node, "modulate:a", 1.0 if is_in else 0.0, duration * 0.8).set_delay(0.0 if is_in else duration * 0.2)
+	
+	if do_rotation:
+		var start_rot = deg_to_rad(-720.0) if is_in else 0.0
+		var target_rot = 0.0 if is_in else deg_to_rad(720.0)
+		node.rotation = start_rot
+		tween.parallel().tween_property(node, "rotation", target_rot, duration).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT if is_in else Tween.EASE_IN)
+	
+	if do_jump:
+		if not node.has_meta("original_pos"):
+			node.set_meta("original_pos", node.position)
+		var base_pos: Vector2 = node.get_meta("original_pos")
+		
+		# Jump up and down
+		var jump_height = 100.0
+		var half_t = duration / 2.0
+		if is_in:
+			node.position = base_pos
+			# For 'in', it usually jumps while growing
+			var bounce_prop = tween.parallel().tween_property(node, "position:y", base_pos.y - jump_height, half_t).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			bounce_prop.finished.connect(func():
+				var t2 = node.create_tween()
+				t2.tween_property(node, "position:y", base_pos.y, half_t).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+			)
+		else:
+			var bounce_prop = tween.parallel().tween_property(node, "position:y", base_pos.y - jump_height, half_t).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			bounce_prop.finished.connect(func():
+				var t2 = node.create_tween()
+				t2.tween_property(node, "position:y", base_pos.y, half_t).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+			)
+			
+	return tween
+
+func _animate_flip(node: Control, do_x: bool, do_y: bool, do_zoom: bool, duration: float, is_in: bool) -> Tween:
+	var tween = node.create_tween()
+	node.pivot_offset = node.size / 2.0
+	
+	var base_scale = Vector2.ONE
+	var flip_scale = Vector2(0.0 if do_x else 1.0, 0.0 if do_y else 1.0)
+	
+	var start_scale = flip_scale if is_in else base_scale
+	var target_scale = base_scale if is_in else flip_scale
+	
+	node.scale = start_scale
+	node.modulate.a = 0.0 if is_in else 1.0
+	
+	# Scale down (if zooming) then flip
+	if do_zoom:
+		var zoom_scale = Vector2(0.5, 0.5)
+		if is_in:
+			# Fast appear from flipped, then zoom to 1.0
+			node.scale = flip_scale * zoom_scale
+			tween.tween_property(node, "scale", base_scale, duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		else:
+			# Zoom down to half, then flip to zero
+			tween.tween_property(node, "scale", zoom_scale, duration * 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			tween.tween_property(node, "scale", flip_scale, duration * 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	else:
+		# Just flip
+		tween.tween_property(node, "scale", target_scale, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	
+	tween.parallel().tween_property(node, "modulate:a", 1.0 if is_in else 0.0, duration * 0.5).set_delay(0.0 if is_in else duration * 0.5)
 	
 	return tween
