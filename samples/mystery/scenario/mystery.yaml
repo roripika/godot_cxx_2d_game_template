@@ -9,7 +9,9 @@ scenes:
       - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_intro" }
       - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.prologue.boss_call" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_ack" }
-      - goto: "warehouse_investigation"
+      - goto:
+          scene_id: "warehouse_investigation"
+          fade_duration: 1.0
 
   warehouse_investigation:
     mode: "investigation"
@@ -69,7 +71,9 @@ scenes:
               then:
                 - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.ready" }
                 - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.return" }
-                - goto: "deduction"
+                - goto:
+                    scene_id: "deduction"
+                    fade_duration: 1.0
               else:
                 - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.not_ready" }
 
@@ -85,7 +89,9 @@ scenes:
                 actions:
                   - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.ghost.response1" }
                   - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.deduction.ghost.response2" }
-                  - goto: "confrontation"
+                  - goto:
+                      scene_id: "confrontation"
+                      fade_duration: 1.0
             - option:
                 text_key: "mystery.deduction.choice.human"
                 actions:
@@ -95,7 +101,9 @@ scenes:
                       value: 0
                       then:
                         - set_flag: { key: "game_over", value: true }
-                        - goto: "ending_bad"
+                        - goto:
+                            scene_id: "ending_bad"
+                            fade_duration: 2.0
                       else:
                         - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.human.retry" }
                         - goto: "deduction"
@@ -108,7 +116,9 @@ scenes:
                       value: 0
                       then:
                         - set_flag: { key: "game_over", value: true }
-                        - goto: "ending_bad"
+                        - goto:
+                            scene_id: "ending_bad"
+                            fade_duration: 2.0
                       else:
                         - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.alien.retry" }
                         - goto: "deduction"
@@ -141,10 +151,14 @@ scenes:
               shake_key: "mystery.testimony.line3.shake"
           on_success:
             - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.success" }
-            - goto: "ending_good"
+            - goto:
+                scene_id: "ending_good"
+                fade_duration: 1.5
           on_failure:
             - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.failure" }
-            - goto: "ending_bad"
+            - goto:
+                scene_id: "ending_bad"
+                fade_duration: 2.0
 
   ending_good:
     mode: "ending"

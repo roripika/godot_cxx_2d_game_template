@@ -96,9 +96,7 @@ static CollisionShape2D *find_collision_shape(Area2D *area) {
 
 } // namespace
 
-KarakuriScenarioRunner::KarakuriScenarioRunner() {
-  init_builtin_actions();
-}
+KarakuriScenarioRunner::KarakuriScenarioRunner() { init_builtin_actions(); }
 
 KarakuriScenarioRunner::~KarakuriScenarioRunner() {}
 
@@ -157,13 +155,16 @@ NodePath KarakuriScenarioRunner::get_testimony_system_path() const {
 }
 
 void KarakuriScenarioRunner::_bind_methods() {
-  // Signal handlers (must be bound to be callable through Callable connections).
+  // Signal handlers (must be bound to be callable through Callable
+  // connections).
   ClassDB::bind_method(D_METHOD("on_clicked_at", "pos"),
                        &KarakuriScenarioRunner::on_clicked_at);
   ClassDB::bind_method(D_METHOD("on_choice_selected", "index", "text"),
                        &KarakuriScenarioRunner::on_choice_selected);
   ClassDB::bind_method(D_METHOD("on_dialogue_finished"),
                        &KarakuriScenarioRunner::on_dialogue_finished);
+  ClassDB::bind_method(D_METHOD("on_transition_finished"),
+                       &KarakuriScenarioRunner::on_transition_finished);
   ClassDB::bind_method(D_METHOD("on_testimony_complete", "success"),
                        &KarakuriScenarioRunner::on_testimony_complete);
   ClassDB::bind_method(D_METHOD("on_testimony_next_requested"),
@@ -231,6 +232,8 @@ void KarakuriScenarioRunner::_ready() {
   evidence_ui_ = resolve_node_path(evidence_ui_path_);
   interaction_manager_ = resolve_node_path(interaction_manager_path_);
   testimony_system_ = resolve_node_path(testimony_system_path_);
+  transition_manager_ = resolve_node_path(transition_manager_path_);
+  transition_rect_ = resolve_node_path(transition_rect_path_);
 
   if (!scene_container_) {
     UtilityFunctions::push_error(
@@ -277,7 +280,8 @@ void KarakuriScenarioRunner::_ready() {
   if (testimony_system_) {
     if (testimony_system_->has_signal("next_requested")) {
       const Callable cb_next(this, "on_testimony_next_requested");
-      const Error err_next = testimony_system_->connect("next_requested", cb_next);
+      const Error err_next =
+          testimony_system_->connect("next_requested", cb_next);
       if (err_next != OK && err_next != ERR_ALREADY_EXISTS) {
         UtilityFunctions::push_warning(
             "KarakuriScenarioRunner: failed to connect next_requested: ",
@@ -342,9 +346,7 @@ void KarakuriScenarioRunner::_ready() {
   load_scene_by_id(start_id);
 }
 
-void KarakuriScenarioRunner::_process(double delta) {
-  step_actions(delta);
-}
+void KarakuriScenarioRunner::_process(double delta) { step_actions(delta); }
 
 bool KarakuriScenarioRunner::load_scenario() {
   scenario_root_.clear();
@@ -363,8 +365,8 @@ bool KarakuriScenarioRunner::load_scenario() {
   Variant root;
   String err;
   if (!KarakuriYamlLite::parse(yaml_text, root, err)) {
-    UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: YAML parse error: ", err);
+    UtilityFunctions::push_error("KarakuriScenarioRunner: YAML parse error: ",
+                                 err);
     return false;
   }
 
@@ -412,8 +414,7 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   current_scene_instance_ = nullptr;
   hotspot_bindings_.clear();
 
-  Ref<PackedScene> packed =
-      ResourceLoader::get_singleton()->load(scene_path);
+  Ref<PackedScene> packed = ResourceLoader::get_singleton()->load(scene_path);
   if (packed.is_null()) {
     UtilityFunctions::push_error(
         "KarakuriScenarioRunner: failed to load PackedScene: ", scene_path);
@@ -431,7 +432,8 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   current_scene_id_ = scene_id;
   current_scene_instance_ = inst;
 
-  // Confrontation UI should not persist across scenes unless started by actions.
+  // Confrontation UI should not persist across scenes unless started by
+  // actions.
   if (testimony_system_) {
     if (testimony_system_->has_method("hide_panel")) {
       testimony_system_->call("hide_panel");
@@ -459,8 +461,7 @@ void KarakuriScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
     return;
   }
 
-  const Dictionary hotspots =
-      as_dict(scene_dict.get("hotspots", Dictionary()));
+  const Dictionary hotspots = as_dict(scene_dict.get("hotspots", Dictionary()));
   if (hotspots.is_empty()) {
     return;
   }
@@ -476,8 +477,7 @@ void KarakuriScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
     }
     // Do not filter by "owned" here: at runtime, PackedScene instances can
     // have null owners, and we still want to bind hotspots by name.
-    Node *area_node =
-        current_scene_instance_->find_child(node_id, true, false);
+    Node *area_node = current_scene_instance_->find_child(node_id, true, false);
     Area2D *area = Object::cast_to<Area2D>(area_node);
     if (!area) {
       continue;
@@ -507,7 +507,8 @@ void KarakuriScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_) {
     return;
   }
-  if (waiting_for_choice_ || waiting_for_dialogue_ || testimony_.waiting) {
+  if (waiting_for_choice_ || waiting_for_dialogue_ || testimony_.waiting ||
+      waiting_for_transition_) {
     return;
   }
   if (wait_remaining_sec_ > 0.0) {
@@ -593,7 +594,8 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     return true;
   });
 
-  // ------------------------------------------------------- give_evidence / give_item
+  // ------------------------------------------------------- give_evidence /
+  // give_item
   auto give_handler = [this](const Variant &payload_v) {
     const String item_id = String(payload_v);
     if (item_id.is_empty()) {
@@ -625,11 +627,119 @@ void KarakuriScenarioRunner::init_builtin_actions() {
 
   // --------------------------------------------------------------------- goto
   register_action("goto", [this](const Variant &payload_v) {
-    const String next_id = String(payload_v);
+    String next_id = "";
+    float fade_duration = 0.0;
+
+    if (payload_v.get_type() == Variant::STRING) {
+      next_id = String(payload_v);
+    } else if (payload_v.get_type() == Variant::DICTIONARY) {
+      Dictionary d = payload_v;
+      next_id = dict_get_string(d, "scene_id", "");
+      fade_duration = dict_get_float(d, "fade_duration", 0.0);
+    }
+
     if (next_id.is_empty()) {
       return false;
     }
-    load_scene_by_id(next_id);
+
+    if (fade_duration > 0.0 && transition_manager_ && transition_rect_) {
+      // 1. フェードアウト
+      waiting_for_transition_ = true;
+      Variant tween = transition_manager_->call("fade", transition_rect_,
+                                                fade_duration, true);
+      if (tween.get_type() == Variant::OBJECT) {
+        Object *tween_obj = tween;
+        // Tween完了後にシーンロードと明転を行うCallable
+        Callable on_fade_out_done =
+            Callable::create(this, "on_transition_finished")
+                .bindv(Array::make(next_id, fade_duration));
+        tween_obj->connect("finished", on_fade_out_done);
+      } else {
+        waiting_for_transition_ = false;
+        load_scene_by_id(next_id);
+      }
+    } else {
+      load_scene_by_id(next_id);
+    }
+    return true;
+  });
+
+  // ----------------------------------------------------------
+  // transition_screen
+  register_action("transition_screen", [this](const Variant &payload_v) {
+    if (!transition_manager_ || !transition_rect_)
+      return false;
+
+    Dictionary d = as_dict(payload_v);
+    String type = dict_get_string(d, "type", "fade");
+    float duration = dict_get_float(d, "duration", 0.5);
+    bool is_in = dict_get_string(d, "mode", "in") == "in";
+
+    waiting_for_transition_ = true;
+    Variant tween;
+    if (type == "fade") {
+      tween =
+          transition_manager_->call("fade", transition_rect_, duration, is_in);
+    } else if (type == "wipe_tile") {
+      Vector2 count = d.get("tile_count", Vector2(10, 10));
+      Vector2 dir = d.get("direction", Vector2(1, 0));
+      float scale_eff = dict_get_float(d, "scale_effect", 0.0);
+      tween = transition_manager_->call("wipe_tile", transition_rect_, count,
+                                        dir, scale_eff, duration, is_in);
+    }
+
+    if (tween.get_type() == Variant::OBJECT) {
+      Object *tween_obj = tween;
+      tween_obj->connect("finished", Callable(this, "on_transition_finished"));
+    } else {
+      waiting_for_transition_ = false;
+    }
+    return true;
+  });
+
+  // ----------------------------------------------------------
+  // transition_object
+  register_action("transition_object", [this](const Variant &payload_v) {
+    if (!transition_manager_ || !dialogue_ui_)
+      return false;
+
+    Dictionary d = as_dict(payload_v);
+    String target = dict_get_string(d, "target", "");
+    String type = dict_get_string(d, "type", "fade");
+    float duration = dict_get_float(d, "duration", 0.5);
+    bool is_in = dict_get_string(d, "mode", "in") == "in";
+
+    // 現在の簡易実装では dialogue_ui_
+    // 配下の特定のノード名やテクスチャを推測する 今回は例として DialogueUI
+    // 内部の "PortraitRect" に対してエフェクトを掛けるものとする
+    Node *target_node =
+        dialogue_ui_->get_node_or_null(NodePath("PortraitRect"));
+    if (!target_node)
+      return false;
+
+    waiting_for_transition_ = true;
+    Variant tween;
+    if (type == "fade") {
+      tween = transition_manager_->call("fade", target_node, duration, is_in);
+    } else if (type == "slide") {
+      Vector2 dir = d.get("direction", Vector2(-1, 0));
+      float dist = dict_get_float(d, "distance", 100.0);
+      tween = transition_manager_->call("slide", target_node, dir, dist,
+                                        duration, is_in);
+    } else if (type == "wipe_tile") {
+      Vector2 count = d.get("tile_count", Vector2(10, 10));
+      Vector2 dir = d.get("direction", Vector2(1, 0));
+      float scale_eff = dict_get_float(d, "scale_effect", 0.0);
+      tween = transition_manager_->call("wipe_tile", target_node, count, dir,
+                                        scale_eff, duration, is_in);
+    }
+
+    if (tween.get_type() == Variant::OBJECT) {
+      Object *tween_obj = tween;
+      tween_obj->connect("finished", Callable(this, "on_transition_finished"));
+    } else {
+      waiting_for_transition_ = false;
+    }
     return true;
   });
 
@@ -654,7 +764,8 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     return true;
   });
 
-  // --------------------------------------------------------------- if_has_items
+  // ---------------------------------------------------------------
+  // if_has_items
   register_action("if_has_items", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
     const Array items = as_array(payload.get("items", Array()));
@@ -846,10 +957,8 @@ void KarakuriScenarioRunner::register_mystery_actions() {
           "KarakuriScenarioRunner: testimony action has empty testimonies");
       return false;
     }
-    testimony_.success_actions =
-        as_array(payload.get("on_success", Array()));
-    testimony_.failure_actions =
-        as_array(payload.get("on_failure", Array()));
+    testimony_.success_actions = as_array(payload.get("on_success", Array()));
+    testimony_.failure_actions = as_array(payload.get("on_failure", Array()));
 
     testimony_.max_rounds = int(payload.get("max_rounds", 1));
     if (testimony_.max_rounds < 1) {
@@ -892,8 +1001,10 @@ void KarakuriScenarioRunner::register_mystery_actions() {
 }
 
 void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
-  if (is_executing_actions_ || !mode_input_enabled_) {
-    // Prevent accidental re-entry while scripted actions are running.
+  if (is_executing_actions_ || !mode_input_enabled_ ||
+      waiting_for_transition_) {
+    // Prevent accidental re-entry while scripted actions are running, or during
+    // transitions.
     return;
   }
   for (int i = 0; i < hotspot_bindings_.size(); i++) {
@@ -957,7 +1068,8 @@ void KarakuriScenarioRunner::on_testimony_next_requested() {
                          "testimony_incomplete",
                          tr_key("testimony_incomplete"));
     } else if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
-      dialogue_ui_->call("show_message", "System", tr_key("testimony_incomplete"));
+      dialogue_ui_->call("show_message", "System",
+                         tr_key("testimony_incomplete"));
     }
 
     if (testimony_.round >= testimony_.max_rounds) {
@@ -992,8 +1104,8 @@ void KarakuriScenarioRunner::on_testimony_shake_requested() {
     // available immediately so the player can respond to the shake line.
     // If a blocking shake dialogue is needed in future, add a
     // waiting_for_shake_ flag paired with a shake_dialogue_finished signal.
-    dialogue_ui_->call("show_message_with_keys", speaker_key, speaker, shake_key,
-                       shake);
+    dialogue_ui_->call("show_message_with_keys", speaker_key, speaker,
+                       shake_key, shake);
     return;
   }
   if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
@@ -1006,7 +1118,8 @@ void KarakuriScenarioRunner::on_testimony_present_requested() {
     return;
   }
   testimony_.waiting_for_evidence = true;
-  if (testimony_system_ && testimony_system_->has_method("set_actions_enabled")) {
+  if (testimony_system_ &&
+      testimony_system_->has_method("set_actions_enabled")) {
     testimony_system_->call("set_actions_enabled", false);
   }
   if (evidence_ui_->has_method("show_inventory")) {
@@ -1024,7 +1137,8 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
   if (evidence_ui_ && evidence_ui_->has_method("hide_inventory")) {
     evidence_ui_->call("hide_inventory");
   }
-  if (testimony_system_ && testimony_system_->has_method("set_actions_enabled")) {
+  if (testimony_system_ &&
+      testimony_system_->has_method("set_actions_enabled")) {
     testimony_system_->call("set_actions_enabled", true);
   }
 
@@ -1098,8 +1212,9 @@ void KarakuriScenarioRunner::show_current_testimony_line() {
                              ? dict_get_string(line, "speaker_text", "Witness")
                              : tr_key(speaker_key);
   const String text_key = dict_get_string(line, "text_key", "");
-  const String text = text_key.is_empty() ? dict_get_string(line, "text_text", "")
-                                          : tr_key(text_key);
+  const String text = text_key.is_empty()
+                          ? dict_get_string(line, "text_text", "")
+                          : tr_key(text_key);
 
   if (testimony_system_->has_method("show_panel")) {
     testimony_system_->call("show_panel");
@@ -1107,8 +1222,8 @@ void KarakuriScenarioRunner::show_current_testimony_line() {
     testimony_system_->set("visible", true);
   }
   if (testimony_system_->has_method("show_testimony_line_with_keys")) {
-    testimony_system_->call("show_testimony_line_with_keys", speaker_key, speaker,
-                            text_key, text);
+    testimony_system_->call("show_testimony_line_with_keys", speaker_key,
+                            speaker, text_key, text);
   } else if (testimony_system_->has_method("show_testimony_line")) {
     testimony_system_->call("show_testimony_line", speaker, text);
   }
@@ -1200,8 +1315,9 @@ void KarakuriScenarioRunner::notify_mode_enter(const String &scene_id,
   set_mode_input_enabled(true);
 }
 
-String KarakuriScenarioRunner::resolve_mode_id(const String &scene_id,
-                                               const Dictionary &scene_dict) const {
+String
+KarakuriScenarioRunner::resolve_mode_id(const String &scene_id,
+                                        const Dictionary &scene_dict) const {
   const String explicit_mode = dict_get_string(scene_dict, "mode", "");
   if (!explicit_mode.is_empty()) {
     return explicit_mode;
@@ -1216,6 +1332,36 @@ String KarakuriScenarioRunner::resolve_mode_id(const String &scene_id,
     return "ending";
   }
   return "investigation";
+}
+
+void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
+                                                    const Variant &arg2) {
+  waiting_for_transition_ = false;
+
+  // arg1, arg2 は bindv で渡された引数 (goto用)
+  if (arg1.get_type() == Variant::STRING && arg2.get_type() == Variant::FLOAT) {
+    String next_id = String(arg1);
+    float fade_duration = float(arg2);
+
+    if (!next_id.is_empty()) {
+      // 2. 暗転した状態でシーンロード
+      load_scene_by_id(next_id);
+
+      // 3. フェードイン
+      if (transition_manager_ && transition_rect_) {
+        waiting_for_transition_ = true;
+        Variant tween = transition_manager_->call("fade", transition_rect_,
+                                                  fade_duration, false);
+        if (tween.get_type() == Variant::OBJECT) {
+          Object *tween_obj = tween;
+          tween_obj->connect("finished",
+                             Callable(this, "on_transition_finished"));
+        } else {
+          waiting_for_transition_ = false;
+        }
+      }
+    }
+  }
 }
 
 bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,

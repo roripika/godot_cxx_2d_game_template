@@ -146,6 +146,10 @@ private:
       godot::NodePath("InteractionManager");
   godot::NodePath testimony_system_path_ =
       godot::NodePath("../CanvasLayer/TestimonySystem");
+  godot::NodePath transition_manager_path_ =
+      godot::NodePath("TransitionManager");
+  godot::NodePath transition_rect_path_ =
+      godot::NodePath("TransitionMaskLayer/TransitionRect");
 
   godot::Dictionary scenario_root_;
   godot::Dictionary scenes_; // scene_id -> scene dict
@@ -156,6 +160,8 @@ private:
   godot::Node *evidence_ui_ = nullptr;
   godot::Node *interaction_manager_ = nullptr;
   godot::Node *testimony_system_ = nullptr;
+  godot::Node *transition_manager_ = nullptr;
+  godot::Node *transition_rect_ = nullptr;
   godot::Node *current_scene_instance_ = nullptr;
 
   godot::Array pending_actions_;
@@ -177,6 +183,12 @@ private:
    * 上書きされるのを防ぐため、シグナルが発火するまで後続のアクションをブロックします。
    */
   bool waiting_for_dialogue_ = false;
+
+  /**
+   * @brief Transition Manager
+   * がエフェクト（Tween）の完了を待機しているかを示すフラグ。
+   */
+  bool waiting_for_transition_ = false;
 
   /**
    * @brief Mysteryの証言コンフロンテーションセッションのステート。
@@ -205,6 +217,8 @@ private:
   void on_testimony_shake_requested();
   void on_testimony_present_requested();
   void on_evidence_selected(const godot::String &evidence_id);
+  void on_transition_finished(const godot::Variant &arg1 = godot::Variant(),
+                              const godot::Variant &arg2 = godot::Variant());
   bool hotspot_matches_click(const HotspotBinding &hs,
                              const godot::Vector2 &pos) const;
   void trigger_hotspot(const HotspotBinding &hs);

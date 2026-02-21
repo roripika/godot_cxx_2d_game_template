@@ -8,8 +8,25 @@
 [ext_resource type="Script" path="res://samples/mystery/scripts/ui_capture_driver.gd" id="6_ui_capture_driver"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/mystery_shell_ui.gd" id="7_shell_ui"]
 
+[ext_resource type="Script" path="res://samples/mystery/scripts/mystery_shell_ui.gd" id="7_shell_ui"]
+[ext_resource type="Script" path="res://samples/mystery/scripts/transition_manager.gd" id="8_trans"]
+
 [node name="KarakuriMysteryShell" type="Node2D"]
 script = ExtResource("7_shell_ui")
+
+[node name="TransitionManager" type="Node" parent="."]
+script = ExtResource("8_trans")
+
+[node name="TransitionMaskLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="TransitionRect" type="ColorRect" parent="TransitionMaskLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="ScenarioRunner" type="KarakuriScenarioRunner" parent="."]
 scene_container_path = NodePath("../SceneContainer")

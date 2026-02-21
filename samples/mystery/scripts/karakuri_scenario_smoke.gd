@@ -49,13 +49,33 @@ func _boot_shell() -> void:
 	await _wait_frames(2)
 	var dui := _dialogue_ui()
 	dui.set("typing_speed", 0.0)
-	if dui.has_method("skip_typing"):
-		dui.call("skip_typing")
 
-func _wait_for_base(name: String, max_frames: int = 360) -> bool:
+func _wait_for_base(name: String, max_frames: int = 2000) -> bool:
+	print("[KARAKURI_SMOKE] waiting for base: ", name)
 	return await _wait_until(
 		func() -> bool:
 			return _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == name,
+		max_frames
+	)
+
+func _simulate_click() -> void:
+	var event := InputEventMouseButton.new()
+	event.button_index = MOUSE_BUTTON_LEFT
+	event.pressed = true
+	event.global_position = Vector2(640, 360) # screen center
+	Input.parse_input_event(event)
+
+	var event_up := InputEventMouseButton.new()
+	event_up.button_index = MOUSE_BUTTON_LEFT
+	event_up.pressed = false
+	event_up.global_position = Vector2(640, 360)
+	Input.parse_input_event(event_up)
+
+func _wait_runner_idle(max_frames: int = 2000) -> bool:
+	return await _wait_until(
+		func() -> bool:
+			var runner := _runner()
+			return runner != null and not runner.call("is_running"),
 		max_frames
 	)
 
@@ -72,9 +92,17 @@ func _go_to_deduction(gs: Node) -> bool:
 
 	var wb := _scene_container().get_child(0)
 	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
-	await _wait_frames(20)
+	
+	# Skip the 2 exit dialogue lines
+	for _i in range(5):
+		await _wait_frames(60)
+		_simulate_click()
+		await _wait_frames(10)
 
-	var reached_office := await _wait_for_base("OfficeBase")
+	await _wait_runner_idle(2000)
+	print("[KARAKURI_SMOKE] runner idle after clicking hs_exit")
+
+	var reached_office := await _wait_for_base("OfficeBase", 2000)
 	return reached_office
 
 func _run() -> void:
@@ -99,13 +127,25 @@ func _run() -> void:
 	runner.call("on_choice_selected", 1, "")
 	await _wait_frames(60)
 	_assert(int(gs.call("get_health")) == hp_before_wrong - 1, "wrong deduction did not reduce HP")
-	await _wait_frames(60)
+	
+	# Skip Ghost path dialogs: 'Boss: Response 1', 'Detective: Response 2'
+	for _i in range(3):
+		await _wait_frames(60)
+		_simulate_click()
+
+	await _wait_frames(120)
+
 	runner.call("on_choice_selected", 0, "")
 
-	var reached_confrontation := await _wait_for_base("WarehouseBase")
+	var reached_confrontation := await _wait_for_base("WarehouseBase", 3000)
 	_assert(reached_confrontation, "failed to transition to confrontation scene")
-	await _wait_frames(80)
+	
+	# Skip Confrontation intro 'Detective: start1', 'Rat Witness: start2'
+	for _i in range(4):
+		await _wait_frames(60)
+		_simulate_click()
 
+	await _wait_runner_idle(2000)
 	var present_button := current_scene.get_node("MainInfoUiLayer/TestimonySystem/VBoxContainer/ActionContainer/PresentButton")
 	_set_locale("en")
 	await _wait_frames(3)
@@ -133,7 +173,7 @@ func _run() -> void:
 	await _wait_frames(5)
 	runner.call("on_evidence_selected", "torn_memo")
 
-	var reached_good_ending := await _wait_for_base("EndingBase")
+	var reached_good_ending := await _wait_for_base("EndingBase", 2000)
 	_assert(reached_good_ending, "good ending was not reached")
 
 	# Failure branch: wrong deduction until HP reaches 0.
@@ -145,9 +185,16 @@ func _run() -> void:
 	for _i in range(3):
 		runner = _runner()
 		runner.call("on_choice_selected", 2, "")
-		await _wait_frames(80)
+		
+		# Skip 'Boss: Alien Wrong 1', 'Detective: Retrying', 'Boss: Question'
+		for _j in range(4):
+			await _wait_frames(60)
+			_simulate_click()
+			
+		await _wait_frames(120)
+		await _wait_runner_idle(2000)
 
-	var reached_bad_ending := await _wait_for_base("EndingBase")
+	var reached_bad_ending := await _wait_for_base("EndingBase", 3000)
 	_assert(reached_bad_ending, "bad ending was not reached after HP depletion")
 
 	if _failed:
