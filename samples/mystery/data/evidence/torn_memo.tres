@@ -1,19 +1,11 @@
 [gd_resource type="Resource" script_class="EvidenceItem" format=3]
 
-[ext_resource type="Script" path="res://samples/mystery/scripts/evidence_item.gd" id="1_by704"]
-
-[sub_resource type="Gradient" id="Gradient_ogjbw"]
-colors = PackedColorArray(0.8, 0.8, 0.8, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mdsy7"]
-gradient = SubResource("Gradient_ogjbw")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
+[ext_resource type="Script" path="res://samples/mystery/scripts/evidence_item.gd" id="1_iif5j"]
+[ext_resource type="Texture2D" path="res://assets/mystery/icons/128x128/zodiac_memo.png" id="2_icon"]
 
 [resource]
-script = ExtResource("1_by704")
+script = ExtResource("1_iif5j")
 id = "torn_memo"
 display_name = "evidence_torn_memo"
 description = "evidence_torn_memo_desc"
-icon = SubResource("GradientTexture2D_mdsy7")
+icon = ExtResource("2_icon")

@@ -23,6 +23,7 @@ var _message_text_key: String = ""
 var _message_text: String = ""
 var _choice_defs: Array[Dictionary] = []
 var _mode_input_enabled: bool = true
+var _waiting_for_click: bool = false
 
 func _ready() -> void:
 	visible = false
@@ -41,6 +42,7 @@ func show_message_with_keys(speaker_key: String, speaker: String, text_key: Stri
 	_message_text = text
 	_choice_defs.clear()
 	_clear_choices()
+	_update_portrait(speaker_key if speaker_key != "" else speaker)
 	_apply_message_name()
 	_type_text(_resolve_text(_message_text_key, _message_text))
 
@@ -80,13 +82,29 @@ func clear_portrait() -> void:
 	if portrait_rect:
 		portrait_rect.visible = false
 
+func _update_portrait(speaker_name: String) -> void:
+	var portrait_id = ""
+	match speaker_name:
+		"Detective", "探偵": portrait_id = "detective"
+		"Boss", "所長": portrait_id = "boss"
+		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者": portrait_id = "rat_witness"
+	
+	if portrait_id != "":
+		var path = "res://assets/mystery/characters/%s.png" % portrait_id
+		if ResourceLoader.exists(path):
+			set_portrait(load(path))
+		else:
+			clear_portrait()
+	else:
+		clear_portrait()
+
 func skip_typing() -> void:
 	if not is_typing:
 		return
 	if text_label:
 		text_label.text = current_text
 	is_typing = false
-	dialogue_finished.emit()
+	_waiting_for_click = true
 
 func _type_text(text: String) -> void:
 	if is_typing:
@@ -102,7 +120,7 @@ func _type_text(text: String) -> void:
 		if text_label:
 			text_label.text = text
 		is_typing = false
-		dialogue_finished.emit()
+		_waiting_for_click = true
 		return
 
 	for i in range(len(text)):
@@ -112,8 +130,9 @@ func _type_text(text: String) -> void:
 			text_label.text += str(text[i])
 		await get_tree().create_timer(typing_speed).timeout
 
-	is_typing = false
-	dialogue_finished.emit()
+	if is_typing:
+		is_typing = false
+		_waiting_for_click = true
 
 func _on_choice_pressed(index: int, text: String) -> void:
 	if not _mode_input_enabled:
@@ -181,12 +200,14 @@ func _on_locale_changed(_locale: String) -> void:
 	_refresh_locale()
 
 func _input(event: InputEvent) -> void:
-	if not _mode_input_enabled:
-		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if is_typing:
 			skip_typing()
-			get_tree().root.set_input_as_handled()
+			get_viewport().set_input_as_handled()
+		elif _waiting_for_click:
+			_waiting_for_click = false
+			dialogue_finished.emit()
+			get_viewport().set_input_as_handled()
 
 func _clear_choices() -> void:
 	if not choices_container:

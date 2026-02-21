@@ -12,6 +12,7 @@ signal present_requested()
 @onready var next_btn: Button = get_node_or_null("VBoxContainer/ActionContainer/NextButton")
 @onready var shake_btn: Button = get_node_or_null("VBoxContainer/ActionContainer/ShakeButton")
 @onready var present_btn: Button = get_node_or_null("VBoxContainer/ActionContainer/PresentButton")
+@onready var portrait_rect: TextureRect = get_node_or_null("PortraitRect")
 
 var _speaker_key: String = ""
 var _speaker_text: String = ""
@@ -42,6 +43,7 @@ func show_testimony_line_with_keys(speaker_key: String, speaker: String, text_ke
 	_text_key = text_key
 	_text_text = text
 	_apply_texts()
+	_update_portrait(speaker_key if speaker_key != "" else speaker)
 
 func set_line_progress(current_index: int, total_count: int) -> void:
 	if not _ui_ready or progress_label == null:
@@ -134,3 +136,29 @@ func _connect_localization_service() -> void:
 
 func _on_locale_changed(_locale: String) -> void:
 	_refresh_locale()
+
+func set_portrait(texture: Texture2D) -> void:
+	if portrait_rect:
+		portrait_rect.texture = texture
+		portrait_rect.visible = true
+
+func clear_portrait() -> void:
+	if portrait_rect:
+		portrait_rect.visible = false
+
+func _update_portrait(speaker_name: String) -> void:
+	var portrait_id = ""
+	match speaker_name:
+		"Detective", "探偵", "speaker.detective": portrait_id = "detective"
+		"Boss", "所長", "speaker.boss": portrait_id = "boss"
+		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者", "speaker.rat_witness": portrait_id = "rat_witness"
+	
+	if portrait_id != "":
+		var path = "res://assets/mystery/characters/%s.png" % portrait_id
+		if ResourceLoader.exists(path):
+			set_portrait(load(path))
+		else:
+			clear_portrait()
+	else:
+		clear_portrait()
+

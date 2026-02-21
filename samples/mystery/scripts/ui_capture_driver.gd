@@ -11,20 +11,33 @@ func _ready() -> void:
 	await get_tree().process_frame
 
 	_setup_state_label()
+	
 	_apply_base_state()
 	_set_state_text("CAPTURE: BASE")
+	await _take_screenshot("mystery_capture_base")
 
 	await _wait_frames(25)
 	_apply_inventory_state()
 	_set_state_text("CAPTURE: INVENTORY OVERLAY")
+	await _take_screenshot("mystery_capture_inventory")
 
 	await _wait_frames(25)
 	_apply_testimony_state()
 	_set_state_text("CAPTURE: TESTIMONY")
+	await _take_screenshot("mystery_capture_testimony")
 
 	await _wait_frames(25)
 	_apply_all_state()
 	_set_state_text("CAPTURE: ALL VISIBLE")
+	await _take_screenshot("mystery_capture_all")
+	
+	get_tree().quit()
+
+func _take_screenshot(filename: String) -> void:
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var image = get_viewport().get_texture().get_image()
+	image.save_png("res://" + filename + ".png")
 
 func _wait_frames(count: int) -> void:
 	for _i in range(count):
@@ -56,12 +69,15 @@ func _apply_base_state() -> void:
 
 	if dialogue:
 		dialogue.visible = true
-		var n = dialogue.get_node_or_null("VBoxContainer/NameLabel")
-		var t = dialogue.get_node_or_null("VBoxContainer/TextLabel")
-		if n:
-			n.text = "System"
-		if t:
-			t.text = "UIポリシー確認: ベース状態"
+		if dialogue.has_method("show_message"):
+			dialogue.show_message("Detective", "UIポリシー確認: ベース状態")
+		else:
+			var n = dialogue.get_node_or_null("VBoxContainer/NameLabel")
+			var t = dialogue.get_node_or_null("VBoxContainer/TextLabel")
+			if n:
+				n.text = "System"
+			if t:
+				t.text = "UIポリシー確認: ベース状態"
 
 	if inventory:
 		inventory.visible = false
@@ -83,12 +99,15 @@ func _apply_testimony_state() -> void:
 	var testimony = _testimony_ui()
 	if testimony:
 		testimony.visible = true
-		var s = testimony.get_node_or_null("VBoxContainer/SpeakerLabel")
-		var t = testimony.get_node_or_null("VBoxContainer/TestimonyText")
-		if s:
-			s.text = "Witness"
-		if t:
-			t.text = "UIポリシー確認: 証言パネル状態"
+		if testimony.has_method("show_testimony_line"):
+			testimony.show_testimony_line("Rat Witness", "UIポリシー確認: 証言パネル状態")
+		else:
+			var s = testimony.get_node_or_null("VBoxContainer/SpeakerLabel")
+			var t = testimony.get_node_or_null("VBoxContainer/TestimonyText")
+			if s:
+				s.text = "Witness"
+			if t:
+				t.text = "UIポリシー確認: 証言パネル状態"
 
 func _apply_all_state() -> void:
 	_apply_testimony_state()

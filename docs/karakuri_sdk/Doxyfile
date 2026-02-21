@@ -1,0 +1,20 @@
+PROJECT_NAME           = "Basic Game Karakuri SDK"
+PROJECT_BRIEF          = "Universal C++ API Reference"
+OUTPUT_DIRECTORY       = docs/karakuri_sdk
+INPUT                  = src/karakuri
+FILE_PATTERNS          = *.h *.hpp *.cpp
+RECURSIVE              = YES
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+WARNINGS               = YES
+
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES

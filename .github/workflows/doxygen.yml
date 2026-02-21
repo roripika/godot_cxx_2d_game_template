@@ -1,0 +1,36 @@
+name: Doxygen API Reference (Karakuri SDK)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/karakuri/**'
+      - 'docs/karakuri_sdk/Doxyfile'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  build_ds:
+    name: Build & Deploy Doxygen
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Install Doxygen and Graphviz
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+
+      - name: Run Doxygen
+        run: doxygen docs/karakuri_sdk/Doxyfile
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/karakuri_sdk/html
+          destination_dir: ./
+          commit_message: "docs(doxygen): update API reference from ${{ github.sha }}"

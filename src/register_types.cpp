@@ -44,6 +44,7 @@
 #include "scenes/office_scene_logic.h"
 
 #include "karakuri/karakuri_localization_service.h"
+#include "karakuri/karakuri_logger.h"
 #include "karakuri/karakuri_save_service.h"
 #include "karakuri/scenario/karakuri_scenario_runner.h"
 
@@ -91,6 +92,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<NoteLane>();
   ClassDB::register_class<RhythmCommandListener>();
   ClassDB::register_class<karakuri::KarakuriLocalizationService>();
+  ClassDB::register_class<karakuri::KarakuriLogger>();
   ClassDB::register_class<karakuri::KarakuriSaveService>();
   ClassDB::register_class<karakuri::KarakuriScenarioRunner>();
 }

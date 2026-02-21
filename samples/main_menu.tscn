@@ -72,7 +72,7 @@ metadata/scene_path = "res://samples/sandbox/sandbox_demo.tscn"
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 text = "Mystery Adventure"
-metadata/scene_path = "res://samples/mystery/demo_adv.tscn"
+metadata/scene_path = "res://samples/mystery/karakuri_mystery_shell.tscn"
 
 [node name="BtnPixelArtGallery" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1851131665]
 custom_minimum_size = Vector2(300, 50)

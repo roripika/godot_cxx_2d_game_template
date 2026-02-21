@@ -17,4 +17,6 @@ gen/
 env.sh
 .DS_Store
 
-
+# Doxygen
+docs/karakuri_sdk/html/
+docs/karakuri_sdk/latex/

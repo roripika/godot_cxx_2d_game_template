@@ -1,19 +1,11 @@
 [gd_resource type="Resource" script_class="EvidenceItem" format=3]
 
 [ext_resource type="Script" path="res://samples/mystery/scripts/evidence_item.gd" id="1_iif5j"]
-
-[sub_resource type="Gradient" id="Gradient_3gt6i"]
-colors = PackedColorArray(0.2, 0.8, 0.2, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ecsga"]
-gradient = SubResource("Gradient_3gt6i")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
+[ext_resource type="Texture2D" path="res://assets/mystery/icons/128x128/zodiac_ectoplasm.png" id="2_icon"]
 
 [resource]
 script = ExtResource("1_iif5j")
 id = "ectoplasm"
 display_name = "evidence_ectoplasm"
 description = "evidence_ectoplasm_desc"
-icon = SubResource("GradientTexture2D_ecsga")
+icon = ExtResource("2_icon")

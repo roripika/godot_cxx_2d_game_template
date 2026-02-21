@@ -24,16 +24,14 @@ config/icon="res://icon.svg"
 AdventureGameState="*res://samples/mystery/adventure_game_state.gd"
 KarakuriLocalization="*res://samples/common/karakuri_localization_service.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [dotnet]
 
 project/assembly_name="Godot C++ 2D Game Template"
-
-[display]
-
-window/size/viewport_width=1152
-window/size/viewport_height=648
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [input]
 
