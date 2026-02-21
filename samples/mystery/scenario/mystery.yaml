@@ -22,6 +22,7 @@ scenes:
     mode: "investigation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
+      - transition_object: { target: "speaker.detective", type: "jump_zoom", duration: 0.5, mode: "in" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.intro" }
 
     hotspots:
@@ -79,6 +80,7 @@ scenes:
                 - goto:
                     scene_id: "deduction"
                     fade_duration: 1.0
+                    transition_type: "wipe_radial_cw"
               else:
                 - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.not_ready" }
 
@@ -97,6 +99,7 @@ scenes:
                   - goto:
                       scene_id: "confrontation"
                       fade_duration: 1.0
+                      transition_type: "cross_fade"
             - option:
                 text_key: "mystery.deduction.choice.human"
                 actions:
@@ -109,6 +112,7 @@ scenes:
                         - goto:
                             scene_id: "ending_bad"
                             fade_duration: 2.0
+                            transition_type: "turn_off_tiles"
                       else:
                         - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.human.retry" }
                         - goto: "deduction"
@@ -124,6 +128,7 @@ scenes:
                         - goto:
                             scene_id: "ending_bad"
                             fade_duration: 2.0
+                            transition_type: "turn_off_tiles"
                       else:
                         - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.alien.retry" }
                         - goto: "deduction"
@@ -132,7 +137,9 @@ scenes:
     mode: "confrontation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
+      - transition_object: { target: "speaker.detective", type: "slide_right", duration: 0.5, mode: "in" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.confrontation.start1" }
+      - transition_object: { target: "speaker.rat_witness", type: "jump_zoom", duration: 0.6, mode: "in" }
       - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.start2" }
       - testimony:
           max_rounds: 3
@@ -159,11 +166,13 @@ scenes:
             - goto:
                 scene_id: "ending_good"
                 fade_duration: 1.5
+                transition_type: "page_turn"
           on_failure:
             - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.failure" }
             - goto:
                 scene_id: "ending_bad"
                 fade_duration: 2.0
+                transition_type: "fade_down"
 
   ending_good:
     mode: "ending"
