@@ -1,0 +1,9 @@
+<map id="karakuri::KarakuriScenarioRunner::_process" name="karakuri::KarakuriScenarioRunner::_process">
+<area shape="rect" id="Node000001" title="Godot lifecycle hook." alt="" coords="5,41,197,81"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8618c4919a47ce10787a65352948d884" title=" " alt="" coords="245,41,437,81"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,59,232,59,232,64,197,64"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1940ff500a0e0c7d4dc9784a2bb66365" title=" " alt="" coords="485,5,705,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,45,471,40,472,46,438,50"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="499,70,691,125"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="438,72,486,79,486,84,437,78"/>
+</map>

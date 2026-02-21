@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,70,107,95"/>
+<area shape="rect" id="Node000001" href="$classkarakuri_1_1KarakuriLocalizationService.html" title="Shared locale service used by all demos." alt="" coords="155,5,370,45"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="115,64,189,43,191,48,117,69"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriSaveService.html" title="ゲームステート永続化サービス。" alt="" coords="155,70,371,95"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="120,80,154,80,154,85,120,85"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html" title="Scenario runner that reads planner YAML and drives the adventure demo." alt="" coords="167,120,359,160"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="117,97,191,117,189,123,115,102"/>
+</map>

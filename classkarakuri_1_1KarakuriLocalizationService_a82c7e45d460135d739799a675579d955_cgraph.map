@@ -1,0 +1,11 @@
+<map id="karakuri::KarakuriLocalizationService::set_locale_prefix" name="karakuri::KarakuriLocalizationService::set_locale_prefix">
+<area shape="rect" id="Node000001" title="Set locale by prefix and persist it." alt="" coords="5,69,220,109"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriLocalizationService.html#a4559a42514d4e2ed57cfedcb35d46eed" title=" " alt="" coords="286,5,502,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,67,292,46,293,51,202,72"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriLocalizationService.html#a27574240dc6d3b590bb74b595e62f1c1" title=" " alt="" coords="283,69,505,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,87,269,87,269,92,220,92"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriLocalizationService.html#adc1cf003ae4c001d8939807492a46466" title="Save the currently active locale prefix." alt="" coords="268,133,520,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="202,107,293,128,292,133,201,112"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriLocalizationService.html#a0aca981d5f02074f492ac7fd5e2d1a46" title=" " alt="" coords="568,133,783,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="520,151,554,151,554,156,520,156"/>
+</map>

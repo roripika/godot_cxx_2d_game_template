@@ -1,0 +1,9 @@
+<map id="karakuri::KarakuriLocalizationService::_ready" name="karakuri::KarakuriLocalizationService::_ready">
+<area shape="rect" id="Node000001" title="Godot lifecycle hook. Restores saved locale." alt="" coords="5,37,220,77"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriLocalizationService.html#ad4a29e14492488cf417ede11b169332b" title="Load saved locale prefix and apply it." alt="" coords="268,37,511,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,55,254,55,254,60,220,60"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriLocalizationService.html#a4559a42514d4e2ed57cfedcb35d46eed" title=" " alt="" coords="562,5,778,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="511,41,548,37,549,42,511,46"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriLocalizationService.html#a27574240dc6d3b590bb74b595e62f1c1" title=" " alt="" coords="559,69,781,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="511,69,545,72,544,78,511,74"/>
+</map>

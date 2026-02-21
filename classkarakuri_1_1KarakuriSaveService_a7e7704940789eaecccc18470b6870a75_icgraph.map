@@ -1,0 +1,9 @@
+<map id="karakuri::KarakuriSaveService::load_game" name="karakuri::KarakuriSaveService::load_game">
+<area shape="rect" id="Node000001" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="549,37,765,77"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriSaveService.html#ab48b4c2afe5ba3484df03ea728139864" title=" " alt="" coords="285,5,501,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="536,45,501,41,502,36,536,40"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="Register all built&#45;in generic actions into action_handlers_." alt="" coords="294,69,493,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="536,75,493,80,493,75,535,69"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="5,69,237,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="280,92,238,92,238,87,280,87"/>
+</map>

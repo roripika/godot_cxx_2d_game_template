@@ -1,0 +1,11 @@
+<map id="karakuri::KarakuriScenarioRunner::on_clicked_at" name="karakuri::KarakuriScenarioRunner::on_clicked_at">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,197,77"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ae5b3e38a6d589fc5fc88b282aa6de1a1" title=" " alt="" coords="245,5,471,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,43,231,38,232,44,198,48"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8b56bf438a9b86cb88cbb6ff628a0b74" title=" " alt="" coords="262,69,454,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,67,249,73,248,78,197,72"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a9ea13725cc66b56f432f0b5ac205a094" title=" " alt="" coords="519,69,711,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="454,87,505,87,505,92,454,92"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="759,62,951,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="711,87,745,87,745,92,711,92"/>
+</map>

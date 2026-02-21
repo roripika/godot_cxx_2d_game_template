@@ -1,0 +1,7 @@
+<map id="karakuri::KarakuriScenarioRunner::complete_testimony" name="karakuri::KarakuriScenarioRunner::complete_testimony">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,41,216,81"/>
+<area shape="rect" id="Node000002" href="$structkarakuri_1_1KarakuriTestimonySession.html#a73f93fcd05b29d965df98c8a52eafaf8" title="セッション状態を初期値にリセットする。" alt="" coords="264,5,467,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,44,250,39,251,44,217,49"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="269,70,461,125"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,74,256,79,255,84,216,79"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="karakuri::KarakuriScenarioRunner::register_action" name="karakuri::KarakuriScenarioRunner::register_action">
+<area shape="rect" id="Node000001" title="Register (or override) a handler for a YAML action kind." alt="" coords="532,41,724,81"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="Register all built&#45;in generic actions into action_handlers_." alt="" coords="285,5,484,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,48,484,43,485,37,519,43"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="Register the Mystery&#45;demo action set (testimony, take_damage, if_health_ge, if_health_leq)." alt="" coords="289,70,481,125"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="519,80,481,86,480,81,518,75"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="5,5,237,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,28,237,28,237,23,272,23"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="25,77,217,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="275,100,217,100,217,95,275,95"/>
+</map>

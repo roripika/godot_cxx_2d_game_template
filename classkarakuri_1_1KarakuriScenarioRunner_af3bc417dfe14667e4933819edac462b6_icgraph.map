@@ -1,0 +1,13 @@
+<map id="karakuri::KarakuriScenarioRunner::show_current_testimony_line" name="karakuri::KarakuriScenarioRunner::show_current_testimony_line">
+<area shape="rect" id="Node000001" title=" " alt="" coords="513,77,780,117"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af786df05bd8166307d97873d4556ab57" title=" " alt="" coords="245,5,465,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="551,77,437,48,438,43,552,71"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8e7bc0782edfd8804d9090083b627e71" title=" " alt="" coords="255,70,456,125"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="500,100,456,100,456,95,500,95"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="Register the Mystery&#45;demo action set (testimony, take_damage, if_health_ge, if_health_leq)." alt="" coords="259,149,451,203"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="559,124,452,153,451,148,558,118"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="5,77,197,117"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,52,173,80,172,75,270,47"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="241,100,198,100,198,95,241,95"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="253,147,166,120,168,115,254,142"/>
+</map>

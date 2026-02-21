@@ -1,0 +1,25 @@
+<map id="src/karakuri/karakuri_save_service.cpp" name="src/karakuri/karakuri_save_service.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="935,5,1089,45"/>
+<area shape="rect" id="Node000002" href="$karakuri__save__service_8h.html" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="133,101,312,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="935,35,665,57,495,75,324,96,294,101,293,96,324,91,494,69,664,52,935,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="336,93,512,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="935,39,753,62,526,96,525,90,752,57,935,33"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="536,93,699,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="936,46,713,94,712,89,934,41"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="723,93,888,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="968,48,864,91,862,86,966,43"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="912,101,1112,126"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1015,46,1015,87,1009,87,1009,46"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1137,93,1295,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1058,43,1160,86,1158,91,1056,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1320,101,1523,126"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1090,40,1354,95,1353,101,1088,45"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1547,101,1781,126"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1089,33,1535,91,1574,96,1573,101,1534,96,1089,39"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1805,93,1987,133"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1089,28,1393,49,1589,67,1792,91,1791,96,1589,73,1392,55,1089,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,211,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="207,128,138,176,135,171,204,124"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="235,181,443,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="241,124,312,171,309,176,238,128"/>
+</map>

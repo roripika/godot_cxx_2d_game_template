@@ -1,0 +1,23 @@
+<map id="src/karakuri/scenario/karakuri_scenario_runner.h" name="src/karakuri/scenario/karakuri_scenario_runner.h">
+<area shape="rect" id="Node000001" title="Basic Game Karakuri: YAML&#45;driven scenario runner (planner&#45;authored story + hooks)." alt="" coords="391,5,591,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,92,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,44,258,66,112,96,98,99,97,94,111,91,257,61,391,38"/>
+<area shape="rect" id="Node000003" href="$karakuri__testimony__session_8h.html" title="Testimony confrontation session state." alt="" coords="167,93,314,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="437,48,309,92,307,86,435,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="25,181,227,207"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="392,38,323,46,254,59,195,75,173,85,157,95,145,111,136,130,129,168,124,167,131,128,140,108,154,91,170,80,194,70,253,53,322,41,391,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="251,181,459,207"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="441,48,407,68,379,95,369,112,363,131,358,168,353,167,358,130,364,110,375,92,404,63,438,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="389,101,594,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="494,46,494,87,489,87,489,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="619,93,777,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="538,43,641,86,639,91,536,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="802,101,1037,126"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="586,43,850,95,848,101,585,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1061,93,1236,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="592,34,798,57,1048,91,1047,96,797,62,591,39"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1260,101,1480,126"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="592,31,887,54,1249,91,1288,96,1288,101,1248,96,886,59,591,36"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="214,136,156,176,153,171,211,131"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="270,131,329,171,326,176,267,136"/>
+</map>

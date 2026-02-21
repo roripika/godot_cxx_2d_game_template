@@ -1,0 +1,7 @@
+<map id="karakuri::KarakuriScenarioRunner" name="karakuri::KarakuriScenarioRunner">
+<area shape="rect" id="Node000001" title="Scenario runner that reads planner YAML and drives the adventure demo." alt="" coords="48,108,240,148"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,13,107,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,47,129,106,125,110,73,50"/>
+<area shape="rect" id="Node000003" href="$structkarakuri_1_1KarakuriTestimonySession.html" title="証言システム（Testimony confrontation）の進行ステートを保持する ストラクト。" alt="" coords="131,5,333,45"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,58,162,110,158,106,204,54"/>
+</map>

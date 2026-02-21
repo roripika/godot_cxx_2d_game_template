@@ -1,0 +1,7 @@
+<map id="src/karakuri/scenario/karakuri_testimony_session.h" name="src/karakuri/scenario/karakuri_testimony_session.h">
+<area shape="rect" id="Node000001" title="Testimony confrontation session state." alt="" coords="112,5,331,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,208,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,48,136,88,133,83,192,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="232,93,440,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,43,309,83,306,88,248,48"/>
+</map>
