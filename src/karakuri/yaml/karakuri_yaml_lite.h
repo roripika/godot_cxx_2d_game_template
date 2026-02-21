@@ -3,18 +3,20 @@
 
 /**
  * @file karakuri_yaml_lite.h
- * @brief Basic Game Karakuri: YAML Lite parser (subset) for planner-authored scenario files.
+ * @brief Basic Game Karakuri: プランナー向けシナリオファイル用のYAML
+ * Liteパーサー。
  *
- * This is intentionally a small YAML subset parser suitable for game scenario configuration:
- * - Maps: `key: value` and `key:` (nested block)
- * - Sequences: `- value`, `- key: value`, `- key:` (nested block)
- * - Scalars: string, int, float, bool
+ * ゲームシナリオの設定に適した、敢えて小規模なYAMLサブセットのパーサーです:
+ * - マップ: `key: value` および `key:` (ネストされたブロック)
+ * - シーケンス: `- value`, `- key: value`, `- key:` (ネストされたブロック)
+ * - スカラー: 文字列、整数、浮動小数点数、真偽値
  *
- * Not supported:
- * - anchors/aliases, multi-line scalars, complex quoting rules, tabs for indentation, etc.
+ * サポートしていない機能:
+ * -
+ * アンカーやエイリアス、複数行のスカラー、複雑なクォーテーション規則、インデント用のタブなど。
  *
- * The goal is to keep planner-authored YAML readable without pulling a full YAML dependency
- * into the GDExtension build yet.
+ * 目的は、完全なYAMLライブラリの依存関係をGDExtensionビルドに取り込むことなく、
+ * プランナーが書いたYAMLを読み書き可能な状態に保つことです。
  */
 
 #include <godot_cpp/variant/string.hpp>
@@ -23,17 +25,18 @@
 namespace karakuri {
 
 /**
- * @brief Minimal YAML parser for a restricted subset used by scenarios.
+ * @brief シナリオ用に使用される制限されたサブセット向けの最小のYAMLパーサー。
  */
 class KarakuriYamlLite final {
 public:
   /**
-   * @brief Parse YAML text into a Godot Variant tree (Dictionary/Array/scalars).
+   * @brief
+   * YAMLテキストをGodotのVariantツリー（Dictionary/Array/スカラー等）としてパースする。
    *
-   * @param yaml_text YAML source text.
-   * @param out_root Parsed root. Usually Dictionary.
-   * @param out_error Filled when parsing fails.
-   * @return true on success.
+   * @param yaml_text YAMLのソーステキスト文字列。
+   * @param out_root パース結果のルート。通常はDictionaryとなる。
+   * @param out_error パース失敗時にエラーメッセージが格納される。
+   * @return パースに成功した場合はtrueを返す。
    */
   static bool parse(const godot::String &yaml_text, godot::Variant &out_root,
                     godot::String &out_error);
@@ -42,4 +45,3 @@ public:
 } // namespace karakuri
 
 #endif // KARAKURI_YAML_LITE_H
-

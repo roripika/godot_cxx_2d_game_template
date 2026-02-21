@@ -4,6 +4,7 @@ OUTPUT_DIRECTORY       = docs/karakuri_sdk
 INPUT                  = src/karakuri
 FILE_PATTERNS          = *.h *.hpp *.cpp
 RECURSIVE              = YES
+OUTPUT_LANGUAGE        = Japanese
 
 GENERATE_HTML          = YES
 HTML_OUTPUT            = html

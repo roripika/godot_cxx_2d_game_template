@@ -3,7 +3,7 @@
 
 /**
  * @file karakuri_localization_service.h
- * @brief Basic Game Karakuri: locale persistence and runtime switch service.
+ * @brief Basic Game Karakuri: ロケールの保存とランタイム切り替えサービス。
  */
 
 #include <godot_cpp/classes/node.hpp>
@@ -12,13 +12,13 @@
 namespace karakuri {
 
 /**
- * @brief Shared locale service used by all demos.
+ * @brief 全デモで共通利用されるロケールサービス。
  *
- * Responsibilities:
- * - Persist locale prefix (`en`, `ja`, ...) to `user://`.
- * - Restore saved locale on startup.
- * - Provide a single runtime API for locale switching.
- * - Emit `locale_changed(locale)` so UIs can redraw immediately.
+ * 責務:
+ * - ロケールプレフィックス（`en`, `ja` など）を `user://` に保存。
+ * - 起動時に保存されたロケールを復元。
+ * - ロケール切り替え用の単一のランタイムAPIを提供。
+ * - UIが即座に再描画できるよう `locale_changed(locale)` シグナルを発火。
  */
 class KarakuriLocalizationService : public godot::Node {
   GDCLASS(KarakuriLocalizationService, godot::Node)
@@ -28,44 +28,44 @@ public:
   ~KarakuriLocalizationService() override = default;
 
   /**
-   * @brief Godot lifecycle hook. Restores saved locale.
+   * @brief Godotのライフサイクルフック。保存されたロケールを復元する。
    */
   void _ready() override;
 
   /**
-   * @brief Set storage path for persisted locale.
-   * @param path `user://` path where locale prefix is stored.
+   * @brief 永続化するロケールの保存先パスを設定する。
+   * @param path ロケールプレフィックスを保存する `user://` パス。
    */
   void set_locale_store_path(const godot::String &path);
 
   /**
-   * @brief Get storage path for persisted locale.
-   * @return `user://` file path.
+   * @brief 永続化されたロケールの保存先パスを取得する。
+   * @return `user://` プレフィックスのファイルパス。
    */
   godot::String get_locale_store_path() const;
 
   /**
-   * @brief Set locale by prefix and persist it.
-   * @param prefix Locale prefix such as `en` or `ja`.
-   * @return Applied locale string (can be `en_US` etc).
+   * @brief ロケールプレフィックスからロケールを設定し、保存する。
+   * @param prefix `en` や `ja` などのロケールプレフィックス。
+   * @return 適用されたロケール文字列（例: `en_US`）。
    */
   godot::String set_locale_prefix(const godot::String &prefix);
 
   /**
-   * @brief Save the currently active locale prefix.
-   * @return `true` on successful write.
+   * @brief 現在アクティブなロケールプレフィックスを保存する。
+   * @return 書き込みに成功した場合は `true`。
    */
   bool save_current_locale_prefix();
 
   /**
-   * @brief Load saved locale prefix and apply it.
-   * @return Applied locale string. Empty when not available.
+   * @brief 保存されたロケールプレフィックスを読み込み、適用する。
+   * @return 適用されたロケール文字列。利用できない場合は空文字。
    */
   godot::String load_saved_locale_prefix();
 
   /**
-   * @brief Resolve current locale prefix (`en`, `ja`, ...).
-   * @return Prefix extracted from current TranslationServer locale.
+   * @brief 現在のロケールプレフィックス（`en`, `ja` など）を解決する。
+   * @return 現在の TranslationServer のロケールから抽出されたプレフィックス。
    */
   godot::String get_current_locale_prefix() const;
 

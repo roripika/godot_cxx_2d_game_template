@@ -7,9 +7,10 @@
 
 /**
  * @file karakuri_logger.h
- * @brief Global Debug Logger for C++ and GDScript.
- * This class provides static methods to log messages at different levels (Debug, Info, Warn, Error).
- * Debug logs are filtered out unless the game is running in a debug build.
+ * @brief C++とGDScript向けに提供されるグローバルなデバッグロガー。
+ * このクラスは各ログレベル（Debug, Info, Warn,
+ * Error）でメッセージを出力する静的メソッドを提供します。
+ * Debugログは、ゲームがデバッグビルドで実行されている場合にのみ出力されます。
  */
 
 namespace karakuri {

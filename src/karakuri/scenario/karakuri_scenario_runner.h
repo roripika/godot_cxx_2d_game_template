@@ -3,27 +3,30 @@
 
 /**
  * @file karakuri_scenario_runner.h
- * @brief Basic Game Karakuri: YAML-driven scenario runner (planner-authored story + hooks).
+ * @brief Basic Game Karakuri:
+ * YAML駆動型のシナリオランナー（プランナー作成のストーリーと連携フック）。
  *
- * This node loads a scenario YAML file and drives:
- * - Scene composition (instantiate under a container node)
- * - Hotspot click handling (via InteractionManager.clicked_at)
- * - Dialogue and evidence acquisition (via reusable UI nodes)
+ * このノードはシナリオYAMLファイルを読み込み、以下を駆動します:
+ * - シーンの構築（コンテナノード配下にインスタンス化）
+ * - Hotspotのクリックハンドリング（InteractionManager.clicked_at 経由）
+ * - 会話と証拠品の取得（再利用可能なUIノード経由）
  *
- * Designers own the visuals and hotspot nodes in the base scenes.
- * Planners own the YAML that binds hotspot IDs to actions and story flow.
+ * デザイナーは背景画像やHotspotノードなどのビジュアルを担当します。
+ * プランナーは、Hotspot
+ * IDやアクション、ストーリーの流れを結びつけるYAMLを担当します。
  *
- * ## Action dispatch
- * Built-in generic actions (dialogue, goto, choice, set_flag, …) are
- * registered automatically in _init_builtin_actions().
+ * ## アクションのディスパッチ
+ * 組み込み汎用アクション（dialogue, goto, choice, set_flag など）は、
+ * _init_builtin_actions() で自動的に登録されます。
  *
- * Demo-specific actions (testimony, take_damage, …) can be registered from
- * outside via register_action().  This keeps the runner core free of
- * demo-specific logic while still allowing full extensibility:
+ * デモ固有のアクション（testimony, take_damage など）は、外部から
+ * register_action() を通して
+ * 登録することができます。これにより、完全な拡張性を確保しつつ、ランナーのコアを
+ * デモ固有のロジックから切り離して維持できます:
  *
  * @code
  * runner->register_action("take_damage", [this](const Variant &payload) {
- *     // demo-specific handler
+ *     // デモ固有のハンドラ
  *     return true;
  * });
  * @endcode
@@ -31,7 +34,7 @@
 
 #include <functional>
 
-#include "karakuri_testimony_session.h"  // Architecture: testimony-session fields will move here
+#include "karakuri_testimony_session.h" // Architecture: testimony-session fields will move here
 
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/templates/hash_map.hpp>
@@ -44,18 +47,21 @@
 namespace karakuri {
 
 /**
- * @brief Scenario runner that reads planner YAML and drives the adventure demo.
+ * @brief
+ * プランナーが記述したYAMLを読み込み、アドベンチャーデモを駆動するシナリオランナー。
  */
 class KarakuriScenarioRunner : public godot::Node {
   GDCLASS(KarakuriScenarioRunner, godot::Node)
 
 public:
   /**
-   * @brief Callable type for a single action handler.
+   * @brief 単一のアクションハンドラ用のコールバック（Callable）型。
    *
-   * @param payload The value portion of the YAML action dictionary
-   *                (type varies per action: String, Dictionary, Array, ...).
-   * @return true if the action was handled, false to emit an unknown-action warning.
+   * @param payload YAMLのアクションディクショナリの値部分
+   *                （型はアクションに依存します: String, Dictionary,
+   * Arrayなど）。
+   * @return
+   * アクションが処理された場合はtrue。不明なアクション警告を出す場合はfalse。
    */
   using ActionHandler = std::function<bool(const godot::Variant &payload)>;
 
@@ -63,56 +69,61 @@ public:
   ~KarakuriScenarioRunner();
 
   /**
-   * @brief Register (or override) a handler for a YAML action kind.
+   * @brief YAMLアクション種別に対するハンドラを登録（または上書き）する。
    *
-   * Call this from a parent/sibling _ready() to inject demo-specific actions
-   * without modifying the runner core.  Built-in generic actions can also be
-   * overridden this way if needed.
+   * 親や兄弟の _ready() からこれを呼び出し、ランナーのコアを変更せずに
+   * デモ固有のアクションを注入します。必要であれば、組み込みの汎用アクションも
+   * この方法で上書き可能です。
    *
-   * @param kind    The action key as it appears in YAML (e.g. "take_damage").
-   * @param handler Callable that processes the action payload.
+   * @param kind    YAMLに記述されるアクションのキー（例: "take_damage"）。
+   * @param handler アクションのペイロードを処理するコールバック関数。
    */
   void register_action(const godot::String &kind, ActionHandler handler);
 
   /**
-   * @brief Register the Mystery-demo action set (testimony, take_damage,
-   *        if_health_ge, if_health_leq).
+   * @brief ミステリーデモ用のアクションセット（testimony, take_damage,
+   *        if_health_ge, if_health_leq）を登録する。
    *
-   * Call once from the Mystery shell scene's _ready() after initialising
-   * TestimonySystem.  Other demos should NOT call this.
+   * ミステリーデモのシェルの _ready() から一度だけ TestimonySystem 初期化後に
+   * 呼び出してください。他のデモからは呼び出さないでください。
    */
   void register_mystery_actions();
 
-  /** @brief Path to the YAML scenario file (res://...). */
+  /** @brief YAMLシナリオファイルのパス (res://...)。 */
   void set_scenario_path(const godot::String &path);
   godot::String get_scenario_path() const;
 
-  /** @brief NodePath for the scene container where base scenes are instantiated. */
+  /** @brief 基本シーンがインスタンス化されるシーンコンテナノードのNodePath。 */
   void set_scene_container_path(const godot::NodePath &path);
   godot::NodePath get_scene_container_path() const;
 
-  /** @brief NodePath to the Dialogue UI node that supports show_message(speaker, text). */
+  /** @brief show_message(speaker, text) をサポートするDialogue
+   * UIノードのNodePath。 */
   void set_dialogue_ui_path(const godot::NodePath &path);
   godot::NodePath get_dialogue_ui_path() const;
 
-  /** @brief NodePath to the Evidence inventory UI node that supports add_evidence(evidence_id). */
+  /** @brief add_evidence(evidence_id)
+   * をサポートする証拠品インベントリUIノードのNodePath。 */
   void set_evidence_ui_path(const godot::NodePath &path);
   godot::NodePath get_evidence_ui_path() const;
 
   /**
-   * @brief NodePath to InteractionManager node that emits clicked_at(Vector2).
+   * @brief clicked_at(Vector2)
+   * シグナルを発火するInteractionManagerノードのNodePath。
    *
-   * Expected coordinate space is Canvas/World coordinates (compatible with
-   * `Area2D.global_position` in loaded mystery scenes).
+   * 期待される座標空間は Canvas/World 座標です
+   * (読み込まれたMysteryシーン内の `Area2D.global_position`
+   * と互換性があります)。
    */
   void set_interaction_manager_path(const godot::NodePath &path);
   godot::NodePath get_interaction_manager_path() const;
 
-  /** @brief NodePath to TestimonySystem node (optional, for confrontation mode). */
+  /** @brief TestimonySystem ノードへのNodePath
+   * (任意、コンフロンテーションモード用)。 */
   void set_testimony_system_path(const godot::NodePath &path);
   godot::NodePath get_testimony_system_path() const;
 
-  /** @brief Godot lifecycle hook. */
+  /** @brief Godotのライフサイクルフック。 */
   void _ready() override;
   /** @brief Godot lifecycle hook. */
   void _process(double delta) override;
@@ -126,11 +137,9 @@ private:
     godot::Array on_click_actions;
   };
 
-  godot::String scenario_path_ =
-      "res://samples/mystery/scenario/mystery.yaml";
+  godot::String scenario_path_ = "res://samples/mystery/scenario/mystery.yaml";
   godot::NodePath scene_container_path_ = godot::NodePath("SceneContainer");
-  godot::NodePath dialogue_ui_path_ =
-      godot::NodePath("CanvasLayer/DialogueUI");
+  godot::NodePath dialogue_ui_path_ = godot::NodePath("CanvasLayer/DialogueUI");
   godot::NodePath evidence_ui_path_ =
       godot::NodePath("CanvasLayer/InventoryUI");
   godot::NodePath interaction_manager_path_ =
@@ -160,21 +169,22 @@ private:
   godot::Array pending_choice_actions_; // Array<Array<action>>
 
   /**
-   * @brief True while waiting for Dialogue UI to finish presenting a message.
+   * @brief Dialogue UI
+   * がメッセージの表示を完了するのを待機しているかを示すフラグ。
    *
-   * If the Dialogue UI provides a `dialogue_finished` signal, the runner will
-   * block subsequent actions until it fires, to avoid fast "overwrite" of
-   * dialogue text when multiple `dialogue` actions are queued.
+   * Dialogue UI が `dialogue_finished` シグナルを提供している場合、ランナーは
+   * 複数の `dialogue` アクションがキューに入れられているときにテキストが即座に
+   * 上書きされるのを防ぐため、シグナルが発火するまで後続のアクションをブロックします。
    */
   bool waiting_for_dialogue_ = false;
 
   /**
-   * @brief Mystery testimony confrontation session state.
+   * @brief Mysteryの証言コンフロンテーションセッションのステート。
    *
-   * Encapsulates all testimony-loop fields. See karakuri_testimony_session.h.
-   * Access via testimony_.active, testimony_.index, etc.
+   * 証言ループの全フィールドをカプセル化しています。karakuri_testimony_session.h
+   * を参照。 testimony_.active, testimony_.index などでアクセスします。
    */
-  KarakuriTestimonySession testimony_{};  // @see KarakuriTestimonySession
+  KarakuriTestimonySession testimony_{}; // @see KarakuriTestimonySession
 
   bool load_scenario();
   bool load_scene_by_id(const godot::String &scene_id);
@@ -184,7 +194,7 @@ private:
   void step_actions(double delta);
   bool execute_single_action(const godot::Variant &action);
 
-  /** @brief Register all built-in generic actions into action_handlers_. */
+  /** @brief 全ての組み込み汎用アクションを action_handlers_ に登録する。 */
   void init_builtin_actions();
 
   void on_clicked_at(const godot::Vector2 &pos);
@@ -216,7 +226,7 @@ private:
   godot::String current_mode_id_;
   bool mode_input_enabled_ = true;
 
-  /** @brief Dispatch table: YAML action kind -> handler function. */
+  /** @brief ディスパッチテーブル: YAMLのアクション種別キー -> ハンドラ関数。 */
   godot::HashMap<godot::String, ActionHandler> action_handlers_;
 };
 
