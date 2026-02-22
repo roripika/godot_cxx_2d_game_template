@@ -163,8 +163,10 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::on_choice_selected);
   ClassDB::bind_method(D_METHOD("on_dialogue_finished"),
                        &KarakuriScenarioRunner::on_dialogue_finished);
-  ClassDB::bind_method(D_METHOD("on_transition_finished"),
-                       &KarakuriScenarioRunner::on_transition_finished);
+  ClassDB::bind_method(
+      D_METHOD("on_transition_finished", "arg1", "arg2", "arg3"),
+      &KarakuriScenarioRunner::on_transition_finished, DEFVAL(Variant()),
+      DEFVAL(Variant()), DEFVAL(Variant()));
   ClassDB::bind_method(D_METHOD("on_testimony_complete", "success"),
                        &KarakuriScenarioRunner::on_testimony_complete);
   ClassDB::bind_method(D_METHOD("on_testimony_next_requested"),
@@ -179,6 +181,13 @@ void KarakuriScenarioRunner::_bind_methods() {
   // Mystery-specific action injection (call from Mystery shell _ready()).
   ClassDB::bind_method(D_METHOD("register_mystery_actions"),
                        &KarakuriScenarioRunner::register_mystery_actions);
+
+  ClassDB::bind_method(D_METHOD("is_running"),
+                       &KarakuriScenarioRunner::is_running);
+  ClassDB::bind_method(D_METHOD("get_testimony_index"),
+                       &KarakuriScenarioRunner::get_testimony_index);
+  ClassDB::bind_method(D_METHOD("get_testimony_size"),
+                       &KarakuriScenarioRunner::get_testimony_size);
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),
                        &KarakuriScenarioRunner::set_scenario_path);
@@ -221,6 +230,20 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::get_testimony_system_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "testimony_system_path"),
                "set_testimony_system_path", "get_testimony_system_path");
+}
+
+bool KarakuriScenarioRunner::is_running() const {
+  return is_executing_actions_ || waiting_for_choice_ ||
+         waiting_for_dialogue_ || waiting_for_transition_ ||
+         wait_remaining_sec_ > 0.0 || testimony_.active;
+}
+
+int KarakuriScenarioRunner::get_testimony_index() const {
+  return testimony_.index;
+}
+
+int KarakuriScenarioRunner::get_testimony_size() const {
+  return testimony_.lines.size();
 }
 
 void KarakuriScenarioRunner::_ready() {
@@ -346,7 +369,28 @@ void KarakuriScenarioRunner::_ready() {
   load_scene_by_id(start_id);
 }
 
-void KarakuriScenarioRunner::_process(double delta) { step_actions(delta); }
+void KarakuriScenarioRunner::_process(double delta) {
+  // トランジションタイムアウト処理（step_actionsとは独立）
+  // headlessモード等でfinishedシグナルが発火しない場合に強制遷移
+  if (waiting_for_transition_ && transition_timeout_sec_ > 0.0f) {
+    transition_timeout_sec_ -= static_cast<float>(delta);
+    if (transition_timeout_sec_ <= 0.0f) {
+      UtilityFunctions::push_warning(
+          "KarakuriScenarioRunner: Transition timed out → forcing scene load.");
+      waiting_for_transition_ = false;
+      const String timed_out_target = transition_target_id_;
+      transition_target_id_ = "";
+      transition_target_duration_ = 0.0f;
+      transition_target_type_ = "";
+      transition_timeout_sec_ = -1.0f;
+      if (!timed_out_target.is_empty()) {
+        load_scene_by_id(timed_out_target);
+      }
+    }
+  }
+
+  step_actions(delta);
+}
 
 bool KarakuriScenarioRunner::load_scenario() {
   scenario_root_.clear();
@@ -507,6 +551,12 @@ void KarakuriScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_) {
     return;
   }
+
+  // UtilityFunctions::print("step_actions: idx=", pending_action_index_, "
+  // size=", pending_actions_.size(), " wait=", wait_remaining_sec_, " diag_w=",
+  // waiting_for_dialogue_, " choice_w=", waiting_for_choice_, " test_w=",
+  // testimony_.waiting, " trans_w=", waiting_for_transition_);
+
   if (waiting_for_choice_ || waiting_for_dialogue_ || testimony_.waiting ||
       waiting_for_transition_) {
     return;
@@ -629,6 +679,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
   register_action("goto", [this](const Variant &payload_v) {
     String next_id = "";
     float fade_duration = 0.0;
+    String transition_type = "fade";
 
     if (payload_v.get_type() == Variant::STRING) {
       next_id = String(payload_v);
@@ -636,6 +687,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       Dictionary d = payload_v;
       next_id = dict_get_string(d, "scene_id", "");
       fade_duration = dict_get_float(d, "fade_duration", 0.0);
+      transition_type = dict_get_string(d, "transition_type", "fade");
     }
 
     if (next_id.is_empty()) {
@@ -643,23 +695,31 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     }
 
     if (fade_duration > 0.0 && transition_manager_ && transition_rect_) {
-      // 1. フェードアウト (goto always uses basic fade currently, but we could
-      // make it configurable via 'transition_type')
-      String transition_type = dict_get_string(d, "transition_type", "fade");
 
       waiting_for_transition_ = true;
+      // フェードアウト = 暗転用カバーレイヤーを「出現(in)」させる
       Variant tween =
           transition_manager_->call("apply_transition", transition_rect_,
-                                    transition_type, fade_duration, false);
+                                    transition_type, fade_duration, true);
       if (tween.get_type() == Variant::OBJECT) {
         Object *tween_obj = tween;
         // Tween完了後にシーンロードと明転を行うCallable
         Callable on_fade_out_done =
             Callable::create(this, "on_transition_finished")
-                .bindv(Array::make(next_id, fade_duration));
+                .bindv(Array::make(next_id, fade_duration, transition_type));
         tween_obj->connect("finished", on_fade_out_done);
+        // Tweenが作成された場合はタイムアウト監視を有効化
+        transition_target_id_ = next_id;
+        transition_target_duration_ = fade_duration;
+        transition_target_type_ = transition_type;
+        transition_timeout_sec_ = fade_duration * 3.0f + 2.0f;
       } else {
+        // Tweenオブジェクトが作成されなかった場合は即座にシーン遷移
         waiting_for_transition_ = false;
+        transition_target_id_ = "";
+        transition_target_duration_ = 0.0f;
+        transition_target_type_ = "";
+        transition_timeout_sec_ = -1.0f;
         load_scene_by_id(next_id);
       }
     } else {
@@ -709,6 +769,12 @@ void KarakuriScenarioRunner::init_builtin_actions() {
         dialogue_ui_->get_node_or_null(NodePath("PortraitRect"));
     if (!target_node)
       return false;
+
+    // C++側からDialogueUIの _update_portrait(target)
+    // を呼び出し、対象のテクスチャを事前にセット・更新させる
+    if (dialogue_ui_->has_method("_update_portrait")) {
+      dialogue_ui_->call("_update_portrait", target);
+    }
 
     waiting_for_transition_ = true;
     Variant tween = transition_manager_->call("apply_transition", target_node,
@@ -1141,7 +1207,8 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
     }
     testimony_.index++;
     if (testimony_.index >= testimony_.lines.size()) {
-      if (are_all_testimony_contradictions_solved()) {
+      bool all_solved = are_all_testimony_contradictions_solved();
+      if (all_solved) {
         complete_testimony(true);
         return;
       }
@@ -1230,8 +1297,11 @@ void KarakuriScenarioRunner::complete_testimony(bool success) {
     return;
   }
   // Capture chosen actions before reset clears them.
+  // Use duplicate() because Array is reference-counted and reset() calls
+  // clear().
   const Array chosen =
-      success ? testimony_.success_actions : testimony_.failure_actions;
+      (success ? testimony_.success_actions : testimony_.failure_actions)
+          .duplicate();
   testimony_.reset();
   set_mode_input_enabled(false);
 
@@ -1248,6 +1318,10 @@ void KarakuriScenarioRunner::complete_testimony(bool success) {
 
   for (int i = chosen.size() - 1; i >= 0; i--) {
     pending_actions_.insert(pending_action_index_, chosen[i]);
+  }
+  // pendingアクション（dialogue + goto）を実行するために実行フラグを立てる
+  if (!chosen.is_empty()) {
+    is_executing_actions_ = true;
   }
 }
 
@@ -1315,33 +1389,54 @@ KarakuriScenarioRunner::resolve_mode_id(const String &scene_id,
 }
 
 void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
-                                                    const Variant &arg2) {
+                                                    const Variant &arg2,
+                                                    const Variant &arg3) {
   waiting_for_transition_ = false;
 
-  // arg1, arg2 は bindv で渡された引数 (goto用)
-  if (arg1.get_type() == Variant::STRING && arg2.get_type() == Variant::FLOAT) {
+  // arg1, arg2, (arg3) は bindv で渡された引数 (goto用)
+  if (arg1.get_type() == Variant::STRING &&
+      (arg2.get_type() == Variant::FLOAT || arg2.get_type() == Variant::INT)) {
     // on_transition_finished に渡された args:
-    // [0] next_id, [1] fade_duration
+    // [0] next_id, [1] fade_duration, [2] transition_type
     String next_id = String(arg1);
     float duration = float(arg2);
+    String transition_type = "fade";
+    if (arg3.get_type() == Variant::STRING) {
+      transition_type = String(arg3);
+    }
+
+    transition_target_id_ = "";
+    transition_target_duration_ = 0.0f;
+    transition_target_type_ = "";
+    transition_timeout_sec_ = -1.0f;
 
     load_scene_by_id(next_id);
 
-    if (transition_manager_ && transition_rect_) {
-      // 3. フェードイン
+    if (duration > 0.0f && transition_manager_ && transition_rect_) {
+      // 3. フェードイン = 暗転用カバーレイヤーを「消滅(out)」させる
       waiting_for_transition_ = true;
       Variant tween =
-          transition_manager_->call("fade", transition_rect_, duration, true);
+          transition_manager_->call("apply_transition", transition_rect_,
+                                    transition_type, duration, false);
       if (tween.get_type() == Variant::OBJECT) {
         Object *tween_obj = tween;
-        tween_obj->connect("finished",
-                           Callable(this, "on_transition_finished"));
+        tween_obj->connect("finished", Callable(this, "on_transition_finished"));
+        // フェードイン完了待ち用のタイムアウト。scene_idは空のままにして再ロードを防ぐ。
+        transition_timeout_sec_ = duration * 2.0f + 1.0f;
       } else {
+        UtilityFunctions::push_error("KarakuriScenarioRunner: Tween creation "
+                                     "failed in fade-in stage.");
         waiting_for_transition_ = false;
       }
     }
   }
-}
+
+  if (!waiting_for_transition_) {
+    transition_target_id_ = "";
+    transition_target_duration_ = 0.0f;
+    transition_target_type_ = "";
+    transition_timeout_sec_ = -1.0f;
+  }
 }
 
 bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,

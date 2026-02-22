@@ -85,9 +85,9 @@ func clear_portrait() -> void:
 func _update_portrait(speaker_name: String) -> void:
 	var portrait_id = ""
 	match speaker_name:
-		"Detective", "探偵": portrait_id = "detective"
-		"Boss", "所長": portrait_id = "boss"
-		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者": portrait_id = "rat_witness"
+		"Detective", "探偵", "speaker.detective": portrait_id = "detective"
+		"Boss", "所長", "speaker.boss": portrait_id = "boss"
+		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者", "speaker.rat_witness": portrait_id = "rat_witness"
 	
 	if portrait_id != "":
 		var path = "res://assets/mystery/characters/%s.png" % portrait_id

@@ -12,8 +12,11 @@ var shaders = {
 	"split": null,
 	"page_turn": null
 }
+var is_headless_runtime := false
 
 func _ready() -> void:
+	is_headless_runtime = DisplayServer.get_name() == "headless"
+
 	# 利用可能なシェーダーを事前ロード
 	var paths = {
 		"wipe": SHADER_DIR + "transition_wipe.gdshader",
@@ -87,32 +90,47 @@ func apply_transition(node: CanvasItem, type_name: String, duration: float, is_i
 	if not node: return null
 	
 	match type_name:
-		# Shader: Wipe (Linear/CrossFade/TurnOffTiles)
 		"fade":
 			return fade(node, duration, is_in)
+
+		# Shader: Wipe (Linear/CrossFade/TurnOffTiles)
 		"cross_fade":
-			return wipe_tile(node, Vector2(1, 1), Vector2(0, 0), 0.0, duration, is_in)
+			return fade(node, duration, is_in) if is_headless_runtime else wipe_tile(node, Vector2(1, 1), Vector2(0, 0), 0.0, duration, is_in)
 		"turn_off_tiles":
-			return wipe_tile(node, Vector2(12, 12), Vector2(0, 0), 1.0, duration, is_in)
-		"fade_tr": return wipe_tile(node, Vector2(1, 1), Vector2(1, -1), 0.0, duration, is_in)
-		"fade_bl": return wipe_tile(node, Vector2(1, 1), Vector2(-1, 1), 0.0, duration, is_in)
-		"fade_up": return wipe_tile(node, Vector2(1, 1), Vector2(0, -1), 0.0, duration, is_in)
-		"fade_down": return wipe_tile(node, Vector2(1, 1), Vector2(0, 1), 0.0, duration, is_in)
-		
+			return fade(node, duration, is_in) if is_headless_runtime else wipe_tile(node, Vector2(12, 12), Vector2(0, 0), 1.0, duration, is_in)
+		"fade_tr":
+			return fade(node, duration, is_in) if is_headless_runtime else wipe_tile(node, Vector2(1, 1), Vector2(1, -1), 0.0, duration, is_in)
+		"fade_bl":
+			return fade(node, duration, is_in) if is_headless_runtime else wipe_tile(node, Vector2(1, 1), Vector2(-1, 1), 0.0, duration, is_in)
+		"fade_up":
+			return fade(node, duration, is_in) if is_headless_runtime else wipe_tile(node, Vector2(1, 1), Vector2(0, -1), 0.0, duration, is_in)
+		"fade_down":
+			return fade(node, duration, is_in) if is_headless_runtime else wipe_tile(node, Vector2(1, 1), Vector2(0, 1), 0.0, duration, is_in)
+
 		# Shader: Radial / Linear
-		"wipe_radial_cw": return _apply_shader_transition(node, "radial", {"mode": 0}, duration, is_in)
-		"wipe_radial_ccw": return _apply_shader_transition(node, "radial", {"mode": 1}, duration, is_in)
-		"wipe_linear_h": return _apply_shader_transition(node, "radial", {"mode": 2}, duration, is_in)
-		"wipe_linear_v": return _apply_shader_transition(node, "radial", {"mode": 3}, duration, is_in)
-		"wipe_center_out": return _apply_shader_transition(node, "radial", {"mode": 4}, duration, is_in)
-		"wipe_center_in": return _apply_shader_transition(node, "radial", {"mode": 5}, duration, is_in)
-		
+		"wipe_radial_cw":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "radial", {"mode": 0}, duration, is_in)
+		"wipe_radial_ccw":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "radial", {"mode": 1}, duration, is_in)
+		"wipe_linear_h":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "radial", {"mode": 2}, duration, is_in)
+		"wipe_linear_v":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "radial", {"mode": 3}, duration, is_in)
+		"wipe_center_out":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "radial", {"mode": 4}, duration, is_in)
+		"wipe_center_in":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "radial", {"mode": 5}, duration, is_in)
+
 		# Shader: Split
-		"split_rows": return _apply_shader_transition(node, "split", {"mode": 0, "splits": 10.0}, duration, is_in)
-		"split_cols": return _apply_shader_transition(node, "split", {"mode": 1, "splits": 10.0}, duration, is_in)
-		
+		"split_rows":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "split", {"mode": 0, "splits": 10.0}, duration, is_in)
+		"split_cols":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "split", {"mode": 1, "splits": 10.0}, duration, is_in)
+
 		# Shader: Page Turn
-		"page_turn": return _apply_shader_transition(node, "page_turn", {"mode": 1}, duration, is_in)
+		"page_turn":
+			return fade(node, duration, is_in) if is_headless_runtime else _apply_shader_transition(node, "page_turn", {"mode": 1}, duration, is_in)
+		
 		
 		# Tween: Move & Slide (requires Control node for size/position manipulation)
 		"slide_left": return slide(node as Control, Vector2(-1, 0), 100.0, duration, is_in) if node is Control else fade(node, duration, is_in)

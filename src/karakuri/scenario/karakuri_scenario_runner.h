@@ -123,6 +123,10 @@ public:
   void set_testimony_system_path(const godot::NodePath &path);
   godot::NodePath get_testimony_system_path() const;
 
+  bool is_running() const;
+  int get_testimony_index() const;
+  int get_testimony_size() const;
+
   /** @brief Godotのライフサイクルフック。 */
   void _ready() override;
   /** @brief Godot lifecycle hook. */
@@ -189,6 +193,11 @@ private:
    * がエフェクト（Tween）の完了を待機しているかを示すフラグ。
    */
   bool waiting_for_transition_ = false;
+  // goto時の遺移先情報（タイムアウト発火用）
+  godot::String transition_target_id_;
+  float transition_target_duration_ = 0.0f;
+  godot::String transition_target_type_;
+  float transition_timeout_sec_ = -1.0f;
 
   /**
    * @brief Mysteryの証言コンフロンテーションセッションのステート。
@@ -218,7 +227,8 @@ private:
   void on_testimony_present_requested();
   void on_evidence_selected(const godot::String &evidence_id);
   void on_transition_finished(const godot::Variant &arg1 = godot::Variant(),
-                              const godot::Variant &arg2 = godot::Variant());
+                              const godot::Variant &arg2 = godot::Variant(),
+                              const godot::Variant &arg3 = godot::Variant());
   bool hotspot_matches_click(const HotspotBinding &hs,
                              const godot::Vector2 &pos) const;
   void trigger_hotspot(const HotspotBinding &hs);
