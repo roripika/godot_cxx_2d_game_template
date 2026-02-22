@@ -10,6 +10,7 @@ signal evidence_selected(evidence_id: String)
 @onready var detail_name: Label = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/NameLabel")
 @onready var detail_desc: Label = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/DescriptionLabel")
 @onready var detail_icon: TextureRect = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/IconRect")
+@onready var close_btn: Button = get_node_or_null("CloseButton")
 
 var evidence_list: Array[EvidenceItem] = []
 var selected_evidence: EvidenceItem = null
@@ -22,9 +23,17 @@ func _ready() -> void:
 	visible = false
 	if detail_panel:
 		detail_panel.visible = false
+	if close_btn:
+		close_btn.pressed.connect(_on_close_pressed)
 	_load_evidence_resources()
 	_connect_localization_service()
 	_refresh_static_labels()
+
+func _on_close_pressed() -> void:
+	if not _mode_input_enabled:
+		return
+	hide_inventory()
+	evidence_selected.emit("")
 
 func _load_evidence_resources() -> void:
 	var evidence_dir := "res://samples/mystery/data/evidence/"

@@ -14,6 +14,12 @@ signal dialogue_finished()
 @export var text_color: Color = Color.WHITE
 @export var name_color: Color = Color.YELLOW
 
+const PORTRAIT_TOP := -250.0
+const PORTRAIT_BOTTOM := 50.0
+const PORTRAIT_INSIDE_MARGIN := 40.0
+const PORTRAIT_OUTSIDE_MARGIN := 260.0
+const PORTRAIT_FADE_DURATION := 0.2
+
 var is_typing: bool = false
 var current_text: String = ""
 
@@ -24,17 +30,24 @@ var _message_text: String = ""
 var _choice_defs: Array[Dictionary] = []
 var _mode_input_enabled: bool = true
 var _waiting_for_click: bool = false
+var _portrait_side: String = "left"
+var _portrait_side_override: String = "auto"
+var _portrait_enter_transition: String = "none"
+var _portrait_exit_transition: String = "none"
+var _portrait_tween: Tween = null
 
 func _ready() -> void:
 	visible = false
 	_clear_choices()
 	_connect_localization_service()
+	resized.connect(_on_dialogue_resized)
 	_refresh_locale()
 
 func show_message(speaker: String, text: String) -> void:
 	show_message_with_keys("", speaker, "", text)
 
-func show_message_with_keys(speaker_key: String, speaker: String, text_key: String, text: String) -> void:
+func show_message_with_keys(speaker_key: String, speaker: String, text_key: String, text: String, portrait_side: String = "auto") -> void:
+	set_portrait_side(portrait_side)
 	visible = true
 	_message_speaker_key = speaker_key
 	_message_speaker_text = speaker
@@ -42,7 +55,7 @@ func show_message_with_keys(speaker_key: String, speaker: String, text_key: Stri
 	_message_text = text
 	_choice_defs.clear()
 	_clear_choices()
-	_update_portrait(speaker_key if speaker_key != "" else speaker)
+	await _update_portrait_for_dialogue(speaker_key if speaker_key != "" else speaker)
 	_apply_message_name()
 	_type_text(_resolve_text(_message_text_key, _message_text))
 
@@ -77,26 +90,145 @@ func set_portrait(texture: Texture2D) -> void:
 	if portrait_rect:
 		portrait_rect.texture = texture
 		portrait_rect.visible = true
+		portrait_rect.modulate.a = 1.0
 
 func clear_portrait() -> void:
 	if portrait_rect:
 		portrait_rect.visible = false
+		portrait_rect.modulate.a = 1.0
 
 func _update_portrait(speaker_name: String) -> void:
-	var portrait_id = ""
-	match speaker_name:
-		"Detective", "探偵", "speaker.detective": portrait_id = "detective"
-		"Boss", "所長", "speaker.boss": portrait_id = "boss"
-		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者", "speaker.rat_witness": portrait_id = "rat_witness"
+	var portrait_id = _resolve_portrait_id(speaker_name)
 	
 	if portrait_id != "":
 		var path = "res://assets/mystery/characters/%s.png" % portrait_id
 		if ResourceLoader.exists(path):
 			set_portrait(load(path))
+			_update_portrait_side(portrait_id)
+			_apply_portrait_layout()
 		else:
 			clear_portrait()
 	else:
 		clear_portrait()
+
+func _resolve_portrait_id(speaker_name: String) -> String:
+	match speaker_name:
+		"Detective", "探偵", "speaker.detective":
+			return "detective"
+		"Boss", "所長", "speaker.boss":
+			return "boss"
+		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者", "speaker.rat_witness":
+			return "rat_witness"
+		_:
+			return ""
+
+func _update_portrait_for_dialogue(speaker_name: String) -> void:
+	if not portrait_rect:
+		return
+
+	var portrait_id := _resolve_portrait_id(speaker_name)
+	var had_visible_portrait := portrait_rect.visible and portrait_rect.texture != null
+
+	if _portrait_exit_transition == "fade_out" and had_visible_portrait:
+		await _fade_portrait_to(0.0, PORTRAIT_FADE_DURATION)
+
+	if portrait_id == "":
+		clear_portrait()
+		_reset_portrait_transitions()
+		return
+
+	var path = "res://assets/mystery/characters/%s.png" % portrait_id
+	if not ResourceLoader.exists(path):
+		clear_portrait()
+		_reset_portrait_transitions()
+		return
+
+	set_portrait(load(path))
+	_update_portrait_side(portrait_id)
+	_apply_portrait_layout()
+
+	if _portrait_enter_transition == "fade_in":
+		portrait_rect.modulate.a = 0.0
+		await _fade_portrait_to(1.0, PORTRAIT_FADE_DURATION)
+	else:
+		portrait_rect.modulate.a = 1.0
+
+	_reset_portrait_transitions()
+
+func _fade_portrait_to(alpha: float, duration: float) -> void:
+	if not portrait_rect:
+		return
+	if _portrait_tween and _portrait_tween.is_valid():
+		_portrait_tween.kill()
+	_portrait_tween = portrait_rect.create_tween()
+	_portrait_tween.tween_property(portrait_rect, "modulate:a", alpha, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	await _portrait_tween.finished
+
+func _reset_portrait_transitions() -> void:
+	_portrait_enter_transition = "none"
+	_portrait_exit_transition = "none"
+
+func _update_portrait_side(portrait_id: String) -> void:
+	if _portrait_side_override != "auto":
+		_portrait_side = _portrait_side_override
+		return
+	match portrait_id:
+		"boss", "rat_witness":
+			_portrait_side = "right"
+		_:
+			_portrait_side = "left"
+
+func _apply_portrait_layout() -> void:
+	if not portrait_rect:
+		return
+
+	portrait_rect.offset_top = PORTRAIT_TOP
+	portrait_rect.offset_bottom = PORTRAIT_BOTTOM
+
+	var panel_width := size.x
+	if panel_width <= 0.0:
+		panel_width = 900.0
+
+	match _portrait_side:
+		"right":
+			portrait_rect.offset_left = panel_width - PORTRAIT_INSIDE_MARGIN
+			portrait_rect.offset_right = panel_width + PORTRAIT_OUTSIDE_MARGIN
+		"center":
+			portrait_rect.offset_left = (panel_width * 0.5) - (PORTRAIT_OUTSIDE_MARGIN * 0.5)
+			portrait_rect.offset_right = (panel_width * 0.5) + (PORTRAIT_OUTSIDE_MARGIN * 0.5)
+		_:
+			portrait_rect.offset_left = -PORTRAIT_OUTSIDE_MARGIN
+			portrait_rect.offset_right = PORTRAIT_INSIDE_MARGIN
+
+func _on_dialogue_resized() -> void:
+	if portrait_rect and portrait_rect.visible:
+		_apply_portrait_layout()
+
+func set_portrait_side(side: String) -> void:
+	var normalized := side.strip_edges().to_lower()
+	if normalized == "":
+		normalized = "auto"
+	match normalized:
+		"left", "right", "center", "auto":
+			_portrait_side_override = normalized
+		_:
+			_portrait_side_override = "auto"
+	if portrait_rect and portrait_rect.visible:
+		_apply_portrait_layout()
+
+func set_portrait_enter(mode: String) -> void:
+	var normalized := mode.strip_edges().to_lower()
+	if normalized in ["fade", "fade_in", "in"]:
+		_portrait_enter_transition = "fade_in"
+	else:
+		_portrait_enter_transition = "none"
+
+func set_portrait_exit(mode: String) -> void:
+	var normalized := mode.strip_edges().to_lower()
+	if normalized in ["fade", "fade_out", "out"]:
+		_portrait_exit_transition = "fade_out"
+	else:
+		_portrait_exit_transition = "none"
 
 func skip_typing() -> void:
 	if not is_typing:
@@ -161,7 +293,12 @@ func _apply_message_name() -> void:
 func _resolve_text(key: String, fallback: String) -> String:
 	if key.is_empty():
 		return fallback
-	return tr(key)
+	var localized := tr(key)
+	if localized != "":
+		return localized
+	if fallback != "":
+		return fallback
+	return key
 
 func _refresh_locale() -> void:
 	if ui_part_label:
@@ -214,4 +351,3 @@ func _clear_choices() -> void:
 		return
 	for child in choices_container.get_children():
 		child.queue_free()
-

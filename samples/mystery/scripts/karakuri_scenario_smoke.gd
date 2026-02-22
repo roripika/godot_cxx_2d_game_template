@@ -1,7 +1,61 @@
 extends SceneTree
 
 const SHELL := "res://samples/mystery/karakuri_mystery_shell.tscn"
+const DIALOGUE_PLACEHOLDER := "ここに会話文が表示されます"
 var _failed := false
+var _seen_dialogue_signatures: Dictionary = {}
+
+func _dialogue_text_label() -> Label:
+	return _dialogue_ui().get_node_or_null("VBoxContainer/TextLabel")
+
+func _collect_dialogue_snapshot() -> Dictionary:
+	var ui := _dialogue_ui()
+	var label := _dialogue_text_label()
+	var label_text := ""
+	if label:
+		label_text = str(label.text).strip_edges()
+	return {
+		"message_key": str(ui.get("_message_text_key")).strip_edges(),
+		"message_text": str(ui.get("_message_text")).strip_edges(),
+		"current_text": str(ui.get("current_text")).strip_edges(),
+		"label_text": label_text,
+	}
+
+func _best_dialogue_text(snapshot: Dictionary) -> String:
+	var label_text := str(snapshot.get("label_text", ""))
+	var current_text := str(snapshot.get("current_text", ""))
+	var message_text := str(snapshot.get("message_text", ""))
+	var message_key := str(snapshot.get("message_key", ""))
+	if label_text != "":
+		return label_text
+	if current_text != "":
+		return current_text
+	if message_text != "":
+		return message_text
+	return message_key
+
+func _track_dialogue_playback(context: String) -> bool:
+	var snap := _collect_dialogue_snapshot()
+	var best := _best_dialogue_text(snap).strip_edges()
+	if best == "" or best == DIALOGUE_PLACEHOLDER:
+		return false
+	var sig := "%s|%s|%s|%s" % [
+		str(snap.get("message_key", "")),
+		str(snap.get("message_text", "")),
+		str(snap.get("current_text", "")),
+		str(snap.get("label_text", "")),
+	]
+	if not _seen_dialogue_signatures.has(sig):
+		_seen_dialogue_signatures[sig] = context
+		print("[KARAKURI_SMOKE] dialogue playback observed (", context, "): ", best)
+	return true
+
+func _wait_for_dialogue_playback(context: String, max_frames: int = 240) -> bool:
+	for _i in range(max_frames):
+		if _track_dialogue_playback(context):
+			return true
+		await process_frame
+	return false
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -100,6 +154,7 @@ func _wait_for_base_with_clicks(name: String, click_interval_frames: int = 30, m
 
 func _safe_clear_dialogue() -> void:
 	var ui := _dialogue_ui()
+	_track_dialogue_playback("clear_cycle")
 	if ui.get("is_typing"):
 		ui.call("skip_typing")
 	if ui.get("_waiting_for_click"):
@@ -118,6 +173,9 @@ func _go_to_deduction(gs: Node) -> bool:
 	var reached_warehouse := await _wait_for_base_with_clicks("WarehouseBase")
 	if not reached_warehouse:
 		return false
+
+	var has_warehouse_intro := await _wait_for_dialogue_playback("warehouse_intro")
+	_assert(has_warehouse_intro, "warehouse intro dialogue was not rendered")
 	
 	# Wait for the warehouse's on_enter dialogue to be fully dismissed
 	print("[KARAKURI_SMOKE] clearing warehouse intro...")
@@ -149,6 +207,8 @@ func _go_to_deduction(gs: Node) -> bool:
 
 func _run() -> void:
 	await _boot_shell()
+	var has_prologue_dialogue := await _wait_for_dialogue_playback("prologue_start", 300)
+	_assert(has_prologue_dialogue, "prologue dialogue was not rendered")
 
 	# Locale switch sanity: EN/JA translation must differ.
 	_set_locale("en")
@@ -184,6 +244,9 @@ func _run() -> void:
 
 	var reached_confrontation := await _wait_for_base_with_clicks("WarehouseBase", 30, 3000)
 	_assert(reached_confrontation, "failed to transition to confrontation scene")
+
+	var has_confrontation_intro := await _wait_for_dialogue_playback("confrontation_intro")
+	_assert(has_confrontation_intro, "confrontation intro dialogue was not rendered")
 	
 	# Skip Confrontation intro 'Detective: start1', 'Rat Witness: start2'
 	print("[KARAKURI_SMOKE] clearing confrontation intro...")
@@ -288,6 +351,7 @@ func _run() -> void:
 	print("[KARAKURI_SMOKE] waiting for bad ending check...")
 	var reached_bad_ending := _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == "EndingBase"
 	_assert(reached_bad_ending, "bad ending was not reached after HP depletion")
+	_assert(_seen_dialogue_signatures.size() >= 3, "dialogue playback observations were too few; dialogue may not be rendering")
 
 	if _failed:
 		quit(1)

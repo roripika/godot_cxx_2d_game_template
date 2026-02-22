@@ -57,7 +57,20 @@ action は「1キーの辞書」で表現する。
     speaker: "System"             # 任意（既定: System）
     text_key: "demo..."           # Mystery運用では必須
     text: "fallback text"         # 非推奨（互換用）
+    portrait_side: "auto"         # 任意: auto / left / right / center
+    portrait_enter: "none"        # 任意: none / fade_in
+    portrait_exit: "none"         # 任意: none / fade_out
 ```
+
+- `portrait_side`:
+  - `auto` (既定): 話者に応じたデフォルト配置（Detective=left, Boss/Witness=right）
+  - `left` / `right` / `center`: ストーリー都合で明示配置を上書き
+- `portrait_enter`:
+  - `none` (既定): そのまま表示
+  - `fade_in`: 話者バストアップをフェードインで出現
+- `portrait_exit`:
+  - `none` (既定): そのまま切替
+  - `fade_out`: 直前の話者バストアップをフェードアウトで撤退
 
 実行時の待機:
 - `DialogueUI` が `dialogue_finished` signal を提供する場合、ランタイムは **signal 発火まで次の action に進まない**（テキスト上書き防止）。

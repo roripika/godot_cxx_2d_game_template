@@ -15,6 +15,7 @@
 - `src/karakuri/**` の C++ は Doxygen 形式コメント必須。
 - Basic Game Karakuri にデモ固有ロジックを入れない。
 - 文字列は原則翻訳キー経由で扱い、直書きを避ける。
+- 会話時のバストアップ配置/演出はスクリプト直書きで固定せず、YAML の `dialogue.portrait_side` / `portrait_enter` / `portrait_exit` で管理する。
 - PR には最低限 `Scope / Out of Scope / Test` を記載する。
 
 ## 4. 役割分担
@@ -23,10 +24,22 @@
   - 責務: レイアウト、視認性、操作導線、UIアニメーション。
 - Planner:
   - 主編集対象: `samples/mystery/scenario/**`、翻訳データ（CSV/translation）。
-  - 責務: シナリオ分岐、証拠配置、難易度、エンディング条件。
+  - 責務: シナリオ分岐、証拠配置、難易度、エンディング条件、会話時バストアップ配置/演出（`portrait_side` / `portrait_enter` / `portrait_exit`）の指定。
 - Engineer (antigravity):
   - 主編集対象: `src/karakuri/**`、ランナー接続、NodePath契約、テスト導線。
   - 責務: データ駆動実行基盤、互換性、品質担保。
+
+## 4.1 会話バストアップ配置ルール（運用追加）
+- 対象: `dialogue` action
+- 指定キー: `portrait_side`
+- 補助キー: `portrait_enter`, `portrait_exit`
+- 値: `auto` / `left` / `right` / `center`
+- 演出値: `portrait_enter = none/fade_in`, `portrait_exit = none/fade_out`
+- 基本運用:
+  - 通常は `auto` を使い、演出意図がある台詞のみ `left/right/center` を明示する。
+  - 出現/撤退演出が必要な台詞のみ `portrait_enter` / `portrait_exit` を付与する。
+  - 話者の立ち位置・視線関係などストーリー都合の最終決定は Planner が YAML で行う。
+  - Designer はレイアウト規則（見た目・安全領域）を実装し、Engine はキー解釈と互換性を担保する。
 
 ## 5. 実行順（マイルストーン）
 1. M1 入口統一と旧導線整理

@@ -604,19 +604,44 @@ void KarakuriScenarioRunner::init_builtin_actions() {
   // ------------------------------------------------------------------ dialogue
   register_action("dialogue", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
+    const String portrait_side = dict_get_string(payload, "portrait_side", "auto");
+    const String portrait_enter =
+        dict_get_string(payload, "portrait_enter", "none");
+    const String portrait_exit =
+        dict_get_string(payload, "portrait_exit", "none");
     const String speaker_key = dict_get_string(payload, "speaker_key", "");
-    const String speaker = speaker_key.is_empty()
-                               ? dict_get_string(payload, "speaker", "System")
-                               : tr_key(speaker_key);
+    const String speaker_fallback = dict_get_string(payload, "speaker", "System");
+    String speaker = speaker_fallback;
+    if (!speaker_key.is_empty()) {
+      const String translated = tr_key(speaker_key);
+      speaker = translated.is_empty() ? speaker_fallback : translated;
+    }
     const String text_key = dict_get_string(payload, "text_key", "");
-    const String text = text_key.is_empty()
-                            ? dict_get_string(payload, "text", "")
-                            : tr_key(text_key);
+    const String text_fallback = dict_get_string(payload, "text", "");
+    String text = text_fallback;
+    if (!text_key.is_empty()) {
+      const String translated = tr_key(text_key);
+      if (!translated.is_empty()) {
+        text = translated;
+      } else if (text_fallback.is_empty()) {
+        // Keep the dialogue visible even when translation resources are missing.
+        text = text_key;
+      }
+    }
 
     if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
       // Set this before calling into GDScript to avoid missing an immediate
       // synchronous `dialogue_finished` emission (e.g. typing_speed <= 0).
       waiting_for_dialogue_ = dialogue_ui_->has_signal("dialogue_finished");
+      if (dialogue_ui_->has_method("set_portrait_side")) {
+        dialogue_ui_->call("set_portrait_side", portrait_side);
+      }
+      if (dialogue_ui_->has_method("set_portrait_enter")) {
+        dialogue_ui_->call("set_portrait_enter", portrait_enter);
+      }
+      if (dialogue_ui_->has_method("set_portrait_exit")) {
+        dialogue_ui_->call("set_portrait_exit", portrait_exit);
+      }
       if (dialogue_ui_->has_method("show_message_with_keys")) {
         dialogue_ui_->call("show_message_with_keys", speaker_key, speaker,
                            text_key, text);
@@ -1192,6 +1217,12 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
     return;
   }
 
+  if (evidence_id.is_empty()) {
+    // Cancelled evidence selection. Restore UI state and exit without penalty.
+    show_current_testimony_line();
+    return;
+  }
+
   Dictionary line = as_dict(testimony_.lines[testimony_.index]);
   const String expected = dict_get_string(line, "evidence", "");
   const bool correct = !expected.is_empty() && expected == evidence_id;
@@ -1420,7 +1451,8 @@ void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
                                     transition_type, duration, false);
       if (tween.get_type() == Variant::OBJECT) {
         Object *tween_obj = tween;
-        tween_obj->connect("finished", Callable(this, "on_transition_finished"));
+        tween_obj->connect("finished",
+                           Callable(this, "on_transition_finished"));
         // フェードイン完了待ち用のタイムアウト。scene_idは空のままにして再ロードを防ぐ。
         transition_timeout_sec_ = duration * 2.0f + 1.0f;
       } else {

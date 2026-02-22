@@ -7,12 +7,12 @@ scenes:
     on_enter:
       - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.prologue.system" }
       - transition_object: { target: "speaker.detective", type: "page_turn", duration: 1.0, mode: "in" }
-      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_intro" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_intro", portrait_side: "left", portrait_enter: "fade_in" }
       - transition_object: { target: "speaker.boss", type: "wipe_radial_cw", duration: 0.8, mode: "in" }
-      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.prologue.boss_call" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.prologue.boss_call", portrait_side: "right", portrait_enter: "fade_in", portrait_exit: "fade_out" }
       - transition_object: { target: "speaker.boss", type: "zoom_flip", duration: 0.5, mode: "out" }
       - transition_object: { target: "speaker.detective", type: "roto_zoom", duration: 0.5, mode: "out" }
-      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_ack" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_ack", portrait_side: "left", portrait_enter: "fade_in" }
       - goto:
           scene_id: "warehouse_investigation"
           fade_duration: 1.0

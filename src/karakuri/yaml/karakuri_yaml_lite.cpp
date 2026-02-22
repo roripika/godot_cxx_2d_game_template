@@ -46,10 +46,158 @@ static bool is_blank(const String &line) {
   return line.strip_edges().is_empty();
 }
 
+static Variant parse_scalar(const String &raw);
+
+static PackedStringArray split_top_level(const String &s, char32_t delimiter) {
+  PackedStringArray out;
+  bool in_single = false;
+  bool in_double = false;
+  int brace_depth = 0;
+  int bracket_depth = 0;
+  int token_start = 0;
+
+  for (int i = 0; i < s.length(); i++) {
+    const char32_t c = s[i];
+    if (!in_double && c == U'\'') {
+      in_single = !in_single;
+      continue;
+    }
+    if (!in_single && c == U'"') {
+      in_double = !in_double;
+      continue;
+    }
+    if (in_single || in_double) {
+      continue;
+    }
+    if (c == U'{') {
+      brace_depth++;
+      continue;
+    }
+    if (c == U'}') {
+      brace_depth--;
+      continue;
+    }
+    if (c == U'[') {
+      bracket_depth++;
+      continue;
+    }
+    if (c == U']') {
+      bracket_depth--;
+      continue;
+    }
+    if (c == delimiter && brace_depth == 0 && bracket_depth == 0) {
+      out.push_back(s.substr(token_start, i - token_start).strip_edges());
+      token_start = i + 1;
+    }
+  }
+  out.push_back(s.substr(token_start).strip_edges());
+  return out;
+}
+
+static int find_top_level_colon(const String &s) {
+  bool in_single = false;
+  bool in_double = false;
+  int brace_depth = 0;
+  int bracket_depth = 0;
+
+  for (int i = 0; i < s.length(); i++) {
+    const char32_t c = s[i];
+    if (!in_double && c == U'\'') {
+      in_single = !in_single;
+      continue;
+    }
+    if (!in_single && c == U'"') {
+      in_double = !in_double;
+      continue;
+    }
+    if (in_single || in_double) {
+      continue;
+    }
+    if (c == U'{') {
+      brace_depth++;
+      continue;
+    }
+    if (c == U'}') {
+      brace_depth--;
+      continue;
+    }
+    if (c == U'[') {
+      bracket_depth++;
+      continue;
+    }
+    if (c == U']') {
+      bracket_depth--;
+      continue;
+    }
+    if (c == U':' && brace_depth == 0 && bracket_depth == 0) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+static String parse_inline_key(const String &raw_key) {
+  const String key = raw_key.strip_edges();
+  if ((key.begins_with("\"") && key.ends_with("\"") && key.length() >= 2) ||
+      (key.begins_with("'") && key.ends_with("'") && key.length() >= 2)) {
+    return key.substr(1, key.length() - 2);
+  }
+  return key;
+}
+
+static Variant parse_inline_map(const String &raw) {
+  Dictionary d;
+  const String body = raw.substr(1, raw.length() - 2).strip_edges();
+  if (body.is_empty()) {
+    return d;
+  }
+
+  const PackedStringArray entries = split_top_level(body, U',');
+  for (int i = 0; i < entries.size(); i++) {
+    const String entry = entries[i].strip_edges();
+    if (entry.is_empty()) {
+      continue;
+    }
+    const int colon = find_top_level_colon(entry);
+    if (colon < 0) {
+      continue;
+    }
+    const String key = parse_inline_key(entry.substr(0, colon));
+    const String value = entry.substr(colon + 1).strip_edges();
+    d[key] = parse_scalar(value);
+  }
+  return d;
+}
+
+static Variant parse_inline_array(const String &raw) {
+  Array arr;
+  const String body = raw.substr(1, raw.length() - 2).strip_edges();
+  if (body.is_empty()) {
+    return arr;
+  }
+
+  const PackedStringArray entries = split_top_level(body, U',');
+  for (int i = 0; i < entries.size(); i++) {
+    const String entry = entries[i].strip_edges();
+    if (entry.is_empty()) {
+      continue;
+    }
+    arr.append(parse_scalar(entry));
+  }
+  return arr;
+}
+
 static Variant parse_scalar(const String &raw) {
   const String s = raw.strip_edges();
   if (s.is_empty()) {
     return Variant();
+  }
+
+  if (s.begins_with("{") && s.ends_with("}") && s.length() >= 2) {
+    return parse_inline_map(s);
+  }
+  if (s.begins_with("[") && s.ends_with("]") && s.length() >= 2) {
+    return parse_inline_array(s);
   }
 
   // Quoted string (very small subset, no escapes).
@@ -295,4 +443,3 @@ bool KarakuriYamlLite::parse(const String &yaml_text, Variant &out_root,
 }
 
 } // namespace karakuri
-

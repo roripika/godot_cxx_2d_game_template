@@ -34,7 +34,7 @@
 
 ### 4.2 Planner
 - 主編集対象: `samples/mystery/scenario/**`, 翻訳データ
-- 責務: 進行分岐、台詞、証拠配置、失敗条件
+- 責務: 進行分岐、台詞、証拠配置、失敗条件、会話時のバストアップ配置指定（`dialogue.portrait_side`）
 - 制約: YAML v1 契約を守る（`docs/mystery_yaml_schema_v1.md`）
 
 ### 4.3 Engineer
@@ -74,6 +74,14 @@
 
 `mode_id` は YAML の `scene.mode`（`investigation / deduction / confrontation / ending`）を優先し、未指定時は `scene_id` から推定する。
 
+### 5.5 バストアップ配置契約
+- 会話時のバストアップ表示位置は、YAML の `dialogue.portrait_side` で指定する。
+- 出現/撤退演出は `dialogue.portrait_enter` / `dialogue.portrait_exit` で指定する。
+- `portrait_side` は `auto` / `left` / `right` / `center` を受け付ける。
+- `portrait_enter` は `none` / `fade_in`、`portrait_exit` は `none` / `fade_out` を受け付ける。
+- `auto` は UI 側の既定配置規則を使用し、ストーリー演出上の明示位置が必要な箇所のみ `left/right/center` を指定する。
+- デザイナーは配置ルールを実装するが、どの台詞でどの位置を使うかの最終決定はプランナーの YAML で管理する。
+
 ## 6. ゲームモード構成（現行 YAML）
 現状 `samples/mystery/scenario/mystery.yaml` では以下の scene_id で構成する。
 - `prologue`
@@ -92,6 +100,7 @@
 - テンプレート: `samples/mystery/scenario/templates/mystery_template_v1.yaml`
 - action は 1 キー辞書で記述する。
 - Mystery 本運用では `text_key / speaker_key / shake_key` を使用し、`text` は互換フォールバックとしてのみ許容する。
+- バストアップ配置/演出は `dialogue.portrait_side` / `portrait_enter` / `portrait_exit` で定義し、スクリプト側に演出分岐の直書きを増やさない。
 - `scene_id`, `flag`, `item` は `snake_case` を推奨。
 
 ## 8. UI 設計方針
