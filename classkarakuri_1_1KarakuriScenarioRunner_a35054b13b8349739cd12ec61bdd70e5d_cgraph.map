@@ -1,79 +1,100 @@
 <map id="karakuri::KarakuriScenarioRunner::_bind_methods" name="karakuri::KarakuriScenarioRunner::_bind_methods">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,672,197,712"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,771,197,811"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af760ad2c987be7fc729d300565f4178b" title=" " alt="" coords="269,5,483,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,671,115,547,142,361,161,265,184,177,212,105,227,77,243,55,255,46,258,50,247,59,231,80,216,107,189,179,166,266,147,362,120,547,107,672"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,770,111,629,136,414,155,301,178,198,208,113,225,80,243,56,255,46,258,50,247,59,229,83,213,115,184,200,160,302,141,414,117,629,106,771"/>
 <area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a4d0536e89492c8d51d354976d7c16d8d" title=" " alt="" coords="267,69,485,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="102,672,117,558,146,392,165,306,188,228,214,163,228,138,243,119,253,111,256,115,247,123,233,141,219,166,193,229,171,308,151,393,123,559,108,672"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="101,770,114,640,140,444,159,342,182,249,210,172,226,142,243,120,253,111,256,115,247,123,231,145,215,174,187,250,164,343,145,445,119,640,107,771"/>
 <area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aea5aaa653cc98a710f7e1a028c054b52" title=" " alt="" coords="280,134,472,189"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="100,672,103,586,109,527,120,460,138,391,163,322,198,257,243,199,266,183,269,187,247,203,202,260,168,324,143,392,125,461,114,527,108,587,105,672"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="102,770,117,654,146,483,165,394,188,313,214,246,228,219,243,199,266,182,269,186,247,203,233,222,219,248,193,314,171,395,151,484,123,655,108,771"/>
 <area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a7b0cf1d05e6b747d68f388f80ab387d2" title=" " alt="" coords="279,213,473,253"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="100,672,106,595,114,543,126,485,144,425,169,366,202,311,244,263,265,249,268,253,247,267,206,314,174,369,149,427,131,487,119,544,111,596,106,672"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="103,770,119,664,149,512,169,434,191,362,216,303,243,263,264,248,267,253,247,267,221,306,196,364,174,435,154,513,124,665,108,771"/>
 <area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#adda4592ebb58524bf6ca1f356c082c97" title=" " alt="" coords="253,277,499,317"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="102,672,111,605,134,512,152,462,176,413,206,367,244,327,249,323,253,327,247,331,211,370,181,415,157,464,139,514,116,606,107,672"/>
-<area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ab34ab0d4b79cd45fa899f16c05ec3486" title=" " alt="" coords="245,341,507,381"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="104,671,117,615,143,539,161,499,184,459,211,423,244,391,250,386,253,391,247,395,215,426,188,462,166,501,148,541,122,617,109,672"/>
-<area shape="rect" id="Node000008" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aaaf08bf2ec7c10d872b71bf22e906d53" title=" " alt="" coords="869,845,1072,885"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="125,710,177,754,211,776,246,794,296,809,362,821,526,841,702,853,856,860,856,865,702,858,525,846,361,827,295,814,244,798,208,780,174,758,122,714"/>
-<area shape="rect" id="Node000010" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a3e431bf3c8c0b2635626ca6b4959aabe" title=" " alt="" coords="280,405,472,445"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="107,671,125,627,154,571,193,512,217,485,244,462,266,448,269,453,247,466,221,489,197,516,158,574,130,630,112,673"/>
-<area shape="rect" id="Node000014" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af700868dcaa3f9a05de73b206ec5cb82" title=" " alt="" coords="269,859,483,899"/>
-<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="119,711,171,774,207,808,247,838,274,851,271,856,244,842,203,812,167,777,115,714"/>
-<area shape="rect" id="Node000015" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af786df05bd8166307d97873d4556ab57" title=" " alt="" coords="266,600,486,640"/>
-<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="172,669,245,649,278,641,280,646,246,655,173,675"/>
-<area shape="rect" id="Node000022" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a6567473afb0979aa3d317bf9cbb72b5c" title=" " alt="" coords="259,744,493,784"/>
-<area shape="poly" id="edge24_Node000001_Node000022" title=" " alt="" coords="177,709,246,728,284,738,282,743,245,733,175,715"/>
-<area shape="rect" id="Node000023" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8e7bc0782edfd8804d9090083b627e71" title=" " alt="" coords="275,665,477,719"/>
-<area shape="poly" id="edge26_Node000001_Node000023" title=" " alt="" coords="197,689,261,689,261,695,197,695"/>
-<area shape="rect" id="Node000024" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a576fa766365fe3e1e7bac13df1831605" title=" " alt="" coords="265,923,487,978"/>
-<area shape="poly" id="edge31_Node000001_Node000024" title=" " alt="" coords="113,711,131,753,160,806,199,861,222,886,247,909,255,914,252,918,244,913,218,890,194,865,155,809,126,755,108,713"/>
-<area shape="rect" id="Node000025" href="$classkarakuri_1_1KarakuriScenarioRunner.html#abd006837cba9c2bb1463aae8ad2fc2cf" title=" " alt="" coords="583,285,793,339"/>
-<area shape="poly" id="edge32_Node000001_Node000025" title=" " alt="" coords="110,670,130,634,159,589,197,543,244,506,281,488,315,481,348,481,379,484,409,486,440,484,472,475,505,455,516,444,523,433,529,408,535,383,542,370,553,357,570,344,573,348,556,361,546,373,540,385,534,410,528,435,520,448,508,459,474,480,441,490,409,491,378,489,347,486,316,487,282,494,247,510,201,547,163,592,134,637,115,673"/>
-<area shape="rect" id="Node000026" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="ミステリーデモ用のアクションセット（testimony, take_damage, if_health_ge, if_health_leq）を登録する。" alt="" coords="280,521,472,575"/>
-<area shape="poly" id="edge34_Node000001_Node000026" title=" " alt="" coords="124,670,177,628,244,586,266,576,268,581,247,590,180,632,127,674"/>
-<area shape="rect" id="Node000028" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a7d199bd7d13716ef5b7dd252d5dd46ca" title="show_message(speaker, text) をサポートするDialogue UIノードのNodePath。" alt="" coords="269,1003,483,1043"/>
-<area shape="poly" id="edge39_Node000001_Node000028" title=" " alt="" coords="109,712,122,767,148,843,166,883,188,922,215,958,247,989,258,996,255,1001,244,993,211,961,184,925,161,885,143,845,117,769,104,713"/>
-<area shape="rect" id="Node000029" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aea219b37fd11b566fe8a32ecab83366b" title="add_evidence(evidence_id) をサポートする証拠品インベントリUIノードのNodePath。" alt="" coords="267,1067,485,1107"/>
-<area shape="poly" id="edge40_Node000001_Node000029" title=" " alt="" coords="107,712,116,778,139,870,157,920,181,969,211,1014,247,1053,257,1060,254,1064,244,1057,206,1017,176,971,152,922,134,872,111,779,102,712"/>
-<area shape="rect" id="Node000030" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aaee687e8ec44617727b8ff485ca6fdb7" title="clicked_at(Vector2) シグナルを発火するInteractionManagerノードのNodePath。" alt="" coords="280,1131,472,1186"/>
-<area shape="poly" id="edge41_Node000001_Node000030" title=" " alt="" coords="106,712,112,788,133,896,151,955,175,1014,207,1069,247,1117,269,1133,266,1137,244,1121,203,1072,171,1016,146,957,128,898,107,788,101,713"/>
-<area shape="rect" id="Node000031" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ad9c47fa46faad98732806f3b17550b16" title="YAMLシナリオファイルのパス (res://...)。" alt="" coords="279,1211,473,1251"/>
-<area shape="poly" id="edge42_Node000001_Node000031" title=" " alt="" coords="108,712,125,814,155,960,175,1035,197,1104,221,1160,247,1197,268,1211,264,1216,243,1201,217,1162,192,1106,170,1037,150,961,120,815,103,713"/>
-<area shape="rect" id="Node000032" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a9746266f6eab1cf366e021b21f61850b" title="基本シーンがインスタンス化されるシーンコンテナノードのNodePath。" alt="" coords="253,1275,499,1315"/>
-<area shape="poly" id="edge43_Node000001_Node000032" title=" " alt="" coords="108,712,123,825,151,991,171,1076,193,1155,219,1218,233,1243,247,1261,251,1264,248,1268,243,1264,228,1246,214,1221,188,1156,165,1078,146,992,117,826,102,712"/>
-<area shape="rect" id="Node000033" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a297285d27667f2b8eeead53052b8746a" title="TestimonySystem ノードへのNodePath (任意、コンフロンテーションモード用)。" alt="" coords="246,1339,506,1379"/>
-<area shape="poly" id="edge44_Node000001_Node000033" title=" " alt="" coords="107,712,120,837,147,1022,166,1118,189,1205,216,1277,231,1304,247,1325,251,1328,247,1332,243,1328,227,1307,212,1279,184,1207,161,1119,142,1023,115,837,102,713"/>
-<area shape="rect" id="Node000009" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="1120,566,1312,621"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1041,843,1070,825,1114,780,1149,728,1177,677,1197,632,1202,635,1182,679,1154,731,1118,783,1074,829,1043,847"/>
-<area shape="rect" id="Node000011" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ae5b3e38a6d589fc5fc88b282aa6de1a1" title=" " alt="" coords="575,220,801,260"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="471,411,505,391,517,377,524,363,528,332,532,301,540,285,553,270,562,263,565,267,556,274,544,288,537,302,533,333,529,364,522,380,508,395,474,415"/>
-<area shape="rect" id="Node000012" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8b56bf438a9b86cb88cbb6ff628a0b74" title=" " alt="" coords="592,156,784,196"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="471,412,489,403,505,391,521,369,529,347,530,324,528,301,526,277,527,253,535,229,553,206,578,189,581,193,557,210,540,232,533,254,531,277,533,300,535,324,534,348,526,372,509,395,492,408,474,417"/>
-<area shape="rect" id="Node000013" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a9ea13725cc66b56f432f0b5ac205a094" title=" " alt="" coords="875,228,1067,268"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="774,193,822,205,884,222,883,227,821,211,773,199"/>
-<area shape="poly" id="edge13_Node000013_Node000009" title=" " alt="" coords="994,266,1033,307,1074,357,1144,461,1196,553,1191,555,1139,464,1070,360,1029,311,990,270"/>
-<area shape="rect" id="Node000016" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a292d0709d4f5520981971d9719e287dd" title=" " alt="" coords="591,658,785,713"/>
-<area shape="poly" id="edge16_Node000015_Node000016" title=" " alt="" coords="473,637,578,660,577,665,472,643"/>
-<area shape="rect" id="Node000017" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ab5e6cc0ea234b870cc7acbae19a143f5" title=" " alt="" coords="583,788,793,828"/>
-<area shape="poly" id="edge17_Node000015_Node000017" title=" " alt="" coords="487,638,508,650,526,667,535,685,542,703,557,722,595,754,636,779,633,784,592,758,553,726,538,706,530,687,521,670,505,654,485,643"/>
-<area shape="rect" id="Node000019" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aa87a12fca101f28d896be10d3ad349d9" title=" " alt="" coords="583,479,793,519"/>
-<area shape="poly" id="edge20_Node000015_Node000019" title=" " alt="" coords="479,598,505,584,520,571,528,557,537,542,553,528,569,520,571,525,556,533,541,546,533,560,524,575,508,589,481,602"/>
-<area shape="rect" id="Node000020" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af3bc417dfe14667e4933819edac462b6" title=" " alt="" coords="555,543,821,583"/>
-<area shape="poly" id="edge21_Node000015_Node000020" title=" " alt="" coords="485,597,565,583,566,588,486,603"/>
-<area shape="rect" id="Node000021" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a0ff7f67c85e6fd66ba100371ca84c553" title=" " alt="" coords="875,572,1067,612"/>
-<area shape="poly" id="edge23_Node000015_Node000021" title=" " alt="" coords="486,612,861,594,861,600,486,618"/>
-<area shape="poly" id="edge19_Node000017_Node000009" title=" " alt="" coords="794,821,859,824,931,820,1003,807,1038,795,1071,780,1112,750,1147,711,1175,670,1195,632,1200,635,1179,673,1151,714,1116,754,1073,785,1040,800,1005,812,931,826,859,829,794,826"/>
-<area shape="rect" id="Node000018" href="$structkarakuri_1_1KarakuriTestimonySession.html#a73f93fcd05b29d965df98c8a52eafaf8" title="セッション状態を初期値にリセットする。" alt="" coords="869,731,1072,771"/>
-<area shape="poly" id="edge18_Node000017_Node000018" title=" " alt="" coords="787,785,857,771,858,776,788,791"/>
-<area shape="poly" id="edge22_Node000020_Node000021" title=" " alt="" coords="822,574,861,578,861,583,821,579"/>
-<area shape="poly" id="edge25_Node000022_Node000017" title=" " alt="" coords="493,778,569,789,569,794,493,783"/>
-<area shape="poly" id="edge27_Node000023_Node000016" title=" " alt="" coords="477,687,578,685,578,690,477,693"/>
-<area shape="poly" id="edge28_Node000023_Node000017" title=" " alt="" coords="478,716,508,730,532,749,556,767,589,781,587,786,553,772,529,753,505,734,476,721"/>
-<area shape="poly" id="edge29_Node000023_Node000020" title=" " alt="" coords="471,662,506,650,575,618,637,587,640,592,578,623,508,654,473,667"/>
-<area shape="poly" id="edge30_Node000023_Node000021" title=" " alt="" coords="465,717,542,734,633,745,681,746,728,743,775,735,820,722,858,702,892,676,945,621,948,625,896,680,861,706,822,726,777,740,729,748,681,751,633,750,542,739,463,722"/>
-<area shape="poly" id="edge33_Node000025_Node000021" title=" " alt="" coords="738,337,781,366,823,401,862,441,897,483,951,559,947,562,893,487,858,444,820,405,778,370,735,342"/>
-<area shape="poly" id="edge37_Node000026_Node000009" title=" " alt="" coords="471,531,505,511,516,498,522,485,526,455,531,427,539,413,553,400,589,380,621,369,652,364,682,366,746,380,822,400,920,431,1015,472,1098,516,1164,556,1161,561,1095,521,1012,477,919,436,821,405,744,385,681,371,652,370,623,374,591,385,556,405,543,416,536,428,532,456,528,486,521,501,508,515,473,536"/>
-<area shape="poly" id="edge35_Node000026_Node000019" title=" " alt="" coords="472,530,568,515,569,520,473,535"/>
-<area shape="poly" id="edge38_Node000026_Node000020" title=" " alt="" coords="472,550,541,553,541,558,472,555"/>
-<area shape="rect" id="Node000027" href="$classkarakuri_1_1KarakuriScenarioRunner.html#adbb49b68f0e965c9978db12d484b71c2" title="YAMLアクション種別に対するハンドラを登録（または上書き）する。" alt="" coords="592,415,784,455"/>
-<area shape="poly" id="edge36_Node000026_Node000027" title=" " alt="" coords="463,518,505,499,529,481,553,464,578,455,580,460,556,469,532,486,508,504,465,523"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="100,770,104,689,110,632,122,569,139,504,165,440,199,380,243,327,248,323,252,327,247,331,203,383,170,442,145,506,127,570,115,633,109,689,105,771"/>
+<area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a24116d856e287224abea63644feafca9" title=" " alt="" coords="269,341,483,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="101,770,108,699,130,596,148,541,172,486,204,435,244,391,256,382,259,386,247,395,208,439,177,489,153,543,135,598,114,699,106,771"/>
+<area shape="rect" id="Node000008" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a2c90bb1884d103494a1b9addc8f92853" title=" " alt="" coords="275,405,477,445"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="102,770,114,709,138,623,156,578,180,533,209,491,244,455,260,444,263,448,247,459,213,495,184,536,161,580,143,625,119,710,108,771"/>
+<area shape="rect" id="Node000009" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ab34ab0d4b79cd45fa899f16c05ec3486" title=" " alt="" coords="245,469,507,509"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="105,770,120,719,147,651,187,580,213,547,244,519,251,514,254,519,247,523,217,551,192,583,151,653,125,720,110,771"/>
+<area shape="rect" id="Node000010" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aaaae48ac55a5da893cb545564f66f1b9" title=" " alt="" coords="280,533,472,573"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="109,769,129,731,158,683,197,633,244,590,266,577,269,581,247,594,201,636,162,686,133,734,114,772"/>
+<area shape="rect" id="Node000011" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aaaf08bf2ec7c10d872b71bf22e906d53" title=" " alt="" coords="874,504,1077,544"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="115,769,167,707,203,673,244,644,281,626,314,615,372,606,433,601,467,594,506,583,529,571,554,560,633,543,713,531,860,521,861,526,714,536,634,548,556,565,532,576,508,588,468,599,433,606,373,612,315,621,283,631,247,649,206,677,170,710,119,772"/>
+<area shape="rect" id="Node000013" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a3e431bf3c8c0b2635626ca6b4959aabe" title=" " alt="" coords="280,1129,472,1169"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="108,810,119,871,144,953,162,998,185,1041,213,1081,247,1115,269,1129,266,1134,244,1119,209,1084,181,1044,157,1000,139,955,114,872,103,811"/>
+<area shape="rect" id="Node000017" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af700868dcaa3f9a05de73b206ec5cb82" title=" " alt="" coords="269,699,483,739"/>
+<area shape="poly" id="edge17_Node000001_Node000017" title=" " alt="" coords="172,768,245,748,278,739,280,745,246,753,173,773"/>
+<area shape="rect" id="Node000018" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af786df05bd8166307d97873d4556ab57" title=" " alt="" coords="266,843,486,883"/>
+<area shape="poly" id="edge18_Node000001_Node000018" title=" " alt="" coords="177,808,246,827,284,837,282,842,245,832,175,813"/>
+<area shape="rect" id="Node000025" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a6567473afb0979aa3d317bf9cbb72b5c" title=" " alt="" coords="259,1065,493,1105"/>
+<area shape="poly" id="edge27_Node000001_Node000025" title=" " alt="" coords="110,810,126,859,153,925,193,992,218,1023,247,1050,257,1057,254,1061,244,1054,214,1027,189,996,148,927,121,861,105,812"/>
+<area shape="rect" id="Node000026" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8e7bc0782edfd8804d9090083b627e71" title=" " alt="" coords="275,907,477,962"/>
+<area shape="poly" id="edge29_Node000001_Node000026" title=" " alt="" coords="127,809,180,851,247,892,264,900,262,905,244,897,177,855,124,813"/>
+<area shape="rect" id="Node000027" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a576fa766365fe3e1e7bac13df1831605" title=" " alt="" coords="265,986,487,1041"/>
+<area shape="poly" id="edge34_Node000001_Node000027" title=" " alt="" coords="115,810,136,845,165,888,203,933,247,971,257,977,254,982,244,975,199,937,161,891,131,847,111,812"/>
+<area shape="rect" id="Node000028" href="$classkarakuri_1_1KarakuriScenarioRunner.html#abd006837cba9c2bb1463aae8ad2fc2cf" title=" " alt="" coords="583,619,793,674"/>
+<area shape="poly" id="edge35_Node000001_Node000028" title=" " alt="" coords="121,768,174,724,208,702,244,684,327,660,412,646,494,639,569,638,569,643,495,645,412,651,328,665,246,689,210,706,177,728,124,772"/>
+<area shape="rect" id="Node000029" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ad0c659e1f6c32470cf60078d54c3fd83" title=" " alt="" coords="267,1193,485,1233"/>
+<area shape="poly" id="edge37_Node000001_Node000029" title=" " alt="" coords="106,811,114,881,136,981,154,1035,178,1088,209,1137,247,1179,256,1187,253,1191,244,1183,204,1140,173,1090,149,1037,131,982,109,882,101,811"/>
+<area shape="rect" id="Node000035" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a79bd49025870db70e0ca161d13deede5" title="ミステリーデモ用のアクションセット（testimony, take_damage, if_health_ge, if_health_leq）を登録する。" alt="" coords="280,763,472,818"/>
+<area shape="poly" id="edge46_Node000001_Node000035" title=" " alt="" coords="197,788,266,788,266,793,197,793"/>
+<area shape="rect" id="Node000037" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a7d199bd7d13716ef5b7dd252d5dd46ca" title="show_message(speaker, text) をサポートするDialogue UIノードのNodePath。" alt="" coords="269,1257,483,1297"/>
+<area shape="poly" id="edge51_Node000001_Node000037" title=" " alt="" coords="105,811,109,891,116,947,128,1008,145,1072,170,1135,204,1193,247,1243,258,1252,255,1256,243,1247,200,1196,166,1137,140,1074,123,1009,111,948,104,892,100,811"/>
+<area shape="rect" id="Node000038" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aea219b37fd11b566fe8a32ecab83366b" title="add_evidence(evidence_id) をサポートする証拠品インベントリUIノードのNodePath。" alt="" coords="267,1321,485,1361"/>
+<area shape="poly" id="edge52_Node000001_Node000038" title=" " alt="" coords="108,810,125,914,155,1065,174,1142,196,1212,221,1269,247,1308,256,1315,253,1319,243,1311,216,1272,191,1214,169,1143,149,1066,119,915,103,811"/>
+<area shape="rect" id="Node000039" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aaee687e8ec44617727b8ff485ca6fdb7" title="clicked_at(Vector2) シグナルを発火するInteractionManagerノードのNodePath。" alt="" coords="280,1386,472,1441"/>
+<area shape="poly" id="edge53_Node000001_Node000039" title=" " alt="" coords="108,811,123,926,152,1095,171,1182,194,1262,219,1327,233,1353,247,1371,269,1388,266,1393,243,1375,228,1355,214,1330,189,1264,166,1183,147,1096,118,927,102,811"/>
+<area shape="rect" id="Node000040" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ad9c47fa46faad98732806f3b17550b16" title="YAMLシナリオファイルのパス (res://...)。" alt="" coords="279,1465,473,1505"/>
+<area shape="poly" id="edge54_Node000001_Node000040" title=" " alt="" coords="107,811,119,941,146,1134,165,1234,188,1326,215,1401,231,1430,247,1451,268,1467,264,1471,243,1455,226,1433,211,1404,183,1328,159,1235,140,1135,114,941,102,811"/>
+<area shape="rect" id="Node000041" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a9746266f6eab1cf366e021b21f61850b" title="基本シーンがインスタンス化されるシーンコンテナノードのNodePath。" alt="" coords="253,1529,499,1569"/>
+<area shape="poly" id="edge55_Node000001_Node000041" title=" " alt="" coords="106,810,117,951,142,1164,160,1274,184,1376,213,1460,229,1492,247,1516,251,1519,247,1523,243,1519,225,1494,208,1462,179,1378,155,1276,136,1164,112,951,101,811"/>
+<area shape="rect" id="Node000042" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a297285d27667f2b8eeead53052b8746a" title="TestimonySystem ノードへのNodePath (任意、コンフロンテーションモード用)。" alt="" coords="246,1593,506,1633"/>
+<area shape="poly" id="edge56_Node000001_Node000042" title=" " alt="" coords="106,811,115,962,138,1194,156,1315,180,1427,210,1518,228,1553,247,1580,251,1583,247,1587,243,1583,223,1556,206,1520,175,1428,151,1316,132,1195,110,962,101,811"/>
+<area shape="rect" id="Node000012" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="1129,1035,1321,1090"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1058,542,1083,561,1125,615,1158,676,1183,741,1201,806,1213,870,1221,929,1227,1021,1221,1022,1216,929,1208,870,1196,807,1178,742,1153,678,1121,618,1079,565,1055,546"/>
+<area shape="rect" id="Node000014" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ae5b3e38a6d589fc5fc88b282aa6de1a1" title=" " alt="" coords="575,1136,801,1176"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="472,1149,562,1151,561,1156,472,1154"/>
+<area shape="rect" id="Node000015" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8b56bf438a9b86cb88cbb6ff628a0b74" title=" " alt="" coords="592,1200,784,1240"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="466,1167,586,1194,585,1199,465,1172"/>
+<area shape="rect" id="Node000016" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a9ea13725cc66b56f432f0b5ac205a094" title=" " alt="" coords="879,1164,1071,1204"/>
+<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="784,1205,865,1195,866,1200,784,1211"/>
+<area shape="poly" id="edge16_Node000016_Node000012" title=" " alt="" coords="1050,1161,1080,1150,1129,1124,1173,1096,1176,1100,1132,1128,1082,1154,1052,1166"/>
+<area shape="rect" id="Node000019" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a292d0709d4f5520981971d9719e287dd" title=" " alt="" coords="591,942,785,997"/>
+<area shape="poly" id="edge19_Node000018_Node000019" title=" " alt="" coords="473,880,508,892,532,906,556,920,590,935,588,940,553,925,530,911,506,897,471,885"/>
+<area shape="rect" id="Node000020" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ab5e6cc0ea234b870cc7acbae19a143f5" title=" " alt="" coords="583,1072,793,1112"/>
+<area shape="poly" id="edge20_Node000018_Node000020" title=" " alt="" coords="488,879,508,893,521,906,529,921,536,948,541,977,547,991,557,1006,592,1038,631,1063,628,1068,588,1043,553,1010,542,994,536,978,530,950,524,922,517,910,505,897,485,884"/>
+<area shape="rect" id="Node000022" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aa87a12fca101f28d896be10d3ad349d9" title=" " alt="" coords="583,763,793,803"/>
+<area shape="poly" id="edge23_Node000018_Node000022" title=" " alt="" coords="457,840,506,827,554,812,587,803,588,809,555,817,507,832,458,845"/>
+<area shape="rect" id="Node000023" href="$classkarakuri_1_1KarakuriScenarioRunner.html#af3bc417dfe14667e4933819edac462b6" title=" " alt="" coords="555,827,821,867"/>
+<area shape="poly" id="edge24_Node000018_Node000023" title=" " alt="" coords="486,854,540,852,540,857,487,860"/>
+<area shape="rect" id="Node000024" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a0ff7f67c85e6fd66ba100371ca84c553" title=" " alt="" coords="879,856,1071,896"/>
+<area shape="poly" id="edge26_Node000018_Node000024" title=" " alt="" coords="486,871,555,876,688,878,821,876,866,875,866,881,821,881,688,884,555,881,486,877"/>
+<area shape="poly" id="edge22_Node000020_Node000012" title=" " alt="" coords="794,1084,1116,1066,1116,1071,794,1089"/>
+<area shape="rect" id="Node000021" href="$structkarakuri_1_1KarakuriTestimonySession.html#a73f93fcd05b29d965df98c8a52eafaf8" title="セッション状態を初期値にリセットする。" alt="" coords="874,1100,1077,1140"/>
+<area shape="poly" id="edge21_Node000020_Node000021" title=" " alt="" coords="794,1100,861,1106,860,1111,793,1105"/>
+<area shape="poly" id="edge25_Node000023_Node000024" title=" " alt="" coords="822,858,866,862,865,867,821,863"/>
+<area shape="poly" id="edge28_Node000025_Node000020" title=" " alt="" coords="493,1085,569,1087,569,1092,493,1090"/>
+<area shape="poly" id="edge30_Node000026_Node000019" title=" " alt="" coords="477,943,578,954,577,960,477,948"/>
+<area shape="poly" id="edge31_Node000026_Node000020" title=" " alt="" coords="478,954,508,971,526,992,533,1012,540,1032,556,1051,577,1064,574,1068,553,1055,536,1035,528,1014,521,994,505,975,476,958"/>
+<area shape="poly" id="edge32_Node000026_Node000023" title=" " alt="" coords="473,905,602,868,604,873,474,910"/>
+<area shape="poly" id="edge33_Node000026_Node000024" title=" " alt="" coords="478,958,508,971,522,980,532,990,541,999,556,1006,629,1027,689,1035,748,1028,820,1006,859,986,894,960,948,905,952,909,898,964,862,991,822,1010,749,1033,689,1040,628,1032,554,1010,538,1003,528,994,519,985,505,976,476,963"/>
+<area shape="poly" id="edge36_Node000028_Node000024" title=" " alt="" coords="795,669,823,684,867,721,904,763,935,805,958,842,954,845,931,808,900,766,863,725,820,689,792,674"/>
+<area shape="rect" id="Node000030" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a4cd82c0baedca5359142cba8257f81e4" title=" " alt="" coords="592,1264,784,1304"/>
+<area shape="poly" id="edge38_Node000029_Node000030" title=" " alt="" coords="466,1231,586,1258,585,1263,465,1236"/>
+<area shape="poly" id="edge45_Node000030_Node000016" title=" " alt="" coords="783,1263,820,1250,844,1232,868,1214,884,1206,886,1211,871,1218,847,1236,823,1254,785,1268"/>
+<area shape="poly" id="edge44_Node000030_Node000021" title=" " alt="" coords="783,1270,820,1250,831,1239,837,1227,843,1202,849,1176,856,1163,868,1150,874,1145,877,1149,871,1154,860,1166,854,1178,848,1203,842,1229,835,1242,823,1254,786,1274"/>
+<area shape="rect" id="Node000031" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ad4379fd32d8081e779c1dfd0e213bbbd" title=" " alt="" coords="869,1228,1081,1268"/>
+<area shape="poly" id="edge39_Node000030_Node000031" title=" " alt="" coords="784,1269,855,1260,856,1266,784,1275"/>
+<area shape="rect" id="Node000032" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a96abc1612fee2c2dcd8e30843c05159f" title=" " alt="" coords="876,1356,1075,1396"/>
+<area shape="poly" id="edge40_Node000030_Node000032" title=" " alt="" coords="749,1302,870,1341,895,1349,893,1354,869,1347,748,1307"/>
+<area shape="rect" id="Node000034" href="$classkarakuri_1_1KarakuriScenarioRunner.html#aa03075c743abd6cf940dcc52e2b359a0" title=" " alt="" coords="879,1292,1071,1332"/>
+<area shape="poly" id="edge43_Node000030_Node000034" title=" " alt="" coords="784,1291,866,1299,865,1304,784,1296"/>
+<area shape="poly" id="edge42_Node000032_Node000012" title=" " alt="" coords="1062,1354,1080,1342,1106,1316,1130,1286,1168,1221,1195,1157,1212,1103,1217,1104,1200,1159,1173,1224,1134,1289,1110,1320,1083,1346,1065,1358"/>
+<area shape="rect" id="Node000033" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a810e2b910ff023a38240e6d4c10cb2f4" title=" " alt="" coords="1129,1356,1321,1396"/>
+<area shape="poly" id="edge41_Node000032_Node000033" title=" " alt="" coords="1075,1373,1116,1373,1116,1379,1075,1379"/>
+<area shape="poly" id="edge49_Node000035_Node000012" title=" " alt="" coords="471,771,489,761,505,749,518,731,524,713,526,676,528,638,537,621,553,605,588,583,621,569,652,562,683,562,714,567,747,576,822,604,895,641,961,689,1020,745,1073,806,1118,868,1156,927,1208,1021,1203,1024,1151,929,1114,871,1069,809,1016,749,957,693,892,645,820,609,746,581,713,572,682,567,652,568,622,574,590,587,556,609,541,624,533,640,531,676,529,714,523,734,509,753,492,766,474,775"/>
+<area shape="poly" id="edge47_Node000035_Node000022" title=" " alt="" coords="472,786,569,783,569,788,472,791"/>
+<area shape="poly" id="edge50_Node000035_Node000023" title=" " alt="" coords="473,805,563,822,562,827,472,810"/>
+<area shape="rect" id="Node000036" href="$classkarakuri_1_1KarakuriScenarioRunner.html#adbb49b68f0e965c9978db12d484b71c2" title="YAMLアクション種別に対するハンドラを登録（または上書き）する。" alt="" coords="592,699,784,739"/>
+<area shape="poly" id="edge48_Node000035_Node000036" title=" " alt="" coords="472,766,586,739,588,744,473,771"/>
 </map>
