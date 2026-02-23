@@ -57,6 +57,15 @@ func _wait_for_dialogue_playback(context: String, max_frames: int = 240) -> bool
 		await process_frame
 	return false
 
+func _wait_for_dialogue_key(expected_key: String, max_frames: int = 240) -> bool:
+	for _i in range(max_frames):
+		var key := str(_dialogue_ui().get("_message_text_key")).strip_edges()
+		if key == expected_key:
+			_track_dialogue_playback("key:" + expected_key)
+			return true
+		await process_frame
+	return false
+
 func _initialize() -> void:
 	call_deferred("_run")
 
@@ -174,7 +183,7 @@ func _go_to_deduction(gs: Node) -> bool:
 	if not reached_warehouse:
 		return false
 
-	var has_warehouse_intro := await _wait_for_dialogue_playback("warehouse_intro")
+	var has_warehouse_intro := await _wait_for_dialogue_key("mystery.warehouse.intro", 600)
 	_assert(has_warehouse_intro, "warehouse intro dialogue was not rendered")
 	
 	# Wait for the warehouse's on_enter dialogue to be fully dismissed
@@ -184,6 +193,8 @@ func _go_to_deduction(gs: Node) -> bool:
 		_safe_clear_dialogue()
 	
 	await _wait_frames(60)
+	var warehouse_intro_done := await _wait_runner_idle(2000)
+	_assert(warehouse_intro_done, "warehouse intro did not finish before exit test")
 
 	# Prepare required inventory to avoid flaky hotspot timing in headless runs.
 	gs.call("add_item", "ectoplasm")
@@ -207,7 +218,7 @@ func _go_to_deduction(gs: Node) -> bool:
 
 func _run() -> void:
 	await _boot_shell()
-	var has_prologue_dialogue := await _wait_for_dialogue_playback("prologue_start", 300)
+	var has_prologue_dialogue := await _wait_for_dialogue_key("mystery.prologue.system", 600)
 	_assert(has_prologue_dialogue, "prologue dialogue was not rendered")
 
 	# Locale switch sanity: EN/JA translation must differ.
@@ -245,7 +256,7 @@ func _run() -> void:
 	var reached_confrontation := await _wait_for_base_with_clicks("WarehouseBase", 30, 3000)
 	_assert(reached_confrontation, "failed to transition to confrontation scene")
 
-	var has_confrontation_intro := await _wait_for_dialogue_playback("confrontation_intro")
+	var has_confrontation_intro := await _wait_for_dialogue_key("mystery.confrontation.start1", 600)
 	_assert(has_confrontation_intro, "confrontation intro dialogue was not rendered")
 	
 	# Skip Confrontation intro 'Detective: start1', 'Rat Witness: start2'
@@ -331,22 +342,32 @@ func _run() -> void:
 			if _scene_container().get_child(0).name == "WarehouseBase":
 				break
 	
+	var has_failure_confrontation_intro := await _wait_for_dialogue_key("mystery.confrontation.start1", 600)
+	_assert(has_failure_confrontation_intro, "failure branch confrontation intro was not rendered")
+
 	# Clicking through intro
-	for _i in range(5):
+	for _i in range(8):
 		await _wait_frames(30)
 		_safe_clear_dialogue()
 
 	# Wrong evidence until death
 	print("[KARAKURI_SMOKE] providing wrong evidence until death...")
-	for _i in range(4): # 3 hearts + 1 to be sure
+	for _i in range(12):
 		runner.call("on_testimony_present_requested")
 		await _wait_frames(15)
 		runner.call("on_evidence_selected", "ectoplasm") # Wrong
-		await _wait_frames(30)
-		_safe_clear_dialogue()
+		for _j in range(8):
+			await _wait_frames(10)
+			_safe_clear_dialogue()
 		if _scene_container().get_child_count() > 0:
 			if _scene_container().get_child(0).name == "EndingBase":
 				break
+
+	for _i in range(120):
+		if _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == "EndingBase":
+			break
+		await _wait_frames(5)
+		_safe_clear_dialogue()
 
 	print("[KARAKURI_SMOKE] waiting for bad ending check...")
 	var reached_bad_ending := _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == "EndingBase"

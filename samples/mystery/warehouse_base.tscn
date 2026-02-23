@@ -35,33 +35,33 @@ offset_bottom = 640.0
 text = "調査ポイントをクリック"
 
 [node name="hs_floor_area" type="Area2D" parent="."]
-position = Vector2(520, 380)
+position = Vector2(520, 320)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hs_floor_area"]
 shape = SubResource("CircleShape2D_floor")
 
 [node name="FloorVisual" type="Sprite2D" parent="."]
-position = Vector2(520, 380)
+position = Vector2(520, 320)
 texture = ExtResource("3_ecto")
 
 [node name="hs_footprints" type="Area2D" parent="."]
-position = Vector2(330, 450)
+position = Vector2(330, 380)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hs_footprints"]
 shape = SubResource("CircleShape2D_footprints")
 
 [node name="FootprintsVisual" type="Sprite2D" parent="."]
-position = Vector2(330, 450)
+position = Vector2(330, 380)
 texture = ExtResource("4_foot")
 
 [node name="hs_memo" type="Area2D" parent="."]
-position = Vector2(740, 310)
+position = Vector2(740, 250)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hs_memo"]
 shape = SubResource("CircleShape2D_memo")
 
 [node name="MemoVisual" type="Sprite2D" parent="."]
-position = Vector2(740, 310)
+position = Vector2(740, 250)
 texture = ExtResource("5_memo")
 
 [node name="hs_exit" type="Area2D" parent="."]

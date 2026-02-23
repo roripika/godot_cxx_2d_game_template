@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var door_label: Label = $DoorVisual/Label
-@onready var boss_label: Label = $BossVisual/Label
 
 func _ready() -> void:
 	_connect_localization_service()
@@ -20,6 +19,5 @@ func _on_locale_changed(_locale: String) -> void:
 	_refresh_locale()
 
 func _refresh_locale() -> void:
-	door_label.text = tr("mystery.ui.office_door")
-	boss_label.text = tr("mystery.ui.office_boss")
-
+	if door_label:
+		door_label.text = tr("mystery.ui.office_door")

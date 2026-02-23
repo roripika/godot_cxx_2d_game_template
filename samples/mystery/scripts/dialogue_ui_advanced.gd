@@ -14,10 +14,10 @@ signal dialogue_finished()
 @export var text_color: Color = Color.WHITE
 @export var name_color: Color = Color.YELLOW
 
-const PORTRAIT_TOP := -250.0
-const PORTRAIT_BOTTOM := 50.0
-const PORTRAIT_INSIDE_MARGIN := 40.0
-const PORTRAIT_OUTSIDE_MARGIN := 260.0
+const PORTRAIT_TOP := -310.0
+const PORTRAIT_BOTTOM := 220.0
+const PORTRAIT_INSIDE_MARGIN := 50.0
+const PORTRAIT_OUTSIDE_MARGIN := 325.0
 const PORTRAIT_FADE_DURATION := 0.2
 
 var is_typing: bool = false
@@ -182,29 +182,8 @@ func _apply_portrait_layout() -> void:
 	if not portrait_rect:
 		return
 
-	# Instead of changing anchors (which might get locked), we shift offsets
-	if not portrait_rect:
-		return
 	portrait_rect.offset_top = PORTRAIT_TOP
 	portrait_rect.offset_bottom = PORTRAIT_BOTTOM
-
-	var base_width = get_viewport_rect().size.x * 0.74 # Screen width * (0.98 - 0.24)
-	if base_width <= 0:
-		base_width = 900.0
-		
-	var shift_x = 0.0
-	match _portrait_side:
-		"right":
-			shift_x = -get_viewport_rect().size.x * 0.22 # Shift from 0.24 to 0.02
-		"center":
-			shift_x = -get_viewport_rect().size.x * 0.11 # Shift to 0.13
-		_:
-			shift_x = 0.0
-
-	offset_left = shift_x
-	offset_right = shift_x
-	
-	print("[DEBUG] Portrait Side: ", _portrait_side, " Shift X: ", shift_x, " Global Pos: ", global_position)
 	
 	var panel_width := size.x
 	if panel_width <= 0.0:
@@ -358,6 +337,8 @@ func _on_locale_changed(_locale: String) -> void:
 	_refresh_locale()
 
 func _input(event: InputEvent) -> void:
+	if not visible:
+		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if is_typing:
 			skip_typing()
