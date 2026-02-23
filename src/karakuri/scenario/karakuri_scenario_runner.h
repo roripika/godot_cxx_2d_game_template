@@ -123,6 +123,14 @@ public:
   void set_testimony_system_path(const godot::NodePath &path);
   godot::NodePath get_testimony_system_path() const;
 
+  /** @brief TransitionManager ノードへのNodePath */
+  void set_transition_manager_path(const godot::NodePath &path);
+  godot::NodePath get_transition_manager_path() const;
+
+  /** @brief 暗転/トランジション描画用 ColorRect ノードへのNodePath */
+  void set_transition_rect_path(const godot::NodePath &path);
+  godot::NodePath get_transition_rect_path() const;
+
   bool is_running() const;
   int get_testimony_index() const;
   int get_testimony_size() const;

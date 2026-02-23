@@ -31,9 +31,11 @@ color = Color(0, 0, 0, 1)
 [node name="ScenarioRunner" type="KarakuriScenarioRunner" parent="."]
 scene_container_path = NodePath("../SceneContainer")
 dialogue_ui_path = NodePath("../MainInfoUiLayer/DialogueUI")
-evidence_ui_path = NodePath("../InstantSubInfoUiLayer/InventoryUI")
+evidence_ui_path = NodePath("../SystemUiLayer/InventoryUI")
 interaction_manager_path = NodePath("../InteractionManager")
 testimony_system_path = NodePath("../MainInfoUiLayer/TestimonySystem")
+transition_manager_path = NodePath("../TransitionManager")
+transition_rect_path = NodePath("../TransitionMaskLayer/TransitionRect")
 
 [node name="SceneContainer" type="Node2D" parent="."]
 

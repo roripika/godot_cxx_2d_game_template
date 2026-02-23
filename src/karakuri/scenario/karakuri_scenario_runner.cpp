@@ -154,6 +154,24 @@ NodePath KarakuriScenarioRunner::get_testimony_system_path() const {
   return testimony_system_path_;
 }
 
+void KarakuriScenarioRunner::set_transition_manager_path(
+    const godot::NodePath &path) {
+  transition_manager_path_ = path;
+}
+
+NodePath KarakuriScenarioRunner::get_transition_manager_path() const {
+  return transition_manager_path_;
+}
+
+void KarakuriScenarioRunner::set_transition_rect_path(
+    const godot::NodePath &path) {
+  transition_rect_path_ = path;
+}
+
+NodePath KarakuriScenarioRunner::get_transition_rect_path() const {
+  return transition_rect_path_;
+}
+
 void KarakuriScenarioRunner::_bind_methods() {
   // Signal handlers (must be bound to be callable through Callable
   // connections).
@@ -230,6 +248,20 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::get_testimony_system_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "testimony_system_path"),
                "set_testimony_system_path", "get_testimony_system_path");
+
+  ClassDB::bind_method(D_METHOD("set_transition_manager_path", "path"),
+                       &KarakuriScenarioRunner::set_transition_manager_path);
+  ClassDB::bind_method(D_METHOD("get_transition_manager_path"),
+                       &KarakuriScenarioRunner::get_transition_manager_path);
+  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "transition_manager_path"),
+               "set_transition_manager_path", "get_transition_manager_path");
+
+  ClassDB::bind_method(D_METHOD("set_transition_rect_path", "path"),
+                       &KarakuriScenarioRunner::set_transition_rect_path);
+  ClassDB::bind_method(D_METHOD("get_transition_rect_path"),
+                       &KarakuriScenarioRunner::get_transition_rect_path);
+  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "transition_rect_path"),
+               "set_transition_rect_path", "get_transition_rect_path");
 }
 
 bool KarakuriScenarioRunner::is_running() const {
@@ -604,13 +636,15 @@ void KarakuriScenarioRunner::init_builtin_actions() {
   // ------------------------------------------------------------------ dialogue
   register_action("dialogue", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
-    const String portrait_side = dict_get_string(payload, "portrait_side", "auto");
+    const String portrait_side =
+        dict_get_string(payload, "portrait_side", "auto");
     const String portrait_enter =
         dict_get_string(payload, "portrait_enter", "none");
     const String portrait_exit =
         dict_get_string(payload, "portrait_exit", "none");
     const String speaker_key = dict_get_string(payload, "speaker_key", "");
-    const String speaker_fallback = dict_get_string(payload, "speaker", "System");
+    const String speaker_fallback =
+        dict_get_string(payload, "speaker", "System");
     String speaker = speaker_fallback;
     if (!speaker_key.is_empty()) {
       const String translated = tr_key(speaker_key);
@@ -624,7 +658,8 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       if (!translated.is_empty()) {
         text = translated;
       } else if (text_fallback.is_empty()) {
-        // Keep the dialogue visible even when translation resources are missing.
+        // Keep the dialogue visible even when translation resources are
+        // missing.
         text = text_key;
       }
     }
