@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3]
+
+[ext_resource type="FontFile" path="res://assets/fonts/KosugiMaru/KosugiMaru-Regular.ttf" id="1_font"]
+[ext_resource type="FontFile" path="res://assets/fonts/Montserrat/Montserrat-Medium.ttf" id="2_font_en"]
+
+[resource]
+default_font = ExtResource("1_font")
+default_font_size = 22
+Label/font_sizes/font_size = 22
+EnglishLabel/base_type = &"Label"
+EnglishLabel/fonts/font = ExtResource("2_font_en")

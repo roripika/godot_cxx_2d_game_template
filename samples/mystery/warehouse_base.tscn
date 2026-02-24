@@ -5,6 +5,10 @@
 [ext_resource type="Texture2D" path="res://assets/mystery/icons/128x128/zodiac_ectoplasm.png" id="3_ecto"]
 [ext_resource type="Texture2D" path="res://assets/mystery/icons/128x128/zodiac_footprint.png" id="4_foot"]
 [ext_resource type="Texture2D" path="res://assets/mystery/icons/128x128/zodiac_memo.png" id="5_memo"]
+[ext_resource type="Texture2D" path="res://assets/mystery/characters/tanaka.png" id="6_tanaka"]
+[ext_resource type="Texture2D" path="res://assets/mystery/characters/sato.png" id="7_sato"]
+[ext_resource type="Texture2D" path="res://assets/mystery/characters/suzuki.png" id="8_suzuki"]
+[ext_resource type="Texture2D" path="res://assets/mystery/characters/kenta.png" id="9_kenta"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_floor"]
 radius = 60.0
@@ -34,6 +38,18 @@ offset_right = 420.0
 offset_bottom = 640.0
 text = "調査ポイントをクリック"
 
+[node name="ModeToggleButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -220.0
+offset_top = 600.0
+offset_right = -10.0
+offset_bottom = 640.0
+grow_horizontal = 0
+text = "会話モードへ切り替え"
+theme_override_font_sizes/font_size = 16
+
 [node name="hs_floor_area" type="Area2D" parent="."]
 position = Vector2(520, 320)
 
@@ -41,7 +57,9 @@ position = Vector2(520, 320)
 shape = SubResource("CircleShape2D_floor")
 
 [node name="FloorVisual" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.6)
 position = Vector2(520, 320)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_ecto")
 
 [node name="hs_footprints" type="Area2D" parent="."]
@@ -51,7 +69,10 @@ position = Vector2(330, 380)
 shape = SubResource("CircleShape2D_footprints")
 
 [node name="FootprintsVisual" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.4)
 position = Vector2(330, 380)
+rotation = -0.261799
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_foot")
 
 [node name="hs_memo" type="Area2D" parent="."]
@@ -61,11 +82,62 @@ position = Vector2(740, 250)
 shape = SubResource("CircleShape2D_memo")
 
 [node name="MemoVisual" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.8)
 position = Vector2(740, 250)
+rotation = 0.523599
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_memo")
 
+[node name="hs_manager" type="Area2D" parent="."]
+visible = false
+position = Vector2(900, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_manager"]
+shape = SubResource("CircleShape2D_floor")
+
+[node name="Sprite2D" type="Sprite2D" parent="hs_manager"]
+position = Vector2(0, -20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_tanaka")
+
+[node name="hs_worker" type="Area2D" parent="."]
+visible = false
+position = Vector2(700, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_worker"]
+shape = SubResource("CircleShape2D_floor")
+
+[node name="Sprite2D" type="Sprite2D" parent="hs_worker"]
+position = Vector2(0, -20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_sato")
+
+[node name="hs_delivery" type="Area2D" parent="."]
+visible = false
+position = Vector2(200, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_delivery"]
+shape = SubResource("CircleShape2D_floor")
+
+[node name="Sprite2D" type="Sprite2D" parent="hs_delivery"]
+position = Vector2(0, -20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_suzuki")
+
+[node name="hs_kenta" type="Area2D" parent="."]
+visible = false
+position = Vector2(400, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_kenta"]
+shape = SubResource("CircleShape2D_floor")
+
+[node name="Sprite2D" type="Sprite2D" parent="hs_kenta"]
+position = Vector2(0, -20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_kenta")
+
 [node name="hs_exit" type="Area2D" parent="."]
-position = Vector2(80, 324)
+position = Vector2(80, 500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hs_exit"]
 shape = SubResource("CircleShape2D_exit")

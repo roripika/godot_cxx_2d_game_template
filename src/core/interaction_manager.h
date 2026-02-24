@@ -21,12 +21,12 @@ public:
   InteractionManager();
   ~InteractionManager();
 
-  void _input(const Ref<InputEvent> &p_event) override;
+  void _unhandled_input(const Ref<InputEvent> &p_event) override;
 
   // Signals
   // emitted when a "clickable" area/object is clicked.
-  // `position` is in Canvas/World coordinates (same space as Area2D global_position).
-  // signal clicked_at(position)
+  // `position` is in Canvas/World coordinates (same space as Area2D
+  // global_position). signal clicked_at(position)
 
   void set_active(bool p_active);
   bool is_active() const;

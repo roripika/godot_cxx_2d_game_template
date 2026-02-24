@@ -96,7 +96,10 @@ mystery.ui.guide,UI Guide: left=system / bottom=dialogue / right=testimony / lef
 mystery.ui.health_label,HP (Mistakes Remaining),HP（ミス可能回数）
 mystery.ui.office_door,DOOR,ドア
 mystery.ui.office_boss,BOSS,ボス
-mystery.ui.warehouse_hint,Click investigation points,調査ポイントをクリック
+mystery.ui.warehouse_hint_investigate,Find evidence in the warehouse,倉庫の中から証拠を探してください
+mystery.ui.warehouse_hint_talk,Talk to people to gather information,人々と話して情報を集めてください
+mystery.ui.warehouse_mode_talk,Switch to Talk Mode,会話モードへ
+mystery.ui.warehouse_mode_investigate,Switch to Investigate Mode,調査モードへ
 mystery.ui.warehouse_exit,EXIT,出口
 
 # Speakers
@@ -104,8 +107,37 @@ speaker.system,System,システム
 speaker.detective,Detective,探偵
 speaker.boss,Boss,ボス
 speaker.rat_witness,Rat Witness,ネズミ目撃者
+speaker.ren,Ren,レン
+speaker.ken,Ken,ケン
+speaker.yui,Yui,ユイ
+speaker.tanaka,Tanaka,田中
+speaker.sato,Sato,佐藤
+speaker.suzuki,Suzuki,鈴木
+speaker.kenta,Kenta,ケンタ
 
-# YAML-driven Scenario Texts
+# Expanded Evidence
+evidence_delivery_log,Delivery Log,配送記録
+evidence_delivery_log_desc,A digital log of shipments from the night of the incident.,事件当夜の出荷記録が残されたデジタルログ。
+evidence_witness_report,Witness Report,目撃証言
+evidence_witness_report_desc,A summary of Kenta's witness account of a suspicious shadow.,ケンタが目撃した不審な影についての証言メモ。
+
+# YAML-driven Scenario Texts (Expanded)
+mystery.prologue.yui_intro,"Detective Ren! The Boss is looking for you.\nThere's been a report of disappearing cargo at the warehouse.","レン探偵！ボスがお呼びです。\n倉庫街で荷物が消失する事件の通報が入りました。"
+mystery.warehouse.tanaka.talk,Are you the manager? Anything unusual?,あなたが管理人さんですか？何か変わったことは？
+mystery.warehouse.tanaka.response,"Oh, a detective. Nothing is missing from my records, I tell you!","おお、探偵さんか。いいですか、私の記録に不備などありませんよ！"
+mystery.warehouse.sato.talk,Heard any rumors around here?,何か妙な噂は聞いてないか？
+mystery.warehouse.sato.response,"(Yawns) I saw a glowing mist near the crates. Creepy, right?","（あくび）木箱の近くで光る霧を見ましたよ。不気味ですよねぇ。"
+mystery.warehouse.suzuki.talk,Did you see anything while delivering?,配送中に何か見ませんでしたか？
+mystery.warehouse.suzuki.response,"I was in a rush, but I found this torn memo by the gate.","急いでたんですが、門の近くでこの破れたメモを拾いました。"
+mystery.warehouse.kenta.talk,"Hey kid, you seen anything suspicious?","やあ、何か怪しいものを見なかったかい？"
+mystery.warehouse.kenta.response,"I saw a tall shadow moving inside the warehouse at 3 AM!","午前3時に倉庫の中で動く高い影を見たんだ！"
+mystery.warehouse.sato.got_ecto,Obtained [Ectoplasm].,【証拠品：エクトプラズム】を入手した。
+mystery.warehouse.suzuki.got_memo,Obtained [Torn Memo].,【証拠品：破れたメモ】を入手した。
+mystery.warehouse.suzuki.got_log,Obtained [Delivery Log].,【証拠品：配送記録】を入手した。
+mystery.warehouse.kenta.got_report,Obtained [Witness Report].,【証拠品：目撃証言】を入手した。
+mystery.warehouse.footprint.got,Obtained [Footprints].,【証拠品：足跡】を入手した。
+
+# YAML-driven Scenario Texts (Original)
 mystery.prologue.system,Prologue,プロローグ
 mystery.prologue.detective_intro,This is the detective office. Quiet as always.,探偵事務所だ。今日も平和だな。
 mystery.prologue.boss_call,Hey! We have a case. Head to the warehouse district now!,おい！事件だ。今すぐ倉庫街へ向かえ！

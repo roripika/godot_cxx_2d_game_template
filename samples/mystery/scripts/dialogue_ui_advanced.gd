@@ -8,16 +8,13 @@ signal dialogue_finished()
 @onready var name_label: Label = get_node_or_null("VBoxContainer/NameLabel")
 @onready var text_label: Label = get_node_or_null("VBoxContainer/TextLabel")
 @onready var choices_container: VBoxContainer = get_node_or_null("VBoxContainer/ChoicesContainer")
-@onready var portrait_rect: TextureRect = get_node_or_null("PortraitRect")
+@onready var portrait_rect: TextureRect = get_node_or_null("../PortraitContainer/PortraitRect")
 
+@export var portrait_scale: float = 1.25
 @export var typing_speed: float = 0.05
 @export var text_color: Color = Color.WHITE
 @export var name_color: Color = Color.YELLOW
 
-const PORTRAIT_TOP := -310.0
-const PORTRAIT_BOTTOM := 220.0
-const PORTRAIT_INSIDE_MARGIN := 50.0
-const PORTRAIT_OUTSIDE_MARGIN := 325.0
 const PORTRAIT_FADE_DURATION := 0.2
 
 var is_typing: bool = false
@@ -82,6 +79,7 @@ func show_choices_with_defs(choice_defs: Array[Dictionary]) -> int:
 	return int(args[0])
 
 func hide_dialogue() -> void:
+	print("[DEBUG] DialogueUI: hide_dialogue called")
 	visible = false
 	_choice_defs.clear()
 	_clear_choices()
@@ -89,11 +87,14 @@ func hide_dialogue() -> void:
 func set_portrait(texture: Texture2D) -> void:
 	if portrait_rect:
 		portrait_rect.texture = texture
-		portrait_rect.visible = true
+		portrait_rect.visible = (texture != null)
 		portrait_rect.modulate.a = 1.0
+		if portrait_rect.visible:
+			_apply_portrait_layout()
 
 func clear_portrait() -> void:
 	if portrait_rect:
+		portrait_rect.texture = null
 		portrait_rect.visible = false
 		portrait_rect.modulate.a = 1.0
 
@@ -113,15 +114,24 @@ func _update_portrait(speaker_name: String) -> void:
 
 func _resolve_portrait_id(speaker_name: String) -> String:
 	match speaker_name:
-		"Detective", "探偵", "speaker.detective":
+		"Detective", "探偵", "speaker.detective", "Ren", "speaker.ren":
 			return "detective"
-		"Boss", "所長", "speaker.boss":
+		"Boss", "所長", "speaker.boss", "Ken", "speaker.ken":
 			return "boss"
-		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者", "speaker.rat_witness":
+		"Rat Witness", "ネズミの証人", "容疑者", "speaker.rat_witness":
 			return "rat_witness"
+		"Assistant", "助手", "speaker.yui", "Yui":
+			return "yui"
+		"Manager", "管理人", "speaker.tanaka", "Tanaka":
+			return "tanaka"
+		"Worker", "作業員", "speaker.sato", "Sato":
+			return "sato"
+		"Delivery", "配送人", "speaker.suzuki", "Suzuki":
+			return "suzuki"
+		"Kenta", "ケンタ", "speaker.kenta":
+			return "kenta"
 		_:
 			return ""
-
 func _update_portrait_for_dialogue(speaker_name: String) -> void:
 	if not portrait_rect:
 		return
@@ -129,8 +139,20 @@ func _update_portrait_for_dialogue(speaker_name: String) -> void:
 	var portrait_id := _resolve_portrait_id(speaker_name)
 	var had_visible_portrait := portrait_rect.visible and portrait_rect.texture != null
 
-	if _portrait_exit_transition == "fade_out" and had_visible_portrait:
-		await _fade_portrait_to(0.0, PORTRAIT_FADE_DURATION)
+	if _portrait_exit_transition != "none" and had_visible_portrait:
+		match _portrait_exit_transition:
+			"fade_out":
+				await _fade_portrait_to(0.0, PORTRAIT_FADE_DURATION)
+			"slide_out_left":
+				var tw = portrait_rect.create_tween().set_parallel(true)
+				tw.tween_property(portrait_rect, "position:x", portrait_rect.position.x - 100, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+				tw.tween_property(portrait_rect, "modulate:a", 0.0, 0.2)
+				await tw.finished
+			"slide_out_right":
+				var tw = portrait_rect.create_tween().set_parallel(true)
+				tw.tween_property(portrait_rect, "position:x", portrait_rect.position.x + 100, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+				tw.tween_property(portrait_rect, "modulate:a", 0.0, 0.2)
+				await tw.finished
 
 	if portrait_id == "":
 		clear_portrait()
@@ -138,20 +160,56 @@ func _update_portrait_for_dialogue(speaker_name: String) -> void:
 		return
 
 	var path = "res://assets/mystery/characters/%s.png" % portrait_id
-	if not ResourceLoader.exists(path):
+	if not FileAccess.file_exists(path):
 		clear_portrait()
 		_reset_portrait_transitions()
 		return
 
-	set_portrait(load(path))
+	var tex = load(path)
+	if tex == null:
+		var gpath = ProjectSettings.globalize_path(path)
+		var img = Image.load_from_file(gpath)
+		if img:
+			tex = ImageTexture.create_from_image(img)
+
+	set_portrait(tex)
 	_update_portrait_side(portrait_id)
 	_apply_portrait_layout()
 
-	if _portrait_enter_transition == "fade_in":
-		portrait_rect.modulate.a = 0.0
-		await _fade_portrait_to(1.0, PORTRAIT_FADE_DURATION)
-	else:
-		portrait_rect.modulate.a = 1.0
+	# 入場アニメーションの実行
+	match _portrait_enter_transition:
+		"fade_in":
+			portrait_rect.modulate.a = 0.0
+			await _fade_portrait_to(1.0, PORTRAIT_FADE_DURATION)
+		"slide_in_left":
+			var final_pos = portrait_rect.position
+			portrait_rect.position.x -= 100
+			portrait_rect.modulate.a = 0.0
+			var tw = portrait_rect.create_tween().set_parallel(true)
+			tw.tween_property(portrait_rect, "position:x", final_pos.x, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+			tw.tween_property(portrait_rect, "modulate:a", 1.0, 0.2)
+			await tw.finished
+		"slide_in_right":
+			var final_pos = portrait_rect.position
+			portrait_rect.position.x += 100
+			portrait_rect.modulate.a = 0.0
+			var tw = portrait_rect.create_tween().set_parallel(true)
+			tw.tween_property(portrait_rect, "position:x", final_pos.x, 0.3).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+			tw.tween_property(portrait_rect, "modulate:a", 1.0, 0.2)
+			await tw.finished
+		"zoom_in":
+			portrait_rect.modulate.a = 0.0
+			portrait_rect.scale = Vector2(0.8, 0.8)
+			# PortraitRectは中心基準ではないため、スケールアニメーションは工夫が必要だが一旦簡易的に
+			var tw = portrait_rect.create_tween().set_parallel(true)
+			tw.tween_property(portrait_rect, "scale", Vector2(1.0, 1.0), 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+			tw.tween_property(portrait_rect, "modulate:a", 1.0, 0.2)
+			await tw.finished
+		"shake":
+			portrait_rect.modulate.a = 1.0
+			await _shake_portrait()
+		_:
+			portrait_rect.modulate.a = 1.0
 
 	_reset_portrait_transitions()
 
@@ -163,6 +221,16 @@ func _fade_portrait_to(alpha: float, duration: float) -> void:
 	_portrait_tween = portrait_rect.create_tween()
 	_portrait_tween.tween_property(portrait_rect, "modulate:a", alpha, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await _portrait_tween.finished
+
+func _shake_portrait() -> void:
+	if not portrait_rect: return
+	var original_pos = portrait_rect.position
+	var tw = portrait_rect.create_tween()
+	for i in range(5):
+		tw.tween_property(portrait_rect, "position:x", original_pos.x + 10, 0.05)
+		tw.tween_property(portrait_rect, "position:x", original_pos.x - 10, 0.05)
+	tw.tween_property(portrait_rect, "position:x", original_pos.x, 0.05)
+	await tw.finished
 
 func _reset_portrait_transitions() -> void:
 	_portrait_enter_transition = "none"
@@ -182,23 +250,55 @@ func _apply_portrait_layout() -> void:
 	if not portrait_rect:
 		return
 
-	portrait_rect.offset_top = PORTRAIT_TOP
-	portrait_rect.offset_bottom = PORTRAIT_BOTTOM
+	# ダイアログのシフト処理を廃止し、定位置に固定
+	offset_left = 0
+	offset_right = 0
 	
-	var panel_width := size.x
-	if panel_width <= 0.0:
-		panel_width = 900.0
-
+	var screen_size = get_viewport_rect().size
+	var screen_w = screen_size.x
+	var screen_h = screen_size.y
+	if screen_w <= 0: screen_w = 1152.0
+	if screen_h <= 0: screen_h = 648.0
+	
+	# 水平位置: 画面を4等分した境界 (25%, 50%, 75%)
+	var target_x_ratio = 0.5
 	match _portrait_side:
-		"right":
-			portrait_rect.offset_left = panel_width - PORTRAIT_INSIDE_MARGIN
-			portrait_rect.offset_right = panel_width + PORTRAIT_OUTSIDE_MARGIN
-		"center":
-			portrait_rect.offset_left = (panel_width * 0.5) - (PORTRAIT_OUTSIDE_MARGIN * 0.5)
-			portrait_rect.offset_right = (panel_width * 0.5) + (PORTRAIT_OUTSIDE_MARGIN * 0.5)
-		_:
-			portrait_rect.offset_left = -PORTRAIT_OUTSIDE_MARGIN
-			portrait_rect.offset_right = PORTRAIT_INSIDE_MARGIN
+		"left": target_x_ratio = 0.25   # No0
+		"center": target_x_ratio = 0.5   # No1
+		"right": target_x_ratio = 0.75  # No2
+	
+	var center_x = screen_w * target_x_ratio
+	
+	# 元のテクスチャサイズを取得
+	var tex_size = Vector2(300, 400) # デフォルト
+	if portrait_rect.texture:
+		tex_size = portrait_rect.texture.get_size()
+
+	# スケールはリセット（offsets でサイズを完全制御するため、scale 変換を掛けない）
+	portrait_rect.scale = Vector2(1.0, 1.0)
+
+	# 画面高の75%を目標高としてスケーリング係数を算出し、表示サイズを決定
+	var target_h_ratio = 0.75
+	var dynamic_scale = (screen_h * target_h_ratio) / tex_size.y
+	var scaled_w = tex_size.x * dynamic_scale
+	var scaled_h = tex_size.y * dynamic_scale
+
+	# アンカーをリセットしてトップレフト基準で計算
+	portrait_rect.anchor_left = 0
+	portrait_rect.anchor_top = 0
+	portrait_rect.anchor_right = 0
+	portrait_rect.anchor_bottom = 0
+
+	# 水平: 指定位置を中心に配置
+	portrait_rect.offset_left = center_x - scaled_w * 0.5
+	portrait_rect.offset_right = portrait_rect.offset_left + scaled_w
+
+	# 垂直: スケーリング後サイズで中心Y を計算
+	# charaimg_center_y = (screen_h - scaled_h) + 5 + scaled_h * 0.5
+	# → 画像下端が画面下端より 5px 下にはみ出す位置に中心を設定
+	var center_y = (screen_h - scaled_h) + 5.0 + scaled_h * 0.5
+	portrait_rect.offset_top = center_y - scaled_h * 0.5
+	portrait_rect.offset_bottom = center_y + scaled_h * 0.5
 
 func _on_dialogue_resized() -> void:
 	if portrait_rect and portrait_rect.visible:
@@ -218,17 +318,21 @@ func set_portrait_side(side: String) -> void:
 
 func set_portrait_enter(mode: String) -> void:
 	var normalized := mode.strip_edges().to_lower()
-	if normalized in ["fade", "fade_in", "in"]:
-		_portrait_enter_transition = "fade_in"
-	else:
-		_portrait_enter_transition = "none"
+	match normalized:
+		"fade", "fade_in", "in": _portrait_enter_transition = "fade_in"
+		"slide_left", "slide_in_left": _portrait_enter_transition = "slide_in_left"
+		"slide_right", "slide_in_right": _portrait_enter_transition = "slide_in_right"
+		"zoom", "zoom_in": _portrait_enter_transition = "zoom_in"
+		"shake": _portrait_enter_transition = "shake"
+		_: _portrait_enter_transition = "none"
 
 func set_portrait_exit(mode: String) -> void:
 	var normalized := mode.strip_edges().to_lower()
-	if normalized in ["fade", "fade_out", "out"]:
-		_portrait_exit_transition = "fade_out"
-	else:
-		_portrait_exit_transition = "none"
+	match normalized:
+		"fade", "fade_out", "out": _portrait_exit_transition = "fade_out"
+		"slide_left", "slide_out_left": _portrait_exit_transition = "slide_out_left"
+		"slide_right", "slide_out_right": _portrait_exit_transition = "slide_out_right"
+		_: _portrait_exit_transition = "none"
 
 func skip_typing() -> void:
 	if not is_typing:

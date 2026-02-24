@@ -6,13 +6,13 @@ scenes:
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
       - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.prologue.system" }
-      - transition_object: { target: "speaker.detective", type: "page_turn", duration: 1.0, mode: "in" }
-      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_intro", portrait_side: "left", portrait_enter: "fade_in" }
-      - transition_object: { target: "speaker.boss", type: "wipe_radial_cw", duration: 0.8, mode: "in" }
-      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.prologue.boss_call", portrait_side: "right", portrait_enter: "fade_in", portrait_exit: "fade_out" }
-      - transition_object: { target: "speaker.boss", type: "zoom_flip", duration: 0.5, mode: "out" }
-      - transition_object: { target: "speaker.detective", type: "roto_zoom", duration: 0.5, mode: "out" }
-      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.prologue.detective_ack", portrait_side: "left", portrait_enter: "fade_in" }
+      - transition_object: { target: "yui", type: "fade_in", duration: 0.8, mode: "in" }
+      - dialogue: { speaker_key: "speaker.yui", speaker: "Yui", text_key: "mystery.prologue.yui_intro", portrait_side: "right" }
+      - transition_object: { target: "detective", type: "slide_right", duration: 0.5, mode: "in" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.prologue.detective_intro", portrait_side: "left" }
+      - transition_object: { target: "boss", type: "wipe_radial_cw", duration: 0.8, mode: "in" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.prologue.boss_call", portrait_side: "right" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.prologue.detective_ack", portrait_side: "left" }
       - goto:
           scene_id: "warehouse_investigation"
           fade_duration: 1.0
@@ -22,80 +22,83 @@ scenes:
     mode: "investigation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
-      - transition_object: { target: "speaker.detective", type: "jump_zoom", duration: 0.5, mode: "in" }
-      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.intro" }
+      - transition_object: { target: "detective", type: "jump_zoom", duration: 0.5, mode: "in" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.intro" }
 
     hotspots:
-      ectoplasm_spot:
-        node_id: "hs_floor_area"
+      tanaka_spot:
+        node_id: "hs_manager"
         on_click:
-          - if_has_items:
-              items: ["ectoplasm"]
-              then:
-                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.ecto.already" }
-              else:
-                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.ecto.inspect" }
-                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.ecto.found" }
-                - give_evidence: "ectoplasm"
-                - set_flag: { key: "found_ecto", value: true }
+          - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
+          - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.response", portrait_enter: "shake" }
+          - set_flag: { key: "talked_to_tanaka", value: true }
+
+      sato_spot:
+        node_id: "hs_worker"
+        on_click:
+          - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
+          - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.response", portrait_enter: "zoom_in" }
+          - give_evidence: "ectoplasm"
+          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.sato.got_ecto" }
+          - set_flag: { key: "found_ecto", value: true }
+
+      suzuki_spot:
+        node_id: "hs_delivery"
+        on_click:
+          - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.talk", portrait_side: "right", portrait_enter: "fade_in" }
+          - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.response" }
+          - give_evidence: "torn_memo"
+          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.suzuki.got_memo" }
+          - give_evidence: "delivery_log"
+          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.suzuki.got_log" }
+
+      kenta_spot:
+        node_id: "hs_kenta"
+        on_click:
+          - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
+          - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.response", portrait_enter: "shake" }
+          - give_evidence: "witness_report"
+          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.kenta.got_report" }
 
       footprint_spot:
         node_id: "hs_footprints"
         on_click:
-          - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.footprint.observe" }
           - if_flag:
-              key: "found_footprint"
+              key: "talked_to_tanaka"
               value: true
               then:
-                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.footprint.detail" }
-              else:
-                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.footprint.found" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.footprint.found", portrait_enter: "zoom_in" }
                 - give_evidence: "footprint"
-                - set_flag: { key: "found_footprint", value: true }
-
-      memo_spot:
-        node_id: "hs_memo"
-        on_click:
-          - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.memo.observe" }
-          - choice:
-              choices:
-                - option:
-                    text_key: "mystery.choice.pick_up"
-                    actions:
-                      - give_evidence: "torn_memo"
-                      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.memo.found" }
-                - option:
-                    text_key: "mystery.choice.leave"
-                    actions:
-                      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.memo.leave" }
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.footprint.got" }
+              else:
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.footprint.observe" }
 
       exit_spot:
         node_id: "hs_exit"
         on_click:
           - if_has_items:
-              items: ["ectoplasm", "footprint", "torn_memo"]
+              items: ["ectoplasm", "footprint", "torn_memo", "delivery_log", "witness_report"]
               then:
-                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.ready" }
-                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.return" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.exit.ready", portrait_enter: "fade_in" }
                 - goto:
                     scene_id: "deduction"
                     fade_duration: 1.0
                     transition_type: "wipe_radial_cw"
               else:
-                - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.warehouse.exit.not_ready" }
+                - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.exit.not_ready" }
 
   deduction:
     mode: "deduction"
     scene_path: "res://samples/mystery/office_base.tscn"
     on_enter:
-      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.question" }
+      - transition_object: { target: "boss", type: "fade_in", duration: 0.5, mode: "in" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.deduction.question", portrait_side: "right", portrait_enter: "shake" }
       - choice:
           choices:
             - option:
                 text_key: "mystery.deduction.choice.ghost"
                 actions:
-                  - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.ghost.response1" }
-                  - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.deduction.ghost.response2" }
+                  - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.deduction.ghost.response1", portrait_enter: "zoom_in" }
                   - goto:
                       scene_id: "confrontation"
                       fade_duration: 1.0
@@ -103,43 +106,16 @@ scenes:
             - option:
                 text_key: "mystery.deduction.choice.human"
                 actions:
-                  - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.human.wrong1" }
                   - take_damage: 1
-                  - if_health_leq:
-                      value: 0
-                      then:
-                        - set_flag: { key: "game_over", value: true }
-                        - goto:
-                            scene_id: "ending_bad"
-                            fade_duration: 2.0
-                            transition_type: "turn_off_tiles"
-                      else:
-                        - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.human.retry" }
-                        - goto: "deduction"
-            - option:
-                text_key: "mystery.deduction.choice.alien"
-                actions:
-                  - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.alien.wrong1" }
-                  - take_damage: 1
-                  - if_health_leq:
-                      value: 0
-                      then:
-                        - set_flag: { key: "game_over", value: true }
-                        - goto:
-                            scene_id: "ending_bad"
-                            fade_duration: 2.0
-                            transition_type: "turn_off_tiles"
-                      else:
-                        - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.deduction.alien.retry" }
-                        - goto: "deduction"
+                  - goto: "deduction"
 
   confrontation:
     mode: "confrontation"
     scene_path: "res://samples/mystery/warehouse_base.tscn"
     on_enter:
-      - transition_object: { target: "speaker.detective", type: "slide_right", duration: 0.5, mode: "in" }
-      - dialogue: { speaker_key: "speaker.detective", speaker: "Detective", text_key: "mystery.confrontation.start1" }
-      - transition_object: { target: "speaker.rat_witness", type: "jump_zoom", duration: 0.6, mode: "in" }
+      - transition_object: { target: "detective", type: "slide_right", duration: 0.5, mode: "in" }
+      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.confrontation.start1" }
+      - transition_object: { target: "rat_witness", type: "jump_zoom", duration: 0.6, mode: "in" }
       - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.start2" }
       - testimony:
           max_rounds: 3
@@ -159,33 +135,22 @@ scenes:
               speaker_key: "speaker.rat_witness"
               speaker: "Rat Witness"
               text_key: "mystery.testimony.line3"
-              evidence: "torn_memo"
+              evidence: "witness_report"
               shake_key: "mystery.testimony.line3.shake"
           on_success:
             - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.success" }
-            - goto:
-                scene_id: "ending_good"
-                fade_duration: 1.5
-                transition_type: "page_turn"
+            - goto: "ending_good"
           on_failure:
-            - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.failure" }
-            - goto:
-                scene_id: "ending_bad"
-                fade_duration: 2.0
-                transition_type: "fade_down"
+            - goto: "ending_bad"
 
   ending_good:
     mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.good1" }
-      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.ending.good2" }
-      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.good3" }
+      - dialogue: { speaker_key: "speaker.system", text_key: "mystery.ending.good1" }
 
   ending_bad:
     mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.bad1" }
-      - dialogue: { speaker_key: "speaker.boss", speaker: "Boss", text_key: "mystery.ending.bad2" }
-      - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.ending.bad3" }
+      - dialogue: { speaker_key: "speaker.system", text_key: "mystery.ending.bad1" }

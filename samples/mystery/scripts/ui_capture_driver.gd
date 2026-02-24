@@ -9,7 +9,6 @@ func _ready() -> void:
 		return
 
 	await get_tree().process_frame
-
 	_setup_state_label()
 	
 	_apply_base_state()
@@ -30,6 +29,11 @@ func _ready() -> void:
 	_apply_all_state()
 	_set_state_text("CAPTURE: ALL VISIBLE")
 	await _take_screenshot("mystery_capture_all")
+
+	await _wait_frames(25)
+	_apply_warehouse_talk_state()
+	_set_state_text("CAPTURE: WAREHOUSE TALK MODE")
+	await _take_screenshot("mystery_capture_warehouse_talk")
 	
 	get_tree().quit()
 
@@ -117,6 +121,23 @@ func _apply_all_state() -> void:
 			inventory.show_inventory()
 		else:
 			inventory.visible = true
+
+func _apply_warehouse_talk_state() -> void:
+	var warehouse = get_tree().root.find_child("WarehouseBase", true, false)
+	if warehouse != null and warehouse.has_method("_on_mode_toggled"):
+		warehouse._on_mode_toggled() # Switch to Talk Mode
+	
+	var dialogue = _dialogue_ui()
+	if dialogue:
+		dialogue.visible = false
+
+	var inventory = _inventory_ui()
+	if inventory:
+		inventory.visible = false
+
+	var testimony = _testimony_ui()
+	if testimony:
+		testimony.visible = false
 
 func _dialogue_ui() -> Control:
 	return get_node_or_null("../MainInfoUiLayer/DialogueUI") as Control

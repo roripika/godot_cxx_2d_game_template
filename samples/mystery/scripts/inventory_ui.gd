@@ -21,11 +21,10 @@ var _ui_ready: bool = false
 func _ready() -> void:
 	_ui_ready = true
 	visible = false
-	if detail_panel:
-		detail_panel.visible = false
 	if close_btn:
 		close_btn.pressed.connect(_on_close_pressed)
 	_load_evidence_resources()
+	_clear_detail()
 	_connect_localization_service()
 	_refresh_static_labels()
 
@@ -45,7 +44,25 @@ func _load_evidence_resources() -> void:
 	var file_name := dir.get_next()
 	while file_name != "":
 		if file_name.ends_with(".tres"):
-			var evidence := load(evidence_dir + file_name) as EvidenceItem
+			var full_path = evidence_dir + file_name
+			var evidence := load(full_path) as EvidenceItem
+			if not evidence:
+				# .tresロード失敗時のフォールバック (生データ読み込み代行)
+				# 簡易的にファイル名からIDを推測して新規作成
+				var id_guess = file_name.replace(".tres", "")
+				evidence = EvidenceItem.new()
+				evidence.id = id_guess
+				print("[DEBUG] Inventory: load() failed for ", file_name, ", creating dummy evidence object.")
+			
+			# アイコンがnullの場合、ファイルパスから直接ロードを試行
+			if evidence and not evidence.icon:
+				var icon_path = "res://assets/mystery/icons/128x128/%s.png" % evidence.id
+				if FileAccess.file_exists(icon_path):
+					var img = Image.load_from_file(ProjectSettings.globalize_path(icon_path))
+					if img:
+						evidence.icon = ImageTexture.create_from_image(img)
+						print("[DEBUG] Inventory: icon fallback success for ", evidence.id)
+			
 			if evidence:
 				evidence_resources[evidence.id] = evidence
 		file_name = dir.get_next()
@@ -58,7 +75,9 @@ func add_evidence(evidence_id: String) -> void:
 	if evidence_list.has(evidence):
 		return
 	evidence_list.append(evidence)
+	selected_evidence = evidence # 自動選択
 	_refresh_ui()
+	_apply_detail(evidence)
 
 func remove_evidence(evidence_id: String) -> void:
 	for i in range(evidence_list.size()):
@@ -75,10 +94,12 @@ func has_evidence(evidence_id: String) -> bool:
 
 func show_inventory() -> void:
 	visible = true
+	mouse_filter = MOUSE_FILTER_STOP
 	_refresh_ui()
 
 func hide_inventory() -> void:
 	visible = false
+	mouse_filter = MOUSE_FILTER_IGNORE
 
 func get_selected_evidence_id() -> String:
 	if selected_evidence == null:
@@ -97,8 +118,9 @@ func _refresh_ui() -> void:
 	for evidence in evidence_list:
 		var btn := Button.new()
 		btn.text = tr("evidence_" + evidence.id)
-		btn.custom_minimum_size = Vector2(140, 50)
+		btn.custom_minimum_size = Vector2(140, 60)
 		btn.disabled = not _mode_input_enabled
+		btn.expand_icon = true
 		if evidence.icon:
 			btn.icon = evidence.icon
 		btn.pressed.connect(_on_evidence_selected.bind(evidence))
@@ -115,17 +137,31 @@ func _on_evidence_selected(evidence: EvidenceItem) -> void:
 	evidence_selected.emit(evidence.id)
 
 func _apply_detail(evidence: EvidenceItem) -> void:
-	if not _ui_ready:
+	if not _ui_ready or detail_panel == null:
 		return
-	if detail_panel == null:
+	detail_panel.visible = (evidence != null)
+	if not evidence:
+		_clear_detail()
 		return
-	detail_panel.visible = true
+		
 	if detail_name:
 		detail_name.text = tr("evidence_" + evidence.id)
 	if detail_desc:
 		detail_desc.text = tr("evidence_" + evidence.id + "_desc")
 	if detail_icon:
-		detail_icon.texture = evidence.icon if evidence.icon else null
+		detail_icon.texture = evidence.icon
+		detail_icon.visible = (evidence.icon != null)
+
+func _clear_detail() -> void:
+	if detail_panel:
+		detail_panel.visible = false
+	if detail_name:
+		detail_name.text = ""
+	if detail_desc:
+		detail_desc.text = ""
+	if detail_icon:
+		detail_icon.texture = null
+		detail_icon.visible = false
 
 func get_evidence_by_id(id: String) -> EvidenceItem:
 	return evidence_resources.get(id)

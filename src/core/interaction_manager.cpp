@@ -22,7 +22,7 @@ InteractionManager::InteractionManager() { active = true; }
 
 InteractionManager::~InteractionManager() {}
 
-void InteractionManager::_input(const Ref<InputEvent> &p_event) {
+void InteractionManager::_unhandled_input(const Ref<InputEvent> &p_event) {
   if (!active)
     return;
 
