@@ -92,7 +92,7 @@ mystery.ui.detail_name_placeholder,Name,名称
 mystery.ui.detail_desc_placeholder,Description,説明
 mystery.ui.testimony_panel,Testimony UI (Main Info),証言UI（メイン情報）
 mystery.ui.testimony_progress,Line %d / %d,%d / %d 行目
-mystery.ui.guide,UI Guide: left=system / bottom=dialogue / right=testimony / left=inventory,UIガイド: 左=システム / 下=会話 / 右=証言 / 左=証拠
+mystery.ui.guide,UI Guide: Left Click - Investigate / Talk / Progress Dialogue,UIガイド: 左クリック - 調査 / 話しかける / 会話を進める
 mystery.ui.health_label,HP (Mistakes Remaining),HP（ミス可能回数）
 mystery.ui.office_door,DOOR,ドア
 mystery.ui.office_boss,BOSS,ボス
