@@ -1,3 +1,4 @@
+
 # Mystery Demo 引き継ぎ資料（antigravity）
 
 ## 1. 目的
@@ -34,7 +35,9 @@
 - 指定キー: `portrait_side`
 - 補助キー: `portrait_enter`, `portrait_exit`
 - 値: `auto` / `left` / `right` / `center`
-- 演出値: `portrait_enter = none/fade_in`, `portrait_exit = none/fade_out`
+- 演出値:
+  - `portrait_enter`: `none` / `fade_in` / `slide_in_left` / `slide_in_right` / `zoom_in` / `shake`
+  - `portrait_exit`: `none` / `fade_out` / `slide_out_left` / `slide_out_right`
 - 基本運用:
   - 通常は `auto` を使い、演出意図がある台詞のみ `left/right/center` を明示する。
   - 出現/撤退演出が必要な台詞のみ `portrait_enter` / `portrait_exit` を付与する。

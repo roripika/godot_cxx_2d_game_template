@@ -58,8 +58,8 @@ action は「1キーの辞書」で表現する。
     text_key: "demo..."           # Mystery運用では必須
     text: "fallback text"         # 非推奨（互換用）
     portrait_side: "auto"         # 任意: auto / left / right / center
-    portrait_enter: "none"        # 任意: none / fade_in
-    portrait_exit: "none"         # 任意: none / fade_out
+    portrait_enter: "none"        # 任意: none / fade_in / slide_in_left / slide_in_right / zoom_in / shake
+    portrait_exit: "none"         # 任意: none / fade_out / slide_out_left / slide_out_right
 ```
 
 - `portrait_side`:
@@ -67,10 +67,16 @@ action は「1キーの辞書」で表現する。
   - `left` / `right` / `center`: ストーリー都合で明示配置を上書き
 - `portrait_enter`:
   - `none` (既定): そのまま表示
-  - `fade_in`: 話者バストアップをフェードインで出現
+  - `fade_in`: フェードインで出現
+  - `slide_in_left`: 左からスライドインで出現
+  - `slide_in_right`: 右からスライドインで出現
+  - `zoom_in`: ズームインで出現
+  - `shake`: 出現後にシェイク演出
 - `portrait_exit`:
   - `none` (既定): そのまま切替
-  - `fade_out`: 直前の話者バストアップをフェードアウトで撤退
+  - `fade_out`: フェードアウトで撤退
+  - `slide_out_left`: 左へスライドアウトで撤退
+  - `slide_out_right`: 右へスライドアウトで撤退
 
 実行時の待機:
 - `DialogueUI` が `dialogue_finished` signal を提供する場合、ランタイムは **signal 発火まで次の action に進まない**（テキスト上書き防止）。

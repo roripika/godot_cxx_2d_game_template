@@ -75,10 +75,10 @@ Godot 実装では、原則として `CanvasLayer.layer` または `z_index` で
 ## 8. 階層設計台帳（管理フォーマット）
 以下を UI 変更PRごとに更新する。
 
-| group | child_group | node_path | scene | layer/z | anchor_rect | overlap_in_group | owner |
-|---|---|---|---|---|---|---|---|
-| system | system.top_left | `CanvasLayer/HealthBar` | `samples/mystery/karakuri_mystery_shell.tscn` | system | 例: x0.02-0.28, y0.02-0.10 | no | designer |
-| main | main.bottom | `CanvasLayer/DialogueUI` | `samples/mystery/karakuri_mystery_shell.tscn` | main | 例: x0.30-0.98, y0.64-0.98 | no | designer |
+| group  | child_group     | node_path                | scene                                         | layer/z | anchor_rect                | overlap_in_group | owner    |
+| ------ | --------------- | ------------------------ | --------------------------------------------- | ------- | -------------------------- | ---------------- | -------- |
+| system | system.top_left | `CanvasLayer/HealthBar`  | `samples/mystery/karakuri_mystery_shell.tscn` | system  | 例: x0.02-0.28, y0.02-0.10 | no               | designer |
+| main   | main.bottom     | `CanvasLayer/DialogueUI` | `samples/mystery/karakuri_mystery_shell.tscn` | main    | 例: x0.30-0.98, y0.64-0.98 | no               | designer |
 
 ## 9. レビュー観点（UI専用）
 - 同一グループ内で重なりが発生していない。
@@ -100,15 +100,16 @@ Godot 実装では、原則として `CanvasLayer.layer` または `z_index` で
 - `sub`: 0
 
 ### 11.2 ノード割り当て台帳
-| group | child_group | node_path | 役割 | anchor_rect（概略） | overlap_in_group |
-|---|---|---|---|---|---|
-| system | system.top_left | `SystemUiLayer/UiGuideLabel` | 全体ガイド文言 | x0.28-0.74, y0.01-0.06 | no |
-| system | system.top_left | `SystemUiLayer/HealthLabel` | HPラベル | x0.02-0.24, y0.02-0.06 | no |
-| system | system.top_left | `SystemUiLayer/HealthBar` | HP本体 | x0.02-0.24, y0.06-0.11 | no |
-| system | system.top_right | `SystemUiLayer/LanguageSwitcher` | 言語切替 | 右上固定 | no |
-| instant_subinfo | instant.left_modal | `InstantSubInfoUiLayer/InventoryUI` | 証拠一覧/詳細（モーダル表示） | x0.08-0.52, y0.12-0.88 | no |
-| main | main.bottom | `MainInfoUiLayer/DialogueUI` | 会話表示/選択肢 | x0.24-0.98, y0.63-0.98 | no |
-| main | main.right | `MainInfoUiLayer/TestimonySystem` | 証言/対決操作 | x0.66-0.98, y0.12-0.58 | no |
+| group           | child_group        | node_path                           | 役割                          | anchor_rect（概略）           | overlap_in_group |
+| --------------- | ------------------ | ----------------------------------- | ----------------------------- | ----------------------------- | ---------------- |
+| system          | system.top_left    | `SystemUiLayer/UiGuideLabel`        | 全体ガイド文言                | x0.28-0.74, y0.01-0.06        | no               |
+| system          | system.top_left    | `SystemUiLayer/HealthLabel`         | HPラベル                      | x0.02-0.24, y0.02-0.06        | no               |
+| system          | system.top_left    | `SystemUiLayer/HealthBar`           | HP本体                        | x0.02-0.24, y0.06-0.11        | no               |
+| system          | system.top_right   | `SystemUiLayer/LanguageSwitcher`    | 言語切替                      | 右上固定                      | no               |
+| system          | system.top_right   | `SystemUiLayer/InventoryButton`     | 証拠品UIトグル                | 右上 (x0.81-0.99, y0.01-0.07) | no               |
+| instant_subinfo | instant.left_modal | `InstantSubInfoUiLayer/InventoryUI` | 証拠一覧/詳細（モーダル表示） | x0.08-0.52, y0.12-0.88        | no               |
+| main            | main.bottom        | `MainInfoUiLayer/DialogueUI`        | 会話表示/選択肢               | x0.24-0.98, y0.63-0.98        | no               |
+| main            | main.right         | `MainInfoUiLayer/TestimonySystem`   | 証言/対決操作                 | x0.66-0.98, y0.12-0.58        | no               |
 
 ### 11.3 一時的な重なり許可（イベント起点）
 - `InventoryUI` は「証拠確認/提示アクション」で表示し、`MainInfoUiLayer` の上に一時表示してよい。
