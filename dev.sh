@@ -16,6 +16,9 @@ Commands:
   menu                  Set main scene to res://samples/main_menu.tscn
   status                Print current run/main_scene from project.godot
   godot-bin             Print which Godot binary path will be used
+  smoke                 Lightweight smoke test: boot + UI nodes + prologue + locale (~5-10s)
+  e2e                   Full E2E test: prologue -> investigate -> deduction -> confrontation -> endings
+  monkey                Monkey test: random inputs to detect crashes/deadlocks (env: MONKEY_ACTIONS, MONKEY_SEED)
 
 Demo values (examples):
   roguelike | platformer | mystery | sandbox | fighting | rhythm | gallery | menu
@@ -193,6 +196,24 @@ case "$cmd" in
     else
       exec "$GODOT" --path "$ROOT_DIR"
     fi
+    ;;
+  smoke)
+    GODOT="$(detect_godot_bin || true)"
+    [[ -n "$GODOT" ]] || die "godot not found. Install Godot or set GODOT_BIN=/path/to/godot"
+    "$GODOT" --headless --path "$ROOT_DIR" \
+      --script res://samples/mystery/scripts/karakuri_smoke.gd
+    ;;
+  e2e)
+    GODOT="$(detect_godot_bin || true)"
+    [[ -n "$GODOT" ]] || die "godot not found. Install Godot or set GODOT_BIN=/path/to/godot"
+    "$GODOT" --headless --path "$ROOT_DIR" \
+      --script res://samples/mystery/scripts/karakuri_scenario_smoke.gd
+    ;;
+  monkey)
+    GODOT="$(detect_godot_bin || true)"
+    [[ -n "$GODOT" ]] || die "godot not found. Install Godot or set GODOT_BIN=/path/to/godot"
+    "$GODOT" --headless --path "$ROOT_DIR" \
+      --script res://samples/mystery/scripts/karakuri_monkey.gd
     ;;
   *)
     usage

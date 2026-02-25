@@ -29,36 +29,63 @@ scenes:
       tanaka_spot:
         node_id: "hs_manager"
         on_click:
-          - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
-          - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.response", portrait_enter: "shake" }
-          - set_flag: { key: "talked_to_tanaka", value: true }
+          - if_flag:
+              key: "talked_to_tanaka"
+              value: true
+              then:
+                - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.talk2", portrait_side: "right" }
+              else:
+                - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
+                - dialogue: { speaker_key: "speaker.tanaka", speaker: "Tanaka", text_key: "mystery.warehouse.tanaka.response", portrait_enter: "shake" }
+                - set_flag: { key: "talked_to_tanaka", value: true }
 
       sato_spot:
         node_id: "hs_worker"
         on_click:
-          - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
-          - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.response", portrait_enter: "zoom_in" }
-          - give_evidence: "ectoplasm"
-          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.sato.got_ecto" }
-          - set_flag: { key: "found_ecto", value: true }
+          - if_flag:
+              key: "talked_to_sato"
+              value: true
+              then:
+                - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.talk2", portrait_side: "right" }
+              else:
+                - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
+                - dialogue: { speaker_key: "speaker.sato", speaker: "Sato", text_key: "mystery.warehouse.sato.response", portrait_enter: "zoom_in" }
+                - give_evidence: "ectoplasm"
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.sato.got_ecto" }
+                - set_flag: { key: "found_ecto", value: true }
+                - set_flag: { key: "talked_to_sato", value: true }
 
       suzuki_spot:
         node_id: "hs_delivery"
         on_click:
-          - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.talk", portrait_side: "right", portrait_enter: "fade_in" }
-          - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.response" }
-          - give_evidence: "torn_memo"
-          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.suzuki.got_memo" }
-          - give_evidence: "delivery_log"
-          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.suzuki.got_log" }
+          - if_flag:
+              key: "talked_to_suzuki"
+              value: true
+              then:
+                - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.talk2", portrait_side: "right" }
+              else:
+                - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.talk", portrait_side: "right", portrait_enter: "fade_in" }
+                - dialogue: { speaker_key: "speaker.suzuki", speaker: "Suzuki", text_key: "mystery.warehouse.suzuki.response" }
+                - give_evidence: "torn_memo"
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.suzuki.got_memo" }
+                - give_evidence: "delivery_log"
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.suzuki.got_log" }
+                - set_flag: { key: "talked_to_suzuki", value: true }
 
       kenta_spot:
         node_id: "hs_kenta"
         on_click:
-          - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
-          - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.response", portrait_enter: "shake" }
-          - give_evidence: "witness_report"
-          - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.kenta.got_report" }
+          - if_flag:
+              key: "talked_to_kenta"
+              value: true
+              then:
+                - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.talk2", portrait_side: "right" }
+              else:
+                - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.talk", portrait_side: "right", portrait_enter: "slide_in_right" }
+                - dialogue: { speaker_key: "speaker.kenta", speaker: "Kenta", text_key: "mystery.warehouse.kenta.response", portrait_enter: "shake" }
+                - give_evidence: "witness_report"
+                - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.warehouse.kenta.got_report" }
+                - set_flag: { key: "talked_to_kenta", value: true }
 
       footprint_spot:
         node_id: "hs_footprints"
@@ -86,6 +113,18 @@ scenes:
                     transition_type: "wipe_radial_cw"
               else:
                 - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.exit.not_ready" }
+                - if_has_items:
+                    items: ["footprint"]
+                    else:
+                      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.exit.hint.footprint" }
+                - if_has_items:
+                    items: ["ectoplasm"]
+                    else:
+                      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.exit.hint.ecto" }
+                - if_has_items:
+                    items: ["torn_memo", "delivery_log", "witness_report"]
+                    else:
+                      - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.exit.hint.others" }
 
   deduction:
     mode: "deduction"
@@ -106,6 +145,8 @@ scenes:
             - option:
                 text_key: "mystery.deduction.choice.human"
                 actions:
+                  - dialogue: { speaker_key: "speaker.system", text_key: "mystery.deduction.wrong.shake", portrait_enter: "shake" }
+                  - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.deduction.wrong.text", portrait_enter: "shake" }
                   - take_damage: 1
                   - goto: "deduction"
 

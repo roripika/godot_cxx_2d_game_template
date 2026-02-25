@@ -8,9 +8,11 @@ signal dialogue_finished()
 @onready var name_label: Label = get_node_or_null("VBoxContainer/NameLabel")
 @onready var text_label: Label = get_node_or_null("VBoxContainer/TextLabel")
 @onready var choices_container: VBoxContainer = get_node_or_null("VBoxContainer/ChoicesContainer")
+@onready var proceed_indicator: Polygon2D = get_node_or_null("ProceedIndicator")
+@onready var screen_flash: ColorRect = get_node_or_null("../ScreenFlash")
 @onready var portrait_rect: TextureRect = get_node_or_null("../PortraitContainer/PortraitRect")
+@onready var main_ui_layer: CanvasLayer = get_node_or_null("..")
 
-@export var portrait_scale: float = 1.25
 @export var typing_speed: float = 0.05
 @export var text_color: Color = Color.WHITE
 @export var name_color: Color = Color.YELLOW
@@ -79,7 +81,6 @@ func show_choices_with_defs(choice_defs: Array[Dictionary]) -> int:
 	return int(args[0])
 
 func hide_dialogue() -> void:
-	print("[DEBUG] DialogueUI: hide_dialogue called")
 	visible = false
 	_choice_defs.clear()
 	_clear_choices()
@@ -382,8 +383,11 @@ func _rebuild_choices() -> void:
 		var def: Dictionary = _choice_defs[i]
 		var choice_btn := Button.new()
 		var choice_text := _resolve_text(str(def.get("text_key", "")), str(def.get("text", "")))
-		choice_btn.text = choice_text
+		choice_btn.text = "▶ " + choice_text
 		choice_btn.disabled = not _mode_input_enabled
+		choice_btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		choice_btn.custom_minimum_size = Vector2(0, 40)
+		choice_btn.add_theme_font_size_override("font_size", 18)
 		choice_btn.pressed.connect(_on_choice_pressed.bind(i, choice_text))
 		if choices_container:
 			choices_container.add_child(choice_btn)
@@ -398,8 +402,10 @@ func _resolve_text(key: String, fallback: String) -> String:
 	if key.is_empty():
 		return fallback
 	var localized := tr(key)
-	if localized != "":
+	if localized != key:
 		return localized
+	# If tr(key) returned key, it's likely not translated OR the translation is the key itself.
+	# We fallback to fallback if available.
 	if fallback != "":
 		return fallback
 	return key
@@ -428,6 +434,32 @@ func set_mode_input_enabled(enabled: bool) -> void:
 	_mode_input_enabled = enabled
 	_rebuild_choices()
 
+func flash_screen(color_hex: String, duration: float = 0.5) -> void:
+	if not screen_flash:
+		return
+	var color = Color.from_string(color_hex, Color.WHITE)
+	screen_flash.visible = true
+	screen_flash.color = color
+	screen_flash.color.a = 0.5
+	var tw = screen_flash.create_tween()
+	tw.tween_property(screen_flash, "color:a", 0.0, duration)
+	await tw.finished
+	screen_flash.visible = false
+
+func shake_screen(intensity: float = 10.0, duration: float = 0.5) -> void:
+	if not main_ui_layer:
+		return
+	var original_offset = main_ui_layer.offset
+	var tw = main_ui_layer.create_tween()
+	var elapsed = 0.0
+	var step = 0.05
+	while elapsed < duration:
+		var offset = Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity))
+		tw.tween_property(main_ui_layer, "offset", original_offset + offset, step)
+		await tw.finished
+		elapsed += step
+	main_ui_layer.offset = original_offset
+
 func _connect_localization_service() -> void:
 	var service := get_tree().root.get_node_or_null("KarakuriLocalization")
 	if service == null:
@@ -436,6 +468,16 @@ func _connect_localization_service() -> void:
 		var cb := Callable(self, "_on_locale_changed")
 		if not service.is_connected("locale_changed", cb):
 			service.connect("locale_changed", cb)
+
+func _process(_delta: float) -> void:
+	if proceed_indicator:
+		if _waiting_for_click and not is_typing:
+			proceed_indicator.visible = true
+			# 0.5Hz pulse
+			var alpha = 0.5 + 0.5 * sin(Time.get_ticks_msec() * 0.008)
+			proceed_indicator.modulate.a = alpha
+		else:
+			proceed_indicator.visible = false
 
 func _on_locale_changed(_locale: String) -> void:
 	_refresh_locale()

@@ -33,6 +33,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Godot C++ 2D Game Template"
 
+[gui]
+
+theme/custom="res://assets/ui/default_theme.tres"
+
 [input]
 
 p1_move_left={

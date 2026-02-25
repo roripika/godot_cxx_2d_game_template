@@ -2,22 +2,19 @@ extends Node2D
 
 # ─── モード定義 ───────────────────────────────────────────
 enum WarehouseMode { INVESTIGATE, TALK }
-var current_mode: WarehouseMode = WarehouseMode.INVESTIGATE
+var current_mode: WarehouseMode = WarehouseMode.TALK
 
 # ─── UI参照 ───────────────────────────────────────────────
 @onready var hint_label: Label            = $LocalUiLayer/Hint
 @onready var exit_label: Label            = $LocalUiLayer/ExitVisual/Label
 @onready var mode_btn:   Button           = $LocalUiLayer/ModeToggleButton
+@onready var inv_border: Control          = $LocalUiLayer/InvestigationBorder
 
 # ─── 証拠ノード（調査モードのみ表示）────────────────────────
-@onready var ecto_visual: Sprite2D = get_node_or_null("FloorVisual")
 @onready var foot_visual: Sprite2D = get_node_or_null("FootprintsVisual")
-@onready var memo_visual: Sprite2D = get_node_or_null("MemoVisual")
 
 # 証拠ホットスポットのArea2D
-@onready var hs_floor:     Node2D = get_node_or_null("hs_floor_area")
 @onready var hs_footprints: Node2D = get_node_or_null("hs_footprints")
-@onready var hs_memo:      Node2D = get_node_or_null("hs_memo")
 
 # ─── NPCノード（会話モードのみ表示）─────────────────────────
 @onready var npc_tanaka:  Node2D = get_node_or_null("hs_manager")
@@ -46,17 +43,15 @@ func _apply_mode() -> void:
 	var inventory := _get_inventory()
 
 	# --- 証拠品ビジュアル：調査モードかつ未入手のみ表示 ---
-	if ecto_visual:
-		ecto_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("ectoplasm"))
 	if foot_visual:
 		foot_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("footprint"))
-	if memo_visual:
-		memo_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("torn_memo"))
 
 	# 証拠ホットスポットのコリジョン有効/無効
-	if hs_floor:     hs_floor.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
 	if hs_footprints: hs_footprints.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
-	if hs_memo:      hs_memo.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
+
+	# --- 調査モード演出：白色の枠を表示 ---
+	if inv_border:
+		inv_border.visible = in_investigate
 
 	# --- NPCビジュアル：会話モードのみ表示 ---
 	if npc_tanaka:

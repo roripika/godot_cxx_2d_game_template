@@ -98,8 +98,8 @@ mystery.ui.office_door,DOOR,ドア
 mystery.ui.office_boss,BOSS,ボス
 mystery.ui.warehouse_hint_investigate,Find evidence in the warehouse,倉庫の中から証拠を探してください
 mystery.ui.warehouse_hint_talk,Talk to people to gather information,人々と話して情報を集めてください
-mystery.ui.warehouse_mode_talk,Talk,話す
-mystery.ui.warehouse_mode_investigate,Investigate,調べる
+mystery.ui.warehouse_mode_talk,調査終了,調査終了
+mystery.ui.warehouse_mode_investigate,調査モード,調査モード
 mystery.ui.warehouse_exit,EXIT,出口
 mystery.ui.inventory_button,Evidence,証拠
 
@@ -188,3 +188,14 @@ mystery.ending.good3,Thank you for playing!,プレイありがとうございま
 mystery.ending.bad1,Investigation failed...,捜査失敗...
 mystery.ending.bad2,What are you doing...? You're fired!,何をやっているんだ…クビだ！
 mystery.ending.bad3,Game Over,ゲームオーバー
+
+# Scenario Polish New Keys
+mystery.warehouse.tanaka.talk2,Everything is under control now. Please finish quickly!,管理は完璧です。早く調査を終わらせてください！
+mystery.warehouse.sato.talk2,I'm too tired to notice anything else... zzz...,もう眠くて何も見てませんよ。ふわぁ……。
+mystery.warehouse.suzuki.talk2,I have more deliveries to make. Good luck with the case!,次の配達があるので失礼します。事件解決、期待してますよ！
+mystery.warehouse.kenta.talk2,I'll be local for a while if you need more info!,しばらくはこの辺にいるから、何かあったら呼んでよ！
+mystery.warehouse.exit.hint.footprint,I should look for physical tracks like footprints.,足跡などの物理的な形跡を探すべきだ。
+mystery.warehouse.exit.hint.ecto,There might be some paranormal residue around here.,この辺りに霊的な残滓があるかもしれない。
+mystery.warehouse.exit.hint.others,I need to talk to more people and gather testimonies.,もっと人から話を聞いて証言を集める必要がある。
+mystery.deduction.wrong.shake,Boss looks furious!,ボスが激怒している！
+mystery.deduction.wrong.text,CONCENTRATE! We cannot confront the culprit with such weak proof!,集中しろ！そんな薄弱な根拠で犯人を問い詰められるか！

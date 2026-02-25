@@ -600,6 +600,9 @@ void KarakuriScenarioRunner::step_actions(double delta) {
   if (pending_action_index_ >= pending_actions_.size()) {
     is_executing_actions_ = false;
     set_mode_input_enabled(true);
+    if (dialogue_ui_) {
+      dialogue_ui_->call("hide_dialogue");
+    }
     return;
   }
 
@@ -1104,6 +1107,30 @@ void KarakuriScenarioRunner::register_mystery_actions() {
     show_current_testimony_line();
     return true;
   });
+
+  // ------------------------------------------------------------- flash_screen
+  register_action("flash_screen", [this](const Variant &payload_v) {
+    if (!dialogue_ui_ || !dialogue_ui_->has_method("flash_screen")) {
+      return false;
+    }
+    const Dictionary payload = as_dict(payload_v);
+    const String color = dict_get_string(payload, "color", "#ffffff");
+    const float duration = float(payload.get("duration", 0.5));
+    dialogue_ui_->call("flash_screen", color, duration);
+    return true;
+  });
+
+  // ------------------------------------------------------------- shake_screen
+  register_action("shake_screen", [this](const Variant &payload_v) {
+    if (!dialogue_ui_ || !dialogue_ui_->has_method("shake_screen")) {
+      return false;
+    }
+    const Dictionary payload = as_dict(payload_v);
+    const float intensity = float(payload.get("intensity", 10.0));
+    const float duration = float(payload.get("duration", 0.5));
+    dialogue_ui_->call("shake_screen", intensity, duration);
+    return true;
+  });
 }
 
 void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
@@ -1111,6 +1138,10 @@ void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
       waiting_for_transition_) {
     // Prevent accidental re-entry while scripted actions are running, or during
     // transitions.
+    return;
+  }
+  // Block hotspot interactions while the inventory/evidence UI is open.
+  if (evidence_ui_ != nullptr && bool(evidence_ui_->get("visible"))) {
     return;
   }
   for (int i = 0; i < hotspot_bindings_.size(); i++) {
@@ -1512,6 +1543,10 @@ bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,
     return false;
   }
   Node *n = current_scene_instance_->find_child(hs.node_id, true, false);
+  CanvasItem *ci = Object::cast_to<CanvasItem>(n);
+  if (!ci || !ci->is_visible_in_tree()) {
+    return false;
+  }
   Area2D *area = Object::cast_to<Area2D>(n);
   if (!area) {
     return false;

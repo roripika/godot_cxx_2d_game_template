@@ -177,7 +177,23 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_constants/separation = 6
 
+[node name="ProceedIndicator" type="Polygon2D" parent="MainInfoUiLayer/DialogueUI"]
+visible = false
+position = Vector2(820, 220)
+color = Color(1, 1, 1, 0.8)
+polygon = PackedVector2Array(0, 0, 20, 0, 10, 15)
+
 [node name="TestimonySystem" parent="MainInfoUiLayer" instance=ExtResource("4_testimony_system")]
+
+[node name="ScreenFlash" type="ColorRect" parent="MainInfoUiLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)
 
 [node name="SubInfoUiLayer" type="CanvasLayer" parent="."]
 layer = 0

@@ -55,17 +55,6 @@ grow_horizontal = 0
 text = "話す"
 theme_override_font_sizes/font_size = 16
 
-[node name="hs_floor_area" type="Area2D" parent="."]
-position = Vector2(520, 320)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_floor_area"]
-shape = SubResource("CircleShape2D_floor")
-
-[node name="FloorVisual" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.6)
-position = Vector2(520, 320)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_ecto")
 
 [node name="hs_footprints" type="Area2D" parent="."]
 position = Vector2(330, 380)
@@ -80,18 +69,6 @@ rotation = -0.261799
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_foot")
 
-[node name="hs_memo" type="Area2D" parent="."]
-position = Vector2(740, 250)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_memo"]
-shape = SubResource("CircleShape2D_memo")
-
-[node name="MemoVisual" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.8)
-position = Vector2(740, 250)
-rotation = 0.523599
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("5_memo")
 
 [node name="hs_manager" type="Area2D" parent="."]
 visible = false
@@ -163,3 +140,55 @@ offset_bottom = 60.0
 text = "◀ EXIT"
 theme_override_font_sizes/font_size = 24
 theme_override_colors/font_color = Color(1, 1, 0, 1)
+
+[node name="InvestigationBorder" type="Control" parent="LocalUiLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Top" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 5.0
+grow_horizontal = 2
+color = Color(1, 1, 1, 0.75)
+mouse_filter = 2
+
+[node name="Bottom" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(1, 1, 1, 0.75)
+mouse_filter = 2
+
+[node name="Left" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 5.0
+grow_vertical = 2
+color = Color(1, 1, 1, 0.75)
+mouse_filter = 2
+
+[node name="Right" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(1, 1, 1, 0.75)
+mouse_filter = 2

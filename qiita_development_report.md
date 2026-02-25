@@ -218,3 +218,94 @@ Copilot フェーズで生まれた試作は速度優先だったため、次の
 
 ---
 *このレポートは、SDK開発の全行程を記録した AI (Antigravity / Codex / Copilot) のログを基に構成されました。*
+
+---
+
+## 7. Copilot担当の改修記録（バグ修正・テスト戦略強化）
+
+担当フェーズ: **2025年2月25日**  
+
+### A. インベントリ開中のホットスポット誤発火バグ修正（C++）
+
+**問題:**  
+インベントリ（証拠品 UI）を開いた状態で背景や NPC をクリックすると、インベントリの裏側でホットスポットが反応してしまうバグが存在した。
+
+**原因:**  
+`KarakuriScenarioRunner::on_clicked_at()` に「インベントリ表示中は処理をスキップ」するガードがなかった。
+
+**修正内容 (`src/karakuri/scenario/karakuri_scenario_runner.cpp`):**
+```cpp
+void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
+  if (is_executing_actions_ || !mode_input_enabled_ || waiting_for_transition_) {
+    return;
+  }
+  // Block hotspot interactions while the inventory/evidence UI is open.
+  if (evidence_ui_ != nullptr && bool(evidence_ui_->get("visible"))) {
+    return;
+  }
+  // ... hotspot loop
+}
+```
+
+**補足:**  
+`give_evidence` アクションは証拠取得後に自動でインベントリを開く設計のため、この修正によって「証拠品を取った直後の余分なクリックが次のホットスポットを誤発火する」問題も同時に解消された。
+
+---
+
+### B. 3段階テスト戦略の設計と実装
+
+AI 実装を品質保証するため、性質の異なる 3 種のテストを整備した。詳細は [`docs/testing_strategy.md`](docs/testing_strategy.md) を参照。
+
+#### テスト構成
+
+```
+./dev.sh smoke    ~5-10秒   起動確認・必須UIノード・プロローグ表示・ロケール切替
+./dev.sh e2e      ~60秒     全シナリオ通し（グッドエンド + バッドエンド）
+./dev.sh monkey   ~30-60秒  ランダム操作でクラッシュ・デッドロックを検出
+```
+
+#### なぜ分けたのか
+
+| 種類 | 問う問い | 実行タイミング |
+|---|---|---|
+| **smoke** | 「動くか？」 | 全ての変更後に必須 |
+| **e2e** | 「正しく動くか？」 | C++ / YAML 変更後に必須 |
+| **monkey** | 「壊れないか？」 | 入力処理・UI 状態管理変更後に必須 |
+
+e2e だけでは「想定した順序で操作した場合」しか検証できない。AI が生成するコードは「正しい操作手順では動く」が「想定外の順序では壊れる」実装になりやすいため、monkey テストをセットで必須化した。
+
+#### Tier 2: e2e に追加した検証項目
+
+前フェーズからの既存 e2e テスト（`karakuri_scenario_smoke.gd`）に以下を追加:
+
+| 追加テスト | 内容 |
+|---|---|
+| インベントリ開閉 | `show_inventory()` → CloseButton 押下 → `visible == false` |
+| インベントリ中 NPC ブロック | インベントリ表示中のクリックがランナーを起動しないこと |
+| モード切替ラベル変化 | ボタンテキストが Investigate ↔ Talk 切替で変わること |
+
+#### Tier 3: monkey テストの設計
+
+`karakuri_monkey.gd` では以下のアクションをランダムな比重で実行する:
+
+| アクション | 比重 | 内容 |
+|---|---|---|
+| 画面ランダムクリック | 4/20 | 1280×720 内の任意座標 |
+| ホットスポットクリック | 3/20 | 倉庫の既知 HS 座標をランダム選択 |
+| モード切替ボタン | 2/20 | Investigate ↔ Talk |
+| インベントリを開く | 3/20 | `show_inventory()` |
+| インベントリを閉じる | 3/20 | CloseButton を押す |
+| 会話スキップ | 5/20 | タイピングスキップ / `dialogue_finished` 発火 |
+
+実行後に「インベントリが開閉できる」「モードボタンが機能する」「SceneContainer が生きている」の 3 点を不変条件として検証する。
+
+**再現性の確保:**  出力される `seed=XXXXXX` を `MONKEY_SEED=XXXXXX ./dev.sh monkey` で指定することで、同一の操作列を再実行できる。
+
+#### 定量サマリ
+
+| 指標 | 値 |
+|---|---|
+| 新規ファイル | `karakuri_monkey.gd`, `docs/testing_strategy.md` |
+| 変更ファイル | `karakuri_scenario_smoke.gd`（テスト追加）, `dev.sh`（コマンド追加）, `.agent/AGENTS.md`（方針更新）|
+| C++ 修正行数 | +5 / -0（`on_clicked_at` ガード追加） |
+| テスト実行結果 | smoke ✅ / e2e ✅ / monkey ✅（seed=1771995524, actions=400）|

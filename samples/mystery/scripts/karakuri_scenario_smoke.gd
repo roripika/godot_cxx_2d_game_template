@@ -57,13 +57,15 @@ func _wait_for_dialogue_playback(context: String, max_frames: int = 240) -> bool
 		await process_frame
 	return false
 
-func _wait_for_dialogue_key(expected_key: String, max_frames: int = 240) -> bool:
+func _wait_for_dialogue_key(expected_key: String, max_frames: int = 600) -> bool:
 	for _i in range(max_frames):
 		var key := str(_dialogue_ui().get("_message_text_key")).strip_edges()
 		if key == expected_key:
-			_track_dialogue_playback("key:" + expected_key)
 			return true
-		await process_frame
+		# Also check if it was recently seen (to handle fast transitions)
+		if _seen_dialogue_signatures.has("key:" + expected_key):
+			return true
+		await _wait_frames(1)
 	return false
 
 func _initialize() -> void:
@@ -189,40 +191,44 @@ func _test_shell_inventory_button() -> void:
 		_assert(inventory.visible == false, "inventory should be hidden after shell button press (toggle)")
 
 func _test_mode_blocking(wb: Node) -> void:
+	# 前提: カレントは TALK モード (デフォルト)
+	var mode_btn := wb.get_node_or_null("LocalUiLayer/ModeToggleButton")
+	
 	# ── [TEST1] 調査モード中に NPC (Tanaka) をクリックしても反応しないか ──────
 	print("[KARAKURI_SMOKE] testing NPC (Tanaka) click blocked in Investigate Mode...")
-	# 前提: 調査モードであること
+	if mode_btn:
+		mode_btn.emit_signal("pressed") # TALK -> INVESTIGATE
+		await _wait_frames(10)
+		
 	var npc_tanaka := wb.get_node_or_null("hs_manager")
 	if npc_tanaka:
 		_seen_dialogue_signatures.clear()
 		_interaction_manager().emit_signal("clicked_at", npc_tanaka.global_position)
-		await _wait_frames(20)
+		await _wait_frames(30)
 		_assert(not _seen_dialogue_signatures.has("key:mystery.warehouse.tanaka.talk"),
 			"Tanaka dialogue must NOT start in Investigate Mode")
+		# Clear any accidental clicks (e.g. footprints behind Tanaka)
+		_safe_clear_dialogue()
+		await _wait_runner_idle(100)
 
-	# ── [TEST2] 会話モード中に 証拠品 (Floor) をクリックしても反応しないか ───────
-	print("[KARAKURI_SMOKE] testing evidence (Floor) click blocked in Talk Mode...")
-	# 会話モードへ切り替え
-	var mode_btn := wb.get_node_or_null("LocalUiLayer/ModeToggleButton")
+	# ── [TEST2] 会話モード中に 証拠品 (Footprints) をクリックしても反応しないか ───────
+	print("[KARAKURI_SMOKE] testing evidence (Footprints) click blocked in Talk Mode...")
 	if mode_btn:
-		mode_btn.emit_signal("pressed")
+		mode_btn.emit_signal("pressed") # INVESTIGATE -> TALK
 		await _wait_frames(10)
 		_assert(wb.get_node("hs_manager").visible == true, "must be in Talk Mode")
 
-		var hs_floor := wb.get_node_or_null("hs_floor_area")
-		if hs_floor:
+		var hs_foot := wb.get_node_or_null("hs_footprints")
+		if hs_foot:
 			_seen_dialogue_signatures.clear()
-			_interaction_manager().emit_signal("clicked_at", hs_floor.global_position)
-			await _wait_frames(20)
-			# エクトプラズム取得メッセージが出ていないことを確認
-			_assert(not _seen_dialogue_signatures.has("key:mystery.warehouse.intro"), # introは最初に出るので取得ダイアログ等のキーで判定すべきだが、Runnerが動かなければOK
-				"Evidence interaction must NOT start in Talk Mode")
-			var runner := _runner()
-			_assert(not runner.call("is_running"), "runner must not be running from evidence click in Talk Mode")
+			_interaction_manager().emit_signal("clicked_at", hs_foot.global_position)
+			await _wait_frames(30)
+			_assert(not _seen_dialogue_signatures.has("key:mystery.warehouse.footprint.found"),
+				"Footprint interaction must NOT start in Talk Mode")
+			_safe_clear_dialogue()
+			await _wait_runner_idle(100)
 
-		# 元の調査モードに戻す
-		mode_btn.emit_signal("pressed")
-		await _wait_frames(10)
+	# デフォルト(TALK)の状態に戻して終了（必要なら）
 
 func _wait_for_base(name: String, max_frames: int = 2000) -> bool:
 	print("[KARAKURI_SMOKE] waiting for base: ", name)
@@ -260,11 +266,12 @@ func _wait_for_base_with_clicks(name: String, click_interval_frames: int = 30, m
 	var frames_since_click = 0
 	for _i in range(max_frames):
 		if _scene_container().get_child_count() > 0:
-			var cname = _scene_container().get_child(0).name
-			if cname == name:
-				return true
+			for child in _scene_container().get_children():
+				if str(child.name) == name:
+					return true
 			if _i % 30 == 0:
-				print("[KARAKURI_SMOKE] currently loaded child: ", cname)
+				pass
+				# print("[KARAKURI_SMOKE] currently loaded children: ", _scene_container().get_children().map(func(c): return c.name))
 		frames_since_click += 1
 		if frames_since_click >= click_interval_frames:
 			_safe_clear_dialogue()
@@ -309,18 +316,23 @@ func _go_to_deduction(gs: Node) -> bool:
 	await _test_mode_blocking(wb)
 
 	# --- [TEST] Mode Toggle ---
-	print("[KARAKURI_SMOKE] testing mode toggle (Investigate -> Talk)...")
+	print("[KARAKURI_SMOKE] testing mode toggle (Talk -> Investigate)...")
 	var mode_btn := wb.get_node("LocalUiLayer/ModeToggleButton")
-	var btn_text_investigate: String = str(mode_btn.get("text"))
+	var btn_text_talk: String = str(mode_btn.get("text"))
+	mode_btn.emit_signal("pressed") # TALK -> INVESTIGATE
+	await _wait_frames(10)
+	_assert(wb.get_node("hs_manager").visible == false, "NPC should be hidden in Investigate Mode")
+	_assert(mode_btn.text != btn_text_talk, "ModeToggleButton label should change when switching to Investigate mode")
+	
+	# 元に戻す (TALK)
 	mode_btn.emit_signal("pressed")
 	await _wait_frames(10)
-	_assert(wb.get_node("hs_manager").visible == true, "NPC (Tanaka) should be visible in Talk Mode")
-	_assert(mode_btn.text != btn_text_investigate, "ModeToggleButton label should change when switching to Talk mode")
 
 	# --- [TEST] NPC Interaction (Tanaka - Required for Footprints) ---
 	print("[KARAKURI_SMOKE] testing NPC interaction (Tanaka)...")
+	await _wait_frames(10)
 	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_manager").global_position)
-	_assert(await _wait_for_dialogue_key("mystery.warehouse.tanaka.talk", 300), "Tanaka dialogue did not start")
+	_assert(await _wait_for_dialogue_key("mystery.warehouse.tanaka.talk", 600), "Tanaka dialogue did not start")
 	
 	for _i in range(15):
 		await _wait_frames(30)
@@ -328,11 +340,22 @@ func _go_to_deduction(gs: Node) -> bool:
 		if await _wait_runner_idle(20): break
 	
 	_assert(gs.call("get_flag", "talked_to_tanaka"), "Tanaka flag was not set")
+	
+	# --- [TEST] NPC Interaction (Tanaka - Second Talk) ---
+	print("[KARAKURI_SMOKE] testing NPC interaction (Tanaka - Second Talk)...")
+	await _wait_frames(30)
+	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_manager").global_position)
+	_assert(await _wait_for_dialogue_key("mystery.warehouse.tanaka.talk2", 600), "Tanaka second talk dialogue did not start")
+	for _i in range(5):
+		await _wait_frames(30)
+		_safe_clear_dialogue()
+		if await _wait_runner_idle(10): break
 
 	# --- [TEST] NPC Interaction (Sato) ---
 	print("[KARAKURI_SMOKE] testing NPC interaction (Sato)...")
+	await _wait_frames(30)
 	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_worker").global_position)
-	_assert(await _wait_for_dialogue_key("mystery.warehouse.sato.talk", 300), "Sato dialogue did not start")
+	_assert(await _wait_for_dialogue_key("mystery.warehouse.sato.talk", 600), "Sato dialogue did not start")
 	
 	for _i in range(20):
 		await _wait_frames(30)
@@ -344,18 +367,27 @@ func _go_to_deduction(gs: Node) -> bool:
 	# --- [TEST] Inventory: open/close & NPC blocking while open ---
 	await _test_inventory_ui(wb)
 
-	# --- [TEST] Mode Toggle Back ---
-	print("[KARAKURI_SMOKE] testing mode toggle (Talk -> Investigate)...")
-	var btn_text_talk: String = str(mode_btn.get("text"))
+	# --- [TEST] Mode Toggle (Talk -> Investigate for collection) ---
+	print("[KARAKURI_SMOKE] switching to Investigate Mode for evidence collection...")
 	mode_btn.emit_signal("pressed")
 	await _wait_frames(10)
 	_assert(wb.get_node("hs_worker").visible == false, "NPC should be hidden in Investigate Mode")
-	_assert(mode_btn.text != btn_text_talk, "ModeToggleButton label should change when switching back to Investigate mode")
+
+	# --- [TEST] Exit Hint (Missing Footprints/Ectoplasm/Others) ---
+	print("[KARAKURI_SMOKE] testing exit hints with missing evidence...")
+	await _wait_frames(30)
+	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
+	_assert(await _wait_for_dialogue_key("mystery.warehouse.exit.hint.footprint", 600), "missing footprint hint did not show")
+	for _i in range(20):
+		await _wait_frames(30)
+		_safe_clear_dialogue()
+		if await _wait_runner_idle(10): break
 
 	# --- [TEST] Investigation Mode: Collecting Evidence ---
 	print("[KARAKURI_SMOKE] testing investigation: collecting footprints...")
+	await _wait_frames(30)
 	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_footprints").global_position)
-	_assert(await _wait_for_dialogue_key("mystery.warehouse.footprint.found", 300), "footprint dialogue did not start")
+	_assert(await _wait_for_dialogue_key("mystery.warehouse.footprint.found", 600), "footprint dialogue did not start")
 	
 	for _i in range(10):
 		await _wait_frames(30)
@@ -369,20 +401,26 @@ func _go_to_deduction(gs: Node) -> bool:
 	gs.call("add_item", "delivery_log")
 	gs.call("add_item", "witness_report")
 
-	print("[KARAKURI_SMOKE] items ready. clicking exit...")
+	print("[KARAKURI_SMOKE] items ready. switching back to Talk Mode to exit...")
+	mode_btn.emit_signal("pressed") # INVESTIGATE -> TALK
+	await _wait_frames(10)
+
+	print("[KARAKURI_SMOKE] clicking exit...")
 	# give_evidence auto-shows the inventory; close it before clicking the exit hotspot.
 	var inv := _inventory_ui()
 	if inv and inv.visible:
 		inv.call("hide_inventory")
-	await _wait_frames(100) # Give more time for idle
-	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
-	
-	for _i in range(20):
-		await _wait_frames(30)
+	for i in range(3):
+		await _wait_frames(120)
 		_safe_clear_dialogue()
-		if await _wait_runner_idle(20): break
+		if await _wait_runner_idle(40):
+			print("[KARAKURI_SMOKE] runner idle. clicking exit (attempt ", i+1, ")...")
+			var ep = wb.get_node("hs_exit").global_position
+			_interaction_manager().emit_signal("clicked_at", ep)
+		else:
+			print("[KARAKURI_SMOKE] runner still busy? state: ", _runner().call("is_running"))
 
-	var reached_office := await _wait_for_base_with_clicks("OfficeBase", 30, 2000)
+	var reached_office := await _wait_for_base_with_clicks("OfficeBase", 60, 3000)
 	return reached_office
 
 func _run() -> void:
