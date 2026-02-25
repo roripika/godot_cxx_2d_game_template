@@ -3,18 +3,35 @@
 extends Node2D
 class_name EndingScene
 
+@onready var game_result_label = $CanvasLayer/GameResultLabel
 @onready var dialogue_ui = $CanvasLayer/DialogueUI
 
 func _ready():
+	# 初期化
+	if game_result_label:
+		game_result_label.hide()
+	
+	var ags = get_tree().root.get_node_or_null("AdventureGameState")
+	
 	# フラグに基づいてエンディングを分岐
-	if AdventureGameState.get_flag("game_over"):
+	if ags and ags.get_flag("game_over"):
+		_set_result_title("GAME OVER", Color.CRIMSON)
 		await _show_failure_ending()
-	elif AdventureGameState.get_flag("perfect_ending"):
+	elif ags and ags.get_flag("perfect_ending"):
+		_set_result_title("PERFECT!", Color.GOLD)
 		await _show_perfect_ending()
-	elif AdventureGameState.get_flag("case_solved"):
+	elif ags and ags.get_flag("case_solved"):
+		_set_result_title("THE END", Color.SKY_BLUE)
 		await _show_normal_ending()
 	else:
+		_set_result_title("GAME OVER", Color.CRIMSON)
 		await _show_failure_ending()
+
+func _set_result_title(text: String, color: Color):
+	if game_result_label:
+		game_result_label.text = text
+		game_result_label.modulate = color
+		game_result_label.show()
 
 func _show_perfect_ending():
 	"""完全勝利エンディング"""
@@ -65,9 +82,10 @@ func _create_retry_menu():
 	if dialogue_ui.has_method("show_choices"):
 		choice_idx = await dialogue_ui.show_choices(choices)
 
+	var ags = get_tree().root.get_node_or_null("AdventureGameState")
 	if choice_idx == 0:
-		AdventureGameState.reset_game()
-		AdventureGameState.change_scene("res://samples/mystery/office_scene.tscn")
+		if ags: ags.call("reset_game")
+		if ags: ags.call("change_scene", "res://samples/mystery/office_scene.tscn")
 	else:
-		AdventureGameState.reset_game()
-		AdventureGameState.change_scene("res://samples/main_menu.tscn")
+		if ags: ags.call("reset_game")
+		if ags: ags.call("change_scene", "res://samples/main_menu.tscn")

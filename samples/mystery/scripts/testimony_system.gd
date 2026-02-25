@@ -29,9 +29,11 @@ func _ready() -> void:
 	_refresh_locale()
 
 func show_panel() -> void:
+	print("[TestimonyUI] show_panel called")
 	visible = true
 
 func hide_panel() -> void:
+	print("[TestimonyUI] hide_panel called")
 	visible = false
 
 func show_testimony_line(speaker: String, text: String) -> void:
@@ -63,8 +65,9 @@ func set_actions_enabled(enabled: bool) -> void:
 	if present_btn:
 		present_btn.disabled = not enabled
 
-func on_mode_enter(mode_id: String, _scene_id: String) -> void:
-	visible = (mode_id == "confrontation")
+func on_mode_enter(_mode_id: String, _scene_id: String) -> void:
+	print("[TestimonyUI] on_mode_enter: visible set to false")
+	visible = false
 	_refresh_locale()
 
 func on_mode_exit(_mode_id: String, _next_scene_id: String) -> void:

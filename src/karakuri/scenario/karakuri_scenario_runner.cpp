@@ -200,6 +200,16 @@ void KarakuriScenarioRunner::_bind_methods() {
   ClassDB::bind_method(D_METHOD("register_mystery_actions"),
                        &KarakuriScenarioRunner::register_mystery_actions);
 
+  ClassDB::bind_method(D_METHOD("load_scenario"),
+                       &KarakuriScenarioRunner::load_scenario);
+  ClassDB::bind_method(D_METHOD("load_scene_by_id", "scene_id"),
+                       &KarakuriScenarioRunner::load_scene_by_id);
+  ClassDB::bind_method(D_METHOD("execute_single_action", "action"),
+                       &KarakuriScenarioRunner::execute_single_action);
+
+  ClassDB::bind_method(D_METHOD("get_current_scene_id"),
+                       &KarakuriScenarioRunner::get_current_scene_id);
+
   ClassDB::bind_method(D_METHOD("is_running"),
                        &KarakuriScenarioRunner::is_running);
   ClassDB::bind_method(D_METHOD("get_testimony_index"),
@@ -276,6 +286,9 @@ int KarakuriScenarioRunner::get_testimony_index() const {
 
 int KarakuriScenarioRunner::get_testimony_size() const {
   return testimony_.lines.size();
+}
+String KarakuriScenarioRunner::get_current_scene_id() const {
+  return current_scene_id_;
 }
 
 void KarakuriScenarioRunner::_ready() {
@@ -478,7 +491,14 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
     return false;
   }
 
-  notify_mode_exit(scene_id);
+  notify_mode_exit(current_scene_id_);
+  current_scene_id_ = scene_id;
+
+  if (!scene_container_) {
+    UtilityFunctions::push_error(
+        "KarakuriScenarioRunner: scene_container_ is null in load_scene_by_id");
+    return false;
+  }
 
   // Replace current base scene instance.
   for (int i = scene_container_->get_child_count() - 1; i >= 0; i--) {
