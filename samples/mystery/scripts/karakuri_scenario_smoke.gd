@@ -120,6 +120,110 @@ func _boot_shell() -> void:
 	var dui := _dialogue_ui()
 	dui.set("typing_speed", 0.0)
 
+func _inventory_ui() -> Node:
+	return current_scene.get_node_or_null("InstantSubInfoUiLayer/InventoryUI")
+
+func _test_inventory_ui(wb: Node) -> void:
+	var inventory := _inventory_ui()
+	if inventory == null:
+		_assert(false, "InventoryUI node not found at InstantSubInfoUiLayer/InventoryUI")
+		return
+
+	# ── [TEST1] インベントリを開いて CloseButton で閉じられるか ──────────────
+	print("[KARAKURI_SMOKE] testing inventory open/close via CloseButton...")
+	inventory.call("show_inventory")
+	await _wait_frames(3)
+	_assert(inventory.visible == true, "inventory should be visible after show_inventory()")
+
+	var close_btn_node := inventory.get_node_or_null("CloseButton")
+	_assert(close_btn_node != null, "CloseButton not found inside InventoryUI")
+	if close_btn_node:
+		close_btn_node.emit_signal("pressed")
+		await _wait_frames(3)
+		_assert(inventory.visible == false, "inventory should be hidden after CloseButton pressed")
+
+	# ── [TEST2] インベントリ表示中は NPC タップが無視されるか ──────────────
+	print("[KARAKURI_SMOKE] testing NPC interaction blocked while inventory open...")
+	inventory.call("show_inventory")
+	await _wait_frames(3)
+	_assert(inventory.visible == true, "inventory must be visible for NPC block test")
+
+	# 表示中に Tanaka をクリック
+	var tanaka_node := wb.get_node_or_null("hs_manager")
+	if tanaka_node:
+		_seen_dialogue_signatures.clear()  # 以前のログをリセット
+		_interaction_manager().emit_signal("clicked_at", tanaka_node.global_position)
+		await _wait_frames(20)
+		# ランナーが動き出していない（被弾ダイアログが来ていない）ことを確認
+		var runner := _runner()
+		_assert(not runner.call("is_running"), "runner must not be running (NPC click should be blocked by inventory)")
+		_assert(not _seen_dialogue_signatures.has("key:mystery.warehouse.tanaka.talk"),
+			"Tanaka dialogue must NOT start while inventory is open")
+
+	# テスト後は必ず閉じる
+	inventory.call("hide_inventory")
+	await _wait_frames(3)
+	_assert(inventory.visible == false, "inventory should be hidden after hide_inventory()")
+
+func _test_shell_inventory_button() -> void:
+	print("[KARAKURI_SMOKE] testing shell inventory button toggle...")
+	var shell = current_scene
+	var inv_btn = shell.get_node_or_null("SystemUiLayer/InventoryButton")
+	var inventory = _inventory_ui()
+	
+	_assert(inv_btn != null, "InventoryButton not found in SystemUiLayer")
+	_assert(inventory != null, "InventoryUI not found")
+	
+	if inv_btn and inventory:
+		inventory.call("hide_inventory")
+		await _wait_frames(5)
+		
+		# Open via button
+		inv_btn.emit_signal("pressed")
+		await _wait_frames(5)
+		_assert(inventory.visible == true, "inventory should be visible after shell button press")
+		
+		# Close via button
+		inv_btn.emit_signal("pressed")
+		await _wait_frames(5)
+		_assert(inventory.visible == false, "inventory should be hidden after shell button press (toggle)")
+
+func _test_mode_blocking(wb: Node) -> void:
+	# ── [TEST1] 調査モード中に NPC (Tanaka) をクリックしても反応しないか ──────
+	print("[KARAKURI_SMOKE] testing NPC (Tanaka) click blocked in Investigate Mode...")
+	# 前提: 調査モードであること
+	var npc_tanaka := wb.get_node_or_null("hs_manager")
+	if npc_tanaka:
+		_seen_dialogue_signatures.clear()
+		_interaction_manager().emit_signal("clicked_at", npc_tanaka.global_position)
+		await _wait_frames(20)
+		_assert(not _seen_dialogue_signatures.has("key:mystery.warehouse.tanaka.talk"),
+			"Tanaka dialogue must NOT start in Investigate Mode")
+
+	# ── [TEST2] 会話モード中に 証拠品 (Floor) をクリックしても反応しないか ───────
+	print("[KARAKURI_SMOKE] testing evidence (Floor) click blocked in Talk Mode...")
+	# 会話モードへ切り替え
+	var mode_btn := wb.get_node_or_null("ModeToggleButton")
+	if mode_btn:
+		mode_btn.emit_signal("pressed")
+		await _wait_frames(10)
+		_assert(wb.get_node("hs_manager").visible == true, "must be in Talk Mode")
+
+		var hs_floor := wb.get_node_or_null("hs_floor_area")
+		if hs_floor:
+			_seen_dialogue_signatures.clear()
+			_interaction_manager().emit_signal("clicked_at", hs_floor.global_position)
+			await _wait_frames(20)
+			# エクトプラズム取得メッセージが出ていないことを確認
+			_assert(not _seen_dialogue_signatures.has("key:mystery.warehouse.intro"), # introは最初に出るので取得ダイアログ等のキーで判定すべきだが、Runnerが動かなければOK
+				"Evidence interaction must NOT start in Talk Mode")
+			var runner := _runner()
+			_assert(not runner.call("is_running"), "runner must not be running from evidence click in Talk Mode")
+
+		# 元の調査モードに戻す
+		mode_btn.emit_signal("pressed")
+		await _wait_frames(10)
+
 func _wait_for_base(name: String, max_frames: int = 2000) -> bool:
 	print("[KARAKURI_SMOKE] waiting for base: ", name)
 	return await _wait_until(
@@ -201,12 +305,17 @@ func _go_to_deduction(gs: Node) -> bool:
 	await _wait_frames(60)
 	var wb := _scene_container().get_child(0)
 
+	# --- [TEST] Mode Blocking (Investigate mode should block NPC, Talk mode should block Evidence) ---
+	await _test_mode_blocking(wb)
+
 	# --- [TEST] Mode Toggle ---
 	print("[KARAKURI_SMOKE] testing mode toggle (Investigate -> Talk)...")
 	var mode_btn := wb.get_node("ModeToggleButton")
+	var btn_text_investigate: String = str(mode_btn.get("text"))
 	mode_btn.emit_signal("pressed")
 	await _wait_frames(10)
 	_assert(wb.get_node("hs_manager").visible == true, "NPC (Tanaka) should be visible in Talk Mode")
+	_assert(mode_btn.text != btn_text_investigate, "ModeToggleButton label should change when switching to Talk mode")
 
 	# --- [TEST] NPC Interaction (Tanaka - Required for Footprints) ---
 	print("[KARAKURI_SMOKE] testing NPC interaction (Tanaka)...")
@@ -232,11 +341,16 @@ func _go_to_deduction(gs: Node) -> bool:
 	
 	_assert(gs.call("has_item", "ectoplasm"), "failed to get ectoplasm from Sato")
 
+	# --- [TEST] Inventory: open/close & NPC blocking while open ---
+	await _test_inventory_ui(wb)
+
 	# --- [TEST] Mode Toggle Back ---
 	print("[KARAKURI_SMOKE] testing mode toggle (Talk -> Investigate)...")
+	var btn_text_talk: String = str(mode_btn.get("text"))
 	mode_btn.emit_signal("pressed")
 	await _wait_frames(10)
 	_assert(wb.get_node("hs_worker").visible == false, "NPC should be hidden in Investigate Mode")
+	_assert(mode_btn.text != btn_text_talk, "ModeToggleButton label should change when switching back to Investigate mode")
 
 	# --- [TEST] Investigation Mode: Collecting Evidence ---
 	print("[KARAKURI_SMOKE] testing investigation: collecting footprints...")
@@ -256,6 +370,10 @@ func _go_to_deduction(gs: Node) -> bool:
 	gs.call("add_item", "witness_report")
 
 	print("[KARAKURI_SMOKE] items ready. clicking exit...")
+	# give_evidence auto-shows the inventory; close it before clicking the exit hotspot.
+	var inv := _inventory_ui()
+	if inv and inv.visible:
+		inv.call("hide_inventory")
 	await _wait_frames(100) # Give more time for idle
 	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
 	

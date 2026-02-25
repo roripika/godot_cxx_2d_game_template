@@ -101,6 +101,7 @@ mystery.ui.warehouse_hint_talk,Talk to people to gather information,人々と話
 mystery.ui.warehouse_mode_talk,Switch to Talk Mode,会話モードへ
 mystery.ui.warehouse_mode_investigate,Switch to Investigate Mode,調査モードへ
 mystery.ui.warehouse_exit,EXIT,出口
+mystery.ui.inventory_button,Evidence,証拠品
 
 # Speakers
 speaker.system,System,システム
