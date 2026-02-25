@@ -166,18 +166,21 @@ scenes:
               speaker: "Rat Witness"
               text_key: "mystery.testimony.line1"
               shake_key: "mystery.testimony.line1.shake"
+              hint_key: "mystery.testimony.line1.hint"
             -
               speaker_key: "speaker.rat_witness"
               speaker: "Rat Witness"
               text_key: "mystery.testimony.line2"
               evidence: "footprint"
               shake_key: "mystery.testimony.line2.shake"
+              hint_key: "mystery.testimony.line2.hint"
             -
               speaker_key: "speaker.rat_witness"
               speaker: "Rat Witness"
               text_key: "mystery.testimony.line3"
               evidence: "witness_report"
               shake_key: "mystery.testimony.line3.shake"
+              hint_key: "mystery.testimony.line3.hint"
           on_success:
             - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.success" }
             - goto: "ending_good"

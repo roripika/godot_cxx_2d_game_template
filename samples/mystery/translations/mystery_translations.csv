@@ -199,3 +199,6 @@ mystery.warehouse.exit.hint.ecto,There might be some paranormal residue around h
 mystery.warehouse.exit.hint.others,I need to talk to more people and gather testimonies.,もっと人から話を聞いて証言を集める必要がある。
 mystery.deduction.wrong.shake,Boss looks furious!,ボスが激怒している！
 mystery.deduction.wrong.text,CONCENTRATE! We cannot confront the culprit with such weak proof!,集中しろ！そんな薄弱な根拠で犯人を問い詰められるか！
+mystery.testimony.line1.hint,"Look for something that doesn't fit the 'natural' explanation. Have you checked the footprints?","『自然』な説明に合わないものを探せ。足跡は確認したか？"
+mystery.testimony.line2.hint,"He says he was alone, but what about the memo found on the floor?","一人のつもりだったようだが、床に落ちていたメモはどうだ？"
+mystery.testimony.line3.hint,"The final proof of the apparition's presence... Use the collected substance.","怪異の存在を示す最後の証拠だ。回収した物質を使え。"

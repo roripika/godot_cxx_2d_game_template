@@ -1353,6 +1353,15 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
     dialogue_ui_->call("show_message", "System", tr_key("wrong_evidence"));
   }
 
+  // Show hint if provided in scenario data
+  const String hint_key = dict_get_string(line, "hint_key", "");
+  if (!hint_key.is_empty()) {
+    if (dialogue_ui_ && dialogue_ui_->has_method("show_message_with_keys")) {
+      dialogue_ui_->call("show_message_with_keys", "speaker.boss", "Boss",
+                         hint_key, tr_key(hint_key));
+    }
+  }
+
   int hp = 0;
   if (gs && gs->has_method("get_health")) {
     hp = int(gs->call("get_health"));

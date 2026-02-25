@@ -53,19 +53,24 @@ func _apply_mode() -> void:
 	if inv_border:
 		inv_border.visible = in_investigate
 
-	# --- NPCビジュアル：会話モードのみ表示 ---
+	# --- NPCビジュアル：会話モードのみ表示、かつ対決モード(confrontation)以外 ---
+	var sr := get_tree().root.find_child("ScenarioRunner", true, false)
+	var is_confrontation: bool = (sr != null and str(sr.get("current_mode")) == "confrontation")
+	
+	var show_npcs: bool = (not in_investigate) and (not is_confrontation)
+	
 	if npc_tanaka:
-		npc_tanaka.visible = not in_investigate
-		npc_tanaka.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+		npc_tanaka.visible = show_npcs
+		npc_tanaka.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
 	if npc_sato:
-		npc_sato.visible = not in_investigate
-		npc_sato.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+		npc_sato.visible = show_npcs
+		npc_sato.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
 	if npc_suzuki:
-		npc_suzuki.visible = not in_investigate
-		npc_suzuki.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+		npc_suzuki.visible = show_npcs
+		npc_suzuki.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
 	if npc_kenta:
-		npc_kenta.visible = not in_investigate
-		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+		npc_kenta.visible = show_npcs
+		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
 
 	# --- 探偵の立ち絵：調査モード中は非表示（クリックを邪魔しないためと演出上の理由） ---
 	var dui := _get_dialogue_ui()
