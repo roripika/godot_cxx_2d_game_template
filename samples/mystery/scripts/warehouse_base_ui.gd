@@ -5,9 +5,9 @@ enum WarehouseMode { INVESTIGATE, TALK }
 var current_mode: WarehouseMode = WarehouseMode.INVESTIGATE
 
 # ─── UI参照 ───────────────────────────────────────────────
-@onready var hint_label: Label            = $Hint
-@onready var exit_label: Label            = $ExitVisual/Label
-@onready var mode_btn:   Button           = $ModeToggleButton
+@onready var hint_label: Label            = $LocalUiLayer/Hint
+@onready var exit_label: Label            = $LocalUiLayer/ExitVisual/Label
+@onready var mode_btn:   Button           = $LocalUiLayer/ModeToggleButton
 
 # ─── 証拠ノード（調査モードのみ表示）────────────────────────
 @onready var ecto_visual: Sprite2D = get_node_or_null("FloorVisual")
@@ -59,10 +59,24 @@ func _apply_mode() -> void:
 	if hs_memo:      hs_memo.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
 
 	# --- NPCビジュアル：会話モードのみ表示 ---
-	if npc_tanaka:  npc_tanaka.visible = not in_investigate
-	if npc_sato:    npc_sato.visible   = not in_investigate
-	if npc_suzuki:  npc_suzuki.visible = not in_investigate
-	if npc_kenta:   npc_kenta.visible  = not in_investigate
+	if npc_tanaka:
+		npc_tanaka.visible = not in_investigate
+		npc_tanaka.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+	if npc_sato:
+		npc_sato.visible = not in_investigate
+		npc_sato.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+	if npc_suzuki:
+		npc_suzuki.visible = not in_investigate
+		npc_suzuki.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+	if npc_kenta:
+		npc_kenta.visible = not in_investigate
+		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
+
+	# --- 探偵の立ち絵：調査モード中は非表示（クリックを邪魔しないためと演出上の理由） ---
+	var dui := _get_dialogue_ui()
+	if dui:
+		if in_investigate:
+			dui.call("clear_portrait")
 
 	# --- モード切替ボタンのラベル更新 ---
 	if mode_btn:
@@ -80,6 +94,9 @@ func _process(_delta: float) -> void:
 # ─── インベントリ取得 ──────────────────────────────────────
 func _get_inventory() -> EvidenceInventoryUI:
 	return get_tree().root.find_child("InventoryUI", true, false) as EvidenceInventoryUI
+
+func _get_dialogue_ui() -> Control:
+	return get_tree().root.find_child("DialogueUI", true, false)
 
 # ─── ローカライズ ──────────────────────────────────────────
 func _connect_localization_service() -> void:

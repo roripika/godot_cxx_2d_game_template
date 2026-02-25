@@ -203,7 +203,7 @@ func _test_mode_blocking(wb: Node) -> void:
 	# ── [TEST2] 会話モード中に 証拠品 (Floor) をクリックしても反応しないか ───────
 	print("[KARAKURI_SMOKE] testing evidence (Floor) click blocked in Talk Mode...")
 	# 会話モードへ切り替え
-	var mode_btn := wb.get_node_or_null("ModeToggleButton")
+	var mode_btn := wb.get_node_or_null("LocalUiLayer/ModeToggleButton")
 	if mode_btn:
 		mode_btn.emit_signal("pressed")
 		await _wait_frames(10)
@@ -310,7 +310,7 @@ func _go_to_deduction(gs: Node) -> bool:
 
 	# --- [TEST] Mode Toggle ---
 	print("[KARAKURI_SMOKE] testing mode toggle (Investigate -> Talk)...")
-	var mode_btn := wb.get_node("ModeToggleButton")
+	var mode_btn := wb.get_node("LocalUiLayer/ModeToggleButton")
 	var btn_text_investigate: String = str(mode_btn.get("text"))
 	mode_btn.emit_signal("pressed")
 	await _wait_frames(10)
