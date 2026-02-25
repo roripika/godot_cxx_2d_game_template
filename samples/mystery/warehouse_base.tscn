@@ -32,11 +32,13 @@ texture = ExtResource("2_bg_warehouse")
 expand_mode = 1
 
 [node name="Hint" type="Label" parent="."]
-offset_left = 180.0
-offset_top = 612.0
-offset_right = 584.0
-offset_bottom = 640.0
+offset_left = 32.0
+offset_top = 84.0
+offset_right = 632.0
+offset_bottom = 120.0
 text = "調査ポイントをクリック"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 
 [node name="ModeToggleButton" type="Button" parent="."]
 anchor_left = 1.0
