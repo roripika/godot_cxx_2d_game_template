@@ -7,11 +7,20 @@ signal dialogue_finished()
 @onready var ui_part_label: Label = get_node_or_null("UiPartLabel")
 @onready var name_label: Label = get_node_or_null("VBoxContainer/NameLabel")
 @onready var text_label: Label = get_node_or_null("VBoxContainer/TextLabel")
-@onready var choices_container: VBoxContainer = get_node_or_null("VBoxContainer/ChoicesContainer")
-@onready var proceed_indicator: Polygon2D = get_node_or_null("ProceedIndicator")
+@onready var main_ui_layer: CanvasLayer = get_node_or_null("..")
 @onready var screen_flash: ColorRect = get_node_or_null("../ScreenFlash")
 @onready var portrait_rect: TextureRect = get_node_or_null("../PortraitContainer/PortraitRect")
-@onready var main_ui_layer: CanvasLayer = get_node_or_null("..")
+@onready var proceed_indicator: Polygon2D = get_node_or_null("ProceedIndicator")
+
+# Use a lazy getter for ChoicesContainer to avoid null before @onready
+var _choices_container_cache: VBoxContainer = null
+func _get_choices_container() -> VBoxContainer:
+	if _choices_container_cache and is_instance_valid(_choices_container_cache):
+		return _choices_container_cache
+	_choices_container_cache = get_node_or_null("VBoxContainer/ChoicesContainer")
+	if _choices_container_cache == null:
+		_choices_container_cache = find_child("ChoicesContainer", true, false)
+	return _choices_container_cache
 
 @export var typing_speed: float = 0.05
 @export var text_color: Color = Color.WHITE
@@ -41,6 +50,10 @@ func _ready() -> void:
 	_connect_localization_service()
 	resized.connect(_on_dialogue_resized)
 	_refresh_locale()
+	
+	var cc = _get_choices_container()
+	if cc == null:
+		print("[DialogueUI] ERROR: Could not find ChoicesContainer!")
 
 func show_message(speaker: String, text: String) -> void:
 	show_message_with_keys("", speaker, "", text)
@@ -64,10 +77,10 @@ func show_choices(choices: Array) -> int:
 		defs.append({"text": str(choice), "text_key": ""})
 	return await show_choices_with_defs(defs)
 
-func show_choices_with_defs(choice_defs: Array[Dictionary]) -> int:
+func show_choices_with_defs(choice_defs: Array) -> int:
 	_choice_defs = []
 	for i in range(choice_defs.size()):
-		var src := choice_defs[i]
+		var src = choice_defs[i]
 		if src == null:
 			continue
 		var d: Dictionary = src
@@ -84,6 +97,7 @@ func hide_dialogue() -> void:
 	visible = false
 	_choice_defs.clear()
 	_clear_choices()
+	clear_portrait()
 
 func set_portrait(texture: Texture2D) -> void:
 	if portrait_rect:
@@ -346,7 +360,7 @@ func skip_typing() -> void:
 func _type_text(text: String) -> void:
 	if is_typing:
 		return
-
+	print("[DialogueUI] Starting typing: ", text)
 	is_typing = true
 	current_text = text
 	if text_label:
@@ -358,10 +372,12 @@ func _type_text(text: String) -> void:
 			text_label.text = text
 		is_typing = false
 		_waiting_for_click = true
+		print("[DialogueUI] Typing finished instantly (speed=0)")
 		return
 
 	for i in range(len(text)):
 		if not is_typing:
+			print("[DialogueUI] Typing interrupted")
 			return
 		if text_label:
 			text_label.text += str(text[i])
@@ -370,6 +386,7 @@ func _type_text(text: String) -> void:
 	if is_typing:
 		is_typing = false
 		_waiting_for_click = true
+		print("[DialogueUI] Typing finished naturally")
 
 func _on_choice_pressed(index: int, text: String) -> void:
 	if not _mode_input_enabled:
@@ -378,6 +395,8 @@ func _on_choice_pressed(index: int, text: String) -> void:
 	choice_selected.emit(index, text)
 
 func _rebuild_choices() -> void:
+	var cc = _get_choices_container()
+	print("[DialogueUI] Rebuilding choices. Container exists: ", cc != null)
 	_clear_choices()
 	for i in range(_choice_defs.size()):
 		var def: Dictionary = _choice_defs[i]
@@ -389,8 +408,11 @@ func _rebuild_choices() -> void:
 		choice_btn.custom_minimum_size = Vector2(0, 40)
 		choice_btn.add_theme_font_size_override("font_size", 18)
 		choice_btn.pressed.connect(_on_choice_pressed.bind(i, choice_text))
-		if choices_container:
-			choices_container.add_child(choice_btn)
+		if cc:
+			cc.add_child(choice_btn)
+			print("[DialogueUI] Added choice button: ", choice_text)
+		else:
+			print("[DialogueUI] ERROR: Cannot add choice button, container is NULL")
 
 func _apply_message_name() -> void:
 	if not name_label:
@@ -486,16 +508,22 @@ func _input(event: InputEvent) -> void:
 	if not visible:
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		print("[DialogueUI] Mouse click detected. is_typing=", is_typing, " _waiting_for_click=", _waiting_for_click)
 		if is_typing:
+			print("[DialogueUI] Skipping typing")
 			skip_typing()
 			get_viewport().set_input_as_handled()
 		elif _waiting_for_click:
+			print("[DialogueUI] Dialogue finished, emitting signal")
 			_waiting_for_click = false
 			dialogue_finished.emit()
 			get_viewport().set_input_as_handled()
+		else:
+			print("[DialogueUI] Click ignored (not typing and not waiting)")
 
 func _clear_choices() -> void:
-	if not choices_container:
+	var cc = _get_choices_container()
+	if not cc:
 		return
-	for child in choices_container.get_children():
+	for child in cc.get_children():
 		child.queue_free()

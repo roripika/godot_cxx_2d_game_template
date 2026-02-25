@@ -528,8 +528,6 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   current_scene_id_ = scene_id;
   current_scene_instance_ = inst;
 
-  // Confrontation UI should not persist across scenes unless started by
-  // actions.
   if (testimony_system_) {
     if (testimony_system_->has_method("hide_panel")) {
       testimony_system_->call("hide_panel");
@@ -537,6 +535,15 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
       testimony_system_->set("visible", false);
     }
   }
+
+  if (dialogue_ui_) {
+    if (dialogue_ui_->has_method("hide_dialogue")) {
+      dialogue_ui_->call("hide_dialogue");
+    } else {
+      dialogue_ui_->set("visible", false);
+    }
+  }
+
   testimony_.reset();
 
   bind_scene_hotspots(scene_dict);
