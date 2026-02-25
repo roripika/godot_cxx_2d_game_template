@@ -44,12 +44,12 @@ theme_override_constants/outline_size = 4
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-offset_left = -220.0
+offset_left = -440.0
 offset_top = 60.0
-offset_right = -10.0
+offset_right = -340.0
 offset_bottom = 100.0
 grow_horizontal = 0
-text = "会話モードへ切り替え"
+text = "話す"
 theme_override_font_sizes/font_size = 16
 
 [node name="hs_floor_area" type="Area2D" parent="."]

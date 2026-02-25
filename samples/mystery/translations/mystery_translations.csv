@@ -98,10 +98,10 @@ mystery.ui.office_door,DOOR,ドア
 mystery.ui.office_boss,BOSS,ボス
 mystery.ui.warehouse_hint_investigate,Find evidence in the warehouse,倉庫の中から証拠を探してください
 mystery.ui.warehouse_hint_talk,Talk to people to gather information,人々と話して情報を集めてください
-mystery.ui.warehouse_mode_talk,Switch to Talk Mode,会話モードへ
-mystery.ui.warehouse_mode_investigate,Switch to Investigate Mode,調査モードへ
+mystery.ui.warehouse_mode_talk,Talk,話す
+mystery.ui.warehouse_mode_investigate,Investigate,調べる
 mystery.ui.warehouse_exit,EXIT,出口
-mystery.ui.inventory_button,Evidence,証拠品
+mystery.ui.inventory_button,Evidence,証拠
 
 # Speakers
 speaker.system,System,システム
