@@ -32,9 +32,9 @@ texture = ExtResource("2_bg_warehouse")
 expand_mode = 1
 
 [node name="Hint" type="Label" parent="."]
-offset_left = 16.0
+offset_left = 180.0
 offset_top = 612.0
-offset_right = 420.0
+offset_right = 584.0
 offset_bottom = 640.0
 text = "調査ポイントをクリック"
 
