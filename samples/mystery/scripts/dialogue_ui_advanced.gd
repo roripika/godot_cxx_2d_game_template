@@ -3,6 +3,8 @@ class_name DialogueUIAdvanced
 
 signal choice_selected(index: int, text: String)
 signal dialogue_finished()
+signal portrait_shown(speaker_id: String)
+signal portrait_hidden()
 
 @onready var ui_part_label: Label = get_node_or_null("UiPartLabel")
 @onready var name_label: Label = get_node_or_null("VBoxContainer/NameLabel")
@@ -78,6 +80,7 @@ func show_choices(choices: Array) -> int:
 	return await show_choices_with_defs(defs)
 
 func show_choices_with_defs(choice_defs: Array) -> int:
+	visible = true
 	_choice_defs = []
 	for i in range(choice_defs.size()):
 		var src = choice_defs[i]
@@ -109,19 +112,23 @@ func set_portrait(texture: Texture2D) -> void:
 
 func clear_portrait() -> void:
 	if portrait_rect:
+		var was_visible = portrait_rect.visible  
 		portrait_rect.texture = null
 		portrait_rect.visible = false
 		portrait_rect.modulate.a = 1.0
+		if was_visible:
+			portrait_hidden.emit()
 
 func _update_portrait(speaker_name: String) -> void:
 	var portrait_id = _resolve_portrait_id(speaker_name)
 	
 	if portrait_id != "":
-		var path = "res://assets/mystery/characters/%s.png" % portrait_id
+		var path = "res://assets/mystery/characters/portraits/%s.png" % portrait_id
 		if ResourceLoader.exists(path):
 			set_portrait(load(path))
 			_update_portrait_side(portrait_id)
 			_apply_portrait_layout()
+			portrait_shown.emit(portrait_id)
 		else:
 			clear_portrait()
 	else:
@@ -174,7 +181,7 @@ func _update_portrait_for_dialogue(speaker_name: String) -> void:
 		_reset_portrait_transitions()
 		return
 
-	var path = "res://assets/mystery/characters/%s.png" % portrait_id
+	var path = "res://assets/mystery/characters/portraits/%s.png" % portrait_id
 	if not FileAccess.file_exists(path):
 		clear_portrait()
 		_reset_portrait_transitions()
@@ -190,6 +197,7 @@ func _update_portrait_for_dialogue(speaker_name: String) -> void:
 	set_portrait(tex)
 	_update_portrait_side(portrait_id)
 	_apply_portrait_layout()
+	portrait_shown.emit(portrait_id)
 
 	# 入場アニメーションの実行
 	match _portrait_enter_transition:
