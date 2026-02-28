@@ -251,6 +251,7 @@
     - [ ] `CardBattleManager`: Turn flow for card battles.
 
 ## Phase 12: Tower Defense Features
+- [x] **Generate NPC Assets**
 - [ ] **Tower System**
     - [ ] `Tower`: Turret with range & targeting.
     - [ ] `TowerPlacement`: Grid-based tower building.

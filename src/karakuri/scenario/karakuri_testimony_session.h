@@ -10,9 +10,12 @@
  *
  * ## 現状
  * 以下のメンバーは現在 `KarakuriScenarioRunner` 内にフラットに保持されている:
- *   - `testimony_lines_`, `testimony_index_`, `testimony_round_`, `testimony_max_rounds_`
- *   - `testimony_active_`, `waiting_for_testimony_`, `waiting_for_evidence_selection_`
- *   - `pending_testimony_success_actions_`, `pending_testimony_failure_actions_`
+ *   - `testimony_lines_`, `testimony_index_`, `testimony_round_`,
+ * `testimony_max_rounds_`
+ *   - `testimony_active_`, `waiting_for_testimony_`,
+ * `waiting_for_evidence_selection_`
+ *   - `pending_testimony_success_actions_`,
+ * `pending_testimony_failure_actions_`
  *
  * ## 切り出し方針（次期リファクタリング時）
  * 1. 以下の struct に全フィールドを移動する。
@@ -20,8 +23,8 @@
  * 3. Runner.cpp の `testimony_index_` 等を `testimony_.index` 等に置換する。
  *
  * ## 分離の理由
- * - testimony フェーズは Mystery 固有。他のゲームスタイル（Roguelike, Sandbox 等）
- *   が Runner を再利用する際にこのステートが不要な依存になる。
+ * - testimony フェーズは Mystery 固有。他のゲームスタイル（Roguelike, Sandbox
+ * 等） が Runner を再利用する際にこのステートが不要な依存になる。
  * - Action 実行エンジン（`pending_actions_` 等）と証言セッションステートが
  *   混在していると将来の分割コストが高い。
  *
@@ -31,6 +34,8 @@
 
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/string.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/variant/variant.hpp>
 
 namespace karakuri {
 
@@ -55,8 +60,8 @@ struct KarakuriTestimonySession {
   /**
    * @brief 一行分の証言データ。
    *
-   * 現在は KarakuriScenarioRunner::TestimonyLine として Runner 内に定義されている。
-   * 切り出し時にここへ移動する。
+   * 現在は KarakuriScenarioRunner::TestimonyLine として Runner
+   * 内に定義されている。 切り出し時にここへ移動する。
    */
   struct Line {
     godot::String speaker_key;  ///< @brief 話者ローカライズキー
@@ -96,15 +101,17 @@ struct KarakuriTestimonySession {
   /** @brief testimony 失敗時（HP 切れ等）に実行するアクション列。 */
   godot::Array failure_actions;
 
-  /** @brief セッション状態を初期値にリセットする。 */
-  void reset() {
-    lines.clear();
-    index = 0;
-    max_rounds = 1;
-    round = 0;
+  /** @brief セッションを初期状態に戻す。 */
+  void reset(const godot::String &reason) {
+    godot::UtilityFunctions::print(
+        "[DEBUG] KarakuriTestimonySession::reset() called. Reason: ", reason);
     active = false;
     waiting = false;
     waiting_for_evidence = false;
+    index = 0;
+    round = 0;
+    max_rounds = 1;
+    lines.clear();
     success_actions.clear();
     failure_actions.clear();
   }

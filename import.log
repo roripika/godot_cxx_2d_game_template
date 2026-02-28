@@ -1,0 +1,124 @@
+Godot Engine v4.6.stable.official.89cea1439 - https://godotengine.org
+
+Sandbox GDExtension Initialized!
+[DEBUG] KarakuriScenarioRunner constructed: 54076044048
+[DEBUG] KarakuriScenarioRunner destructed: 54076044048
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started プロジェクトの初期化 (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | ファイル構造をスキャン中...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | グローバルクラス名を読み込み中...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | GDExtensionを検証中...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | 自動読み込みスクリプトを作成中...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | プラグインを初期化中...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | ファイルスキャンを開始...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started グローバルクラスを登録中... (10 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | DialogueUIAdvanced[39m[0m
+[   9% ] [90m[1mupdate_scripts_classes[22m | EvidenceItem[39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | HealthBar[39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | EvidenceInventoryUI[39m[0m
+[  36% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  45% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  54% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  63% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started アクションをスキャン中... (72 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | bg_ending_bad.png[39m[0m
+[   1% ] [90m[1m_update_scan_actions[22m | bg_ending_good.png[39m[0m
+[   2% ] [90m[1m_update_scan_actions[22m | boss.png[39m[0m
+[   4% ] [90m[1m_update_scan_actions[22m | boss.png[39m[0m
+[   5% ] [90m[1m_update_scan_actions[22m | zodiac_dragon_1770777407448.bmp[39m[0m
+[   6% ] [90m[1m_update_scan_actions[22m | zodiac_dragon_1770777407448.png[39m[0m
+[   8% ] [90m[1m_update_scan_actions[22m | zodiac_goat_1770777473541.bmp[39m[0m
+[   9% ] [90m[1m_update_scan_actions[22m | zodiac_goat_1770777473541.png[39m[0m
+[  10% ] [90m[1m_update_scan_actions[22m | zodiac_horse_1770777446675.bmp[39m[0m
+[  12% ] [90m[1m_update_scan_actions[22m | zodiac_horse_1770777446675.png[39m[0m
+[  13% ] [90m[1m_update_scan_actions[22m | zodiac_monkey_1770777497632.bmp[39m[0m
+[  15% ] [90m[1m_update_scan_actions[22m | zodiac_monkey_1770777497632.png[39m[0m
+[  16% ] [90m[1m_update_scan_actions[22m | zodiac_ox_1770777308835.bmp[39m[0m
+[  17% ] [90m[1m_update_scan_actions[22m | zodiac_ox_1770777308835.png[39m[0m
+[  19% ] [90m[1m_update_scan_actions[22m | zodiac_rabbit_1770777378326.bmp[39m[0m
+[  20% ] [90m[1m_update_scan_actions[22m | zodiac_rabbit_1770777378326.png[39m[0m
+[  21% ] [90m[1m_update_scan_actions[22m | zodiac_rat_1770777284301.bmp[39m[0m
+[  23% ] [90m[1m_update_scan_actions[22m | zodiac_rat_1770777284301.png[39m[0m
+[  24% ] [90m[1m_update_scan_actions[22m | zodiac_snake_1770777430816.bmp[39m[0m
+[  26% ] [90m[1m_update_scan_actions[22m | zodiac_snake_1770777430816.png[39m[0m
+[  27% ] [90m[1m_update_scan_actions[22m | zodiac_tiger_1770777353736.bmp[39m[0m
+[  28% ] [90m[1m_update_scan_actions[22m | zodiac_tiger_1770777353736.png[39m[0m
+[  30% ] [90m[1m_update_scan_actions[22m | zodiac_pixel.png[39m[0m
+[  31% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_boar.png[39m[0m
+[  32% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_dog.png[39m[0m
+[  34% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_dragon.png[39m[0m
+[  35% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_horse.png[39m[0m
+[  36% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_monkey.png[39m[0m
+[  38% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_ox.png[39m[0m
+[  39% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_rabbit.png[39m[0m
+[  41% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_rat.png[39m[0m
+[  42% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_rooster.png[39m[0m
+[  43% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_sheep.png[39m[0m
+[  45% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_snake.png[39m[0m
+[  46% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_tiger.png[39m[0m
+[  47% ] [90m[1m_update_scan_actions[22m | zodiac_pixel.png[39m[0m
+[  49% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_boar.png[39m[0m
+[  50% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_dog.png[39m[0m
+[  52% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_dragon.png[39m[0m
+[  53% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_horse.png[39m[0m
+[  54% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_monkey.png[39m[0m
+[  56% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_ox.png[39m[0m
+[  57% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_rabbit.png[39m[0m
+[  58% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_rat.png[39m[0m
+[  60% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_rooster.png[39m[0m
+[  61% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_sheep.png[39m[0m
+[  63% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_snake.png[39m[0m
+[  64% ] [90m[1m_update_scan_actions[22m | zodiac_pixel_tiger.png[39m[0m
+[  65% ] [90m[1m_update_scan_actions[22m | zodiac_boar.png[39m[0m
+[  67% ] [90m[1m_update_scan_actions[22m | zodiac_dog.png[39m[0m
+[  68% ] [90m[1m_update_scan_actions[22m | zodiac_dragon.png[39m[0m
+[  69% ] [90m[1m_update_scan_actions[22m | zodiac_horse.png[39m[0m
+[  71% ] [90m[1m_update_scan_actions[22m | zodiac_monkey.png[39m[0m
+[  72% ] [90m[1m_update_scan_actions[22m | zodiac_ox.png[39m[0m
+[  73% ] [90m[1m_update_scan_actions[22m | zodiac_rabbit.png[39m[0m
+[  75% ] [90m[1m_update_scan_actions[22m | zodiac_rat.png[39m[0m
+[  76% ] [90m[1m_update_scan_actions[22m | zodiac_rooster.png[39m[0m
+[  78% ] [90m[1m_update_scan_actions[22m | zodiac_sheep.png[39m[0m
+[  79% ] [90m[1m_update_scan_actions[22m | zodiac_snake.png[39m[0m
+[  80% ] [90m[1m_update_scan_actions[22m | zodiac_tiger.png[39m[0m
+[  82% ] [90m[1m_update_scan_actions[22m | zodiac_boar.png[39m[0m
+[  83% ] [90m[1m_update_scan_actions[22m | zodiac_dog.png[39m[0m
+[  84% ] [90m[1m_update_scan_actions[22m | zodiac_dragon.png[39m[0m
+[  86% ] [90m[1m_update_scan_actions[22m | zodiac_horse.png[39m[0m
+[  87% ] [90m[1m_update_scan_actions[22m | zodiac_monkey.png[39m[0m
+[  89% ] [90m[1m_update_scan_actions[22m | zodiac_ox.png[39m[0m
+[  90% ] [90m[1m_update_scan_actions[22m | zodiac_rabbit.png[39m[0m
+[  91% ] [90m[1m_update_scan_actions[22m | zodiac_rat.png[39m[0m
+[  93% ] [90m[1m_update_scan_actions[22m | zodiac_rooster.png[39m[0m
+[  94% ] [90m[1m_update_scan_actions[22m | zodiac_sheep.png[39m[0m
+[  95% ] [90m[1m_update_scan_actions[22m | zodiac_snake.png[39m[0m
+[  97% ] [90m[1m_update_scan_actions[22m | zodiac_tiger.png[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started アセットを(再)インポート中 (2 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 再インポートするファイルを準備中...[39m[0m
+[  33% ] [90m[1mreimport[22m | 再インポートするファイルを準備中...[39m[0m
+[   0% ] [90m[1mreimport[22m | 再インポート前の操作を実行中...[39m[0m
+[   0% ] [90m[1mreimport[22m | boss.png[39m[0m
+[  33% ] [90m[1mreimport[22m | boss.png[39m[0m
+[  66% ] [90m[1mreimport[22m | アセットインポートを終了しています...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started アセットを(再)インポート中 (2 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 再インポート後の操作を実行中...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started エディターの読み込み (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | エディターレイアウトを読み込み中...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | ドックを読み込み中...[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | シーンを再オープン中...[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | 中央エディターを読み込み中...[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | プラグインのウィンドウレイアウトを読み込み中...[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | エディターレイアウトの準備完了。[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m

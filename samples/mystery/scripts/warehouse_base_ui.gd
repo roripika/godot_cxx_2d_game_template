@@ -6,9 +6,9 @@ var current_mode: WarehouseMode = WarehouseMode.TALK
 
 # ─── UI参照 ───────────────────────────────────────────────
 @onready var hint_label: Label            = $LocalUiLayer/Hint
-@onready var exit_label: Label            = $LocalUiLayer/ExitVisual/Label
 @onready var mode_btn:   Button           = $LocalUiLayer/ModeToggleButton
-@onready var inv_border: Control          = $LocalUiLayer/InvestigationBorder
+@onready var exit_label: Label            = get_node_or_null("LocalUiLayer/ExitVisual/Label")
+@onready var inv_border: Control          = get_node_or_null("LocalUiLayer/InvestigationBorder")
 
 # ─── 証拠ノード（調査モードのみ表示）────────────────────────
 @onready var foot_visual: Sprite2D = get_node_or_null("FootprintsVisual")
@@ -23,12 +23,49 @@ var current_mode: WarehouseMode = WarehouseMode.TALK
 @onready var npc_kenta:   Node2D = get_node_or_null("hs_kenta")
 
 # ─── 準備 ─────────────────────────────────────────────────
+var dialogue_ui = null
+var current_hidden_npc: Node2D = null
+
 func _ready() -> void:
 	_connect_localization_service()
 	_refresh_locale()
 	if mode_btn:
 		mode_btn.pressed.connect(_on_mode_toggled)
 	_apply_mode()
+	
+	dialogue_ui = get_tree().root.find_child("DialogueUI", true, false)
+	if dialogue_ui:
+		dialogue_ui.portrait_shown.connect(_on_portrait_shown)
+		dialogue_ui.portrait_hidden.connect(_on_portrait_hidden)
+
+# ─── 立ち絵連携 ────────────────────────────────────────────
+func _on_portrait_shown(speaker_id: String) -> void:
+	if current_hidden_npc:
+		current_hidden_npc.visible = true
+		current_hidden_npc = null
+	
+	match speaker_id:
+		"tanaka":
+			if npc_tanaka and npc_tanaka.visible:
+				current_hidden_npc = npc_tanaka
+				npc_tanaka.visible = false
+		"sato":
+			if npc_sato and npc_sato.visible:
+				current_hidden_npc = npc_sato
+				npc_sato.visible = false
+		"suzuki":
+			if npc_suzuki and npc_suzuki.visible:
+				current_hidden_npc = npc_suzuki
+				npc_suzuki.visible = false
+		"kenta":
+			if npc_kenta and npc_kenta.visible:
+				current_hidden_npc = npc_kenta
+				npc_kenta.visible = false
+
+func _on_portrait_hidden() -> void:
+	if current_hidden_npc:
+		current_hidden_npc.visible = true
+		current_hidden_npc = null
 
 # ─── モード切替 ────────────────────────────────────────────
 func _on_mode_toggled() -> void:
@@ -49,10 +86,16 @@ func _apply_mode() -> void:
 	# 証拠ホットスポットのコリジョン有効/無効
 	if hs_footprints: hs_footprints.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
 
-	# --- 調査モード演出：白色の枠を表示 ---
+	# --- 調査モード演出 ---
 	if inv_border:
 		inv_border.visible = in_investigate
 
+	# --- 探偵の立ち絵：調査モード中は非表示 ---
+	var dui := _get_dialogue_ui()
+	if dui:
+		if in_investigate:
+			dui.call("clear_portrait")
+			
 	# --- NPCビジュアル：会話モードのみ表示、かつ対決モード(confrontation)以外 ---
 	var sr := get_tree().root.find_child("ScenarioRunner", true, false)
 	var is_confrontation: bool = (sr != null and str(sr.get("current_mode")) == "confrontation")
@@ -72,26 +115,19 @@ func _apply_mode() -> void:
 		npc_kenta.visible = show_npcs
 		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
 
-	# --- 探偵の立ち絵：調査モード中は非表示（クリックを邪魔しないためと演出上の理由） ---
-	var dui := _get_dialogue_ui()
-	if dui:
-		if in_investigate:
-			dui.call("clear_portrait")
-
-	# --- モード切替ボタンのラベル更新 ---
+	# --- UIラベル更新 ---
 	if mode_btn:
 		mode_btn.text = tr("mystery.ui.warehouse_mode_talk") if in_investigate else tr("mystery.ui.warehouse_mode_investigate")
 
-	# --- ヒントラベル更新 ---
 	if hint_label:
 		hint_label.text = tr("mystery.ui.warehouse_hint_investigate") if in_investigate else tr("mystery.ui.warehouse_hint_talk")
 
-# ─── 証拠入手後の再反映（_process で継続監視）─────────────
+# ─── 監視 ───────────────────────────────────────────────
 func _process(_delta: float) -> void:
 	if current_mode == WarehouseMode.INVESTIGATE:
 		_apply_mode()
 
-# ─── インベントリ取得 ──────────────────────────────────────
+# ─── ユーティリティ ────────────────────────────────────────
 func _get_inventory() -> EvidenceInventoryUI:
 	return get_tree().root.find_child("InventoryUI", true, false) as EvidenceInventoryUI
 

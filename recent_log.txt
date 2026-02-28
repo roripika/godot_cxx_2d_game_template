@@ -1,0 +1,5 @@
+6d6d67d Refine confrontation UI and logic
+f89d034 Phase 38: Scenario & UX Polish
+d8245eb UI配置の問題（画面外はみ出し）を修正：倉庫シーンにCanvasLayerを導入し、アンカー設定を正常化
+756765b ミステリーデモの改善：入力伝播の最適化、倉庫モードの分離、スモークテストの拡充
+0403f7f [Karakuri][Mystery][M3-M5-M7] C++責務寄せと言語切替基盤を実装

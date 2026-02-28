@@ -1,0 +1,27 @@
+Godot Engine v4.6.stable.official.89cea1439 - https://godotengine.org
+
+Sandbox GDExtension Initialized!
+[TEST] Starting choice UI test...
+[DEBUG] KarakuriScenarioRunner constructed: 41868116752
+[DEBUG] [Runner 41868116752] notify_mode_exit called. current=, next=
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 41868116752] notify_mode_enter called. target=prologue
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+Adventure Game State (C++) Initialized
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Added choice button: Option A
+[DialogueUI] Added choice button: Option B
+[DialogueUI] Starting typing: プロローグ
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[TEST] ChoicesContainer child count: 0
+[TEST] DialogueUI global rect: [P: (276.48, 691.2), S: (852.48, 437.7599)]
+[TEST] VBoxContainer global rect: [P: (288.48, 727.2), S: (828.48, 389.7599)]
+[TEST] ChoicesContainer global rect: [P: (288.48, 1116.2), S: (828.0, 0.0)]
+[TEST] Finished.
+[DEBUG] KarakuriScenarioRunner destructed: 41868116752
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object/object.cpp:2641)

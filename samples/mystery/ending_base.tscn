@@ -1,9 +1,21 @@
-[gd_scene load_steps=1 format=3 uid="uid://ending_base"]
+[gd_scene load_steps=3 format=3 uid="uid://ending_base"]
+
+[ext_resource type="Script" path="res://samples/mystery/scripts/ending_base_ui.gd" id="1_ending_base_ui"]
 
 [node name="EndingBase" type="Node2D"]
+script = ExtResource("1_ending_base_ui")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.0, 0.0, 0.0, 1.0)
+expand_mode = 1
+stretch_mode = 6
 
+[node name="Label" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 300.0
+offset_right = 752.0
+offset_bottom = 348.0
+theme_override_font_sizes/font_size = 32
+text = "ENDING"
+horizontal_alignment = 1

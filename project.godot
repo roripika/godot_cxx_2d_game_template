@@ -14,8 +14,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot C++ 2D Game Template"
-run/main_scene="res://samples/mystery/karakuri_mystery_shell.tscn"
+config/name="Mystery Demo: Apparition at the Warehouse"
+run/main_scene="res://samples/mystery/mystery_title.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

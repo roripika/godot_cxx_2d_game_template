@@ -157,7 +157,7 @@ func _update_portrait(speaker_name: String) -> void:
 		"Rat Witness", "倉庫管理人", "ネズミの証人", "容疑者", "speaker.rat_witness": portrait_id = "rat_witness"
 	
 	if portrait_id != "":
-		var path = "res://assets/mystery/characters/%s.png" % portrait_id
+		var path = "res://assets/mystery/characters/portraits/%s.png" % portrait_id
 		if ResourceLoader.exists(path):
 			set_portrait(load(path))
 		else:

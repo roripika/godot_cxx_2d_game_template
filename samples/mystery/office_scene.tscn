@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://samples/mystery/office_scene.gd" id="1_office"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/language_switcher_scene.gd" id="2_lang"]
 [ext_resource type="Texture2D" path="res://assets/mystery/backgrounds/bg_office.png" id="X_bg"]
-[ext_resource type="Texture2D" path="res://assets/mystery/characters/boss.png" id="Y_boss"]
+[ext_resource type="Texture2D" path="res://assets/mystery/characters/sprites/boss.png" id="Y_boss"]
 
 [node name="OfficeScene" type="Node2D"]
 script = ExtResource("1_office")

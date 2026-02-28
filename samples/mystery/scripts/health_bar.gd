@@ -16,12 +16,13 @@ func _ready():
 	_create_hearts()
 	
 	# AdventureGameStateの変更を監視
-	if AdventureGameState and AdventureGameState.has_signal("health_changed"):
-		if not AdventureGameState.is_connected("health_changed", Callable(self, "_on_health_changed")):
-			AdventureGameState.health_changed.connect(_on_health_changed)
+	var ags = get_node_or_null("/root/AdventureGameState")
+	if ags and ags.has_signal("health_changed"):
+		if not ags.is_connected("health_changed", Callable(self, "_on_health_changed")):
+			ags.health_changed.connect(_on_health_changed)
 		# 初期値を反映
-		if AdventureGameState.has_method("get_health"):
-			update_health(AdventureGameState.get_health())
+		if ags.has_method("get_health"):
+			update_health(ags.get_health())
 
 func _create_hearts():
 	"""ハートUI を作成"""

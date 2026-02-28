@@ -1,0 +1,7 @@
+Godot Engine v4.6.stable.official.89cea1439 - https://godotengine.org
+
+Sandbox GDExtension Initialized!
+[VERIFY] Starting Inventory YAML and Sort Test...
+Adventure Game State (C++) Initialized
+[VERIFY] Success: Items correctly loaded from YAML and perfectly sorted by sort_order.
+[VERIFY] ALL INVENTORY TESTS PASSED.

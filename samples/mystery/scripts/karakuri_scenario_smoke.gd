@@ -68,6 +68,21 @@ func _wait_for_dialogue_key(expected_key: String, max_frames: int = 600) -> bool
 		await _wait_frames(1)
 	return false
 
+func _wait_for_dialogue_key_with_clicks(expected_key: String, max_frames: int = 600) -> bool:
+	var frames_since_click = 0
+	for _i in range(max_frames):
+		var key := str(_dialogue_ui().get("_message_text_key")).strip_edges()
+		if key == expected_key:
+			return true
+		if _seen_dialogue_signatures.has("key:" + expected_key):
+			return true
+		frames_since_click += 1
+		if frames_since_click >= 30:
+			_safe_clear_dialogue()
+			frames_since_click = 0
+		await _wait_frames(1)
+	return false
+
 func _initialize() -> void:
 	call_deferred("_run")
 
@@ -243,6 +258,8 @@ func _wait_for_choices_with_clicks(max_frames: int = 4000) -> bool:
 	var frames_since_click = 0
 	for _i in range(max_frames):
 		var choices = _dialogue_ui().get("_choice_defs")
+		if _i % 60 == 0:
+			print("[KARAKURI_SMOKE] choices probe: ", choices)
 		if choices != null and choices.size() > 0:
 			return true
 		frames_since_click += 1
@@ -377,7 +394,7 @@ func _go_to_deduction(gs: Node) -> bool:
 	print("[KARAKURI_SMOKE] testing exit hints with missing evidence...")
 	await _wait_frames(30)
 	_interaction_manager().emit_signal("clicked_at", wb.get_node("hs_exit").global_position)
-	_assert(await _wait_for_dialogue_key("mystery.warehouse.exit.hint.footprint", 600), "missing footprint hint did not show")
+	_assert(await _wait_for_dialogue_key_with_clicks("mystery.warehouse.exit.hint.footprint", 600), "missing footprint hint did not show")
 	for _i in range(20):
 		await _wait_frames(30)
 		_safe_clear_dialogue()
@@ -453,17 +470,20 @@ func _run() -> void:
 	
 	# Give 5 frames for the choice UI to fully show
 	await _wait_frames(5)
-	runner.call("on_choice_selected", 1, "")
+	var choice1 = _dialogue_ui().get_node("VBoxContainer/ChoicesContainer").get_child(1)
+	choice1.emit_signal("pressed")
 	
 	# The wrong choice has dialogue, takes damage, then loops back to the choice menu.
 	# So we just wait for the choice menu to reappear! It will click through the dialogues automatically.
 	await _wait_for_choices_with_clicks(4000)
 	
 	# After returning to the choice menu, damage must have been taken!
+	await _wait_runner_idle(100)
 	_assert(int(gs.call("get_health")) == hp_before_wrong - 1, "wrong deduction did not reduce HP")
 
 	await _wait_frames(5)
-	runner.call("on_choice_selected", 0, "")
+	var choice0 = _dialogue_ui().get_node("VBoxContainer/ChoicesContainer").get_child(0)
+	choice0.emit_signal("pressed")
 
 	var reached_confrontation := await _wait_for_base_with_clicks("WarehouseBase", 30, 3000)
 	_assert(reached_confrontation, "failed to transition to confrontation scene")
@@ -488,6 +508,12 @@ func _run() -> void:
 
 	# Wrong evidence once (after requesting present), then solve with correct evidence.
 	var hp_before_testimony_wrong := int(gs.call("get_health"))
+	
+	# Wait for the testimony action to actually start in the runner
+	print("[KARAKURI_SMOKE] waiting for testimony action to become active...")
+	var active_test_wait := await _wait_until(func(): return runner.call("get_testimony_active"), 300)
+	_assert(active_test_wait, "testimony action did not become active within timeout")
+
 	runner.call("on_testimony_present_requested")
 	await _wait_frames(15)
 	runner.call("on_evidence_selected", "ectoplasm")
@@ -565,6 +591,10 @@ func _run() -> void:
 	# Wrong evidence until death
 	print("[KARAKURI_SMOKE] providing wrong evidence until death...")
 	for _i in range(12):
+		# Synchronize with testimony active state
+		if not runner.call("get_testimony_active"):
+			await _wait_until(func(): return runner.call("get_testimony_active"), 100)
+		
 		runner.call("on_testimony_present_requested")
 		await _wait_frames(15)
 		runner.call("on_evidence_selected", "ectoplasm") # Wrong

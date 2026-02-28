@@ -135,6 +135,10 @@ public:
   int get_testimony_index() const;
   int get_testimony_size() const;
 
+  /** @brief 現在の証言セッションがアクティブかどうかを返す。 */
+  bool get_testimony_active() const;
+  godot::String get_current_scene_id() const;
+
   /** @brief Godotのライフサイクルフック。 */
   void _ready() override;
   /** @brief Godot lifecycle hook. */

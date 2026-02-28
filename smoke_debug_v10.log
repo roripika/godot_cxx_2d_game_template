@@ -1,0 +1,596 @@
+Godot Engine v4.6.stable.official.89cea1439 - https://godotengine.org
+
+Sandbox GDExtension Initialized!
+Adventure Game State (C++) Initialized
+[DEBUG] KarakuriScenarioRunner constructed: 43517562640
+[DEBUG] [Runner 43517562640] notify_mode_exit called. current=, next=
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 43517562640] notify_mode_enter called. target=prologue
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: プロローグ
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Typing finished naturally
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): プロローグ
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: レン探偵！ボスがお呼びです。
+倉庫街で荷物が消失する事件の通報が入りました。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): レン探偵！ボスがお呼びです。
+倉庫街で荷物が消失する事件の通報が入りました。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 探偵事務所だ。今日も平和だな。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 探偵事務所だ。今日も平和だな。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: おい！事件だ。今すぐ倉庫街へ向かえ！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): おい！事件だ。今すぐ倉庫街へ向かえ！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 了解です。すぐ調査に向かいます。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 了解です。すぐ調査に向かいます。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] [Runner 43517562640] notify_mode_exit called. current=investigation, next=prologue
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_exit
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 43517562640] notify_mode_enter called. target=warehouse_investigation
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[KARAKURI_SMOKE] waiting for base (with clicks): WarehouseBase
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DialogueUI] Starting typing: ここが現場の倉庫か…手がかりを探そう。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] warehouse intro detected. clearing...
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): ここが現場の倉庫か…手がかりを探そう。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] testing NPC (Tanaka) click blocked in Investigate Mode...
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): ここが現場の倉庫か…手がかりを探そう。
+[KARAKURI_SMOKE] testing evidence (Footprints) click blocked in Talk Mode...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: 巨大な足跡だ。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 巨大な足跡だ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] testing mode toggle (Talk -> Investigate)...
+[KARAKURI_SMOKE] testing NPC interaction (Tanaka)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 巨大な足跡だ。
+[DialogueUI] Starting typing: あなたが管理人さんですか？何か変わったことは？
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): あなたが管理人さんですか？何か変わったことは？
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): あなたが管理人さんですか？何か変わったことは？
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] testing NPC interaction (Tanaka - Second Talk)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: 管理は完璧です。早く調査を終わらせてください！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 管理は完璧です。早く調査を終わらせてください！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 管理は完璧です。早く調査を終わらせてください！
+[DialogueUI] Starting typing: あなたが管理人さんですか？何か変わったことは？
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] testing NPC interaction (Sato)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DialogueUI] Starting typing: 何か妙な噂は聞いてないか？
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 何か妙な噂は聞いてないか？
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: （あくび）木箱の近くで光る霧を見ましたよ。不気味ですよねぇ。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): （あくび）木箱の近くで光る霧を見ましたよ。不気味ですよねぇ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+Item added: ectoplasm
+[DialogueUI] Starting typing: 【証拠品：エクトプラズム】を入手した。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 【証拠品：エクトプラズム】を入手した。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] testing inventory open/close via CloseButton...
+[DEBUG] [Runner 43517562640] on_evidence_selected called: . active=false, waiting=false
+[KARAKURI_SMOKE] testing NPC interaction blocked while inventory open...
+[KARAKURI_SMOKE] switching to Investigate Mode for evidence collection...
+[KARAKURI_SMOKE] testing exit hints with missing evidence...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: まだ調査が終わっていない気がする。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+ERROR: [KARAKURI_SMOKE] missing footprint hint did not show
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _go_to_deduction (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:380)
+       [2] _wait_for_dialogue_key (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:69)
+       [3] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): まだ調査が終わっていない気がする。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 足跡などの物理的な形跡を探すべきだ。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 足跡などの物理的な形跡を探すべきだ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: もっと人から話を聞いて証言を集める必要がある。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): もっと人から話を聞いて証言を集める必要がある。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] testing investigation: collecting footprints...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): もっと人から話を聞いて証言を集める必要がある。
+[DialogueUI] Starting typing: 血のついた足跡を見つけた！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 血のついた足跡を見つけた！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+Item added: footprint
+[DialogueUI] Starting typing: 【証拠品：足跡】を入手した。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 【証拠品：足跡】を入手した。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 巨大な足跡だ。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 巨大な足跡だ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+Item added: torn_memo
+Item added: delivery_log
+Item added: witness_report
+[KARAKURI_SMOKE] items ready. switching back to Talk Mode to exit...
+[KARAKURI_SMOKE] clicking exit...
+[KARAKURI_SMOKE] runner idle. clicking exit (attempt 1)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: よし、十分な証拠が集まった。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): よし、十分な証拠が集まった。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: まだ調査が終わっていない気がする。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] runner still busy? state: true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=true
+[DEBUG] [Runner 43517562640] notify_mode_exit called. current=investigation, next=warehouse_investigation
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_exit
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 43517562640] notify_mode_enter called. target=deduction
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] on_dialogue_finished called. waiting=false
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[KARAKURI_SMOKE] runner still busy? state: true
+[KARAKURI_SMOKE] waiting for base (with clicks): OfficeBase
+[KARAKURI_SMOKE] waiting for choices...
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=false
+[DialogueUI] Click ignored (not typing and not waiting)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=false
+[DialogueUI] Click ignored (not typing and not waiting)
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=false
+[DialogueUI] Click ignored (not typing and not waiting)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: 戻ったか。で、犯人は誰だと思う？
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=true
+[DialogueUI] Dialogue finished, emitting signal
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Added choice button: 幽霊（証拠: エクトプラズム）
+[DialogueUI] Added choice button: 人間（証拠: 足跡）
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Added choice button: 幽霊（証拠: エクトプラズム）
+[DialogueUI] Added choice button: 人間（証拠: 足跡）
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] waiting for choices...
+ERROR: [KARAKURI_SMOKE] wrong deduction did not reduce HP
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:463)
+       [2] _wait_for_choices_with_clicks (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:262)
+[KARAKURI_SMOKE] waiting for base (with clicks): WarehouseBase
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 戻ったか。で、犯人は誰だと思う？
+ERROR: [KARAKURI_SMOKE] failed to transition to confrontation scene
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:469)
+       [2] _wait_for_base_with_clicks (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:280)
+ERROR: [KARAKURI_SMOKE] confrontation intro dialogue was not rendered
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:472)
+       [2] _wait_for_dialogue_key (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:69)
+       [3] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+[KARAKURI_SMOKE] clearing confrontation intro...
+[KARAKURI_SMOKE] waiting for testimony action to become active...
+ERROR: [KARAKURI_SMOKE] testimony action did not become active within timeout
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:495)
+       [2] _wait_until (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:88)
+[DEBUG] [Runner 43517562640] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43517562640] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[KARAKURI_SMOKE] clicking through wrong testimony...
+ERROR: [KARAKURI_SMOKE] wrong testimony evidence did not reduce HP
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:507)
+       [2] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+[KARAKURI_SMOKE] clicking through round 1 statement...
+[DEBUG] [Runner 43517562640] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43517562640] on_evidence_selected called: footprint. active=false, waiting=false
+[DEBUG] [Runner 43517562640] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43517562640] on_evidence_selected called: witness_report. active=false, waiting=false
+[KARAKURI_SMOKE] clicking through correct testimony (and on_success dialogue)...
+[KARAKURI_SMOKE] waiting for good ending check...
+ERROR: [KARAKURI_SMOKE] good ending was not reached
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:542)
+       [2] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+Game reset. Health: 3
+[DEBUG] KarakuriScenarioRunner constructed: 43519405328
+[DEBUG] KarakuriScenarioRunner destructed: 43517562640
+[DEBUG] [Runner 43519405328] notify_mode_exit called. current=, next=
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 43519405328] notify_mode_enter called. target=prologue
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: プロローグ
+[KARAKURI_SMOKE] waiting for base (with clicks): WarehouseBase
+[DialogueUI] Typing finished naturally
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): プロローグ
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: レン探偵！ボスがお呼びです。
+倉庫街で荷物が消失する事件の通報が入りました。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): レン探偵！ボスがお呼びです。
+倉庫街で荷物が消失する事件の通報が入りました。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 探偵事務所だ。今日も平和だな。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 探偵事務所だ。今日も平和だな。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: おい！事件だ。今すぐ倉庫街へ向かえ！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): おい！事件だ。今すぐ倉庫街へ向かえ！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 了解です。すぐ調査に向かいます。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 了解です。すぐ調査に向かいます。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] [Runner 43519405328] notify_mode_exit called. current=investigation, next=prologue
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_exit
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 43519405328] notify_mode_enter called. target=warehouse_investigation
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DialogueUI] Starting typing: ここが現場の倉庫か…手がかりを探そう。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] warehouse intro detected. clearing...
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): ここが現場の倉庫か…手がかりを探そう。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] testing NPC (Tanaka) click blocked in Investigate Mode...
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): ここが現場の倉庫か…手がかりを探そう。
+[KARAKURI_SMOKE] testing evidence (Footprints) click blocked in Talk Mode...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: 巨大な足跡だ。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 巨大な足跡だ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] testing mode toggle (Talk -> Investigate)...
+[KARAKURI_SMOKE] testing NPC interaction (Tanaka)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 巨大な足跡だ。
+[DialogueUI] Starting typing: あなたが管理人さんですか？何か変わったことは？
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): あなたが管理人さんですか？何か変わったことは？
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): あなたが管理人さんですか？何か変わったことは？
+[DialogueUI] Starting typing: おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] testing NPC interaction (Tanaka - Second Talk)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: 管理は完璧です。早く調査を終わらせてください！
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 管理は完璧です。早く調査を終わらせてください！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 管理は完璧です。早く調査を終わらせてください！
+[DialogueUI] Starting typing: あなたが管理人さんですか？何か変わったことは？
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] testing NPC interaction (Sato)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): おお、探偵さんか。いいですか、私の記録に不備などありませんよ！
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: 何か妙な噂は聞いてないか？
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 何か妙な噂は聞いてないか？
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: （あくび）木箱の近くで光る霧を見ましたよ。不気味ですよねぇ。
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): （あくび）木箱の近くで光る霧を見ましたよ。不気味ですよねぇ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+Item added: ectoplasm
+[DialogueUI] Starting typing: 【証拠品：エクトプラズム】を入手した。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 【証拠品：エクトプラズム】を入手した。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] testing inventory open/close via CloseButton...
+[DEBUG] [Runner 43519405328] on_evidence_selected called: . active=false, waiting=false
+[KARAKURI_SMOKE] testing NPC interaction blocked while inventory open...
+[KARAKURI_SMOKE] switching to Investigate Mode for evidence collection...
+[KARAKURI_SMOKE] testing exit hints with missing evidence...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Starting typing: まだ調査が終わっていない気がする。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+ERROR: [KARAKURI_SMOKE] missing footprint hint did not show
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _go_to_deduction (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:380)
+       [2] _wait_for_dialogue_key (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:69)
+       [3] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): まだ調査が終わっていない気がする。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 足跡などの物理的な形跡を探すべきだ。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 足跡などの物理的な形跡を探すべきだ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: もっと人から話を聞いて証言を集める必要がある。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): もっと人から話を聞いて証言を集める必要がある。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[KARAKURI_SMOKE] testing investigation: collecting footprints...
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): もっと人から話を聞いて証言を集める必要がある。
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: 血のついた足跡を見つけた！
+[DialogueUI] Typing finished instantly (speed=0)
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 血のついた足跡を見つけた！
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+Item added: footprint
+[DialogueUI] Starting typing: 【証拠品：足跡】を入手した。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 【証拠品：足跡】を入手した。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: 巨大な足跡だ。
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 巨大な足跡だ。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+Item added: torn_memo
+Item added: delivery_log
+Item added: witness_report
+[KARAKURI_SMOKE] items ready. switching back to Talk Mode to exit...
+[KARAKURI_SMOKE] clicking exit...
+[KARAKURI_SMOKE] runner idle. clicking exit (attempt 1)...
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Starting typing: よし、十分な証拠が集まった。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): よし、十分な証拠が集まった。
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Starting typing: まだ調査が終わっていない気がする。
+[DialogueUI] Typing finished instantly (speed=0)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=true
+[KARAKURI_SMOKE] runner still busy? state: true
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=true
+[DEBUG] [Runner 43519405328] notify_mode_exit called. current=investigation, next=warehouse_investigation
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_exit
+[TestimonyUI] hide_panel called
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: load_scene_by_id
+[DEBUG] [Runner 43519405328] notify_mode_enter called. target=deduction
+[DEBUG] KarakuriTestimonySession::reset() called. Reason: notify_mode_enter
+[TestimonyUI] on_mode_enter: visible set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DEBUG] on_dialogue_finished called. waiting=false
+[KARAKURI_SMOKE] runner still busy? state: true
+[KARAKURI_SMOKE] waiting for base (with clicks): OfficeBase
+[KARAKURI_SMOKE] waiting for choices...
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DEBUG] step_actions blocked: choice=false, dialogue=false, testimony_w=false, transition=true
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=false
+[DialogueUI] Click ignored (not typing and not waiting)
+[DEBUG] step_actions blocked: choice=false, dialogue=true, testimony_w=false, transition=false
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=false
+[DialogueUI] Click ignored (not typing and not waiting)
+[DialogueUI] Starting typing: 戻ったか。で、犯人は誰だと思う？
+[DialogueUI] Typing finished instantly (speed=0)
+[DialogueUI] Mouse click detected. is_typing=false _waiting_for_click=true
+[DialogueUI] Dialogue finished, emitting signal
+[DEBUG] on_dialogue_finished called. waiting=true
+[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Added choice button: 幽霊（証拠: エクトプラズム）
+[DialogueUI] Added choice button: 人間（証拠: 足跡）
+[DialogueUI] Rebuilding choices. Container exists: true
+[DialogueUI] Added choice button: 幽霊（証拠: エクトプラズム）
+[DialogueUI] Added choice button: 人間（証拠: 足跡）
+[DialogueUI] Rebuilding choices. Container exists: true
+[KARAKURI_SMOKE] moving to confrontation for failure branch...
+[KARAKURI_SMOKE] dialogue playback observed (clear_cycle): 戻ったか。で、犯人は誰だと思う？
+ERROR: [KARAKURI_SMOKE] failure branch confrontation intro was not rendered
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:564)
+       [2] _wait_for_dialogue_key (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:69)
+       [3] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+[KARAKURI_SMOKE] providing wrong evidence until death...
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[DEBUG] [Runner 43519405328] on_testimony_present_requested called. active=false, waiting=false, ui=true
+[DEBUG] [Runner 43519405328] on_evidence_selected called: ectoplasm. active=false, waiting=false
+[KARAKURI_SMOKE] waiting for bad ending check...
+ERROR: [KARAKURI_SMOKE] bad ending was not reached after HP depletion
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] _assert (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:77)
+       [1] _run (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:596)
+       [2] _wait_frames (res://samples/mystery/scripts/karakuri_scenario_smoke.gd:81)
+[DEBUG] KarakuriScenarioRunner destructed: 43519405328

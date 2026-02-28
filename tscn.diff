@@ -1,0 +1,239 @@
+commit f89d034673bfe7b12ecca253736c8e35add12c8a
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 20:10:53 2026 +0900
+
+    Phase 38: Scenario & UX Polish
+    
+    - Added dynamic NPC dialogue variations for warehouse investigation.
+    - Implemented exit hint system based on missing evidence.
+    - Added screen flash and shake effects for deduction feedback.
+    - Refined translations and added 10+ new keys.
+    - Registered new C++ actions for UI effects.
+    - Updated design documentation and development report.
+    - Added UI audit and vector import utility scripts.
+
+diff --git a/samples/mystery/warehouse_base.tscn b/samples/mystery/warehouse_base.tscn
+index 0e8459d..a5c39bc 100644
+--- a/samples/mystery/warehouse_base.tscn
++++ b/samples/mystery/warehouse_base.tscn
+@@ -55,17 +55,6 @@ grow_horizontal = 0
+ text = "話す"
+ theme_override_font_sizes/font_size = 16
+ 
+-[node name="hs_floor_area" type="Area2D" parent="."]
+-position = Vector2(520, 320)
+-
+-[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_floor_area"]
+-shape = SubResource("CircleShape2D_floor")
+-
+-[node name="FloorVisual" type="Sprite2D" parent="."]
+-modulate = Color(1, 1, 1, 0.6)
+-position = Vector2(520, 320)
+-scale = Vector2(0.5, 0.5)
+-texture = ExtResource("3_ecto")
+ 
+ [node name="hs_footprints" type="Area2D" parent="."]
+ position = Vector2(330, 380)
+@@ -80,18 +69,6 @@ rotation = -0.261799
+ scale = Vector2(0.4, 0.4)
+ texture = ExtResource("4_foot")
+ 
+-[node name="hs_memo" type="Area2D" parent="."]
+-position = Vector2(740, 250)
+-
+-[node name="CollisionShape2D" type="CollisionShape2D" parent="hs_memo"]
+-shape = SubResource("CircleShape2D_memo")
+-
+-[node name="MemoVisual" type="Sprite2D" parent="."]
+-modulate = Color(1, 1, 1, 0.8)
+-position = Vector2(740, 250)
+-rotation = 0.523599
+-scale = Vector2(0.3, 0.3)
+-texture = ExtResource("5_memo")
+ 
+ [node name="hs_manager" type="Area2D" parent="."]
+ visible = false
+@@ -163,3 +140,55 @@ offset_bottom = 60.0
+ text = "◀ EXIT"
+ theme_override_font_sizes/font_size = 24
+ theme_override_colors/font_color = Color(1, 1, 0, 1)
++
++[node name="InvestigationBorder" type="Control" parent="LocalUiLayer"]
++visible = false
++layout_mode = 3
++anchors_preset = 15
++anchor_right = 1.0
++anchor_bottom = 1.0
++grow_horizontal = 2
++grow_vertical = 2
++mouse_filter = 2
++
++[node name="Top" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
++layout_mode = 1
++anchors_preset = 10
++anchor_right = 1.0
++offset_bottom = 5.0
++grow_horizontal = 2
++color = Color(1, 1, 1, 0.75)
++mouse_filter = 2
++
++[node name="Bottom" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
++layout_mode = 1
++anchors_preset = 12
++anchor_top = 1.0
++anchor_right = 1.0
++anchor_bottom = 1.0
++offset_top = -5.0
++grow_horizontal = 2
++grow_vertical = 0
++color = Color(1, 1, 1, 0.75)
++mouse_filter = 2
++
++[node name="Left" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
++layout_mode = 1
++anchors_preset = 9
++anchor_bottom = 1.0
++offset_right = 5.0
++grow_vertical = 2
++color = Color(1, 1, 1, 0.75)
++mouse_filter = 2
++
++[node name="Right" type="ColorRect" parent="LocalUiLayer/InvestigationBorder"]
++layout_mode = 1
++anchors_preset = 11
++anchor_left = 1.0
++anchor_right = 1.0
++anchor_bottom = 1.0
++offset_left = -5.0
++grow_horizontal = 0
++grow_vertical = 2
++color = Color(1, 1, 1, 0.75)
++mouse_filter = 2
+
+commit d8245ebb255365e3ec3281545eb03c01b3bd27cb
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 12:52:20 2026 +0900
+
+    UI配置の問題（画面外はみ出し）を修正：倉庫シーンにCanvasLayerを導入し、アンカー設定を正常化
+
+diff --git a/samples/mystery/warehouse_base.tscn b/samples/mystery/warehouse_base.tscn
+index a8ab343..0e8459d 100644
+--- a/samples/mystery/warehouse_base.tscn
++++ b/samples/mystery/warehouse_base.tscn
+@@ -31,7 +31,10 @@ offset_bottom = 648.0
+ texture = ExtResource("2_bg_warehouse")
+ expand_mode = 1
+ 
+-[node name="Hint" type="Label" parent="."]
++[node name="LocalUiLayer" type="CanvasLayer" parent="."]
++layer = 5
++
++[node name="Hint" type="Label" parent="LocalUiLayer"]
+ offset_left = 32.0
+ offset_top = 84.0
+ offset_right = 632.0
+@@ -40,7 +43,7 @@ text = "調査ポイントをクリック"
+ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+ theme_override_constants/outline_size = 4
+ 
+-[node name="ModeToggleButton" type="Button" parent="."]
++[node name="ModeToggleButton" type="Button" parent="LocalUiLayer"]
+ anchor_left = 1.0
+ anchor_right = 1.0
+ anchor_bottom = 0.0
+@@ -144,14 +147,14 @@ position = Vector2(80, 500)
+ [node name="CollisionShape2D" type="CollisionShape2D" parent="hs_exit"]
+ shape = SubResource("CircleShape2D_exit")
+ 
+-[node name="ExitVisual" type="ColorRect" parent="."]
++[node name="ExitVisual" type="ColorRect" parent="LocalUiLayer"]
+ offset_left = 0.0
+ offset_top = 560.0
+ offset_right = 160.0
+ offset_bottom = 648.0
+ color = Color(0, 0, 0, 0.7)
+ 
+-[node name="Label" type="Label" parent="ExitVisual"]
++[node name="Label" type="Label" parent="LocalUiLayer/ExitVisual"]
+ layout_mode = 0
+ offset_left = 20.0
+ offset_top = 26.0
+
+commit 4131d0ff06819f205620842072b8d3d382c44cbf
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 12:27:43 2026 +0900
+
+    UIボタンのテキスト短縮（証拠、話す、調べる）と配置調整（重なり解消）
+
+diff --git a/samples/mystery/warehouse_base.tscn b/samples/mystery/warehouse_base.tscn
+index 4438538..a8ab343 100644
+--- a/samples/mystery/warehouse_base.tscn
++++ b/samples/mystery/warehouse_base.tscn
+@@ -44,12 +44,12 @@ theme_override_constants/outline_size = 4
+ anchor_left = 1.0
+ anchor_right = 1.0
+ anchor_bottom = 0.0
+-offset_left = -220.0
++offset_left = -440.0
+ offset_top = 60.0
+-offset_right = -10.0
++offset_right = -340.0
+ offset_bottom = 100.0
+ grow_horizontal = 0
+-text = "会話モードへ切り替え"
++text = "話す"
+ theme_override_font_sizes/font_size = 16
+ 
+ [node name="hs_floor_area" type="Area2D" parent="."]
+
+commit 8c4ccb029c4d086572b2bc5c539023e48077bc3e
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 11:54:13 2026 +0900
+
+    インベントリボタンの追加、およびモード切替ボタンの配置調整（右上へ移動）
+
+diff --git a/samples/mystery/warehouse_base.tscn b/samples/mystery/warehouse_base.tscn
+index 817fe08..4438538 100644
+--- a/samples/mystery/warehouse_base.tscn
++++ b/samples/mystery/warehouse_base.tscn
+@@ -45,9 +45,9 @@ anchor_left = 1.0
+ anchor_right = 1.0
+ anchor_bottom = 0.0
+ offset_left = -220.0
+-offset_top = 600.0
++offset_top = 60.0
+ offset_right = -10.0
+-offset_bottom = 640.0
++offset_bottom = 100.0
+ grow_horizontal = 0
+ text = "会話モードへ切り替え"
+ theme_override_font_sizes/font_size = 16
+
+commit e9e3f550a50e1f58d22edac62141b3e51d70ded1
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 11:21:13 2026 +0900
+
+    倉庫シーンのヒント表示を左上に移動（HealthBarの下）
+
+diff --git a/samples/mystery/warehouse_base.tscn b/samples/mystery/warehouse_base.tscn
+index 61376fe..817fe08 100644
+--- a/samples/mystery/warehouse_base.tscn
++++ b/samples/mystery/warehouse_base.tscn
+@@ -32,11 +32,13 @@ texture = ExtResource("2_bg_warehouse")
+ expand_mode = 1
+ 
+ [node name="Hint" type="Label" parent="."]
+-offset_left = 180.0
+-offset_top = 612.0
+-offset_right = 584.0
+-offset_bottom = 640.0
++offset_left = 32.0
++offset_top = 84.0
++offset_right = 632.0
++offset_bottom = 120.0
+ text = "調査ポイントをクリック"
++theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
++theme_override_constants/outline_size = 4
+ 
+ [node name="ModeToggleButton" type="Button" parent="."]
+ anchor_left = 1.0

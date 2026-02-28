@@ -397,9 +397,11 @@ func _type_text(text: String) -> void:
 		print("[DialogueUI] Typing finished naturally")
 
 func _on_choice_pressed(index: int, text: String) -> void:
+	print("[DialogueUI] _on_choice_pressed called with index %d text %s mode %s" % [index, text, _mode_input_enabled])
 	if not _mode_input_enabled:
 		return
 	_clear_choices()
+	_choice_defs.clear()
 	choice_selected.emit(index, text)
 
 func _rebuild_choices() -> void:

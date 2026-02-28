@@ -11,12 +11,15 @@
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/circle_shape2d.hpp>
 #include <godot_cpp/classes/collision_shape2d.hpp>
+#include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/file_access.hpp>
 #include <godot_cpp/classes/node2d.hpp>
 #include <godot_cpp/classes/packed_scene.hpp>
 #include <godot_cpp/classes/rectangle_shape2d.hpp>
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
+#include <godot_cpp/classes/sprite2d.hpp>
+#include <godot_cpp/classes/texture2d.hpp>
 #include <godot_cpp/classes/translation_server.hpp>
 #include <godot_cpp/classes/window.hpp>
 #include <godot_cpp/variant/callable.hpp>
@@ -96,9 +99,16 @@ static CollisionShape2D *find_collision_shape(Area2D *area) {
 
 } // namespace
 
-KarakuriScenarioRunner::KarakuriScenarioRunner() { init_builtin_actions(); }
+KarakuriScenarioRunner::KarakuriScenarioRunner() {
+  UtilityFunctions::print("[DEBUG] KarakuriScenarioRunner constructed: ",
+                          (uint64_t)this);
+  init_builtin_actions();
+}
 
-KarakuriScenarioRunner::~KarakuriScenarioRunner() {}
+KarakuriScenarioRunner::~KarakuriScenarioRunner() {
+  UtilityFunctions::print("[DEBUG] KarakuriScenarioRunner destructed: ",
+                          (uint64_t)this);
+}
 
 void KarakuriScenarioRunner::register_action(const String &kind,
                                              ActionHandler handler) {
@@ -216,6 +226,8 @@ void KarakuriScenarioRunner::_bind_methods() {
                        &KarakuriScenarioRunner::get_testimony_index);
   ClassDB::bind_method(D_METHOD("get_testimony_size"),
                        &KarakuriScenarioRunner::get_testimony_size);
+  ClassDB::bind_method(D_METHOD("get_testimony_active"),
+                       &KarakuriScenarioRunner::get_testimony_active);
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),
                        &KarakuriScenarioRunner::set_scenario_path);
@@ -289,6 +301,10 @@ int KarakuriScenarioRunner::get_testimony_size() const {
 }
 String KarakuriScenarioRunner::get_current_scene_id() const {
   return current_scene_id_;
+}
+
+bool KarakuriScenarioRunner::get_testimony_active() const {
+  return testimony_.active;
 }
 
 void KarakuriScenarioRunner::_ready() {
@@ -414,7 +430,26 @@ void KarakuriScenarioRunner::_ready() {
   load_scene_by_id(start_id);
 }
 
+static uint64_t last_logged_frame = 0;
+static bool last_active_state = false;
+
 void KarakuriScenarioRunner::_process(double delta) {
+  uint64_t frame = godot::Engine::get_singleton()->get_frames_drawn();
+  if (testimony_.active != last_active_state) {
+    UtilityFunctions::print(
+        "[DEBUG] [Frame ", frame,
+        "] testimony_.active changed: ", (int)last_active_state, " -> ",
+        (int)testimony_.active);
+    last_active_state = testimony_.active;
+  }
+
+  if (testimony_.active) {
+    if (frame % 5 == 0) { // Every 5 frames to avoid log spam
+      UtilityFunctions::print("[DEBUG] [Frame ", frame, "] Runner ",
+                              (uint64_t)this, " - active=true");
+    }
+  }
+
   // トランジションタイムアウト処理（step_actionsとは独立）
   // headlessモード等でfinishedシグナルが発火しない場合に強制遷移
   if (waiting_for_transition_ && transition_timeout_sec_ > 0.0f) {
@@ -544,7 +579,22 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
     }
   }
 
-  testimony_.reset();
+  testimony_.reset("load_scene_by_id");
+
+  // Hide all hotspots by default.
+  if (current_scene_instance_) {
+    TypedArray<Node> hs_nodes =
+        current_scene_instance_->find_children("hs_*", "Area2D", true, false);
+    for (int i = 0; i < hs_nodes.size(); i++) {
+      Node *n = Object::cast_to<Node>(hs_nodes[i]);
+      if (n) {
+        n->set("visible", false);
+        if (n->has_method("set_process_mode")) {
+          n->call("set_process_mode", PROCESS_MODE_DISABLED);
+        }
+      }
+    }
+  }
 
   bind_scene_hotspots(scene_dict);
   notify_mode_enter(scene_id, scene_dict);
@@ -586,6 +636,56 @@ void KarakuriScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
       continue;
     }
 
+    // Apply visibility (default to true if in YAML, because it was hidden by
+    // default)
+    bool is_visible = bool(hs_dict.get("visible", true));
+    area->set("visible", is_visible);
+    if (area->has_method("set_process_mode")) {
+      area->call("set_process_mode",
+                 is_visible ? PROCESS_MODE_INHERIT : PROCESS_MODE_DISABLED);
+    }
+
+    // Apply position override if provided
+    if (hs_dict.has("position")) {
+      Variant pos_v = hs_dict["position"];
+      if (pos_v.get_type() == Variant::ARRAY) {
+        Array pos_arr = as_array(pos_v);
+        if (pos_arr.size() >= 2) {
+          area->set("position", Vector2(float(pos_arr[0]), float(pos_arr[1])));
+        }
+      } else if (pos_v.get_type() == Variant::VECTOR2) {
+        area->set("position", pos_v);
+      }
+    }
+
+    // Apply texture override if provided (assuming child Sprite2D)
+    if (hs_dict.has("texture")) {
+      String tex_path = dict_get_string(hs_dict, "texture", "");
+      if (!tex_path.is_empty()) {
+        Ref<Texture2D> tex = ResourceLoader::get_singleton()->load(tex_path);
+        if (tex.is_valid()) {
+          // find_child without type filtering in GDExtension
+          Node *sprite_node = area->find_child("*", true, false);
+          Sprite2D *sprite = Object::cast_to<Sprite2D>(sprite_node);
+          if (!sprite) {
+            // Fallback: search for Sprite2D among all children
+            TypedArray<Node> children =
+                area->find_children("*", "Sprite2D", true, false);
+            if (children.size() > 0) {
+              sprite = Object::cast_to<Sprite2D>(children[0]);
+            }
+          }
+
+          if (sprite) {
+            sprite->set_texture(tex);
+            UtilityFunctions::print(
+                "[DEBUG] bind_scene_hotspots: applied texture ", tex_path,
+                " to ", node_id);
+          }
+        }
+      }
+    }
+
     Dictionary b;
     b["hotspot_id"] = hs_id;
     b["node_id"] = node_id;
@@ -618,24 +718,40 @@ void KarakuriScenarioRunner::step_actions(double delta) {
 
   if (waiting_for_choice_ || waiting_for_dialogue_ || testimony_.waiting ||
       waiting_for_transition_) {
+    static int log_throttle = 0;
+    if (log_throttle++ % 60 == 0) {
+      godot::UtilityFunctions::print(
+          "[DEBUG] step_actions blocked: choice=", waiting_for_choice_,
+          ", dialogue=", waiting_for_dialogue_,
+          ", testimony_w=", testimony_.waiting,
+          ", transition=", waiting_for_transition_);
+    }
     return;
   }
   if (wait_remaining_sec_ > 0.0) {
     wait_remaining_sec_ -= delta;
     return;
   }
-  if (pending_action_index_ >= pending_actions_.size()) {
-    is_executing_actions_ = false;
-    set_mode_input_enabled(true);
-    if (dialogue_ui_) {
-      dialogue_ui_->call("hide_dialogue");
+
+  while (pending_action_index_ < (int)pending_actions_.size()) {
+    const Variant action = pending_actions_[pending_action_index_];
+    pending_action_index_++;
+    bool blocked = execute_single_action(action);
+    if (blocked) {
+      break;
     }
-    return;
   }
 
-  const Variant action = pending_actions_[pending_action_index_];
-  pending_action_index_++;
-  execute_single_action(action);
+  if (pending_action_index_ >= pending_actions_.size()) {
+    if (!waiting_for_dialogue_ && !waiting_for_choice_ &&
+        !waiting_for_transition_ && !testimony_.waiting) {
+      is_executing_actions_ = false;
+      set_mode_input_enabled(true);
+      if (dialogue_ui_) {
+        dialogue_ui_->call("hide_dialogue");
+      }
+    }
+  }
 }
 
 bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
@@ -731,7 +847,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (gs && gs->has_method("set_flag")) {
       gs->call("set_flag", flag, value);
     }
-    return true;
+    return false;
   });
 
   // ------------------------------------------------------- give_evidence /
@@ -745,13 +861,16 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (gs && gs->has_method("add_item")) {
       gs->call("add_item", item_id);
     }
+    // This action is non-blocking.
+    // The evidence_ui_ part is a side effect that doesn't block the action
+    // queue.
     if (evidence_ui_ && evidence_ui_->has_method("add_evidence")) {
       evidence_ui_->call("add_evidence", item_id);
       if (evidence_ui_->has_method("show_inventory")) {
         evidence_ui_->call("show_inventory");
       }
     }
-    return true;
+    return false;
   };
   register_action("give_evidence", give_handler);
   register_action("give_item", give_handler);
@@ -815,7 +934,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     } else {
       load_scene_by_id(next_id);
     }
-    return true;
+    return false;
   });
 
   // transition_screen
@@ -897,7 +1016,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     for (int i = chosen.size() - 1; i >= 0; i--) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
-    return true;
+    return false;
   });
 
   // ---------------------------------------------------------------
@@ -928,7 +1047,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     for (int i = chosen.size() - 1; i >= 0; i--) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
-    return true;
+    return false;
   });
 
   // ------------------------------------------------------------------- choice
@@ -985,7 +1104,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (gs && gs->has_method("reset_game")) {
       gs->call("reset_game");
     }
-    return true;
+    return false;
   });
 
   // --------------------------------------------------------- change_root_scene
@@ -995,7 +1114,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       return false;
     }
     get_tree()->change_scene_to_file(path);
-    return true;
+    return false;
   });
 
   // -------------------------------------------------------------------- save
@@ -1035,7 +1154,19 @@ void KarakuriScenarioRunner::register_mystery_actions() {
         gs->call("take_damage");
       }
     }
-    return true;
+    return false;
+  });
+
+  // ------------------------------------------------------------- add_testimony
+  register_action("add_testimony", [this](const Variant &payload_v) {
+    const Dictionary d = as_dict(payload_v);
+    const String key = dict_get_string(d, "key", "");
+    if (!key.is_empty() && testimony_system_) {
+      if (testimony_system_->has_method("add_testimony")) {
+        testimony_system_->call("add_testimony", key);
+      }
+    }
+    return false;
   });
 
   // ------------------------------------------------------------- if_health_ge
@@ -1055,7 +1186,7 @@ void KarakuriScenarioRunner::register_mystery_actions() {
     for (int i = chosen.size() - 1; i >= 0; i--) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
-    return true;
+    return false;
   });
 
   // ------------------------------------------------------------ if_health_leq
@@ -1075,7 +1206,7 @@ void KarakuriScenarioRunner::register_mystery_actions() {
     for (int i = chosen.size() - 1; i >= 0; i--) {
       pending_actions_.insert(pending_action_index_, chosen[i]);
     }
-    return true;
+    return false;
   });
 
   // --------------------------------------------------------------- testimony
@@ -1106,6 +1237,13 @@ void KarakuriScenarioRunner::register_mystery_actions() {
     testimony_.waiting = true;
     testimony_.waiting_for_evidence = false;
     testimony_.lines.clear();
+    UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                            "] testimony action started. active=true");
+    UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                            "] testimony action started. active address: ",
+                            (uint64_t)&testimony_.active);
+    UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                            "] testimony action: set active=true");
 
     for (int i = 0; i < testimonies.size(); i++) {
       Dictionary t = as_dict(testimonies[i]);
@@ -1132,6 +1270,9 @@ void KarakuriScenarioRunner::register_mystery_actions() {
       testimony_system_->set("visible", true);
     }
     show_current_testimony_line();
+    UtilityFunctions::print(
+        "[DEBUG] [Runner ", (uint64_t)this,
+        "] testimony action started successfully. active=", testimony_.active);
     return true;
   });
 
@@ -1203,13 +1344,22 @@ void KarakuriScenarioRunner::on_choice_selected(int index, const String &text) {
   for (int i = chosen.size() - 1; i >= 0; i--) {
     pending_actions_.insert(pending_action_index_, chosen[i]);
   }
+
+  // Reactivate runner to process the newly inserted actions
+  if (!chosen.is_empty()) {
+    is_executing_actions_ = true;
+  }
 }
 
 void KarakuriScenarioRunner::on_dialogue_finished() {
+  UtilityFunctions::print("[DEBUG] on_dialogue_finished called. waiting=",
+                          waiting_for_dialogue_);
   if (!waiting_for_dialogue_) {
     return;
   }
   waiting_for_dialogue_ = false;
+  UtilityFunctions::print(
+      "[DEBUG] on_dialogue_finished: waiting_for_dialogue_ set to false");
 }
 
 void KarakuriScenarioRunner::on_testimony_complete(bool success) {
@@ -1278,6 +1428,11 @@ void KarakuriScenarioRunner::on_testimony_shake_requested() {
 }
 
 void KarakuriScenarioRunner::on_testimony_present_requested() {
+  UtilityFunctions::print(
+      "[DEBUG] [Runner ", (uint64_t)this,
+      "] on_testimony_present_requested called. active=", testimony_.active,
+      ", waiting=", testimony_.waiting_for_evidence,
+      ", ui=", (evidence_ui_ != nullptr));
   if (!testimony_.active || testimony_.waiting_for_evidence || !evidence_ui_) {
     return;
   }
@@ -1294,6 +1449,10 @@ void KarakuriScenarioRunner::on_testimony_present_requested() {
 }
 
 void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
+  UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                          "] on_evidence_selected called: ", evidence_id,
+                          ". active=", testimony_.active,
+                          ", waiting=", testimony_.waiting_for_evidence);
   if (!testimony_.active || !testimony_.waiting_for_evidence) {
     return;
   }
@@ -1344,7 +1503,11 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
 
   Node *gs = get_adventure_state();
   if (gs && gs->has_method("take_damage")) {
+    UtilityFunctions::print("[DEBUG] Calling take_damage on adventure state.");
     gs->call("take_damage");
+  } else {
+    UtilityFunctions::print("[DEBUG] Failed to call take_damage. gs=",
+                            (gs != nullptr));
   }
   if (dialogue_ui_ && dialogue_ui_->has_method("show_message_with_keys")) {
     dialogue_ui_->call("show_message_with_keys", "speaker.system", "System",
@@ -1426,6 +1589,8 @@ bool KarakuriScenarioRunner::are_all_testimony_contradictions_solved() const {
 }
 
 void KarakuriScenarioRunner::complete_testimony(bool success) {
+  UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                          "] complete_testimony called. success=", success);
   if (!testimony_.waiting) {
     return;
   }
@@ -1435,7 +1600,8 @@ void KarakuriScenarioRunner::complete_testimony(bool success) {
   const Array chosen =
       (success ? testimony_.success_actions : testimony_.failure_actions)
           .duplicate();
-  testimony_.reset();
+
+  testimony_.reset("complete_testimony");
   set_mode_input_enabled(false);
 
   if (evidence_ui_ && evidence_ui_->has_method("hide_inventory")) {
@@ -1473,9 +1639,14 @@ void KarakuriScenarioRunner::set_mode_input_enabled(bool enabled) {
 }
 
 void KarakuriScenarioRunner::notify_mode_exit(const String &next_scene_id) {
+  UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                          "] notify_mode_exit called. current=",
+                          current_mode_id_, ", next=", next_scene_id);
   if (current_mode_id_.is_empty()) {
     return;
   }
+
+  testimony_.reset("notify_mode_exit");
   if (dialogue_ui_ && dialogue_ui_->has_method("on_mode_exit")) {
     dialogue_ui_->call("on_mode_exit", current_mode_id_, next_scene_id);
   }
@@ -1489,7 +1660,11 @@ void KarakuriScenarioRunner::notify_mode_exit(const String &next_scene_id) {
 
 void KarakuriScenarioRunner::notify_mode_enter(const String &scene_id,
                                                const Dictionary &scene_dict) {
+  UtilityFunctions::print("[DEBUG] [Runner ", (uint64_t)this,
+                          "] notify_mode_enter called. target=", scene_id);
   current_mode_id_ = resolve_mode_id(scene_id, scene_dict);
+
+  testimony_.reset("notify_mode_enter");
   if (dialogue_ui_ && dialogue_ui_->has_method("on_mode_enter")) {
     dialogue_ui_->call("on_mode_enter", current_mode_id_, scene_id);
   }

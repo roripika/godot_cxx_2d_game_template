@@ -1,0 +1,327 @@
+commit 6d6d67dbf7e303d81ef9bcb98a2185db150fb092
+Author: Developer <dev@example.com>
+Date:   Thu Feb 26 08:48:26 2026 +0900
+
+    Refine confrontation UI and logic
+    
+    - Moved Testimony UI to the left to avoid overlap with portraits.
+    - Hid background NPCs during confrontation mode in warehouse_base_ui.gd.
+    - Implemented a hint system in KarakuriScenarioRunner (C++) that displays testimony-specific hints on evidence failure.
+    - Updated mystery.yaml and translations with hint data.
+
+diff --git a/samples/mystery/scripts/warehouse_base_ui.gd b/samples/mystery/scripts/warehouse_base_ui.gd
+index ae17bc1..af4a08d 100644
+--- a/samples/mystery/scripts/warehouse_base_ui.gd
++++ b/samples/mystery/scripts/warehouse_base_ui.gd
+@@ -53,19 +53,24 @@ func _apply_mode() -> void:
+ 	if inv_border:
+ 		inv_border.visible = in_investigate
+ 
+-	# --- NPCビジュアル：会話モードのみ表示 ---
++	# --- NPCビジュアル：会話モードのみ表示、かつ対決モード(confrontation)以外 ---
++	var sr := get_tree().root.find_child("ScenarioRunner", true, false)
++	var is_confrontation: bool = (sr != null and str(sr.get("current_mode")) == "confrontation")
++	
++	var show_npcs: bool = (not in_investigate) and (not is_confrontation)
++	
+ 	if npc_tanaka:
+-		npc_tanaka.visible = not in_investigate
+-		npc_tanaka.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++		npc_tanaka.visible = show_npcs
++		npc_tanaka.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
+ 	if npc_sato:
+-		npc_sato.visible = not in_investigate
+-		npc_sato.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++		npc_sato.visible = show_npcs
++		npc_sato.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
+ 	if npc_suzuki:
+-		npc_suzuki.visible = not in_investigate
+-		npc_suzuki.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++		npc_suzuki.visible = show_npcs
++		npc_suzuki.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
+ 	if npc_kenta:
+-		npc_kenta.visible = not in_investigate
+-		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++		npc_kenta.visible = show_npcs
++		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if show_npcs else PROCESS_MODE_DISABLED)
+ 
+ 	# --- 探偵の立ち絵：調査モード中は非表示（クリックを邪魔しないためと演出上の理由） ---
+ 	var dui := _get_dialogue_ui()
+
+commit f89d034673bfe7b12ecca253736c8e35add12c8a
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 20:10:53 2026 +0900
+
+    Phase 38: Scenario & UX Polish
+    
+    - Added dynamic NPC dialogue variations for warehouse investigation.
+    - Implemented exit hint system based on missing evidence.
+    - Added screen flash and shake effects for deduction feedback.
+    - Refined translations and added 10+ new keys.
+    - Registered new C++ actions for UI effects.
+    - Updated design documentation and development report.
+    - Added UI audit and vector import utility scripts.
+
+diff --git a/samples/mystery/scripts/warehouse_base_ui.gd b/samples/mystery/scripts/warehouse_base_ui.gd
+index a55522d..ae17bc1 100644
+--- a/samples/mystery/scripts/warehouse_base_ui.gd
++++ b/samples/mystery/scripts/warehouse_base_ui.gd
+@@ -2,22 +2,19 @@ extends Node2D
+ 
+ # ─── モード定義 ───────────────────────────────────────────
+ enum WarehouseMode { INVESTIGATE, TALK }
+-var current_mode: WarehouseMode = WarehouseMode.INVESTIGATE
++var current_mode: WarehouseMode = WarehouseMode.TALK
+ 
+ # ─── UI参照 ───────────────────────────────────────────────
+ @onready var hint_label: Label            = $LocalUiLayer/Hint
+ @onready var exit_label: Label            = $LocalUiLayer/ExitVisual/Label
+ @onready var mode_btn:   Button           = $LocalUiLayer/ModeToggleButton
++@onready var inv_border: Control          = $LocalUiLayer/InvestigationBorder
+ 
+ # ─── 証拠ノード（調査モードのみ表示）────────────────────────
+-@onready var ecto_visual: Sprite2D = get_node_or_null("FloorVisual")
+ @onready var foot_visual: Sprite2D = get_node_or_null("FootprintsVisual")
+-@onready var memo_visual: Sprite2D = get_node_or_null("MemoVisual")
+ 
+ # 証拠ホットスポットのArea2D
+-@onready var hs_floor:     Node2D = get_node_or_null("hs_floor_area")
+ @onready var hs_footprints: Node2D = get_node_or_null("hs_footprints")
+-@onready var hs_memo:      Node2D = get_node_or_null("hs_memo")
+ 
+ # ─── NPCノード（会話モードのみ表示）─────────────────────────
+ @onready var npc_tanaka:  Node2D = get_node_or_null("hs_manager")
+@@ -46,17 +43,15 @@ func _apply_mode() -> void:
+ 	var inventory := _get_inventory()
+ 
+ 	# --- 証拠品ビジュアル：調査モードかつ未入手のみ表示 ---
+-	if ecto_visual:
+-		ecto_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("ectoplasm"))
+ 	if foot_visual:
+ 		foot_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("footprint"))
+-	if memo_visual:
+-		memo_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("torn_memo"))
+ 
+ 	# 証拠ホットスポットのコリジョン有効/無効
+-	if hs_floor:     hs_floor.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
+ 	if hs_footprints: hs_footprints.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
+-	if hs_memo:      hs_memo.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
++
++	# --- 調査モード演出：白色の枠を表示 ---
++	if inv_border:
++		inv_border.visible = in_investigate
+ 
+ 	# --- NPCビジュアル：会話モードのみ表示 ---
+ 	if npc_tanaka:
+
+commit d8245ebb255365e3ec3281545eb03c01b3bd27cb
+Author: Developer <dev@example.com>
+Date:   Wed Feb 25 12:52:20 2026 +0900
+
+    UI配置の問題（画面外はみ出し）を修正：倉庫シーンにCanvasLayerを導入し、アンカー設定を正常化
+
+diff --git a/samples/mystery/scripts/warehouse_base_ui.gd b/samples/mystery/scripts/warehouse_base_ui.gd
+index 2213234..a55522d 100644
+--- a/samples/mystery/scripts/warehouse_base_ui.gd
++++ b/samples/mystery/scripts/warehouse_base_ui.gd
+@@ -5,9 +5,9 @@ enum WarehouseMode { INVESTIGATE, TALK }
+ var current_mode: WarehouseMode = WarehouseMode.INVESTIGATE
+ 
+ # ─── UI参照 ───────────────────────────────────────────────
+-@onready var hint_label: Label            = $Hint
+-@onready var exit_label: Label            = $ExitVisual/Label
+-@onready var mode_btn:   Button           = $ModeToggleButton
++@onready var hint_label: Label            = $LocalUiLayer/Hint
++@onready var exit_label: Label            = $LocalUiLayer/ExitVisual/Label
++@onready var mode_btn:   Button           = $LocalUiLayer/ModeToggleButton
+ 
+ # ─── 証拠ノード（調査モードのみ表示）────────────────────────
+ @onready var ecto_visual: Sprite2D = get_node_or_null("FloorVisual")
+@@ -59,10 +59,24 @@ func _apply_mode() -> void:
+ 	if hs_memo:      hs_memo.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
+ 
+ 	# --- NPCビジュアル：会話モードのみ表示 ---
+-	if npc_tanaka:  npc_tanaka.visible = not in_investigate
+-	if npc_sato:    npc_sato.visible   = not in_investigate
+-	if npc_suzuki:  npc_suzuki.visible = not in_investigate
+-	if npc_kenta:   npc_kenta.visible  = not in_investigate
++	if npc_tanaka:
++		npc_tanaka.visible = not in_investigate
++		npc_tanaka.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++	if npc_sato:
++		npc_sato.visible = not in_investigate
++		npc_sato.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++	if npc_suzuki:
++		npc_suzuki.visible = not in_investigate
++		npc_suzuki.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++	if npc_kenta:
++		npc_kenta.visible = not in_investigate
++		npc_kenta.set_process_mode(PROCESS_MODE_INHERIT if not in_investigate else PROCESS_MODE_DISABLED)
++
++	# --- 探偵の立ち絵：調査モード中は非表示（クリックを邪魔しないためと演出上の理由） ---
++	var dui := _get_dialogue_ui()
++	if dui:
++		if in_investigate:
++			dui.call("clear_portrait")
+ 
+ 	# --- モード切替ボタンのラベル更新 ---
+ 	if mode_btn:
+@@ -81,6 +95,9 @@ func _process(_delta: float) -> void:
+ func _get_inventory() -> EvidenceInventoryUI:
+ 	return get_tree().root.find_child("InventoryUI", true, false) as EvidenceInventoryUI
+ 
++func _get_dialogue_ui() -> Control:
++	return get_tree().root.find_child("DialogueUI", true, false)
++
+ # ─── ローカライズ ──────────────────────────────────────────
+ func _connect_localization_service() -> void:
+ 	var service := get_tree().root.get_node_or_null("KarakuriLocalization")
+
+commit 756765bbf32cae4caf996bb17f711f70c5af4026
+Author: Developer <dev@example.com>
+Date:   Tue Feb 24 23:33:35 2026 +0900
+
+    ミステリーデモの改善：入力伝播の最適化、倉庫モードの分離、スモークテストの拡充
+
+diff --git a/samples/mystery/scripts/warehouse_base_ui.gd b/samples/mystery/scripts/warehouse_base_ui.gd
+index d3cafa4..2213234 100644
+--- a/samples/mystery/scripts/warehouse_base_ui.gd
++++ b/samples/mystery/scripts/warehouse_base_ui.gd
+@@ -1,12 +1,87 @@
+ extends Node2D
+ 
+-@onready var hint_label: Label = $Hint
+-@onready var exit_label: Label = $ExitVisual/Label
++# ─── モード定義 ───────────────────────────────────────────
++enum WarehouseMode { INVESTIGATE, TALK }
++var current_mode: WarehouseMode = WarehouseMode.INVESTIGATE
+ 
++# ─── UI参照 ───────────────────────────────────────────────
++@onready var hint_label: Label            = $Hint
++@onready var exit_label: Label            = $ExitVisual/Label
++@onready var mode_btn:   Button           = $ModeToggleButton
++
++# ─── 証拠ノード（調査モードのみ表示）────────────────────────
++@onready var ecto_visual: Sprite2D = get_node_or_null("FloorVisual")
++@onready var foot_visual: Sprite2D = get_node_or_null("FootprintsVisual")
++@onready var memo_visual: Sprite2D = get_node_or_null("MemoVisual")
++
++# 証拠ホットスポットのArea2D
++@onready var hs_floor:     Node2D = get_node_or_null("hs_floor_area")
++@onready var hs_footprints: Node2D = get_node_or_null("hs_footprints")
++@onready var hs_memo:      Node2D = get_node_or_null("hs_memo")
++
++# ─── NPCノード（会話モードのみ表示）─────────────────────────
++@onready var npc_tanaka:  Node2D = get_node_or_null("hs_manager")
++@onready var npc_sato:    Node2D = get_node_or_null("hs_worker")
++@onready var npc_suzuki:  Node2D = get_node_or_null("hs_delivery")
++@onready var npc_kenta:   Node2D = get_node_or_null("hs_kenta")
++
++# ─── 準備 ─────────────────────────────────────────────────
+ func _ready() -> void:
+ 	_connect_localization_service()
+ 	_refresh_locale()
++	if mode_btn:
++		mode_btn.pressed.connect(_on_mode_toggled)
++	_apply_mode()
++
++# ─── モード切替 ────────────────────────────────────────────
++func _on_mode_toggled() -> void:
++	if current_mode == WarehouseMode.INVESTIGATE:
++		current_mode = WarehouseMode.TALK
++	else:
++		current_mode = WarehouseMode.INVESTIGATE
++	_apply_mode()
++
++func _apply_mode() -> void:
++	var in_investigate := (current_mode == WarehouseMode.INVESTIGATE)
++	var inventory := _get_inventory()
++
++	# --- 証拠品ビジュアル：調査モードかつ未入手のみ表示 ---
++	if ecto_visual:
++		ecto_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("ectoplasm"))
++	if foot_visual:
++		foot_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("footprint"))
++	if memo_visual:
++		memo_visual.visible = in_investigate and (inventory == null or not inventory.has_evidence("torn_memo"))
+ 
++	# 証拠ホットスポットのコリジョン有効/無効
++	if hs_floor:     hs_floor.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
++	if hs_footprints: hs_footprints.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
++	if hs_memo:      hs_memo.set_process_mode(PROCESS_MODE_INHERIT if in_investigate else PROCESS_MODE_DISABLED)
++
++	# --- NPCビジュアル：会話モードのみ表示 ---
++	if npc_tanaka:  npc_tanaka.visible = not in_investigate
++	if npc_sato:    npc_sato.visible   = not in_investigate
++	if npc_suzuki:  npc_suzuki.visible = not in_investigate
++	if npc_kenta:   npc_kenta.visible  = not in_investigate
++
++	# --- モード切替ボタンのラベル更新 ---
++	if mode_btn:
++		mode_btn.text = tr("mystery.ui.warehouse_mode_talk") if in_investigate else tr("mystery.ui.warehouse_mode_investigate")
++
++	# --- ヒントラベル更新 ---
++	if hint_label:
++		hint_label.text = tr("mystery.ui.warehouse_hint_investigate") if in_investigate else tr("mystery.ui.warehouse_hint_talk")
++
++# ─── 証拠入手後の再反映（_process で継続監視）─────────────
++func _process(_delta: float) -> void:
++	if current_mode == WarehouseMode.INVESTIGATE:
++		_apply_mode()
++
++# ─── インベントリ取得 ──────────────────────────────────────
++func _get_inventory() -> EvidenceInventoryUI:
++	return get_tree().root.find_child("InventoryUI", true, false) as EvidenceInventoryUI
++
++# ─── ローカライズ ──────────────────────────────────────────
+ func _connect_localization_service() -> void:
+ 	var service := get_tree().root.get_node_or_null("KarakuriLocalization")
+ 	if service == null:
+@@ -20,6 +95,6 @@ func _on_locale_changed(_locale: String) -> void:
+ 	_refresh_locale()
+ 
+ func _refresh_locale() -> void:
+-	hint_label.text = tr("mystery.ui.warehouse_hint")
+-	exit_label.text = tr("mystery.ui.warehouse_exit")
+-
++	if exit_label:
++		exit_label.text = tr("mystery.ui.warehouse_exit")
++	_apply_mode()
+
+commit 0403f7f170c6e1d733cd6af7c4c74c559e25f36f
+Author: Developer <dev@example.com>
+Date:   Thu Feb 19 19:38:23 2026 +0900
+
+    [Karakuri][Mystery][M3-M5-M7] C++責務寄せと言語切替基盤を実装
+
+diff --git a/samples/mystery/scripts/warehouse_base_ui.gd b/samples/mystery/scripts/warehouse_base_ui.gd
+new file mode 100644
+index 0000000..d3cafa4
+--- /dev/null
++++ b/samples/mystery/scripts/warehouse_base_ui.gd
+@@ -0,0 +1,25 @@
++extends Node2D
++
++@onready var hint_label: Label = $Hint
++@onready var exit_label: Label = $ExitVisual/Label
++
++func _ready() -> void:
++	_connect_localization_service()
++	_refresh_locale()
++
++func _connect_localization_service() -> void:
++	var service := get_tree().root.get_node_or_null("KarakuriLocalization")
++	if service == null:
++		return
++	if service.has_signal("locale_changed"):
++		var cb := Callable(self, "_on_locale_changed")
++		if not service.is_connected("locale_changed", cb):
++			service.connect("locale_changed", cb)
++
++func _on_locale_changed(_locale: String) -> void:
++	_refresh_locale()
++
++func _refresh_locale() -> void:
++	hint_label.text = tr("mystery.ui.warehouse_hint")
++	exit_label.text = tr("mystery.ui.warehouse_exit")
++
