@@ -1,0 +1,26 @@
+items:
+  footprint:
+    sort_order: 10
+    name_key: "evidence_footprint"
+    desc_key: "evidence_footprint_desc"
+    icon: "res://assets/mystery/icons/128x128/footprint.png"
+  ectoplasm:
+    sort_order: 20
+    name_key: "evidence_ectoplasm"
+    desc_key: "evidence_ectoplasm_desc"
+    icon: "res://assets/mystery/icons/128x128/ectoplasm.png"
+  torn_memo:
+    sort_order: 30
+    name_key: "evidence_torn_memo"
+    desc_key: "evidence_torn_memo_desc"
+    icon: "res://assets/mystery/icons/128x128/torn_memo.png"
+  delivery_log:
+    sort_order: 40
+    name_key: "evidence_delivery_log"
+    desc_key: "evidence_delivery_log_desc"
+    icon: "res://assets/mystery/icons/128x128/delivery_log.png"
+  witness_report:
+    sort_order: 50
+    name_key: "evidence_witness_report"
+    desc_key: "evidence_witness_report_desc"
+    icon: "res://assets/mystery/icons/128x128/witness_report.png"
