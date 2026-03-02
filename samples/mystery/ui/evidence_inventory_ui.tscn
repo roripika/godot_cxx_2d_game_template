@@ -70,9 +70,10 @@ layout_mode = 2
 text = "Name"
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer/DetailPanel/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Description"
-auto_wrapping_enabled = true
+autowrap_mode = 3
 
 [node name="IconRect" type="TextureRect" parent="VBoxContainer/DetailPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 160)
