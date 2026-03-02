@@ -80,3 +80,10 @@ layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
+
+[node name="PresentButton" type="Button" parent="VBoxContainer/DetailPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+theme_override_font_sizes/font_size = 20
+text = "突きつける"

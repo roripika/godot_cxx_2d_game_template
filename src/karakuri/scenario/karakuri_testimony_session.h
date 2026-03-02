@@ -102,9 +102,7 @@ struct KarakuriTestimonySession {
   godot::Array failure_actions;
 
   /** @brief セッションを初期状態に戻す。 */
-  void reset(const godot::String &reason) {
-    godot::UtilityFunctions::print(
-        "[DEBUG] KarakuriTestimonySession::reset() called. Reason: ", reason);
+  void reset(const godot::String & /*reason*/) {
     active = false;
     waiting = false;
     waiting_for_evidence = false;

@@ -464,7 +464,12 @@ func on_mode_exit(_mode_id: String, _next_scene_id: String) -> void:
 
 func set_mode_input_enabled(enabled: bool) -> void:
 	_mode_input_enabled = enabled
-	_rebuild_choices()
+	# フルリビルドを避けて既存ボタンのdisabled状態だけ更新する
+	var cc = _get_choices_container()
+	if cc:
+		for child in cc.get_children():
+			if child is Button:
+				child.disabled = not enabled
 
 func flash_screen(color_hex: String, duration: float = 0.5) -> void:
 	if not screen_flash:

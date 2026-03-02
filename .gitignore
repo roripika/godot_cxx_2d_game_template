@@ -20,3 +20,20 @@ env.sh
 # Doxygen
 docs/karakuri_sdk/html/
 docs/karakuri_sdk/latex/
+
+# qiita-cli (node)
+node_modules/
+qiita.config.json
+
+# デバッグ一時ファイル
+*.diff
+*.log
+audit.diff
+diff.txt
+inv_audit.diff
+log.txt
+
+# 一時デバッグスクリプト
+samples/mystery/scripts/verify_*.gd
+remove_bg.gd
+remove_magenta_bg.py

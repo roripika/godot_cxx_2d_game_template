@@ -10,12 +10,14 @@ signal evidence_selected(evidence_id: String)
 @onready var detail_name: Label = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/NameLabel")
 @onready var detail_desc: Label = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/DescriptionLabel")
 @onready var detail_icon: TextureRect = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/IconRect")
+@onready var present_btn: Button = get_node_or_null("VBoxContainer/DetailPanel/VBoxContainer/PresentButton")
 @onready var close_btn: Button = get_node_or_null("CloseButton")
 
 var evidence_list: Array[EvidenceItem] = []
 var selected_evidence: EvidenceItem = null
 var evidence_resources: Dictionary = {}
 var _mode_input_enabled: bool = true
+var _presentation_mode: bool = false
 var _ui_ready: bool = false
 
 func _ready() -> void:
@@ -23,6 +25,8 @@ func _ready() -> void:
 	visible = false
 	if close_btn:
 		close_btn.pressed.connect(_on_close_pressed)
+	if present_btn:
+		present_btn.pressed.connect(_on_present_pressed)
 	_load_evidence_resources()
 	_clear_detail()
 	_connect_localization_service()
@@ -124,11 +128,21 @@ func has_evidence(evidence_id: String) -> bool:
 	return false
 
 func show_inventory() -> void:
+	_presentation_mode = false
 	visible = true
 	mouse_filter = MOUSE_FILTER_STOP
+	_update_present_button()
+	_refresh_ui()
+
+func show_inventory_for_presentation() -> void:
+	_presentation_mode = true
+	visible = true
+	mouse_filter = MOUSE_FILTER_STOP
+	_update_present_button()
 	_refresh_ui()
 
 func hide_inventory() -> void:
+	_presentation_mode = false
 	visible = false
 	mouse_filter = MOUSE_FILTER_IGNORE
 
@@ -162,13 +176,31 @@ func _refresh_ui() -> void:
 
 	if selected_evidence:
 		_apply_detail(selected_evidence)
+	_update_present_button()
 
 func _on_evidence_selected(evidence: EvidenceItem) -> void:
 	if not _mode_input_enabled:
 		return
 	selected_evidence = evidence
 	_apply_detail(evidence)
-	evidence_selected.emit(evidence.id)
+	# シグナルは発行しない。「突きつける」ボタンで発行する。
+	_update_present_button()
+
+func _on_present_pressed() -> void:
+	if not _mode_input_enabled or not _presentation_mode:
+		return
+	if selected_evidence == null:
+		return
+	hide_inventory()
+	evidence_selected.emit(selected_evidence.id)
+
+func _update_present_button() -> void:
+	if present_btn == null:
+		return
+	present_btn.visible = _presentation_mode
+	present_btn.disabled = not _mode_input_enabled or selected_evidence == null
+	if _presentation_mode:
+		present_btn.text = tr("mystery.ui.present_evidence")
 
 func _apply_detail(evidence: EvidenceItem) -> void:
 	if not _ui_ready or detail_panel == null:
@@ -209,6 +241,7 @@ func on_mode_exit(_mode_id: String, _next_scene_id: String) -> void:
 func set_mode_input_enabled(enabled: bool) -> void:
 	_mode_input_enabled = enabled
 	_refresh_ui()
+	_update_present_button()
 
 func _refresh_static_labels() -> void:
 	if not _ui_ready:

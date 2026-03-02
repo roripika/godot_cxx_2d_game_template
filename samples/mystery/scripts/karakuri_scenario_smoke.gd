@@ -561,6 +561,14 @@ func _run() -> void:
 	var reached_good_ending := _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == "EndingBase"
 	_assert(reached_good_ending, "good ending was not reached")
 
+	# good2 ダイアログ + リトライ選択肢をクリアしてからリセット
+	for _i in range(120):
+		await _wait_frames(15)
+		_safe_clear_dialogue()
+		var cdefs = _dialogue_ui().get("_choice_defs")
+		if cdefs != null and (cdefs as Array).size() > 0:
+			break
+
 	# Failure branch: pass deduction, then fail testimony
 	gs.call("reset_game")
 	await _boot_shell()
@@ -614,6 +622,16 @@ func _run() -> void:
 	print("[KARAKURI_SMOKE] waiting for bad ending check...")
 	var reached_bad_ending := _scene_container().get_child_count() > 0 and _scene_container().get_child(0).name == "EndingBase"
 	_assert(reached_bad_ending, "bad ending was not reached after HP depletion")
+
+	# bad2 ダイアログ + リトライ選択肢が表示されるまでクリア
+	for _i in range(120):
+		await _wait_frames(15)
+		_safe_clear_dialogue()
+		var cdefs = _dialogue_ui().get("_choice_defs")
+		if cdefs != null and (cdefs as Array).size() > 0:
+			print("[KARAKURI_SMOKE] bad ending retry choice appeared: ", (cdefs as Array).size(), " options")
+			break
+
 	_assert(_seen_dialogue_signatures.size() >= 3, "dialogue playback observations were too few; dialogue may not be rendering")
 
 	if _failed:

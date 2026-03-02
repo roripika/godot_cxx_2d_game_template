@@ -191,10 +191,36 @@ scenes:
     mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
-      - dialogue: { speaker_key: "speaker.system", text_key: "mystery.ending.good1" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.ending.good1" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.ending.good2" }
+      - choice:
+          choices:
+            - option:
+                text_key: "ending_choice_retry"
+                actions:
+                  - reset_game:
+                  - goto: "prologue"
+            - option:
+                text_key: "ending_choice_menu"
+                actions:
+                  - reset_game:
+                  - change_root_scene: "res://samples/main_menu.tscn"
 
   ending_bad:
     mode: "ending"
     scene_path: "res://samples/mystery/ending_base.tscn"
     on_enter:
       - dialogue: { speaker_key: "speaker.system", text_key: "mystery.ending.bad1" }
+      - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.ending.bad2" }
+      - choice:
+          choices:
+            - option:
+                text_key: "ending_choice_retry"
+                actions:
+                  - reset_game:
+                  - goto: "prologue"
+            - option:
+                text_key: "ending_choice_menu"
+                actions:
+                  - reset_game:
+                  - change_root_scene: "res://samples/main_menu.tscn"
