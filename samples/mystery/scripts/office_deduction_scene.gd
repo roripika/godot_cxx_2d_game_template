@@ -7,6 +7,9 @@ class_name OfficeDeductionScene
 @onready var inventory_ui = $CanvasLayer/InventoryUI
 
 func _ready():
+	# チェックポイントを保存
+	GameMaster.save_checkpoint("res://samples/mystery/office_deduction.tscn")
+	
 	# 所長に報告
 	if dialogue_ui:
 		dialogue_ui.show_message("Boss", tr("deduction_title"))
@@ -54,7 +57,7 @@ func _on_choice_made(choice_index: int):
 		if AdventureGameState.get_health() <= 0:
 			GameMaster.set_flag("game_over", true)
 			await get_tree().create_timer(1.0).timeout
-			AdventureGameState.change_scene("res://samples/mystery/ending.tscn")
+			get_tree().change_scene_to_file("res://samples/mystery/ending.tscn")
 			return
 	
 	await get_tree().create_timer(1.0).timeout
@@ -66,4 +69,4 @@ func _go_to_confrontation(is_correct: bool):
 		dialogue_ui.show_message("System", tr("deduction_hp_lost"))
 	
 	await get_tree().create_timer(1.0).timeout
-	AdventureGameState.change_scene("res://samples/mystery/warehouse_confrontation.tscn")
+	get_tree().change_scene_to_file("res://samples/mystery/warehouse_confrontation.tscn")

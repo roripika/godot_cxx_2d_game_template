@@ -84,8 +84,8 @@ func _create_retry_menu():
 
 	var ags = get_tree().root.get_node_or_null("AdventureGameState")
 	if choice_idx == 0:
-		if ags: ags.call("reset_game")
-		if ags: ags.call("change_scene", "res://samples/mystery/office_scene.tscn")
+		var target_scene = GameMaster.load_checkpoint()
+		if ags: ags.call("change_scene", target_scene)
 	else:
 		if ags: ags.call("reset_game")
 		if ags: ags.call("change_scene", "res://samples/main_menu.tscn")

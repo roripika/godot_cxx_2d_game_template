@@ -1,5 +1,7 @@
 #include "mystery_game_master.h"
 
+#include "core/adventure_game_state.h"
+#include "features/mystery/evidence_manager.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -28,6 +30,12 @@ void MysteryGameMaster::_bind_methods() {
                        &MysteryGameMaster::serialize_flags);
   ClassDB::bind_method(D_METHOD("deserialize_flags", "p_dict"),
                        &MysteryGameMaster::deserialize_flags);
+
+  // Checkpoints
+  ClassDB::bind_method(D_METHOD("save_checkpoint", "p_scene_path"),
+                       &MysteryGameMaster::save_checkpoint);
+  ClassDB::bind_method(D_METHOD("load_checkpoint"),
+                       &MysteryGameMaster::load_checkpoint);
 }
 
 void MysteryGameMaster::set_flag(const String &p_name, bool p_value) {
@@ -69,4 +77,48 @@ void MysteryGameMaster::deserialize_flags(const Dictionary &p_dict) {
   }
   UtilityFunctions::print("[MysteryGameMaster] Flags Deserialized. Count: ",
                           (int64_t)flags.size());
+}
+
+void MysteryGameMaster::save_checkpoint(const String &p_scene_path) {
+  has_checkpoint = true;
+  checkpoint_scene = p_scene_path;
+  checkpoint_flags = serialize_flags();
+
+  auto *em = EvidenceManager::get_singleton();
+  if (em) {
+    checkpoint_evidence = em->serialize();
+  }
+
+  auto *ags = AdventureGameStateBase::get_singleton();
+  if (ags) {
+    checkpoint_health = ags->get_health();
+  }
+
+  UtilityFunctions::print("[MysteryGameMaster] Checkpoint Saved: ",
+                          p_scene_path);
+}
+
+String MysteryGameMaster::load_checkpoint() {
+  if (!has_checkpoint) {
+    UtilityFunctions::print(
+        "[MysteryGameMaster] No checkpoint found. Returning to main menu.");
+    return "res://samples/main_menu.tscn";
+  }
+
+  deserialize_flags(checkpoint_flags);
+
+  auto *em = EvidenceManager::get_singleton();
+  if (em) {
+    em->deserialize(checkpoint_evidence);
+  }
+
+  auto *ags = AdventureGameStateBase::get_singleton();
+  if (ags) {
+    ags->set_health(checkpoint_health);
+  }
+
+  UtilityFunctions::print(
+      "[MysteryGameMaster] Checkpoint Loaded. Restoring scene: ",
+      checkpoint_scene);
+  return checkpoint_scene;
 }

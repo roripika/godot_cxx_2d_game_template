@@ -30,7 +30,7 @@ func _on_clicked_at(pos: Vector2):
 	elif exit_rect.has_point(pos):
 		dialogue_ui.show_message("System", "Returning to Office...")
 		await get_tree().create_timer(1.0).timeout
-		AdventureGameState.change_scene("res://samples/mystery/office_scene.tscn")
+		get_tree().change_scene_to_file("res://samples/mystery/office_scene.tscn")
 		
 	else:
 		dialogue_ui.hide_dialogue()

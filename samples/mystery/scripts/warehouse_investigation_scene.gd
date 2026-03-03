@@ -124,7 +124,7 @@ func _exit_warehouse():
 		dialogue_ui.show_message("System", tr("return_to_office"))
 	
 	await get_tree().create_timer(1.0).timeout
-	AdventureGameState.change_scene("res://samples/mystery/office_scene.tscn")
+	get_tree().change_scene_to_file("res://samples/mystery/office_scene.tscn")
 
 func _process(delta):
 	# 全証拠品を集めたか確認

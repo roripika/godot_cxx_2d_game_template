@@ -96,7 +96,7 @@ func _trigger_hotspot(hotspot: Hotspot):
 	
 	# 証拠品があれば追加
 	if hotspot.evidence_id != "":
-		AdventureGameState.add_item(hotspot.evidence_id)
+		Evidences.add_evidence(hotspot.evidence_id)
 		evidence_found.emit(hotspot.evidence_id)
 		hotspot.examined = true
 	
