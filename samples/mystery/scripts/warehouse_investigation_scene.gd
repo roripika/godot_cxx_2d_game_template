@@ -128,10 +128,10 @@ func _exit_warehouse():
 
 func _process(delta):
 	# 全証拠品を集めたか確認
-	if AdventureGameState.has_item("ectoplasm") and \
-	   AdventureGameState.has_item("footprint") and \
-	   AdventureGameState.has_item("torn_memo"):
-		if not AdventureGameState.get_flag("all_evidence_collected"):
-			AdventureGameState.set_flag("all_evidence_collected", true)
+	if Evidences.has_evidence("ectoplasm") and \
+	   Evidences.has_evidence("footprint") and \
+	   Evidences.has_evidence("torn_memo"):
+		if not GameMaster.get_flag("all_evidence_collected"):
+			GameMaster.set_flag("all_evidence_collected", true)
 			if dialogue_ui:
 				dialogue_ui.show_message("System", tr("investigation_complete"))

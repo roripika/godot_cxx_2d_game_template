@@ -1,4 +1,6 @@
 #include "adventure_game_state.h"
+#include "features/mystery/evidence_manager.h"
+#include "features/mystery/mystery_game_master.h"
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
@@ -24,21 +26,9 @@ AdventureGameStateBase *AdventureGameStateBase::get_singleton() {
 }
 
 void AdventureGameStateBase::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("set_flag", "key", "value"),
-                       &AdventureGameStateBase::set_flag);
-  ClassDB::bind_method(D_METHOD("get_flag", "key", "default_value"),
-                       &AdventureGameStateBase::get_flag, DEFVAL(false));
-
-  ClassDB::bind_method(D_METHOD("add_item", "item_name"),
-                       &AdventureGameStateBase::add_item);
-  ClassDB::bind_method(D_METHOD("remove_item", "item_name"),
-                       &AdventureGameStateBase::remove_item);
-  ClassDB::bind_method(D_METHOD("has_item", "item_name"),
-                       &AdventureGameStateBase::has_item);
-
   ClassDB::bind_method(D_METHOD("change_scene", "path"),
                        &AdventureGameStateBase::change_scene);
-  
+
   // HP management
   ClassDB::bind_method(D_METHOD("set_health", "hp"),
                        &AdventureGameStateBase::set_health);
@@ -49,50 +39,10 @@ void AdventureGameStateBase::_bind_methods() {
   ClassDB::bind_method(D_METHOD("heal", "amount"),
                        &AdventureGameStateBase::heal);
   ADD_SIGNAL(MethodInfo("health_changed", PropertyInfo(Variant::INT, "hp")));
-  
+
   // Game reset
   ClassDB::bind_method(D_METHOD("reset_game"),
                        &AdventureGameStateBase::reset_game);
-
-  // Snapshot API
-  ClassDB::bind_method(D_METHOD("get_flags_snapshot"),
-                       &AdventureGameStateBase::get_flags_snapshot);
-  ClassDB::bind_method(D_METHOD("restore_flags_snapshot", "snapshot"),
-                       &AdventureGameStateBase::restore_flags_snapshot);
-  ClassDB::bind_method(D_METHOD("get_inventory_snapshot"),
-                       &AdventureGameStateBase::get_inventory_snapshot);
-  ClassDB::bind_method(D_METHOD("restore_inventory_snapshot", "snapshot"),
-                       &AdventureGameStateBase::restore_inventory_snapshot);
-}
-
-void AdventureGameStateBase::set_flag(const String &key, bool value) {
-  flags[key] = value;
-}
-
-bool AdventureGameStateBase::get_flag(const String &key,
-                                      bool default_value) const {
-  if (flags.has(key)) {
-    return flags[key];
-  }
-  return default_value;
-}
-
-void AdventureGameStateBase::add_item(const String &item_name) {
-  if (!has_item(item_name)) {
-    inventory.append(item_name);
-    UtilityFunctions::print("Item added: ", item_name);
-  }
-}
-
-void AdventureGameStateBase::remove_item(const String &item_name) {
-  int index = inventory.find(item_name);
-  if (index != -1) {
-    inventory.remove_at(index);
-  }
-}
-
-bool AdventureGameStateBase::has_item(const String &item_name) const {
-  return inventory.has(item_name);
 }
 
 void AdventureGameStateBase::change_scene(const String &path) {
@@ -109,9 +59,7 @@ void AdventureGameStateBase::set_health(int hp) {
   emit_signal("health_changed", health);
 }
 
-int AdventureGameStateBase::get_health() const {
-  return health;
-}
+int AdventureGameStateBase::get_health() const { return health; }
 
 void AdventureGameStateBase::take_damage() {
   if (health > 0) {
@@ -128,38 +76,15 @@ void AdventureGameStateBase::heal(int amount) {
 }
 
 void AdventureGameStateBase::reset_game() {
-  flags.clear();
-  inventory.clear();
+  auto *em = EvidenceManager::get_singleton();
+  if (em) {
+    em->clear_all_evidence();
+  }
+  auto *gm = MysteryGameMaster::get_singleton();
+  if (gm) {
+    gm->deserialize_flags(Dictionary());
+  }
   health = 3;
   UtilityFunctions::print("Game reset. Health: ", health);
   emit_signal("health_changed", health);
-}
-
-// ---------------------------------------------------------------------------
-// Snapshot API
-// ---------------------------------------------------------------------------
-
-godot::Dictionary AdventureGameStateBase::get_flags_snapshot() const {
-  return flags.duplicate();
-}
-
-void AdventureGameStateBase::restore_flags_snapshot(
-    const godot::Dictionary &snapshot) {
-  flags.clear();
-  Array keys = snapshot.keys();
-  for (int i = 0; i < keys.size(); ++i) {
-    flags[keys[i]] = snapshot[keys[i]];
-  }
-}
-
-godot::Array AdventureGameStateBase::get_inventory_snapshot() const {
-  return inventory.duplicate();
-}
-
-void AdventureGameStateBase::restore_inventory_snapshot(
-    const godot::Array &snapshot) {
-  inventory.clear();
-  for (int i = 0; i < snapshot.size(); ++i) {
-    inventory.append(snapshot[i]);
-  }
 }

@@ -356,7 +356,7 @@ func _go_to_deduction(gs: Node) -> bool:
 		_safe_clear_dialogue()
 		if await _wait_runner_idle(20): break
 	
-	_assert(gs.call("get_flag", "talked_to_tanaka"), "Tanaka flag was not set")
+	_assert(GameMaster.get_flag("talked_to_tanaka"), "Tanaka flag was not set")
 	
 	# --- [TEST] NPC Interaction (Tanaka - Second Talk) ---
 	print("[KARAKURI_SMOKE] testing NPC interaction (Tanaka - Second Talk)...")

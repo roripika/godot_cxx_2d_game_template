@@ -7,6 +7,8 @@
 
 #include "../karakuri_save_service.h"
 #include "../yaml/karakuri_yaml_lite.h"
+#include "features/mystery/evidence_manager.h"
+#include "features/mystery/mystery_game_master.h"
 
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/circle_shape2d.hpp>
@@ -99,9 +101,7 @@ static CollisionShape2D *find_collision_shape(Area2D *area) {
 
 } // namespace
 
-KarakuriScenarioRunner::KarakuriScenarioRunner() {
-  init_builtin_actions();
-}
+KarakuriScenarioRunner::KarakuriScenarioRunner() { init_builtin_actions(); }
 
 KarakuriScenarioRunner::~KarakuriScenarioRunner() {}
 
@@ -808,9 +808,12 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (flag.is_empty()) {
       return false;
     }
-    Node *gs = get_adventure_state();
-    if (gs && gs->has_method("set_flag")) {
-      gs->call("set_flag", flag, value);
+    auto *gm = godot::MysteryGameMaster::get_singleton();
+    if (gm) {
+      gm->set_flag(flag, value);
+    } else {
+      UtilityFunctions::printerr(
+          "[KarakuriScenarioRunner] MysteryGameMaster not found.");
     }
     return false;
   });
@@ -822,9 +825,12 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (item_id.is_empty()) {
       return false;
     }
-    Node *gs = get_adventure_state();
-    if (gs && gs->has_method("add_item")) {
-      gs->call("add_item", item_id);
+    auto *em = godot::EvidenceManager::get_singleton();
+    if (em) {
+      em->add_evidence(item_id);
+    } else {
+      UtilityFunctions::printerr(
+          "[KarakuriScenarioRunner] EvidenceManager not found.");
     }
     // This action is non-blocking.
     // The evidence_ui_ part is a side effect that doesn't block the action
@@ -972,9 +978,9 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     const Array else_actions = as_array(payload.get("else", Array()));
 
     bool actual = false;
-    Node *gs = get_adventure_state();
-    if (gs && gs->has_method("get_flag") && !key.is_empty()) {
-      actual = bool(gs->call("get_flag", key, false));
+    auto *gm = godot::MysteryGameMaster::get_singleton();
+    if (gm && !key.is_empty()) {
+      actual = gm->get_flag(key);
     }
 
     const Array chosen = (actual == expected) ? then_actions : else_actions;
@@ -993,8 +999,8 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     const Array else_actions = as_array(payload.get("else", Array()));
 
     bool ok = true;
-    Node *gs = get_adventure_state();
-    if (!gs || !gs->has_method("has_item")) {
+    auto *em = godot::EvidenceManager::get_singleton();
+    if (!em) {
       ok = false;
     }
     for (int i = 0; ok && i < items.size(); i++) {
@@ -1002,7 +1008,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       if (item.is_empty()) {
         continue;
       }
-      if (!bool(gs->call("has_item", item))) {
+      if (!em->has_evidence(item)) {
         ok = false;
         break;
       }

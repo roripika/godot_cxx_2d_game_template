@@ -1,5 +1,7 @@
 #include "haunted_spot_scene_logic.h"
 #include "core/adventure_game_state.h"
+#include "features/mystery/evidence_manager.h"
+#include "features/mystery/mystery_game_master.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
@@ -86,23 +88,25 @@ void HauntedSpotSceneLogic::_on_clicked_at(Vector2 pos) {
   // Exit Area
   Rect2 exit_rect(0, 0, 100, 648);
 
-  AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
-  if (!state || !dialogue_ui)
+  auto *gm = MysteryGameMaster::get_singleton();
+  auto *em = EvidenceManager::get_singleton();
+  if (!dialogue_ui || !gm || !em)
     return;
 
   if (ghost_rect.has_point(pos)) {
-    if (state->get_flag("has_evidence")) {
-      dialogue_ui->show_message("Detective",
-                                tr_key("haunted_detective_already_have_evidence"));
+    if (gm->get_flag("has_evidence")) {
+      dialogue_ui->show_message(
+          "Detective", tr_key("haunted_detective_already_have_evidence"));
     } else {
       dialogue_ui->show_message("Detective",
                                 tr_key("haunted_detective_collected"));
-      state->set_flag("has_evidence", true);
+      gm->set_flag("has_evidence", true);
       // Use stable evidence id to match other systems.
-      state->add_item("ectoplasm");
+      em->add_evidence("ectoplasm");
     }
   } else if (exit_rect.has_point(pos)) {
-    dialogue_ui->show_message("System", tr_key("haunted_system_returning_office"));
+    dialogue_ui->show_message("System",
+                              tr_key("haunted_system_returning_office"));
 
     Ref<SceneTreeTimer> timer = get_tree()->create_timer(1.0);
     timer->connect("timeout", Callable(this, "_change_scene_callback"));

@@ -59,10 +59,13 @@ func _run() -> void:
 		if hid == "floor_area" or hid == "footprints" or hid == "memo":
 			hm._trigger_hotspot(hs)
 	await _wait_frames(10)
-	_assert(bool(game_state.has_item("ectoplasm")), "ectoplasm not in inventory after hotspot click")
-	_assert(bool(game_state.has_item("footprint")), "footprint not in inventory after hotspot click")
-	_assert(bool(game_state.has_item("torn_memo")), "torn_memo not in inventory after hotspot click")
-	_assert(bool(game_state.get_flag("all_evidence_collected")), "all_evidence_collected was not set after collecting evidence")
+	_assert(bool(Evidences.has_evidence("ectoplasm")), "ectoplasm not in inventory after hotspot click")
+	_assert(bool(Evidences.has_evidence("footprint")), "footprint not in inventory after hotspot click")
+	_assert(bool(Evidences.has_evidence("torn_memo")), "torn_memo not in inventory after hotspot click")
+	# Evidences.add_evidence() は内部で動作する
+	# Check if flags are updated
+	print("Checking if all_evidence_collected flag was set...")
+	_assert(bool(GameMaster.get_flag("all_evidence_collected")), "all_evidence_collected was not set after collecting evidence")
 
 	# Exit back to office.
 	if current_scene.has_method("_exit_warehouse"):

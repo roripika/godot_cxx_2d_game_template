@@ -44,7 +44,7 @@ func _on_choice_made(choice_index: int):
 	var is_correct = (choice_index == 0)  # index 0 が正解（証拠）
 	
 	if is_correct:
-		AdventureGameState.set_flag("deduction_complete", true)
+		GameMaster.set_flag("deduction_complete", true)
 		if dialogue_ui:
 			dialogue_ui.show_message("Boss", tr("deduction_correct"))
 	else:
@@ -52,7 +52,7 @@ func _on_choice_made(choice_index: int):
 		if dialogue_ui:
 			dialogue_ui.show_message("Boss", tr("deduction_wrong"))
 		if AdventureGameState.get_health() <= 0:
-			AdventureGameState.set_flag("game_over", true)
+			GameMaster.set_flag("game_over", true)
 			await get_tree().create_timer(1.0).timeout
 			AdventureGameState.change_scene("res://samples/mystery/ending.tscn")
 			return

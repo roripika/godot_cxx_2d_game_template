@@ -1,5 +1,6 @@
 #include "office_scene_logic.h"
 #include "core/adventure_game_state.h"
+#include "features/mystery/mystery_game_master.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
@@ -52,11 +53,11 @@ void OfficeSceneLogic::_ready() {
   }
 
   if (dialogue_ui) {
-    AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
-    if (state) {
-      if (!state->get_flag("intro_done")) {
+    auto *gm = MysteryGameMaster::get_singleton();
+    if (gm) {
+      if (!gm->get_flag("intro_done")) {
         dialogue_ui->show_message("Boss", tr_key("office_boss_intro"));
-        state->set_flag("intro_done", true);
+        gm->set_flag("intro_done", true);
       } else {
         dialogue_ui->show_message("Boss", tr_key("office_boss_back"));
       }
@@ -71,23 +72,25 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
   Rect2 boss_rect(100, 200, 150, 300);
 
   AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
-  if (!state || !dialogue_ui)
+  auto *gm = MysteryGameMaster::get_singleton();
+  if (!state || !dialogue_ui || !gm)
     return;
 
   if (door_rect.has_point(pos)) {
-    if (state->get_flag("case_solved")) {
+    if (gm->get_flag("case_solved")) {
       dialogue_ui->show_message("System", tr_key("office_system_case_closed"));
     } else {
-      dialogue_ui->show_message("System", tr_key("office_system_going_to_warehouse"));
+      dialogue_ui->show_message("System",
+                                tr_key("office_system_going_to_warehouse"));
 
       // Create timer for delay
       Ref<SceneTreeTimer> timer = get_tree()->create_timer(1.0);
       timer->connect("timeout", Callable(this, "_change_scene_callback"));
     }
   } else if (boss_rect.has_point(pos)) {
-    if (state->get_flag("has_evidence")) {
+    if (gm->get_flag("has_evidence")) {
       dialogue_ui->show_message("Boss", tr_key("office_boss_great_work"));
-      state->set_flag("case_solved", true);
+      gm->set_flag("case_solved", true);
     } else {
       dialogue_ui->show_message("Boss", tr_key("office_boss_go_warehouse"));
     }

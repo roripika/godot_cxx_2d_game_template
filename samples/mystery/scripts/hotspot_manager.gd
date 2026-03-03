@@ -89,7 +89,7 @@ func _on_clicked_at(pos: Vector2):
 func _trigger_hotspot(hotspot: Hotspot):
 	"""ホットスポットを発動"""
 	# フラグチェック
-	if hotspot.requires_flag != "" and not AdventureGameState.get_flag(hotspot.requires_flag):
+	if hotspot.requires_flag != "" and not GameMaster.get_flag(hotspot.requires_flag):
 		return
 	
 	interaction_started.emit(hotspot)
