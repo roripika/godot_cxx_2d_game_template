@@ -137,7 +137,10 @@ scenes:
             - option:
                 text_key: "mystery.deduction.choice.ghost"
                 actions:
+                  - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.deduction.ghost.text", clear: true }
                   - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.deduction.ghost.response1", portrait_enter: "zoom_in" }
+                  - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.deduction.shared.bridge1" }
+                  - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.deduction.shared.bridge2" }
                   - goto:
                       scene_id: "confrontation"
                       fade_duration: 1.0
