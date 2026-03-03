@@ -14,13 +14,13 @@ func _ready():
 	var ags = get_tree().root.get_node_or_null("AdventureGameState")
 	
 	# フラグに基づいてエンディングを分岐
-	if GameMaster.get_flag("game_over"):
+	if MysteryGameMaster.get_flag("game_over"):
 		_set_result_title("GAME OVER", Color.CRIMSON)
 		await _show_failure_ending()
-	elif GameMaster.get_flag("perfect_ending"):
+	elif MysteryGameMaster.get_flag("perfect_ending"):
 		_set_result_title("PERFECT!", Color.GOLD)
 		await _show_perfect_ending()
-	elif GameMaster.get_flag("case_solved"):
+	elif MysteryGameMaster.get_flag("case_solved"):
 		_set_result_title("THE END", Color.SKY_BLUE)
 		await _show_normal_ending()
 	else:
