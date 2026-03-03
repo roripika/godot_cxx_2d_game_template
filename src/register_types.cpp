@@ -48,6 +48,9 @@
 #include "karakuri/karakuri_save_service.h"
 #include "karakuri/scenario/karakuri_scenario_runner.h"
 
+#include "features/mystery/evidence_manager.h"
+#include "features/mystery/mystery_game_master.h"
+
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
@@ -95,6 +98,8 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::KarakuriLogger>();
   ClassDB::register_class<karakuri::KarakuriSaveService>();
   ClassDB::register_class<karakuri::KarakuriScenarioRunner>();
+  ClassDB::register_class<MysteryGameMaster>();
+  ClassDB::register_class<EvidenceManager>();
 }
 
 void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {
