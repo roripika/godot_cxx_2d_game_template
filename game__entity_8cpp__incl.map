@@ -1,0 +1,11 @@
+<map id="src/entities/game_entity.cpp" name="src/entities/game_entity.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="167,5,373,31"/>
+<area shape="rect" id="Node000002" href="$game__entity_8h.html" title=" " alt="" coords="51,86,166,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,33,145,83,143,78,245,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="191,79,349,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="273,31,273,65,267,65,267,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="374,79,555,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="299,28,406,71,404,76,297,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,212,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="111,112,111,153,106,153,106,112"/>
+</map>

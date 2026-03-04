@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/rhythm/conductor.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_9c7114e7cb3627db40ee48dc733bcc02.html">rhythm</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">conductor.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="conductor_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CONDUCTOR_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CONDUCTOR_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;godot_cpp/classes/audio_stream.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;godot_cpp/classes/audio_stream_player.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;godot_cpp/classes/node.hpp&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classConductor.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="classConductor.html">Conductor</a> : <span class="keyword">public</span> Node {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  GDCLASS(<a class="code hl_class" href="classConductor.html">Conductor</a>, Node)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classConductor.html#a1da528d3582f338eaa4cb4e6471a5e5c">   14</a></span>  AudioStreamPlayer *<a class="code hl_variable" href="classConductor.html#a1da528d3582f338eaa4cb4e6471a5e5c">audio_player</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classConductor.html#a189e69158f8faa58c9e52e6c90936518">   16</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classConductor.html#a189e69158f8faa58c9e52e6c90936518">bpm</a> = 120.0f;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classConductor.html#a6993804e233e5138030000db85e4002c">   17</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classConductor.html#a6993804e233e5138030000db85e4002c">crotchet</a> = 0.0f;      <span class="comment">// Seconds per beat</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classConductor.html#a92873b58719ee63057bb17ec923f0170">   18</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classConductor.html#a92873b58719ee63057bb17ec923f0170">offset</a> = 0.0f;        <span class="comment">// Seconds to delay</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classConductor.html#a842422ac31aaed570b629448df704573">   19</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classConductor.html#a842422ac31aaed570b629448df704573">song_position</a> = 0.0f; <span class="comment">// Current song position in seconds</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classConductor.html#a9cb89527d2060dfbb2337c9967d3c07e">   20</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classConductor.html#a9cb89527d2060dfbb2337c9967d3c07e">last_reported_beat</a> = 0.0f;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classConductor.html#a8e761ab084c7c239fe8d75f2c6c12d2d">   21</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classConductor.html#a8e761ab084c7c239fe8d75f2c6c12d2d">beats_before_start</a> = 0;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classConductor.html#aa27a7e6c6e4b07a75b1a50283bedd3c2">   22</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classConductor.html#aa27a7e6c6e4b07a75b1a50283bedd3c2">measure</a> = 1;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classConductor.html#a4c44148103e50868e30f85e9c0bff0dc">   23</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classConductor.html#a4c44148103e50868e30f85e9c0bff0dc">beat</a> = 1;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classConductor.html#ad7af87250f1d54f08ce01331a6e67138">   25</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="classConductor.html#ad7af87250f1d54f08ce01331a6e67138">is_playing</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#a451b4eb68fcfaa6370c34368891b6c33">_bind_methods</a>();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_function" href="classConductor.html#a51105dad2237bf331b5ee8e118d5332e">Conductor</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_function" href="classConductor.html#a220f9400b262de914dadf7efeb7a6bd9">~Conductor</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#ae200016558d9956f6731a91cba022af5">_ready</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#a31c57b8af54af3665a080dbb98b69e03">_process</a>(<span class="keywordtype">double</span> delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#a278e515ae3d6811918c6f57d5e08e3d0">play</a>(Ref&lt;AudioStream&gt; p_stream, <span class="keywordtype">float</span> p_bpm, <span class="keywordtype">float</span> p_offset = 0.0f,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordtype">int</span> p_beats_before_start = 0);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#a69f7a2140964e68e10fd7c0724e0beee">stop</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">// Getters &amp; Setters</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#a4c20a68701ef5c172c740bf975d66765">set_bpm</a>(<span class="keywordtype">float</span> p_bpm);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classConductor.html#a5f6e51bd8a23e06d349c751586314489">get_bpm</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classConductor.html#a46f9331c743f3fd12a0ca2dc780eec87">get_song_position</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classConductor.html#aaef884b748e37b253fda401d8cbc0ba3">get_sec_per_beat</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classConductor.html#a48510c8c84952bb46cf3f24ec1a8ef07">get_beat_position</a>() <span class="keyword">const</span>; <span class="comment">// Exact beat position (e.g. 4.5)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classConductor.html#a294c091584fb9c67b69685e5efb901b3">get_closest_beat</a>(<span class="keywordtype">int</span> p_quantize = 1) <span class="keyword">const</span>; <span class="comment">// Snap to grid</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">// Latency compensation logic can be added later</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classConductor.html#af7e05613087dc3f539d5dd57c196b9e0">   51</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classConductor.html#af7e05613087dc3f539d5dd57c196b9e0">report_beat</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif </span><span class="comment">// CONDUCTOR_H</span></div>
+<div class="ttc" id="aclassConductor_html"><div class="ttname"><a href="classConductor.html">Conductor</a></div><div class="ttdef"><b>Definition</b> conductor.h:10</div></div>
+<div class="ttc" id="aclassConductor_html_a189e69158f8faa58c9e52e6c90936518"><div class="ttname"><a href="classConductor.html#a189e69158f8faa58c9e52e6c90936518">Conductor::bpm</a></div><div class="ttdeci">float bpm</div><div class="ttdef"><b>Definition</b> conductor.h:16</div></div>
+<div class="ttc" id="aclassConductor_html_a1da528d3582f338eaa4cb4e6471a5e5c"><div class="ttname"><a href="classConductor.html#a1da528d3582f338eaa4cb4e6471a5e5c">Conductor::audio_player</a></div><div class="ttdeci">AudioStreamPlayer * audio_player</div><div class="ttdef"><b>Definition</b> conductor.h:14</div></div>
+<div class="ttc" id="aclassConductor_html_a220f9400b262de914dadf7efeb7a6bd9"><div class="ttname"><a href="classConductor.html#a220f9400b262de914dadf7efeb7a6bd9">Conductor::~Conductor</a></div><div class="ttdeci">~Conductor()</div><div class="ttdef"><b>Definition</b> conductor.cpp:10</div></div>
+<div class="ttc" id="aclassConductor_html_a278e515ae3d6811918c6f57d5e08e3d0"><div class="ttname"><a href="classConductor.html#a278e515ae3d6811918c6f57d5e08e3d0">Conductor::play</a></div><div class="ttdeci">void play(Ref&lt; AudioStream &gt; p_stream, float p_bpm, float p_offset=0.0f, int p_beats_before_start=0)</div><div class="ttdef"><b>Definition</b> conductor.cpp:73</div></div>
+<div class="ttc" id="aclassConductor_html_a294c091584fb9c67b69685e5efb901b3"><div class="ttname"><a href="classConductor.html#a294c091584fb9c67b69685e5efb901b3">Conductor::get_closest_beat</a></div><div class="ttdeci">int get_closest_beat(int p_quantize=1) const</div><div class="ttdef"><b>Definition</b> conductor.cpp:115</div></div>
+<div class="ttc" id="aclassConductor_html_a31c57b8af54af3665a080dbb98b69e03"><div class="ttname"><a href="classConductor.html#a31c57b8af54af3665a080dbb98b69e03">Conductor::_process</a></div><div class="ttdeci">void _process(double delta) override</div><div class="ttdef"><b>Definition</b> conductor.cpp:39</div></div>
+<div class="ttc" id="aclassConductor_html_a451b4eb68fcfaa6370c34368891b6c33"><div class="ttname"><a href="classConductor.html#a451b4eb68fcfaa6370c34368891b6c33">Conductor::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> conductor.cpp:12</div></div>
+<div class="ttc" id="aclassConductor_html_a46f9331c743f3fd12a0ca2dc780eec87"><div class="ttname"><a href="classConductor.html#a46f9331c743f3fd12a0ca2dc780eec87">Conductor::get_song_position</a></div><div class="ttdeci">float get_song_position() const</div><div class="ttdef"><b>Definition</b> conductor.cpp:106</div></div>
+<div class="ttc" id="aclassConductor_html_a48510c8c84952bb46cf3f24ec1a8ef07"><div class="ttname"><a href="classConductor.html#a48510c8c84952bb46cf3f24ec1a8ef07">Conductor::get_beat_position</a></div><div class="ttdeci">float get_beat_position() const</div><div class="ttdef"><b>Definition</b> conductor.cpp:109</div></div>
+<div class="ttc" id="aclassConductor_html_a4c20a68701ef5c172c740bf975d66765"><div class="ttname"><a href="classConductor.html#a4c20a68701ef5c172c740bf975d66765">Conductor::set_bpm</a></div><div class="ttdeci">void set_bpm(float p_bpm)</div><div class="ttdef"><b>Definition</b> conductor.cpp:100</div></div>
+<div class="ttc" id="aclassConductor_html_a4c44148103e50868e30f85e9c0bff0dc"><div class="ttname"><a href="classConductor.html#a4c44148103e50868e30f85e9c0bff0dc">Conductor::beat</a></div><div class="ttdeci">int beat</div><div class="ttdef"><b>Definition</b> conductor.h:23</div></div>
+<div class="ttc" id="aclassConductor_html_a51105dad2237bf331b5ee8e118d5332e"><div class="ttname"><a href="classConductor.html#a51105dad2237bf331b5ee8e118d5332e">Conductor::Conductor</a></div><div class="ttdeci">Conductor()</div><div class="ttdef"><b>Definition</b> conductor.cpp:8</div></div>
+<div class="ttc" id="aclassConductor_html_a5f6e51bd8a23e06d349c751586314489"><div class="ttname"><a href="classConductor.html#a5f6e51bd8a23e06d349c751586314489">Conductor::get_bpm</a></div><div class="ttdeci">float get_bpm() const</div><div class="ttdef"><b>Definition</b> conductor.cpp:105</div></div>
+<div class="ttc" id="aclassConductor_html_a6993804e233e5138030000db85e4002c"><div class="ttname"><a href="classConductor.html#a6993804e233e5138030000db85e4002c">Conductor::crotchet</a></div><div class="ttdeci">float crotchet</div><div class="ttdef"><b>Definition</b> conductor.h:17</div></div>
+<div class="ttc" id="aclassConductor_html_a69f7a2140964e68e10fd7c0724e0beee"><div class="ttname"><a href="classConductor.html#a69f7a2140964e68e10fd7c0724e0beee">Conductor::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdef"><b>Definition</b> conductor.cpp:92</div></div>
+<div class="ttc" id="aclassConductor_html_a842422ac31aaed570b629448df704573"><div class="ttname"><a href="classConductor.html#a842422ac31aaed570b629448df704573">Conductor::song_position</a></div><div class="ttdeci">float song_position</div><div class="ttdef"><b>Definition</b> conductor.h:19</div></div>
+<div class="ttc" id="aclassConductor_html_a8e761ab084c7c239fe8d75f2c6c12d2d"><div class="ttname"><a href="classConductor.html#a8e761ab084c7c239fe8d75f2c6c12d2d">Conductor::beats_before_start</a></div><div class="ttdeci">int beats_before_start</div><div class="ttdef"><b>Definition</b> conductor.h:21</div></div>
+<div class="ttc" id="aclassConductor_html_a92873b58719ee63057bb17ec923f0170"><div class="ttname"><a href="classConductor.html#a92873b58719ee63057bb17ec923f0170">Conductor::offset</a></div><div class="ttdeci">float offset</div><div class="ttdef"><b>Definition</b> conductor.h:18</div></div>
+<div class="ttc" id="aclassConductor_html_a9cb89527d2060dfbb2337c9967d3c07e"><div class="ttname"><a href="classConductor.html#a9cb89527d2060dfbb2337c9967d3c07e">Conductor::last_reported_beat</a></div><div class="ttdeci">float last_reported_beat</div><div class="ttdef"><b>Definition</b> conductor.h:20</div></div>
+<div class="ttc" id="aclassConductor_html_aa27a7e6c6e4b07a75b1a50283bedd3c2"><div class="ttname"><a href="classConductor.html#aa27a7e6c6e4b07a75b1a50283bedd3c2">Conductor::measure</a></div><div class="ttdeci">int measure</div><div class="ttdef"><b>Definition</b> conductor.h:22</div></div>
+<div class="ttc" id="aclassConductor_html_aaef884b748e37b253fda401d8cbc0ba3"><div class="ttname"><a href="classConductor.html#aaef884b748e37b253fda401d8cbc0ba3">Conductor::get_sec_per_beat</a></div><div class="ttdeci">float get_sec_per_beat() const</div><div class="ttdef"><b>Definition</b> conductor.cpp:107</div></div>
+<div class="ttc" id="aclassConductor_html_ad7af87250f1d54f08ce01331a6e67138"><div class="ttname"><a href="classConductor.html#ad7af87250f1d54f08ce01331a6e67138">Conductor::is_playing</a></div><div class="ttdeci">bool is_playing</div><div class="ttdef"><b>Definition</b> conductor.h:25</div></div>
+<div class="ttc" id="aclassConductor_html_ae200016558d9956f6731a91cba022af5"><div class="ttname"><a href="classConductor.html#ae200016558d9956f6731a91cba022af5">Conductor::_ready</a></div><div class="ttdeci">void _ready() override</div><div class="ttdef"><b>Definition</b> conductor.cpp:34</div></div>
+<div class="ttc" id="aclassConductor_html_af7e05613087dc3f539d5dd57c196b9e0"><div class="ttname"><a href="classConductor.html#af7e05613087dc3f539d5dd57c196b9e0">Conductor::report_beat</a></div><div class="ttdeci">void report_beat()</div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

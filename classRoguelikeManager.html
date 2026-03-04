@@ -1,0 +1,751 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: RoguelikeManager クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">RoguelikeManager クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="roguelike__manager_8h_source.html">roguelike_manager.h</a>&gt;</code></p>
+<div class="dynheader">
+RoguelikeManager の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager__inherit__graph.png" border="0" usemap="#aRoguelikeManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="aRoguelikeManager_inherit__map" id="aRoguelikeManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,148,104"/>
+<area shape="rect" title=" " alt="" coords="49,5,105,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,74,79,74,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+RoguelikeManager 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager__coll__graph.png" border="0" usemap="#aRoguelikeManager_coll__map" alt="Collaboration graph"/></div>
+<map name="aRoguelikeManager_coll__map" id="aRoguelikeManager_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,148,104"/>
+<area shape="rect" title=" " alt="" coords="49,5,105,31"/>
+<area shape="poly" title=" " alt="" coords="79,44,79,79,74,79,74,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ac5085d3bc2b7004f4f3dcb2cf8e20afe" id="r_ac5085d3bc2b7004f4f3dcb2cf8e20afe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#ac5085d3bc2b7004f4f3dcb2cf8e20afe">RoguelikeManager</a> ()</td></tr>
+<tr class="separator:ac5085d3bc2b7004f4f3dcb2cf8e20afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489d6082e39edf5609489a84ed551ef7" id="r_a489d6082e39edf5609489a84ed551ef7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a489d6082e39edf5609489a84ed551ef7">~RoguelikeManager</a> ()</td></tr>
+<tr class="separator:a489d6082e39edf5609489a84ed551ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9856b6fc7ba412c005e4d76875424c5a" id="r_a9856b6fc7ba412c005e4d76875424c5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a9856b6fc7ba412c005e4d76875424c5a">_ready</a> () override</td></tr>
+<tr class="separator:a9856b6fc7ba412c005e4d76875424c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13fb6df39cad7cf563d38303566e877a" id="r_a13fb6df39cad7cf563d38303566e877a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a13fb6df39cad7cf563d38303566e877a">start_level</a> ()</td></tr>
+<tr class="separator:a13fb6df39cad7cf563d38303566e877a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d4fb8be70800c8a08a2057e554699ab" id="r_a8d4fb8be70800c8a08a2057e554699ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a8d4fb8be70800c8a08a2057e554699ab">set_view_path</a> (const NodePath &amp;p_path)</td></tr>
+<tr class="separator:a8d4fb8be70800c8a08a2057e554699ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960fdb44f3b08c1507c6ceaeff85eff1" id="r_a960fdb44f3b08c1507c6ceaeff85eff1"><td class="memItemLeft" align="right" valign="top">NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a960fdb44f3b08c1507c6ceaeff85eff1">get_view_path</a> () const</td></tr>
+<tr class="separator:a960fdb44f3b08c1507c6ceaeff85eff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f2b2bfa0b5e538e9b2bdfdf370596c" id="r_a73f2b2bfa0b5e538e9b2bdfdf370596c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a73f2b2bfa0b5e538e9b2bdfdf370596c">set_player_scene</a> (const Ref&lt; PackedScene &gt; &amp;p_scene)</td></tr>
+<tr class="separator:a73f2b2bfa0b5e538e9b2bdfdf370596c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab01775c6464f7d95ce93bda557d5d0c9" id="r_ab01775c6464f7d95ce93bda557d5d0c9"><td class="memItemLeft" align="right" valign="top">Ref&lt; PackedScene &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#ab01775c6464f7d95ce93bda557d5d0c9">get_player_scene</a> () const</td></tr>
+<tr class="separator:ab01775c6464f7d95ce93bda557d5d0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3a206f647f84ff5042c1457e11d77c2" id="r_ab3a206f647f84ff5042c1457e11d77c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#ab3a206f647f84ff5042c1457e11d77c2">set_map_width</a> (int p_width)</td></tr>
+<tr class="separator:ab3a206f647f84ff5042c1457e11d77c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbdd47e370c57fc4fcfd9a21b1bf4e0f" id="r_adbdd47e370c57fc4fcfd9a21b1bf4e0f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#adbdd47e370c57fc4fcfd9a21b1bf4e0f">get_map_width</a> () const</td></tr>
+<tr class="separator:adbdd47e370c57fc4fcfd9a21b1bf4e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd8a623035f91644c9a1c783adea45e" id="r_adcd8a623035f91644c9a1c783adea45e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#adcd8a623035f91644c9a1c783adea45e">set_map_height</a> (int p_height)</td></tr>
+<tr class="separator:adcd8a623035f91644c9a1c783adea45e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a615bdb1a09962b3ee66752b24b7e5c37" id="r_a615bdb1a09962b3ee66752b24b7e5c37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a615bdb1a09962b3ee66752b24b7e5c37">get_map_height</a> () const</td></tr>
+<tr class="separator:a615bdb1a09962b3ee66752b24b7e5c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c257cf19b60e1ba8d903ccd185b3a1" id="r_a63c257cf19b60e1ba8d903ccd185b3a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a63c257cf19b60e1ba8d903ccd185b3a1">set_room_count</a> (int p_count)</td></tr>
+<tr class="separator:a63c257cf19b60e1ba8d903ccd185b3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f24f7d77e36e7c16cde04f644b2765" id="r_a35f24f7d77e36e7c16cde04f644b2765"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a35f24f7d77e36e7c16cde04f644b2765">get_room_count</a> () const</td></tr>
+<tr class="separator:a35f24f7d77e36e7c16cde04f644b2765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a4b26734bd735a0f912392fca37b2e272" id="r_a4b26734bd735a0f912392fca37b2e272"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272">_bind_methods</a> ()</td></tr>
+<tr class="separator:a4b26734bd735a0f912392fca37b2e272"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:af98b3ef21b509abf9d3f47906064e883" id="r_af98b3ef21b509abf9d3f47906064e883"><td class="memItemLeft" align="right" valign="top">Ref&lt; <a class="el" href="classUniversalWorldData.html">UniversalWorldData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#af98b3ef21b509abf9d3f47906064e883">world_data</a></td></tr>
+<tr class="separator:af98b3ef21b509abf9d3f47906064e883"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e64dea7916ac40a41b2903bc9090789" id="r_a9e64dea7916ac40a41b2903bc9090789"><td class="memItemLeft" align="right" valign="top">Ref&lt; <a class="el" href="classRoguelikeGenerator.html">RoguelikeGenerator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a9e64dea7916ac40a41b2903bc9090789">generator</a></td></tr>
+<tr class="separator:a9e64dea7916ac40a41b2903bc9090789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66bbaa9a1a16d15d55bdbcfd0e8abc9" id="r_af66bbaa9a1a16d15d55bdbcfd0e8abc9"><td class="memItemLeft" align="right" valign="top">NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#af66bbaa9a1a16d15d55bdbcfd0e8abc9">view_path</a></td></tr>
+<tr class="separator:af66bbaa9a1a16d15d55bdbcfd0e8abc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4821582053c729763737582e7b1dac" id="r_a6f4821582053c729763737582e7b1dac"><td class="memItemLeft" align="right" valign="top">Ref&lt; PackedScene &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a6f4821582053c729763737582e7b1dac">player_scene</a></td></tr>
+<tr class="separator:a6f4821582053c729763737582e7b1dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24e5ec898fd70b3f0b95ddd1b6d230b2" id="r_a24e5ec898fd70b3f0b95ddd1b6d230b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a24e5ec898fd70b3f0b95ddd1b6d230b2">map_width</a></td></tr>
+<tr class="separator:a24e5ec898fd70b3f0b95ddd1b6d230b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ee6725f4dcc56fe0e7b2afdc3e6d05" id="r_ac4ee6725f4dcc56fe0e7b2afdc3e6d05"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#ac4ee6725f4dcc56fe0e7b2afdc3e6d05">map_height</a></td></tr>
+<tr class="separator:ac4ee6725f4dcc56fe0e7b2afdc3e6d05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f5649bf70fd79c05fb8486fbf2958de" id="r_a8f5649bf70fd79c05fb8486fbf2958de"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoguelikeManager.html#a8f5649bf70fd79c05fb8486fbf2958de">room_count</a></td></tr>
+<tr class="separator:a8f5649bf70fd79c05fb8486fbf2958de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ac5085d3bc2b7004f4f3dcb2cf8e20afe" name="ac5085d3bc2b7004f4f3dcb2cf8e20afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5085d3bc2b7004f4f3dcb2cf8e20afe">&#9670;&#160;</a></span>RoguelikeManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RoguelikeManager::RoguelikeManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a489d6082e39edf5609489a84ed551ef7" name="a489d6082e39edf5609489a84ed551ef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a489d6082e39edf5609489a84ed551ef7">&#9670;&#160;</a></span>~RoguelikeManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RoguelikeManager::~RoguelikeManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a4b26734bd735a0f912392fca37b2e272" name="a4b26734bd735a0f912392fca37b2e272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b26734bd735a0f912392fca37b2e272">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a4b26734bd735a0f912392fca37b2e272_cgraph.png" border="0" usemap="#aclassRoguelikeManager_a4b26734bd735a0f912392fca37b2e272_cgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a4b26734bd735a0f912392fca37b2e272_cgraph" id="aclassRoguelikeManager_a4b26734bd735a0f912392fca37b2e272_cgraph">
+<area shape="rect" title=" " alt="" coords="5,325,156,365"/>
+<area shape="rect" href="classRoguelikeManager.html#a615bdb1a09962b3ee66752b24b7e5c37" title=" " alt="" coords="209,5,381,45"/>
+<area shape="poly" title=" " alt="" coords="82,325,93,271,115,200,130,161,150,123,174,87,202,55,207,51,210,55,206,59,178,90,155,126,135,163,120,201,98,273,88,326"/>
+<area shape="rect" href="classRoguelikeManager.html#adbdd47e370c57fc4fcfd9a21b1bf4e0f" title=" " alt="" coords="209,69,381,109"/>
+<area shape="poly" title=" " alt="" coords="85,324,100,282,123,227,157,170,178,143,202,119,209,114,212,119,206,123,182,146,162,173,128,229,105,284,90,326"/>
+<area shape="rect" href="classRoguelikeManager.html#ab01775c6464f7d95ce93bda557d5d0c9" title=" " alt="" coords="209,133,381,173"/>
+<area shape="poly" title=" " alt="" coords="90,324,133,256,165,217,202,183,211,177,214,182,206,187,169,221,137,259,95,327"/>
+<area shape="rect" href="classRoguelikeManager.html#a35f24f7d77e36e7c16cde04f644b2765" title=" " alt="" coords="209,197,381,237"/>
+<area shape="poly" title=" " alt="" coords="102,323,146,285,203,247,216,240,218,245,205,252,150,289,105,327"/>
+<area shape="rect" href="classRoguelikeManager.html#a960fdb44f3b08c1507c6ceaeff85eff1" title=" " alt="" coords="209,261,381,301"/>
+<area shape="poly" title=" " alt="" coords="148,323,213,303,215,308,149,328"/>
+<area shape="rect" href="classRoguelikeManager.html#adcd8a623035f91644c9a1c783adea45e" title=" " alt="" coords="209,325,380,365"/>
+<area shape="poly" title=" " alt="" coords="157,343,195,343,195,348,157,348"/>
+<area shape="rect" href="classRoguelikeManager.html#ab3a206f647f84ff5042c1457e11d77c2" title=" " alt="" coords="209,389,380,429"/>
+<area shape="poly" title=" " alt="" coords="149,363,215,383,213,388,148,368"/>
+<area shape="rect" href="classRoguelikeManager.html#a73f2b2bfa0b5e538e9b2bdfdf370596c" title=" " alt="" coords="209,453,380,493"/>
+<area shape="poly" title=" " alt="" coords="105,364,150,401,205,439,218,445,216,450,203,444,146,406,102,368"/>
+<area shape="rect" href="classRoguelikeManager.html#a63c257cf19b60e1ba8d903ccd185b3a1" title=" " alt="" coords="209,517,380,557"/>
+<area shape="poly" title=" " alt="" coords="95,364,137,432,169,470,206,503,214,509,211,513,202,507,165,474,133,435,90,367"/>
+<area shape="rect" href="classRoguelikeManager.html#a8d4fb8be70800c8a08a2057e554699ab" title=" " alt="" coords="209,581,380,621"/>
+<area shape="poly" title=" " alt="" coords="90,365,105,407,128,461,162,518,182,544,206,567,212,572,209,576,202,571,178,548,157,521,123,464,100,409,85,367"/>
+<area shape="rect" href="classRoguelikeManager.html#a13fb6df39cad7cf563d38303566e877a" title=" " alt="" coords="204,645,385,685"/>
+<area shape="poly" title=" " alt="" coords="88,365,98,418,120,489,135,528,155,565,178,600,206,631,210,635,207,639,202,635,174,604,150,568,130,530,115,491,93,419,82,366"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9856b6fc7ba412c005e4d76875424c5a" name="a9856b6fc7ba412c005e4d76875424c5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9856b6fc7ba412c005e4d76875424c5a">&#9670;&#160;</a></span>_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a9856b6fc7ba412c005e4d76875424c5a_cgraph.png" border="0" usemap="#aclassRoguelikeManager_a9856b6fc7ba412c005e4d76875424c5a_cgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a9856b6fc7ba412c005e4d76875424c5a_cgraph" id="aclassRoguelikeManager_a9856b6fc7ba412c005e4d76875424c5a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,156,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a13fb6df39cad7cf563d38303566e877a" title=" " alt="" coords="204,5,385,45"/>
+<area shape="poly" title=" " alt="" coords="157,23,191,23,191,28,157,28"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a615bdb1a09962b3ee66752b24b7e5c37" name="a615bdb1a09962b3ee66752b24b7e5c37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a615bdb1a09962b3ee66752b24b7e5c37">&#9670;&#160;</a></span>get_map_height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoguelikeManager::get_map_height </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a615bdb1a09962b3ee66752b24b7e5c37_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a615bdb1a09962b3ee66752b24b7e5c37_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a615bdb1a09962b3ee66752b24b7e5c37_icgraph" id="aclassRoguelikeManager_a615bdb1a09962b3ee66752b24b7e5c37_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,376,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adbdd47e370c57fc4fcfd9a21b1bf4e0f" name="adbdd47e370c57fc4fcfd9a21b1bf4e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbdd47e370c57fc4fcfd9a21b1bf4e0f">&#9670;&#160;</a></span>get_map_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoguelikeManager::get_map_width </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_adbdd47e370c57fc4fcfd9a21b1bf4e0f_icgraph.png" border="0" usemap="#aclassRoguelikeManager_adbdd47e370c57fc4fcfd9a21b1bf4e0f_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_adbdd47e370c57fc4fcfd9a21b1bf4e0f_icgraph" id="aclassRoguelikeManager_adbdd47e370c57fc4fcfd9a21b1bf4e0f_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,376,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab01775c6464f7d95ce93bda557d5d0c9" name="ab01775c6464f7d95ce93bda557d5d0c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01775c6464f7d95ce93bda557d5d0c9">&#9670;&#160;</a></span>get_player_scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt; PackedScene &gt; RoguelikeManager::get_player_scene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_ab01775c6464f7d95ce93bda557d5d0c9_icgraph.png" border="0" usemap="#aclassRoguelikeManager_ab01775c6464f7d95ce93bda557d5d0c9_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_ab01775c6464f7d95ce93bda557d5d0c9_icgraph" id="aclassRoguelikeManager_ab01775c6464f7d95ce93bda557d5d0c9_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,376,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a35f24f7d77e36e7c16cde04f644b2765" name="a35f24f7d77e36e7c16cde04f644b2765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f24f7d77e36e7c16cde04f644b2765">&#9670;&#160;</a></span>get_room_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoguelikeManager::get_room_count </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a35f24f7d77e36e7c16cde04f644b2765_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a35f24f7d77e36e7c16cde04f644b2765_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a35f24f7d77e36e7c16cde04f644b2765_icgraph" id="aclassRoguelikeManager_a35f24f7d77e36e7c16cde04f644b2765_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,376,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a960fdb44f3b08c1507c6ceaeff85eff1" name="a960fdb44f3b08c1507c6ceaeff85eff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a960fdb44f3b08c1507c6ceaeff85eff1">&#9670;&#160;</a></span>get_view_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath RoguelikeManager::get_view_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a960fdb44f3b08c1507c6ceaeff85eff1_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a960fdb44f3b08c1507c6ceaeff85eff1_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a960fdb44f3b08c1507c6ceaeff85eff1_icgraph" id="aclassRoguelikeManager_a960fdb44f3b08c1507c6ceaeff85eff1_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,376,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adcd8a623035f91644c9a1c783adea45e" name="adcd8a623035f91644c9a1c783adea45e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcd8a623035f91644c9a1c783adea45e">&#9670;&#160;</a></span>set_map_height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::set_map_height </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_height</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_adcd8a623035f91644c9a1c783adea45e_icgraph.png" border="0" usemap="#aclassRoguelikeManager_adcd8a623035f91644c9a1c783adea45e_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_adcd8a623035f91644c9a1c783adea45e_icgraph" id="aclassRoguelikeManager_adcd8a623035f91644c9a1c783adea45e_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,375,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab3a206f647f84ff5042c1457e11d77c2" name="ab3a206f647f84ff5042c1457e11d77c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3a206f647f84ff5042c1457e11d77c2">&#9670;&#160;</a></span>set_map_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::set_map_width </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_ab3a206f647f84ff5042c1457e11d77c2_icgraph.png" border="0" usemap="#aclassRoguelikeManager_ab3a206f647f84ff5042c1457e11d77c2_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_ab3a206f647f84ff5042c1457e11d77c2_icgraph" id="aclassRoguelikeManager_ab3a206f647f84ff5042c1457e11d77c2_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,375,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a73f2b2bfa0b5e538e9b2bdfdf370596c" name="a73f2b2bfa0b5e538e9b2bdfdf370596c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f2b2bfa0b5e538e9b2bdfdf370596c">&#9670;&#160;</a></span>set_player_scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::set_player_scene </td>
+          <td>(</td>
+          <td class="paramtype">const Ref&lt; PackedScene &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a73f2b2bfa0b5e538e9b2bdfdf370596c_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a73f2b2bfa0b5e538e9b2bdfdf370596c_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a73f2b2bfa0b5e538e9b2bdfdf370596c_icgraph" id="aclassRoguelikeManager_a73f2b2bfa0b5e538e9b2bdfdf370596c_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,375,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a63c257cf19b60e1ba8d903ccd185b3a1" name="a63c257cf19b60e1ba8d903ccd185b3a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63c257cf19b60e1ba8d903ccd185b3a1">&#9670;&#160;</a></span>set_room_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::set_room_count </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a63c257cf19b60e1ba8d903ccd185b3a1_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a63c257cf19b60e1ba8d903ccd185b3a1_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a63c257cf19b60e1ba8d903ccd185b3a1_icgraph" id="aclassRoguelikeManager_a63c257cf19b60e1ba8d903ccd185b3a1_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,375,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8d4fb8be70800c8a08a2057e554699ab" name="a8d4fb8be70800c8a08a2057e554699ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d4fb8be70800c8a08a2057e554699ab">&#9670;&#160;</a></span>set_view_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::set_view_path </td>
+          <td>(</td>
+          <td class="paramtype">const NodePath &amp;&#160;</td>
+          <td class="paramname"><em>p_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a8d4fb8be70800c8a08a2057e554699ab_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a8d4fb8be70800c8a08a2057e554699ab_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a8d4fb8be70800c8a08a2057e554699ab_icgraph" id="aclassRoguelikeManager_a8d4fb8be70800c8a08a2057e554699ab_icgraph">
+<area shape="rect" title=" " alt="" coords="204,5,375,45"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a13fb6df39cad7cf563d38303566e877a" name="a13fb6df39cad7cf563d38303566e877a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13fb6df39cad7cf563d38303566e877a">&#9670;&#160;</a></span>start_level()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RoguelikeManager::start_level </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classRoguelikeManager_a13fb6df39cad7cf563d38303566e877a_icgraph.png" border="0" usemap="#aclassRoguelikeManager_a13fb6df39cad7cf563d38303566e877a_icgraph" alt=""/></div>
+<map name="aclassRoguelikeManager_a13fb6df39cad7cf563d38303566e877a_icgraph" id="aclassRoguelikeManager_a13fb6df39cad7cf563d38303566e877a_icgraph">
+<area shape="rect" title=" " alt="" coords="204,37,385,77"/>
+<area shape="rect" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="190,44,156,39,157,34,191,39"/>
+<area shape="rect" href="classRoguelikeManager.html#a9856b6fc7ba412c005e4d76875424c5a" title=" " alt="" coords="5,69,156,109"/>
+<area shape="poly" title=" " alt="" coords="191,76,157,81,156,75,190,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="a9e64dea7916ac40a41b2903bc9090789" name="a9e64dea7916ac40a41b2903bc9090789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e64dea7916ac40a41b2903bc9090789">&#9670;&#160;</a></span>generator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt;<a class="el" href="classRoguelikeGenerator.html">RoguelikeGenerator</a>&gt; RoguelikeManager::generator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4ee6725f4dcc56fe0e7b2afdc3e6d05" name="ac4ee6725f4dcc56fe0e7b2afdc3e6d05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ee6725f4dcc56fe0e7b2afdc3e6d05">&#9670;&#160;</a></span>map_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoguelikeManager::map_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24e5ec898fd70b3f0b95ddd1b6d230b2" name="a24e5ec898fd70b3f0b95ddd1b6d230b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e5ec898fd70b3f0b95ddd1b6d230b2">&#9670;&#160;</a></span>map_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoguelikeManager::map_width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f4821582053c729763737582e7b1dac" name="a6f4821582053c729763737582e7b1dac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f4821582053c729763737582e7b1dac">&#9670;&#160;</a></span>player_scene</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt;PackedScene&gt; RoguelikeManager::player_scene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f5649bf70fd79c05fb8486fbf2958de" name="a8f5649bf70fd79c05fb8486fbf2958de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f5649bf70fd79c05fb8486fbf2958de">&#9670;&#160;</a></span>room_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoguelikeManager::room_count</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af66bbaa9a1a16d15d55bdbcfd0e8abc9" name="af66bbaa9a1a16d15d55bdbcfd0e8abc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66bbaa9a1a16d15d55bdbcfd0e8abc9">&#9670;&#160;</a></span>view_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath RoguelikeManager::view_path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af98b3ef21b509abf9d3f47906064e883" name="af98b3ef21b509abf9d3f47906064e883"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af98b3ef21b509abf9d3f47906064e883">&#9670;&#160;</a></span>world_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt;<a class="el" href="classUniversalWorldData.html">UniversalWorldData</a>&gt; RoguelikeManager::world_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/cycles/<a class="el" href="roguelike__manager_8h_source.html">roguelike_manager.h</a></li>
+<li>src/core/cycles/<a class="el" href="roguelike__manager_8cpp.html">roguelike_manager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

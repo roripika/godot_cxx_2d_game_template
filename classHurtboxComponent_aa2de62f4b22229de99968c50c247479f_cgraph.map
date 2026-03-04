@@ -1,0 +1,15 @@
+<map id="HurtboxComponent::_bind_methods" name="HurtboxComponent::_bind_methods">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,163,109"/>
+<area shape="rect" id="Node000002" href="$classHurtboxComponent.html#a43c1f20cd6c226c7901c886312ee1bd4" title=" " alt="" coords="231,5,399,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,67,229,46,230,52,158,72"/>
+<area shape="rect" id="Node000003" href="$classHurtboxComponent.html#af232f6ccc84c47ba374330540151f68c" title=" " alt="" coords="227,69,404,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,87,213,87,213,92,163,92"/>
+<area shape="rect" id="Node000004" href="$classHurtboxComponent.html#aca596ec799d5a6ce7a81213ef3612c64" title=" " alt="" coords="211,134,420,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,107,211,119,249,128,247,133,210,124,162,112"/>
+<area shape="rect" id="Node000005" href="$classHitboxComponent.html#a05dc4f7e4b98eecb23ceee7b6d9c8ca7" title=" " alt="" coords="468,63,637,103"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="370,131,419,119,472,104,473,109,421,124,371,137"/>
+<area shape="rect" id="Node000006" href="$classHitboxComponent.html#a2e45eb85614ca5e9af65fddf9bb72ab4" title=" " alt="" coords="468,127,637,167"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="420,144,454,144,454,149,420,149"/>
+<area shape="rect" id="Node000007" href="$classHitboxComponent.html#a4e5f159fa1a6ea1cbdef25f92e5f49f5" title=" " alt="" coords="468,191,637,231"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="364,157,465,184,464,190,363,162"/>
+</map>

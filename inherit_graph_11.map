@@ -1,0 +1,21 @@
+<map id="クラス階層図" name="クラス階層図">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,203,61,228"/>
+<area shape="rect" id="Node000001" href="$classAdventureGameStateBase.html" title=" " alt="" coords="109,5,304,31"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="36,189,44,155,57,115,78,74,108,40,126,28,129,33,111,44,82,77,62,117,49,156,41,190"/>
+<area shape="rect" id="Node000002" href="$classConductor.html" title=" " alt="" coords="163,55,251,80"/>
+<area shape="poly" id="edge15_Node000000_Node000002" title=" " alt="" coords="41,189,65,138,84,111,108,89,134,76,162,68,163,73,136,80,111,94,88,115,70,141,46,191"/>
+<area shape="rect" id="Node000003" href="$classFightingGameManager.html" title=" " alt="" coords="121,104,292,129"/>
+<area shape="poly" id="edge16_Node000000_Node000003" title=" " alt="" coords="51,190,76,163,108,138,134,127,136,132,111,143,79,167,55,193"/>
+<area shape="rect" id="Node000004" href="$classHitStopManager.html" title=" " alt="" coords="143,153,270,179"/>
+<area shape="poly" id="edge17_Node000000_Node000004" title=" " alt="" coords="73,199,109,187,151,176,152,181,110,193,75,204"/>
+<area shape="rect" id="Node000005" href="$classRhythmCommandListener.html" title=" " alt="" coords="111,203,303,228"/>
+<area shape="poly" id="edge18_Node000000_Node000005" title=" " alt="" coords="75,213,110,213,110,218,75,218"/>
+<area shape="rect" id="Node000006" href="$classRhythmGameManager.html" title=" " alt="" coords="122,252,291,277"/>
+<area shape="poly" id="edge19_Node000000_Node000006" title=" " alt="" coords="75,226,110,237,156,249,154,254,109,242,74,231"/>
+<area shape="rect" id="Node000007" href="$classRoguelikeManager.html" title=" " alt="" coords="135,301,278,327"/>
+<area shape="poly" id="edge20_Node000000_Node000007" title=" " alt="" coords="55,237,80,263,111,286,140,299,137,304,108,291,76,267,51,240"/>
+<area shape="rect" id="Node000008" href="$classgodot_1_1EvidenceManager.html" title=" " alt="" coords="115,351,298,376"/>
+<area shape="poly" id="edge21_Node000000_Node000008" title=" " alt="" coords="46,240,70,289,89,315,111,336,134,348,131,353,108,340,85,318,66,292,41,242"/>
+<area shape="rect" id="Node000009" href="$classgodot_1_1MysteryManager.html" title=" " alt="" coords="118,400,295,425"/>
+<area shape="poly" id="edge22_Node000000_Node000009" title=" " alt="" coords="41,241,49,274,63,313,83,352,111,385,131,398,128,402,108,389,78,355,58,315,44,276,36,242"/>
+</map>

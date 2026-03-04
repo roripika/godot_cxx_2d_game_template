@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: godot::EvidenceManager クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacegodot.html">godot</a></li><li class="navelem"><a class="el" href="classgodot_1_1EvidenceManager.html">EvidenceManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a> &#124;
+<a href="#pri-static-attribs">静的非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">godot::EvidenceManager クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="evidence__manager_8h_source.html">evidence_manager.h</a>&gt;</code></p>
+<div class="dynheader">
+godot::EvidenceManager の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager__inherit__graph.png" border="0" usemap="#agodot_1_1EvidenceManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="agodot_1_1EvidenceManager_inherit__map" id="agodot_1_1EvidenceManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,188,104"/>
+<area shape="rect" title=" " alt="" coords="69,5,125,31"/>
+<area shape="poly" title=" " alt="" coords="99,44,99,79,94,79,94,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+godot::EvidenceManager 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager__coll__graph.png" border="0" usemap="#agodot_1_1EvidenceManager_coll__map" alt="Collaboration graph"/></div>
+<map name="agodot_1_1EvidenceManager_coll__map" id="agodot_1_1EvidenceManager_coll__map">
+<area shape="rect" title=" " alt="" coords="5,80,188,105"/>
+<area shape="poly" title=" " alt="" coords="203,85,215,93,206,99,188,102,188,96,204,94,209,93,200,90"/>
+<area shape="rect" title=" " alt="" coords="69,5,125,31"/>
+<area shape="poly" title=" " alt="" coords="99,45,99,80,94,80,94,45"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a1692738fb80cf365b3e78900db98ecb1" id="r_a1692738fb80cf365b3e78900db98ecb1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a1692738fb80cf365b3e78900db98ecb1">EvidenceManager</a> ()</td></tr>
+<tr class="separator:a1692738fb80cf365b3e78900db98ecb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bef0a0a3efbd34c8c78887990c68c12" id="r_a0bef0a0a3efbd34c8c78887990c68c12"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a0bef0a0a3efbd34c8c78887990c68c12">~EvidenceManager</a> ()</td></tr>
+<tr class="separator:a0bef0a0a3efbd34c8c78887990c68c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f421f8788b8d8b90dc905111555fc54" id="r_a2f421f8788b8d8b90dc905111555fc54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a2f421f8788b8d8b90dc905111555fc54">add_evidence</a> (const String &amp;p_id)</td></tr>
+<tr class="separator:a2f421f8788b8d8b90dc905111555fc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd1e3ece0829099cb0f190f631946b2" id="r_a0dd1e3ece0829099cb0f190f631946b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a0dd1e3ece0829099cb0f190f631946b2">remove_evidence</a> (const String &amp;p_id)</td></tr>
+<tr class="separator:a0dd1e3ece0829099cb0f190f631946b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a674679e3fd59b4bee48d51d3cb3354ba" id="r_a674679e3fd59b4bee48d51d3cb3354ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a674679e3fd59b4bee48d51d3cb3354ba">has_evidence</a> (const String &amp;p_id) const</td></tr>
+<tr class="separator:a674679e3fd59b4bee48d51d3cb3354ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade6234468bbadaa0e6569c6ac37675ac" id="r_ade6234468bbadaa0e6569c6ac37675ac"><td class="memItemLeft" align="right" valign="top">Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#ade6234468bbadaa0e6569c6ac37675ac">get_all_evidence</a> () const</td></tr>
+<tr class="separator:ade6234468bbadaa0e6569c6ac37675ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9052dddea3a32f556ed9f2bcfa328e4" id="r_aa9052dddea3a32f556ed9f2bcfa328e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#aa9052dddea3a32f556ed9f2bcfa328e4">clear_all_evidence</a> ()</td></tr>
+<tr class="separator:aa9052dddea3a32f556ed9f2bcfa328e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99f359c872e12ce480fe634ef2549bdf" id="r_a99f359c872e12ce480fe634ef2549bdf"><td class="memItemLeft" align="right" valign="top">Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a99f359c872e12ce480fe634ef2549bdf">serialize_evidence</a> () const</td></tr>
+<tr class="separator:a99f359c872e12ce480fe634ef2549bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf8a2c875d6bccea766af85c9b00ff8b" id="r_abf8a2c875d6bccea766af85c9b00ff8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#abf8a2c875d6bccea766af85c9b00ff8b">deserialize_evidence</a> (const Array &amp;p_data)</td></tr>
+<tr class="separator:abf8a2c875d6bccea766af85c9b00ff8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a555decc9e7175abeeb617a53a429b7f9" id="r_a555decc9e7175abeeb617a53a429b7f9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgodot_1_1EvidenceManager.html">EvidenceManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a555decc9e7175abeeb617a53a429b7f9">get_singleton</a> ()</td></tr>
+<tr class="separator:a555decc9e7175abeeb617a53a429b7f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:aa22588da0b0a7f6b73a3e8f253417c64" id="r_aa22588da0b0a7f6b73a3e8f253417c64"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64">_bind_methods</a> ()</td></tr>
+<tr class="separator:aa22588da0b0a7f6b73a3e8f253417c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:aa9dbf346636357f7d89498e2cd4e137e" id="r_aa9dbf346636357f7d89498e2cd4e137e"><td class="memItemLeft" align="right" valign="top">Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#aa9dbf346636357f7d89498e2cd4e137e">collected_evidence</a></td></tr>
+<tr class="separator:aa9dbf346636357f7d89498e2cd4e137e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+静的非公開変数類</h2></td></tr>
+<tr class="memitem:a081e2e51262d0e597c2783366cb1c9fe" id="r_a081e2e51262d0e597c2783366cb1c9fe"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classgodot_1_1EvidenceManager.html">EvidenceManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgodot_1_1EvidenceManager.html#a081e2e51262d0e597c2783366cb1c9fe">singleton</a> = nullptr</td></tr>
+<tr class="separator:a081e2e51262d0e597c2783366cb1c9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a1692738fb80cf365b3e78900db98ecb1" name="a1692738fb80cf365b3e78900db98ecb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1692738fb80cf365b3e78900db98ecb1">&#9670;&#160;</a></span>EvidenceManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EvidenceManager::EvidenceManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0bef0a0a3efbd34c8c78887990c68c12" name="a0bef0a0a3efbd34c8c78887990c68c12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bef0a0a3efbd34c8c78887990c68c12">&#9670;&#160;</a></span>~EvidenceManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">EvidenceManager::~EvidenceManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="aa22588da0b0a7f6b73a3e8f253417c64" name="aa22588da0b0a7f6b73a3e8f253417c64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa22588da0b0a7f6b73a3e8f253417c64">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EvidenceManager::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_aa22588da0b0a7f6b73a3e8f253417c64_cgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_aa22588da0b0a7f6b73a3e8f253417c64_cgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_aa22588da0b0a7f6b73a3e8f253417c64_cgraph" id="aclassgodot_1_1EvidenceManager_aa22588da0b0a7f6b73a3e8f253417c64_cgraph">
+<area shape="rect" title=" " alt="" coords="5,171,188,211"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a2f421f8788b8d8b90dc905111555fc54" title=" " alt="" coords="236,43,419,83"/>
+<area shape="poly" title=" " alt="" coords="121,169,172,131,235,93,249,86,251,91,237,97,175,135,124,173"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a674679e3fd59b4bee48d51d3cb3354ba" title=" " alt="" coords="467,15,649,55"/>
+<area shape="poly" title=" " alt="" coords="106,170,125,137,153,97,190,58,235,29,290,11,349,4,407,4,460,10,459,16,406,10,349,9,292,16,237,34,193,62,157,100,129,140,110,172"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa9052dddea3a32f556ed9f2bcfa328e4" title=" " alt="" coords="236,107,419,147"/>
+<area shape="poly" title=" " alt="" coords="169,168,241,148,242,153,170,174"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#abf8a2c875d6bccea766af85c9b00ff8b" title=" " alt="" coords="236,171,419,211"/>
+<area shape="poly" title=" " alt="" coords="188,188,222,188,222,194,188,194"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#ade6234468bbadaa0e6569c6ac37675ac" title=" " alt="" coords="467,320,649,360"/>
+<area shape="poly" title=" " alt="" coords="122,209,172,248,204,268,237,285,291,303,347,317,453,332,453,337,346,322,289,308,235,290,201,273,169,253,118,213"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a0dd1e3ece0829099cb0f190f631946b2" title=" " alt="" coords="236,235,419,275"/>
+<area shape="poly" title=" " alt="" coords="170,209,242,229,241,234,169,214"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a99f359c872e12ce480fe634ef2549bdf" title=" " alt="" coords="236,350,419,390"/>
+<area shape="poly" title=" " alt="" coords="115,209,166,267,200,300,237,329,259,342,257,346,235,333,197,304,163,271,111,213"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a9520dcfe02bd9f15f528860d6c09d06f" title=" " alt="" coords="469,143,647,183"/>
+<area shape="poly" title=" " alt="" coords="389,81,420,93,508,134,505,139,418,98,387,86"/>
+<area shape="poly" title=" " alt="" coords="418,49,453,45,453,50,419,55"/>
+<area shape="poly" title=" " alt="" coords="386,233,418,221,499,186,501,191,420,226,388,238"/>
+<area shape="poly" title=" " alt="" coords="418,356,453,351,453,356,419,361"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2f421f8788b8d8b90dc905111555fc54" name="a2f421f8788b8d8b90dc905111555fc54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f421f8788b8d8b90dc905111555fc54">&#9670;&#160;</a></span>add_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool EvidenceManager::add_evidence </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>p_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_cgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_cgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_cgraph" id="aclassgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_cgraph">
+<area shape="rect" title=" " alt="" coords="5,37,188,77"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a9520dcfe02bd9f15f528860d6c09d06f" title=" " alt="" coords="239,5,416,45"/>
+<area shape="poly" title=" " alt="" coords="188,42,225,37,226,42,188,47"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a674679e3fd59b4bee48d51d3cb3354ba" title=" " alt="" coords="236,69,419,109"/>
+<area shape="poly" title=" " alt="" coords="188,67,223,72,222,77,188,73"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_icgraph" id="aclassgodot_1_1EvidenceManager_a2f421f8788b8d8b90dc905111555fc54_icgraph">
+<area shape="rect" title=" " alt="" coords="236,5,419,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,188,28,188,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa9052dddea3a32f556ed9f2bcfa328e4" name="aa9052dddea3a32f556ed9f2bcfa328e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9052dddea3a32f556ed9f2bcfa328e4">&#9670;&#160;</a></span>clear_all_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EvidenceManager::clear_all_evidence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_aa9052dddea3a32f556ed9f2bcfa328e4_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_aa9052dddea3a32f556ed9f2bcfa328e4_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_aa9052dddea3a32f556ed9f2bcfa328e4_icgraph" id="aclassgodot_1_1EvidenceManager_aa9052dddea3a32f556ed9f2bcfa328e4_icgraph">
+<area shape="rect" title=" " alt="" coords="236,5,419,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,188,28,188,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abf8a2c875d6bccea766af85c9b00ff8b" name="abf8a2c875d6bccea766af85c9b00ff8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf8a2c875d6bccea766af85c9b00ff8b">&#9670;&#160;</a></span>deserialize_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EvidenceManager::deserialize_evidence </td>
+          <td>(</td>
+          <td class="paramtype">const Array &amp;&#160;</td>
+          <td class="paramname"><em>p_data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_abf8a2c875d6bccea766af85c9b00ff8b_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_abf8a2c875d6bccea766af85c9b00ff8b_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_abf8a2c875d6bccea766af85c9b00ff8b_icgraph" id="aclassgodot_1_1EvidenceManager_abf8a2c875d6bccea766af85c9b00ff8b_icgraph">
+<area shape="rect" title=" " alt="" coords="236,5,419,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,188,28,188,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ade6234468bbadaa0e6569c6ac37675ac" name="ade6234468bbadaa0e6569c6ac37675ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade6234468bbadaa0e6569c6ac37675ac">&#9670;&#160;</a></span>get_all_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Array EvidenceManager::get_all_evidence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_ade6234468bbadaa0e6569c6ac37675ac_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_ade6234468bbadaa0e6569c6ac37675ac_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_ade6234468bbadaa0e6569c6ac37675ac_icgraph" id="aclassgodot_1_1EvidenceManager_ade6234468bbadaa0e6569c6ac37675ac_icgraph">
+<area shape="rect" title=" " alt="" coords="467,5,649,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="453,25,419,24,236,24,188,25,188,20,236,19,419,19,453,19"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a99f359c872e12ce480fe634ef2549bdf" title=" " alt="" coords="236,33,419,73"/>
+<area shape="poly" title=" " alt="" coords="454,41,419,45,419,40,453,35"/>
+<area shape="poly" title=" " alt="" coords="222,43,188,39,189,34,223,38"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a555decc9e7175abeeb617a53a429b7f9" name="a555decc9e7175abeeb617a53a429b7f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a555decc9e7175abeeb617a53a429b7f9">&#9670;&#160;</a></span>get_singleton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classgodot_1_1EvidenceManager.html">EvidenceManager</a> * EvidenceManager::get_singleton </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a555decc9e7175abeeb617a53a429b7f9_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a555decc9e7175abeeb617a53a429b7f9_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a555decc9e7175abeeb617a53a429b7f9_icgraph" id="aclassgodot_1_1EvidenceManager_a555decc9e7175abeeb617a53a429b7f9_icgraph">
+<area shape="rect" title=" " alt="" coords="757,135,940,175"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a0b0028455d00ad11db43593d981e5e1f" title=" " alt="" coords="521,39,699,79"/>
+<area shape="poly" title=" " alt="" coords="794,132,708,93,676,82,677,77,710,88,796,127"/>
+<area shape="rect" href="classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="511,103,709,143"/>
+<area shape="poly" title=" " alt="" coords="743,144,709,139,710,134,744,138"/>
+<area shape="rect" href="classAdventureGameStateBase.html#ad7c37e7124d23ba89c640571bc3976cc" title=" " alt="" coords="513,167,707,207"/>
+<area shape="poly" title=" " alt="" coords="744,172,708,177,707,171,743,166"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a98412af1726a20305309be5a06bdbade" title=" " alt="" coords="521,231,699,271"/>
+<area shape="poly" title=" " alt="" coords="796,183,710,221,677,233,676,228,708,216,794,178"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a441637f4b0be58d6c60b6e85cddcd5c9" title=" " alt="" coords="5,132,183,172"/>
+<area shape="poly" title=" " alt="" coords="538,38,472,21,394,10,311,11,271,18,232,29,193,50,160,78,111,134,107,131,156,75,190,46,230,25,269,12,311,6,394,5,473,16,540,32"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a85dce2949adaa78b5a746803fa10305a" title=" " alt="" coords="258,39,435,79"/>
+<area shape="poly" title=" " alt="" coords="507,62,436,62,436,56,507,56"/>
+<area shape="poly" title=" " alt="" coords="255,86,232,93,137,135,134,130,230,88,253,81"/>
+<area shape="rect" href="classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="231,103,463,143"/>
+<area shape="poly" title=" " alt="" coords="497,126,463,126,463,120,497,120"/>
+<area shape="rect" href="classAdventureGameStateBase.html#a88cace8fbccf1de022f6467fbea5b188" title=" " alt="" coords="249,167,444,207"/>
+<area shape="poly" title=" " alt="" coords="499,190,444,190,444,184,499,184"/>
+<area shape="poly" title=" " alt="" coords="507,255,374,247,301,237,230,222,174,200,126,175,129,170,176,195,231,216,302,232,375,242,508,250"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a49acca16e021bcdc9a14e61b4a4e0453" title=" " alt="" coords="258,282,435,322"/>
+<area shape="poly" title=" " alt="" coords="508,273,436,287,435,282,507,268"/>
+<area shape="poly" title=" " alt="" coords="259,279,229,265,164,220,113,174,117,171,167,215,232,261,261,274"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a674679e3fd59b4bee48d51d3cb3354ba" name="a674679e3fd59b4bee48d51d3cb3354ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a674679e3fd59b4bee48d51d3cb3354ba">&#9670;&#160;</a></span>has_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool EvidenceManager::has_evidence </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>p_id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a674679e3fd59b4bee48d51d3cb3354ba_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a674679e3fd59b4bee48d51d3cb3354ba_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a674679e3fd59b4bee48d51d3cb3354ba_icgraph" id="aclassgodot_1_1EvidenceManager_a674679e3fd59b4bee48d51d3cb3354ba_icgraph">
+<area shape="rect" title=" " alt="" coords="467,5,649,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="453,25,419,24,236,24,188,25,188,20,236,19,419,19,453,19"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#a2f421f8788b8d8b90dc905111555fc54" title=" " alt="" coords="236,33,419,73"/>
+<area shape="poly" title=" " alt="" coords="454,41,419,45,419,40,453,35"/>
+<area shape="poly" title=" " alt="" coords="222,43,188,39,189,34,223,38"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0dd1e3ece0829099cb0f190f631946b2" name="a0dd1e3ece0829099cb0f190f631946b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd1e3ece0829099cb0f190f631946b2">&#9670;&#160;</a></span>remove_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool EvidenceManager::remove_evidence </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>p_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_cgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_cgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_cgraph" id="aclassgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,188,45"/>
+<area shape="rect" href="classgodot_1_1MysteryManager.html#a9520dcfe02bd9f15f528860d6c09d06f" title=" " alt="" coords="236,5,413,45"/>
+<area shape="poly" title=" " alt="" coords="188,23,222,23,222,28,188,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_icgraph" id="aclassgodot_1_1EvidenceManager_a0dd1e3ece0829099cb0f190f631946b2_icgraph">
+<area shape="rect" title=" " alt="" coords="236,5,419,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,188,28,188,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a99f359c872e12ce480fe634ef2549bdf" name="a99f359c872e12ce480fe634ef2549bdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99f359c872e12ce480fe634ef2549bdf">&#9670;&#160;</a></span>serialize_evidence()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Array EvidenceManager::serialize_evidence </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_cgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_cgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_cgraph" id="aclassgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,188,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#ade6234468bbadaa0e6569c6ac37675ac" title=" " alt="" coords="236,5,419,45"/>
+<area shape="poly" title=" " alt="" coords="188,23,222,23,222,28,188,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_icgraph.png" border="0" usemap="#aclassgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_icgraph" alt=""/></div>
+<map name="aclassgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_icgraph" id="aclassgodot_1_1EvidenceManager_a99f359c872e12ce480fe634ef2549bdf_icgraph">
+<area shape="rect" title=" " alt="" coords="236,5,419,45"/>
+<area shape="rect" href="classgodot_1_1EvidenceManager.html#aa22588da0b0a7f6b73a3e8f253417c64" title=" " alt="" coords="5,5,188,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,188,28,188,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="aa9dbf346636357f7d89498e2cd4e137e" name="aa9dbf346636357f7d89498e2cd4e137e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9dbf346636357f7d89498e2cd4e137e">&#9670;&#160;</a></span>collected_evidence</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Array godot::EvidenceManager::collected_evidence</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a081e2e51262d0e597c2783366cb1c9fe" name="a081e2e51262d0e597c2783366cb1c9fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a081e2e51262d0e597c2783366cb1c9fe">&#9670;&#160;</a></span>singleton</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classgodot_1_1EvidenceManager.html">EvidenceManager</a> * EvidenceManager::singleton = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/features/mystery/<a class="el" href="evidence__manager_8h_source.html">evidence_manager.h</a></li>
+<li>src/features/mystery/<a class="el" href="evidence__manager_8cpp.html">evidence_manager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

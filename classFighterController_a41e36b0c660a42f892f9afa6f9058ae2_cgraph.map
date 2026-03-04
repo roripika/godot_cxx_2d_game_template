@@ -1,0 +1,24 @@
+<map id="FighterController::_bind_methods" name="FighterController::_bind_methods">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,159,144,199"/>
+<area shape="rect" id="Node000002" href="$classFighterController.html#af166b6d01c73e9076485826bb3dc1162" title=" " alt="" coords="192,8,335,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,157,133,108,190,58,198,53,201,57,194,62,136,112,94,160"/>
+<area shape="rect" id="Node000005" href="$classFighterController.html#a164b124ddc5d0306136556ca95d77973" title=" " alt="" coords="194,72,333,112"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="118,156,205,116,207,120,120,161"/>
+<area shape="rect" id="Node000006" href="$classFighterController.html#a6e86801d5c4e5ed239a33260ffda8fed" title=" " alt="" coords="399,133,537,173"/>
+<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="144,172,385,156,385,161,144,177"/>
+<area shape="rect" id="Node000008" href="$classFighterController.html#a491cd46744cee6c58720874070c8dd5b" title=" " alt="" coords="194,187,333,227"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="145,186,181,192,180,197,144,192"/>
+<area shape="rect" id="Node000009" href="$classFighterController.html#a5557133b7eb4a4da766be7df122b92d1" title=" " alt="" coords="194,251,333,291"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="115,196,193,236,206,242,204,247,191,241,113,201"/>
+<area shape="rect" id="Node000010" href="$classFighterController.html#a3c1af5a504c64a383ec53827588f39a1" title=" " alt="" coords="194,315,333,355"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="93,197,135,248,163,276,194,301,201,306,198,310,190,305,160,279,131,251,89,201"/>
+<area shape="rect" id="Node000003" href="$classHitStopManager.html#ad48fba0d6b11eacf50a304ffd5837fac" title=" " alt="" coords="383,69,553,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="332,46,389,63,387,68,330,51"/>
+<area shape="rect" id="Node000004" href="$classHitStopManager.html#a1353af284f560bb1625ab74b12a5372c" title=" " alt="" coords="390,5,546,45"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="335,24,376,24,376,29,335,30"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="333,88,369,88,369,93,333,94"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="324,69,392,47,394,52,326,75"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="332,110,389,127,387,132,330,115"/>
+<area shape="rect" id="Node000007" href="$classFighterController.html#a38f550c4dfa15a41fbb2024d3dbd3177" title=" " alt="" coords="601,133,740,173"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="538,151,587,151,587,156,538,156"/>
+</map>

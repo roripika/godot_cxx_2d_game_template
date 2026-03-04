@@ -1,0 +1,12 @@
+<map id="FighterController::change_state" name="FighterController::change_state">
+<area shape="rect" id="Node000001" title=" " alt="" coords="565,37,704,77"/>
+<area shape="rect" id="Node000002" href="$classFighterController.html#a7972a78225edf5e4a873e8d4e5bd28b2" title=" " alt="" coords="379,5,517,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="551,46,517,40,518,35,552,40"/>
+<area shape="rect" id="Node000003" href="$classFighterController.html#a6e86801d5c4e5ed239a33260ffda8fed" title=" " alt="" coords="379,69,517,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="552,74,518,80,517,75,551,69"/>
+<area shape="rect" id="Node000004" href="$classFighterController.html#a41e36b0c660a42f892f9afa6f9058ae2" title=" " alt="" coords="5,69,144,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="365,89,331,88,192,88,144,89,144,84,192,83,331,83,365,84"/>
+<area shape="rect" id="Node000005" href="$classFighterController.html#a164b124ddc5d0306136556ca95d77973" title=" " alt="" coords="192,97,331,137"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="365,104,332,110,331,104,364,99"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="178,107,144,102,145,97,178,102"/>
+</map>

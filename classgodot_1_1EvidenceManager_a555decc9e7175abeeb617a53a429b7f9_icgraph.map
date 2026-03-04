@@ -1,0 +1,24 @@
+<map id="godot::EvidenceManager::get_singleton" name="godot::EvidenceManager::get_singleton">
+<area shape="rect" id="Node000001" title=" " alt="" coords="757,135,940,175"/>
+<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryManager.html#a0b0028455d00ad11db43593d981e5e1f" title=" " alt="" coords="521,39,699,79"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="794,132,708,93,676,82,677,77,710,88,796,127"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="511,103,709,143"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="743,144,709,139,710,134,744,138"/>
+<area shape="rect" id="Node000007" href="$classAdventureGameStateBase.html#ad7c37e7124d23ba89c640571bc3976cc" title=" " alt="" coords="513,167,707,207"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="744,172,708,177,707,171,743,166"/>
+<area shape="rect" id="Node000009" href="$classgodot_1_1MysteryManager.html#a98412af1726a20305309be5a06bdbade" title=" " alt="" coords="521,231,699,271"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="796,183,710,221,677,233,676,228,708,216,794,178"/>
+<area shape="rect" id="Node000003" href="$classgodot_1_1MysteryManager.html#a441637f4b0be58d6c60b6e85cddcd5c9" title=" " alt="" coords="5,132,183,172"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="538,38,472,21,394,10,311,11,271,18,232,29,193,50,160,78,111,134,107,131,156,75,190,46,230,25,269,12,311,6,394,5,473,16,540,32"/>
+<area shape="rect" id="Node000004" href="$classgodot_1_1MysteryManager.html#a85dce2949adaa78b5a746803fa10305a" title=" " alt="" coords="258,39,435,79"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="507,62,436,62,436,56,507,56"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="255,86,232,93,137,135,134,130,230,88,253,81"/>
+<area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="231,103,463,143"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="497,126,463,126,463,120,497,120"/>
+<area shape="rect" id="Node000008" href="$classAdventureGameStateBase.html#a88cace8fbccf1de022f6467fbea5b188" title=" " alt="" coords="249,167,444,207"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="499,190,444,190,444,184,499,184"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="507,255,374,247,301,237,230,222,174,200,126,175,129,170,176,195,231,216,302,232,375,242,508,250"/>
+<area shape="rect" id="Node000010" href="$classgodot_1_1MysteryManager.html#a49acca16e021bcdc9a14e61b4a4e0453" title=" " alt="" coords="258,282,435,322"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="508,273,436,287,435,282,507,268"/>
+<area shape="poly" id="edge12_Node000010_Node000003" title=" " alt="" coords="259,279,229,265,164,220,113,174,117,171,167,215,232,261,261,274"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="FighterController::take_damage" name="FighterController::take_damage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="379,5,517,45"/>
+<area shape="rect" id="Node000002" href="$classFighterController.html#a41e36b0c660a42f892f9afa6f9058ae2" title=" " alt="" coords="5,5,144,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="365,25,331,24,192,24,144,25,144,20,192,19,331,19,365,20"/>
+<area shape="rect" id="Node000003" href="$classFighterController.html#a164b124ddc5d0306136556ca95d77973" title=" " alt="" coords="192,33,331,73"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="365,40,332,46,331,40,364,35"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="178,43,144,38,145,33,178,38"/>
+</map>

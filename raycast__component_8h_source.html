@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/entities/components/raycast_component.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li><li class="navelem"><a class="el" href="dir_89feb7223990c2d96ad2624d90dc7476.html">components</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">raycast_component.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="raycast__component_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef RAYCAST_COMPONENT_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define RAYCAST_COMPONENT_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;godot_cpp/classes/ray_cast2d.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classRayCastComponent.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classRayCastComponent.html">RayCastComponent</a> : <span class="keyword">public</span> RayCast2D {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  GDCLASS(<a class="code hl_class" href="classRayCastComponent.html">RayCastComponent</a>, RayCast2D)</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRayCastComponent.html#a76c85e4d7208b4857baae2257b4d56a4">_bind_methods</a>();</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <a class="code hl_function" href="classRayCastComponent.html#a2687d3f342f493a78952ace46949b8f3">RayCastComponent</a>();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_function" href="classRayCastComponent.html#a4ef79b41b2280edb76bef7478eed5f90">~RayCastComponent</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="comment">// Helper method: Is colliding with specific class or group?</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classRayCastComponent.html#a794afd15d6a5c594454b35dd51ba9f45">is_colliding_with_type</a>(String class_name);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
+</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif </span><span class="comment">// RAYCAST_COMPONENT_H</span></div>
+<div class="ttc" id="aclassRayCastComponent_html"><div class="ttname"><a href="classRayCastComponent.html">RayCastComponent</a></div><div class="ttdef"><b>Definition</b> raycast_component.h:8</div></div>
+<div class="ttc" id="aclassRayCastComponent_html_a2687d3f342f493a78952ace46949b8f3"><div class="ttname"><a href="classRayCastComponent.html#a2687d3f342f493a78952ace46949b8f3">RayCastComponent::RayCastComponent</a></div><div class="ttdeci">RayCastComponent()</div><div class="ttdef"><b>Definition</b> raycast_component.cpp:8</div></div>
+<div class="ttc" id="aclassRayCastComponent_html_a4ef79b41b2280edb76bef7478eed5f90"><div class="ttname"><a href="classRayCastComponent.html#a4ef79b41b2280edb76bef7478eed5f90">RayCastComponent::~RayCastComponent</a></div><div class="ttdeci">~RayCastComponent()</div><div class="ttdef"><b>Definition</b> raycast_component.cpp:9</div></div>
+<div class="ttc" id="aclassRayCastComponent_html_a76c85e4d7208b4857baae2257b4d56a4"><div class="ttname"><a href="classRayCastComponent.html#a76c85e4d7208b4857baae2257b4d56a4">RayCastComponent::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> raycast_component.cpp:11</div></div>
+<div class="ttc" id="aclassRayCastComponent_html_a794afd15d6a5c594454b35dd51ba9f45"><div class="ttname"><a href="classRayCastComponent.html#a794afd15d6a5c594454b35dd51ba9f45">RayCastComponent::is_colliding_with_type</a></div><div class="ttdeci">bool is_colliding_with_type(String class_name)</div><div class="ttdef"><b>Definition</b> raycast_component.cpp:16</div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

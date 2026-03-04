@@ -1,8 +1,25 @@
 var searchData=
 [
-  ['has_5fsave_0',['has_save',['../classkarakuri_1_1KarakuriSaveService.html#aec042867e2fa4a82c4aab9a391585ce9',1,'karakuri::KarakuriSaveService']]],
-  ['hotspot_5fbindings_5f_1',['hotspot_bindings_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a529f187282c8ef8426d84205940c8130',1,'karakuri::KarakuriScenarioRunner']]],
-  ['hotspot_5fid_2',['hotspot_id',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html#a303d941ee8c134c0f814478997846742',1,'karakuri::KarakuriScenarioRunner::HotspotBinding']]],
-  ['hotspot_5fmatches_5fclick_3',['hotspot_matches_click',['../classkarakuri_1_1KarakuriScenarioRunner.html#ae5b3e38a6d589fc5fc88b282aa6de1a1',1,'karakuri::KarakuriScenarioRunner']]],
-  ['hotspotbinding_4',['HotspotBinding',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html',1,'karakuri::KarakuriScenarioRunner']]]
+  ['has_5fcheckpoint_0',['has_checkpoint',['../classgodot_1_1MysteryManager.html#a954c779c60b154e443cb06cb8d55883e',1,'godot::MysteryManager']]],
+  ['has_5fevidence_1',['has_evidence',['../classgodot_1_1EvidenceManager.html#a674679e3fd59b4bee48d51d3cb3354ba',1,'godot::EvidenceManager']]],
+  ['has_5fsave_2',['has_save',['../classkarakuri_1_1KarakuriSaveService.html#aec042867e2fa4a82c4aab9a391585ce9',1,'karakuri::KarakuriSaveService']]],
+  ['heal_3',['heal',['../classGameEntity.html#a952232ff0f3cc90839febe0d40d8b99f',1,'GameEntity::heal()'],['../classAdventureGameStateBase.html#a64885dc48a21c30aa8755809187c122b',1,'AdventureGameStateBase::heal()']]],
+  ['health_4',['health',['../classFighterController.html#a4565a0315d510774c52304c9d0e1a2b7',1,'FighterController::health'],['../classRhythmGameManager.html#a1142fdad80bf8f4210e529435ef57771',1,'RhythmGameManager::health'],['../classAdventureGameStateBase.html#a92da953bfe15ef59843b7d0993c14382',1,'AdventureGameStateBase::health']]],
+  ['hide_5fdialogue_5',['hide_dialogue',['../classDialogueUI.html#a3a3ff2fd39855222042b286381a3e391',1,'DialogueUI']]],
+  ['hit_5fstop_5fmanager_2ecpp_6',['hit_stop_manager.cpp',['../hit__stop__manager_8cpp.html',1,'']]],
+  ['hit_5fstop_5fmanager_2eh_7',['hit_stop_manager.h',['../hit__stop__manager_8h.html',1,'']]],
+  ['hit_5fstun_8',['hit_stun',['../classHitboxComponent.html#ae981562815407c3c19a1a02e1403e8f9',1,'HitboxComponent::hit_stun'],['../classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea436f14af13de3665b8c18a57ee0da4f7',1,'FighterController::HIT_STUN']]],
+  ['hitbox_9',['hitbox',['../classFighterController.html#aa98d9629ebff0586501cdfec013495bb',1,'FighterController']]],
+  ['hitbox_5fcomponent_2ecpp_10',['hitbox_component.cpp',['../hitbox__component_8cpp.html',1,'']]],
+  ['hitbox_5fcomponent_2eh_11',['hitbox_component.h',['../hitbox__component_8h.html',1,'']]],
+  ['hitboxcomponent_12',['hitboxcomponent',['../classHitboxComponent.html#afc1c7182a6479ffda710a84cfabf6d6a',1,'HitboxComponent::HitboxComponent()'],['../classHitboxComponent.html',1,'HitboxComponent']]],
+  ['hitstopmanager_13',['hitstopmanager',['../classHitStopManager.html#a5a3e227b3463b1b38a9a65703ab17489',1,'HitStopManager::HitStopManager()'],['../classHitStopManager.html',1,'HitStopManager']]],
+  ['hotspot_5fbindings_5f_14',['hotspot_bindings_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a529f187282c8ef8426d84205940c8130',1,'karakuri::KarakuriScenarioRunner']]],
+  ['hotspot_5fid_15',['hotspot_id',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html#a303d941ee8c134c0f814478997846742',1,'karakuri::KarakuriScenarioRunner::HotspotBinding']]],
+  ['hotspot_5fmatches_5fclick_16',['hotspot_matches_click',['../classkarakuri_1_1KarakuriScenarioRunner.html#ae5b3e38a6d589fc5fc88b282aa6de1a1',1,'karakuri::KarakuriScenarioRunner']]],
+  ['hotspotbinding_17',['HotspotBinding',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html',1,'karakuri::KarakuriScenarioRunner']]],
+  ['hurtbox_18',['hurtbox',['../classFighterController.html#a77284332fc4b872b10574c98cee93b39',1,'FighterController']]],
+  ['hurtbox_5fcomponent_2ecpp_19',['hurtbox_component.cpp',['../hurtbox__component_8cpp.html',1,'']]],
+  ['hurtbox_5fcomponent_2eh_20',['hurtbox_component.h',['../hurtbox__component_8h.html',1,'']]],
+  ['hurtboxcomponent_21',['hurtboxcomponent',['../classHurtboxComponent.html',1,'HurtboxComponent'],['../classHurtboxComponent.html#a36d0d9e98db36aad235d80046d829844',1,'HurtboxComponent::HurtboxComponent()']]]
 ];

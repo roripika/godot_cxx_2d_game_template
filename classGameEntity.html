@@ -1,0 +1,716 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: GameEntity クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">GameEntity クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="game__entity_8h_source.html">game_entity.h</a>&gt;</code></p>
+<div class="dynheader">
+GameEntity の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity__inherit__graph.png" border="0" usemap="#aGameEntity_inherit__map" alt="Inheritance graph"/></div>
+<map name="aGameEntity_inherit__map" id="aGameEntity_inherit__map">
+<area shape="rect" title=" " alt="" coords="116,79,215,104"/>
+<area shape="rect" href="classPlayerControllerIso.html" title=" " alt="" coords="5,152,152,177"/>
+<area shape="poly" title=" " alt="" coords="143,115,95,154,91,150,139,110"/>
+<area shape="rect" href="classPlayerControllerSide.html" title=" " alt="" coords="176,152,331,177"/>
+<area shape="poly" title=" " alt="" coords="192,110,241,150,237,154,188,115"/>
+<area shape="rect" title=" " alt="" coords="97,5,233,31"/>
+<area shape="poly" title=" " alt="" coords="168,44,168,79,163,79,163,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+GameEntity 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity__coll__graph.png" border="0" usemap="#aGameEntity_coll__map" alt="Collaboration graph"/></div>
+<map name="aGameEntity_coll__map" id="aGameEntity_coll__map">
+<area shape="rect" title=" " alt="" coords="24,79,123,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,141,31"/>
+<area shape="poly" title=" " alt="" coords="76,44,76,79,71,79,71,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a43e4841110c2de7e207d25cd31573616" id="r_a43e4841110c2de7e207d25cd31573616"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a43e4841110c2de7e207d25cd31573616">GameEntity</a> ()</td></tr>
+<tr class="separator:a43e4841110c2de7e207d25cd31573616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241238b29b5e440107a5b295edf24f9c" id="r_a241238b29b5e440107a5b295edf24f9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a241238b29b5e440107a5b295edf24f9c">~GameEntity</a> ()</td></tr>
+<tr class="separator:a241238b29b5e440107a5b295edf24f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0f1e367046795cc00ab039b96221995" id="r_af0f1e367046795cc00ab039b96221995"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#af0f1e367046795cc00ab039b96221995">set_max_health</a> (float p_health)</td></tr>
+<tr class="separator:af0f1e367046795cc00ab039b96221995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a683f337bb8bc46f63f1f3915b2fa0c10" id="r_a683f337bb8bc46f63f1f3915b2fa0c10"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a683f337bb8bc46f63f1f3915b2fa0c10">get_max_health</a> () const</td></tr>
+<tr class="separator:a683f337bb8bc46f63f1f3915b2fa0c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399369a0e868b8ecfcb6590da87246c5" id="r_a399369a0e868b8ecfcb6590da87246c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a399369a0e868b8ecfcb6590da87246c5">set_current_health</a> (float p_health)</td></tr>
+<tr class="separator:a399369a0e868b8ecfcb6590da87246c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829d2e404f32b195e8fa0ec19145b3ad" id="r_a829d2e404f32b195e8fa0ec19145b3ad"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a829d2e404f32b195e8fa0ec19145b3ad">get_current_health</a> () const</td></tr>
+<tr class="separator:a829d2e404f32b195e8fa0ec19145b3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d42cbe72bd7a358bbe2773433bcd13" id="r_a56d42cbe72bd7a358bbe2773433bcd13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a56d42cbe72bd7a358bbe2773433bcd13">set_speed</a> (float p_speed)</td></tr>
+<tr class="separator:a56d42cbe72bd7a358bbe2773433bcd13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d5a1f285adcbbdc44f95bd62f976373" id="r_a8d5a1f285adcbbdc44f95bd62f976373"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a8d5a1f285adcbbdc44f95bd62f976373">get_speed</a> () const</td></tr>
+<tr class="separator:a8d5a1f285adcbbdc44f95bd62f976373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74113b6d75590912b4c31ad90615e16d" id="r_a74113b6d75590912b4c31ad90615e16d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a74113b6d75590912b4c31ad90615e16d">take_damage</a> (float p_amount)</td></tr>
+<tr class="separator:a74113b6d75590912b4c31ad90615e16d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a952232ff0f3cc90839febe0d40d8b99f" id="r_a952232ff0f3cc90839febe0d40d8b99f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a952232ff0f3cc90839febe0d40d8b99f">heal</a> (float p_amount)</td></tr>
+<tr class="separator:a952232ff0f3cc90839febe0d40d8b99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12730846d66908ac2c15c23abb4e07e5" id="r_a12730846d66908ac2c15c23abb4e07e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a12730846d66908ac2c15c23abb4e07e5">set_movement_input</a> (const Vector2 &amp;p_input)</td></tr>
+<tr class="separator:a12730846d66908ac2c15c23abb4e07e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7aa36c6115a3af7bf7d2376d598bdc0" id="r_ac7aa36c6115a3af7bf7d2376d598bdc0"><td class="memItemLeft" align="right" valign="top">Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#ac7aa36c6115a3af7bf7d2376d598bdc0">get_movement_input</a> () const</td></tr>
+<tr class="separator:ac7aa36c6115a3af7bf7d2376d598bdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad87efbe4e694898a11225b2184e6f1dd" id="r_ad87efbe4e694898a11225b2184e6f1dd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#ad87efbe4e694898a11225b2184e6f1dd">apply_movement</a> (double delta)</td></tr>
+<tr class="separator:ad87efbe4e694898a11225b2184e6f1dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a97fc25452f3fbfd4fffd912b296c61c8" id="r_a97fc25452f3fbfd4fffd912b296c61c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a97fc25452f3fbfd4fffd912b296c61c8">_notification</a> (int p_what)</td></tr>
+<tr class="separator:a97fc25452f3fbfd4fffd912b296c61c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab577e9e4c5a797e1b4266fbc0bb438d1" id="r_ab577e9e4c5a797e1b4266fbc0bb438d1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1">_bind_methods</a> ()</td></tr>
+<tr class="separator:ab577e9e4c5a797e1b4266fbc0bb438d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:a2648daccea10a8b35cc37a91dc7e494f" id="r_a2648daccea10a8b35cc37a91dc7e494f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a2648daccea10a8b35cc37a91dc7e494f">max_health</a></td></tr>
+<tr class="separator:a2648daccea10a8b35cc37a91dc7e494f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec683a4722065131cec198b3e9c71b4a" id="r_aec683a4722065131cec198b3e9c71b4a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#aec683a4722065131cec198b3e9c71b4a">current_health</a></td></tr>
+<tr class="separator:aec683a4722065131cec198b3e9c71b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69eb676c6e2fc4924e4122b93f2704e6" id="r_a69eb676c6e2fc4924e4122b93f2704e6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#a69eb676c6e2fc4924e4122b93f2704e6">speed</a></td></tr>
+<tr class="separator:a69eb676c6e2fc4924e4122b93f2704e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c13d7c481a28a01efa1ea18aea898b" id="r_af3c13d7c481a28a01efa1ea18aea898b"><td class="memItemLeft" align="right" valign="top">Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameEntity.html#af3c13d7c481a28a01efa1ea18aea898b">movement_input</a></td></tr>
+<tr class="separator:af3c13d7c481a28a01efa1ea18aea898b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a43e4841110c2de7e207d25cd31573616" name="a43e4841110c2de7e207d25cd31573616"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43e4841110c2de7e207d25cd31573616">&#9670;&#160;</a></span>GameEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameEntity::GameEntity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a241238b29b5e440107a5b295edf24f9c" name="a241238b29b5e440107a5b295edf24f9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a241238b29b5e440107a5b295edf24f9c">&#9670;&#160;</a></span>~GameEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameEntity::~GameEntity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="ab577e9e4c5a797e1b4266fbc0bb438d1" name="ab577e9e4c5a797e1b4266fbc0bb438d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab577e9e4c5a797e1b4266fbc0bb438d1">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_ab577e9e4c5a797e1b4266fbc0bb438d1_cgraph.png" border="0" usemap="#aclassGameEntity_ab577e9e4c5a797e1b4266fbc0bb438d1_cgraph" alt=""/></div>
+<map name="aclassGameEntity_ab577e9e4c5a797e1b4266fbc0bb438d1_cgraph" id="aclassGameEntity_ab577e9e4c5a797e1b4266fbc0bb438d1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,277,211,302"/>
+<area shape="rect" href="classGameEntity.html#a829d2e404f32b195e8fa0ec19145b3ad" title=" " alt="" coords="271,5,451,45"/>
+<area shape="poly" title=" " alt="" coords="111,276,129,233,159,174,202,110,228,81,257,55,265,50,268,54,260,59,232,85,206,114,164,177,134,236,116,278"/>
+<area shape="rect" href="classGameEntity.html#a683f337bb8bc46f63f1f3915b2fa0c10" title=" " alt="" coords="280,69,443,109"/>
+<area shape="poly" title=" " alt="" coords="115,275,168,201,210,157,257,119,268,113,270,118,260,124,213,161,173,205,119,278"/>
+<area shape="rect" href="classGameEntity.html#ac7aa36c6115a3af7bf7d2376d598bdc0" title=" " alt="" coords="259,133,464,173"/>
+<area shape="poly" title=" " alt="" coords="123,274,180,230,218,205,257,183,273,176,275,181,260,188,220,210,183,235,126,279"/>
+<area shape="rect" href="classGameEntity.html#a8d5a1f285adcbbdc44f95bd62f976373" title=" " alt="" coords="275,198,448,223"/>
+<area shape="poly" title=" " alt="" coords="140,274,258,232,287,224,288,229,259,237,142,279"/>
+<area shape="rect" href="classGameEntity.html#a952232ff0f3cc90839febe0d40d8b99f" title=" " alt="" coords="294,247,429,273"/>
+<area shape="poly" title=" " alt="" coords="211,275,280,267,281,272,211,280"/>
+<area shape="rect" href="classGameEntity.html#a399369a0e868b8ecfcb6590da87246c5" title=" " alt="" coords="272,297,451,337"/>
+<area shape="poly" title=" " alt="" coords="211,298,259,303,258,309,211,303"/>
+<area shape="rect" href="classGameEntity.html#af0f1e367046795cc00ab039b96221995" title=" " alt="" coords="280,361,443,401"/>
+<area shape="poly" title=" " alt="" coords="140,300,260,347,282,355,280,360,258,352,138,305"/>
+<area shape="rect" href="classGameEntity.html#a12730846d66908ac2c15c23abb4e07e5" title=" " alt="" coords="259,425,463,465"/>
+<area shape="poly" title=" " alt="" coords="123,300,179,353,218,384,260,411,274,418,271,422,257,416,215,388,176,357,119,304"/>
+<area shape="rect" href="classGameEntity.html#a56d42cbe72bd7a358bbe2773433bcd13" title=" " alt="" coords="275,490,447,515"/>
+<area shape="poly" title=" " alt="" coords="118,301,138,336,169,384,210,433,234,456,260,475,274,483,271,487,257,480,231,460,206,437,164,387,133,339,113,304"/>
+<area shape="rect" href="classGameEntity.html#a74113b6d75590912b4c31ad90615e16d" title=" " alt="" coords="264,539,459,565"/>
+<area shape="poly" title=" " alt="" coords="116,301,133,344,162,405,205,470,231,499,260,525,271,531,269,536,257,529,227,503,200,473,157,408,128,346,111,303"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a97fc25452f3fbfd4fffd912b296c61c8" name="a97fc25452f3fbfd4fffd912b296c61c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97fc25452f3fbfd4fffd912b296c61c8">&#9670;&#160;</a></span>_notification()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::_notification </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_what</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a97fc25452f3fbfd4fffd912b296c61c8_cgraph.png" border="0" usemap="#aclassGameEntity_a97fc25452f3fbfd4fffd912b296c61c8_cgraph" alt=""/></div>
+<map name="aclassGameEntity_a97fc25452f3fbfd4fffd912b296c61c8_cgraph" id="aclassGameEntity_a97fc25452f3fbfd4fffd912b296c61c8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,192,31"/>
+<area shape="rect" href="classGameEntity.html#ad87efbe4e694898a11225b2184e6f1dd" title=" " alt="" coords="240,5,460,31"/>
+<area shape="poly" title=" " alt="" coords="192,15,226,15,226,21,192,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad87efbe4e694898a11225b2184e6f1dd" name="ad87efbe4e694898a11225b2184e6f1dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad87efbe4e694898a11225b2184e6f1dd">&#9670;&#160;</a></span>apply_movement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::apply_movement </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classPlayerControllerIso.html#a50e9500b2d306bf92ea8a4fb03453c17">PlayerControllerIso</a>, <a class="el" href="classPlayerControllerSide.html#a23c8806ff60e6f7f8dffafd7668b43d6">PlayerControllerSide</a>で再実装されています。</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_ad87efbe4e694898a11225b2184e6f1dd_icgraph.png" border="0" usemap="#aclassGameEntity_ad87efbe4e694898a11225b2184e6f1dd_icgraph" alt=""/></div>
+<map name="aclassGameEntity_ad87efbe4e694898a11225b2184e6f1dd_icgraph" id="aclassGameEntity_ad87efbe4e694898a11225b2184e6f1dd_icgraph">
+<area shape="rect" title=" " alt="" coords="435,35,655,60"/>
+<area shape="rect" href="classGameEntity.html#a97fc25452f3fbfd4fffd912b296c61c8" title=" " alt="" coords="200,5,387,31"/>
+<area shape="poly" title=" " alt="" coords="422,36,387,32,387,26,423,30"/>
+<area shape="rect" href="classPlayerControllerIso.html#a50e9500b2d306bf92ea8a4fb03453c17" title=" " alt="" coords="220,55,367,95"/>
+<area shape="poly" title=" " alt="" coords="421,64,367,70,367,65,421,58"/>
+<area shape="rect" href="classPlayerControllerIso.html#a8a60531422652c5160db6b265130c258" title=" " alt="" coords="5,55,152,95"/>
+<area shape="poly" title=" " alt="" coords="206,78,152,78,152,73,206,73"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a829d2e404f32b195e8fa0ec19145b3ad" name="a829d2e404f32b195e8fa0ec19145b3ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a829d2e404f32b195e8fa0ec19145b3ad">&#9670;&#160;</a></span>get_current_health()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameEntity::get_current_health </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a829d2e404f32b195e8fa0ec19145b3ad_icgraph.png" border="0" usemap="#aclassGameEntity_a829d2e404f32b195e8fa0ec19145b3ad_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a829d2e404f32b195e8fa0ec19145b3ad_icgraph" id="aclassGameEntity_a829d2e404f32b195e8fa0ec19145b3ad_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,439,45"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,13,211,38"/>
+<area shape="poly" title=" " alt="" coords="245,28,211,28,211,23,245,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a683f337bb8bc46f63f1f3915b2fa0c10" name="a683f337bb8bc46f63f1f3915b2fa0c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a683f337bb8bc46f63f1f3915b2fa0c10">&#9670;&#160;</a></span>get_max_health()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameEntity::get_max_health </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a683f337bb8bc46f63f1f3915b2fa0c10_icgraph.png" border="0" usemap="#aclassGameEntity_a683f337bb8bc46f63f1f3915b2fa0c10_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a683f337bb8bc46f63f1f3915b2fa0c10_icgraph" id="aclassGameEntity_a683f337bb8bc46f63f1f3915b2fa0c10_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,421,45"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,13,211,38"/>
+<area shape="poly" title=" " alt="" coords="245,28,211,28,211,23,245,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac7aa36c6115a3af7bf7d2376d598bdc0" name="ac7aa36c6115a3af7bf7d2376d598bdc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7aa36c6115a3af7bf7d2376d598bdc0">&#9670;&#160;</a></span>get_movement_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2 GameEntity::get_movement_input </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_ac7aa36c6115a3af7bf7d2376d598bdc0_icgraph.png" border="0" usemap="#aclassGameEntity_ac7aa36c6115a3af7bf7d2376d598bdc0_icgraph" alt=""/></div>
+<map name="aclassGameEntity_ac7aa36c6115a3af7bf7d2376d598bdc0_icgraph" id="aclassGameEntity_ac7aa36c6115a3af7bf7d2376d598bdc0_icgraph">
+<area shape="rect" title=" " alt="" coords="461,27,667,67"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="208,5,413,31"/>
+<area shape="poly" title=" " alt="" coords="447,37,413,33,414,27,448,31"/>
+<area shape="rect" href="classPlayerControllerSide.html#a23c8806ff60e6f7f8dffafd7668b43d6" title=" " alt="" coords="233,55,388,95"/>
+<area shape="poly" title=" " alt="" coords="448,63,389,69,388,64,447,58"/>
+<area shape="rect" href="classPlayerControllerSide.html#a934f23ae986554e6662d0e51182aa1bc" title=" " alt="" coords="5,55,160,95"/>
+<area shape="poly" title=" " alt="" coords="220,78,160,78,160,73,220,73"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8d5a1f285adcbbdc44f95bd62f976373" name="a8d5a1f285adcbbdc44f95bd62f976373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d5a1f285adcbbdc44f95bd62f976373">&#9670;&#160;</a></span>get_speed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameEntity::get_speed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a8d5a1f285adcbbdc44f95bd62f976373_icgraph.png" border="0" usemap="#aclassGameEntity_a8d5a1f285adcbbdc44f95bd62f976373_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a8d5a1f285adcbbdc44f95bd62f976373_icgraph" id="aclassGameEntity_a8d5a1f285adcbbdc44f95bd62f976373_icgraph">
+<area shape="rect" title=" " alt="" coords="461,35,635,60"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="208,5,413,31"/>
+<area shape="poly" title=" " alt="" coords="447,38,413,33,414,28,448,32"/>
+<area shape="rect" href="classPlayerControllerSide.html#a23c8806ff60e6f7f8dffafd7668b43d6" title=" " alt="" coords="233,55,388,95"/>
+<area shape="poly" title=" " alt="" coords="448,62,389,69,388,64,447,56"/>
+<area shape="rect" href="classPlayerControllerSide.html#a934f23ae986554e6662d0e51182aa1bc" title=" " alt="" coords="5,55,160,95"/>
+<area shape="poly" title=" " alt="" coords="220,78,160,78,160,73,220,73"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a952232ff0f3cc90839febe0d40d8b99f" name="a952232ff0f3cc90839febe0d40d8b99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a952232ff0f3cc90839febe0d40d8b99f">&#9670;&#160;</a></span>heal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::heal </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p_amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a952232ff0f3cc90839febe0d40d8b99f_icgraph.png" border="0" usemap="#aclassGameEntity_a952232ff0f3cc90839febe0d40d8b99f_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a952232ff0f3cc90839febe0d40d8b99f_icgraph" id="aclassGameEntity_a952232ff0f3cc90839febe0d40d8b99f_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,393,31"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,5,211,31"/>
+<area shape="poly" title=" " alt="" coords="245,21,211,21,211,15,245,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a399369a0e868b8ecfcb6590da87246c5" name="a399369a0e868b8ecfcb6590da87246c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a399369a0e868b8ecfcb6590da87246c5">&#9670;&#160;</a></span>set_current_health()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::set_current_health </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p_health</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a399369a0e868b8ecfcb6590da87246c5_icgraph.png" border="0" usemap="#aclassGameEntity_a399369a0e868b8ecfcb6590da87246c5_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a399369a0e868b8ecfcb6590da87246c5_icgraph" id="aclassGameEntity_a399369a0e868b8ecfcb6590da87246c5_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,437,45"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,13,211,38"/>
+<area shape="poly" title=" " alt="" coords="245,28,211,28,211,23,245,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af0f1e367046795cc00ab039b96221995" name="af0f1e367046795cc00ab039b96221995"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0f1e367046795cc00ab039b96221995">&#9670;&#160;</a></span>set_max_health()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::set_max_health </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p_health</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_af0f1e367046795cc00ab039b96221995_icgraph.png" border="0" usemap="#aclassGameEntity_af0f1e367046795cc00ab039b96221995_icgraph" alt=""/></div>
+<map name="aclassGameEntity_af0f1e367046795cc00ab039b96221995_icgraph" id="aclassGameEntity_af0f1e367046795cc00ab039b96221995_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,421,45"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,13,211,38"/>
+<area shape="poly" title=" " alt="" coords="245,28,211,28,211,23,245,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a12730846d66908ac2c15c23abb4e07e5" name="a12730846d66908ac2c15c23abb4e07e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12730846d66908ac2c15c23abb4e07e5">&#9670;&#160;</a></span>set_movement_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::set_movement_input </td>
+          <td>(</td>
+          <td class="paramtype">const Vector2 &amp;&#160;</td>
+          <td class="paramname"><em>p_input</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a12730846d66908ac2c15c23abb4e07e5_icgraph.png" border="0" usemap="#aclassGameEntity_a12730846d66908ac2c15c23abb4e07e5_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a12730846d66908ac2c15c23abb4e07e5_icgraph" id="aclassGameEntity_a12730846d66908ac2c15c23abb4e07e5_icgraph">
+<area shape="rect" title=" " alt="" coords="259,55,463,95"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,5,211,31"/>
+<area shape="poly" title=" " alt="" coords="258,55,164,33,165,28,259,50"/>
+<area shape="rect" href="classPlayerControllerIso.html#a8a60531422652c5160db6b265130c258" title=" " alt="" coords="35,55,181,95"/>
+<area shape="poly" title=" " alt="" coords="245,78,181,78,181,73,245,73"/>
+<area shape="rect" href="classPlayerControllerSide.html#a934f23ae986554e6662d0e51182aa1bc" title=" " alt="" coords="31,119,185,159"/>
+<area shape="poly" title=" " alt="" coords="269,101,186,122,185,117,267,96"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a56d42cbe72bd7a358bbe2773433bcd13" name="a56d42cbe72bd7a358bbe2773433bcd13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56d42cbe72bd7a358bbe2773433bcd13">&#9670;&#160;</a></span>set_speed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::set_speed </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p_speed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a56d42cbe72bd7a358bbe2773433bcd13_icgraph.png" border="0" usemap="#aclassGameEntity_a56d42cbe72bd7a358bbe2773433bcd13_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a56d42cbe72bd7a358bbe2773433bcd13_icgraph" id="aclassGameEntity_a56d42cbe72bd7a358bbe2773433bcd13_icgraph">
+<area shape="rect" title=" " alt="" coords="259,63,431,88"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,5,211,31"/>
+<area shape="poly" title=" " alt="" coords="278,62,160,33,162,28,279,57"/>
+<area shape="rect" href="classPlayerControllerIso.html#a658539deba836e0f87d394a45c77744d" title=" " alt="" coords="31,55,185,95"/>
+<area shape="poly" title=" " alt="" coords="245,78,185,78,185,73,245,73"/>
+<area shape="rect" href="classPlayerControllerSide.html#a7550cc610b398bdde26b90a0f52fbf9d" title=" " alt="" coords="27,119,189,159"/>
+<area shape="poly" title=" " alt="" coords="284,94,183,122,182,117,283,89"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a74113b6d75590912b4c31ad90615e16d" name="a74113b6d75590912b4c31ad90615e16d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74113b6d75590912b4c31ad90615e16d">&#9670;&#160;</a></span>take_damage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameEntity::take_damage </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p_amount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGameEntity_a74113b6d75590912b4c31ad90615e16d_icgraph.png" border="0" usemap="#aclassGameEntity_a74113b6d75590912b4c31ad90615e16d_icgraph" alt=""/></div>
+<map name="aclassGameEntity_a74113b6d75590912b4c31ad90615e16d_icgraph" id="aclassGameEntity_a74113b6d75590912b4c31ad90615e16d_icgraph">
+<area shape="rect" title=" " alt="" coords="259,5,453,31"/>
+<area shape="rect" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,5,211,31"/>
+<area shape="poly" title=" " alt="" coords="245,21,211,21,211,15,245,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="aec683a4722065131cec198b3e9c71b4a" name="aec683a4722065131cec198b3e9c71b4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec683a4722065131cec198b3e9c71b4a">&#9670;&#160;</a></span>current_health</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameEntity::current_health</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2648daccea10a8b35cc37a91dc7e494f" name="a2648daccea10a8b35cc37a91dc7e494f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2648daccea10a8b35cc37a91dc7e494f">&#9670;&#160;</a></span>max_health</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameEntity::max_health</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3c13d7c481a28a01efa1ea18aea898b" name="af3c13d7c481a28a01efa1ea18aea898b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c13d7c481a28a01efa1ea18aea898b">&#9670;&#160;</a></span>movement_input</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2 GameEntity::movement_input</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69eb676c6e2fc4924e4122b93f2704e6" name="a69eb676c6e2fc4924e4122b93f2704e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69eb676c6e2fc4924e4122b93f2704e6">&#9670;&#160;</a></span>speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GameEntity::speed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/entities/<a class="el" href="game__entity_8h_source.html">game_entity.h</a></li>
+<li>src/entities/<a class="el" href="game__entity_8cpp.html">game_entity.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

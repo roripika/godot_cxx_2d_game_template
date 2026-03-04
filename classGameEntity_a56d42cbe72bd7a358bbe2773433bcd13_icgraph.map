@@ -1,0 +1,9 @@
+<map id="GameEntity::set_speed" name="GameEntity::set_speed">
+<area shape="rect" id="Node000001" title=" " alt="" coords="259,63,431,88"/>
+<area shape="rect" id="Node000002" href="$classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1" title=" " alt="" coords="5,5,211,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,62,160,33,162,28,279,57"/>
+<area shape="rect" id="Node000003" href="$classPlayerControllerIso.html#a658539deba836e0f87d394a45c77744d" title=" " alt="" coords="31,55,185,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="245,78,185,78,185,73,245,73"/>
+<area shape="rect" id="Node000004" href="$classPlayerControllerSide.html#a7550cc610b398bdde26b90a0f52fbf9d" title=" " alt="" coords="27,119,189,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,94,183,122,182,117,283,89"/>
+</map>

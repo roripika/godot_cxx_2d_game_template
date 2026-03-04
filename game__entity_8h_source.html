@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/entities/game_entity.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">game_entity.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="game__entity_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef GAME_ENTITY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define GAME_ENTITY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;godot_cpp/classes/character_body2d.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classGameEntity.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classGameEntity.html">GameEntity</a> : <span class="keyword">public</span> CharacterBody2D {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  GDCLASS(<a class="code hl_class" href="classGameEntity.html">GameEntity</a>, CharacterBody2D)</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classGameEntity.html#a2648daccea10a8b35cc37a91dc7e494f">   12</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classGameEntity.html#a2648daccea10a8b35cc37a91dc7e494f">max_health</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classGameEntity.html#aec683a4722065131cec198b3e9c71b4a">   13</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classGameEntity.html#aec683a4722065131cec198b3e9c71b4a">current_health</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classGameEntity.html#a69eb676c6e2fc4924e4122b93f2704e6">   14</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classGameEntity.html#a69eb676c6e2fc4924e4122b93f2704e6">speed</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="comment">// Abstract input direction (to be set by controller logic)</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classGameEntity.html#af3c13d7c481a28a01efa1ea18aea898b">   17</a></span>  Vector2 <a class="code hl_variable" href="classGameEntity.html#af3c13d7c481a28a01efa1ea18aea898b">movement_input</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1">_bind_methods</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#a97fc25452f3fbfd4fffd912b296c61c8">_notification</a>(<span class="keywordtype">int</span> p_what);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_function" href="classGameEntity.html#a43e4841110c2de7e207d25cd31573616">GameEntity</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_function" href="classGameEntity.html#a241238b29b5e440107a5b295edf24f9c">~GameEntity</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="comment">// Stats</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#af0f1e367046795cc00ab039b96221995">set_max_health</a>(<span class="keywordtype">float</span> p_health);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classGameEntity.html#a683f337bb8bc46f63f1f3915b2fa0c10">get_max_health</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#a399369a0e868b8ecfcb6590da87246c5">set_current_health</a>(<span class="keywordtype">float</span> p_health);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classGameEntity.html#a829d2e404f32b195e8fa0ec19145b3ad">get_current_health</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#a56d42cbe72bd7a358bbe2773433bcd13">set_speed</a>(<span class="keywordtype">float</span> p_speed);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classGameEntity.html#a8d5a1f285adcbbdc44f95bd62f976373">get_speed</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// Actions</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#a74113b6d75590912b4c31ad90615e16d">take_damage</a>(<span class="keywordtype">float</span> p_amount);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#a952232ff0f3cc90839febe0d40d8b99f">heal</a>(<span class="keywordtype">float</span> p_amount);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="comment">// Movement Control</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#a12730846d66908ac2c15c23abb4e07e5">set_movement_input</a>(<span class="keyword">const</span> Vector2 &amp;p_input);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  Vector2 <a class="code hl_function" href="classGameEntity.html#ac7aa36c6115a3af7bf7d2376d598bdc0">get_movement_input</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="comment">// Simple movement logic (can be overridden or handled by components)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">// Applies velocity based on input * speed and calls move_and_slide()</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGameEntity.html#ad87efbe4e694898a11225b2184e6f1dd">apply_movement</a>(<span class="keywordtype">double</span> delta);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGameEntity_html"><div class="ttname"><a href="classGameEntity.html">GameEntity</a></div><div class="ttdef"><b>Definition</b> game_entity.h:8</div></div>
+<div class="ttc" id="aclassGameEntity_html_a12730846d66908ac2c15c23abb4e07e5"><div class="ttname"><a href="classGameEntity.html#a12730846d66908ac2c15c23abb4e07e5">GameEntity::set_movement_input</a></div><div class="ttdeci">void set_movement_input(const Vector2 &amp;p_input)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:94</div></div>
+<div class="ttc" id="aclassGameEntity_html_a241238b29b5e440107a5b295edf24f9c"><div class="ttname"><a href="classGameEntity.html#a241238b29b5e440107a5b295edf24f9c">GameEntity::~GameEntity</a></div><div class="ttdeci">~GameEntity()</div><div class="ttdef"><b>Definition</b> game_entity.cpp:44</div></div>
+<div class="ttc" id="aclassGameEntity_html_a2648daccea10a8b35cc37a91dc7e494f"><div class="ttname"><a href="classGameEntity.html#a2648daccea10a8b35cc37a91dc7e494f">GameEntity::max_health</a></div><div class="ttdeci">float max_health</div><div class="ttdef"><b>Definition</b> game_entity.h:12</div></div>
+<div class="ttc" id="aclassGameEntity_html_a399369a0e868b8ecfcb6590da87246c5"><div class="ttname"><a href="classGameEntity.html#a399369a0e868b8ecfcb6590da87246c5">GameEntity::set_current_health</a></div><div class="ttdeci">void set_current_health(float p_health)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:64</div></div>
+<div class="ttc" id="aclassGameEntity_html_a43e4841110c2de7e207d25cd31573616"><div class="ttname"><a href="classGameEntity.html#a43e4841110c2de7e207d25cd31573616">GameEntity::GameEntity</a></div><div class="ttdeci">GameEntity()</div><div class="ttdef"><b>Definition</b> game_entity.cpp:37</div></div>
+<div class="ttc" id="aclassGameEntity_html_a56d42cbe72bd7a358bbe2773433bcd13"><div class="ttname"><a href="classGameEntity.html#a56d42cbe72bd7a358bbe2773433bcd13">GameEntity::set_speed</a></div><div class="ttdeci">void set_speed(float p_speed)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:74</div></div>
+<div class="ttc" id="aclassGameEntity_html_a683f337bb8bc46f63f1f3915b2fa0c10"><div class="ttname"><a href="classGameEntity.html#a683f337bb8bc46f63f1f3915b2fa0c10">GameEntity::get_max_health</a></div><div class="ttdeci">float get_max_health() const</div><div class="ttdef"><b>Definition</b> game_entity.cpp:62</div></div>
+<div class="ttc" id="aclassGameEntity_html_a69eb676c6e2fc4924e4122b93f2704e6"><div class="ttname"><a href="classGameEntity.html#a69eb676c6e2fc4924e4122b93f2704e6">GameEntity::speed</a></div><div class="ttdeci">float speed</div><div class="ttdef"><b>Definition</b> game_entity.h:14</div></div>
+<div class="ttc" id="aclassGameEntity_html_a74113b6d75590912b4c31ad90615e16d"><div class="ttname"><a href="classGameEntity.html#a74113b6d75590912b4c31ad90615e16d">GameEntity::take_damage</a></div><div class="ttdeci">void take_damage(float p_amount)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:78</div></div>
+<div class="ttc" id="aclassGameEntity_html_a829d2e404f32b195e8fa0ec19145b3ad"><div class="ttname"><a href="classGameEntity.html#a829d2e404f32b195e8fa0ec19145b3ad">GameEntity::get_current_health</a></div><div class="ttdeci">float get_current_health() const</div><div class="ttdef"><b>Definition</b> game_entity.cpp:72</div></div>
+<div class="ttc" id="aclassGameEntity_html_a8d5a1f285adcbbdc44f95bd62f976373"><div class="ttname"><a href="classGameEntity.html#a8d5a1f285adcbbdc44f95bd62f976373">GameEntity::get_speed</a></div><div class="ttdeci">float get_speed() const</div><div class="ttdef"><b>Definition</b> game_entity.cpp:76</div></div>
+<div class="ttc" id="aclassGameEntity_html_a952232ff0f3cc90839febe0d40d8b99f"><div class="ttname"><a href="classGameEntity.html#a952232ff0f3cc90839febe0d40d8b99f">GameEntity::heal</a></div><div class="ttdeci">void heal(float p_amount)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:86</div></div>
+<div class="ttc" id="aclassGameEntity_html_a97fc25452f3fbfd4fffd912b296c61c8"><div class="ttname"><a href="classGameEntity.html#a97fc25452f3fbfd4fffd912b296c61c8">GameEntity::_notification</a></div><div class="ttdeci">void _notification(int p_what)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:46</div></div>
+<div class="ttc" id="aclassGameEntity_html_ab577e9e4c5a797e1b4266fbc0bb438d1"><div class="ttname"><a href="classGameEntity.html#ab577e9e4c5a797e1b4266fbc0bb438d1">GameEntity::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> game_entity.cpp:7</div></div>
+<div class="ttc" id="aclassGameEntity_html_ac7aa36c6115a3af7bf7d2376d598bdc0"><div class="ttname"><a href="classGameEntity.html#ac7aa36c6115a3af7bf7d2376d598bdc0">GameEntity::get_movement_input</a></div><div class="ttdeci">Vector2 get_movement_input() const</div><div class="ttdef"><b>Definition</b> game_entity.cpp:98</div></div>
+<div class="ttc" id="aclassGameEntity_html_ad87efbe4e694898a11225b2184e6f1dd"><div class="ttname"><a href="classGameEntity.html#ad87efbe4e694898a11225b2184e6f1dd">GameEntity::apply_movement</a></div><div class="ttdeci">virtual void apply_movement(double delta)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:100</div></div>
+<div class="ttc" id="aclassGameEntity_html_aec683a4722065131cec198b3e9c71b4a"><div class="ttname"><a href="classGameEntity.html#aec683a4722065131cec198b3e9c71b4a">GameEntity::current_health</a></div><div class="ttdeci">float current_health</div><div class="ttdef"><b>Definition</b> game_entity.h:13</div></div>
+<div class="ttc" id="aclassGameEntity_html_af0f1e367046795cc00ab039b96221995"><div class="ttname"><a href="classGameEntity.html#af0f1e367046795cc00ab039b96221995">GameEntity::set_max_health</a></div><div class="ttdeci">void set_max_health(float p_health)</div><div class="ttdef"><b>Definition</b> game_entity.cpp:54</div></div>
+<div class="ttc" id="aclassGameEntity_html_af3c13d7c481a28a01efa1ea18aea898b"><div class="ttname"><a href="classGameEntity.html#af3c13d7c481a28a01efa1ea18aea898b">GameEntity::movement_input</a></div><div class="ttdeci">Vector2 movement_input</div><div class="ttdef"><b>Definition</b> game_entity.h:17</div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

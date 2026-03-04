@@ -1,0 +1,16 @@
+<map id="godot::MysteryManager::load_checkpoint" name="godot::MysteryManager::load_checkpoint">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,183,109"/>
+<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryManager.html#a0b0028455d00ad11db43593d981e5e1f" title=" " alt="" coords="231,69,408,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,87,217,87,217,92,183,92"/>
+<area shape="rect" id="Node000003" href="$classgodot_1_1MysteryManager.html#a0167897862960ecba150dd7da0be1ae8" title=" " alt="" coords="459,12,636,52"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="399,67,454,53,455,58,400,72"/>
+<area shape="rect" id="Node000006" href="$classAdventureGameStateBase.html#a767e0549c0dd778d0665fcd6aa0e942a" title=" " alt="" coords="912,69,1107,109"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="408,87,898,87,898,92,408,92"/>
+<area shape="rect" id="Node000007" href="$classgodot_1_1EvidenceManager.html#a555decc9e7175abeeb617a53a429b7f9" title=" " alt="" coords="456,127,639,167"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="400,107,455,121,454,126,399,112"/>
+<area shape="rect" id="Node000004" href="$classgodot_1_1MysteryManager.html#abd84d57c26b9c13af408f90f5a84eee3" title=" " alt="" coords="687,12,864,52"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="636,29,673,29,673,35,636,35"/>
+<area shape="rect" id="Node000005" href="$classgodot_1_1MysteryManager.html#a9148b7f88b54234e9afe897c8cc760f1" title=" " alt="" coords="921,5,1098,45"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="864,27,907,26,907,31,864,32"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="858,49,914,63,913,69,857,55"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="godot::MysteryManager::deserialize_flags" name="godot::MysteryManager::deserialize_flags">
+<area shape="rect" id="Node000001" title=" " alt="" coords="681,5,859,45"/>
+<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryManager.html#a441637f4b0be58d6c60b6e85cddcd5c9" title=" " alt="" coords="5,27,183,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="668,25,633,24,432,23,231,35,183,39,183,34,230,29,432,18,633,19,668,19"/>
+<area shape="rect" id="Node000003" href="$classgodot_1_1MysteryManager.html#a0b0028455d00ad11db43593d981e5e1f" title=" " alt="" coords="456,33,633,73"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="668,41,634,45,633,40,668,35"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="442,54,183,51,183,45,442,49"/>
+<area shape="rect" id="Node000004" href="$classgodot_1_1MysteryManager.html#a85dce2949adaa78b5a746803fa10305a" title=" " alt="" coords="231,84,408,124"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="444,79,409,87,408,81,442,74"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="226,83,173,69,174,64,227,78"/>
+</map>

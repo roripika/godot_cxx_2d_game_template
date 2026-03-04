@@ -1,0 +1,9 @@
+<map id="クラス階層図" name="クラス階層図">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,80,80"/>
+<area shape="rect" id="Node000001" href="$classBuildingComponent.html" title=" " alt="" coords="128,5,279,31"/>
+<area shape="poly" id="edge23_Node000000_Node000001" title=" " alt="" coords="92,49,160,28,162,33,94,55"/>
+<area shape="rect" id="Node000002" href="$classInteractionManager.html" title=" " alt="" coords="129,55,278,80"/>
+<area shape="poly" id="edge24_Node000000_Node000002" title=" " alt="" coords="94,65,129,65,129,70,94,70"/>
+<area shape="rect" id="Node000003" href="$classMiningComponent.html" title=" " alt="" coords="133,104,274,129"/>
+<area shape="poly" id="edge25_Node000000_Node000003" title=" " alt="" coords="94,80,162,101,160,106,92,85"/>
+</map>

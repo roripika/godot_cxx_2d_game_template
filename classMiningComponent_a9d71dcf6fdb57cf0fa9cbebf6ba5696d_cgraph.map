@@ -1,0 +1,17 @@
+<map id="MiningComponent::_bind_methods" name="MiningComponent::_bind_methods">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,191,189,231"/>
+<area shape="rect" id="Node000002" href="$classMiningComponent.html#ac61b4965dfca8d27c7e72f73e44cc056" title=" " alt="" coords="243,5,414,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,189,160,124,196,87,236,55,246,49,249,54,239,60,199,91,164,127,114,192"/>
+<area shape="rect" id="Node000003" href="$classMiningComponent.html#a0868b29044c00e37518f1c27f54f9cf7" title=" " alt="" coords="243,69,414,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,188,175,154,236,119,252,112,254,117,239,124,178,158,127,193"/>
+<area shape="rect" id="Node000004" href="$classMiningComponent.html#a9898452b0ed5ca4c56c47ce7b5ddeefb" title=" " alt="" coords="243,133,414,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="178,188,234,174,235,179,179,193"/>
+<area shape="rect" id="Node000005" href="$classMiningComponent.html#acbbff169b286379444639131ac912722" title=" " alt="" coords="237,198,420,223"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="190,208,223,208,223,213,190,213"/>
+<area shape="rect" id="Node000006" href="$classMiningComponent.html#ad7648a36239d7ece9cb880fa74367135" title=" " alt="" coords="244,248,413,288"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="179,228,235,242,234,247,178,233"/>
+<area shape="rect" id="Node000007" href="$classMiningComponent.html#abfd36a7195a02020e789a5635f05e730" title=" " alt="" coords="244,312,413,352"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="127,229,178,263,239,298,254,305,252,309,236,302,175,267,124,233"/>
+<area shape="rect" id="Node000008" href="$classMiningComponent.html#a4f19a321d56ae7838f7107691c7d24db" title=" " alt="" coords="244,376,413,416"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="114,229,164,294,199,330,239,362,249,368,246,372,236,366,196,334,160,298,110,233"/>
+</map>

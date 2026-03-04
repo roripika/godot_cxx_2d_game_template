@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/universal_world_data.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">universal_world_data.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="universal__world__data_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef UNIVERSAL_WORLD_DATA_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define UNIVERSAL_WORLD_DATA_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;godot_cpp/classes/resource.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;godot_cpp/core/class_db.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;godot_cpp/variant/vector3i.hpp&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classUniversalWorldData.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classUniversalWorldData.html">UniversalWorldData</a> : <span class="keyword">public</span> Resource {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  GDCLASS(<a class="code hl_class" href="classUniversalWorldData.html">UniversalWorldData</a>, Resource)</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="comment">// Flat 3D array. Index = x + size.x * (y + size.y * z)</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classUniversalWorldData.html#ad1035de3f73fd5fa50b0d385e488abac">   16</a></span>  std::vector&lt;int&gt; <a class="code hl_variable" href="classUniversalWorldData.html#ad1035de3f73fd5fa50b0d385e488abac">data</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classUniversalWorldData.html#a27280dc3e8ebb37335b6a7a83e21fff8">   17</a></span>  Vector3i <a class="code hl_variable" href="classUniversalWorldData.html#a27280dc3e8ebb37335b6a7a83e21fff8">size</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUniversalWorldData.html#ad7cf12d8f0f59fb76725115167876ed9">_bind_methods</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_function" href="classUniversalWorldData.html#a1dc56b2837b2d31793f163b105ce9826">UniversalWorldData</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_function" href="classUniversalWorldData.html#a547448cb2ac129d2d318ae24b687a53a">~UniversalWorldData</a>();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="comment">// Initialize with size. Fills with -1.</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classUniversalWorldData.html#a1c13a99daafdbfc8c4b4d6eef8981043">initialize</a>(<span class="keyword">const</span> Vector3i &amp;p_size);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classUniversalWorldData.html#ab0f5a276f957789e709cd4c96e4858d5">set_voxel</a>(<span class="keyword">const</span> Vector3i &amp;p_pos, <span class="keywordtype">int</span> p_id);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classUniversalWorldData.html#a0b48e2d7c9fbea3d6ffd9947391e7cf5">get_voxel</a>(<span class="keyword">const</span> Vector3i &amp;p_pos) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classUniversalWorldData.html#a57833386cf126185c66cbcac2c3c7219">   32</a></span>  Vector3i <a class="code hl_function" href="classUniversalWorldData.html#a57833386cf126185c66cbcac2c3c7219">get_size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classUniversalWorldData.html#a27280dc3e8ebb37335b6a7a83e21fff8">size</a>; }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
+</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassUniversalWorldData_html"><div class="ttname"><a href="classUniversalWorldData.html">UniversalWorldData</a></div><div class="ttdef"><b>Definition</b> universal_world_data.h:11</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_a0b48e2d7c9fbea3d6ffd9947391e7cf5"><div class="ttname"><a href="classUniversalWorldData.html#a0b48e2d7c9fbea3d6ffd9947391e7cf5">UniversalWorldData::get_voxel</a></div><div class="ttdeci">int get_voxel(const Vector3i &amp;p_pos) const</div><div class="ttdef"><b>Definition</b> universal_world_data.cpp:43</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_a1c13a99daafdbfc8c4b4d6eef8981043"><div class="ttname"><a href="classUniversalWorldData.html#a1c13a99daafdbfc8c4b4d6eef8981043">UniversalWorldData::initialize</a></div><div class="ttdeci">void initialize(const Vector3i &amp;p_size)</div><div class="ttdef"><b>Definition</b> universal_world_data.cpp:23</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_a1dc56b2837b2d31793f163b105ce9826"><div class="ttname"><a href="classUniversalWorldData.html#a1dc56b2837b2d31793f163b105ce9826">UniversalWorldData::UniversalWorldData</a></div><div class="ttdeci">UniversalWorldData()</div><div class="ttdef"><b>Definition</b> universal_world_data.cpp:19</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_a27280dc3e8ebb37335b6a7a83e21fff8"><div class="ttname"><a href="classUniversalWorldData.html#a27280dc3e8ebb37335b6a7a83e21fff8">UniversalWorldData::size</a></div><div class="ttdeci">Vector3i size</div><div class="ttdef"><b>Definition</b> universal_world_data.h:17</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_a547448cb2ac129d2d318ae24b687a53a"><div class="ttname"><a href="classUniversalWorldData.html#a547448cb2ac129d2d318ae24b687a53a">UniversalWorldData::~UniversalWorldData</a></div><div class="ttdeci">~UniversalWorldData()</div><div class="ttdef"><b>Definition</b> universal_world_data.cpp:21</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_a57833386cf126185c66cbcac2c3c7219"><div class="ttname"><a href="classUniversalWorldData.html#a57833386cf126185c66cbcac2c3c7219">UniversalWorldData::get_size</a></div><div class="ttdeci">Vector3i get_size() const</div><div class="ttdef"><b>Definition</b> universal_world_data.h:32</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_ab0f5a276f957789e709cd4c96e4858d5"><div class="ttname"><a href="classUniversalWorldData.html#ab0f5a276f957789e709cd4c96e4858d5">UniversalWorldData::set_voxel</a></div><div class="ttdeci">void set_voxel(const Vector3i &amp;p_pos, int p_id)</div><div class="ttdef"><b>Definition</b> universal_world_data.cpp:28</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_ad1035de3f73fd5fa50b0d385e488abac"><div class="ttname"><a href="classUniversalWorldData.html#ad1035de3f73fd5fa50b0d385e488abac">UniversalWorldData::data</a></div><div class="ttdeci">std::vector&lt; int &gt; data</div><div class="ttdef"><b>Definition</b> universal_world_data.h:16</div></div>
+<div class="ttc" id="aclassUniversalWorldData_html_ad7cf12d8f0f59fb76725115167876ed9"><div class="ttname"><a href="classUniversalWorldData.html#ad7cf12d8f0f59fb76725115167876ed9">UniversalWorldData::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> universal_world_data.cpp:6</div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

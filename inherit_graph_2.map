@@ -1,3 +1,9 @@
 <map id="クラス階層図" name="クラス階層図">
-<area shape="rect" id="Node000000" href="$structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html" title=" " alt="" coords="5,5,197,45"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,75,80"/>
+<area shape="rect" id="Node000001" href="$classDialogueUI.html" title=" " alt="" coords="137,5,231,31"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="87,49,145,28,147,33,88,54"/>
+<area shape="rect" id="Node000002" href="$classInventorySlotUI.html" title=" " alt="" coords="123,55,245,80"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="88,65,122,65,122,70,88,70"/>
+<area shape="rect" id="Node000003" href="$classInventoryUI.html" title=" " alt="" coords="135,104,233,129"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="88,81,147,101,145,106,87,86"/>
 </map>

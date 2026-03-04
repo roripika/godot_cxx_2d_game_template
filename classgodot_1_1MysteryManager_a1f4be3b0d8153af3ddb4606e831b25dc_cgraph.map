@@ -1,0 +1,15 @@
+<map id="godot::MysteryManager::set_mystery_flag" name="godot::MysteryManager::set_mystery_flag">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,183,77"/>
+<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryEnumValueConverter.html#ad1748fd43420f8e81cb8ead23b4200bc" title=" " alt="" coords="231,5,488,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,44,217,40,218,45,183,49"/>
+<area shape="rect" id="Node000003" href="$classgodot_1_1MysteryManager.html#a5a93db0efb7271259b115b55174db576" title=" " alt="" coords="271,69,448,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,65,257,74,257,80,182,71"/>
+<area shape="rect" id="Node000004" href="$classgodot_1_1MysteryManager.html#aff702708cdb39d57552497b7b3a0a540" title=" " alt="" coords="536,37,713,77"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="448,76,522,67,523,72,448,81"/>
+<area shape="rect" id="Node000005" href="$classgodot_1_1MysteryManager.html#abd84d57c26b9c13af408f90f5a84eee3" title=" " alt="" coords="536,101,713,141"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="448,97,523,106,522,112,448,103"/>
+<area shape="rect" id="Node000006" href="$classgodot_1_1MysteryManager.html#a9148b7f88b54234e9afe897c8cc760f1" title=" " alt="" coords="770,69,947,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="713,107,756,101,757,106,714,112"/>
+<area shape="rect" id="Node000007" href="$classAdventureGameStateBase.html#a767e0549c0dd778d0665fcd6aa0e942a" title=" " alt="" coords="761,133,956,173"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="714,131,748,136,747,141,713,136"/>
+</map>

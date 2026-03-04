@@ -1,0 +1,5 @@
+<map id="DialogueUI::is_typing_active" name="DialogueUI::is_typing_active">
+<area shape="rect" id="Node000001" title=" " alt="" coords="255,5,416,45"/>
+<area shape="rect" id="Node000002" href="$classDialogueUI.html#a09b246089a4558c873ea07744b42d1fb" title=" " alt="" coords="5,13,207,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,28,207,28,207,23,241,23"/>
+</map>

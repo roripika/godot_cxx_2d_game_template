@@ -1,0 +1,19 @@
+<map id="src/core/dialogue_ui.cpp" name="src/core/dialogue_ui.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="671,5,849,31"/>
+<area shape="rect" id="Node000002" href="$dialogue__ui_8h.html" title=" " alt="" coords="412,86,521,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="717,33,535,81,522,85,520,80,534,76,716,28"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="546,86,763,111"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="746,33,683,80,680,76,743,29"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="787,79,946,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="777,29,831,68,828,73,774,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="971,79,1152,119"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="804,28,976,73,975,78,803,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,174,224,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="420,114,175,173,174,168,419,109"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="248,174,453,199"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="453,114,379,168,376,164,449,109"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="478,174,687,199"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="484,109,558,164,554,168,481,114"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="711,167,881,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="508,109,535,116,708,161,707,166,534,121,507,114"/>
+</map>

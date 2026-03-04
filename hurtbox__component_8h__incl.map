@@ -1,0 +1,8 @@
+<map id="src/entities/components/hurtbox_component.h" name="src/entities/components/hurtbox_component.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="51,5,229,45"/>
+<area shape="rect" id="Node000002" href="$hitbox__component_8h.html" title=" " alt="" coords="5,93,160,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,47,101,84,97,80,124,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="31,167,249,192"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="156,44,172,78,176,99,175,119,158,156,153,154,169,118,171,99,167,80,151,47"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,117,124,154,120,158,90,121"/>
+</map>

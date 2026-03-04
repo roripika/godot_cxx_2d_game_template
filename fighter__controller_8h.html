@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/entities/fighter_controller.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">データ構造</a>  </div>
+  <div class="headertitle"><div class="title">fighter_controller.h ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="hitbox__component_8h_source.html">components/hitbox_component.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hurtbox__component_8h_source.html">components/hurtbox_component.h</a>&quot;</code><br />
+<code>#include &lt;godot_cpp/classes/animation_player.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/area2d.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/character_body2d.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/sprite2d.hpp&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+fighter_controller.h の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="fighter__controller_8h__incl.png" border="0" usemap="#asrc_2entities_2fighter__controller_8h" alt=""/></div>
+<map name="asrc_2entities_2fighter__controller_8h" id="asrc_2entities_2fighter__controller_8h">
+<area shape="rect" title=" " alt="" coords="237,5,377,45"/>
+<area shape="rect" href="hitbox__component_8h.html" title=" " alt="" coords="21,181,260,207"/>
+<area shape="poly" title=" " alt="" coords="238,34,204,41,170,52,140,70,115,95,108,112,110,132,126,169,122,171,105,133,103,112,110,92,136,66,168,47,203,35,237,28"/>
+<area shape="rect" title=" " alt="" coords="31,255,250,280"/>
+<area shape="poly" title=" " alt="" coords="238,40,176,57,110,84,79,103,52,125,29,152,11,182,8,194,9,204,22,222,46,237,74,248,72,253,43,242,19,226,4,206,3,194,6,180,24,149,48,122,76,99,108,80,174,52,236,35"/>
+<area shape="rect" href="hurtbox__component_8h.html" title=" " alt="" coords="125,93,281,133"/>
+<area shape="poly" title=" " alt="" coords="286,48,239,86,235,82,283,44"/>
+<area shape="rect" title=" " alt="" coords="306,93,517,133"/>
+<area shape="poly" title=" " alt="" coords="332,44,379,82,376,86,329,48"/>
+<area shape="rect" title=" " alt="" coords="541,93,748,133"/>
+<area shape="poly" title=" " alt="" coords="378,42,558,87,557,92,377,47"/>
+<area shape="rect" title=" " alt="" coords="773,101,999,126"/>
+<area shape="poly" title=" " alt="" coords="378,34,761,91,797,96,796,101,760,96,377,40"/>
+<area shape="poly" title=" " alt="" coords="143,207,143,241,138,241,138,207"/>
+<area shape="poly" title=" " alt="" coords="190,135,161,172,157,169,186,132"/>
+<area shape="poly" title=" " alt="" coords="236,131,255,147,272,166,280,186,275,208,248,235,214,253,212,248,245,231,270,205,275,187,267,168,252,151,232,136"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+被依存関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="fighter__controller_8h__dep__incl.png" border="0" usemap="#asrc_2entities_2fighter__controller_8hdep" alt=""/></div>
+<map name="asrc_2entities_2fighter__controller_8hdep" id="asrc_2entities_2fighter__controller_8hdep">
+<area shape="rect" title=" " alt="" coords="110,5,250,45"/>
+<area shape="rect" href="fighting__game__manager_8cpp.html" title=" " alt="" coords="5,93,176,133"/>
+<area shape="poly" title=" " alt="" coords="152,57,112,95,109,91,148,53"/>
+<area shape="rect" href="fighter__controller_8cpp.html" title=" " alt="" coords="201,93,341,133"/>
+<area shape="poly" title=" " alt="" coords="212,53,252,91,249,95,208,57"/>
+</map>
+</div>
+</div>
+<p><a href="fighter__controller_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFighterController.html">FighterController</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/ui/inventory_slot_ui.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_375e4deae5088f4de41587ab8e704ea8.html">ui</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">inventory_slot_ui.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="inventory__slot__ui_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef INVENTORY_SLOT_UI_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define INVENTORY_SLOT_UI_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;../../items/inventory.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;godot_cpp/classes/control.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;godot_cpp/classes/input_event.hpp&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;godot_cpp/classes/label.hpp&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;godot_cpp/classes/texture2d.hpp&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;godot_cpp/classes/texture_rect.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classInventorySlotUI.html">   13</a></span><span class="keyword">class </span><a class="code hl_class" href="classInventorySlotUI.html">InventorySlotUI</a> : <span class="keyword">public</span> Control {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  GDCLASS(<a class="code hl_class" href="classInventorySlotUI.html">InventorySlotUI</a>, Control)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classInventorySlotUI.html#aa348dfed1f4ede698db88a69ffc967d2">   17</a></span>  Ref&lt;GameItem&gt; <a class="code hl_variable" href="classInventorySlotUI.html#aa348dfed1f4ede698db88a69ffc967d2">item</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classInventorySlotUI.html#a7663430eb67cc4f0c45cc606a6d83eed">   18</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classInventorySlotUI.html#a7663430eb67cc4f0c45cc606a6d83eed">amount</a> = 0;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classInventorySlotUI.html#a7a207e39878aa2c166ccc5afba5ac84c">   19</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classInventorySlotUI.html#a7a207e39878aa2c166ccc5afba5ac84c">slot_index</a> = -1;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classInventorySlotUI.html#af002734e6d3475b87d33497d92806067">   21</a></span>  TextureRect *<a class="code hl_variable" href="classInventorySlotUI.html#af002734e6d3475b87d33497d92806067">icon_texture</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classInventorySlotUI.html#a72d671322345fe5dc9175d4b5c3aa72e">   22</a></span>  Label *<a class="code hl_variable" href="classInventorySlotUI.html#a72d671322345fe5dc9175d4b5c3aa72e">amount_label</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInventorySlotUI.html#a7361ec4832c5055943ff801f48685685">_bind_methods</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classInventorySlotUI.html#a11881985c533d0ff87e65f2bd6aaa178">_notification</a>(<span class="keywordtype">int</span> p_what);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classInventorySlotUI.html#a0280b35930a67d43644257764230da41">_gui_input</a>(<span class="keyword">const</span> Ref&lt;InputEvent&gt; &amp;p_event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_function" href="classInventorySlotUI.html#ae589238033fd53a63fbe2b2063471f4b">InventorySlotUI</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_function" href="classInventorySlotUI.html#a089542536cd4a2384e35fd2505aaa559">~InventorySlotUI</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classInventorySlotUI.html#a57c98958c92a3ec081300e248bade1fe">set_slot_data</a>(<span class="keyword">const</span> Ref&lt;GameItem&gt; &amp;p_item, <span class="keywordtype">int</span> p_amount);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classInventorySlotUI.html#aa8524c8ec4f4c28d933c1dc69c008c48">set_slot_index</a>(<span class="keywordtype">int</span> p_index);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classInventorySlotUI.html#ae63e7fe17917f682590d088e5f5ec53e">get_slot_index</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classInventorySlotUI.html#a1a3f87fa0bfd5f8c7d5924498260c093">_ready</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">// INVENTORY_SLOT_UI_H</span></div>
+<div class="ttc" id="aclassInventorySlotUI_html"><div class="ttname"><a href="classInventorySlotUI.html">InventorySlotUI</a></div><div class="ttdef"><b>Definition</b> inventory_slot_ui.h:13</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a0280b35930a67d43644257764230da41"><div class="ttname"><a href="classInventorySlotUI.html#a0280b35930a67d43644257764230da41">InventorySlotUI::_gui_input</a></div><div class="ttdeci">void _gui_input(const Ref&lt; InputEvent &gt; &amp;p_event) override</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:75</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a089542536cd4a2384e35fd2505aaa559"><div class="ttname"><a href="classInventorySlotUI.html#a089542536cd4a2384e35fd2505aaa559">InventorySlotUI::~InventorySlotUI</a></div><div class="ttdeci">~InventorySlotUI()</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:12</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a11881985c533d0ff87e65f2bd6aaa178"><div class="ttname"><a href="classInventorySlotUI.html#a11881985c533d0ff87e65f2bd6aaa178">InventorySlotUI::_notification</a></div><div class="ttdeci">void _notification(int p_what)</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:71</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a1a3f87fa0bfd5f8c7d5924498260c093"><div class="ttname"><a href="classInventorySlotUI.html#a1a3f87fa0bfd5f8c7d5924498260c093">InventorySlotUI::_ready</a></div><div class="ttdeci">void _ready() override</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:24</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a57c98958c92a3ec081300e248bade1fe"><div class="ttname"><a href="classInventorySlotUI.html#a57c98958c92a3ec081300e248bade1fe">InventorySlotUI::set_slot_data</a></div><div class="ttdeci">void set_slot_data(const Ref&lt; GameItem &gt; &amp;p_item, int p_amount)</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:47</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a72d671322345fe5dc9175d4b5c3aa72e"><div class="ttname"><a href="classInventorySlotUI.html#a72d671322345fe5dc9175d4b5c3aa72e">InventorySlotUI::amount_label</a></div><div class="ttdeci">Label * amount_label</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.h:22</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a7361ec4832c5055943ff801f48685685"><div class="ttname"><a href="classInventorySlotUI.html#a7361ec4832c5055943ff801f48685685">InventorySlotUI::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:14</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a7663430eb67cc4f0c45cc606a6d83eed"><div class="ttname"><a href="classInventorySlotUI.html#a7663430eb67cc4f0c45cc606a6d83eed">InventorySlotUI::amount</a></div><div class="ttdeci">int amount</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.h:18</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_a7a207e39878aa2c166ccc5afba5ac84c"><div class="ttname"><a href="classInventorySlotUI.html#a7a207e39878aa2c166ccc5afba5ac84c">InventorySlotUI::slot_index</a></div><div class="ttdeci">int slot_index</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.h:19</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_aa348dfed1f4ede698db88a69ffc967d2"><div class="ttname"><a href="classInventorySlotUI.html#aa348dfed1f4ede698db88a69ffc967d2">InventorySlotUI::item</a></div><div class="ttdeci">Ref&lt; GameItem &gt; item</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.h:17</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_aa8524c8ec4f4c28d933c1dc69c008c48"><div class="ttname"><a href="classInventorySlotUI.html#aa8524c8ec4f4c28d933c1dc69c008c48">InventorySlotUI::set_slot_index</a></div><div class="ttdeci">void set_slot_index(int p_index)</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:68</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_ae589238033fd53a63fbe2b2063471f4b"><div class="ttname"><a href="classInventorySlotUI.html#ae589238033fd53a63fbe2b2063471f4b">InventorySlotUI::InventorySlotUI</a></div><div class="ttdeci">InventorySlotUI()</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:8</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_ae63e7fe17917f682590d088e5f5ec53e"><div class="ttname"><a href="classInventorySlotUI.html#ae63e7fe17917f682590d088e5f5ec53e">InventorySlotUI::get_slot_index</a></div><div class="ttdeci">int get_slot_index() const</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.cpp:69</div></div>
+<div class="ttc" id="aclassInventorySlotUI_html_af002734e6d3475b87d33497d92806067"><div class="ttname"><a href="classInventorySlotUI.html#af002734e6d3475b87d33497d92806067">InventorySlotUI::icon_texture</a></div><div class="ttdeci">TextureRect * icon_texture</div><div class="ttdef"><b>Definition</b> inventory_slot_ui.h:21</div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

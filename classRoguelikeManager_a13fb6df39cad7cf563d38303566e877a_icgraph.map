@@ -1,0 +1,7 @@
+<map id="RoguelikeManager::start_level" name="RoguelikeManager::start_level">
+<area shape="rect" id="Node000001" title=" " alt="" coords="204,37,385,77"/>
+<area shape="rect" id="Node000002" href="$classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272" title=" " alt="" coords="5,5,156,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,44,156,39,157,34,191,39"/>
+<area shape="rect" id="Node000003" href="$classRoguelikeManager.html#a9856b6fc7ba412c005e4d76875424c5a" title=" " alt="" coords="5,69,156,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,76,157,81,156,75,190,70"/>
+</map>

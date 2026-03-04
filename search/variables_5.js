@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['hotspot_5fbindings_5f_0',['hotspot_bindings_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a529f187282c8ef8426d84205940c8130',1,'karakuri::KarakuriScenarioRunner']]],
-  ['hotspot_5fid_1',['hotspot_id',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html#a303d941ee8c134c0f814478997846742',1,'karakuri::KarakuriScenarioRunner::HotspotBinding']]]
+  ['failure_5factions_0',['failure_actions',['../structkarakuri_1_1KarakuriTestimonySession.html#a5f41a39286424e2f5e979e9950a300b9',1,'karakuri::KarakuriTestimonySession']]],
+  ['fighter1_1',['fighter1',['../classFightingGameManager.html#aadb4dc581a446acbc8481323a5a2398c',1,'FightingGameManager']]],
+  ['fighter2_2',['fighter2',['../classFightingGameManager.html#aaeb2711ba0679addb4c6f898b5cf029b',1,'FightingGameManager']]],
+  ['flags_3',['flags',['../classgodot_1_1MysteryManager.html#a79796ecf17d5f10943580ea49cc92511',1,'godot::MysteryManager']]]
 ];

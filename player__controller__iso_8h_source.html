@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/entities/player_controller_iso.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">player_controller_iso.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="player__controller__iso_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef PLAYER_CONTROLLER_ISO_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define PLAYER_CONTROLLER_ISO_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="game__entity_8h.html">game_entity.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;godot_cpp/classes/input.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classPlayerControllerIso.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classPlayerControllerIso.html">PlayerControllerIso</a> : <span class="keyword">public</span> <a class="code hl_class" href="classGameEntity.html">GameEntity</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  GDCLASS(<a class="code hl_class" href="classPlayerControllerIso.html">PlayerControllerIso</a>, <a class="code hl_class" href="classGameEntity.html">GameEntity</a>)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerControllerIso.html#aa5676fbf334262fd063d56e4dad3b98e">_bind_methods</a>();</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerControllerIso.html#a8a60531422652c5160db6b265130c258">_notification</a>(<span class="keywordtype">int</span> p_what);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_function" href="classPlayerControllerIso.html#a658539deba836e0f87d394a45c77744d">PlayerControllerIso</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <a class="code hl_function" href="classPlayerControllerIso.html#a6382864b770d73b2e3fbe420a58c99f2">~PlayerControllerIso</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="comment">// Override to apply specialized Isometric movement</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPlayerControllerIso.html#a50e9500b2d306bf92ea8a4fb03453c17">apply_movement</a>(<span class="keywordtype">double</span> delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
+</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassGameEntity_html"><div class="ttname"><a href="classGameEntity.html">GameEntity</a></div><div class="ttdef"><b>Definition</b> game_entity.h:8</div></div>
+<div class="ttc" id="aclassPlayerControllerIso_html"><div class="ttname"><a href="classPlayerControllerIso.html">PlayerControllerIso</a></div><div class="ttdef"><b>Definition</b> player_controller_iso.h:9</div></div>
+<div class="ttc" id="aclassPlayerControllerIso_html_a50e9500b2d306bf92ea8a4fb03453c17"><div class="ttname"><a href="classPlayerControllerIso.html#a50e9500b2d306bf92ea8a4fb03453c17">PlayerControllerIso::apply_movement</a></div><div class="ttdeci">virtual void apply_movement(double delta) override</div><div class="ttdef"><b>Definition</b> player_controller_iso.cpp:74</div></div>
+<div class="ttc" id="aclassPlayerControllerIso_html_a6382864b770d73b2e3fbe420a58c99f2"><div class="ttname"><a href="classPlayerControllerIso.html#a6382864b770d73b2e3fbe420a58c99f2">PlayerControllerIso::~PlayerControllerIso</a></div><div class="ttdeci">~PlayerControllerIso()</div><div class="ttdef"><b>Definition</b> player_controller_iso.cpp:16</div></div>
+<div class="ttc" id="aclassPlayerControllerIso_html_a658539deba836e0f87d394a45c77744d"><div class="ttname"><a href="classPlayerControllerIso.html#a658539deba836e0f87d394a45c77744d">PlayerControllerIso::PlayerControllerIso</a></div><div class="ttdeci">PlayerControllerIso()</div><div class="ttdef"><b>Definition</b> player_controller_iso.cpp:11</div></div>
+<div class="ttc" id="aclassPlayerControllerIso_html_a8a60531422652c5160db6b265130c258"><div class="ttname"><a href="classPlayerControllerIso.html#a8a60531422652c5160db6b265130c258">PlayerControllerIso::_notification</a></div><div class="ttdeci">void _notification(int p_what)</div><div class="ttdef"><b>Definition</b> player_controller_iso.cpp:18</div></div>
+<div class="ttc" id="aclassPlayerControllerIso_html_aa5676fbf334262fd063d56e4dad3b98e"><div class="ttname"><a href="classPlayerControllerIso.html#aa5676fbf334262fd063d56e4dad3b98e">PlayerControllerIso::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> player_controller_iso.cpp:7</div></div>
+<div class="ttc" id="agame__entity_8h_html"><div class="ttname"><a href="game__entity_8h.html">game_entity.h</a></div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

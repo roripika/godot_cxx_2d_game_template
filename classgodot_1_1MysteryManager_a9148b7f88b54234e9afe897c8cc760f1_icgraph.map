@@ -1,0 +1,23 @@
+<map id="godot::MysteryManager::get_flag" name="godot::MysteryManager::get_flag">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1132,43,1309,83"/>
+<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryManager.html#a441637f4b0be58d6c60b6e85cddcd5c9" title=" " alt="" coords="5,87,183,127"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1130,42,1084,33,928,13,771,8,543,8,488,10,432,17,323,38,225,64,149,89,147,84,224,59,322,32,431,11,488,5,543,3,771,3,929,7,1084,28,1131,37"/>
+<area shape="rect" id="Node000003" href="$classgodot_1_1MysteryManager.html#adbcd8498525a5de64fb5167e2c73edf7" title=" " alt="" coords="907,43,1084,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1119,65,1084,65,1084,60,1119,60"/>
+<area shape="rect" id="Node000004" href="$classgodot_1_1MysteryManager.html#abd84d57c26b9c13af408f90f5a84eee3" title=" " alt="" coords="907,107,1084,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1137,89,1067,109,1066,104,1135,84"/>
+<area shape="rect" id="Node000005" href="$classgodot_1_1MysteryManager.html#a0167897862960ecba150dd7da0be1ae8" title=" " alt="" coords="681,100,859,140"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="893,126,859,125,859,120,893,121"/>
+<area shape="rect" id="Node000008" href="$classgodot_1_1MysteryManager.html#a5a93db0efb7271259b115b55174db576" title=" " alt="" coords="681,201,859,241"/>
+<area shape="poly" id="edge10_Node000004_Node000008" title=" " alt="" coords="935,154,820,204,817,199,933,150"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="684,100,633,91,511,82,389,83,276,90,183,98,183,93,276,84,389,78,511,77,634,85,685,94"/>
+<area shape="rect" id="Node000006" href="$classgodot_1_1MysteryManager.html#a0b0028455d00ad11db43593d981e5e1f" title=" " alt="" coords="456,100,633,140"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="668,123,633,123,633,117,668,117"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="442,120,183,112,183,107,442,114"/>
+<area shape="rect" id="Node000007" href="$classgodot_1_1MysteryManager.html#a85dce2949adaa78b5a746803fa10305a" title=" " alt="" coords="231,144,408,184"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="443,143,409,149,408,144,442,137"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="226,143,173,129,174,124,227,138"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="668,235,573,239,462,238,345,226,286,214,230,199,197,185,166,166,116,129,119,125,169,162,199,180,232,193,287,209,345,220,463,232,573,234,667,230"/>
+<area shape="rect" id="Node000009" href="$classgodot_1_1MysteryManager.html#a1f4be3b0d8153af3ddb4606e831b25dc" title=" " alt="" coords="456,259,633,299"/>
+<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="678,247,624,261,623,256,677,242"/>
+</map>

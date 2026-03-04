@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['wait_5fremaining_5fsec_5f_0',['wait_remaining_sec_',['../classkarakuri_1_1KarakuriScenarioRunner.html#aaa622b418535a6347f79407ac1cd533f',1,'karakuri::KarakuriScenarioRunner']]],
-  ['waiting_1',['waiting',['../structkarakuri_1_1KarakuriTestimonySession.html#ab18c8f8fabbc07d92d08fd43c6183d09',1,'karakuri::KarakuriTestimonySession']]],
-  ['waiting_5ffor_5fchoice_5f_2',['waiting_for_choice_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a91eba34e469ce2b7c15ea42614a43448',1,'karakuri::KarakuriScenarioRunner']]],
-  ['waiting_5ffor_5fdialogue_5f_3',['waiting_for_dialogue_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ad72de1a42338448685c2ebbbb45e294a',1,'karakuri::KarakuriScenarioRunner']]],
-  ['waiting_5ffor_5fevidence_4',['waiting_for_evidence',['../structkarakuri_1_1KarakuriTestimonySession.html#ad2f5c21001104dd730091fe5badae728',1,'karakuri::KarakuriTestimonySession']]],
-  ['waiting_5ffor_5ftransition_5f_5',['waiting_for_transition_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ae62b78bad4a7cb2370cf4b5844b8c26e',1,'karakuri::KarakuriScenarioRunner']]],
-  ['warn_6',['warn',['../classkarakuri_1_1KarakuriLogger.html#a2c3117907eb90563477394e87e655f52',1,'karakuri::KarakuriLogger']]]
+  ['universal_5fworld_5fdata_2ecpp_0',['universal_world_data.cpp',['../universal__world__data_8cpp.html',1,'']]],
+  ['universal_5fworld_5fdata_2eh_1',['universal_world_data.h',['../universal__world__data_8h.html',1,'']]],
+  ['universalworlddata_2',['universalworlddata',['../classUniversalWorldData.html',1,'UniversalWorldData'],['../classUniversalWorldData.html#a1dc56b2837b2d31793f163b105ce9826',1,'UniversalWorldData::UniversalWorldData()']]],
+  ['update_5fanimation_3',['update_animation',['../classFighterController.html#abf865a6a203e652d45de6fc68573bfc8',1,'FighterController']]],
+  ['update_5fui_4',['update_ui',['../classFightingGameManager.html#a9ca0aeae1f3865f97c5727f43c93d942',1,'FightingGameManager']]]
 ];

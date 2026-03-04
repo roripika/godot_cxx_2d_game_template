@@ -1,0 +1,15 @@
+<map id="src/core/universal_world_data.cpp" name="src/core/universal_world_data.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="478,5,615,45"/>
+<area shape="rect" id="Node000002" href="$universal__world__data_8h.html" title=" " alt="" coords="360,101,533,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="526,48,473,93,469,89,523,44"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="557,93,739,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="571,44,617,82,613,86,567,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,189,235,214"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="404,129,177,188,176,183,402,124"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="259,181,418,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="434,128,375,175,371,171,430,124"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="443,189,667,214"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="463,124,531,178,528,182,460,128"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="690,189,753,214"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="494,123,581,147,680,179,685,181,683,186,678,184,579,152,492,129"/>
+</map>

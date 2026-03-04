@@ -1,0 +1,15 @@
+<map id="src/core/ui/inventory_slot_ui.h" name="src/core/ui/inventory_slot_ui.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="551,5,706,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,164,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="552,39,380,64,177,96,152,101,151,95,176,91,379,58,551,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="189,101,407,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="557,48,356,100,354,95,555,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="431,93,610,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="606,48,557,87,554,83,603,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="634,101,839,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="654,44,713,90,709,94,651,48"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="864,101,1100,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="707,43,922,95,921,100,706,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1125,93,1317,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="707,34,1111,90,1110,96,706,39"/>
+</map>

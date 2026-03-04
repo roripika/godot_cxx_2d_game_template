@@ -1,0 +1,19 @@
+<map id="src/core/interaction_manager.cpp" name="src/core/interaction_manager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="672,5,819,45"/>
+<area shape="rect" id="Node000002" href="$interaction__manager_8h.html" title=" " alt="" coords="235,101,403,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="673,44,389,101,388,95,671,39"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="427,93,621,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="698,48,586,91,584,86,696,43"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="646,93,845,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="748,46,748,79,743,79,743,46"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="869,93,1027,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="791,43,892,86,890,91,789,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1052,93,1233,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="819,40,1043,88,1042,93,818,45"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,184,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,129,158,179,156,174,288,124"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="208,189,429,214"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="321,126,321,174,316,174,316,126"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="454,189,674,214"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="353,124,519,182,517,187,351,129"/>
+</map>

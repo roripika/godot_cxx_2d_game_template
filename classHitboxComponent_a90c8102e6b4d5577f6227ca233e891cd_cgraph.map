@@ -1,0 +1,11 @@
+<map id="HitboxComponent::_on_area_entered" name="HitboxComponent::_on_area_entered">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,176,109"/>
+<area shape="rect" id="Node000002" href="$classHurtboxComponent.html#aca596ec799d5a6ce7a81213ef3612c64" title=" " alt="" coords="224,77,433,102"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,87,210,87,210,92,176,92"/>
+<area shape="rect" id="Node000003" href="$classHitboxComponent.html#a05dc4f7e4b98eecb23ceee7b6d9c8ca7" title=" " alt="" coords="481,5,651,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,74,477,46,479,52,378,79"/>
+<area shape="rect" id="Node000004" href="$classHitboxComponent.html#a2e45eb85614ca5e9af65fddf9bb72ab4" title=" " alt="" coords="481,69,651,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="434,87,468,87,468,92,434,92"/>
+<area shape="rect" id="Node000005" href="$classHitboxComponent.html#a4e5f159fa1a6ea1cbdef25f92e5f49f5" title=" " alt="" coords="481,133,651,173"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="378,100,479,127,477,132,376,105"/>
+</map>

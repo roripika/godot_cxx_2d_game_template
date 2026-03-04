@@ -1,0 +1,16 @@
+<map id="InventoryUI::_bind_methods" name="InventoryUI::_bind_methods">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,88,147,128"/>
+<area shape="rect" id="Node000002" href="$classInventoryUI.html#a2985b8bdc62196669184cea9bff4d48f" title=" " alt="" coords="213,5,373,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,85,194,55,215,47,216,52,196,60,123,90"/>
+<area shape="rect" id="Node000003" href="$classInventoryUI.html#a0fdd437f8120ecb39bfeed742bcd040e" title=" " alt="" coords="195,70,391,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="146,97,181,93,182,98,147,102"/>
+<area shape="rect" id="Node000004" href="$classInventoryUI.html#a55b1825d866cb795215f28a13155f305" title=" " alt="" coords="439,146,591,171"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="147,113,426,146,425,151,147,119"/>
+<area shape="rect" id="Node000007" href="$classInventoryUI.html#acab3c728c5d978a90a8ffd2f652c0b0f" title=" " alt="" coords="195,171,390,197"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="131,126,196,149,240,165,238,170,194,155,129,131"/>
+<area shape="rect" id="Node000005" href="$classInventorySlotUI.html#a57c98958c92a3ec081300e248bade1fe" title=" " alt="" coords="639,107,789,147"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="590,144,625,138,626,144,591,149"/>
+<area shape="rect" id="Node000006" href="$classInventorySlotUI.html#aa8524c8ec4f4c28d933c1dc69c008c48" title=" " alt="" coords="639,171,789,211"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="591,168,626,174,625,179,590,173"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="390,170,425,166,425,172,391,176"/>
+</map>

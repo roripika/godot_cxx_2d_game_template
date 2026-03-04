@@ -1,4 +1,25 @@
 var searchData=
 [
-  ['version_0',['Version',['../structkarakuri_1_1Version.html',1,'karakuri']]]
+  ['take_5fdamage_0',['take_damage',['../classFighterController.html#a6e86801d5c4e5ed239a33260ffda8fed',1,'FighterController::take_damage()'],['../classGameEntity.html#a74113b6d75590912b4c31ad90615e16d',1,'GameEntity::take_damage()'],['../classAdventureGameStateBase.html#ae21c6f6558baf1acc34be92bac7d0fcb',1,'AdventureGameStateBase::take_damage()']]],
+  ['take_5fhit_1',['take_hit',['../classHurtboxComponent.html#aca596ec799d5a6ce7a81213ef3612c64',1,'HurtboxComponent']]],
+  ['testimony_5f_2',['testimony_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a85b9743956bd0fa7c8f469a682c8e51e',1,'karakuri::KarakuriScenarioRunner']]],
+  ['testimony_5fsystem_5f_3',['testimony_system_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a386ef91018ddfe41f3f6d09875f385d7',1,'karakuri::KarakuriScenarioRunner']]],
+  ['testimony_5fsystem_5fpath_5f_4',['testimony_system_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a777558ab528f381cba7efbfbc0035ab8',1,'karakuri::KarakuriScenarioRunner']]],
+  ['text_5fkey_5',['text_key',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#ae84c7785d94f9cd0d88de793ca0faae5',1,'karakuri::KarakuriTestimonySession::Line']]],
+  ['text_5flabel_6',['text_label',['../classDialogueUI.html#a7e4591272ef6c89d190f1d5b9305d691',1,'DialogueUI']]],
+  ['text_5ftext_7',['text_text',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97eb983a9d538991923e8459bed6323d',1,'karakuri::KarakuriTestimonySession::Line']]],
+  ['timer_5flabel_8',['timer_label',['../classFightingGameManager.html#a9289ac386b294af81edc4bb3d3754a1f',1,'FightingGameManager']]],
+  ['tolerance_9',['tolerance',['../classRhythmCommandListener.html#a944a220c854536a9bccb0d895c17286b',1,'RhythmCommandListener']]],
+  ['torn_5fmemo_10',['TORN_MEMO',['../namespacegodot.html#a72e9b84b9a2058eb958bda416872ae86addd18ec3665c8afb4ca2a12f97ddd5fd',1,'godot']]],
+  ['tr_5fkey_11',['tr_key',['../classkarakuri_1_1KarakuriScenarioRunner.html#a0ff7f67c85e6fd66ba100371ca84c553',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5fmanager_5f_12',['transition_manager_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a749187e47defe8eb682cd598741f9234',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5fmanager_5fpath_5f_13',['transition_manager_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a031f301e76697427090573e2cd62d110',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5frect_5f_14',['transition_rect_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5189a699b66237d65ab6c5b0693903d3',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5frect_5fpath_5f_15',['transition_rect_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a1ce5cd91e25e0bbbf286a69c9d0aca7d',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5ftarget_5fduration_5f_16',['transition_target_duration_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8a3d2f2e5f74134ab399164a0e504e25',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5ftarget_5fid_5f_17',['transition_target_id_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a0bd5a7f4afdcd04c0e113de91cdc3859',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5ftarget_5ftype_5f_18',['transition_target_type_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a4fbf245c5d45603aff656915d265996b',1,'karakuri::KarakuriScenarioRunner']]],
+  ['transition_5ftimeout_5fsec_5f_19',['transition_timeout_sec_',['../classkarakuri_1_1KarakuriScenarioRunner.html#afdc469cf031af3d0c062081f53a1d3ae',1,'karakuri::KarakuriScenarioRunner']]],
+  ['trigger_5fhotspot_20',['trigger_hotspot',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8b56bf438a9b86cb88cbb6ff628a0b74',1,'karakuri::KarakuriScenarioRunner']]],
+  ['type_5fspeed_21',['type_speed',['../classDialogueUI.html#a0d49bd37ba215de0f72659c9fc7ff12a',1,'DialogueUI']]]
 ];

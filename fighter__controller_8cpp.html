@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/entities/fighter_controller.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fighter_controller.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="fighter__controller_8h_source.html">fighter_controller.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hit__stop__manager_8h_source.html">core/hit_stop_manager.h</a>&quot;</code><br />
+<code>#include &lt;godot_cpp/classes/engine.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/input.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/core/class_db.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/utility_functions.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/vector2.hpp&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+fighter_controller.cpp の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="fighter__controller_8cpp__incl.png" border="0" usemap="#asrc_2entities_2fighter__controller_8cpp" alt=""/></div>
+<map name="asrc_2entities_2fighter__controller_8cpp" id="asrc_2entities_2fighter__controller_8cpp">
+<area shape="rect" title=" " alt="" coords="1339,5,1479,45"/>
+<area shape="rect" href="fighter__controller_8h.html" title=" " alt="" coords="517,101,661,126"/>
+<area shape="poly" title=" " alt="" coords="1339,37,675,106,675,100,1339,31"/>
+<area shape="rect" href="hit__stop__manager_8h.html" title=" " alt="" coords="858,101,1041,126"/>
+<area shape="poly" title=" " alt="" coords="1339,42,1024,101,1023,96,1338,37"/>
+<area shape="rect" title=" " alt="" coords="1065,101,1282,126"/>
+<area shape="poly" title=" " alt="" coords="1358,48,1218,99,1217,94,1357,43"/>
+<area shape="rect" title=" " alt="" coords="1306,101,1513,126"/>
+<area shape="poly" title=" " alt="" coords="1412,46,1412,87,1407,87,1407,46"/>
+<area shape="rect" title=" " alt="" coords="1537,93,1695,133"/>
+<area shape="poly" title=" " alt="" coords="1456,43,1559,86,1557,91,1454,48"/>
+<area shape="rect" title=" " alt="" coords="1720,93,1901,133"/>
+<area shape="poly" title=" " alt="" coords="1480,39,1710,88,1709,93,1479,44"/>
+<area shape="rect" title=" " alt="" coords="1926,101,2146,126"/>
+<area shape="poly" title=" " alt="" coords="1480,33,1914,91,1950,96,1949,101,1913,96,1479,38"/>
+<area shape="rect" href="hitbox__component_8h.html" title=" " alt="" coords="153,269,391,295"/>
+<area shape="poly" title=" " alt="" coords="662,115,743,121,832,132,909,151,938,164,958,180,967,201,965,213,958,223,931,238,882,249,738,266,566,276,406,281,405,276,566,271,738,261,881,244,929,233,954,219,960,210,962,202,954,183,935,168,907,156,831,137,743,126,661,120"/>
+<area shape="rect" title=" " alt="" coords="5,343,224,368"/>
+<area shape="poly" title=" " alt="" coords="517,121,391,130,247,143,123,161,81,172,59,183,49,200,45,219,47,238,53,259,74,298,98,331,93,334,69,301,48,261,42,239,40,218,44,198,56,179,79,167,122,156,246,138,391,124,517,116"/>
+<area shape="rect" href="hurtbox__component_8h.html" title=" " alt="" coords="70,181,226,221"/>
+<area shape="poly" title=" " alt="" coords="528,129,240,184,239,179,527,123"/>
+<area shape="rect" title=" " alt="" coords="251,181,461,221"/>
+<area shape="poly" title=" " alt="" coords="559,129,421,179,419,174,557,124"/>
+<area shape="rect" title=" " alt="" coords="486,181,693,221"/>
+<area shape="poly" title=" " alt="" coords="592,126,592,167,587,167,587,126"/>
+<area shape="rect" title=" " alt="" coords="717,189,944,214"/>
+<area shape="poly" title=" " alt="" coords="623,124,786,182,785,187,621,129"/>
+<area shape="poly" title=" " alt="" coords="248,297,154,339,152,335,246,292"/>
+<area shape="poly" title=" " alt="" coords="179,219,243,260,241,264,177,224"/>
+<area shape="poly" title=" " alt="" coords="146,222,123,330,118,328,141,221"/>
+<area shape="rect" title=" " alt="" coords="1019,189,1224,214"/>
+<area shape="poly" title=" " alt="" coords="974,124,1087,180,1085,185,971,129"/>
+</map>
+</div>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

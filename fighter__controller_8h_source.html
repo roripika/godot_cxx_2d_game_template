@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/entities/fighter_controller.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d691984d1d74be3b164cee16192654be.html">entities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">fighter_controller.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="fighter__controller_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef FIGHTER_CONTROLLER_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define FIGHTER_CONTROLLER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="hitbox__component_8h.html">components/hitbox_component.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="hurtbox__component_8h.html">components/hurtbox_component.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;godot_cpp/classes/animation_player.hpp&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;godot_cpp/classes/area2d.hpp&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;godot_cpp/classes/character_body2d.hpp&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;godot_cpp/classes/sprite2d.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// Assuming GameEntity is for RPG/Isometric context.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// For pure side-scrolling Fighter, we might inherit CharacterBody2D directly or</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// use GameEntity if it supports side-scrolling well. Let&#39;s inherit</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// CharacterBody2D for simpler Physics separation for now, or check GameEntity</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// later. Actually GameEntity handles basic Movement, but Fighting games need</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// specific frame data. Let&#39;s keep it simple: FighterController inherits</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// CharacterBody2D.</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classFighterController.html">   21</a></span><span class="keyword">class </span><a class="code hl_class" href="classFighterController.html">FighterController</a> : <span class="keyword">public</span> CharacterBody2D {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  GDCLASS(<a class="code hl_class" href="classFighterController.html">FighterController</a>, CharacterBody2D)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04be">   25</a></span>  <span class="keyword">enum</span> <a class="code hl_enumeration" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04be">State</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea990e87a3baf8e6f5c42d1647f7423e8e">   26</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea990e87a3baf8e6f5c42d1647f7423e8e">IDLE</a>,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beae5bcffeba80b26aad784d7d42dbeb404">   27</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beae5bcffeba80b26aad784d7d42dbeb404">WALK_FORWARD</a>,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea645e85efe3ab8346a40cc0ba953f4c2d">   28</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea645e85efe3ab8346a40cc0ba953f4c2d">WALK_BACKWARD</a>,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea63f418e7e767f83a6c6cfd5ccbe5d402">   29</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea63f418e7e767f83a6c6cfd5ccbe5d402">CROUCH</a>,</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea4026e3f346f03772b4c7cb8cef95bfb7">   30</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea4026e3f346f03772b4c7cb8cef95bfb7">JUMP</a>,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beabab6ff46090518e67b7136627b837823">   31</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beabab6ff46090518e67b7136627b837823">ATTACK_LIGHT</a>,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beac55b0ae7c7c2bcce881662e2f85a2df9">   32</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beac55b0ae7c7c2bcce881662e2f85a2df9">ATTACK_HEAVY</a>,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea436f14af13de3665b8c18a57ee0da4f7">   33</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea436f14af13de3665b8c18a57ee0da4f7">HIT_STUN</a>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beafa99e3c763ac0ad5b5fbb8c81755bb12">   34</a></span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beafa99e3c763ac0ad5b5fbb8c81755bb12">BLOCK</a>,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beaee2e863b3dc8ef71d8e2a8b12d9c0c2d">KO</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beaee2e863b3dc8ef71d8e2a8b12d9c0c2d">   36</a></span>  };</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classFighterController.html#a0dcb42e48066bd83fd825964f03b9c89">   39</a></span>  <a class="code hl_enumeration" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04be">State</a> <a class="code hl_variable" href="classFighterController.html#a0dcb42e48066bd83fd825964f03b9c89">current_state</a> = <a class="code hl_enumvalue" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea990e87a3baf8e6f5c42d1647f7423e8e">IDLE</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classFighterController.html#a1163b98cf387b5929e7b009fef28117e">   40</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classFighterController.html#a1163b98cf387b5929e7b009fef28117e">player_id</a> = 1; <span class="comment">// 1 or 2</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classFighterController.html#a4565a0315d510774c52304c9d0e1a2b7">   41</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classFighterController.html#a4565a0315d510774c52304c9d0e1a2b7">health</a> = 100.0;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classFighterController.html#a4ce5ca9d8293c2e973f37e77fd4afd8a">   42</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classFighterController.html#a4ce5ca9d8293c2e973f37e77fd4afd8a">max_health</a>; <span class="comment">// Kept as it was not in the snippet&#39;s replacement</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">// Movement Parameters</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classFighterController.html#ac29c0b8621302d6342b725f9e1f75ebe">   45</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classFighterController.html#ac29c0b8621302d6342b725f9e1f75ebe">speed</a> = 300.0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classFighterController.html#ac9e3fa299ec239387b1c3a10ab840946">   46</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classFighterController.html#ac9e3fa299ec239387b1c3a10ab840946">jump_force</a> = -600.0;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classFighterController.html#adf95c5ffaa20f85393e239f3efdf642e">   47</a></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="classFighterController.html#adf95c5ffaa20f85393e239f3efdf642e">gravity</a> = 1200.0;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="comment">// Components</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classFighterController.html#ab203ab3863e7b92b16f8e808c257736f">   50</a></span>  godot::Sprite2D *<a class="code hl_variable" href="classFighterController.html#ab203ab3863e7b92b16f8e808c257736f">sprite</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classFighterController.html#a0270cc99544e5d323410a0b7d19b58cd">   51</a></span>  godot::AnimationPlayer *<a class="code hl_variable" href="classFighterController.html#a0270cc99544e5d323410a0b7d19b58cd">animation_player</a> =</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      <span class="keyword">nullptr</span>;                         <span class="comment">// Renamed from anim_player</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classFighterController.html#aa98d9629ebff0586501cdfec013495bb">   53</a></span>  <a class="code hl_class" href="classHitboxComponent.html">HitboxComponent</a> *<a class="code hl_variable" href="classFighterController.html#aa98d9629ebff0586501cdfec013495bb">hitbox</a> = <span class="keyword">nullptr</span>;   <span class="comment">// Refactored</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classFighterController.html#a77284332fc4b872b10574c98cee93b39">   54</a></span>  <a class="code hl_class" href="classHurtboxComponent.html">HurtboxComponent</a> *<a class="code hl_variable" href="classFighterController.html#a77284332fc4b872b10574c98cee93b39">hurtbox</a> = <span class="keyword">nullptr</span>; <span class="comment">// Refactored</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#abf865a6a203e652d45de6fc68573bfc8">update_animation</a>();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a164b124ddc5d0306136556ca95d77973">_on_taken_hit</a>(<a class="code hl_class" href="classHitboxComponent.html">HitboxComponent</a> *<a class="code hl_variable" href="classFighterController.html#aa98d9629ebff0586501cdfec013495bb">hitbox</a>, <span class="keywordtype">double</span> damage, <span class="keywordtype">double</span> hit_stun,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                     Vector2 knockback);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#af166b6d01c73e9076485826bb3dc1162">_on_hit_connected</a>(<a class="code hl_class" href="classHurtboxComponent.html">HurtboxComponent</a> *<a class="code hl_variable" href="classFighterController.html#a77284332fc4b872b10574c98cee93b39">hurtbox</a>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a41e36b0c660a42f892f9afa6f9058ae2">_bind_methods</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <a class="code hl_function" href="classFighterController.html#a3a7afad081d111791c7252dcfa671ecd">FighterController</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <a class="code hl_function" href="classFighterController.html#a8f2a71457e7b0e14babb5d592c506969">~FighterController</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a281da641a43652fdbc1558ff1ce25b43">_ready</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a7972a78225edf5e4a873e8d4e5bd28b2">_physics_process</a>(<span class="keywordtype">double</span> delta) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">// Setters/Getters</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a3c1af5a504c64a383ec53827588f39a1">set_player_id</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classFighterController.html#a5557133b7eb4a4da766be7df122b92d1">get_player_id</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="comment">// Actions</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a6e86801d5c4e5ed239a33260ffda8fed">take_damage</a>(<span class="keywordtype">double</span> amount);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classFighterController.html#a491cd46744cee6c58720874070c8dd5b">get_health</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classFighterController.html#a38f550c4dfa15a41fbb2024d3dbd3177">change_state</a>(<a class="code hl_enumeration" href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04be">State</a> new_state);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif </span><span class="comment">// FIGHTER_CONTROLLER_H</span></div>
+<div class="ttc" id="aclassFighterController_html"><div class="ttname"><a href="classFighterController.html">FighterController</a></div><div class="ttdef"><b>Definition</b> fighter_controller.h:21</div></div>
+<div class="ttc" id="aclassFighterController_html_a0270cc99544e5d323410a0b7d19b58cd"><div class="ttname"><a href="classFighterController.html#a0270cc99544e5d323410a0b7d19b58cd">FighterController::animation_player</a></div><div class="ttdeci">godot::AnimationPlayer * animation_player</div><div class="ttdef"><b>Definition</b> fighter_controller.h:51</div></div>
+<div class="ttc" id="aclassFighterController_html_a0dcb42e48066bd83fd825964f03b9c89"><div class="ttname"><a href="classFighterController.html#a0dcb42e48066bd83fd825964f03b9c89">FighterController::current_state</a></div><div class="ttdeci">State current_state</div><div class="ttdef"><b>Definition</b> fighter_controller.h:39</div></div>
+<div class="ttc" id="aclassFighterController_html_a1163b98cf387b5929e7b009fef28117e"><div class="ttname"><a href="classFighterController.html#a1163b98cf387b5929e7b009fef28117e">FighterController::player_id</a></div><div class="ttdeci">int player_id</div><div class="ttdef"><b>Definition</b> fighter_controller.h:40</div></div>
+<div class="ttc" id="aclassFighterController_html_a164b124ddc5d0306136556ca95d77973"><div class="ttname"><a href="classFighterController.html#a164b124ddc5d0306136556ca95d77973">FighterController::_on_taken_hit</a></div><div class="ttdeci">void _on_taken_hit(HitboxComponent *hitbox, double damage, double hit_stun, Vector2 knockback)</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:80</div></div>
+<div class="ttc" id="aclassFighterController_html_a281da641a43652fdbc1558ff1ce25b43"><div class="ttname"><a href="classFighterController.html#a281da641a43652fdbc1558ff1ce25b43">FighterController::_ready</a></div><div class="ttdeci">void _ready() override</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:45</div></div>
+<div class="ttc" id="aclassFighterController_html_a38f550c4dfa15a41fbb2024d3dbd3177"><div class="ttname"><a href="classFighterController.html#a38f550c4dfa15a41fbb2024d3dbd3177">FighterController::change_state</a></div><div class="ttdeci">void change_state(State new_state)</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:99</div></div>
+<div class="ttc" id="aclassFighterController_html_a3a7afad081d111791c7252dcfa671ecd"><div class="ttname"><a href="classFighterController.html#a3a7afad081d111791c7252dcfa671ecd">FighterController::FighterController</a></div><div class="ttdeci">FighterController()</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:11</div></div>
+<div class="ttc" id="aclassFighterController_html_a3c1af5a504c64a383ec53827588f39a1"><div class="ttname"><a href="classFighterController.html#a3c1af5a504c64a383ec53827588f39a1">FighterController::set_player_id</a></div><div class="ttdeci">void set_player_id(int id)</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:192</div></div>
+<div class="ttc" id="aclassFighterController_html_a41e36b0c660a42f892f9afa6f9058ae2"><div class="ttname"><a href="classFighterController.html#a41e36b0c660a42f892f9afa6f9058ae2">FighterController::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:25</div></div>
+<div class="ttc" id="aclassFighterController_html_a4565a0315d510774c52304c9d0e1a2b7"><div class="ttname"><a href="classFighterController.html#a4565a0315d510774c52304c9d0e1a2b7">FighterController::health</a></div><div class="ttdeci">double health</div><div class="ttdef"><b>Definition</b> fighter_controller.h:41</div></div>
+<div class="ttc" id="aclassFighterController_html_a491cd46744cee6c58720874070c8dd5b"><div class="ttname"><a href="classFighterController.html#a491cd46744cee6c58720874070c8dd5b">FighterController::get_health</a></div><div class="ttdeci">double get_health() const</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:208</div></div>
+<div class="ttc" id="aclassFighterController_html_a4ce5ca9d8293c2e973f37e77fd4afd8a"><div class="ttname"><a href="classFighterController.html#a4ce5ca9d8293c2e973f37e77fd4afd8a">FighterController::max_health</a></div><div class="ttdeci">double max_health</div><div class="ttdef"><b>Definition</b> fighter_controller.h:42</div></div>
+<div class="ttc" id="aclassFighterController_html_a5557133b7eb4a4da766be7df122b92d1"><div class="ttname"><a href="classFighterController.html#a5557133b7eb4a4da766be7df122b92d1">FighterController::get_player_id</a></div><div class="ttdeci">int get_player_id() const</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:194</div></div>
+<div class="ttc" id="aclassFighterController_html_a6e86801d5c4e5ed239a33260ffda8fed"><div class="ttname"><a href="classFighterController.html#a6e86801d5c4e5ed239a33260ffda8fed">FighterController::take_damage</a></div><div class="ttdeci">void take_damage(double amount)</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:196</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04be"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04be">FighterController::State</a></div><div class="ttdeci">State</div><div class="ttdef"><b>Definition</b> fighter_controller.h:25</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04bea4026e3f346f03772b4c7cb8cef95bfb7"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea4026e3f346f03772b4c7cb8cef95bfb7">FighterController::JUMP</a></div><div class="ttdeci">@ JUMP</div><div class="ttdef"><b>Definition</b> fighter_controller.h:30</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04bea436f14af13de3665b8c18a57ee0da4f7"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea436f14af13de3665b8c18a57ee0da4f7">FighterController::HIT_STUN</a></div><div class="ttdeci">@ HIT_STUN</div><div class="ttdef"><b>Definition</b> fighter_controller.h:33</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04bea63f418e7e767f83a6c6cfd5ccbe5d402"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea63f418e7e767f83a6c6cfd5ccbe5d402">FighterController::CROUCH</a></div><div class="ttdeci">@ CROUCH</div><div class="ttdef"><b>Definition</b> fighter_controller.h:29</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04bea645e85efe3ab8346a40cc0ba953f4c2d"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea645e85efe3ab8346a40cc0ba953f4c2d">FighterController::WALK_BACKWARD</a></div><div class="ttdeci">@ WALK_BACKWARD</div><div class="ttdef"><b>Definition</b> fighter_controller.h:28</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04bea990e87a3baf8e6f5c42d1647f7423e8e"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04bea990e87a3baf8e6f5c42d1647f7423e8e">FighterController::IDLE</a></div><div class="ttdeci">@ IDLE</div><div class="ttdef"><b>Definition</b> fighter_controller.h:26</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04beabab6ff46090518e67b7136627b837823"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beabab6ff46090518e67b7136627b837823">FighterController::ATTACK_LIGHT</a></div><div class="ttdeci">@ ATTACK_LIGHT</div><div class="ttdef"><b>Definition</b> fighter_controller.h:31</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04beac55b0ae7c7c2bcce881662e2f85a2df9"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beac55b0ae7c7c2bcce881662e2f85a2df9">FighterController::ATTACK_HEAVY</a></div><div class="ttdeci">@ ATTACK_HEAVY</div><div class="ttdef"><b>Definition</b> fighter_controller.h:32</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04beae5bcffeba80b26aad784d7d42dbeb404"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beae5bcffeba80b26aad784d7d42dbeb404">FighterController::WALK_FORWARD</a></div><div class="ttdeci">@ WALK_FORWARD</div><div class="ttdef"><b>Definition</b> fighter_controller.h:27</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04beaee2e863b3dc8ef71d8e2a8b12d9c0c2d"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beaee2e863b3dc8ef71d8e2a8b12d9c0c2d">FighterController::KO</a></div><div class="ttdeci">@ KO</div><div class="ttdef"><b>Definition</b> fighter_controller.h:35</div></div>
+<div class="ttc" id="aclassFighterController_html_a70dbfd778a6297d3b6ff7673dc8a04beafa99e3c763ac0ad5b5fbb8c81755bb12"><div class="ttname"><a href="classFighterController.html#a70dbfd778a6297d3b6ff7673dc8a04beafa99e3c763ac0ad5b5fbb8c81755bb12">FighterController::BLOCK</a></div><div class="ttdeci">@ BLOCK</div><div class="ttdef"><b>Definition</b> fighter_controller.h:34</div></div>
+<div class="ttc" id="aclassFighterController_html_a77284332fc4b872b10574c98cee93b39"><div class="ttname"><a href="classFighterController.html#a77284332fc4b872b10574c98cee93b39">FighterController::hurtbox</a></div><div class="ttdeci">HurtboxComponent * hurtbox</div><div class="ttdef"><b>Definition</b> fighter_controller.h:54</div></div>
+<div class="ttc" id="aclassFighterController_html_a7972a78225edf5e4a873e8d4e5bd28b2"><div class="ttname"><a href="classFighterController.html#a7972a78225edf5e4a873e8d4e5bd28b2">FighterController::_physics_process</a></div><div class="ttdeci">void _physics_process(double delta) override</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:118</div></div>
+<div class="ttc" id="aclassFighterController_html_a8f2a71457e7b0e14babb5d592c506969"><div class="ttname"><a href="classFighterController.html#a8f2a71457e7b0e14babb5d592c506969">FighterController::~FighterController</a></div><div class="ttdeci">~FighterController()</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:23</div></div>
+<div class="ttc" id="aclassFighterController_html_aa98d9629ebff0586501cdfec013495bb"><div class="ttname"><a href="classFighterController.html#aa98d9629ebff0586501cdfec013495bb">FighterController::hitbox</a></div><div class="ttdeci">HitboxComponent * hitbox</div><div class="ttdef"><b>Definition</b> fighter_controller.h:53</div></div>
+<div class="ttc" id="aclassFighterController_html_ab203ab3863e7b92b16f8e808c257736f"><div class="ttname"><a href="classFighterController.html#ab203ab3863e7b92b16f8e808c257736f">FighterController::sprite</a></div><div class="ttdeci">godot::Sprite2D * sprite</div><div class="ttdef"><b>Definition</b> fighter_controller.h:50</div></div>
+<div class="ttc" id="aclassFighterController_html_abf865a6a203e652d45de6fc68573bfc8"><div class="ttname"><a href="classFighterController.html#abf865a6a203e652d45de6fc68573bfc8">FighterController::update_animation</a></div><div class="ttdeci">void update_animation()</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:95</div></div>
+<div class="ttc" id="aclassFighterController_html_ac29c0b8621302d6342b725f9e1f75ebe"><div class="ttname"><a href="classFighterController.html#ac29c0b8621302d6342b725f9e1f75ebe">FighterController::speed</a></div><div class="ttdeci">double speed</div><div class="ttdef"><b>Definition</b> fighter_controller.h:45</div></div>
+<div class="ttc" id="aclassFighterController_html_ac9e3fa299ec239387b1c3a10ab840946"><div class="ttname"><a href="classFighterController.html#ac9e3fa299ec239387b1c3a10ab840946">FighterController::jump_force</a></div><div class="ttdeci">double jump_force</div><div class="ttdef"><b>Definition</b> fighter_controller.h:46</div></div>
+<div class="ttc" id="aclassFighterController_html_adf95c5ffaa20f85393e239f3efdf642e"><div class="ttname"><a href="classFighterController.html#adf95c5ffaa20f85393e239f3efdf642e">FighterController::gravity</a></div><div class="ttdeci">double gravity</div><div class="ttdef"><b>Definition</b> fighter_controller.h:47</div></div>
+<div class="ttc" id="aclassFighterController_html_af166b6d01c73e9076485826bb3dc1162"><div class="ttname"><a href="classFighterController.html#af166b6d01c73e9076485826bb3dc1162">FighterController::_on_hit_connected</a></div><div class="ttdeci">void _on_hit_connected(HurtboxComponent *hurtbox)</div><div class="ttdef"><b>Definition</b> fighter_controller.cpp:65</div></div>
+<div class="ttc" id="aclassHitboxComponent_html"><div class="ttname"><a href="classHitboxComponent.html">HitboxComponent</a></div><div class="ttdef"><b>Definition</b> hitbox_component.h:8</div></div>
+<div class="ttc" id="aclassHurtboxComponent_html"><div class="ttname"><a href="classHurtboxComponent.html">HurtboxComponent</a></div><div class="ttdef"><b>Definition</b> hurtbox_component.h:9</div></div>
+<div class="ttc" id="ahitbox__component_8h_html"><div class="ttname"><a href="hitbox__component_8h.html">hitbox_component.h</a></div></div>
+<div class="ttc" id="ahurtbox__component_8h_html"><div class="ttname"><a href="hurtbox__component_8h.html">hurtbox_component.h</a></div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

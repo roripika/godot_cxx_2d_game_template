@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/cycles/roguelike_manager.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_fa1935feb2016db7c682b737daacf87c.html">cycles</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">roguelike_manager.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="roguelike__manager_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef ROGUELIKE_MANAGER_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define ROGUELIKE_MANAGER_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;../universal_world_data.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="roguelike__generator_8h.html">roguelike_generator.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;godot_cpp/classes/node.hpp&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;godot_cpp/classes/packed_scene.hpp&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;godot_cpp/classes/tile_map_layer.hpp&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespacegodot.html">godot</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classRoguelikeManager.html">RoguelikeManager</a> : <span class="keyword">public</span> Node {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  GDCLASS(<a class="code hl_class" href="classRoguelikeManager.html">RoguelikeManager</a>, Node)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#af98b3ef21b509abf9d3f47906064e883">   16</a></span>  Ref&lt;UniversalWorldData&gt; <a class="code hl_variable" href="classRoguelikeManager.html#af98b3ef21b509abf9d3f47906064e883">world_data</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#a9e64dea7916ac40a41b2903bc9090789">   17</a></span>  Ref&lt;RoguelikeGenerator&gt; <a class="code hl_variable" href="classRoguelikeManager.html#a9e64dea7916ac40a41b2903bc9090789">generator</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="comment">// Properties to be set in Editor</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#af66bbaa9a1a16d15d55bdbcfd0e8abc9">   20</a></span>  NodePath <a class="code hl_variable" href="classRoguelikeManager.html#af66bbaa9a1a16d15d55bdbcfd0e8abc9">view_path</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#a6f4821582053c729763737582e7b1dac">   21</a></span>  Ref&lt;PackedScene&gt; <a class="code hl_variable" href="classRoguelikeManager.html#a6f4821582053c729763737582e7b1dac">player_scene</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#a24e5ec898fd70b3f0b95ddd1b6d230b2">   23</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classRoguelikeManager.html#a24e5ec898fd70b3f0b95ddd1b6d230b2">map_width</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#ac4ee6725f4dcc56fe0e7b2afdc3e6d05">   24</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classRoguelikeManager.html#ac4ee6725f4dcc56fe0e7b2afdc3e6d05">map_height</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classRoguelikeManager.html#a8f5649bf70fd79c05fb8486fbf2958de">   25</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classRoguelikeManager.html#a8f5649bf70fd79c05fb8486fbf2958de">room_count</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272">_bind_methods</a>();</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_function" href="classRoguelikeManager.html#ac5085d3bc2b7004f4f3dcb2cf8e20afe">RoguelikeManager</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_function" href="classRoguelikeManager.html#a489d6082e39edf5609489a84ed551ef7">~RoguelikeManager</a>();</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#a9856b6fc7ba412c005e4d76875424c5a">_ready</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="comment">// Generates a new level and spawns player</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#a13fb6df39cad7cf563d38303566e877a">start_level</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// Getters/Setters</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#a8d4fb8be70800c8a08a2057e554699ab">set_view_path</a>(<span class="keyword">const</span> NodePath &amp;p_path);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  NodePath <a class="code hl_function" href="classRoguelikeManager.html#a960fdb44f3b08c1507c6ceaeff85eff1">get_view_path</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#a73f2b2bfa0b5e538e9b2bdfdf370596c">set_player_scene</a>(<span class="keyword">const</span> Ref&lt;PackedScene&gt; &amp;p_scene);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  Ref&lt;PackedScene&gt; <a class="code hl_function" href="classRoguelikeManager.html#ab01775c6464f7d95ce93bda557d5d0c9">get_player_scene</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#ab3a206f647f84ff5042c1457e11d77c2">set_map_width</a>(<span class="keywordtype">int</span> p_width);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRoguelikeManager.html#adbdd47e370c57fc4fcfd9a21b1bf4e0f">get_map_width</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#adcd8a623035f91644c9a1c783adea45e">set_map_height</a>(<span class="keywordtype">int</span> p_height);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRoguelikeManager.html#a615bdb1a09962b3ee66752b24b7e5c37">get_map_height</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classRoguelikeManager.html#a63c257cf19b60e1ba8d903ccd185b3a1">set_room_count</a>(<span class="keywordtype">int</span> p_count);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classRoguelikeManager.html#a35f24f7d77e36e7c16cde04f644b2765">get_room_count</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassRoguelikeManager_html"><div class="ttname"><a href="classRoguelikeManager.html">RoguelikeManager</a></div><div class="ttdef"><b>Definition</b> roguelike_manager.h:12</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a13fb6df39cad7cf563d38303566e877a"><div class="ttname"><a href="classRoguelikeManager.html#a13fb6df39cad7cf563d38303566e877a">RoguelikeManager::start_level</a></div><div class="ttdeci">void start_level()</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:67</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a24e5ec898fd70b3f0b95ddd1b6d230b2"><div class="ttname"><a href="classRoguelikeManager.html#a24e5ec898fd70b3f0b95ddd1b6d230b2">RoguelikeManager::map_width</a></div><div class="ttdeci">int map_width</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:23</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a35f24f7d77e36e7c16cde04f644b2765"><div class="ttname"><a href="classRoguelikeManager.html#a35f24f7d77e36e7c16cde04f644b2765">RoguelikeManager::get_room_count</a></div><div class="ttdeci">int get_room_count() const</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:184</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a489d6082e39edf5609489a84ed551ef7"><div class="ttname"><a href="classRoguelikeManager.html#a489d6082e39edf5609489a84ed551ef7">RoguelikeManager::~RoguelikeManager</a></div><div class="ttdeci">~RoguelikeManager()</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:58</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a4b26734bd735a0f912392fca37b2e272"><div class="ttname"><a href="classRoguelikeManager.html#a4b26734bd735a0f912392fca37b2e272">RoguelikeManager::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:10</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a615bdb1a09962b3ee66752b24b7e5c37"><div class="ttname"><a href="classRoguelikeManager.html#a615bdb1a09962b3ee66752b24b7e5c37">RoguelikeManager::get_map_height</a></div><div class="ttdeci">int get_map_height() const</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:180</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a63c257cf19b60e1ba8d903ccd185b3a1"><div class="ttname"><a href="classRoguelikeManager.html#a63c257cf19b60e1ba8d903ccd185b3a1">RoguelikeManager::set_room_count</a></div><div class="ttdeci">void set_room_count(int p_count)</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:182</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a6f4821582053c729763737582e7b1dac"><div class="ttname"><a href="classRoguelikeManager.html#a6f4821582053c729763737582e7b1dac">RoguelikeManager::player_scene</a></div><div class="ttdeci">Ref&lt; PackedScene &gt; player_scene</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:21</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a73f2b2bfa0b5e538e9b2bdfdf370596c"><div class="ttname"><a href="classRoguelikeManager.html#a73f2b2bfa0b5e538e9b2bdfdf370596c">RoguelikeManager::set_player_scene</a></div><div class="ttdeci">void set_player_scene(const Ref&lt; PackedScene &gt; &amp;p_scene)</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:166</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a8d4fb8be70800c8a08a2057e554699ab"><div class="ttname"><a href="classRoguelikeManager.html#a8d4fb8be70800c8a08a2057e554699ab">RoguelikeManager::set_view_path</a></div><div class="ttdeci">void set_view_path(const NodePath &amp;p_path)</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:160</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a8f5649bf70fd79c05fb8486fbf2958de"><div class="ttname"><a href="classRoguelikeManager.html#a8f5649bf70fd79c05fb8486fbf2958de">RoguelikeManager::room_count</a></div><div class="ttdeci">int room_count</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:25</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a960fdb44f3b08c1507c6ceaeff85eff1"><div class="ttname"><a href="classRoguelikeManager.html#a960fdb44f3b08c1507c6ceaeff85eff1">RoguelikeManager::get_view_path</a></div><div class="ttdeci">NodePath get_view_path() const</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:164</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a9856b6fc7ba412c005e4d76875424c5a"><div class="ttname"><a href="classRoguelikeManager.html#a9856b6fc7ba412c005e4d76875424c5a">RoguelikeManager::_ready</a></div><div class="ttdeci">void _ready() override</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:60</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_a9e64dea7916ac40a41b2903bc9090789"><div class="ttname"><a href="classRoguelikeManager.html#a9e64dea7916ac40a41b2903bc9090789">RoguelikeManager::generator</a></div><div class="ttdeci">Ref&lt; RoguelikeGenerator &gt; generator</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:17</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_ab01775c6464f7d95ce93bda557d5d0c9"><div class="ttname"><a href="classRoguelikeManager.html#ab01775c6464f7d95ce93bda557d5d0c9">RoguelikeManager::get_player_scene</a></div><div class="ttdeci">Ref&lt; PackedScene &gt; get_player_scene() const</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:170</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_ab3a206f647f84ff5042c1457e11d77c2"><div class="ttname"><a href="classRoguelikeManager.html#ab3a206f647f84ff5042c1457e11d77c2">RoguelikeManager::set_map_width</a></div><div class="ttdeci">void set_map_width(int p_width)</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:174</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_ac4ee6725f4dcc56fe0e7b2afdc3e6d05"><div class="ttname"><a href="classRoguelikeManager.html#ac4ee6725f4dcc56fe0e7b2afdc3e6d05">RoguelikeManager::map_height</a></div><div class="ttdeci">int map_height</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:24</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_ac5085d3bc2b7004f4f3dcb2cf8e20afe"><div class="ttname"><a href="classRoguelikeManager.html#ac5085d3bc2b7004f4f3dcb2cf8e20afe">RoguelikeManager::RoguelikeManager</a></div><div class="ttdeci">RoguelikeManager()</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:52</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_adbdd47e370c57fc4fcfd9a21b1bf4e0f"><div class="ttname"><a href="classRoguelikeManager.html#adbdd47e370c57fc4fcfd9a21b1bf4e0f">RoguelikeManager::get_map_width</a></div><div class="ttdeci">int get_map_width() const</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:176</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_adcd8a623035f91644c9a1c783adea45e"><div class="ttname"><a href="classRoguelikeManager.html#adcd8a623035f91644c9a1c783adea45e">RoguelikeManager::set_map_height</a></div><div class="ttdeci">void set_map_height(int p_height)</div><div class="ttdef"><b>Definition</b> roguelike_manager.cpp:178</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_af66bbaa9a1a16d15d55bdbcfd0e8abc9"><div class="ttname"><a href="classRoguelikeManager.html#af66bbaa9a1a16d15d55bdbcfd0e8abc9">RoguelikeManager::view_path</a></div><div class="ttdeci">NodePath view_path</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:20</div></div>
+<div class="ttc" id="aclassRoguelikeManager_html_af98b3ef21b509abf9d3f47906064e883"><div class="ttname"><a href="classRoguelikeManager.html#af98b3ef21b509abf9d3f47906064e883">RoguelikeManager::world_data</a></div><div class="ttdeci">Ref&lt; UniversalWorldData &gt; world_data</div><div class="ttdef"><b>Definition</b> roguelike_manager.h:16</div></div>
+<div class="ttc" id="anamespacegodot_html"><div class="ttname"><a href="namespacegodot.html">godot</a></div><div class="ttdef"><b>Definition</b> enums.hpp:6</div></div>
+<div class="ttc" id="aroguelike__generator_8h_html"><div class="ttname"><a href="roguelike__generator_8h.html">roguelike_generator.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>
