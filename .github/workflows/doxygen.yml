@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - 'src/karakuri/**'
+      - 'src/entities/**'
+      - 'src/features/**'
+      - 'src/core/**'
       - 'docs/karakuri_sdk/Doxyfile'
   workflow_dispatch: # Allow manual trigger
 
