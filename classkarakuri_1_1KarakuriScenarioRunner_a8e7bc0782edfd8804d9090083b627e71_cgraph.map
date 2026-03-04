@@ -8,7 +8,7 @@
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="207,145,241,149,241,155,207,151"/>
 <area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a0ff7f67c85e6fd66ba100371ca84c553" title=" " alt="" coords="575,182,767,222"/>
 <area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="158,162,204,182,255,198,334,210,414,215,491,214,560,211,561,216,492,220,414,220,333,215,254,203,202,187,156,167"/>
-<area shape="rect" id="Node000004" href="$structkarakuri_1_1KarakuriTestimonySession.html#a73f93fcd05b29d965df98c8a52eafaf8" title="セッション状態を初期値にリセットする。" alt="" coords="569,26,772,66"/>
+<area shape="rect" id="Node000004" href="$structkarakuri_1_1KarakuriTestimonySession.html#a77041f159227063c72be72b902514177" title="セッションを初期状態に戻す。" alt="" coords="569,26,772,66"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="484,82,560,66,561,71,485,87"/>
 <area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="575,91,767,145"/>
 <area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="494,107,561,110,561,115,493,112"/>

@@ -85,15 +85,20 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="karakuri__scenario__runner_8h_source.html">karakuri_scenario_runner.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="karakuri__save__service_8h_source.html">../karakuri_save_service.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="karakuri__yaml__lite_8h_source.html">../yaml/karakuri_yaml_lite.h</a>&quot;</code><br />
+<code>#include &quot;features/mystery/evidence_manager.h&quot;</code><br />
+<code>#include &quot;features/mystery/mystery_manager.h&quot;</code><br />
 <code>#include &lt;godot_cpp/classes/area2d.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/circle_shape2d.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/collision_shape2d.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/engine.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/file_access.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/node2d.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/packed_scene.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/rectangle_shape2d.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/resource_loader.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/scene_tree.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/sprite2d.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/texture2d.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/translation_server.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/window.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/callable.hpp&gt;</code><br />
@@ -104,66 +109,78 @@ karakuri_scenario_runner.cpp の依存先関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="karakuri__scenario__runner_8cpp__incl.png" border="0" usemap="#asrc_2karakuri_2scenario_2karakuri__scenario__runner_8cpp" alt=""/></div>
 <map name="asrc_2karakuri_2scenario_2karakuri__scenario__runner_8cpp" id="asrc_2karakuri_2scenario_2karakuri__scenario__runner_8cpp">
-<area shape="rect" title="See karakuri_scenario_runner.h" alt="" coords="2777,5,2992,45"/>
-<area shape="rect" href="karakuri__scenario__runner_8h.html" title="Basic Game Karakuri: YAML駆動型のシナリオランナー（プランナー作成のストーリーと連携フック）。" alt="" coords="481,101,677,126"/>
-<area shape="poly" title=" " alt="" coords="2777,33,691,111,691,105,2777,28"/>
-<area shape="rect" href="karakuri__save__service_8h.html" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="1283,101,1473,126"/>
-<area shape="poly" title=" " alt="" coords="2777,30,2544,34,2224,44,1857,64,1670,78,1486,96,1450,101,1449,96,1486,91,1669,73,1857,58,2223,39,2544,28,2777,25"/>
-<area shape="rect" href="karakuri__yaml__lite_8h.html" title="Basic Game Karakuri: プランナー向けシナリオファイル用のYAML Liteパーサー。" alt="" coords="1498,93,1661,133"/>
-<area shape="poly" title=" " alt="" coords="2777,30,2575,34,2303,45,1992,64,1675,96,1674,91,1992,59,2302,39,2575,29,2777,25"/>
-<area shape="rect" title=" " alt="" coords="1685,101,1903,126"/>
-<area shape="poly" title=" " alt="" coords="2777,34,2397,55,2158,73,1917,96,1876,101,1875,96,1916,91,2157,68,2396,50,2777,29"/>
-<area shape="rect" title=" " alt="" coords="1928,93,2108,133"/>
-<area shape="poly" title=" " alt="" coords="2777,36,2485,57,2306,74,2122,96,2121,91,2305,69,2485,52,2777,30"/>
-<area shape="rect" title=" " alt="" coords="2132,93,2331,133"/>
-<area shape="poly" title=" " alt="" coords="2777,41,2580,64,2344,96,2344,90,2579,59,2777,36"/>
-<area shape="rect" title=" " alt="" coords="2354,93,2519,133"/>
-<area shape="poly" title=" " alt="" coords="2785,48,2534,96,2533,90,2784,43"/>
-<area shape="rect" title=" " alt="" coords="2543,101,2765,126"/>
-<area shape="poly" title=" " alt="" coords="2835,48,2699,98,2697,93,2833,43"/>
-<area shape="rect" title=" " alt="" coords="2789,93,2980,133"/>
-<area shape="poly" title=" " alt="" coords="2887,46,2887,79,2882,79,2882,46"/>
-<area shape="rect" title=" " alt="" coords="3004,93,3211,133"/>
-<area shape="poly" title=" " alt="" coords="2934,43,3047,86,3045,91,2933,48"/>
-<area shape="rect" title=" " alt="" coords="3235,93,3436,133"/>
-<area shape="poly" title=" " alt="" coords="2984,43,3224,88,3223,93,2983,48"/>
-<area shape="rect" title=" " alt="" coords="3460,93,3643,133"/>
-<area shape="poly" title=" " alt="" coords="2992,35,3199,58,3447,90,3446,96,3198,63,2992,40"/>
-<area shape="rect" title=" " alt="" coords="3667,93,3881,133"/>
-<area shape="poly" title=" " alt="" coords="2992,31,3286,53,3653,90,3652,96,3286,59,2992,36"/>
-<area shape="rect" title=" " alt="" coords="3905,101,4128,126"/>
-<area shape="poly" title=" " alt="" coords="2992,28,3390,49,3641,67,3894,91,3935,96,3935,101,3894,96,3641,72,3389,54,2992,33"/>
-<area shape="rect" title=" " alt="" coords="4152,101,4375,126"/>
-<area shape="poly" title=" " alt="" coords="2992,26,3489,44,3813,63,4141,91,4184,96,4183,101,4140,96,3813,68,3489,49,2992,31"/>
-<area shape="rect" title=" " alt="" coords="4399,101,4603,126"/>
-<area shape="poly" title=" " alt="" coords="2992,24,3241,28,3587,38,3984,58,4188,72,4388,91,4427,96,4426,101,4387,96,4188,78,3984,63,3587,43,3241,33,2992,30"/>
-<area shape="rect" title=" " alt="" coords="4627,93,4809,133"/>
-<area shape="poly" title=" " alt="" coords="2992,26,3796,48,4262,67,4459,78,4614,91,4613,96,4459,83,4262,72,3796,53,2992,31"/>
-<area shape="rect" title=" " alt="" coords="5,189,92,214"/>
-<area shape="poly" title=" " alt="" coords="482,127,308,149,112,184,97,188,96,182,111,179,308,144,481,122"/>
-<area shape="rect" href="karakuri__testimony__session_8h.html" title="Testimony confrontation session state." alt="" coords="167,181,314,221"/>
-<area shape="poly" title=" " alt="" coords="535,129,328,181,327,176,533,124"/>
-<area shape="rect" title=" " alt="" coords="83,269,286,295"/>
-<area shape="poly" title=" " alt="" coords="481,119,389,124,292,135,209,154,178,167,157,183,150,200,151,219,159,239,169,257,165,259,154,241,146,220,145,199,153,180,175,163,207,149,291,129,388,118,481,113"/>
-<area shape="rect" title=" " alt="" coords="862,269,1070,295"/>
-<area shape="poly" title=" " alt="" coords="510,129,451,143,399,163,381,175,370,189,369,203,379,219,400,231,441,241,563,257,710,268,849,274,848,280,710,273,563,262,440,246,398,236,375,223,364,204,365,187,377,171,397,158,450,138,508,123"/>
-<area shape="rect" title=" " alt="" coords="1275,189,1481,214"/>
-<area shape="poly" title=" " alt="" coords="678,120,942,143,1262,179,1299,184,1298,189,1262,184,941,148,677,125"/>
-<area shape="rect" title=" " alt="" coords="389,181,548,221"/>
-<area shape="poly" title=" " alt="" coords="566,128,506,175,502,171,563,124"/>
-<area shape="rect" title=" " alt="" coords="573,189,807,214"/>
-<area shape="poly" title=" " alt="" coords="596,124,666,178,662,182,593,128"/>
-<area shape="rect" title=" " alt="" coords="832,181,1007,221"/>
-<area shape="poly" title=" " alt="" coords="625,124,832,175,831,181,624,129"/>
-<area shape="rect" title=" " alt="" coords="1031,189,1251,214"/>
-<area shape="poly" title=" " alt="" coords="655,123,1018,179,1053,184,1052,189,1018,184,654,129"/>
-<area shape="poly" title=" " alt="" coords="229,223,203,260,199,256,225,220"/>
-<area shape="poly" title=" " alt="" coords="315,216,333,219,610,251,849,271,848,276,610,257,332,224,314,221"/>
-<area shape="poly" title=" " alt="" coords="1408,124,1445,141,1481,165,1494,178,1502,193,1503,208,1495,223,1474,234,1439,244,1334,259,1206,271,1084,278,1084,273,1206,265,1333,254,1438,239,1472,229,1491,219,1498,207,1497,194,1490,181,1477,169,1443,146,1406,128"/>
-<area shape="poly" title=" " alt="" coords="1381,126,1381,174,1375,174,1375,126"/>
-<area shape="poly" title=" " alt="" coords="1577,134,1557,180,1540,204,1518,224,1485,239,1440,252,1327,269,1201,279,1084,283,1084,277,1201,273,1327,264,1439,246,1483,234,1515,219,1536,201,1552,178,1572,132"/>
-<area shape="rect" title=" " alt="" coords="1607,189,1824,214"/>
-<area shape="poly" title=" " alt="" coords="1611,131,1687,179,1684,184,1608,136"/>
+<area shape="rect" title="See karakuri_scenario_runner.h" alt="" coords="3196,5,3410,45"/>
+<area shape="rect" href="karakuri__scenario__runner_8h.html" title="Basic Game Karakuri: YAML駆動型のシナリオランナー（プランナー作成のストーリーと連携フック）。" alt="" coords="912,101,1108,126"/>
+<area shape="poly" title=" " alt="" coords="3196,33,1122,111,1121,105,3195,28"/>
+<area shape="rect" title=" " alt="" coords="1384,269,1566,309"/>
+<area shape="poly" title=" " alt="" coords="3195,31,2834,39,2368,52,1955,71,1817,83,1774,89,1752,96,1735,109,1724,123,1712,155,1701,190,1691,207,1674,223,1629,251,1580,270,1578,265,1627,246,1671,219,1686,204,1696,187,1707,154,1720,120,1731,105,1750,91,1773,84,1817,78,1955,66,2368,47,2834,34,3195,26"/>
+<area shape="rect" href="karakuri__save__service_8h.html" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="33,101,224,126"/>
+<area shape="poly" title=" " alt="" coords="3196,31,2134,54,1371,73,586,96,237,110,237,104,586,91,1370,68,2134,49,3196,26"/>
+<area shape="rect" href="karakuri__yaml__lite_8h.html" title="Basic Game Karakuri: プランナー向けシナリオファイル用のYAML Liteパーサー。" alt="" coords="255,181,418,221"/>
+<area shape="poly" title=" " alt="" coords="3195,30,2729,35,2066,46,1393,65,1112,79,899,96,770,113,642,136,427,181,426,176,641,130,769,108,899,91,1111,74,1393,60,2066,40,2729,29,3195,25"/>
+<area shape="rect" title=" " alt="" coords="1763,93,1960,133"/>
+<area shape="poly" title=" " alt="" coords="3195,30,2975,35,2674,46,2328,65,1974,96,1974,91,2328,60,2673,41,2975,30,3195,25"/>
+<area shape="rect" title=" " alt="" coords="1984,93,2176,133"/>
+<area shape="poly" title=" " alt="" coords="3196,32,2760,50,2479,69,2191,96,2190,91,2478,63,2760,44,3195,26"/>
+<area shape="rect" title=" " alt="" coords="2200,101,2419,126"/>
+<area shape="poly" title=" " alt="" coords="3196,35,2855,57,2644,75,2433,96,2392,101,2391,96,2432,91,2644,69,2855,52,3195,30"/>
+<area shape="rect" title=" " alt="" coords="2444,93,2624,133"/>
+<area shape="poly" title=" " alt="" coords="3196,37,2945,60,2638,96,2637,91,2945,55,3195,32"/>
+<area shape="rect" title=" " alt="" coords="2648,93,2846,133"/>
+<area shape="poly" title=" " alt="" coords="3196,45,2860,96,2860,91,3195,40"/>
+<area shape="rect" title=" " alt="" coords="2870,101,3088,126"/>
+<area shape="poly" title=" " alt="" coords="3233,48,3036,100,3035,95,3231,43"/>
+<area shape="rect" title=" " alt="" coords="3112,93,3278,133"/>
+<area shape="poly" title=" " alt="" coords="3281,48,3231,87,3228,83,3277,44"/>
+<area shape="rect" title=" " alt="" coords="3302,101,3523,126"/>
+<area shape="poly" title=" " alt="" coords="3329,44,3388,90,3385,94,3326,48"/>
+<area shape="rect" title=" " alt="" coords="3548,93,3738,133"/>
+<area shape="poly" title=" " alt="" coords="3378,43,3556,87,3555,93,3377,48"/>
+<area shape="rect" title=" " alt="" coords="3762,93,3969,133"/>
+<area shape="poly" title=" " alt="" coords="3411,40,3749,90,3748,96,3410,45"/>
+<area shape="rect" title=" " alt="" coords="3993,93,4194,133"/>
+<area shape="poly" title=" " alt="" coords="3411,32,3666,55,3980,90,3979,96,3666,60,3411,38"/>
+<area shape="rect" title=" " alt="" coords="4218,93,4401,133"/>
+<area shape="poly" title=" " alt="" coords="3411,28,3760,48,3980,66,4205,90,4204,96,3980,72,3760,54,3410,34"/>
+<area shape="rect" title=" " alt="" coords="4426,101,4652,126"/>
+<area shape="poly" title=" " alt="" coords="3411,27,3849,47,4130,66,4414,91,4457,96,4456,101,4413,96,4130,71,3849,53,3410,33"/>
+<area shape="rect" title=" " alt="" coords="4677,101,4913,126"/>
+<area shape="poly" title=" " alt="" coords="3411,26,3638,32,3949,43,4305,62,4665,91,4711,96,4710,101,4664,96,4304,68,3949,49,3638,37,3410,31"/>
+<area shape="rect" title=" " alt="" coords="4937,93,5152,133"/>
+<area shape="poly" title=" " alt="" coords="3411,24,3675,27,4048,37,4480,57,4703,72,4923,90,4923,96,4703,77,4480,62,4047,42,3675,32,3411,29"/>
+<area shape="rect" title=" " alt="" coords="5176,101,5398,126"/>
+<area shape="poly" title=" " alt="" coords="3411,24,3712,25,4146,34,4651,54,4910,70,5165,91,5209,96,5208,101,5164,96,4910,75,4650,59,4146,39,3712,30,3411,29"/>
+<area shape="rect" title=" " alt="" coords="5422,101,5645,126"/>
+<area shape="poly" title=" " alt="" coords="3411,26,4403,47,4985,66,5227,78,5411,91,5455,96,5455,101,5411,96,5227,83,4984,71,4403,52,3411,31"/>
+<area shape="rect" title=" " alt="" coords="5669,101,5873,126"/>
+<area shape="poly" title=" " alt="" coords="3411,25,3868,31,4517,44,5175,63,5450,76,5658,91,5698,96,5698,101,5657,96,5450,81,5175,68,4517,49,3868,37,3411,30"/>
+<area shape="rect" title=" " alt="" coords="737,189,824,214"/>
+<area shape="poly" title=" " alt="" coords="980,129,825,186,823,181,978,124"/>
+<area shape="rect" href="karakuri__testimony__session_8h.html" title="Testimony confrontation session state." alt="" coords="848,181,995,221"/>
+<area shape="poly" title=" " alt="" coords="1000,128,953,173,949,170,996,124"/>
+<area shape="rect" title=" " alt="" coords="864,277,1067,302"/>
+<area shape="poly" title=" " alt="" coords="1108,115,1259,122,1429,135,1573,153,1623,165,1650,179,1658,190,1660,201,1658,212,1650,223,1627,232,1579,240,1429,257,1081,283,1081,278,1428,251,1578,235,1626,227,1647,219,1653,210,1655,201,1653,192,1647,183,1621,170,1572,158,1428,140,1259,128,1108,120"/>
+<area shape="rect" title=" " alt="" coords="306,277,514,302"/>
+<area shape="poly" title=" " alt="" coords="911,120,798,126,673,138,559,156,514,169,482,184,461,201,444,222,421,265,416,263,440,219,457,197,479,179,513,164,558,151,672,132,798,121,911,115"/>
+<area shape="rect" title=" " alt="" coords="26,189,231,214"/>
+<area shape="poly" title=" " alt="" coords="912,124,612,146,243,184,207,189,206,184,243,179,612,141,911,118"/>
+<area shape="rect" title=" " alt="" coords="1020,181,1178,221"/>
+<area shape="poly" title=" " alt="" coords="1024,124,1072,170,1068,174,1020,128"/>
+<area shape="rect" title=" " alt="" coords="1203,189,1438,214"/>
+<area shape="poly" title=" " alt="" coords="1052,124,1266,182,1265,187,1051,129"/>
+<area shape="rect" title=" " alt="" coords="1462,181,1637,221"/>
+<area shape="poly" title=" " alt="" coords="1091,123,1449,179,1448,184,1090,129"/>
+<area shape="rect" title=" " alt="" coords="493,189,713,214"/>
+<area shape="poly" title=" " alt="" coords="956,129,671,188,670,183,955,123"/>
+<area shape="poly" title=" " alt="" coords="934,220,956,263,951,265,929,223"/>
+<area shape="poly" title=" " alt="" coords="849,221,836,224,660,254,505,277,504,272,659,249,835,219,848,216"/>
+<area shape="poly" title=" " alt="" coords="996,216,1008,219,1200,250,1371,273,1370,278,1199,255,1007,224,995,222"/>
+<area shape="rect" title=" " alt="" coords="594,277,812,302"/>
+<area shape="poly" title=" " alt="" coords="875,224,746,274,744,269,873,219"/>
+<area shape="poly" title=" " alt="" coords="100,128,64,146,30,168,17,181,10,194,9,206,16,220,33,233,58,245,128,264,210,275,292,282,292,287,209,281,127,269,57,250,30,238,12,223,4,208,5,192,13,178,26,164,61,141,98,124"/>
+<area shape="poly" title=" " alt="" coords="131,126,131,174,126,174,126,126"/>
+<area shape="poly" title=" " alt="" coords="355,220,393,264,389,267,351,223"/>
+<area shape="poly" title=" " alt="" coords="417,219,642,271,641,276,416,224"/>
 </map>
 </div>
 </div><table class="memberdecls">

@@ -1,17 +1,18 @@
 <map id="karakuri::KarakuriScenarioRunner::notify_mode_exit" name="karakuri::KarakuriScenarioRunner::notify_mode_exit">
-<area shape="rect" id="Node000001" title=" " alt="" coords="792,101,984,141"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a4cd82c0baedca5359142cba8257f81e4" title=" " alt="" coords="552,101,744,141"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="778,124,744,124,744,119,778,119"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#abb33e0be509b2ed9c17c93dc2b36fa20" title="Godot lifecycle hook." alt="" coords="299,5,491,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="592,98,503,60,468,48,469,43,505,55,594,93"/>
-<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godotのライフサイクルフック。" alt="" coords="299,69,491,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="538,110,491,104,491,99,539,105"/>
-<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="295,133,494,173"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="539,138,495,143,494,138,538,132"/>
-<area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ad0c659e1f6c32470cf60078d54c3fd83" title=" " alt="" coords="285,197,504,237"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="594,150,505,188,469,200,468,195,503,183,592,145"/>
-<area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="5,133,237,173"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="282,156,237,156,237,151,282,151"/>
-<area shape="rect" id="Node000008" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="25,197,217,237"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="271,220,218,220,218,215,271,215"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="792,100,984,140"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a4cd82c0baedca5359142cba8257f81e4" title=" " alt="" coords="552,100,744,140"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="778,122,744,122,744,117,778,117"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="25,72,217,112"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="614,93,564,55,534,39,503,26,444,12,396,9,347,14,286,26,218,47,160,74,158,69,216,42,285,21,346,9,395,3,444,6,505,21,537,34,567,51,617,88"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#abb33e0be509b2ed9c17c93dc2b36fa20" title="Godot lifecycle hook." alt="" coords="299,36,491,76"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="554,99,474,78,475,73,556,94"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godotのライフサイクルフック。" alt="" coords="299,100,491,140"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="538,122,491,122,491,117,538,117"/>
+<area shape="rect" id="Node000006" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8bb85bcabe13366efd476c50497d4edc" title="全ての組み込み汎用アクションを action_handlers_ に登録する。" alt="" coords="295,228,494,268"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="613,150,563,185,505,218,475,230,473,225,503,213,560,181,610,146"/>
+<area shape="rect" id="Node000008" href="$classkarakuri_1_1KarakuriScenarioRunner.html#ad0c659e1f6c32470cf60078d54c3fd83" title=" " alt="" coords="285,164,504,204"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="556,146,475,166,474,161,554,141"/>
+<area shape="rect" id="Node000007" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a8ddb84bdfb0d55d413f0ec6618d12d8c" title=" " alt="" coords="5,228,237,268"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="282,250,237,250,237,245,282,245"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="309,162,284,154,173,114,175,109,286,149,311,157"/>
 </map>

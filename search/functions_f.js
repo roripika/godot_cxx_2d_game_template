@@ -11,7 +11,9 @@ var searchData=
   ['set_5fscenario_5fpath_8',['set_scenario_path',['../classkarakuri_1_1KarakuriScenarioRunner.html#ad9c47fa46faad98732806f3b17550b16',1,'karakuri::KarakuriScenarioRunner']]],
   ['set_5fscene_5fcontainer_5fpath_9',['set_scene_container_path',['../classkarakuri_1_1KarakuriScenarioRunner.html#a9746266f6eab1cf366e021b21f61850b',1,'karakuri::KarakuriScenarioRunner']]],
   ['set_5ftestimony_5fsystem_5fpath_10',['set_testimony_system_path',['../classkarakuri_1_1KarakuriScenarioRunner.html#a297285d27667f2b8eeead53052b8746a',1,'karakuri::KarakuriScenarioRunner']]],
-  ['show_5fcurrent_5ftestimony_5fline_11',['show_current_testimony_line',['../classkarakuri_1_1KarakuriScenarioRunner.html#af3bc417dfe14667e4933819edac462b6',1,'karakuri::KarakuriScenarioRunner']]],
-  ['start_5factions_12',['start_actions',['../classkarakuri_1_1KarakuriScenarioRunner.html#a9ea13725cc66b56f432f0b5ac205a094',1,'karakuri::KarakuriScenarioRunner']]],
-  ['step_5factions_13',['step_actions',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8618c4919a47ce10787a65352948d884',1,'karakuri::KarakuriScenarioRunner']]]
+  ['set_5ftransition_5fmanager_5fpath_11',['set_transition_manager_path',['../classkarakuri_1_1KarakuriScenarioRunner.html#a95b22be2eaf752cf6773f2ee35c30972',1,'karakuri::KarakuriScenarioRunner']]],
+  ['set_5ftransition_5frect_5fpath_12',['set_transition_rect_path',['../classkarakuri_1_1KarakuriScenarioRunner.html#a1e6c5dfdb6fe627836281844bc293ff3',1,'karakuri::KarakuriScenarioRunner']]],
+  ['show_5fcurrent_5ftestimony_5fline_13',['show_current_testimony_line',['../classkarakuri_1_1KarakuriScenarioRunner.html#af3bc417dfe14667e4933819edac462b6',1,'karakuri::KarakuriScenarioRunner']]],
+  ['start_5factions_14',['start_actions',['../classkarakuri_1_1KarakuriScenarioRunner.html#a9ea13725cc66b56f432f0b5ac205a094',1,'karakuri::KarakuriScenarioRunner']]],
+  ['step_5factions_15',['step_actions',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8618c4919a47ce10787a65352948d884',1,'karakuri::KarakuriScenarioRunner']]]
 ];

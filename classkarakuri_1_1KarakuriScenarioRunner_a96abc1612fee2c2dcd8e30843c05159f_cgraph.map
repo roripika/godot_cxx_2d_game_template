@@ -1,7 +1,9 @@
 <map id="karakuri::KarakuriScenarioRunner::notify_mode_enter" name="karakuri::KarakuriScenarioRunner::notify_mode_enter">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,41,204,81"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a810e2b910ff023a38240e6d4c10cb2f4" title=" " alt="" coords="252,5,444,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,44,238,39,239,44,205,49"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="252,70,444,125"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,73,239,79,238,84,204,79"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,204,109"/>
+<area shape="rect" id="Node000002" href="$structkarakuri_1_1KarakuriTestimonySession.html#a77041f159227063c72be72b902514177" title="セッションを初期状態に戻す。" alt="" coords="252,5,455,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,67,262,46,263,51,184,72"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a810e2b910ff023a38240e6d4c10cb2f4" title=" " alt="" coords="257,69,449,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="204,87,244,87,244,92,204,92"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a1330dd3d58acf6046bb80113b15ee5fe" title=" " alt="" coords="257,134,449,189"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="175,107,246,128,245,133,174,112"/>
 </map>
