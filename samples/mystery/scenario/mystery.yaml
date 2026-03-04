@@ -185,9 +185,11 @@ scenes:
               shake_key: "mystery.testimony.line3.shake"
               hint_key: "mystery.testimony.line3.hint"
           on_success:
+            - set_flag: { key: "case_solved", value: true }
             - dialogue: { speaker_key: "speaker.rat_witness", speaker: "Rat Witness", text_key: "mystery.confrontation.success" }
             - goto: "ending_good"
           on_failure:
+            - set_flag: { key: "game_over", value: true }
             - goto: "ending_bad"
 
   ending_good:

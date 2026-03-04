@@ -1,5 +1,6 @@
 #include "evidence_manager.h"
 
+#include "mystery_manager.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -30,9 +31,10 @@ void EvidenceManager::_bind_methods() {
                        &EvidenceManager::get_all_evidence);
   ClassDB::bind_method(D_METHOD("clear_all_evidence"),
                        &EvidenceManager::clear_all_evidence);
-  ClassDB::bind_method(D_METHOD("serialize"), &EvidenceManager::serialize);
-  ClassDB::bind_method(D_METHOD("deserialize", "p_data"),
-                       &EvidenceManager::deserialize);
+  ClassDB::bind_method(D_METHOD("serialize_evidence"),
+                       &EvidenceManager::serialize_evidence);
+  ClassDB::bind_method(D_METHOD("deserialize_evidence", "p_data"),
+                       &EvidenceManager::deserialize_evidence);
 }
 
 bool EvidenceManager::add_evidence(const String &p_id) {
@@ -43,7 +45,14 @@ bool EvidenceManager::add_evidence(const String &p_id) {
   }
 
   collected_evidence.push_back(p_id);
-  UtilityFunctions::print("[EvidenceManager] Added Evidence: ", p_id);
+  auto *mm = MysteryManager::get_singleton();
+  if (mm) {
+    mm->log_change("Evidence", p_id, "NONE", "COLLECTED", "add_evidence");
+  } else {
+    UtilityFunctions::print(
+        "[CHANGE] Evidence: ", p_id,
+        " | Old: NONE | New: COLLECTED | Caller: add_evidence");
+  }
   return true;
 }
 
@@ -51,7 +60,15 @@ bool EvidenceManager::remove_evidence(const String &p_id) {
   int index = collected_evidence.find(p_id);
   if (index != -1) {
     collected_evidence.remove_at(index);
-    UtilityFunctions::print("[EvidenceManager] Removed Evidence: ", p_id);
+    auto *mm = MysteryManager::get_singleton();
+    if (mm) {
+      mm->log_change("Evidence", p_id, "COLLECTED", "REMOVED",
+                     "remove_evidence");
+    } else {
+      UtilityFunctions::print(
+          "[CHANGE] Evidence: ", p_id,
+          " | Old: COLLECTED | New: REMOVED | Caller: remove_evidence");
+    }
     return true;
   }
   return false;
@@ -67,12 +84,13 @@ Array EvidenceManager::get_all_evidence() const {
 
 void EvidenceManager::clear_all_evidence() {
   collected_evidence.clear();
-  UtilityFunctions::print("[EvidenceManager] Cleared all evidence!");
+  UtilityFunctions::print("[CHANGE] Evidence: ALL | Old: NUMEROUS | New: "
+                          "CLEARED | Caller: clear_all_evidence");
 }
 
-Array EvidenceManager::serialize() const { return get_all_evidence(); }
+Array EvidenceManager::serialize_evidence() const { return get_all_evidence(); }
 
-void EvidenceManager::deserialize(const Array &p_data) {
+void EvidenceManager::deserialize_evidence(const Array &p_data) {
   collected_evidence = p_data.duplicate();
   UtilityFunctions::print("[EvidenceManager] Deserialized evidence. Count: ",
                           collected_evidence.size());

@@ -29,10 +29,15 @@ if env["platform"] == "macos":
     env.Append(CXXFLAGS=["-stdlib=libc++"])
     env.Append(LINKFLAGS=["-stdlib=libc++"])
 
-    # M2 / Apple Silicon optimization
+    # M4 / Apple Silicon optimization
     if env["arch"] == "arm64":
-        env.Append(CCFLAGS=["-mcpu=apple-m2", "-O3"])
+        env.Append(CCFLAGS=["-mcpu=apple-m4", "-O3"])
         
+    # Parallel build optimization: using all logical cores
+    import multiprocessing
+    env.SetOption('num_jobs', multiprocessing.cpu_count())
+    print(f"Building with {multiprocessing.cpu_count()} parallel jobs (M4 Optimized)")
+
     # Ensure correct SDK path is used if standard headers are missing
     try:
         import subprocess

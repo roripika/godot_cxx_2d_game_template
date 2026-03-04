@@ -1,6 +1,6 @@
 #include "adventure_game_state.h"
 #include "features/mystery/evidence_manager.h"
-#include "features/mystery/mystery_game_master.h"
+#include "features/mystery/mystery_manager.h"
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
@@ -80,7 +80,7 @@ void AdventureGameStateBase::reset_game() {
   if (em) {
     em->clear_all_evidence();
   }
-  auto *gm = MysteryGameMaster::get_singleton();
+  auto *gm = MysteryManager::get_singleton();
   if (gm) {
     gm->deserialize_flags(Dictionary());
   }

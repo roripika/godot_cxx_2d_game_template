@@ -131,7 +131,7 @@ func _process(delta):
 	if Evidences.has_evidence("ectoplasm") and \
 	   Evidences.has_evidence("footprint") and \
 	   Evidences.has_evidence("torn_memo"):
-		if not GameMaster.get_flag("all_evidence_collected"):
-			GameMaster.set_flag("all_evidence_collected", true)
+		if not MysteryManager.get_flag("all_evidence_collected"):
+			MysteryManager.set_flag("all_evidence_collected", true)
 			if dialogue_ui:
 				dialogue_ui.show_message("System", tr("investigation_complete"))

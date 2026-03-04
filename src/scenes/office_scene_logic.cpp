@@ -1,6 +1,6 @@
 #include "office_scene_logic.h"
 #include "core/adventure_game_state.h"
-#include "features/mystery/mystery_game_master.h"
+#include "features/mystery/mystery_manager.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
@@ -53,7 +53,7 @@ void OfficeSceneLogic::_ready() {
   }
 
   if (dialogue_ui) {
-    auto *gm = MysteryGameMaster::get_singleton();
+    auto *gm = MysteryManager::get_singleton();
     if (gm) {
       if (!gm->get_flag("intro_done")) {
         dialogue_ui->show_message("Boss", tr_key("office_boss_intro"));
@@ -72,7 +72,7 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
   Rect2 boss_rect(100, 200, 150, 300);
 
   AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
-  auto *gm = MysteryGameMaster::get_singleton();
+  auto *gm = MysteryManager::get_singleton();
   if (!state || !dialogue_ui || !gm)
     return;
 

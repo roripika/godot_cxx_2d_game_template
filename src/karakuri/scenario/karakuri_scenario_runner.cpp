@@ -8,7 +8,7 @@
 #include "../karakuri_save_service.h"
 #include "../yaml/karakuri_yaml_lite.h"
 #include "features/mystery/evidence_manager.h"
-#include "features/mystery/mystery_game_master.h"
+#include "features/mystery/mystery_manager.h"
 
 #include <godot_cpp/classes/area2d.hpp>
 #include <godot_cpp/classes/circle_shape2d.hpp>
@@ -808,12 +808,12 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (flag.is_empty()) {
       return false;
     }
-    auto *gm = godot::MysteryGameMaster::get_singleton();
+    auto *gm = godot::MysteryManager::get_singleton();
     if (gm) {
       gm->set_flag(flag, value);
     } else {
       UtilityFunctions::printerr(
-          "[KarakuriScenarioRunner] MysteryGameMaster not found.");
+          "[KarakuriScenarioRunner] MysteryManager not found.");
     }
     return false;
   });
@@ -978,7 +978,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     const Array else_actions = as_array(payload.get("else", Array()));
 
     bool actual = false;
-    auto *gm = godot::MysteryGameMaster::get_singleton();
+    auto *gm = godot::MysteryManager::get_singleton();
     if (gm && !key.is_empty()) {
       actual = gm->get_flag(key);
     }
@@ -1343,12 +1343,16 @@ void KarakuriScenarioRunner::on_testimony_next_requested() {
                          tr_key("testimony_incomplete"));
     }
 
+    UtilityFunctions::print("Testimony next requested. Round: ",
+                            testimony_.round, " / ", testimony_.max_rounds);
     if (testimony_.round >= testimony_.max_rounds) {
+      UtilityFunctions::print("Testimony FAILED: max rounds reached");
       complete_testimony(false);
       return;
     }
     testimony_.index = 0;
   }
+  UtilityFunctions::print("Showing testimony line index: ", testimony_.index);
   show_current_testimony_line();
 }
 
@@ -1439,8 +1443,11 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
       dialogue_ui_->call("show_message", "System", tr_key("correct_evidence"));
     }
     testimony_.index++;
+    UtilityFunctions::print("Correct evidence! Next index: ", testimony_.index);
     if (testimony_.index >= testimony_.lines.size()) {
       bool all_solved = are_all_testimony_contradictions_solved();
+      UtilityFunctions::print("End of testimonies reached. All solved: ",
+                              all_solved);
       if (all_solved) {
         complete_testimony(true);
         return;
@@ -1450,6 +1457,8 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
     show_current_testimony_line();
     return;
   }
+  UtilityFunctions::print("Wrong evidence: ", evidence_id,
+                          " (Expected: ", expected, ")");
 
   Node *gs = get_adventure_state();
   if (gs && gs->has_method("take_damage")) {

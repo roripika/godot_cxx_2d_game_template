@@ -33,8 +33,8 @@ public:
   Array get_all_evidence() const;
   void clear_all_evidence();
 
-  Array serialize() const;
-  void deserialize(const Array &p_data);
+  Array serialize_evidence() const;
+  void deserialize_evidence(const Array &p_data);
 };
 
 } // namespace godot

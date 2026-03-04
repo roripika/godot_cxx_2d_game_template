@@ -1,7 +1,7 @@
 #include "haunted_spot_scene_logic.h"
 #include "core/adventure_game_state.h"
 #include "features/mystery/evidence_manager.h"
-#include "features/mystery/mystery_game_master.h"
+#include "features/mystery/mystery_manager.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
@@ -88,7 +88,7 @@ void HauntedSpotSceneLogic::_on_clicked_at(Vector2 pos) {
   // Exit Area
   Rect2 exit_rect(0, 0, 100, 648);
 
-  auto *gm = MysteryGameMaster::get_singleton();
+  auto *gm = MysteryManager::get_singleton();
   auto *em = EvidenceManager::get_singleton();
   if (!dialogue_ui || !gm || !em)
     return;

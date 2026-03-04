@@ -8,7 +8,7 @@ class_name OfficeDeductionScene
 
 func _ready():
 	# チェックポイントを保存
-	GameMaster.save_checkpoint("res://samples/mystery/office_deduction.tscn")
+	MysteryManager.save_checkpoint("res://samples/mystery/office_deduction.tscn")
 	
 	# 所長に報告
 	if dialogue_ui:
@@ -47,7 +47,7 @@ func _on_choice_made(choice_index: int):
 	var is_correct = (choice_index == 0)  # index 0 が正解（証拠）
 	
 	if is_correct:
-		GameMaster.set_flag("deduction_complete", true)
+		MysteryManager.set_flag("deduction_complete", true)
 		if dialogue_ui:
 			dialogue_ui.show_message("Boss", tr("deduction_correct"))
 	else:
@@ -55,7 +55,7 @@ func _on_choice_made(choice_index: int):
 		if dialogue_ui:
 			dialogue_ui.show_message("Boss", tr("deduction_wrong"))
 		if AdventureGameState.get_health() <= 0:
-			GameMaster.set_flag("game_over", true)
+			MysteryManager.set_flag("game_over", true)
 			await get_tree().create_timer(1.0).timeout
 			get_tree().change_scene_to_file("res://samples/mystery/ending.tscn")
 			return

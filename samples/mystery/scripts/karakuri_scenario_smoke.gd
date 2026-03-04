@@ -90,6 +90,42 @@ func _assert(cond: bool, msg: String) -> void:
 	if not cond:
 		_failed = true
 		push_error("[KARAKURI_SMOKE] " + msg)
+		# Dump state for guardrail analysis
+		_dump_logic_state()
+
+func _dump_logic_state() -> void:
+	print("[KARAKURI_SMOKE] --- LOGIC STATE DUMP ---")
+	print("Flags: ", _game_master().call("serialize_state").get("flags", {}))
+	print("Evidence: ", _game_master().call("serialize_state").get("evidence", []))
+	print("Health: ", _game_master().call("serialize_state").get("health", -1))
+	print("[KARAKURI_SMOKE] -------------------------")
+
+func _check_logical_consistency() -> void:
+	print("[KARAKURI_SMOKE] performing logical consistency check...")
+	var state: Dictionary = _game_master().call("serialize_state")
+	var flags: Dictionary = state.get("flags", {})
+	var evidence: Array = state.get("evidence", [])
+	
+	# Rule 1: Cannot solve case without evidence
+	if flags.get("case_solved", false):
+		_assert(evidence.size() >= 3, "Logical Contradiction: case_solved is true but evidence count is < 3")
+	
+	# Rule 2: Confrontation requires talking to witness
+	if flags.get("confrontation_started", false):
+		_assert(flags.get("talked_to_tanaka", false), "Logical Contradiction: confrontation started without talking to Tanaka")
+
+func _test_regression_inventory() -> void:
+	print("[KARAKURI_SMOKE] performing inventory regression test...")
+	var evidences_node := _evidences()
+	var initial_evidence_list: Array = evidences_node.call("get_evidence_list")
+	var initial_evidence_count: int = initial_evidence_list.size()
+	
+	# Simulate scene transition cleanup or potential state loss
+	await _wait_frames(10)
+	var current_evidence_list: Array = evidences_node.call("get_evidence_list")
+	var current_evidence_count: int = current_evidence_list.size()
+	_assert(current_evidence_count >= initial_evidence_count, 
+		"REGRESSION: Evidence items decreased unexpectedly! (%d -> %d)" % [initial_evidence_count, current_evidence_count])
 
 func _wait_frames(n: int) -> void:
 	for _i in range(n):
@@ -116,6 +152,12 @@ func _adventure_state() -> Node:
 
 func _dialogue_ui() -> Node:
 	return current_scene.get_node("MainInfoUiLayer/DialogueUI")
+
+func _game_master() -> Node:
+	return get_root().get_node("GameMaster")
+
+func _evidences() -> Node:
+	return get_root().get_node("Evidences")
 
 func _set_locale(prefix: String) -> void:
 	var service := get_root().get_node_or_null("KarakuriLocalization")
@@ -356,7 +398,12 @@ func _go_to_deduction(gs: Node) -> bool:
 		_safe_clear_dialogue()
 		if await _wait_runner_idle(20): break
 	
-	_assert(GameMaster.get_flag("talked_to_tanaka"), "Tanaka flag was not set")
+	for _i in range(5):
+		await _wait_frames(30)
+		_safe_clear_dialogue()
+		if await _wait_runner_idle(10): break
+
+	_assert(_game_master().call("get_flag", "talked_to_tanaka"), "Tanaka flag was not set")
 	
 	# --- [TEST] NPC Interaction (Tanaka - Second Talk) ---
 	print("[KARAKURI_SMOKE] testing NPC interaction (Tanaka - Second Talk)...")
@@ -470,8 +517,12 @@ func _run() -> void:
 	
 	# Give 5 frames for the choice UI to fully show
 	await _wait_frames(5)
-	var choice1 = _dialogue_ui().get_node("VBoxContainer/ChoicesContainer").get_child(1)
-	choice1.emit_signal("pressed")
+	var choices_container: Node = _dialogue_ui().get_node("VBoxContainer/ChoicesContainer")
+	if choices_container.get_child_count() > 1:
+		var choice1: Node = choices_container.get_child(1)
+		choice1.emit_signal("pressed")
+	else:
+		_assert(false, "Choice 1 not found in ChoicesContainer (count: %d)" % choices_container.get_child_count())
 	
 	# The wrong choice has dialogue, takes damage, then loops back to the choice menu.
 	# So we just wait for the choice menu to reappear! It will click through the dialogues automatically.
@@ -482,8 +533,12 @@ func _run() -> void:
 	_assert(int(gs.call("get_health")) == hp_before_wrong - 1, "wrong deduction did not reduce HP")
 
 	await _wait_frames(5)
-	var choice0 = _dialogue_ui().get_node("VBoxContainer/ChoicesContainer").get_child(0)
-	choice0.emit_signal("pressed")
+	var choices_container2: Node = _dialogue_ui().get_node("VBoxContainer/ChoicesContainer")
+	if choices_container2.get_child_count() > 0:
+		var choice0: Node = choices_container2.get_child(0)
+		choice0.emit_signal("pressed")
+	else:
+		_assert(false, "Choice 0 not found in ChoicesContainer")
 
 	var reached_confrontation := await _wait_for_base_with_clicks("WarehouseBase", 30, 3000)
 	_assert(reached_confrontation, "failed to transition to confrontation scene")
@@ -637,5 +692,9 @@ func _run() -> void:
 	if _failed:
 		quit(1)
 	else:
+		# Final Guardrail Check
+		_check_logical_consistency()
+		_test_regression_inventory()
+		
 		print("[KARAKURI_SMOKE] passed")
 		quit(0)

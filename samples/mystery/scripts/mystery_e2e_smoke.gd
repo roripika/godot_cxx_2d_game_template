@@ -28,7 +28,7 @@ func _run() -> void:
 	var em_node = load("res://samples/mystery/evidence_manager.gd").new()
 	em_node.name = "Evidences"
 	var gm_node = load("res://samples/mystery/mystery_game_master.gd").new()
-	gm_node.name = "GameMaster"
+	gm_node.name = "MysteryManager"
 	root.add_child(em_node)
 	root.add_child(gm_node)
 
@@ -73,7 +73,7 @@ func _run() -> void:
 	# Evidences.add_evidence() は内部で動作する
 	# Check if flags are updated
 	print("Checking if all_evidence_collected flag was set...")
-	_assert(bool(root.get_node("GameMaster").get_flag("all_evidence_collected")), "all_evidence_collected was not set after collecting evidence")
+	_assert(bool(root.get_node("MysteryManager").get_flag("all_evidence_collected")), "all_evidence_collected was not set after collecting evidence")
 
 	# Exit back to office.
 	if current_scene.has_method("_exit_warehouse"):
@@ -108,16 +108,16 @@ func _run() -> void:
 	# --- Checkpoint System Verification ---
 	print("Verifying Checkpoint System...")
 	var test_flag = "checkpoint_test_flag"
-	root.get_node("GameMaster").set_flag(test_flag, true)
-	_assert(root.get_node("GameMaster").get_flag(test_flag), "Failed to set test flag before checkpoint load")
+	root.get_node("MysteryManager").set_flag(test_flag, true)
+	_assert(root.get_node("MysteryManager").get_flag(test_flag), "Failed to set test flag before checkpoint load")
 	
 	# Try loading the checkpoint saved in deduction scene
-	var restored_scene = root.get_node("GameMaster").load_checkpoint()
+	var restored_scene = root.get_node("MysteryManager").load_checkpoint()
 	_assert(restored_scene == OFFICE_DEDUCTION_SCENE, "Restored scene path mismatch: " + str(restored_scene))
 	
 	# Verify that flags were restored (test_flag should be gone because it wasn't in the checkpoint)
-	_assert(not root.get_node("GameMaster").get_flag(test_flag), "Flags were not restored correctly (test_flag still exists)")
-	_assert(root.get_node("GameMaster").get_flag("all_evidence_collected"), "Important flags lost after checkpoint load")
+	_assert(not root.get_node("MysteryManager").get_flag(test_flag), "Flags were not restored correctly (test_flag still exists)")
+	_assert(root.get_node("MysteryManager").get_flag("all_evidence_collected"), "Important flags lost after checkpoint load")
 	_assert(root.get_node("Evidences").has_evidence("ectoplasm"), "Evidence lost after checkpoint load")
 	print("Checkpoint System Verification Passed.")
 
