@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://demo123"]
+
+[ext_resource type="Script" path="res://scenes/demo/InvestigationStage.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(80, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2"]
+size = Vector2(40, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3"]
+size = Vector2(40, 40)
+
+[node name="InvestigationStage" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="ScenarioRunner" type="ScenarioRunner" parent="."]
+scenario_path = "res://scenarios/demo_investigation.json"
+dialogue_ui_path = NodePath("../CanvasLayer/DialogueUI")
+
+[node name="InputService" type="InputService" parent="."]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0784314, 0.0784314, 0.0980392, 1)
+
+[node name="Bookshelf" type="MysteryObject" parent="."]
+position = Vector2(300, 200)
+scenario_id = "bookshelf_scene"
+interaction_label = "本棚を調べる"
+
+[node name="ColorRect" type="ColorRect" parent="Bookshelf"]
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = 60.0
+color = Color(0.407843, 0.203922, 0.101961, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bookshelf"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Knife" type="MysteryObject" parent="."]
+position = Vector2(800, 400)
+scenario_id = "knife_scene"
+interaction_label = "ナイフを調べる"
+
+[node name="ColorRect" type="ColorRect" parent="Knife"]
+offset_left = -20.0
+offset_top = -5.0
+offset_right = 20.0
+offset_bottom = 5.0
+color = Color(0.811765, 0.811765, 0.811765, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Knife"]
+shape = SubResource("RectangleShape2D_2")
+
+[node name="MysteryPlayer" type="MysteryPlayer" parent="."]
+position = Vector2(576, 324)
+
+[node name="Sprite2D" type="ColorRect" parent="MysteryPlayer"]
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = 0.0
+color = Color(0.2, 0.611765, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MysteryPlayer"]
+position = Vector2(0, -20)
+shape = SubResource("RectangleShape2D_3")
+
+[node name="Camera2D" type="Camera2D" parent="MysteryPlayer"]
+
+[node name="InteractionComponent" type="InteractionComponent" parent="MysteryPlayer"]
+detection_radius = 100.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" type="DialogueUI" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InteractIcon" type="Label" parent="CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "！"
+horizontal_alignment = 1

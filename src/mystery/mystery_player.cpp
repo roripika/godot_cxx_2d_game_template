@@ -36,16 +36,23 @@ void MysteryPlayer::_notification(int p_what) {
 
   if (p_what == NOTIFICATION_PHYSICS_PROCESS) {
     // InputService から移動方向を取得して BaseEntity に渡す
-    karakuri::InputService *input_svc =
-        karakuri::InputService::get_singleton();
+    karakuri::InputService *input_svc = karakuri::InputService::get_singleton();
 
     if (input_svc) {
       set_movement_input(input_svc->get_move_direction());
+    } else {
+      static bool warned = false;
+      if (!warned) {
+        godot::UtilityFunctions::print(
+            "[MysteryPlayer] Warning: InputService singleton not found!");
+        warned = true;
+      }
     }
 
     // インタラクトクールダウンを減らす
     if (interact_cooldown_ > 0.0f) {
-      interact_cooldown_ -= static_cast<float>(get_physics_process_delta_time());
+      interact_cooldown_ -=
+          static_cast<float>(get_physics_process_delta_time());
     }
   }
 }

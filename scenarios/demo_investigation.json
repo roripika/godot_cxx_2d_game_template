@@ -1,0 +1,69 @@
+{
+    "start_scene": "room_investigation",
+    "scenes": {
+        "room_investigation": {
+            "mode": "investigation",
+            "on_enter": [
+                {
+                    "dialogue": {
+                        "speaker": "System",
+                        "text": "部屋の調査を開始します。気になる場所を調べてください。"
+                    }
+                }
+            ]
+        },
+        "bookshelf_scene": {
+            "mode": "investigation",
+            "on_enter": [
+                {
+                    "dialogue": {
+                        "speaker": "Ren",
+                        "text": "古い本棚だ。ミステリー小説が びっしりと並んでいる。"
+                    }
+                },
+                {
+                    "dialogue": {
+                        "speaker": "Ren",
+                        "text": "特に 怪しいものは なさそうだ。"
+                    }
+                },
+                {
+                    "goto": {
+                        "scene_id": "room_investigation"
+                    }
+                }
+            ]
+        },
+        "knife_scene": {
+            "mode": "investigation",
+            "on_enter": [
+                {
+                    "dialogue": {
+                        "speaker": "Ren",
+                        "text": "これは... 血痕のついたナイフ！？"
+                    }
+                },
+                {
+                    "dialogue": {
+                        "speaker": "System",
+                        "text": "【証拠品：血痕のついたナイフ】を手に入れた！"
+                    }
+                },
+                {
+                    "give_evidence": "bloody_knife"
+                },
+                {
+                    "set_flag": {
+                        "key": "found_knife",
+                        "value": true
+                    }
+                },
+                {
+                    "goto": {
+                        "scene_id": "room_investigation"
+                    }
+                }
+            ]
+        }
+    }
+}
