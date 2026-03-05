@@ -3,7 +3,7 @@ var searchData=
   ['damage_0',['damage',['../classkarakuri_1_1HitboxComponent.html#a81ff450b4954f3ed10518a2a5e9ecced',1,'karakuri::HitboxComponent']]],
   ['data_1',['data',['../classkarakuri_1_1UniversalWorldData.html#ab0949287f4a7fd56b42a72af4dd0dc15',1,'karakuri::UniversalWorldData']]],
   ['debug_2',['debug',['../classkarakuri_1_1Logger.html#accd40ea30d6907fa5b43fe1427b0fbbb',1,'karakuri::Logger']]],
-  ['delete_5fsave_3',['delete_save',['../classkarakuri_1_1SaveService.html#adfd8de774ba5600c25d702eb91fb6dd2',1,'karakuri::SaveService']]],
+  ['delete_5fsave_3',['delete_save',['../classkarakuri_1_1SaveService.html#aa7b79f2e120a962f370e50f531e3afc8',1,'karakuri::SaveService']]],
   ['depth_5flayer_4',['depth_layer',['../classkarakuri_1_1SideScrollingView.html#abca8f4c94227f5ca74d2b01af2e2f6a2',1,'karakuri::SideScrollingView']]],
   ['description_5',['description',['../classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7',1,'karakuri::GameItem']]],
   ['dialogue_5fui_2ecpp_6',['dialogue_ui.cpp',['../dialogue__ui_8cpp.html',1,'']]],

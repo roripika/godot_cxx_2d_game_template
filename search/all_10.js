@@ -1,7 +1,7 @@
 var searchData=
 [
   ['save_5fcurrent_5flocale_5fprefix_0',['save_current_locale_prefix',['../classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235',1,'karakuri::LocalizationService']]],
-  ['save_5fgame_1',['save_game',['../classkarakuri_1_1SaveService.html#a6a577ea37e4cc27752a2885f206da369',1,'karakuri::SaveService']]],
+  ['save_5fgame_1',['save_game',['../classkarakuri_1_1SaveService.html#a16b89e0069c28a87fa73b9c28344e463',1,'karakuri::SaveService']]],
   ['save_5fservice_2ecpp_2',['save_service.cpp',['../save__service_8cpp.html',1,'']]],
   ['save_5fservice_2eh_3',['save_service.h',['../save__service_8h.html',1,'']]],
   ['saveservice_4',['saveservice',['../classkarakuri_1_1SaveService.html',1,'karakuri::SaveService'],['../classkarakuri_1_1SaveService.html#a021bf424e24a2635d15924179736a01e',1,'karakuri::SaveService::SaveService()']]],

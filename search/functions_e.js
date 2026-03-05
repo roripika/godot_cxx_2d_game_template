@@ -1,7 +1,7 @@
 var searchData=
 [
   ['save_5fcurrent_5flocale_5fprefix_0',['save_current_locale_prefix',['../classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235',1,'karakuri::LocalizationService']]],
-  ['save_5fgame_1',['save_game',['../classkarakuri_1_1SaveService.html#a6a577ea37e4cc27752a2885f206da369',1,'karakuri::SaveService']]],
+  ['save_5fgame_1',['save_game',['../classkarakuri_1_1SaveService.html#a16b89e0069c28a87fa73b9c28344e463',1,'karakuri::SaveService']]],
   ['saveservice_2',['SaveService',['../classkarakuri_1_1SaveService.html#a021bf424e24a2635d15924179736a01e',1,'karakuri::SaveService']]],
   ['scenariorunner_3',['ScenarioRunner',['../classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68',1,'karakuri::ScenarioRunner']]],
   ['set_5factive_4',['set_active',['../classkarakuri_1_1InteractionManager.html#aa3bdca1656c9b4a170db8c58846aadb1',1,'karakuri::InteractionManager']]],

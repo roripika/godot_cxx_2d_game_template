@@ -4,7 +4,7 @@
 <area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="89,71,154,40,191,28,193,33,156,44,91,75"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1RoguelikeManager.html" title=" " alt="" coords="157,55,360,80"/>
 <area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="120,82,157,77,158,83,121,87"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1SaveService.html" title="ゲームステート永続化サービス。" alt="" coords="177,104,340,129"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1SaveService.html" title="汎用 JSON セーブサービス。" alt="" coords="177,104,340,129"/>
 <area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="120,98,177,104,177,110,120,103"/>
 <area shape="rect" id="Node000004" href="$classkarakuri_1_1ScenarioRunner.html" title="汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。" alt="" coords="167,153,351,179"/>
 <area shape="poly" id="edge10_Node000000_Node000004" title=" " alt="" coords="92,109,156,138,197,151,196,156,154,143,90,114"/>

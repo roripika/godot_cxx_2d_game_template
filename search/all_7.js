@@ -1,7 +1,7 @@
 var searchData=
 [
   ['has_5fitem_0',['has_item',['../classkarakuri_1_1Inventory.html#a38666833f61573462f88b7d025d6fc9f',1,'karakuri::Inventory']]],
-  ['has_5fsave_1',['has_save',['../classkarakuri_1_1SaveService.html#a18824e3aa2a301e067082611edfb9ee1',1,'karakuri::SaveService']]],
+  ['has_5fsave_1',['has_save',['../classkarakuri_1_1SaveService.html#aad64928edb3af5df1defbaee63b4c167',1,'karakuri::SaveService']]],
   ['heal_2',['heal',['../classkarakuri_1_1AdventureGameStateBase.html#a2a96bba1c842b586f7499a9d2cb13a9b',1,'karakuri::AdventureGameStateBase::heal()'],['../classkarakuri_1_1BaseEntity.html#af8c2ce6b392a20aa49ee4515bcc26ea2',1,'karakuri::BaseEntity::heal()']]],
   ['health_3',['health',['../classkarakuri_1_1AdventureGameStateBase.html#a120835687e0b5e3e8edd30c9db067cd7',1,'karakuri::AdventureGameStateBase']]],
   ['hide_5fdialogue_4',['hide_dialogue',['../classkarakuri_1_1DialogueUI.html#acf78914cfa7988f7bace15568eb91823',1,'karakuri::DialogueUI']]],

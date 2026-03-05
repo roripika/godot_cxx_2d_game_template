@@ -1,9 +1,5 @@
 <map id="karakuri::AdventureGameStateBase::set_health" name="karakuri::AdventureGameStateBase::set_health">
-<area shape="rect" id="Node000001" title=" " alt="" coords="487,37,709,77"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1AdventureGameStateBase.html#a30b54f36aaaa720e161e61e375fdd2c6" title=" " alt="" coords="216,5,439,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="473,45,439,41,439,36,473,40"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1SaveService.html#a351f36d3d2c333428dc66169469e7fa3" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="246,69,409,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="473,75,409,82,409,77,473,69"/>
-<area shape="rect" id="Node000004" href="$classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,69,168,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="232,92,168,92,168,87,232,87"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="276,5,499,45"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1AdventureGameStateBase.html#a30b54f36aaaa720e161e61e375fdd2c6" title=" " alt="" coords="5,5,228,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="262,28,228,28,228,23,262,23"/>
 </map>

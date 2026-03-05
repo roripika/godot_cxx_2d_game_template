@@ -1,5 +1,5 @@
 <map id="karakuri::SaveService::load_game" name="karakuri::SaveService::load_game">
-<area shape="rect" id="Node000001" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="216,5,379,45"/>
+<area shape="rect" id="Node000001" title="JSON ファイルを読み込み Dictionary を返す。" alt="" coords="216,5,379,45"/>
 <area shape="rect" id="Node000002" href="$classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,5,168,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,28,168,28,168,23,202,23"/>
 </map>

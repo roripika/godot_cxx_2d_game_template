@@ -1,5 +1,5 @@
 <map id="karakuri::SaveService::has_save" name="karakuri::SaveService::has_save">
 <area shape="rect" id="Node000001" title="セーブファイルが存在するか確認する。" alt="" coords="5,5,168,45"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="216,5,379,45"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1SaveService.html#ae817b92f40ad2e164edb23e0497ba8c9" title="セーブファイルの絶対パスを返す。" alt="" coords="216,5,379,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,23,202,23,202,28,168,28"/>
 </map>

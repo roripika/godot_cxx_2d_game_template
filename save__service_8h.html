@@ -81,20 +81,23 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Basic Game Karakuri: AdventureGameStateBase の永続化サービス。  
+<p>Basic Game Karakuri: JSON ファイル I/O の汎用セーブサービス。  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;godot_cpp/classes/node.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 save_service.h の依存先関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="save__service_8h__incl.png" border="0" usemap="#asrc_2core_2services_2save__service_8h" alt=""/></div>
 <map name="asrc_2core_2services_2save__service_8h" id="asrc_2core_2services_2save__service_8h">
-<area shape="rect" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="139,5,306,45"/>
+<area shape="rect" title="Basic Game Karakuri: JSON ファイル I/O の汎用セーブサービス。" alt="" coords="269,5,435,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,211,119"/>
-<area shape="poly" title=" " alt="" coords="196,48,138,88,135,83,193,43"/>
-<area shape="rect" title=" " alt="" coords="235,93,443,119"/>
-<area shape="poly" title=" " alt="" coords="252,43,312,83,309,88,249,48"/>
+<area shape="poly" title=" " alt="" coords="294,48,158,92,156,86,293,43"/>
+<area shape="rect" title=" " alt="" coords="235,93,469,119"/>
+<area shape="poly" title=" " alt="" coords="355,46,355,79,349,79,349,46"/>
+<area shape="rect" title=" " alt="" coords="493,93,701,119"/>
+<area shape="poly" title=" " alt="" coords="412,43,550,87,548,92,410,48"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -102,7 +105,7 @@ save_service.h の依存先関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="save__service_8h__dep__incl.png" border="0" usemap="#asrc_2core_2services_2save__service_8hdep" alt=""/></div>
 <map name="asrc_2core_2services_2save__service_8hdep" id="asrc_2core_2services_2save__service_8hdep">
-<area shape="rect" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="119,5,285,45"/>
+<area shape="rect" title="Basic Game Karakuri: JSON ファイル I/O の汎用セーブサービス。" alt="" coords="119,5,285,45"/>
 <area shape="rect" href="scenario__runner_8cpp.html" title=" " alt="" coords="5,93,196,133"/>
 <area shape="poly" title=" " alt="" coords="171,56,125,95,121,91,167,52"/>
 <area shape="rect" href="save__service_8cpp.html" title=" " alt="" coords="220,93,387,133"/>
@@ -115,7 +118,7 @@ save_service.h の依存先関係図:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html">karakuri::SaveService</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ゲームステート永続化サービス。  <a href="classkarakuri_1_1SaveService.html#details">[詳解]</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">汎用 JSON セーブサービス。  <a href="classkarakuri_1_1SaveService.html#details">[詳解]</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -124,10 +127,11 @@ save_service.h の依存先関係図:</div>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: AdventureGameStateBase の永続化サービス。 </p>
-<p>保存パス規約: user://karakuri/&lt;demo_id&gt;/save.json (demo_id が空の場合は user://karakuri/save.json)</p>
-<p>保存フォーマット (JSON): { "flags": { "flag_name": true, ... }, "inventory": ["item1", "item2", ...], "health": 3 }</p>
-<p>ScenarioRunner との連携: ScenarioRunner::init_builtin_actions() が "save" / "load" アクションをこのサービス経由で登録する。 </p>
+<div class="textblock"><p>Basic Game Karakuri: JSON ファイル I/O の汎用セーブサービス。 </p>
+<p>このクラス自身は「何を保存するか」を知りません。 呼び出し元（mystery 層等）が Dictionary を組み立てて渡します。</p>
+<p>保存パス規約: user://karakuri/&lt;filename&gt;.json</p>
+<p>使い方: // 保存 Dictionary data = ...; // 呼び出し元が組み立てる <a class="el" href="classkarakuri_1_1SaveService.html#a16b89e0069c28a87fa73b9c28344e463" title="Dictionary を JSON ファイルに保存する。">karakuri::SaveService::save_game</a>("mystery", data);</p>
+<p>// 読み込み Dictionary data = <a class="el" href="classkarakuri_1_1SaveService.html#a0fc5bd8bc7d996e6595b09d6ba65eff6" title="JSON ファイルを読み込み Dictionary を返す。">karakuri::SaveService::load_game</a>("mystery"); </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
