@@ -14,6 +14,7 @@
 #include "core/items/inventory.h"
 #include "core/logger/karakuri_logger.h"
 #include "core/scenario/scenario_runner.h"
+#include "core/services/input_service.h"
 #include "core/services/localization_service.h"
 #include "core/services/save_service.h"
 #include "core/ui/inventory_slot_ui.h"
@@ -27,6 +28,7 @@
 // Layer 2: Mystery template
 #include "mystery/evidence_manager.h"
 #include "mystery/mystery_manager.h"
+#include "mystery/mystery_player.h"
 
 // Plugins (genre-specific, isolated)
 #include "plugins/features/sandbox/building_component.h"
@@ -70,12 +72,14 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::InventorySlotUI>();
   ClassDB::register_class<karakuri::LocalizationService>();
   ClassDB::register_class<karakuri::Logger>();
+  ClassDB::register_class<karakuri::InputService>();
   ClassDB::register_class<karakuri::SaveService>();
   ClassDB::register_class<karakuri::ScenarioRunner>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::MysteryManager>();
   ClassDB::register_class<mystery::EvidenceManager>();
+  ClassDB::register_class<mystery::MysteryPlayer>();
 
   // Plugins / Features
   ClassDB::register_class<FightingGameManager>();
