@@ -5,10 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'src/karakuri/**'
-      - 'src/entities/**'
-      - 'src/features/**'
       - 'src/core/**'
+      - 'src/plugins/**'
       - 'docs/karakuri_sdk/Doxyfile'
   workflow_dispatch: # Allow manual trigger
 
@@ -24,8 +22,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         
-      - name: Install Doxygen and Graphviz
-        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
 
       - name: Run Doxygen
         run: doxygen docs/karakuri_sdk/Doxyfile
