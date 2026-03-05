@@ -1,6 +1,6 @@
 # WarehouseConfrontationScene.gd
 # 対決パート（倉庫 - 尋問）
-# ※ロジックは C++ (KarakuriScenarioRunner) が YAML ベースで管理します。
+# ※ロジックは C++ (ScenarioRunner) が YAML ベースで管理します。
 extends Node2D
 
 @onready var testimony_system = $CanvasLayer/TestimonySystem

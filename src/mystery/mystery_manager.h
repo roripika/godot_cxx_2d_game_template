@@ -53,6 +53,10 @@ public:
   void save_checkpoint(const String &p_scene_path);
   String load_checkpoint();
 
+  // Bridge to ScenarioRunner
+  void _ready() override;
+  void register_scenario_actions();
+
   // Logging Helper
   void log_change(const String &p_type, const String &p_name,
                   const Variant &p_old, const Variant &p_new,

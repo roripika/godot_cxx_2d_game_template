@@ -1,6 +1,10 @@
 #include "mystery_manager.h"
 #include "../core/adventure_game_state.h"
+#include "../core/scenario/scenario_runner.h"
 #include "evidence_manager.h"
+#include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/classes/scene_tree.hpp>
+#include <godot_cpp/classes/window.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
@@ -39,7 +43,8 @@ MysteryManager::~MysteryManager() {
 
 MysteryManager *MysteryManager::get_singleton() { return singleton; }
 
-void MysteryManager::set_mystery_flag(mystery::MysteryFlag p_flag, bool p_value) {
+void MysteryManager::set_mystery_flag(mystery::MysteryFlag p_flag,
+                                      bool p_value) {
   set_flag(MysteryEnumValueConverter::get_flag_key(p_flag), p_value);
 }
 
@@ -177,6 +182,82 @@ void MysteryManager::validate_state() {
     UtilityFunctions::print(
         "[GUARDRAIL] CRITICAL: Health is 0 but game_over flag is not set!");
   }
+}
+
+void MysteryManager::_ready() {
+  if (Engine::get_singleton()->is_editor_hint())
+    return;
+  register_scenario_actions();
+}
+
+void MysteryManager::register_scenario_actions() {
+  Node *root = get_tree()->get_root();
+  // Search for ScenarioRunner in the tree
+  // In our template it might be named "ScenarioRunner" or "DetectiveRunner"
+  karakuri::ScenarioRunner *runner = nullptr;
+
+  // Try to find it by class first (Duck typing or search)
+  // Since we have the header, we can use find_child
+  Node *n = root->find_child("ScenarioRunner", true, false);
+  if (!n)
+    n = root->find_child("DetectiveRunner", true, false);
+
+  runner = Object::cast_to<karakuri::ScenarioRunner>(n);
+
+  if (!runner) {
+    UtilityFunctions::print(
+        "[MysteryManager] ScenarioRunner NOT found. Skipping registration.");
+    return;
+  }
+
+  UtilityFunctions::print(
+      "[MysteryManager] Registering mystery actions to ScenarioRunner.");
+
+  // 1. testimony
+  runner->register_action("testimony", [this, runner](const Variant &p) {
+    Dictionary d = p;
+    Array testimonies = d.get("testimonies", Array());
+    if (testimonies.is_empty())
+      return false;
+
+    UtilityFunctions::print("[Mystery] Starting testimony flow.");
+
+    // We'll use a simple state to track current line of testimony
+    // Since this is a lambda, we need to capture or use MysteryManager state.
+    // For the demo, let's just show the first line and then wait for evidence
+    // or press.
+
+    Dictionary line = testimonies[0];
+    Node *dialogue_ui =
+        runner->get_node_or_null(runner->get_dialogue_ui_path());
+    if (dialogue_ui && dialogue_ui->has_method("show_message")) {
+      dialogue_ui->call("show_message", line.get("speaker", "Witness"),
+                        line.get("text_key", "..."));
+      // In a real implementation, we would store 'testimonies' in
+      // MysteryManager and handle 'press' or 'present' signals. For now, we'll
+      // just allow it to "block" indefinitely or until a signal.
+    }
+
+    return true; // Blocking
+  });
+
+  // 2. give_evidence (scenario uses 'give_evidence', not 'add_evidence')
+  runner->register_action("give_evidence", [this](const Variant &p) {
+    String id = p;
+    EvidenceManager *em = EvidenceManager::get_singleton();
+    if (em)
+      em->add_evidence(id);
+    return false;
+  });
+
+  // 3. take_damage
+  runner->register_action("take_damage", [this](const Variant &p) {
+    int amount = (int)p;
+    auto *ags = karakuri::AdventureGameStateBase::get_singleton();
+    if (ags)
+      ags->set_health(ags->get_health() - amount);
+    return false; // Non-blocking
+  });
 }
 
 } // namespace mystery

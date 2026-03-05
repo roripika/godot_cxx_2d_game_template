@@ -1,22 +1,15 @@
 #ifndef SIDE_SCROLLING_VIEW_H
 #define SIDE_SCROLLING_VIEW_H
 
-#include "universal_world_data.h"
+#include "../universal_world_data.h"
 #include <godot_cpp/classes/tile_map_layer.hpp>
 #include <godot_cpp/classes/tile_set.hpp>
 
 namespace karakuri {
 
-
 using namespace godot;
 
 // Renders the world data as a side-scrolling platformer view.
-// - World X -> View X
-// - World Z (Height) -> View -Y (Up is negative Y in Godot 2D)
-// - World Y (Depth) -> Layer index (default 0)
-//
-// This allows generating a "mountain" in world data (high Z) to be rendered as
-// a high platform in Side View.
 class SideScrollingView : public TileMapLayer {
   GDCLASS(SideScrollingView, TileMapLayer)
 
@@ -36,11 +29,14 @@ public:
   Ref<karakuri::UniversalWorldData> get_world_data() const;
 
   void set_depth_layer(int p_depth);
+  int p_depth_layer() const; // Renamed to avoid getter conflict if necessary,
+                             // but keep set/get naming
+
   int get_depth_layer() const;
 
   void update_visuals();
 };
 
-#endif
-
 } // namespace karakuri
+
+#endif

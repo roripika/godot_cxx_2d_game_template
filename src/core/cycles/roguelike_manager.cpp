@@ -1,14 +1,13 @@
 #include "roguelike_manager.h"
-#include "../../views/isometric_view.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/node2d.hpp>
+#include <godot_cpp/classes/tile_map_layer.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
 
 namespace karakuri {
-
 
 void RoguelikeManager::_bind_methods() {
   ClassDB::bind_method(D_METHOD("start_level"), &RoguelikeManager::start_level);
@@ -78,19 +77,8 @@ void RoguelikeManager::start_level() {
   // Assign to View
   if (!view_path.is_empty()) {
     Node *node = get_node_or_null(view_path);
-    // Try casting to known views, or just set property if we want generic
-    // For now, let's assume specific or usage of 'call'
-    // But we have headers, so let's try cast
-    IsometricView *iso_view = Object::cast_to<IsometricView>(node);
-    if (iso_view) {
-      iso_view->set_world_data(world_data);
-    } else {
-      // Try standard TileMapLayer property if we implemented it generic?
-      // Currently TileMapLayer doesn't have set_world_data.
-      // We can use call.
-      if (node && node->has_method("set_world_data")) {
-        node->call("set_world_data", world_data);
-      }
+    if (node && node->has_method("set_world_data")) {
+      node->call("set_world_data", world_data);
     }
   }
 

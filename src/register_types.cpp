@@ -69,7 +69,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::InventoryUI>();
   ClassDB::register_class<karakuri::InventorySlotUI>();
   ClassDB::register_class<karakuri::LocalizationService>();
-  ClassDB::register_class<karakuri::KarakuriLogger>();
+  ClassDB::register_class<karakuri::Logger>();
   ClassDB::register_class<karakuri::SaveService>();
   ClassDB::register_class<karakuri::ScenarioRunner>();
 
@@ -80,19 +80,19 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   // Plugins / Features
   ClassDB::register_class<FightingGameManager>();
   ClassDB::register_class<HitStopManager>();
-  ClassDB::register_class<karakuri::Conductor>();
-  ClassDB::register_class<karakuri::RhythmGameManager>();
-  ClassDB::register_class<karakuri::MiningComponent>();
-  ClassDB::register_class<karakuri::BuildingComponent>();
-  ClassDB::register_class<karakuri::RhythmNote>();
-  ClassDB::register_class<karakuri::NoteLane>();
+  ClassDB::register_class<Conductor>();
+  ClassDB::register_class<RhythmGameManager>();
+  ClassDB::register_class<MiningComponent>();
+  ClassDB::register_class<BuildingComponent>();
+  ClassDB::register_class<RhythmNote>();
+  ClassDB::register_class<NoteLane>();
 
   // Views & Scenes
-  ClassDB::register_class<karakuri::IsometricView>();
+  ClassDB::register_class<IsometricView>();
   ClassDB::register_class<karakuri::SideScrollingView>();
-  ClassDB::register_class<karakuri::WorldGenerator>();
-  ClassDB::register_class<karakuri::OfficeSceneLogic>();
-  ClassDB::register_class<karakuri::HauntedSpotSceneLogic>();
+  ClassDB::register_class<WorldGenerator>();
+  ClassDB::register_class<mystery::OfficeSceneLogic>();
+  ClassDB::register_class<mystery::HauntedSpotSceneLogic>();
 }
 
 void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {
