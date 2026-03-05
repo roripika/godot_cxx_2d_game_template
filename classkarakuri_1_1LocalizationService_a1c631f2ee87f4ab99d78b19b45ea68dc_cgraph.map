@@ -1,0 +1,9 @@
+<map id="karakuri::LocalizationService::_ready" name="karakuri::LocalizationService::_ready">
+<area shape="rect" id="Node000001" title="Godotのライフサイクルフック。保存されたロケールを復元する。" alt="" coords="5,37,213,77"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="261,37,469,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,55,248,55,248,60,213,60"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e" title=" " alt="" coords="517,5,725,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="469,42,503,37,504,43,470,47"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c" title=" " alt="" coords="517,69,725,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="470,68,504,72,503,77,469,73"/>
+</map>

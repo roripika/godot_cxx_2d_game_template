@@ -1,23 +1,7 @@
 var searchData=
 [
-  ['take_5fdamage_0',['take_damage',['../classkarakuri_1_1AdventureGameStateBase.html#a38dd54021b5cbd058b54e9910b379e42',1,'karakuri::AdventureGameStateBase::take_damage()'],['../classkarakuri_1_1GameEntity.html#a5f6cb602891ad81efb733bfd62790b90',1,'karakuri::GameEntity::take_damage()']]],
-  ['take_5fhit_1',['take_hit',['../classkarakuri_1_1HurtboxComponent.html#aee21150393efd162afb9f29467729f23',1,'karakuri::HurtboxComponent']]],
-  ['testimony_5f_2',['testimony_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a85b9743956bd0fa7c8f469a682c8e51e',1,'karakuri::KarakuriScenarioRunner']]],
-  ['testimony_5fsession_2eh_3',['testimony_session.h',['../testimony__session_8h.html',1,'']]],
-  ['testimony_5fsystem_5f_4',['testimony_system_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a386ef91018ddfe41f3f6d09875f385d7',1,'karakuri::KarakuriScenarioRunner']]],
-  ['testimony_5fsystem_5fpath_5f_5',['testimony_system_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a777558ab528f381cba7efbfbc0035ab8',1,'karakuri::KarakuriScenarioRunner']]],
-  ['text_5fkey_6',['text_key',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#ae84c7785d94f9cd0d88de793ca0faae5',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['text_5flabel_7',['text_label',['../classkarakuri_1_1DialogueUI.html#a41a352dc2ea5f7b36b87d7cd291e01ce',1,'karakuri::DialogueUI']]],
-  ['text_5ftext_8',['text_text',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97eb983a9d538991923e8459bed6323d',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['tr_5fkey_9',['tr_key',['../classkarakuri_1_1KarakuriScenarioRunner.html#a0ff7f67c85e6fd66ba100371ca84c553',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5fmanager_5f_10',['transition_manager_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a749187e47defe8eb682cd598741f9234',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5fmanager_5fpath_5f_11',['transition_manager_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a031f301e76697427090573e2cd62d110',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5frect_5f_12',['transition_rect_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5189a699b66237d65ab6c5b0693903d3',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5frect_5fpath_5f_13',['transition_rect_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a1ce5cd91e25e0bbbf286a69c9d0aca7d',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5ftarget_5fduration_5f_14',['transition_target_duration_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8a3d2f2e5f74134ab399164a0e504e25',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5ftarget_5fid_5f_15',['transition_target_id_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a0bd5a7f4afdcd04c0e113de91cdc3859',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5ftarget_5ftype_5f_16',['transition_target_type_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a4fbf245c5d45603aff656915d265996b',1,'karakuri::KarakuriScenarioRunner']]],
-  ['transition_5ftimeout_5fsec_5f_17',['transition_timeout_sec_',['../classkarakuri_1_1KarakuriScenarioRunner.html#afdc469cf031af3d0c062081f53a1d3ae',1,'karakuri::KarakuriScenarioRunner']]],
-  ['trigger_5fhotspot_18',['trigger_hotspot',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8b56bf438a9b86cb88cbb6ff628a0b74',1,'karakuri::KarakuriScenarioRunner']]],
-  ['type_5fspeed_19',['type_speed',['../classkarakuri_1_1DialogueUI.html#a033cb1091862580784200f611b0c979c',1,'karakuri::DialogueUI']]]
+  ['universal_5fworld_5fdata_2ecpp_0',['universal_world_data.cpp',['../universal__world__data_8cpp.html',1,'']]],
+  ['universal_5fworld_5fdata_2eh_1',['universal_world_data.h',['../universal__world__data_8h.html',1,'']]],
+  ['universalworlddata_2',['universalworlddata',['../classkarakuri_1_1UniversalWorldData.html',1,'karakuri::UniversalWorldData'],['../classkarakuri_1_1UniversalWorldData.html#a199961a515ff704308fff0da59f4df67',1,'karakuri::UniversalWorldData::UniversalWorldData()']]],
+  ['update_5fvisuals_3',['update_visuals',['../classkarakuri_1_1SideScrollingView.html#a5b57986b0fde06dd9f67ce95e3f45a09',1,'karakuri::SideScrollingView']]]
 ];

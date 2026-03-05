@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['load_5fgame_0',['load_game',['../classkarakuri_1_1KarakuriSaveService.html#a7e7704940789eaecccc18470b6870a75',1,'karakuri::KarakuriSaveService']]],
-  ['load_5fsaved_5flocale_5fprefix_1',['load_saved_locale_prefix',['../classkarakuri_1_1KarakuriLocalizationService.html#ad4a29e14492488cf417ede11b169332b',1,'karakuri::KarakuriLocalizationService']]],
-  ['load_5fscenario_2',['load_scenario',['../classkarakuri_1_1KarakuriScenarioRunner.html#a7d7a2b4b8c0d927ad34e56aac546e505',1,'karakuri::KarakuriScenarioRunner']]],
-  ['load_5fscene_5fby_5fid_3',['load_scene_by_id',['../classkarakuri_1_1KarakuriScenarioRunner.html#a4cd82c0baedca5359142cba8257f81e4',1,'karakuri::KarakuriScenarioRunner']]]
+  ['notify_5fmode_5fenter_0',['notify_mode_enter',['../classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5',1,'karakuri::ScenarioRunner']]],
+  ['notify_5fmode_5fexit_1',['notify_mode_exit',['../classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662',1,'karakuri::ScenarioRunner']]]
 ];

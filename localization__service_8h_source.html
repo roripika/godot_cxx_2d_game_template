@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/services/localization_service.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">localization_service.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="localization__service_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KARAKURI_LOCALIZATION_SERVICE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KARAKURI_LOCALIZATION_SERVICE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;godot_cpp/classes/node.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;godot_cpp/variant/string.hpp&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classkarakuri_1_1LocalizationService.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1LocalizationService.html">LocalizationService</a> : <span class="keyword">public</span> godot::Node {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  GDCLASS(<a class="code hl_class" href="classkarakuri_1_1LocalizationService.html">LocalizationService</a>, godot::Node)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classkarakuri_1_1LocalizationService.html#afb5d3906c76ec556d6156870250e80c1">   27</a></span>  <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#afb5d3906c76ec556d6156870250e80c1">LocalizationService</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classkarakuri_1_1LocalizationService.html#ab419822a9fc3ab5a8e8158beaff65656">   28</a></span>  <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#ab419822a9fc3ab5a8e8158beaff65656">~LocalizationService</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a1c631f2ee87f4ab99d78b19b45ea68dc">_ready</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a2ffaa19640f98321511264edc97559b3">set_locale_store_path</a>(<span class="keyword">const</span> godot::String &amp;path);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a83ee1395bfd0db530478e0290e4117bf">get_locale_store_path</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9">set_locale_prefix</a>(<span class="keyword">const</span> godot::String &amp;prefix);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235">save_current_locale_prefix</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111">load_saved_locale_prefix</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a0552eeb5b2109c6f1d76383ab32a73fd">get_current_locale_prefix</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25">_bind_methods</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c">resolve_loaded_locale</a>(<span class="keyword">const</span> godot::String &amp;prefix) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a">extract_prefix</a>(<span class="keyword">const</span> godot::String &amp;locale) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e">emit_locale_changed</a>();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classkarakuri_1_1LocalizationService.html#ae12491022e4badc45baa6f122d57fc82">   79</a></span>  godot::String <a class="code hl_variable" href="classkarakuri_1_1LocalizationService.html#ae12491022e4badc45baa6f122d57fc82">locale_store_path_</a> = <span class="stringliteral">&quot;user://karakuri/locale.txt&quot;</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>};</div>
+</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif </span><span class="comment">// KARAKURI_LOCALIZATION_SERVICE_H</span></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html">karakuri::LocalizationService</a></div><div class="ttdoc">全デモで共通利用されるロケールサービス。</div><div class="ttdef"><b>Definition</b> localization_service.h:23</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a0552eeb5b2109c6f1d76383ab32a73fd"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a0552eeb5b2109c6f1d76383ab32a73fd">karakuri::LocalizationService::get_current_locale_prefix</a></div><div class="ttdeci">godot::String get_current_locale_prefix() const</div><div class="ttdoc">現在のロケールプレフィックス（en, ja など）を解決する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:152</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a10dd956cecae21dc2fd19b34721fdad9"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9">karakuri::LocalizationService::set_locale_prefix</a></div><div class="ttdeci">godot::String set_locale_prefix(const godot::String &amp;prefix)</div><div class="ttdoc">ロケールプレフィックスからロケールを設定し、保存する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:90</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a1c631f2ee87f4ab99d78b19b45ea68dc"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a1c631f2ee87f4ab99d78b19b45ea68dc">karakuri::LocalizationService::_ready</a></div><div class="ttdeci">void _ready() override</div><div class="ttdoc">Godotのライフサイクルフック。保存されたロケールを復元する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:40</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a22be34f1732574c7cf2f83192db1428e"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e">karakuri::LocalizationService::emit_locale_changed</a></div><div class="ttdeci">void emit_locale_changed()</div><div class="ttdef"><b>Definition</b> localization_service.cpp:82</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a2ffaa19640f98321511264edc97559b3"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a2ffaa19640f98321511264edc97559b3">karakuri::LocalizationService::set_locale_store_path</a></div><div class="ttdeci">void set_locale_store_path(const godot::String &amp;path)</div><div class="ttdoc">永続化するロケールの保存先パスを設定する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:42</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a3ecb4d696a032b36078130d8930a3d25"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25">karakuri::LocalizationService::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> localization_service.cpp:19</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a6885bcc0e74f6ec1ad51127ddccea235"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235">karakuri::LocalizationService::save_current_locale_prefix</a></div><div class="ttdeci">bool save_current_locale_prefix()</div><div class="ttdoc">現在アクティブなロケールプレフィックスを保存する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:106</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a778a478d9007a6960667b73d7ae7d111"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111">karakuri::LocalizationService::load_saved_locale_prefix</a></div><div class="ttdeci">godot::String load_saved_locale_prefix()</div><div class="ttdoc">保存されたロケールプレフィックスを読み込み、適用する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:127</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a83ee1395bfd0db530478e0290e4117bf"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a83ee1395bfd0db530478e0290e4117bf">karakuri::LocalizationService::get_locale_store_path</a></div><div class="ttdeci">godot::String get_locale_store_path() const</div><div class="ttdoc">永続化されたロケールの保存先パスを取得する。</div><div class="ttdef"><b>Definition</b> localization_service.cpp:49</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_a8bbe0996dc5b421e9bf1ecc7c4a29d0a"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a">karakuri::LocalizationService::extract_prefix</a></div><div class="ttdeci">godot::String extract_prefix(const godot::String &amp;locale) const</div><div class="ttdef"><b>Definition</b> localization_service.cpp:71</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_ab419822a9fc3ab5a8e8158beaff65656"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#ab419822a9fc3ab5a8e8158beaff65656">karakuri::LocalizationService::~LocalizationService</a></div><div class="ttdeci">~LocalizationService() override=default</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_ab79a6c2bebaae6eba28b995dce79e66c"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c">karakuri::LocalizationService::resolve_loaded_locale</a></div><div class="ttdeci">godot::String resolve_loaded_locale(const godot::String &amp;prefix) const</div><div class="ttdef"><b>Definition</b> localization_service.cpp:53</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_ae12491022e4badc45baa6f122d57fc82"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#ae12491022e4badc45baa6f122d57fc82">karakuri::LocalizationService::locale_store_path_</a></div><div class="ttdeci">godot::String locale_store_path_</div><div class="ttdef"><b>Definition</b> localization_service.h:79</div></div>
+<div class="ttc" id="aclasskarakuri_1_1LocalizationService_html_afb5d3906c76ec556d6156870250e80c1"><div class="ttname"><a href="classkarakuri_1_1LocalizationService.html#afb5d3906c76ec556d6156870250e80c1">karakuri::LocalizationService::LocalizationService</a></div><div class="ttdeci">LocalizationService()=default</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> adventure_game_state.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

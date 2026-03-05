@@ -1,0 +1,9 @@
+<map id="karakuri::SaveService::load_game" name="karakuri::SaveService::load_game">
+<area shape="rect" id="Node000001" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="5,69,168,109"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="246,5,409,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,67,238,46,239,51,163,72"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1AdventureGameStateBase.html#a9a95da433e66ff1943800b51113c04cb" title=" " alt="" coords="216,69,439,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="169,87,202,87,202,92,169,92"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1AdventureGameStateBase.html#a1242b068c7106ba52747f2f567b6b19f" title=" " alt="" coords="216,133,439,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="163,107,239,127,238,132,162,112"/>
+</map>

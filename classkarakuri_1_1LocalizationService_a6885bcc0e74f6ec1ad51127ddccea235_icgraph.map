@@ -1,0 +1,8 @@
+<map id="karakuri::LocalizationService::save_current_locale_prefix" name="karakuri::LocalizationService::save_current_locale_prefix">
+<area shape="rect" id="Node000001" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="517,5,725,45"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="503,25,469,24,261,24,214,25,214,20,261,19,469,19,504,19"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,33,469,73"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="504,41,470,45,469,39,504,36"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="248,43,213,39,214,34,248,38"/>
+</map>

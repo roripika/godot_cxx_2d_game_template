@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['interactionmanager_0',['InteractionManager',['../classkarakuri_1_1InteractionManager.html',1,'karakuri']]],
-  ['inventory_1',['Inventory',['../classkarakuri_1_1Inventory.html',1,'karakuri']]],
-  ['inventoryslot_2',['InventorySlot',['../structkarakuri_1_1InventorySlot.html',1,'karakuri']]],
-  ['inventoryslotui_3',['InventorySlotUI',['../classkarakuri_1_1InventorySlotUI.html',1,'karakuri']]],
-  ['inventoryui_4',['InventoryUI',['../classkarakuri_1_1InventoryUI.html',1,'karakuri']]]
+  ['hitboxcomponent_0',['HitboxComponent',['../classkarakuri_1_1HitboxComponent.html',1,'karakuri']]],
+  ['hotspotbinding_1',['HotspotBinding',['../structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html',1,'karakuri::ScenarioRunner']]],
+  ['hurtboxcomponent_2',['HurtboxComponent',['../classkarakuri_1_1HurtboxComponent.html',1,'karakuri']]]
 ];

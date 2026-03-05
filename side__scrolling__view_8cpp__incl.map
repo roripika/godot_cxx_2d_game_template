@@ -1,0 +1,20 @@
+<map id="src/core/views/side_scrolling_view.cpp" name="src/core/views/side_scrolling_view.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="629,5,777,45"/>
+<area shape="rect" id="Node000002" href="$side__scrolling__view_8h.html" title=" " alt="" coords="563,93,723,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="690,47,662,84,658,81,686,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="686,255,845,295"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="731,44,787,94,814,128,834,166,840,187,834,208,822,229,805,248,801,244,817,226,830,206,834,187,830,168,810,131,783,97,728,48"/>
+<area shape="rect" id="Node000003" href="$universal__world__data_8h.html" title=" " alt="" coords="302,167,439,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="604,121,450,165,449,160,602,116"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="463,167,630,207"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="630,121,582,160,579,156,627,117"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="654,167,821,207"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="658,117,705,156,702,160,655,121"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,262,235,287"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="317,209,167,260,165,255,315,204"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="440,202,451,204,673,252,672,257,450,209,439,207"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="259,262,483,287"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="373,207,373,248,368,248,368,207"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="506,262,569,287"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="408,204,504,253,502,258,406,209"/>
+</map>

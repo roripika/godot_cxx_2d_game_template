@@ -80,9 +80,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="roguelike__manager_8h_source.html">roguelike_manager.h</a>&quot;</code><br />
-<code>#include &quot;../../views/isometric_view.h&quot;</code><br />
 <code>#include &lt;godot_cpp/classes/engine.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/node2d.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/tile_map_layer.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/core/class_db.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/utility_functions.hpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -90,44 +90,43 @@ roguelike_manager.cpp の依存先関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="roguelike__manager_8cpp__incl.png" border="0" usemap="#asrc_2core_2cycles_2roguelike__manager_8cpp" alt=""/></div>
 <map name="asrc_2core_2cycles_2roguelike__manager_8cpp" id="asrc_2core_2cycles_2roguelike__manager_8cpp">
-<area shape="rect" title=" " alt="" coords="1302,5,1485,45"/>
-<area shape="rect" href="roguelike__manager_8h.html" title=" " alt="" coords="825,101,983,126"/>
-<area shape="poly" title=" " alt="" coords="1302,45,983,101,982,96,1301,40"/>
-<area shape="rect" title=" " alt="" coords="1098,357,1257,397"/>
-<area shape="poly" title=" " alt="" coords="1303,40,1249,60,1225,75,1205,95,1187,124,1174,156,1167,190,1163,225,1165,291,1173,344,1167,344,1160,291,1158,225,1162,190,1169,155,1182,122,1201,92,1221,71,1246,55,1301,35"/>
-<area shape="rect" title=" " alt="" coords="1215,93,1364,133"/>
-<area shape="poly" title=" " alt="" coords="1372,48,1325,86,1321,82,1369,44"/>
-<area shape="rect" title=" " alt="" coords="1389,101,1606,126"/>
-<area shape="poly" title=" " alt="" coords="1418,44,1474,89,1470,93,1415,48"/>
-<area shape="rect" title=" " alt="" coords="1631,101,1852,126"/>
-<area shape="poly" title=" " alt="" coords="1470,43,1683,95,1681,100,1469,48"/>
-<area shape="rect" title=" " alt="" coords="1876,93,2057,133"/>
-<area shape="poly" title=" " alt="" coords="1485,36,1862,90,1862,96,1485,41"/>
-<area shape="rect" href="universal__world__data_8h.html" title=" " alt="" coords="889,269,1026,309"/>
-<area shape="poly" title=" " alt="" coords="984,117,1017,125,1049,137,1079,155,1104,180,1110,194,1111,207,1106,220,1096,231,1069,251,1035,267,1032,262,1066,246,1093,227,1101,217,1106,206,1105,195,1099,183,1076,159,1047,142,1015,130,983,123"/>
-<area shape="rect" href="roguelike__generator_8h.html" title=" " alt="" coords="291,189,453,214"/>
-<area shape="poly" title=" " alt="" coords="825,128,466,184,440,189,439,183,465,179,824,123"/>
-<area shape="rect" title=" " alt="" coords="477,189,683,214"/>
-<area shape="poly" title=" " alt="" coords="861,129,637,188,635,183,860,124"/>
-<area shape="rect" title=" " alt="" coords="707,181,898,221"/>
-<area shape="poly" title=" " alt="" coords="892,128,837,174,834,170,889,124"/>
-<area shape="rect" title=" " alt="" coords="922,181,1089,221"/>
-<area shape="poly" title=" " alt="" coords="919,124,974,170,971,174,916,128"/>
-<area shape="rect" title=" " alt="" coords="757,365,987,390"/>
-<area shape="poly" title=" " alt="" coords="940,311,895,356,892,353,937,308"/>
-<area shape="poly" title=" " alt="" coords="1007,307,1118,350,1116,355,1005,312"/>
-<area shape="rect" title=" " alt="" coords="509,365,733,390"/>
-<area shape="poly" title=" " alt="" coords="889,311,680,364,679,359,888,306"/>
-<area shape="rect" title=" " alt="" coords="1011,365,1074,390"/>
-<area shape="poly" title=" " alt="" coords="978,308,1023,353,1019,356,974,311"/>
-<area shape="poly" title=" " alt="" coords="426,211,466,219,688,252,875,276,875,281,687,257,465,224,425,217"/>
-<area shape="poly" title=" " alt="" coords="420,211,527,240,573,255,598,267,611,287,619,309,625,350,619,351,614,310,606,289,594,271,571,260,526,245,419,217"/>
-<area shape="rect" title=" " alt="" coords="5,269,168,309"/>
-<area shape="poly" title=" " alt="" coords="334,217,163,268,162,263,333,212"/>
-<area shape="rect" title=" " alt="" coords="193,269,351,309"/>
-<area shape="poly" title=" " alt="" coords="360,216,306,262,303,258,357,212"/>
-<area shape="rect" title=" " alt="" coords="376,277,584,302"/>
-<area shape="poly" title=" " alt="" coords="388,212,456,266,453,270,385,216"/>
+<area shape="rect" title=" " alt="" coords="815,5,997,45"/>
+<area shape="rect" href="roguelike__manager_8h.html" title=" " alt="" coords="636,101,795,126"/>
+<area shape="poly" title=" " alt="" coords="865,48,754,98,752,93,863,43"/>
+<area shape="rect" title=" " alt="" coords="5,357,164,397"/>
+<area shape="poly" title=" " alt="" coords="815,48,722,69,624,96,504,133,453,154,390,184,313,226,239,271,123,351,119,347,236,267,310,221,387,179,451,149,502,128,623,91,721,64,814,43"/>
+<area shape="rect" title=" " alt="" coords="1057,181,1224,221"/>
+<area shape="poly" title=" " alt="" coords="889,47,873,67,860,89,854,112,856,122,861,131,880,139,925,151,1044,177,1043,183,924,156,879,144,858,135,851,124,849,111,855,87,868,64,884,44"/>
+<area shape="rect" title=" " alt="" coords="871,101,1088,126"/>
+<area shape="poly" title=" " alt="" coords="924,44,962,88,958,91,920,47"/>
+<area shape="rect" title=" " alt="" coords="1113,101,1334,126"/>
+<area shape="poly" title=" " alt="" coords="976,43,1169,95,1167,100,975,48"/>
+<area shape="rect" title=" " alt="" coords="1358,93,1539,133"/>
+<area shape="poly" title=" " alt="" coords="998,37,1345,91,1344,96,997,42"/>
+<area shape="rect" href="universal__world__data_8h.html" title=" " alt="" coords="320,269,457,309"/>
+<area shape="poly" title=" " alt="" coords="636,125,508,147,452,163,431,173,416,183,404,199,397,218,390,256,385,255,391,216,399,196,412,179,428,168,450,158,506,142,635,120"/>
+<area shape="rect" href="roguelike__generator_8h.html" title=" " alt="" coords="426,189,589,214"/>
+<area shape="poly" title=" " alt="" coords="688,129,549,186,547,181,686,124"/>
+<area shape="rect" title=" " alt="" coords="613,189,818,214"/>
+<area shape="poly" title=" " alt="" coords="718,126,718,174,713,174,713,126"/>
+<area shape="rect" title=" " alt="" coords="843,181,1033,221"/>
+<area shape="poly" title=" " alt="" coords="746,124,877,174,875,179,744,129"/>
+<area shape="poly" title=" " alt="" coords="773,123,1044,178,1043,183,772,129"/>
+<area shape="rect" title=" " alt="" coords="189,365,418,390"/>
+<area shape="poly" title=" " alt="" coords="372,311,327,356,323,353,368,308"/>
+<area shape="poly" title=" " alt="" coords="323,312,165,356,164,351,321,307"/>
+<area shape="rect" title=" " alt="" coords="529,365,753,390"/>
+<area shape="poly" title=" " alt="" coords="445,307,595,358,593,363,443,312"/>
+<area shape="rect" title=" " alt="" coords="443,365,505,390"/>
+<area shape="poly" title=" " alt="" coords="409,308,454,353,451,356,406,311"/>
+<area shape="poly" title=" " alt="" coords="493,216,427,263,424,259,490,212"/>
+<area shape="poly" title=" " alt="" coords="508,214,507,258,512,284,523,308,536,324,553,337,590,357,587,362,550,342,533,328,518,311,507,286,502,259,503,214"/>
+<area shape="rect" title=" " alt="" coords="533,269,695,309"/>
+<area shape="poly" title=" " alt="" coords="523,212,582,259,578,263,520,216"/>
+<area shape="rect" title=" " alt="" coords="720,269,879,309"/>
+<area shape="poly" title=" " alt="" coords="547,212,723,263,721,268,546,217"/>
+<area shape="rect" title=" " alt="" coords="903,277,1111,302"/>
+<area shape="poly" title=" " alt="" coords="563,211,601,219,924,272,923,277,600,224,562,217"/>
 </map>
 </div>
 </div><table class="memberdecls">

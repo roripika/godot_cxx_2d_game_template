@@ -1,0 +1,11 @@
+<map id="karakuri::SideScrollingView::update_visuals" name="karakuri::SideScrollingView::update_visuals">
+<area shape="rect" id="Node000001" title=" " alt="" coords="499,24,697,64"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1SideScrollingView.html#a37f6f81829461b9d02811b552e6bf4ad" title=" " alt="" coords="5,24,204,64"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="506,24,450,15,351,8,252,15,183,27,182,22,252,10,351,3,451,10,507,19"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1SideScrollingView.html#ae01e0d3ad7ce2e0371d418e807948239" title=" " alt="" coords="252,24,451,64"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="485,47,451,47,451,42,485,42"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1SideScrollingView.html#ae1fd4cc872de2707ffa921f811cbdf15" title=" " alt="" coords="252,88,451,128"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="508,71,430,91,428,86,506,65"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="238,47,204,47,204,42,238,42"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="260,88,182,67,183,62,261,82"/>
+</map>

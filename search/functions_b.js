@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['notify_5fmode_5fenter_0',['notify_mode_enter',['../classkarakuri_1_1KarakuriScenarioRunner.html#a96abc1612fee2c2dcd8e30843c05159f',1,'karakuri::KarakuriScenarioRunner']]],
-  ['notify_5fmode_5fexit_1',['notify_mode_exit',['../classkarakuri_1_1KarakuriScenarioRunner.html#aa03075c743abd6cf940dcc52e2b359a0',1,'karakuri::KarakuriScenarioRunner']]]
+  ['on_5fchoice_5fselected_0',['on_choice_selected',['../classkarakuri_1_1ScenarioRunner.html#a74a06d176587eb56cdb4af04bff95534',1,'karakuri::ScenarioRunner']]],
+  ['on_5fclicked_5fat_1',['on_clicked_at',['../classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8',1,'karakuri::ScenarioRunner']]],
+  ['on_5fdialogue_5ffinished_2',['on_dialogue_finished',['../classkarakuri_1_1ScenarioRunner.html#a01a9b2b785d9580e0186f87bf8aa88c7',1,'karakuri::ScenarioRunner']]],
+  ['on_5fevidence_5fselected_3',['on_evidence_selected',['../classkarakuri_1_1ScenarioRunner.html#a62eb16e61cf610b22910d2d0ef6b0465',1,'karakuri::ScenarioRunner']]],
+  ['on_5ftransition_5ffinished_4',['on_transition_finished',['../classkarakuri_1_1ScenarioRunner.html#a614a8f0a89852726f3bd550519077d96',1,'karakuri::ScenarioRunner']]]
 ];

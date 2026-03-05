@@ -1,0 +1,17 @@
+<map id="karakuri::SaveService::build_save_path" name="karakuri::SaveService::build_save_path">
+<area shape="rect" id="Node000001" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="427,98,589,138"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,98,168,138"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="476,90,432,54,406,37,378,25,333,12,297,8,261,12,217,25,185,40,155,59,108,100,105,96,151,55,182,35,215,20,260,7,297,3,334,7,380,20,408,33,435,49,480,86"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1SaveService.html#adfd8de774ba5600c25d702eb91fb6dd2" title="セーブファイルを削除する。" alt="" coords="216,34,379,74"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="428,97,363,77,364,72,429,92"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1SaveService.html#a18824e3aa2a301e067082611edfb9ee1" title="セーブファイルが存在するか確認する。" alt="" coords="216,98,379,138"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="413,121,379,121,379,116,413,116"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1SaveService.html#a351f36d3d2c333428dc66169469e7fa3" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="216,162,379,202"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="429,145,364,165,363,160,428,140"/>
+<area shape="rect" id="Node000006" href="$classkarakuri_1_1SaveService.html#a6a577ea37e4cc27752a2885f206da369" title="AdventureGameStateBase の状態をファイルに書き出す。" alt="" coords="216,226,379,266"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="475,149,431,183,380,217,355,229,353,224,377,212,428,179,472,145"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="218,81,154,101,152,96,217,76"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="202,121,168,121,168,116,202,116"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="217,161,152,141,154,136,218,156"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="227,223,215,217,156,178,109,141,112,136,159,174,217,212,229,218"/>
+</map>

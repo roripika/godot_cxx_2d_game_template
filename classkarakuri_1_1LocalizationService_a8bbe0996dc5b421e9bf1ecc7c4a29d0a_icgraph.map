@@ -1,0 +1,13 @@
+<map id="karakuri::LocalizationService::extract_prefix" name="karakuri::LocalizationService::extract_prefix">
+<area shape="rect" id="Node000001" title=" " alt="" coords="773,35,981,75"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1LocalizationService.html#a0552eeb5b2109c6f1d76383ab32a73fd" title="現在のロケールプレフィックス（en, ja など）を解決する。" alt="" coords="261,5,469,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="759,51,469,34,470,29,759,45"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="517,63,725,103"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="760,70,726,74,725,69,760,65"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,63,213,103"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="262,51,200,65,199,60,261,46"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="503,85,214,85,214,80,503,80"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,120,469,160"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="518,108,456,123,455,117,517,103"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="261,119,199,105,200,100,262,114"/>
+</map>

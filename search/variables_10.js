@@ -1,20 +1,13 @@
 var searchData=
 [
-  ['scenario_5fpath_5f_0',['scenario_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5bf856e1531478d6d6d8b528ed68ed43',1,'karakuri::KarakuriScenarioRunner']]],
-  ['scenario_5froot_5f_1',['scenario_root_',['../classkarakuri_1_1KarakuriScenarioRunner.html#aa1a5aaa4f7a902463017b04f91c0ab88',1,'karakuri::KarakuriScenarioRunner']]],
-  ['scene_5fcontainer_5f_2',['scene_container_',['../classkarakuri_1_1KarakuriScenarioRunner.html#aaa72bc1c3fe533365c04802a851edc25',1,'karakuri::KarakuriScenarioRunner']]],
-  ['scene_5fcontainer_5fpath_5f_3',['scene_container_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a4655c47345bc583b6c239f57fd201eb4',1,'karakuri::KarakuriScenarioRunner']]],
-  ['scenes_5f_4',['scenes_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8a79e142123bea871a93cf6df041352f',1,'karakuri::KarakuriScenarioRunner']]],
-  ['shake_5fkey_5',['shake_key',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97342fc72da98314b586c56cea7c7d5f',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['shake_5ftext_6',['shake_text',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a3c9a057fd1281c648df1c3a8fe6aa0c4',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['singleton_7',['singleton',['../classkarakuri_1_1AdventureGameStateBase.html#a9aeca1a0f6cd3829b5d626ced1f67c0c',1,'karakuri::AdventureGameStateBase']]],
-  ['size_8',['size',['../classkarakuri_1_1UniversalWorldData.html#a0fea69bea3d3f8ef4942a4e78d473362',1,'karakuri::UniversalWorldData']]],
-  ['slot_5findex_9',['slot_index',['../classkarakuri_1_1InventorySlotUI.html#aaa8217ae9888edb9adf9c01d20e1cb5b',1,'karakuri::InventorySlotUI']]],
-  ['slots_10',['slots',['../classkarakuri_1_1Inventory.html#a3b538792e7317decad8982f257ec68b2',1,'karakuri::Inventory']]],
-  ['solved_11',['solved',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0f6f5e0629e25c52de550589aaa0f926',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['speaker_5fkey_12',['speaker_key',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0181c717d8a1ac37f2e4ac0552edb49e',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['speaker_5ftext_13',['speaker_text',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a08ceff308b26e6cc48b8e33abee5f1e7',1,'karakuri::KarakuriTestimonySession::Line']]],
-  ['speed_14',['speed',['../classkarakuri_1_1GameEntity.html#a1bf4e16a4cd216b01700c5d318f372c9',1,'karakuri::GameEntity']]],
-  ['stackable_15',['stackable',['../classkarakuri_1_1GameItem.html#a097d0bae3a6624bc7912e9da52201bbc',1,'karakuri::GameItem']]],
-  ['success_5factions_16',['success_actions',['../structkarakuri_1_1KarakuriTestimonySession.html#aa94880908ad847e905ffc3131ef02472',1,'karakuri::KarakuriTestimonySession']]]
+  ['text_5flabel_0',['text_label',['../classkarakuri_1_1DialogueUI.html#a41a352dc2ea5f7b36b87d7cd291e01ce',1,'karakuri::DialogueUI']]],
+  ['transition_5fmanager_5f_1',['transition_manager_',['../classkarakuri_1_1ScenarioRunner.html#a3d4dcf0e530c11c948fdaffdc6f83400',1,'karakuri::ScenarioRunner']]],
+  ['transition_5fmanager_5fpath_5f_2',['transition_manager_path_',['../classkarakuri_1_1ScenarioRunner.html#af03615effd91803d9aa7196cf8848ce1',1,'karakuri::ScenarioRunner']]],
+  ['transition_5frect_5f_3',['transition_rect_',['../classkarakuri_1_1ScenarioRunner.html#ae7533adb8b8becf4943faa95850df3f2',1,'karakuri::ScenarioRunner']]],
+  ['transition_5frect_5fpath_5f_4',['transition_rect_path_',['../classkarakuri_1_1ScenarioRunner.html#a4acbe873f80e2cc665995f5da0a2bb99',1,'karakuri::ScenarioRunner']]],
+  ['transition_5ftarget_5fduration_5f_5',['transition_target_duration_',['../classkarakuri_1_1ScenarioRunner.html#af1ced1b613013ade4fd2b1ae5b7058d2',1,'karakuri::ScenarioRunner']]],
+  ['transition_5ftarget_5fid_5f_6',['transition_target_id_',['../classkarakuri_1_1ScenarioRunner.html#a84d82194662005fef0a83674eb433434',1,'karakuri::ScenarioRunner']]],
+  ['transition_5ftarget_5ftype_5f_7',['transition_target_type_',['../classkarakuri_1_1ScenarioRunner.html#a82ec3ba371092edcd179dd3045d465dd',1,'karakuri::ScenarioRunner']]],
+  ['transition_5ftimeout_5fsec_5f_8',['transition_timeout_sec_',['../classkarakuri_1_1ScenarioRunner.html#a99b01dc0c8a6eca2fe00544d69b7bdf7',1,'karakuri::ScenarioRunner']]],
+  ['type_5fspeed_9',['type_speed',['../classkarakuri_1_1DialogueUI.html#a033cb1091862580784200f611b0c979c',1,'karakuri::DialogueUI']]]
 ];

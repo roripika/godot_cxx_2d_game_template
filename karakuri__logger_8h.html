@@ -106,9 +106,11 @@ karakuri_logger.h の依存先関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="karakuri__logger_8h__dep__incl.png" border="0" usemap="#asrc_2core_2logger_2karakuri__logger_8hdep" alt=""/></div>
 <map name="asrc_2core_2logger_2karakuri__logger_8hdep" id="asrc_2core_2logger_2karakuri__logger_8hdep">
-<area shape="rect" title="C++とGDScript向けに提供されるグローバルなデバッグロガー。 このクラスは各ログレベル（Debug, Info, Warn, Error）でメッセージを出力する静的メソッドを提供します。 Deb..." alt="" coords="5,5,180,45"/>
+<area shape="rect" title="C++とGDScript向けに提供されるグローバルなデバッグロガー。 このクラスは各ログレベル（Debug, Info, Warn, Error）でメッセージを出力する静的メソッドを提供します。 Deb..." alt="" coords="108,5,283,45"/>
 <area shape="rect" href="karakuri__logger_8cpp.html" title=" " alt="" coords="5,93,180,133"/>
-<area shape="poly" title=" " alt="" coords="95,59,95,93,90,93,90,59"/>
+<area shape="poly" title=" " alt="" coords="164,56,117,95,114,91,160,52"/>
+<area shape="rect" href="scenario__runner_8cpp.html" title=" " alt="" coords="204,93,395,133"/>
+<area shape="poly" title=" " alt="" coords="231,52,278,91,275,95,227,56"/>
 </map>
 </div>
 </div>
@@ -116,7 +118,7 @@ karakuri_logger.h の依存先関係図:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriLogger.html">karakuri::KarakuriLogger</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1Logger.html">karakuri::Logger</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -126,13 +128,13 @@ karakuri_logger.h の依存先関係図:</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 マクロ定義</h2></td></tr>
-<tr class="memitem:ac5542d01eab8f31fbec4590496eb4aaa" id="r_ac5542d01eab8f31fbec4590496eb4aaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#ac5542d01eab8f31fbec4590496eb4aaa">KARAKURI_DEBUG</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#af188698dac0d9cf7d620c874625e9fe0">karakuri::KarakuriLogger::debug</a>(godot::String(msg))</td></tr>
+<tr class="memitem:ac5542d01eab8f31fbec4590496eb4aaa" id="r_ac5542d01eab8f31fbec4590496eb4aaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#ac5542d01eab8f31fbec4590496eb4aaa">KARAKURI_DEBUG</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#accd40ea30d6907fa5b43fe1427b0fbbb">karakuri::Logger::debug</a>(godot::String(msg))</td></tr>
 <tr class="separator:ac5542d01eab8f31fbec4590496eb4aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabde2ec0e681e2dc73f2cebd5fd524fc" id="r_aabde2ec0e681e2dc73f2cebd5fd524fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#aabde2ec0e681e2dc73f2cebd5fd524fc">KARAKURI_INFO</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#a5f67ed79b014d600c709fddd55a29957">karakuri::KarakuriLogger::info</a>(godot::String(msg))</td></tr>
+<tr class="memitem:aabde2ec0e681e2dc73f2cebd5fd524fc" id="r_aabde2ec0e681e2dc73f2cebd5fd524fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#aabde2ec0e681e2dc73f2cebd5fd524fc">KARAKURI_INFO</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#a2f718487ff1de78c7e3948060f5ebc15">karakuri::Logger::info</a>(godot::String(msg))</td></tr>
 <tr class="separator:aabde2ec0e681e2dc73f2cebd5fd524fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a838e5e523840fc1130095ce8254b0607" id="r_a838e5e523840fc1130095ce8254b0607"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#a838e5e523840fc1130095ce8254b0607">KARAKURI_WARN</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#a2c3117907eb90563477394e87e655f52">karakuri::KarakuriLogger::warn</a>(godot::String(msg))</td></tr>
+<tr class="memitem:a838e5e523840fc1130095ce8254b0607" id="r_a838e5e523840fc1130095ce8254b0607"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#a838e5e523840fc1130095ce8254b0607">KARAKURI_WARN</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#a9690b3bd03abbf9b9a94c3b71592b8fa">karakuri::Logger::warn</a>(godot::String(msg))</td></tr>
 <tr class="separator:a838e5e523840fc1130095ce8254b0607"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa077768238603038a9b10a31a2bacdfd" id="r_aa077768238603038a9b10a31a2bacdfd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#aa077768238603038a9b10a31a2bacdfd">KARAKURI_ERR</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#aad8e54c7de3279e66568c7d0b2659549">karakuri::KarakuriLogger::error</a>(godot::String(msg))</td></tr>
+<tr class="memitem:aa077768238603038a9b10a31a2bacdfd" id="r_aa077768238603038a9b10a31a2bacdfd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="karakuri__logger_8h.html#aa077768238603038a9b10a31a2bacdfd">KARAKURI_ERR</a>(msg)&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e">karakuri::Logger::error</a>(godot::String(msg))</td></tr>
 <tr class="separator:aa077768238603038a9b10a31a2bacdfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
@@ -149,7 +151,7 @@ karakuri_logger.h の依存先関係図:</div>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">msg</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#af188698dac0d9cf7d620c874625e9fe0">karakuri::KarakuriLogger::debug</a>(godot::String(msg))</td>
+          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#accd40ea30d6907fa5b43fe1427b0fbbb">karakuri::Logger::debug</a>(godot::String(msg))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -167,7 +169,7 @@ karakuri_logger.h の依存先関係図:</div>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">msg</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#aad8e54c7de3279e66568c7d0b2659549">karakuri::KarakuriLogger::error</a>(godot::String(msg))</td>
+          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e">karakuri::Logger::error</a>(godot::String(msg))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -185,7 +187,7 @@ karakuri_logger.h の依存先関係図:</div>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">msg</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#a5f67ed79b014d600c709fddd55a29957">karakuri::KarakuriLogger::info</a>(godot::String(msg))</td>
+          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#a2f718487ff1de78c7e3948060f5ebc15">karakuri::Logger::info</a>(godot::String(msg))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -203,7 +205,7 @@ karakuri_logger.h の依存先関係図:</div>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">msg</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1KarakuriLogger.html#a2c3117907eb90563477394e87e655f52">karakuri::KarakuriLogger::warn</a>(godot::String(msg))</td>
+          <td>&#160;&#160;&#160;<a class="el" href="classkarakuri_1_1Logger.html#a9690b3bd03abbf9b9a94c3b71592b8fa">karakuri::Logger::warn</a>(godot::String(msg))</td>
         </tr>
       </table>
 </div><div class="memdoc">

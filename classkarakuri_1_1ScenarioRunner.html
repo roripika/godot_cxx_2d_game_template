@@ -1,0 +1,2889 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::ScenarioRunner クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">データ構造</a> &#124;
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-methods">非公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::ScenarioRunner クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。  
+ <a href="classkarakuri_1_1ScenarioRunner.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="scenario__runner_8h_source.html">scenario_runner.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::ScenarioRunner の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner__inherit__graph.png" border="0" usemap="#akarakuri_1_1ScenarioRunner_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1ScenarioRunner_inherit__map" id="akarakuri_1_1ScenarioRunner_inherit__map">
+<area shape="rect" title="汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。" alt="" coords="5,79,189,104"/>
+<area shape="rect" title=" " alt="" coords="47,5,148,31"/>
+<area shape="poly" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::ScenarioRunner 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner__coll__graph.png" border="0" usemap="#akarakuri_1_1ScenarioRunner_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1ScenarioRunner_coll__map" id="akarakuri_1_1ScenarioRunner_coll__map">
+<area shape="rect" title="汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。" alt="" coords="5,79,189,104"/>
+<area shape="rect" title=" " alt="" coords="47,5,148,31"/>
+<area shape="poly" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html">HotspotBinding</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a416b4e5b1c36c12d1b20388c9a3b6ce7" id="r_a416b4e5b1c36c12d1b20388c9a3b6ce7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a> = std::function&lt; bool(const godot::Variant &amp;payload)&gt;</td></tr>
+<tr class="separator:a416b4e5b1c36c12d1b20388c9a3b6ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a8b67b05e7b7a98649ff25475ae54ef68" id="r_a8b67b05e7b7a98649ff25475ae54ef68"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68">ScenarioRunner</a> ()</td></tr>
+<tr class="separator:a8b67b05e7b7a98649ff25475ae54ef68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a11ec90c114e1c8b67c6ecfdc8ba1b0" id="r_a1a11ec90c114e1c8b67c6ecfdc8ba1b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a1a11ec90c114e1c8b67c6ecfdc8ba1b0">~ScenarioRunner</a> ()</td></tr>
+<tr class="separator:a1a11ec90c114e1c8b67c6ecfdc8ba1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1525a75bfc99f1d8c5ff8b6680fffb" id="r_a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb">register_action</a> (const godot::String &amp;kind, <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a> handler)</td></tr>
+<tr class="memdesc:a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">外部からカスタムアクションを登録する。  <br /></td></tr>
+<tr class="separator:a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2a5cd95c37a773e5429dc978987fe39" id="r_ac2a5cd95c37a773e5429dc978987fe39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ac2a5cd95c37a773e5429dc978987fe39">set_scenario_path</a> (const godot::String &amp;path)</td></tr>
+<tr class="separator:ac2a5cd95c37a773e5429dc978987fe39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4b69e80ce21b8c9952d9b161b7bd63" id="r_a6f4b69e80ce21b8c9952d9b161b7bd63"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6f4b69e80ce21b8c9952d9b161b7bd63">get_scenario_path</a> () const</td></tr>
+<tr class="separator:a6f4b69e80ce21b8c9952d9b161b7bd63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bc09d9edbd5a307d187d8e5eba0974" id="r_ac1bc09d9edbd5a307d187d8e5eba0974"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ac1bc09d9edbd5a307d187d8e5eba0974">set_scene_container_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="separator:ac1bc09d9edbd5a307d187d8e5eba0974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae81c58f52de6ac2d68b127d7f625fbf4" id="r_ae81c58f52de6ac2d68b127d7f625fbf4"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ae81c58f52de6ac2d68b127d7f625fbf4">get_scene_container_path</a> () const</td></tr>
+<tr class="separator:ae81c58f52de6ac2d68b127d7f625fbf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a430709ae392465c777ddce2c67da6fd5" id="r_a430709ae392465c777ddce2c67da6fd5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a430709ae392465c777ddce2c67da6fd5">set_dialogue_ui_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="separator:a430709ae392465c777ddce2c67da6fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4202e43bbd713b0ebd033cdb7bc7c45" id="r_ac4202e43bbd713b0ebd033cdb7bc7c45"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ac4202e43bbd713b0ebd033cdb7bc7c45">get_dialogue_ui_path</a> () const</td></tr>
+<tr class="separator:ac4202e43bbd713b0ebd033cdb7bc7c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab938f60f0b92008b573d069fd85b8e68" id="r_ab938f60f0b92008b573d069fd85b8e68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ab938f60f0b92008b573d069fd85b8e68">set_evidence_ui_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="separator:ab938f60f0b92008b573d069fd85b8e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af75d49b2e6f353a0271223ea4a00175e" id="r_af75d49b2e6f353a0271223ea4a00175e"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af75d49b2e6f353a0271223ea4a00175e">get_evidence_ui_path</a> () const</td></tr>
+<tr class="separator:af75d49b2e6f353a0271223ea4a00175e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34941cf83c64722dca9ad61caf80d3ec" id="r_a34941cf83c64722dca9ad61caf80d3ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a34941cf83c64722dca9ad61caf80d3ec">set_interaction_manager_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="separator:a34941cf83c64722dca9ad61caf80d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae362e7772afbc4cb3dce040d33ddc02e" id="r_ae362e7772afbc4cb3dce040d33ddc02e"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ae362e7772afbc4cb3dce040d33ddc02e">get_interaction_manager_path</a> () const</td></tr>
+<tr class="separator:ae362e7772afbc4cb3dce040d33ddc02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad15fffa0e7461c73c736ae3fa9ab8807" id="r_ad15fffa0e7461c73c736ae3fa9ab8807"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ad15fffa0e7461c73c736ae3fa9ab8807">set_transition_manager_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="separator:ad15fffa0e7461c73c736ae3fa9ab8807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace11a808e8e42344caf30f34d34620f6" id="r_ace11a808e8e42344caf30f34d34620f6"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ace11a808e8e42344caf30f34d34620f6">get_transition_manager_path</a> () const</td></tr>
+<tr class="separator:ace11a808e8e42344caf30f34d34620f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c5d84b5a91c081108402dc0f3fa71c" id="r_a23c5d84b5a91c081108402dc0f3fa71c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a23c5d84b5a91c081108402dc0f3fa71c">set_transition_rect_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="separator:a23c5d84b5a91c081108402dc0f3fa71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd7bcc2c0f36581b19040462d5cde01" id="r_aacd7bcc2c0f36581b19040462d5cde01"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aacd7bcc2c0f36581b19040462d5cde01">get_transition_rect_path</a> () const</td></tr>
+<tr class="separator:aacd7bcc2c0f36581b19040462d5cde01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f6657e8d2f79d00580d14e34294ec9c" id="r_a0f6657e8d2f79d00580d14e34294ec9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0f6657e8d2f79d00580d14e34294ec9c">is_running</a> () const</td></tr>
+<tr class="separator:a0f6657e8d2f79d00580d14e34294ec9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab3dd95e54c4e3d348f979d829c4cf9" id="r_afab3dd95e54c4e3d348f979d829c4cf9"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#afab3dd95e54c4e3d348f979d829c4cf9">get_current_scene_id</a> () const</td></tr>
+<tr class="separator:afab3dd95e54c4e3d348f979d829c4cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f0aba18ea01d10f9cc195e1a8de72e4" id="r_a0f0aba18ea01d10f9cc195e1a8de72e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4">_ready</a> () override</td></tr>
+<tr class="separator:a0f0aba18ea01d10f9cc195e1a8de72e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ae5f997f165487d55b4d8901c1fde97" id="r_a5ae5f997f165487d55b4d8901c1fde97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97">_process</a> (double delta) override</td></tr>
+<tr class="separator:a5ae5f997f165487d55b4d8901c1fde97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee25586a80bd674b095d0ff8e8d7ef54" id="r_aee25586a80bd674b095d0ff8e8d7ef54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aee25586a80bd674b095d0ff8e8d7ef54">load_scenario</a> ()</td></tr>
+<tr class="separator:aee25586a80bd674b095d0ff8e8d7ef54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2923fd2fb4eaade40637591760775bd" id="r_ab2923fd2fb4eaade40637591760775bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd">load_scene_by_id</a> (const godot::String &amp;scene_id)</td></tr>
+<tr class="separator:ab2923fd2fb4eaade40637591760775bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd99d51ff26f3ae0a28930e9d919c306" id="r_afd99d51ff26f3ae0a28930e9d919c306"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306">execute_single_action</a> (const godot::Variant &amp;action)</td></tr>
+<tr class="separator:afd99d51ff26f3ae0a28930e9d919c306"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cc233c883e7d81d4bfe454c8c370c9c" id="r_a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6cc233c883e7d81d4bfe454c8c370c9c">complete_custom_action</a> ()</td></tr>
+<tr class="separator:a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a60a3bd9441d874e67c2e5db70694d132" id="r_a60a3bd9441d874e67c2e5db70694d132"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132">_bind_methods</a> ()</td></tr>
+<tr class="separator:a60a3bd9441d874e67c2e5db70694d132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+非公開メンバ関数</h2></td></tr>
+<tr class="memitem:a0a7fac70635b974f6bba84d70a25162b" id="r_a0a7fac70635b974f6bba84d70a25162b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0a7fac70635b974f6bba84d70a25162b">load_scenario_internal</a> ()</td></tr>
+<tr class="separator:a0a7fac70635b974f6bba84d70a25162b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af512f5cf6d2e05c8aaa50fc374943f3d" id="r_af512f5cf6d2e05c8aaa50fc374943f3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d">bind_scene_hotspots</a> (const godot::Dictionary &amp;scene_dict)</td></tr>
+<tr class="separator:af512f5cf6d2e05c8aaa50fc374943f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e8a47e2ae6a81fb053e07ebadcc85aa" id="r_a5e8a47e2ae6a81fb053e07ebadcc85aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa">start_actions</a> (const godot::Array &amp;actions)</td></tr>
+<tr class="separator:a5e8a47e2ae6a81fb053e07ebadcc85aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aacfac50c4cb83def98929176a497a8" id="r_a2aacfac50c4cb83def98929176a497a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a2aacfac50c4cb83def98929176a497a8">step_actions</a> (double delta)</td></tr>
+<tr class="separator:a2aacfac50c4cb83def98929176a497a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" id="r_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e">init_builtin_actions</a> ()</td></tr>
+<tr class="separator:a9be7bdc1c0c6a84c2f6b1cc1d17dd16e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96eb6102afba1cd60a834612604aaba8" id="r_a96eb6102afba1cd60a834612604aaba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8">on_clicked_at</a> (const godot::Vector2 &amp;pos)</td></tr>
+<tr class="separator:a96eb6102afba1cd60a834612604aaba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74a06d176587eb56cdb4af04bff95534" id="r_a74a06d176587eb56cdb4af04bff95534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a74a06d176587eb56cdb4af04bff95534">on_choice_selected</a> (int index, const godot::String &amp;text)</td></tr>
+<tr class="separator:a74a06d176587eb56cdb4af04bff95534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01a9b2b785d9580e0186f87bf8aa88c7" id="r_a01a9b2b785d9580e0186f87bf8aa88c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a01a9b2b785d9580e0186f87bf8aa88c7">on_dialogue_finished</a> ()</td></tr>
+<tr class="separator:a01a9b2b785d9580e0186f87bf8aa88c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62eb16e61cf610b22910d2d0ef6b0465" id="r_a62eb16e61cf610b22910d2d0ef6b0465"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a62eb16e61cf610b22910d2d0ef6b0465">on_evidence_selected</a> (const godot::String &amp;evidence_id)</td></tr>
+<tr class="separator:a62eb16e61cf610b22910d2d0ef6b0465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a614a8f0a89852726f3bd550519077d96" id="r_a614a8f0a89852726f3bd550519077d96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a614a8f0a89852726f3bd550519077d96">on_transition_finished</a> (const godot::Variant &amp;arg1=godot::Variant(), const godot::Variant &amp;arg2=godot::Variant(), const godot::Variant &amp;arg3=godot::Variant())</td></tr>
+<tr class="separator:a614a8f0a89852726f3bd550519077d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8214a6443add202caffb399425fd1a41" id="r_a8214a6443add202caffb399425fd1a41"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a8214a6443add202caffb399425fd1a41">hotspot_matches_click</a> (const <a class="el" href="structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html">HotspotBinding</a> &amp;hs, const godot::Vector2 &amp;pos) const</td></tr>
+<tr class="separator:a8214a6443add202caffb399425fd1a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5c5755c0a93076ca6797ab96a1fea0" id="r_a4b5c5755c0a93076ca6797ab96a1fea0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0">trigger_hotspot</a> (const <a class="el" href="structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html">HotspotBinding</a> &amp;hs)</td></tr>
+<tr class="separator:a4b5c5755c0a93076ca6797ab96a1fea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a702283c95079fb5d7a190085ebeff45c" id="r_a702283c95079fb5d7a190085ebeff45c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c">set_mode_input_enabled</a> (bool enabled)</td></tr>
+<tr class="separator:a702283c95079fb5d7a190085ebeff45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a576e893e8fe435fbbbc45f3ea85ea662" id="r_a576e893e8fe435fbbbc45f3ea85ea662"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662">notify_mode_exit</a> (const godot::String &amp;current_mode, const godot::String &amp;next_scene_id)</td></tr>
+<tr class="separator:a576e893e8fe435fbbbc45f3ea85ea662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9706d25b17ceed6489750d5e1b04c5" id="r_a0e9706d25b17ceed6489750d5e1b04c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5">notify_mode_enter</a> (const godot::String &amp;scene_id, const godot::Dictionary &amp;scene_dict)</td></tr>
+<tr class="separator:a0e9706d25b17ceed6489750d5e1b04c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5199d967a955a3e944def28ed966831" id="r_aa5199d967a955a3e944def28ed966831"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831">resolve_mode_id</a> (const godot::String &amp;scene_id, const godot::Dictionary &amp;scene_dict) const</td></tr>
+<tr class="separator:aa5199d967a955a3e944def28ed966831"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0b269d5a9b4ed0153e17caa738ae32" id="r_aec0b269d5a9b4ed0153e17caa738ae32"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aec0b269d5a9b4ed0153e17caa738ae32">tr_key</a> (const godot::String &amp;key) const</td></tr>
+<tr class="separator:aec0b269d5a9b4ed0153e17caa738ae32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1565f648605e5d9d1a9bcd5d73bdf9e" id="r_aa1565f648605e5d9d1a9bcd5d73bdf9e"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aa1565f648605e5d9d1a9bcd5d73bdf9e">resolve_node_path</a> (const godot::NodePath &amp;path) const</td></tr>
+<tr class="separator:aa1565f648605e5d9d1a9bcd5d73bdf9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54e5551b2a1b673f6169610e80a1f373" id="r_a54e5551b2a1b673f6169610e80a1f373"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a54e5551b2a1b673f6169610e80a1f373">get_adventure_state</a> () const</td></tr>
+<tr class="separator:a54e5551b2a1b673f6169610e80a1f373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:a51d167edf4012217938512b092b97068" id="r_a51d167edf4012217938512b092b97068"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a51d167edf4012217938512b092b97068">scenario_path_</a> = &quot;&quot;</td></tr>
+<tr class="separator:a51d167edf4012217938512b092b97068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99370084d2e7a568b54de8ec20febde3" id="r_a99370084d2e7a568b54de8ec20febde3"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a99370084d2e7a568b54de8ec20febde3">scene_container_path_</a> = godot::NodePath(&quot;SceneContainer&quot;)</td></tr>
+<tr class="separator:a99370084d2e7a568b54de8ec20febde3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b072df9efc44e61a30895e1ce019c7c" id="r_a6b072df9efc44e61a30895e1ce019c7c"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6b072df9efc44e61a30895e1ce019c7c">dialogue_ui_path_</a> = godot::NodePath(&quot;CanvasLayer/DialogueUI&quot;)</td></tr>
+<tr class="separator:a6b072df9efc44e61a30895e1ce019c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54ecfcabb2fede561eddf40ca1267e53" id="r_a54ecfcabb2fede561eddf40ca1267e53"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a54ecfcabb2fede561eddf40ca1267e53">evidence_ui_path_</a></td></tr>
+<tr class="separator:a54ecfcabb2fede561eddf40ca1267e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0670191d41106baf1fbdf709c106cdd" id="r_ae0670191d41106baf1fbdf709c106cdd"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ae0670191d41106baf1fbdf709c106cdd">interaction_manager_path_</a></td></tr>
+<tr class="separator:ae0670191d41106baf1fbdf709c106cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03615effd91803d9aa7196cf8848ce1" id="r_af03615effd91803d9aa7196cf8848ce1"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af03615effd91803d9aa7196cf8848ce1">transition_manager_path_</a></td></tr>
+<tr class="separator:af03615effd91803d9aa7196cf8848ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4acbe873f80e2cc665995f5da0a2bb99" id="r_a4acbe873f80e2cc665995f5da0a2bb99"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a4acbe873f80e2cc665995f5da0a2bb99">transition_rect_path_</a></td></tr>
+<tr class="separator:a4acbe873f80e2cc665995f5da0a2bb99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9368737730b9de9c5c7b86e77fbde572" id="r_a9368737730b9de9c5c7b86e77fbde572"><td class="memItemLeft" align="right" valign="top">godot::Dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a9368737730b9de9c5c7b86e77fbde572">scenario_root_</a></td></tr>
+<tr class="separator:a9368737730b9de9c5c7b86e77fbde572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71600f3941d971418011dfef881bbbab" id="r_a71600f3941d971418011dfef881bbbab"><td class="memItemLeft" align="right" valign="top">godot::Dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a71600f3941d971418011dfef881bbbab">scenes_</a></td></tr>
+<tr class="separator:a71600f3941d971418011dfef881bbbab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86d9c45ff6cf60001b41131ce595e982" id="r_a86d9c45ff6cf60001b41131ce595e982"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a86d9c45ff6cf60001b41131ce595e982">current_scene_id_</a></td></tr>
+<tr class="separator:a86d9c45ff6cf60001b41131ce595e982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a516e7a5697052a001776be3d137e4e10" id="r_a516e7a5697052a001776be3d137e4e10"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a516e7a5697052a001776be3d137e4e10">scene_container_</a> = nullptr</td></tr>
+<tr class="separator:a516e7a5697052a001776be3d137e4e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6867ecf0f1faac393641eed9201841cb" id="r_a6867ecf0f1faac393641eed9201841cb"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6867ecf0f1faac393641eed9201841cb">dialogue_ui_</a> = nullptr</td></tr>
+<tr class="separator:a6867ecf0f1faac393641eed9201841cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade185b207b2b234df5adc2b65d95847" id="r_aade185b207b2b234df5adc2b65d95847"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aade185b207b2b234df5adc2b65d95847">evidence_ui_</a> = nullptr</td></tr>
+<tr class="separator:aade185b207b2b234df5adc2b65d95847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad96aa24aafdf253553501f1d134eee03" id="r_ad96aa24aafdf253553501f1d134eee03"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ad96aa24aafdf253553501f1d134eee03">interaction_manager_</a> = nullptr</td></tr>
+<tr class="separator:ad96aa24aafdf253553501f1d134eee03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4dcf0e530c11c948fdaffdc6f83400" id="r_a3d4dcf0e530c11c948fdaffdc6f83400"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a3d4dcf0e530c11c948fdaffdc6f83400">transition_manager_</a> = nullptr</td></tr>
+<tr class="separator:a3d4dcf0e530c11c948fdaffdc6f83400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7533adb8b8becf4943faa95850df3f2" id="r_ae7533adb8b8becf4943faa95850df3f2"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ae7533adb8b8becf4943faa95850df3f2">transition_rect_</a> = nullptr</td></tr>
+<tr class="separator:ae7533adb8b8becf4943faa95850df3f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ed961c02bd8b6412357d6e87537a8a4" id="r_a1ed961c02bd8b6412357d6e87537a8a4"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a1ed961c02bd8b6412357d6e87537a8a4">current_scene_instance_</a> = nullptr</td></tr>
+<tr class="separator:a1ed961c02bd8b6412357d6e87537a8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1118efc845b2b3c4a060f8e8e9c9e162" id="r_a1118efc845b2b3c4a060f8e8e9c9e162"><td class="memItemLeft" align="right" valign="top">godot::Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a1118efc845b2b3c4a060f8e8e9c9e162">pending_actions_</a></td></tr>
+<tr class="separator:a1118efc845b2b3c4a060f8e8e9c9e162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56dd4b508f3a88e21f19cd6729b36976" id="r_a56dd4b508f3a88e21f19cd6729b36976"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a56dd4b508f3a88e21f19cd6729b36976">pending_action_index_</a> = 0</td></tr>
+<tr class="separator:a56dd4b508f3a88e21f19cd6729b36976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d7ddc2429c019095e279e0c6a8a137" id="r_a24d7ddc2429c019095e279e0c6a8a137"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a24d7ddc2429c019095e279e0c6a8a137">wait_remaining_sec_</a> = 0.0</td></tr>
+<tr class="separator:a24d7ddc2429c019095e279e0c6a8a137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98b32007323ae4d81a8b386dfb4bf98e" id="r_a98b32007323ae4d81a8b386dfb4bf98e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a98b32007323ae4d81a8b386dfb4bf98e">is_executing_actions_</a> = false</td></tr>
+<tr class="separator:a98b32007323ae4d81a8b386dfb4bf98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f7ea84fb0b95b918fc8ec778a6d80a" id="r_a70f7ea84fb0b95b918fc8ec778a6d80a"><td class="memItemLeft" align="right" valign="top">godot::Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a70f7ea84fb0b95b918fc8ec778a6d80a">hotspot_bindings_</a></td></tr>
+<tr class="separator:a70f7ea84fb0b95b918fc8ec778a6d80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58d9459c280abdc9cfe26f08782643d1" id="r_a58d9459c280abdc9cfe26f08782643d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a58d9459c280abdc9cfe26f08782643d1">waiting_for_choice_</a> = false</td></tr>
+<tr class="separator:a58d9459c280abdc9cfe26f08782643d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60db3e4b0e6479a83b5204fb79475dcb" id="r_a60db3e4b0e6479a83b5204fb79475dcb"><td class="memItemLeft" align="right" valign="top">godot::Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a60db3e4b0e6479a83b5204fb79475dcb">pending_choice_actions_</a></td></tr>
+<tr class="separator:a60db3e4b0e6479a83b5204fb79475dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44ae67e4e423e2e9436a35531c92cc04" id="r_a44ae67e4e423e2e9436a35531c92cc04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a44ae67e4e423e2e9436a35531c92cc04">waiting_for_dialogue_</a> = false</td></tr>
+<tr class="separator:a44ae67e4e423e2e9436a35531c92cc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a8946002ace4c31839c55f540129db1" id="r_a3a8946002ace4c31839c55f540129db1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a3a8946002ace4c31839c55f540129db1">waiting_for_transition_</a> = false</td></tr>
+<tr class="separator:a3a8946002ace4c31839c55f540129db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5de1d7a86f46031d98f727f4b4005d" id="r_a5c5de1d7a86f46031d98f727f4b4005d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5c5de1d7a86f46031d98f727f4b4005d">waiting_for_custom_action_</a> = false</td></tr>
+<tr class="separator:a5c5de1d7a86f46031d98f727f4b4005d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d82194662005fef0a83674eb433434" id="r_a84d82194662005fef0a83674eb433434"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a84d82194662005fef0a83674eb433434">transition_target_id_</a></td></tr>
+<tr class="separator:a84d82194662005fef0a83674eb433434"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1ced1b613013ade4fd2b1ae5b7058d2" id="r_af1ced1b613013ade4fd2b1ae5b7058d2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af1ced1b613013ade4fd2b1ae5b7058d2">transition_target_duration_</a> = 0.0f</td></tr>
+<tr class="separator:af1ced1b613013ade4fd2b1ae5b7058d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82ec3ba371092edcd179dd3045d465dd" id="r_a82ec3ba371092edcd179dd3045d465dd"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a82ec3ba371092edcd179dd3045d465dd">transition_target_type_</a></td></tr>
+<tr class="separator:a82ec3ba371092edcd179dd3045d465dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99b01dc0c8a6eca2fe00544d69b7bdf7" id="r_a99b01dc0c8a6eca2fe00544d69b7bdf7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a99b01dc0c8a6eca2fe00544d69b7bdf7">transition_timeout_sec_</a> = -1.0f</td></tr>
+<tr class="separator:a99b01dc0c8a6eca2fe00544d69b7bdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a626d17d9c01259194eb4ddbb0a82ada6" id="r_a626d17d9c01259194eb4ddbb0a82ada6"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a626d17d9c01259194eb4ddbb0a82ada6">current_mode_id_</a></td></tr>
+<tr class="separator:a626d17d9c01259194eb4ddbb0a82ada6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3eb1b1ec388ebb6f50a74e1ab965579" id="r_af3eb1b1ec388ebb6f50a74e1ab965579"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af3eb1b1ec388ebb6f50a74e1ab965579">mode_input_enabled_</a> = true</td></tr>
+<tr class="separator:af3eb1b1ec388ebb6f50a74e1ab965579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada576236783b80b01c994d4b92bb01b4" id="r_ada576236783b80b01c994d4b92bb01b4"><td class="memItemLeft" align="right" valign="top">godot::HashMap&lt; godot::String, <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ada576236783b80b01c994d4b92bb01b4">action_handlers_</a></td></tr>
+<tr class="separator:ada576236783b80b01c994d4b92bb01b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。 </p>
+</div><h2 class="groupheader">型定義メンバ詳解</h2>
+<a id="a416b4e5b1c36c12d1b20388c9a3b6ce7" name="a416b4e5b1c36c12d1b20388c9a3b6ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a416b4e5b1c36c12d1b20388c9a3b6ce7">&#9670;&#160;</a></span>ActionHandler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">karakuri::ScenarioRunner::ActionHandler</a> =  std::function&lt;bool(const godot::Variant &amp;payload)&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a8b67b05e7b7a98649ff25475ae54ef68" name="a8b67b05e7b7a98649ff25475ae54ef68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b67b05e7b7a98649ff25475ae54ef68">&#9670;&#160;</a></span>ScenarioRunner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::ScenarioRunner::ScenarioRunner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a8b67b05e7b7a98649ff25475ae54ef68_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a8b67b05e7b7a98649ff25475ae54ef68_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a8b67b05e7b7a98649ff25475ae54ef68_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a8b67b05e7b7a98649ff25475ae54ef68_cgraph">
+<area shape="rect" title=" " alt="" coords="5,133,189,173"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="190,151,223,151,223,156,190,156"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,101,653,141"/>
+<area shape="poly" title=" " alt="" coords="422,138,455,133,456,139,422,143"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb" title="外部からカスタムアクションを登録する。" alt="" coords="469,165,653,205"/>
+<area shape="poly" title=" " alt="" coords="422,163,456,168,455,173,422,169"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d" title=" " alt="" coords="701,5,885,45"/>
+<area shape="poly" title=" " alt="" coords="602,99,700,55,719,48,721,53,702,60,605,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="701,69,885,109"/>
+<area shape="poly" title=" " alt="" coords="654,106,687,101,688,107,654,111"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662" title=" " alt="" coords="701,133,885,173"/>
+<area shape="poly" title=" " alt="" coords="654,131,688,136,687,141,654,137"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="701,197,885,237"/>
+<area shape="poly" title=" " alt="" coords="627,139,655,151,679,167,703,183,717,190,715,195,700,188,676,172,652,156,625,144"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="938,69,1122,109"/>
+<area shape="poly" title=" " alt="" coords="885,87,924,87,924,92,885,92"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="933,165,1127,205"/>
+<area shape="poly" title=" " alt="" coords="855,107,886,119,974,157,972,162,884,124,853,112"/>
+<area shape="poly" title=" " alt="" coords="885,202,919,198,920,203,886,208"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1a11ec90c114e1c8b67c6ecfdc8ba1b0" name="a1a11ec90c114e1c8b67c6ecfdc8ba1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a11ec90c114e1c8b67c6ecfdc8ba1b0">&#9670;&#160;</a></span>~ScenarioRunner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::ScenarioRunner::~ScenarioRunner </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a60a3bd9441d874e67c2e5db70694d132" name="a60a3bd9441d874e67c2e5db70694d132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60a3bd9441d874e67c2e5db70694d132">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a60a3bd9441d874e67c2e5db70694d132_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a60a3bd9441d874e67c2e5db70694d132_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a60a3bd9441d874e67c2e5db70694d132_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a60a3bd9441d874e67c2e5db70694d132_cgraph">
+<area shape="rect" title=" " alt="" coords="5,732,189,772"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306" title=" " alt="" coords="260,5,444,45"/>
+<area shape="poly" title=" " alt="" coords="97,732,108,597,133,394,151,288,174,191,202,111,218,79,235,56,246,46,250,50,239,59,222,82,207,113,179,192,157,289,138,395,114,598,103,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#afab3dd95e54c4e3d348f979d829c4cf9" title=" " alt="" coords="260,69,444,109"/>
+<area shape="poly" title=" " alt="" coords="98,732,110,608,137,424,155,329,178,241,204,169,219,141,235,120,246,110,250,114,239,123,224,144,209,171,183,243,161,330,142,425,116,609,103,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ac4202e43bbd713b0ebd033cdb7bc7c45" title=" " alt="" coords="260,133,444,173"/>
+<area shape="poly" title=" " alt="" coords="98,731,113,618,141,454,160,369,182,291,207,227,221,202,235,183,246,174,250,178,239,187,225,205,212,230,187,293,165,370,146,455,118,619,104,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af75d49b2e6f353a0271223ea4a00175e" title=" " alt="" coords="260,197,444,237"/>
+<area shape="poly" title=" " alt="" coords="95,732,96,644,101,583,112,514,129,443,154,372,189,306,211,275,235,247,247,238,250,242,239,251,215,279,193,309,159,374,134,445,117,515,107,583,102,645,100,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ae362e7772afbc4cb3dce040d33ddc02e" title=" " alt="" coords="237,261,467,301"/>
+<area shape="poly" title=" " alt="" coords="96,731,101,653,108,600,120,541,137,479,161,418,194,361,235,311,240,307,244,311,239,315,198,364,166,421,142,481,125,542,113,601,106,654,101,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a6f4b69e80ce21b8c9952d9b161b7bd63" title=" " alt="" coords="260,325,444,365"/>
+<area shape="poly" title=" " alt="" coords="97,732,106,664,127,568,145,516,169,465,198,417,236,375,246,367,250,371,239,379,203,420,173,467,150,518,132,569,111,665,103,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ae81c58f52de6ac2d68b127d7f625fbf4" title=" " alt="" coords="252,389,452,429"/>
+<area shape="poly" title=" " alt="" coords="99,731,111,674,136,595,154,553,176,511,203,473,236,439,241,435,245,439,239,443,207,476,181,514,158,555,141,597,116,675,104,732"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ace11a808e8e42344caf30f34d34620f6" title=" " alt="" coords="241,453,463,493"/>
+<area shape="poly" title=" " alt="" coords="102,731,117,684,144,623,183,558,208,529,236,503,243,498,246,503,239,507,212,533,188,562,149,625,122,686,107,733"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aacd7bcc2c0f36581b19040462d5cde01" title=" " alt="" coords="258,517,446,557"/>
+<area shape="poly" title=" " alt="" coords="106,730,126,695,154,651,191,606,236,567,246,561,249,566,239,571,195,609,159,654,130,698,111,733"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f6657e8d2f79d00580d14e34294ec9c" title=" " alt="" coords="260,581,444,621"/>
+<area shape="poly" title=" " alt="" coords="115,730,166,680,200,654,236,631,251,624,253,629,239,636,203,658,170,684,119,734"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aee25586a80bd674b095d0ff8e8d7ef54" title=" " alt="" coords="260,645,444,685"/>
+<area shape="poly" title=" " alt="" coords="155,729,236,701,278,687,280,692,238,707,157,734"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="515,719,699,759"/>
+<area shape="poly" title=" " alt="" coords="190,747,237,745,501,739,501,744,237,751,190,752"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a74a06d176587eb56cdb4af04bff95534" title=" " alt="" coords="260,760,444,800"/>
+<area shape="poly" title=" " alt="" coords="190,759,247,766,246,771,189,765"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8" title=" " alt="" coords="260,824,444,864"/>
+<area shape="poly" title=" " alt="" coords="142,770,238,810,262,817,260,822,236,814,140,775"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a01a9b2b785d9580e0186f87bf8aa88c7" title=" " alt="" coords="260,888,444,928"/>
+<area shape="poly" title=" " alt="" coords="118,770,169,822,202,850,239,874,252,880,250,885,236,878,199,854,165,826,114,774"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a62eb16e61cf610b22910d2d0ef6b0465" title=" " alt="" coords="260,952,444,992"/>
+<area shape="poly" title=" " alt="" coords="110,771,129,807,158,853,195,899,239,938,249,944,246,949,236,942,191,902,153,856,125,810,106,774"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a614a8f0a89852726f3bd550519077d96" title=" " alt="" coords="260,1016,444,1056"/>
+<area shape="poly" title=" " alt="" coords="106,771,122,819,148,881,187,946,211,976,239,1002,249,1009,246,1013,236,1006,207,980,183,949,144,884,117,821,101,773"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a430709ae392465c777ddce2c67da6fd5" title=" " alt="" coords="260,1080,444,1120"/>
+<area shape="poly" title=" " alt="" coords="104,772,116,830,140,909,158,952,180,994,207,1032,239,1066,250,1074,246,1078,236,1070,203,1036,175,996,153,954,135,911,111,831,99,773"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab938f60f0b92008b573d069fd85b8e68" title=" " alt="" coords="260,1144,444,1184"/>
+<area shape="poly" title=" " alt="" coords="102,772,111,841,132,937,149,989,173,1041,202,1088,239,1130,250,1138,246,1142,236,1134,198,1092,168,1043,145,991,127,939,105,841,97,773"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a34941cf83c64722dca9ad61caf80d3ec" title=" " alt="" coords="238,1208,466,1248"/>
+<area shape="poly" title=" " alt="" coords="101,772,106,850,113,904,124,964,141,1026,165,1087,198,1144,239,1194,244,1198,240,1202,235,1198,193,1147,161,1089,136,1028,119,965,107,905,100,851,96,772"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ac2a5cd95c37a773e5429dc978987fe39" title=" " alt="" coords="260,1272,444,1312"/>
+<area shape="poly" title=" " alt="" coords="104,772,120,874,150,1020,169,1096,190,1164,214,1221,239,1258,250,1267,247,1271,235,1262,209,1223,185,1166,164,1097,145,1022,115,875,99,773"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ac1bc09d9edbd5a307d187d8e5eba0974" title=" " alt="" coords="253,1336,451,1376"/>
+<area shape="poly" title=" " alt="" coords="103,772,118,885,146,1051,164,1137,186,1215,211,1279,225,1304,239,1322,244,1326,240,1330,235,1326,221,1307,207,1281,181,1217,159,1138,140,1052,113,886,98,772"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ad15fffa0e7461c73c736ae3fa9ab8807" title=" " alt="" coords="242,1400,462,1440"/>
+<area shape="poly" title=" " alt="" coords="103,772,116,897,142,1082,160,1178,183,1266,209,1338,224,1365,239,1386,243,1390,239,1394,235,1390,219,1368,204,1340,178,1267,155,1179,137,1083,110,897,98,773"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a23c5d84b5a91c081108402dc0f3fa71c" title=" " alt="" coords="259,1464,445,1504"/>
+<area shape="poly" title=" " alt="" coords="103,772,113,907,138,1112,156,1218,179,1316,207,1396,222,1427,239,1450,248,1458,245,1462,235,1454,218,1430,202,1398,174,1317,151,1219,133,1113,108,908,97,772"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0a7fac70635b974f6bba84d70a25162b" title=" " alt="" coords="515,629,699,669"/>
+<area shape="poly" title=" " alt="" coords="444,657,501,653,501,659,444,662"/>
+<area shape="rect" href="classkarakuri_1_1YamlLite.html#a9642a726e21681bbe01bf5338cf0f282" title="YAMLテキストをGodotのVariantツリー（Dictionary/Array/スカラー等）としてパースする。" alt="" coords="770,591,907,631"/>
+<area shape="poly" title=" " alt="" coords="699,631,756,622,757,627,700,637"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d" title=" " alt="" coords="747,655,931,695"/>
+<area shape="poly" title=" " alt="" coords="679,716,752,696,753,701,681,721"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="747,719,931,759"/>
+<area shape="poly" title=" " alt="" coords="699,736,733,736,733,741,699,741"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662" title=" " alt="" coords="747,783,931,823"/>
+<area shape="poly" title=" " alt="" coords="681,756,753,776,752,782,679,761"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="747,847,931,887"/>
+<area shape="poly" title=" " alt="" coords="680,756,700,769,716,785,725,801,733,817,748,833,756,838,753,842,745,837,729,820,720,804,712,788,697,773,677,761"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="983,719,1167,759"/>
+<area shape="poly" title=" " alt="" coords="931,736,970,736,970,741,931,741"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="979,815,1172,855"/>
+<area shape="poly" title=" " alt="" coords="900,756,932,768,1020,806,1018,811,930,773,898,761"/>
+<area shape="poly" title=" " alt="" coords="930,852,965,847,966,852,931,857"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8214a6443add202caffb399425fd1a41" title=" " alt="" coords="515,783,699,823"/>
+<area shape="poly" title=" " alt="" coords="444,826,501,817,501,822,445,832"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0" title=" " alt="" coords="515,847,699,887"/>
+<area shape="poly" title=" " alt="" coords="445,850,501,855,501,860,444,855"/>
+<area shape="poly" title=" " alt="" coords="699,864,733,864,733,869,699,869"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5ae5f997f165487d55b4d8901c1fde97" name="a5ae5f997f165487d55b4d8901c1fde97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ae5f997f165487d55b4d8901c1fde97">&#9670;&#160;</a></span>_process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::_process </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a5ae5f997f165487d55b4d8901c1fde97_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a5ae5f997f165487d55b4d8901c1fde97_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a5ae5f997f165487d55b4d8901c1fde97_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a5ae5f997f165487d55b4d8901c1fde97_cgraph">
+<area shape="rect" title=" " alt="" coords="5,195,189,235"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="173,192,239,174,240,180,174,197"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a2aacfac50c4cb83def98929176a497a8" title=" " alt="" coords="237,255,421,295"/>
+<area shape="poly" title=" " alt="" coords="176,232,239,249,237,254,175,237"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d" title=" " alt="" coords="469,5,653,45"/>
+<area shape="poly" title=" " alt="" coords="354,131,405,93,468,55,483,48,485,53,471,60,408,98,357,135"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="469,69,653,109"/>
+<area shape="poly" title=" " alt="" coords="402,131,475,110,476,116,403,136"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662" title=" " alt="" coords="469,133,653,173"/>
+<area shape="poly" title=" " alt="" coords="422,151,455,151,455,156,422,156"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="469,197,653,237"/>
+<area shape="poly" title=" " alt="" coords="403,171,476,191,475,196,402,176"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="706,69,890,109"/>
+<area shape="poly" title=" " alt="" coords="653,87,692,87,692,92,653,92"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="701,197,895,237"/>
+<area shape="poly" title=" " alt="" coords="627,107,655,119,712,152,762,187,759,191,709,157,652,124,625,112"/>
+<area shape="poly" title=" " alt="" coords="653,215,688,215,688,220,653,220"/>
+<area shape="poly" title=" " alt="" coords="421,268,532,261,653,247,703,238,704,243,654,252,533,266,422,274"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306" title=" " alt="" coords="469,312,653,352"/>
+<area shape="poly" title=" " alt="" coords="412,292,467,306,466,311,410,297"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0f0aba18ea01d10f9cc195e1a8de72e4" name="a0f0aba18ea01d10f9cc195e1a8de72e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f0aba18ea01d10f9cc195e1a8de72e4">&#9670;&#160;</a></span>_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a0f0aba18ea01d10f9cc195e1a8de72e4_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a0f0aba18ea01d10f9cc195e1a8de72e4_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a0f0aba18ea01d10f9cc195e1a8de72e4_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a0f0aba18ea01d10f9cc195e1a8de72e4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,133,189,173"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0a7fac70635b974f6bba84d70a25162b" title=" " alt="" coords="237,37,421,77"/>
+<area shape="poly" title=" " alt="" coords="146,131,267,80,269,85,148,136"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="190,151,223,151,223,156,190,156"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa1565f648605e5d9d1a9bcd5d73bdf9e" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="171,171,244,191,243,196,170,176"/>
+<area shape="rect" href="classkarakuri_1_1YamlLite.html#a9642a726e21681bbe01bf5338cf0f282" title="YAMLテキストをGodotのVariantツリー（Dictionary/Array/スカラー等）としてパースする。" alt="" coords="493,5,630,45"/>
+<area shape="poly" title=" " alt="" coords="422,42,479,34,480,39,422,47"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d" title=" " alt="" coords="469,69,653,109"/>
+<area shape="poly" title=" " alt="" coords="402,131,475,110,476,116,403,136"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="469,133,653,173"/>
+<area shape="poly" title=" " alt="" coords="422,151,455,151,455,156,422,156"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662" title=" " alt="" coords="469,197,653,237"/>
+<area shape="poly" title=" " alt="" coords="403,171,476,191,475,196,402,176"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="469,261,653,301"/>
+<area shape="poly" title=" " alt="" coords="402,171,423,183,439,200,448,216,456,232,471,247,479,252,476,257,468,251,452,235,443,219,435,203,420,187,400,176"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="706,133,890,173"/>
+<area shape="poly" title=" " alt="" coords="653,151,692,151,692,156,653,156"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="701,229,895,269"/>
+<area shape="poly" title=" " alt="" coords="623,171,654,183,742,221,740,226,652,188,621,176"/>
+<area shape="poly" title=" " alt="" coords="653,266,687,262,688,267,654,272"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af512f5cf6d2e05c8aaa50fc374943f3d" name="af512f5cf6d2e05c8aaa50fc374943f3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af512f5cf6d2e05c8aaa50fc374943f3d">&#9670;&#160;</a></span>bind_scene_hotspots()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::bind_scene_hotspots </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramname"><em>scene_dict</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_af512f5cf6d2e05c8aaa50fc374943f3d_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_af512f5cf6d2e05c8aaa50fc374943f3d_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_af512f5cf6d2e05c8aaa50fc374943f3d_icgraph" id="aclasskarakuri_1_1ScenarioRunner_af512f5cf6d2e05c8aaa50fc374943f3d_icgraph">
+<area shape="rect" title=" " alt="" coords="701,101,885,141"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,101,653,141"/>
+<area shape="poly" title=" " alt="" coords="687,124,654,124,654,119,687,119"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="506,98,420,60,389,48,391,43,422,55,508,93"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="455,109,421,105,422,99,456,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="456,139,422,143,421,138,455,133"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="508,150,422,188,391,200,389,195,420,183,506,145"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,197,189,237"/>
+<area shape="poly" title=" " alt="" coords="223,220,190,220,190,215,223,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6cc233c883e7d81d4bfe454c8c370c9c" name="a6cc233c883e7d81d4bfe454c8c370c9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cc233c883e7d81d4bfe454c8c370c9c">&#9670;&#160;</a></span>complete_custom_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::complete_custom_action </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd99d51ff26f3ae0a28930e9d919c306" name="afd99d51ff26f3ae0a28930e9d919c306"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd99d51ff26f3ae0a28930e9d919c306">&#9670;&#160;</a></span>execute_single_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::execute_single_action </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Variant &amp;&#160;</td>
+          <td class="paramname"><em>action</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_afd99d51ff26f3ae0a28930e9d919c306_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_afd99d51ff26f3ae0a28930e9d919c306_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_afd99d51ff26f3ae0a28930e9d919c306_icgraph" id="aclasskarakuri_1_1ScenarioRunner_afd99d51ff26f3ae0a28930e9d919c306_icgraph">
+<area shape="rect" title=" " alt="" coords="469,37,653,77"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="455,45,421,41,422,35,456,40"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a2aacfac50c4cb83def98929176a497a8" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="456,75,422,79,421,74,455,69"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="5,69,189,109"/>
+<area shape="poly" title=" " alt="" coords="223,92,190,92,190,87,223,87"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a54e5551b2a1b673f6169610e80a1f373" name="a54e5551b2a1b673f6169610e80a1f373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54e5551b2a1b673f6169610e80a1f373">&#9670;&#160;</a></span>get_adventure_state()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Node * karakuri::ScenarioRunner::get_adventure_state </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afab3dd95e54c4e3d348f979d829c4cf9" name="afab3dd95e54c4e3d348f979d829c4cf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab3dd95e54c4e3d348f979d829c4cf9">&#9670;&#160;</a></span>get_current_scene_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::ScenarioRunner::get_current_scene_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_afab3dd95e54c4e3d348f979d829c4cf9_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_afab3dd95e54c4e3d348f979d829c4cf9_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_afab3dd95e54c4e3d348f979d829c4cf9_icgraph" id="aclasskarakuri_1_1ScenarioRunner_afab3dd95e54c4e3d348f979d829c4cf9_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac4202e43bbd713b0ebd033cdb7bc7c45" name="ac4202e43bbd713b0ebd033cdb7bc7c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4202e43bbd713b0ebd033cdb7bc7c45">&#9670;&#160;</a></span>get_dialogue_ui_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_dialogue_ui_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ac4202e43bbd713b0ebd033cdb7bc7c45_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ac4202e43bbd713b0ebd033cdb7bc7c45_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ac4202e43bbd713b0ebd033cdb7bc7c45_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ac4202e43bbd713b0ebd033cdb7bc7c45_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af75d49b2e6f353a0271223ea4a00175e" name="af75d49b2e6f353a0271223ea4a00175e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af75d49b2e6f353a0271223ea4a00175e">&#9670;&#160;</a></span>get_evidence_ui_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_evidence_ui_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_af75d49b2e6f353a0271223ea4a00175e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_af75d49b2e6f353a0271223ea4a00175e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_af75d49b2e6f353a0271223ea4a00175e_icgraph" id="aclasskarakuri_1_1ScenarioRunner_af75d49b2e6f353a0271223ea4a00175e_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae362e7772afbc4cb3dce040d33ddc02e" name="ae362e7772afbc4cb3dce040d33ddc02e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae362e7772afbc4cb3dce040d33ddc02e">&#9670;&#160;</a></span>get_interaction_manager_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_interaction_manager_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ae362e7772afbc4cb3dce040d33ddc02e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ae362e7772afbc4cb3dce040d33ddc02e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ae362e7772afbc4cb3dce040d33ddc02e_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ae362e7772afbc4cb3dce040d33ddc02e_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,467,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,190,28,190,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6f4b69e80ce21b8c9952d9b161b7bd63" name="a6f4b69e80ce21b8c9952d9b161b7bd63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f4b69e80ce21b8c9952d9b161b7bd63">&#9670;&#160;</a></span>get_scenario_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::ScenarioRunner::get_scenario_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a6f4b69e80ce21b8c9952d9b161b7bd63_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a6f4b69e80ce21b8c9952d9b161b7bd63_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a6f4b69e80ce21b8c9952d9b161b7bd63_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a6f4b69e80ce21b8c9952d9b161b7bd63_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae81c58f52de6ac2d68b127d7f625fbf4" name="ae81c58f52de6ac2d68b127d7f625fbf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae81c58f52de6ac2d68b127d7f625fbf4">&#9670;&#160;</a></span>get_scene_container_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_scene_container_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ae81c58f52de6ac2d68b127d7f625fbf4_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ae81c58f52de6ac2d68b127d7f625fbf4_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ae81c58f52de6ac2d68b127d7f625fbf4_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ae81c58f52de6ac2d68b127d7f625fbf4_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,437,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,189,28,189,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ace11a808e8e42344caf30f34d34620f6" name="ace11a808e8e42344caf30f34d34620f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace11a808e8e42344caf30f34d34620f6">&#9670;&#160;</a></span>get_transition_manager_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_transition_manager_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ace11a808e8e42344caf30f34d34620f6_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ace11a808e8e42344caf30f34d34620f6_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ace11a808e8e42344caf30f34d34620f6_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ace11a808e8e42344caf30f34d34620f6_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,189,28,189,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aacd7bcc2c0f36581b19040462d5cde01" name="aacd7bcc2c0f36581b19040462d5cde01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd7bcc2c0f36581b19040462d5cde01">&#9670;&#160;</a></span>get_transition_rect_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_transition_rect_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_aacd7bcc2c0f36581b19040462d5cde01_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_aacd7bcc2c0f36581b19040462d5cde01_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_aacd7bcc2c0f36581b19040462d5cde01_icgraph" id="aclasskarakuri_1_1ScenarioRunner_aacd7bcc2c0f36581b19040462d5cde01_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,425,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,190,28,190,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8214a6443add202caffb399425fd1a41" name="a8214a6443add202caffb399425fd1a41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8214a6443add202caffb399425fd1a41">&#9670;&#160;</a></span>hotspot_matches_click()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::hotspot_matches_click </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html">HotspotBinding</a> &amp;&#160;</td>
+          <td class="paramname"><em>hs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Vector2 &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a8214a6443add202caffb399425fd1a41_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a8214a6443add202caffb399425fd1a41_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a8214a6443add202caffb399425fd1a41_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a8214a6443add202caffb399425fd1a41_icgraph">
+<area shape="rect" title=" " alt="" coords="469,5,653,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="455,28,422,28,422,23,455,23"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" name="a9be7bdc1c0c6a84c2f6b1cc1d17dd16e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e">&#9670;&#160;</a></span>init_builtin_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::init_builtin_actions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,133,189,173"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="237,101,421,141"/>
+<area shape="poly" title=" " alt="" coords="190,138,223,133,224,139,190,143"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb" title="外部からカスタムアクションを登録する。" alt="" coords="237,165,421,205"/>
+<area shape="poly" title=" " alt="" coords="190,163,224,168,223,173,190,169"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d" title=" " alt="" coords="469,5,653,45"/>
+<area shape="poly" title=" " alt="" coords="370,99,468,55,487,48,489,53,470,60,373,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="469,69,653,109"/>
+<area shape="poly" title=" " alt="" coords="422,106,455,101,456,107,422,111"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662" title=" " alt="" coords="469,133,653,173"/>
+<area shape="poly" title=" " alt="" coords="422,131,456,136,455,141,422,137"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="469,197,653,237"/>
+<area shape="poly" title=" " alt="" coords="395,139,423,151,447,167,471,183,485,190,483,195,468,188,444,172,420,156,393,144"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="706,69,890,109"/>
+<area shape="poly" title=" " alt="" coords="653,87,692,87,692,92,653,92"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="701,165,895,205"/>
+<area shape="poly" title=" " alt="" coords="623,107,654,119,742,157,740,162,652,124,621,112"/>
+<area shape="poly" title=" " alt="" coords="653,202,687,198,688,203,654,208"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0f6657e8d2f79d00580d14e34294ec9c" name="a0f6657e8d2f79d00580d14e34294ec9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f6657e8d2f79d00580d14e34294ec9c">&#9670;&#160;</a></span>is_running()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::is_running </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a0f6657e8d2f79d00580d14e34294ec9c_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a0f6657e8d2f79d00580d14e34294ec9c_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a0f6657e8d2f79d00580d14e34294ec9c_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a0f6657e8d2f79d00580d14e34294ec9c_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aee25586a80bd674b095d0ff8e8d7ef54" name="aee25586a80bd674b095d0ff8e8d7ef54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee25586a80bd674b095d0ff8e8d7ef54">&#9670;&#160;</a></span>load_scenario()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::load_scenario </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_cgraph" id="aclasskarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,189,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0a7fac70635b974f6bba84d70a25162b" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="190,23,223,23,223,28,190,28"/>
+<area shape="rect" href="classkarakuri_1_1YamlLite.html#a9642a726e21681bbe01bf5338cf0f282" title="YAMLテキストをGodotのVariantツリー（Dictionary/Array/スカラー等）としてパースする。" alt="" coords="469,5,607,45"/>
+<area shape="poly" title=" " alt="" coords="422,23,456,23,456,28,422,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_icgraph" id="aclasskarakuri_1_1ScenarioRunner_aee25586a80bd674b095d0ff8e8d7ef54_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0a7fac70635b974f6bba84d70a25162b" name="a0a7fac70635b974f6bba84d70a25162b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a7fac70635b974f6bba84d70a25162b">&#9670;&#160;</a></span>load_scenario_internal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::load_scenario_internal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,189,45"/>
+<area shape="rect" href="classkarakuri_1_1YamlLite.html#a9642a726e21681bbe01bf5338cf0f282" title="YAMLテキストをGodotのVariantツリー（Dictionary/Array/スカラー等）としてパースする。" alt="" coords="237,5,375,45"/>
+<area shape="poly" title=" " alt="" coords="190,23,224,23,224,28,190,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a0a7fac70635b974f6bba84d70a25162b_icgraph">
+<area shape="rect" title=" " alt="" coords="469,37,653,77"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="455,45,421,41,422,35,456,40"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aee25586a80bd674b095d0ff8e8d7ef54" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="456,75,422,79,421,74,455,69"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,69,189,109"/>
+<area shape="poly" title=" " alt="" coords="223,92,190,92,190,87,223,87"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab2923fd2fb4eaade40637591760775bd" name="ab2923fd2fb4eaade40637591760775bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2923fd2fb4eaade40637591760775bd">&#9670;&#160;</a></span>load_scene_by_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::load_scene_by_id </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>scene_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_cgraph" id="aclasskarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,101,189,141"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="138,99,236,55,255,48,257,53,238,60,141,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="190,106,223,101,224,107,190,111"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="190,131,224,136,223,141,190,137"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="141,139,238,183,257,190,255,195,236,188,138,144"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="474,69,658,109"/>
+<area shape="poly" title=" " alt="" coords="421,87,460,87,460,92,421,92"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="469,165,663,205"/>
+<area shape="poly" title=" " alt="" coords="391,107,422,119,510,157,508,162,420,124,389,112"/>
+<area shape="poly" title=" " alt="" coords="421,202,455,198,456,203,422,208"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ab2923fd2fb4eaade40637591760775bd_icgraph">
+<area shape="rect" title=" " alt="" coords="469,101,653,141"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="506,98,420,60,389,48,391,43,422,55,508,93"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="455,109,421,105,422,99,456,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="456,139,422,143,421,138,455,133"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="508,150,422,188,391,200,389,195,420,183,506,145"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,197,189,237"/>
+<area shape="poly" title=" " alt="" coords="223,220,190,220,190,215,223,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0e9706d25b17ceed6489750d5e1b04c5" name="a0e9706d25b17ceed6489750d5e1b04c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e9706d25b17ceed6489750d5e1b04c5">&#9670;&#160;</a></span>notify_mode_enter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::notify_mode_enter </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>scene_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramname"><em>scene_dict</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,37,189,77"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="242,5,426,45"/>
+<area shape="poly" title=" " alt="" coords="189,42,228,37,229,42,190,48"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="237,69,431,109"/>
+<area shape="poly" title=" " alt="" coords="190,67,224,72,223,77,189,72"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a0e9706d25b17ceed6489750d5e1b04c5_icgraph">
+<area shape="rect" title=" " alt="" coords="701,101,885,141"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,101,653,141"/>
+<area shape="poly" title=" " alt="" coords="687,124,654,124,654,119,687,119"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="506,98,420,60,389,48,391,43,422,55,508,93"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="455,109,421,105,422,99,456,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="456,139,422,143,421,138,455,133"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="508,150,422,188,391,200,389,195,420,183,506,145"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,197,189,237"/>
+<area shape="poly" title=" " alt="" coords="223,220,190,220,190,215,223,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a576e893e8fe435fbbbc45f3ea85ea662" name="a576e893e8fe435fbbbc45f3ea85ea662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a576e893e8fe435fbbbc45f3ea85ea662">&#9670;&#160;</a></span>notify_mode_exit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::notify_mode_exit </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>current_mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>next_scene_id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a576e893e8fe435fbbbc45f3ea85ea662_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a576e893e8fe435fbbbc45f3ea85ea662_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a576e893e8fe435fbbbc45f3ea85ea662_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a576e893e8fe435fbbbc45f3ea85ea662_icgraph">
+<area shape="rect" title=" " alt="" coords="701,101,885,141"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,101,653,141"/>
+<area shape="poly" title=" " alt="" coords="687,124,654,124,654,119,687,119"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="506,98,420,60,389,48,391,43,422,55,508,93"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="455,109,421,105,422,99,456,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="456,139,422,143,421,138,455,133"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="508,150,422,188,391,200,389,195,420,183,506,145"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,197,189,237"/>
+<area shape="poly" title=" " alt="" coords="223,220,190,220,190,215,223,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a74a06d176587eb56cdb4af04bff95534" name="a74a06d176587eb56cdb4af04bff95534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74a06d176587eb56cdb4af04bff95534">&#9670;&#160;</a></span>on_choice_selected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::on_choice_selected </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a74a06d176587eb56cdb4af04bff95534_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a74a06d176587eb56cdb4af04bff95534_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a74a06d176587eb56cdb4af04bff95534_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a74a06d176587eb56cdb4af04bff95534_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a96eb6102afba1cd60a834612604aaba8" name="a96eb6102afba1cd60a834612604aaba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96eb6102afba1cd60a834612604aaba8">&#9670;&#160;</a></span>on_clicked_at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::on_clicked_at </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Vector2 &amp;&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,37,189,77"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8214a6443add202caffb399425fd1a41" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="190,42,223,37,224,43,190,47"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="190,67,224,72,223,77,190,73"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="469,69,653,109"/>
+<area shape="poly" title=" " alt="" coords="422,87,455,87,455,92,422,92"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="701,69,895,109"/>
+<area shape="poly" title=" " alt="" coords="653,87,688,87,688,92,653,92"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a96eb6102afba1cd60a834612604aaba8_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a01a9b2b785d9580e0186f87bf8aa88c7" name="a01a9b2b785d9580e0186f87bf8aa88c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01a9b2b785d9580e0186f87bf8aa88c7">&#9670;&#160;</a></span>on_dialogue_finished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::on_dialogue_finished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a01a9b2b785d9580e0186f87bf8aa88c7_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a01a9b2b785d9580e0186f87bf8aa88c7_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a01a9b2b785d9580e0186f87bf8aa88c7_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a01a9b2b785d9580e0186f87bf8aa88c7_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a62eb16e61cf610b22910d2d0ef6b0465" name="a62eb16e61cf610b22910d2d0ef6b0465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62eb16e61cf610b22910d2d0ef6b0465">&#9670;&#160;</a></span>on_evidence_selected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::on_evidence_selected </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>evidence_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a62eb16e61cf610b22910d2d0ef6b0465_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a62eb16e61cf610b22910d2d0ef6b0465_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a62eb16e61cf610b22910d2d0ef6b0465_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a62eb16e61cf610b22910d2d0ef6b0465_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a614a8f0a89852726f3bd550519077d96" name="a614a8f0a89852726f3bd550519077d96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a614a8f0a89852726f3bd550519077d96">&#9670;&#160;</a></span>on_transition_finished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::on_transition_finished </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Variant &amp;&#160;</td>
+          <td class="paramname"><em>arg1</em> = <code>godot::Variant()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Variant &amp;&#160;</td>
+          <td class="paramname"><em>arg2</em> = <code>godot::Variant()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Variant &amp;&#160;</td>
+          <td class="paramname"><em>arg3</em> = <code>godot::Variant()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a614a8f0a89852726f3bd550519077d96_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a614a8f0a89852726f3bd550519077d96_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a614a8f0a89852726f3bd550519077d96_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a614a8f0a89852726f3bd550519077d96_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1f1525a75bfc99f1d8c5ff8b6680fffb" name="a1f1525a75bfc99f1d8c5ff8b6680fffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1525a75bfc99f1d8c5ff8b6680fffb">&#9670;&#160;</a></span>register_action()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::register_action </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>kind</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a>&#160;</td>
+          <td class="paramname"><em>handler</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>外部からカスタムアクションを登録する。 </p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a1f1525a75bfc99f1d8c5ff8b6680fffb_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a1f1525a75bfc99f1d8c5ff8b6680fffb_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a1f1525a75bfc99f1d8c5ff8b6680fffb_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a1f1525a75bfc99f1d8c5ff8b6680fffb_icgraph">
+<area shape="rect" title="外部からカスタムアクションを登録する。" alt="" coords="469,5,653,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="455,28,422,28,422,23,455,23"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa5199d967a955a3e944def28ed966831" name="aa5199d967a955a3e944def28ed966831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5199d967a955a3e944def28ed966831">&#9670;&#160;</a></span>resolve_mode_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::ScenarioRunner::resolve_mode_id </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>scene_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramname"><em>scene_dict</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_aa5199d967a955a3e944def28ed966831_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_aa5199d967a955a3e944def28ed966831_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_aa5199d967a955a3e944def28ed966831_icgraph" id="aclasskarakuri_1_1ScenarioRunner_aa5199d967a955a3e944def28ed966831_icgraph">
+<area shape="rect" title=" " alt="" coords="933,101,1117,141"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="701,101,885,141"/>
+<area shape="poly" title=" " alt="" coords="919,124,886,124,886,119,919,119"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,101,653,141"/>
+<area shape="poly" title=" " alt="" coords="687,124,654,124,654,119,687,119"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="506,98,420,60,389,48,391,43,422,55,508,93"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="455,109,421,105,422,99,456,104"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,133,421,173"/>
+<area shape="poly" title=" " alt="" coords="456,139,422,143,421,138,455,133"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,197,421,237"/>
+<area shape="poly" title=" " alt="" coords="508,150,422,188,391,200,389,195,420,183,506,145"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,197,189,237"/>
+<area shape="poly" title=" " alt="" coords="223,220,190,220,190,215,223,215"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa1565f648605e5d9d1a9bcd5d73bdf9e" name="aa1565f648605e5d9d1a9bcd5d73bdf9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1565f648605e5d9d1a9bcd5d73bdf9e">&#9670;&#160;</a></span>resolve_node_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Node * karakuri::ScenarioRunner::resolve_node_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_aa1565f648605e5d9d1a9bcd5d73bdf9e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_aa1565f648605e5d9d1a9bcd5d73bdf9e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_aa1565f648605e5d9d1a9bcd5d73bdf9e_icgraph" id="aclasskarakuri_1_1ScenarioRunner_aa1565f648605e5d9d1a9bcd5d73bdf9e_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a430709ae392465c777ddce2c67da6fd5" name="a430709ae392465c777ddce2c67da6fd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a430709ae392465c777ddce2c67da6fd5">&#9670;&#160;</a></span>set_dialogue_ui_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_dialogue_ui_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a430709ae392465c777ddce2c67da6fd5_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a430709ae392465c777ddce2c67da6fd5_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a430709ae392465c777ddce2c67da6fd5_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a430709ae392465c777ddce2c67da6fd5_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab938f60f0b92008b573d069fd85b8e68" name="ab938f60f0b92008b573d069fd85b8e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab938f60f0b92008b573d069fd85b8e68">&#9670;&#160;</a></span>set_evidence_ui_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_evidence_ui_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ab938f60f0b92008b573d069fd85b8e68_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ab938f60f0b92008b573d069fd85b8e68_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ab938f60f0b92008b573d069fd85b8e68_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ab938f60f0b92008b573d069fd85b8e68_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a34941cf83c64722dca9ad61caf80d3ec" name="a34941cf83c64722dca9ad61caf80d3ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34941cf83c64722dca9ad61caf80d3ec">&#9670;&#160;</a></span>set_interaction_manager_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_interaction_manager_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a34941cf83c64722dca9ad61caf80d3ec_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a34941cf83c64722dca9ad61caf80d3ec_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a34941cf83c64722dca9ad61caf80d3ec_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a34941cf83c64722dca9ad61caf80d3ec_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,465,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,190,28,190,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a702283c95079fb5d7a190085ebeff45c" name="a702283c95079fb5d7a190085ebeff45c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a702283c95079fb5d7a190085ebeff45c">&#9670;&#160;</a></span>set_mode_input_enabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_mode_input_enabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a702283c95079fb5d7a190085ebeff45c_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a702283c95079fb5d7a190085ebeff45c_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a702283c95079fb5d7a190085ebeff45c_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a702283c95079fb5d7a190085ebeff45c_icgraph">
+<area shape="rect" title=" " alt="" coords="933,187,1127,227"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0e9706d25b17ceed6489750d5e1b04c5" title=" " alt="" coords="701,187,885,227"/>
+<area shape="poly" title=" " alt="" coords="920,209,885,209,885,204,920,204"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="701,123,885,163"/>
+<area shape="poly" title=" " alt="" coords="942,186,867,165,869,160,943,180"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a2aacfac50c4cb83def98929176a497a8" title=" " alt="" coords="469,248,653,288"/>
+<area shape="poly" title=" " alt="" coords="935,232,886,241,765,256,654,266,653,260,764,251,885,236,934,227"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,156,653,196"/>
+<area shape="poly" title=" " alt="" coords="687,195,653,191,654,186,688,190"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,63,189,103"/>
+<area shape="poly" title=" " alt="" coords="455,164,349,146,237,124,164,105,166,100,238,119,350,141,456,159"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,248,421,288"/>
+<area shape="poly" title=" " alt="" coords="504,204,422,238,390,250,388,245,420,234,502,199"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,69,421,109"/>
+<area shape="poly" title=" " alt="" coords="493,154,383,112,385,107,495,149"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,184,421,224"/>
+<area shape="poly" title=" " alt="" coords="455,191,422,196,421,190,455,186"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,184,189,224"/>
+<area shape="poly" title=" " alt="" coords="223,207,190,207,190,201,223,201"/>
+<area shape="poly" title=" " alt="" coords="688,161,654,165,653,160,687,155"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0" title=" " alt="" coords="469,49,653,89"/>
+<area shape="poly" title=" " alt="" coords="716,121,624,92,626,87,717,116"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="455,52,421,45,422,40,456,47"/>
+<area shape="poly" title=" " alt="" coords="235,51,179,65,178,60,234,46"/>
+<area shape="poly" title=" " alt="" coords="455,271,422,271,422,265,455,265"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac2a5cd95c37a773e5429dc978987fe39" name="ac2a5cd95c37a773e5429dc978987fe39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2a5cd95c37a773e5429dc978987fe39">&#9670;&#160;</a></span>set_scenario_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_scenario_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ac2a5cd95c37a773e5429dc978987fe39_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ac2a5cd95c37a773e5429dc978987fe39_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ac2a5cd95c37a773e5429dc978987fe39_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ac2a5cd95c37a773e5429dc978987fe39_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac1bc09d9edbd5a307d187d8e5eba0974" name="ac1bc09d9edbd5a307d187d8e5eba0974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1bc09d9edbd5a307d187d8e5eba0974">&#9670;&#160;</a></span>set_scene_container_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_scene_container_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ac1bc09d9edbd5a307d187d8e5eba0974_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ac1bc09d9edbd5a307d187d8e5eba0974_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ac1bc09d9edbd5a307d187d8e5eba0974_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ac1bc09d9edbd5a307d187d8e5eba0974_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,436,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,189,28,189,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad15fffa0e7461c73c736ae3fa9ab8807" name="ad15fffa0e7461c73c736ae3fa9ab8807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad15fffa0e7461c73c736ae3fa9ab8807">&#9670;&#160;</a></span>set_transition_manager_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_transition_manager_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_ad15fffa0e7461c73c736ae3fa9ab8807_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_ad15fffa0e7461c73c736ae3fa9ab8807_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_ad15fffa0e7461c73c736ae3fa9ab8807_icgraph" id="aclasskarakuri_1_1ScenarioRunner_ad15fffa0e7461c73c736ae3fa9ab8807_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,457,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="224,28,189,28,189,23,224,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a23c5d84b5a91c081108402dc0f3fa71c" name="a23c5d84b5a91c081108402dc0f3fa71c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c5d84b5a91c081108402dc0f3fa71c">&#9670;&#160;</a></span>set_transition_rect_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_transition_rect_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a23c5d84b5a91c081108402dc0f3fa71c_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a23c5d84b5a91c081108402dc0f3fa71c_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a23c5d84b5a91c081108402dc0f3fa71c_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a23c5d84b5a91c081108402dc0f3fa71c_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,424,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5e8a47e2ae6a81fb053e07ebadcc85aa" name="a5e8a47e2ae6a81fb053e07ebadcc85aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e8a47e2ae6a81fb053e07ebadcc85aa">&#9670;&#160;</a></span>start_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::start_actions </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Array &amp;&#160;</td>
+          <td class="paramname"><em>actions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,189,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="237,5,431,45"/>
+<area shape="poly" title=" " alt="" coords="189,23,224,23,224,28,189,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a5e8a47e2ae6a81fb053e07ebadcc85aa_icgraph">
+<area shape="rect" title=" " alt="" coords="701,184,885,224"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd" title=" " alt="" coords="469,120,653,160"/>
+<area shape="poly" title=" " alt="" coords="706,183,634,163,635,157,708,178"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0" title=" " alt="" coords="469,216,653,256"/>
+<area shape="poly" title=" " alt="" coords="688,221,654,226,653,221,687,216"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,159,189,199"/>
+<area shape="poly" title=" " alt="" coords="477,119,423,109,363,102,300,102,238,111,179,133,129,161,127,156,176,128,237,105,299,97,363,97,424,104,478,114"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="237,120,421,160"/>
+<area shape="poly" title=" " alt="" coords="455,143,422,143,422,137,455,137"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4" title=" " alt="" coords="237,184,421,224"/>
+<area shape="poly" title=" " alt="" coords="476,166,403,187,402,181,474,161"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="513,116,420,66,379,48,382,43,423,62,515,111"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a8b67b05e7b7a98649ff25475ae54ef68" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8" title=" " alt="" coords="237,248,421,288"/>
+<area shape="poly" title=" " alt="" coords="456,253,422,258,421,253,455,248"/>
+<area shape="poly" title=" " alt="" coords="256,246,236,238,145,201,147,196,238,234,258,241"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2aacfac50c4cb83def98929176a497a8" name="a2aacfac50c4cb83def98929176a497a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aacfac50c4cb83def98929176a497a8">&#9670;&#160;</a></span>step_actions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::step_actions </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,37,189,77"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306" title=" " alt="" coords="242,5,426,45"/>
+<area shape="poly" title=" " alt="" coords="189,42,228,37,229,42,190,48"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="237,69,431,109"/>
+<area shape="poly" title=" " alt="" coords="190,67,224,72,223,77,189,72"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a2aacfac50c4cb83def98929176a497a8_icgraph">
+<area shape="rect" title=" " alt="" coords="237,5,421,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aec0b269d5a9b4ed0153e17caa738ae32" name="aec0b269d5a9b4ed0153e17caa738ae32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec0b269d5a9b4ed0153e17caa738ae32">&#9670;&#160;</a></span>tr_key()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::ScenarioRunner::tr_key </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b5c5755c0a93076ca6797ab96a1fea0" name="a4b5c5755c0a93076ca6797ab96a1fea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b5c5755c0a93076ca6797ab96a1fea0">&#9670;&#160;</a></span>trigger_hotspot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::trigger_hotspot </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html">HotspotBinding</a> &amp;&#160;</td>
+          <td class="paramname"><em>hs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_cgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_cgraph" id="aclasskarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,189,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="190,23,223,23,223,28,190,28"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="469,5,663,45"/>
+<area shape="poly" title=" " alt="" coords="421,23,456,23,456,28,421,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_icgraph.png" border="0" usemap="#aclasskarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_icgraph" id="aclasskarakuri_1_1ScenarioRunner_a4b5c5755c0a93076ca6797ab96a1fea0_icgraph">
+<area shape="rect" title=" " alt="" coords="469,5,653,45"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a96eb6102afba1cd60a834612604aaba8" title=" " alt="" coords="237,5,421,45"/>
+<area shape="poly" title=" " alt="" coords="455,28,422,28,422,23,455,23"/>
+<area shape="rect" href="classkarakuri_1_1ScenarioRunner.html#a60a3bd9441d874e67c2e5db70694d132" title=" " alt="" coords="5,5,189,45"/>
+<area shape="poly" title=" " alt="" coords="223,28,190,28,190,23,223,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="ada576236783b80b01c994d4b92bb01b4" name="ada576236783b80b01c994d4b92bb01b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada576236783b80b01c994d4b92bb01b4">&#9670;&#160;</a></span>action_handlers_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::HashMap&lt;godot::String, <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a>&gt; karakuri::ScenarioRunner::action_handlers_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a626d17d9c01259194eb4ddbb0a82ada6" name="a626d17d9c01259194eb4ddbb0a82ada6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a626d17d9c01259194eb4ddbb0a82ada6">&#9670;&#160;</a></span>current_mode_id_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::String karakuri::ScenarioRunner::current_mode_id_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86d9c45ff6cf60001b41131ce595e982" name="a86d9c45ff6cf60001b41131ce595e982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86d9c45ff6cf60001b41131ce595e982">&#9670;&#160;</a></span>current_scene_id_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::String karakuri::ScenarioRunner::current_scene_id_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ed961c02bd8b6412357d6e87537a8a4" name="a1ed961c02bd8b6412357d6e87537a8a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ed961c02bd8b6412357d6e87537a8a4">&#9670;&#160;</a></span>current_scene_instance_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::current_scene_instance_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6867ecf0f1faac393641eed9201841cb" name="a6867ecf0f1faac393641eed9201841cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6867ecf0f1faac393641eed9201841cb">&#9670;&#160;</a></span>dialogue_ui_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::dialogue_ui_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6b072df9efc44e61a30895e1ce019c7c" name="a6b072df9efc44e61a30895e1ce019c7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b072df9efc44e61a30895e1ce019c7c">&#9670;&#160;</a></span>dialogue_ui_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::dialogue_ui_path_ = godot::NodePath(&quot;CanvasLayer/DialogueUI&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aade185b207b2b234df5adc2b65d95847" name="aade185b207b2b234df5adc2b65d95847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade185b207b2b234df5adc2b65d95847">&#9670;&#160;</a></span>evidence_ui_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::evidence_ui_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a54ecfcabb2fede561eddf40ca1267e53" name="a54ecfcabb2fede561eddf40ca1267e53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54ecfcabb2fede561eddf40ca1267e53">&#9670;&#160;</a></span>evidence_ui_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::evidence_ui_path_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初期値:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      godot::NodePath(<span class="stringliteral">&quot;CanvasLayer/InventoryUI&quot;</span>)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a70f7ea84fb0b95b918fc8ec778a6d80a" name="a70f7ea84fb0b95b918fc8ec778a6d80a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f7ea84fb0b95b918fc8ec778a6d80a">&#9670;&#160;</a></span>hotspot_bindings_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Array karakuri::ScenarioRunner::hotspot_bindings_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad96aa24aafdf253553501f1d134eee03" name="ad96aa24aafdf253553501f1d134eee03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad96aa24aafdf253553501f1d134eee03">&#9670;&#160;</a></span>interaction_manager_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::interaction_manager_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0670191d41106baf1fbdf709c106cdd" name="ae0670191d41106baf1fbdf709c106cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0670191d41106baf1fbdf709c106cdd">&#9670;&#160;</a></span>interaction_manager_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::interaction_manager_path_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初期値:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      godot::NodePath(<span class="stringliteral">&quot;InteractionManager&quot;</span>)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a98b32007323ae4d81a8b386dfb4bf98e" name="a98b32007323ae4d81a8b386dfb4bf98e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98b32007323ae4d81a8b386dfb4bf98e">&#9670;&#160;</a></span>is_executing_actions_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::is_executing_actions_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3eb1b1ec388ebb6f50a74e1ab965579" name="af3eb1b1ec388ebb6f50a74e1ab965579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3eb1b1ec388ebb6f50a74e1ab965579">&#9670;&#160;</a></span>mode_input_enabled_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::mode_input_enabled_ = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56dd4b508f3a88e21f19cd6729b36976" name="a56dd4b508f3a88e21f19cd6729b36976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56dd4b508f3a88e21f19cd6729b36976">&#9670;&#160;</a></span>pending_action_index_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::ScenarioRunner::pending_action_index_ = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1118efc845b2b3c4a060f8e8e9c9e162" name="a1118efc845b2b3c4a060f8e8e9c9e162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1118efc845b2b3c4a060f8e8e9c9e162">&#9670;&#160;</a></span>pending_actions_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Array karakuri::ScenarioRunner::pending_actions_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60db3e4b0e6479a83b5204fb79475dcb" name="a60db3e4b0e6479a83b5204fb79475dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60db3e4b0e6479a83b5204fb79475dcb">&#9670;&#160;</a></span>pending_choice_actions_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Array karakuri::ScenarioRunner::pending_choice_actions_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51d167edf4012217938512b092b97068" name="a51d167edf4012217938512b092b97068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d167edf4012217938512b092b97068">&#9670;&#160;</a></span>scenario_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::String karakuri::ScenarioRunner::scenario_path_ = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9368737730b9de9c5c7b86e77fbde572" name="a9368737730b9de9c5c7b86e77fbde572"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9368737730b9de9c5c7b86e77fbde572">&#9670;&#160;</a></span>scenario_root_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Dictionary karakuri::ScenarioRunner::scenario_root_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a516e7a5697052a001776be3d137e4e10" name="a516e7a5697052a001776be3d137e4e10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a516e7a5697052a001776be3d137e4e10">&#9670;&#160;</a></span>scene_container_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::scene_container_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99370084d2e7a568b54de8ec20febde3" name="a99370084d2e7a568b54de8ec20febde3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99370084d2e7a568b54de8ec20febde3">&#9670;&#160;</a></span>scene_container_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::scene_container_path_ = godot::NodePath(&quot;SceneContainer&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71600f3941d971418011dfef881bbbab" name="a71600f3941d971418011dfef881bbbab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71600f3941d971418011dfef881bbbab">&#9670;&#160;</a></span>scenes_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Dictionary karakuri::ScenarioRunner::scenes_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d4dcf0e530c11c948fdaffdc6f83400" name="a3d4dcf0e530c11c948fdaffdc6f83400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4dcf0e530c11c948fdaffdc6f83400">&#9670;&#160;</a></span>transition_manager_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::transition_manager_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af03615effd91803d9aa7196cf8848ce1" name="af03615effd91803d9aa7196cf8848ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03615effd91803d9aa7196cf8848ce1">&#9670;&#160;</a></span>transition_manager_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::transition_manager_path_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初期値:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      godot::NodePath(<span class="stringliteral">&quot;TransitionManager&quot;</span>)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae7533adb8b8becf4943faa95850df3f2" name="ae7533adb8b8becf4943faa95850df3f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7533adb8b8becf4943faa95850df3f2">&#9670;&#160;</a></span>transition_rect_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Node* karakuri::ScenarioRunner::transition_rect_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4acbe873f80e2cc665995f5da0a2bb99" name="a4acbe873f80e2cc665995f5da0a2bb99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acbe873f80e2cc665995f5da0a2bb99">&#9670;&#160;</a></span>transition_rect_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::transition_rect_path_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初期値:</b><div class="fragment"><div class="line">=</div>
+<div class="line">      godot::NodePath(<span class="stringliteral">&quot;TransitionMaskLayer/TransitionRect&quot;</span>)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af1ced1b613013ade4fd2b1ae5b7058d2" name="af1ced1b613013ade4fd2b1ae5b7058d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1ced1b613013ade4fd2b1ae5b7058d2">&#9670;&#160;</a></span>transition_target_duration_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float karakuri::ScenarioRunner::transition_target_duration_ = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84d82194662005fef0a83674eb433434" name="a84d82194662005fef0a83674eb433434"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d82194662005fef0a83674eb433434">&#9670;&#160;</a></span>transition_target_id_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::String karakuri::ScenarioRunner::transition_target_id_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82ec3ba371092edcd179dd3045d465dd" name="a82ec3ba371092edcd179dd3045d465dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ec3ba371092edcd179dd3045d465dd">&#9670;&#160;</a></span>transition_target_type_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::String karakuri::ScenarioRunner::transition_target_type_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99b01dc0c8a6eca2fe00544d69b7bdf7" name="a99b01dc0c8a6eca2fe00544d69b7bdf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99b01dc0c8a6eca2fe00544d69b7bdf7">&#9670;&#160;</a></span>transition_timeout_sec_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float karakuri::ScenarioRunner::transition_timeout_sec_ = -1.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24d7ddc2429c019095e279e0c6a8a137" name="a24d7ddc2429c019095e279e0c6a8a137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d7ddc2429c019095e279e0c6a8a137">&#9670;&#160;</a></span>wait_remaining_sec_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double karakuri::ScenarioRunner::wait_remaining_sec_ = 0.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58d9459c280abdc9cfe26f08782643d1" name="a58d9459c280abdc9cfe26f08782643d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d9459c280abdc9cfe26f08782643d1">&#9670;&#160;</a></span>waiting_for_choice_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::waiting_for_choice_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c5de1d7a86f46031d98f727f4b4005d" name="a5c5de1d7a86f46031d98f727f4b4005d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c5de1d7a86f46031d98f727f4b4005d">&#9670;&#160;</a></span>waiting_for_custom_action_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::waiting_for_custom_action_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44ae67e4e423e2e9436a35531c92cc04" name="a44ae67e4e423e2e9436a35531c92cc04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ae67e4e423e2e9436a35531c92cc04">&#9670;&#160;</a></span>waiting_for_dialogue_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::waiting_for_dialogue_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a8946002ace4c31839c55f540129db1" name="a3a8946002ace4c31839c55f540129db1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a8946002ace4c31839c55f540129db1">&#9670;&#160;</a></span>waiting_for_transition_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::waiting_for_transition_ = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/scenario/<a class="el" href="scenario__runner_8h_source.html">scenario_runner.h</a></li>
+<li>src/core/scenario/<a class="el" href="scenario__runner_8cpp.html">scenario_runner.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

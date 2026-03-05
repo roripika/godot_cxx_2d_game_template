@@ -1,5 +1,9 @@
 <map id="クラス階層図" name="クラス階層図">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,100,31"/>
-<area shape="rect" id="Node000001" href="$classkarakuri_1_1RayCastComponent.html" title=" " alt="" coords="148,5,359,31"/>
-<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="114,15,148,15,148,21,114,21"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,55,88,80"/>
+<area shape="rect" id="Node000001" href="$classkarakuri_1_1GameItem.html" title=" " alt="" coords="167,5,317,31"/>
+<area shape="poly" id="edge16_Node000000_Node000001" title=" " alt="" coords="101,49,135,39,182,28,183,33,137,45,102,54"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1Inventory.html" title=" " alt="" coords="170,55,314,80"/>
+<area shape="poly" id="edge17_Node000000_Node000002" title=" " alt="" coords="102,65,170,65,170,70,102,70"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1UniversalWorldData.html" title=" " alt="" coords="136,104,348,129"/>
+<area shape="poly" id="edge18_Node000000_Node000003" title=" " alt="" coords="102,80,137,89,187,101,186,107,135,94,101,85"/>
 </map>

@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::LocalizationService クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1LocalizationService.html">LocalizationService</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pri-methods">非公開メンバ関数</a> &#124;
+<a href="#pri-static-methods">静的非公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::LocalizationService クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>全デモで共通利用されるロケールサービス。  
+ <a href="classkarakuri_1_1LocalizationService.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="localization__service_8h_source.html">localization_service.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::LocalizationService の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService__inherit__graph.png" border="0" usemap="#akarakuri_1_1LocalizationService_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1LocalizationService_inherit__map" id="akarakuri_1_1LocalizationService_inherit__map">
+<area shape="rect" title="全デモで共通利用されるロケールサービス。" alt="" coords="5,79,213,104"/>
+<area shape="rect" title=" " alt="" coords="59,5,160,31"/>
+<area shape="poly" title=" " alt="" coords="112,44,112,79,107,79,107,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::LocalizationService 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService__coll__graph.png" border="0" usemap="#akarakuri_1_1LocalizationService_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1LocalizationService_coll__map" id="akarakuri_1_1LocalizationService_coll__map">
+<area shape="rect" title="全デモで共通利用されるロケールサービス。" alt="" coords="5,79,213,104"/>
+<area shape="rect" title=" " alt="" coords="59,5,160,31"/>
+<area shape="poly" title=" " alt="" coords="112,44,112,79,107,79,107,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:afb5d3906c76ec556d6156870250e80c1" id="r_afb5d3906c76ec556d6156870250e80c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#afb5d3906c76ec556d6156870250e80c1">LocalizationService</a> ()=default</td></tr>
+<tr class="separator:afb5d3906c76ec556d6156870250e80c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab419822a9fc3ab5a8e8158beaff65656" id="r_ab419822a9fc3ab5a8e8158beaff65656"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#ab419822a9fc3ab5a8e8158beaff65656">~LocalizationService</a> () override=default</td></tr>
+<tr class="separator:ab419822a9fc3ab5a8e8158beaff65656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c631f2ee87f4ab99d78b19b45ea68dc" id="r_a1c631f2ee87f4ab99d78b19b45ea68dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a1c631f2ee87f4ab99d78b19b45ea68dc">_ready</a> () override</td></tr>
+<tr class="memdesc:a1c631f2ee87f4ab99d78b19b45ea68dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Godotのライフサイクルフック。保存されたロケールを復元する。  <br /></td></tr>
+<tr class="separator:a1c631f2ee87f4ab99d78b19b45ea68dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffaa19640f98321511264edc97559b3" id="r_a2ffaa19640f98321511264edc97559b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a2ffaa19640f98321511264edc97559b3">set_locale_store_path</a> (const godot::String &amp;path)</td></tr>
+<tr class="memdesc:a2ffaa19640f98321511264edc97559b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">永続化するロケールの保存先パスを設定する。  <br /></td></tr>
+<tr class="separator:a2ffaa19640f98321511264edc97559b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83ee1395bfd0db530478e0290e4117bf" id="r_a83ee1395bfd0db530478e0290e4117bf"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a83ee1395bfd0db530478e0290e4117bf">get_locale_store_path</a> () const</td></tr>
+<tr class="memdesc:a83ee1395bfd0db530478e0290e4117bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">永続化されたロケールの保存先パスを取得する。  <br /></td></tr>
+<tr class="separator:a83ee1395bfd0db530478e0290e4117bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10dd956cecae21dc2fd19b34721fdad9" id="r_a10dd956cecae21dc2fd19b34721fdad9"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9">set_locale_prefix</a> (const godot::String &amp;prefix)</td></tr>
+<tr class="memdesc:a10dd956cecae21dc2fd19b34721fdad9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ロケールプレフィックスからロケールを設定し、保存する。  <br /></td></tr>
+<tr class="separator:a10dd956cecae21dc2fd19b34721fdad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6885bcc0e74f6ec1ad51127ddccea235" id="r_a6885bcc0e74f6ec1ad51127ddccea235"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235">save_current_locale_prefix</a> ()</td></tr>
+<tr class="memdesc:a6885bcc0e74f6ec1ad51127ddccea235"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在アクティブなロケールプレフィックスを保存する。  <br /></td></tr>
+<tr class="separator:a6885bcc0e74f6ec1ad51127ddccea235"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a778a478d9007a6960667b73d7ae7d111" id="r_a778a478d9007a6960667b73d7ae7d111"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111">load_saved_locale_prefix</a> ()</td></tr>
+<tr class="memdesc:a778a478d9007a6960667b73d7ae7d111"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存されたロケールプレフィックスを読み込み、適用する。  <br /></td></tr>
+<tr class="separator:a778a478d9007a6960667b73d7ae7d111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0552eeb5b2109c6f1d76383ab32a73fd" id="r_a0552eeb5b2109c6f1d76383ab32a73fd"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a0552eeb5b2109c6f1d76383ab32a73fd">get_current_locale_prefix</a> () const</td></tr>
+<tr class="memdesc:a0552eeb5b2109c6f1d76383ab32a73fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在のロケールプレフィックス（<code>en</code>, <code>ja</code> など）を解決する。  <br /></td></tr>
+<tr class="separator:a0552eeb5b2109c6f1d76383ab32a73fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+非公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab79a6c2bebaae6eba28b995dce79e66c" id="r_ab79a6c2bebaae6eba28b995dce79e66c"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c">resolve_loaded_locale</a> (const godot::String &amp;prefix) const</td></tr>
+<tr class="separator:ab79a6c2bebaae6eba28b995dce79e66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bbe0996dc5b421e9bf1ecc7c4a29d0a" id="r_a8bbe0996dc5b421e9bf1ecc7c4a29d0a"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a">extract_prefix</a> (const godot::String &amp;locale) const</td></tr>
+<tr class="separator:a8bbe0996dc5b421e9bf1ecc7c4a29d0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22be34f1732574c7cf2f83192db1428e" id="r_a22be34f1732574c7cf2f83192db1428e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e">emit_locale_changed</a> ()</td></tr>
+<tr class="separator:a22be34f1732574c7cf2f83192db1428e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+静的非公開メンバ関数</h2></td></tr>
+<tr class="memitem:a3ecb4d696a032b36078130d8930a3d25" id="r_a3ecb4d696a032b36078130d8930a3d25"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25">_bind_methods</a> ()</td></tr>
+<tr class="separator:a3ecb4d696a032b36078130d8930a3d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:ae12491022e4badc45baa6f122d57fc82" id="r_ae12491022e4badc45baa6f122d57fc82"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1LocalizationService.html#ae12491022e4badc45baa6f122d57fc82">locale_store_path_</a> = &quot;user://karakuri/locale.txt&quot;</td></tr>
+<tr class="separator:ae12491022e4badc45baa6f122d57fc82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>全デモで共通利用されるロケールサービス。 </p>
+<p>責務:</p><ul>
+<li>ロケールプレフィックス（<code>en</code>, <code>ja</code> など）を <code>user://</code> に保存。</li>
+<li>起動時に保存されたロケールを復元。</li>
+<li>ロケール切り替え用の単一のランタイムAPIを提供。</li>
+<li>UIが即座に再描画できるよう <code>locale_changed(locale)</code> シグナルを発火。 </li>
+</ul>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="afb5d3906c76ec556d6156870250e80c1" name="afb5d3906c76ec556d6156870250e80c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb5d3906c76ec556d6156870250e80c1">&#9670;&#160;</a></span>LocalizationService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::LocalizationService::LocalizationService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab419822a9fc3ab5a8e8158beaff65656" name="ab419822a9fc3ab5a8e8158beaff65656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab419822a9fc3ab5a8e8158beaff65656">&#9670;&#160;</a></span>~LocalizationService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::LocalizationService::~LocalizationService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a3ecb4d696a032b36078130d8930a3d25" name="a3ecb4d696a032b36078130d8930a3d25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ecb4d696a032b36078130d8930a3d25">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::LocalizationService::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a3ecb4d696a032b36078130d8930a3d25_cgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a3ecb4d696a032b36078130d8930a3d25_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a3ecb4d696a032b36078130d8930a3d25_cgraph" id="aclasskarakuri_1_1LocalizationService_a3ecb4d696a032b36078130d8930a3d25_cgraph">
+<area shape="rect" title=" " alt="" coords="5,159,213,199"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a0552eeb5b2109c6f1d76383ab32a73fd" title="現在のロケールプレフィックス（en, ja など）を解決する。" alt="" coords="517,5,725,45"/>
+<area shape="poly" title=" " alt="" coords="134,156,189,117,224,97,260,80,321,61,384,46,503,29,504,35,385,51,323,66,262,85,226,102,192,121,137,161"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a83ee1395bfd0db530478e0290e4117bf" title="永続化されたロケールの保存先パスを取得する。" alt="" coords="261,255,469,295"/>
+<area shape="poly" title=" " alt="" coords="156,196,262,240,284,248,283,253,260,245,154,201"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="261,191,469,231"/>
+<area shape="poly" title=" " alt="" coords="214,189,248,193,247,199,213,194"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="517,69,725,109"/>
+<area shape="poly" title=" " alt="" coords="147,156,200,132,261,112,322,100,385,92,503,85,504,91,386,97,323,105,262,117,202,137,150,161"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,127,469,167"/>
+<area shape="poly" title=" " alt="" coords="213,163,247,159,248,164,214,168"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a2ffaa19640f98321511264edc97559b3" title="永続化するロケールの保存先パスを設定する。" alt="" coords="261,319,469,359"/>
+<area shape="poly" title=" " alt="" coords="131,197,187,250,223,279,263,304,276,311,274,316,260,309,220,283,183,254,127,201"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a" title=" " alt="" coords="773,37,981,77"/>
+<area shape="poly" title=" " alt="" coords="726,36,760,40,759,45,725,41"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e" title=" " alt="" coords="517,133,725,173"/>
+<area shape="poly" title=" " alt="" coords="455,188,517,174,519,179,456,193"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c" title=" " alt="" coords="517,197,725,237"/>
+<area shape="poly" title=" " alt="" coords="469,211,504,212,504,217,469,216"/>
+<area shape="poly" title=" " alt="" coords="725,74,759,69,760,75,726,79"/>
+<area shape="poly" title=" " alt="" coords="469,147,504,148,504,153,469,152"/>
+<area shape="poly" title=" " alt="" coords="439,164,535,191,534,196,438,169"/>
+<area shape="poly" title=" " alt="" coords="455,124,517,110,519,115,456,129"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1c631f2ee87f4ab99d78b19b45ea68dc" name="a1c631f2ee87f4ab99d78b19b45ea68dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c631f2ee87f4ab99d78b19b45ea68dc">&#9670;&#160;</a></span>_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::LocalizationService::_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Godotのライフサイクルフック。保存されたロケールを復元する。 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a1c631f2ee87f4ab99d78b19b45ea68dc_cgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a1c631f2ee87f4ab99d78b19b45ea68dc_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a1c631f2ee87f4ab99d78b19b45ea68dc_cgraph" id="aclasskarakuri_1_1LocalizationService_a1c631f2ee87f4ab99d78b19b45ea68dc_cgraph">
+<area shape="rect" title="Godotのライフサイクルフック。保存されたロケールを復元する。" alt="" coords="5,37,213,77"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="261,37,469,77"/>
+<area shape="poly" title=" " alt="" coords="213,55,248,55,248,60,213,60"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e" title=" " alt="" coords="517,5,725,45"/>
+<area shape="poly" title=" " alt="" coords="469,42,503,37,504,43,470,47"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c" title=" " alt="" coords="517,69,725,109"/>
+<area shape="poly" title=" " alt="" coords="470,68,504,72,503,77,469,73"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a22be34f1732574c7cf2f83192db1428e" name="a22be34f1732574c7cf2f83192db1428e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22be34f1732574c7cf2f83192db1428e">&#9670;&#160;</a></span>emit_locale_changed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::LocalizationService::emit_locale_changed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a22be34f1732574c7cf2f83192db1428e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a22be34f1732574c7cf2f83192db1428e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a22be34f1732574c7cf2f83192db1428e_icgraph" id="aclasskarakuri_1_1LocalizationService_a22be34f1732574c7cf2f83192db1428e_icgraph">
+<area shape="rect" title=" " alt="" coords="517,37,725,77"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="261,69,469,109"/>
+<area shape="poly" title=" " alt="" coords="504,75,470,79,469,74,504,69"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="504,45,469,41,470,36,504,40"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="271,69,189,48,190,43,272,63"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a1c631f2ee87f4ab99d78b19b45ea68dc" title="Godotのライフサイクルフック。保存されたロケールを復元する。" alt="" coords="5,69,213,109"/>
+<area shape="poly" title=" " alt="" coords="248,92,213,92,213,87,248,87"/>
+<area shape="poly" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8bbe0996dc5b421e9bf1ecc7c4a29d0a" name="a8bbe0996dc5b421e9bf1ecc7c4a29d0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bbe0996dc5b421e9bf1ecc7c4a29d0a">&#9670;&#160;</a></span>extract_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::LocalizationService::extract_prefix </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>locale</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a8bbe0996dc5b421e9bf1ecc7c4a29d0a_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a8bbe0996dc5b421e9bf1ecc7c4a29d0a_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a8bbe0996dc5b421e9bf1ecc7c4a29d0a_icgraph" id="aclasskarakuri_1_1LocalizationService_a8bbe0996dc5b421e9bf1ecc7c4a29d0a_icgraph">
+<area shape="rect" title=" " alt="" coords="773,35,981,75"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a0552eeb5b2109c6f1d76383ab32a73fd" title="現在のロケールプレフィックス（en, ja など）を解決する。" alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="759,51,469,34,470,29,759,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="517,63,725,103"/>
+<area shape="poly" title=" " alt="" coords="760,70,726,74,725,69,760,65"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,63,213,103"/>
+<area shape="poly" title=" " alt="" coords="262,51,200,65,199,60,261,46"/>
+<area shape="poly" title=" " alt="" coords="503,85,214,85,214,80,503,80"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,120,469,160"/>
+<area shape="poly" title=" " alt="" coords="518,108,456,123,455,117,517,103"/>
+<area shape="poly" title=" " alt="" coords="261,119,199,105,200,100,262,114"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0552eeb5b2109c6f1d76383ab32a73fd" name="a0552eeb5b2109c6f1d76383ab32a73fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0552eeb5b2109c6f1d76383ab32a73fd">&#9670;&#160;</a></span>get_current_locale_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::LocalizationService::get_current_locale_prefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>現在のロケールプレフィックス（<code>en</code>, <code>ja</code> など）を解決する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>現在の TranslationServer のロケールから抽出されたプレフィックス。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_cgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_cgraph" id="aclasskarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_cgraph">
+<area shape="rect" title="現在のロケールプレフィックス（en, ja など）を解決する。" alt="" coords="5,5,213,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a" title=" " alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="213,23,248,23,248,28,213,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_icgraph" id="aclasskarakuri_1_1LocalizationService_a0552eeb5b2109c6f1d76383ab32a73fd_icgraph">
+<area shape="rect" title="現在のロケールプレフィックス（en, ja など）を解決する。" alt="" coords="261,5,469,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a83ee1395bfd0db530478e0290e4117bf" name="a83ee1395bfd0db530478e0290e4117bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83ee1395bfd0db530478e0290e4117bf">&#9670;&#160;</a></span>get_locale_store_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::LocalizationService::get_locale_store_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>永続化されたロケールの保存先パスを取得する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd><code>user://</code> プレフィックスのファイルパス。 </dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a83ee1395bfd0db530478e0290e4117bf_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a83ee1395bfd0db530478e0290e4117bf_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a83ee1395bfd0db530478e0290e4117bf_icgraph" id="aclasskarakuri_1_1LocalizationService_a83ee1395bfd0db530478e0290e4117bf_icgraph">
+<area shape="rect" title="永続化されたロケールの保存先パスを取得する。" alt="" coords="261,5,469,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a778a478d9007a6960667b73d7ae7d111" name="a778a478d9007a6960667b73d7ae7d111"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a778a478d9007a6960667b73d7ae7d111">&#9670;&#160;</a></span>load_saved_locale_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::LocalizationService::load_saved_locale_prefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>保存されたロケールプレフィックスを読み込み、適用する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>適用されたロケール文字列。利用できない場合は空文字。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_cgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_cgraph" id="aclasskarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_cgraph">
+<area shape="rect" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="5,37,213,77"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e" title=" " alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="213,42,247,37,248,43,214,47"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c" title=" " alt="" coords="261,69,469,109"/>
+<area shape="poly" title=" " alt="" coords="214,68,248,72,247,77,213,73"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_icgraph" id="aclasskarakuri_1_1LocalizationService_a778a478d9007a6960667b73d7ae7d111_icgraph">
+<area shape="rect" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="261,37,469,77"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="248,45,213,41,214,36,248,40"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a1c631f2ee87f4ab99d78b19b45ea68dc" title="Godotのライフサイクルフック。保存されたロケールを復元する。" alt="" coords="5,69,213,109"/>
+<area shape="poly" title=" " alt="" coords="248,75,214,79,213,74,248,69"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab79a6c2bebaae6eba28b995dce79e66c" name="ab79a6c2bebaae6eba28b995dce79e66c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab79a6c2bebaae6eba28b995dce79e66c">&#9670;&#160;</a></span>resolve_loaded_locale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::LocalizationService::resolve_loaded_locale </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>prefix</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_ab79a6c2bebaae6eba28b995dce79e66c_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_ab79a6c2bebaae6eba28b995dce79e66c_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_ab79a6c2bebaae6eba28b995dce79e66c_icgraph" id="aclasskarakuri_1_1LocalizationService_ab79a6c2bebaae6eba28b995dce79e66c_icgraph">
+<area shape="rect" title=" " alt="" coords="517,37,725,77"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="261,69,469,109"/>
+<area shape="poly" title=" " alt="" coords="504,75,470,79,469,74,504,69"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="504,45,469,41,470,36,504,40"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="271,69,189,48,190,43,272,63"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a1c631f2ee87f4ab99d78b19b45ea68dc" title="Godotのライフサイクルフック。保存されたロケールを復元する。" alt="" coords="5,69,213,109"/>
+<area shape="poly" title=" " alt="" coords="248,92,213,92,213,87,248,87"/>
+<area shape="poly" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6885bcc0e74f6ec1ad51127ddccea235" name="a6885bcc0e74f6ec1ad51127ddccea235"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6885bcc0e74f6ec1ad51127ddccea235">&#9670;&#160;</a></span>save_current_locale_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::LocalizationService::save_current_locale_prefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>現在アクティブなロケールプレフィックスを保存する。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>書き込みに成功した場合は <code>true</code>。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_cgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_cgraph" id="aclasskarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_cgraph">
+<area shape="rect" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="5,5,213,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a" title=" " alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="213,23,248,23,248,28,213,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_icgraph" id="aclasskarakuri_1_1LocalizationService_a6885bcc0e74f6ec1ad51127ddccea235_icgraph">
+<area shape="rect" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="517,5,725,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="503,25,469,24,261,24,214,25,214,20,261,19,469,19,504,19"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a10dd956cecae21dc2fd19b34721fdad9" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,33,469,73"/>
+<area shape="poly" title=" " alt="" coords="504,41,470,45,469,39,504,36"/>
+<area shape="poly" title=" " alt="" coords="248,43,213,39,214,34,248,38"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a10dd956cecae21dc2fd19b34721fdad9" name="a10dd956cecae21dc2fd19b34721fdad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10dd956cecae21dc2fd19b34721fdad9">&#9670;&#160;</a></span>set_locale_prefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::LocalizationService::set_locale_prefix </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>prefix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ロケールプレフィックスからロケールを設定し、保存する。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td><code>en</code> や <code>ja</code> などのロケールプレフィックス。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>適用されたロケール文字列（例: <code>en_US</code>）。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_cgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_cgraph" id="aclasskarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_cgraph">
+<area shape="rect" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="5,69,213,109"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e" title=" " alt="" coords="261,5,469,45"/>
+<area shape="poly" title=" " alt="" coords="189,67,271,46,273,51,191,72"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c" title=" " alt="" coords="261,69,469,109"/>
+<area shape="poly" title=" " alt="" coords="213,87,248,87,248,92,213,92"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a6885bcc0e74f6ec1ad51127ddccea235" title="現在アクティブなロケールプレフィックスを保存する。" alt="" coords="261,133,469,173"/>
+<area shape="poly" title=" " alt="" coords="191,107,273,127,271,133,189,112"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a" title=" " alt="" coords="517,133,725,173"/>
+<area shape="poly" title=" " alt="" coords="469,151,504,151,504,156,469,156"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_icgraph" id="aclasskarakuri_1_1LocalizationService_a10dd956cecae21dc2fd19b34721fdad9_icgraph">
+<area shape="rect" title="ロケールプレフィックスからロケールを設定し、保存する。" alt="" coords="261,5,469,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2ffaa19640f98321511264edc97559b3" name="a2ffaa19640f98321511264edc97559b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ffaa19640f98321511264edc97559b3">&#9670;&#160;</a></span>set_locale_store_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::LocalizationService::set_locale_store_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>永続化するロケールの保存先パスを設定する。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>ロケールプレフィックスを保存する <code>user://</code> パス。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1LocalizationService_a2ffaa19640f98321511264edc97559b3_icgraph.png" border="0" usemap="#aclasskarakuri_1_1LocalizationService_a2ffaa19640f98321511264edc97559b3_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1LocalizationService_a2ffaa19640f98321511264edc97559b3_icgraph" id="aclasskarakuri_1_1LocalizationService_a2ffaa19640f98321511264edc97559b3_icgraph">
+<area shape="rect" title="永続化するロケールの保存先パスを設定する。" alt="" coords="261,5,469,45"/>
+<area shape="rect" href="classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
+<area shape="poly" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="ae12491022e4badc45baa6f122d57fc82" name="ae12491022e4badc45baa6f122d57fc82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae12491022e4badc45baa6f122d57fc82">&#9670;&#160;</a></span>locale_store_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::String karakuri::LocalizationService::locale_store_path_ = &quot;user://karakuri/locale.txt&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/services/<a class="el" href="localization__service_8h_source.html">localization_service.h</a></li>
+<li>src/core/services/<a class="el" href="localization__service_8cpp.html">localization_service.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

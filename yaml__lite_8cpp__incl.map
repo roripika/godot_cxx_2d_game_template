@@ -1,0 +1,17 @@
+<map id="src/core/yaml/yaml_lite.cpp" name="src/core/yaml/yaml_lite.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="571,5,717,45"/>
+<area shape="rect" id="Node000002" href="$yaml__lite_8h.html" title="Basic Game Karakuri: プランナー向けシナリオファイル用のYAML Liteパーサー。" alt="" coords="181,101,275,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="571,40,439,64,289,96,276,99,274,94,287,91,438,58,570,35"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="300,101,503,126"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="592,48,448,99,446,94,590,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="527,101,761,126"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="647,46,647,87,641,87,641,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="785,93,975,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="697,43,816,86,815,91,695,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="999,93,1180,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="718,38,985,89,984,95,717,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,213,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="212,128,140,176,137,171,209,124"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="238,181,455,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="247,124,319,171,316,176,244,128"/>
+</map>

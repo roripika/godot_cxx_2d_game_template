@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::Logger クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1Logger.html">Logger</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::Logger クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="karakuri__logger_8h_source.html">karakuri_logger.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::Logger の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger__inherit__graph.png" border="0" usemap="#akarakuri_1_1Logger_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1Logger_inherit__map" id="akarakuri_1_1Logger_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,132,104"/>
+<area shape="rect" title=" " alt="" coords="14,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="71,44,71,79,66,79,66,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::Logger 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger__coll__graph.png" border="0" usemap="#akarakuri_1_1Logger_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1Logger_coll__map" id="akarakuri_1_1Logger_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,132,104"/>
+<area shape="rect" title=" " alt="" coords="14,5,123,31"/>
+<area shape="poly" title=" " alt="" coords="71,44,71,79,66,79,66,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:accd40ea30d6907fa5b43fe1427b0fbbb" id="r_accd40ea30d6907fa5b43fe1427b0fbbb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1Logger.html#accd40ea30d6907fa5b43fe1427b0fbbb">debug</a> (const godot::String &amp;msg)</td></tr>
+<tr class="separator:accd40ea30d6907fa5b43fe1427b0fbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f718487ff1de78c7e3948060f5ebc15" id="r_a2f718487ff1de78c7e3948060f5ebc15"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1Logger.html#a2f718487ff1de78c7e3948060f5ebc15">info</a> (const godot::String &amp;msg)</td></tr>
+<tr class="separator:a2f718487ff1de78c7e3948060f5ebc15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9690b3bd03abbf9b9a94c3b71592b8fa" id="r_a9690b3bd03abbf9b9a94c3b71592b8fa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1Logger.html#a9690b3bd03abbf9b9a94c3b71592b8fa">warn</a> (const godot::String &amp;msg)</td></tr>
+<tr class="separator:a9690b3bd03abbf9b9a94c3b71592b8fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ceb63d30a2b175aacfc1f1a035f573e" id="r_a9ceb63d30a2b175aacfc1f1a035f573e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e">error</a> (const godot::String &amp;msg)</td></tr>
+<tr class="separator:a9ceb63d30a2b175aacfc1f1a035f573e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a7a97183cbceded012bf1a84942126a69" id="r_a7a97183cbceded012bf1a84942126a69"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1Logger.html#a7a97183cbceded012bf1a84942126a69">_bind_methods</a> ()</td></tr>
+<tr class="separator:a7a97183cbceded012bf1a84942126a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a7a97183cbceded012bf1a84942126a69" name="a7a97183cbceded012bf1a84942126a69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a97183cbceded012bf1a84942126a69">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::Logger::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger_a7a97183cbceded012bf1a84942126a69_cgraph.png" border="0" usemap="#aclasskarakuri_1_1Logger_a7a97183cbceded012bf1a84942126a69_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1Logger_a7a97183cbceded012bf1a84942126a69_cgraph" id="aclasskarakuri_1_1Logger_a7a97183cbceded012bf1a84942126a69_cgraph">
+<area shape="rect" title=" " alt="" coords="5,73,140,113"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#accd40ea30d6907fa5b43fe1427b0fbbb" title=" " alt="" coords="188,5,363,31"/>
+<area shape="poly" title=" " alt="" coords="114,70,187,40,210,32,212,37,189,44,116,75"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e" title=" " alt="" coords="193,55,358,80"/>
+<area shape="poly" title=" " alt="" coords="140,82,178,77,179,82,140,87"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a2f718487ff1de78c7e3948060f5ebc15" title=" " alt="" coords="196,104,355,129"/>
+<area shape="poly" title=" " alt="" coords="140,98,183,103,182,108,140,103"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a9690b3bd03abbf9b9a94c3b71592b8fa" title=" " alt="" coords="192,153,359,179"/>
+<area shape="poly" title=" " alt="" coords="119,110,189,138,215,147,214,152,187,143,117,115"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="accd40ea30d6907fa5b43fe1427b0fbbb" name="accd40ea30d6907fa5b43fe1427b0fbbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accd40ea30d6907fa5b43fe1427b0fbbb">&#9670;&#160;</a></span>debug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::Logger::debug </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger_accd40ea30d6907fa5b43fe1427b0fbbb_icgraph.png" border="0" usemap="#aclasskarakuri_1_1Logger_accd40ea30d6907fa5b43fe1427b0fbbb_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1Logger_accd40ea30d6907fa5b43fe1427b0fbbb_icgraph" id="aclasskarakuri_1_1Logger_accd40ea30d6907fa5b43fe1427b0fbbb_icgraph">
+<area shape="rect" title=" " alt="" coords="188,13,363,38"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a7a97183cbceded012bf1a84942126a69" title=" " alt="" coords="5,5,140,45"/>
+<area shape="poly" title=" " alt="" coords="174,28,140,28,140,23,174,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9ceb63d30a2b175aacfc1f1a035f573e" name="a9ceb63d30a2b175aacfc1f1a035f573e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ceb63d30a2b175aacfc1f1a035f573e">&#9670;&#160;</a></span>error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::Logger::error </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger_a9ceb63d30a2b175aacfc1f1a035f573e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1Logger_a9ceb63d30a2b175aacfc1f1a035f573e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1Logger_a9ceb63d30a2b175aacfc1f1a035f573e_icgraph" id="aclasskarakuri_1_1Logger_a9ceb63d30a2b175aacfc1f1a035f573e_icgraph">
+<area shape="rect" title=" " alt="" coords="188,13,353,38"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a7a97183cbceded012bf1a84942126a69" title=" " alt="" coords="5,5,140,45"/>
+<area shape="poly" title=" " alt="" coords="174,28,141,28,141,23,174,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2f718487ff1de78c7e3948060f5ebc15" name="a2f718487ff1de78c7e3948060f5ebc15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f718487ff1de78c7e3948060f5ebc15">&#9670;&#160;</a></span>info()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::Logger::info </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger_a2f718487ff1de78c7e3948060f5ebc15_icgraph.png" border="0" usemap="#aclasskarakuri_1_1Logger_a2f718487ff1de78c7e3948060f5ebc15_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1Logger_a2f718487ff1de78c7e3948060f5ebc15_icgraph" id="aclasskarakuri_1_1Logger_a2f718487ff1de78c7e3948060f5ebc15_icgraph">
+<area shape="rect" title=" " alt="" coords="188,13,347,38"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a7a97183cbceded012bf1a84942126a69" title=" " alt="" coords="5,5,140,45"/>
+<area shape="poly" title=" " alt="" coords="174,28,140,28,140,23,174,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9690b3bd03abbf9b9a94c3b71592b8fa" name="a9690b3bd03abbf9b9a94c3b71592b8fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9690b3bd03abbf9b9a94c3b71592b8fa">&#9670;&#160;</a></span>warn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::Logger::warn </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1Logger_a9690b3bd03abbf9b9a94c3b71592b8fa_icgraph.png" border="0" usemap="#aclasskarakuri_1_1Logger_a9690b3bd03abbf9b9a94c3b71592b8fa_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1Logger_a9690b3bd03abbf9b9a94c3b71592b8fa_icgraph" id="aclasskarakuri_1_1Logger_a9690b3bd03abbf9b9a94c3b71592b8fa_icgraph">
+<area shape="rect" title=" " alt="" coords="188,13,355,38"/>
+<area shape="rect" href="classkarakuri_1_1Logger.html#a7a97183cbceded012bf1a84942126a69" title=" " alt="" coords="5,5,140,45"/>
+<area shape="poly" title=" " alt="" coords="174,28,140,28,140,23,174,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/logger/<a class="el" href="karakuri__logger_8h_source.html">karakuri_logger.h</a></li>
+<li>src/core/logger/<a class="el" href="karakuri__logger_8cpp.html">karakuri_logger.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

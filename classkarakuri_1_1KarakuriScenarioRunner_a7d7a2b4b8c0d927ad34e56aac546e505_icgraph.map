@@ -1,7 +1,0 @@
-<map id="karakuri::KarakuriScenarioRunner::load_scenario" name="karakuri::KarakuriScenarioRunner::load_scenario">
-<area shape="rect" id="Node000001" title=" " alt="" coords="245,37,437,77"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a35054b13b8349739cd12ec61bdd70e5d" title=" " alt="" coords="5,5,197,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,45,197,41,198,35,232,40"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html#a870bcdfcea90e06f54c15c10d842ca6c" title="Godotのライフサイクルフック。" alt="" coords="5,69,197,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,75,198,79,197,74,231,69"/>
-</map>

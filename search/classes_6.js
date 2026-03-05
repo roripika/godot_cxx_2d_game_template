@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['line_0',['Line',['../structkarakuri_1_1KarakuriTestimonySession_1_1Line.html',1,'karakuri::KarakuriTestimonySession']]]
+  ['localizationservice_0',['LocalizationService',['../classkarakuri_1_1LocalizationService.html',1,'karakuri']]],
+  ['logger_1',['Logger',['../classkarakuri_1_1Logger.html',1,'karakuri']]]
 ];

@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::SaveService クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1SaveService.html">SaveService</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="#pri-static-methods">静的非公開メンバ関数</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::SaveService クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>ゲームステート永続化サービス。  
+ <a href="classkarakuri_1_1SaveService.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="save__service_8h_source.html">save_service.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::SaveService の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService__inherit__graph.png" border="0" usemap="#akarakuri_1_1SaveService_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1SaveService_inherit__map" id="akarakuri_1_1SaveService_inherit__map">
+<area shape="rect" title="ゲームステート永続化サービス。" alt="" coords="5,79,168,104"/>
+<area shape="rect" title=" " alt="" coords="36,5,137,31"/>
+<area shape="poly" title=" " alt="" coords="89,44,89,79,84,79,84,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::SaveService 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService__coll__graph.png" border="0" usemap="#akarakuri_1_1SaveService_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1SaveService_coll__map" id="akarakuri_1_1SaveService_coll__map">
+<area shape="rect" title="ゲームステート永続化サービス。" alt="" coords="5,79,168,104"/>
+<area shape="rect" title=" " alt="" coords="36,5,137,31"/>
+<area shape="poly" title=" " alt="" coords="89,44,89,79,84,79,84,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a021bf424e24a2635d15924179736a01e" id="r_a021bf424e24a2635d15924179736a01e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a021bf424e24a2635d15924179736a01e">SaveService</a> ()=default</td></tr>
+<tr class="separator:a021bf424e24a2635d15924179736a01e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b39d7af5b6d6b3e2ee4a56f58d53dd0" id="r_a8b39d7af5b6d6b3e2ee4a56f58d53dd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a8b39d7af5b6d6b3e2ee4a56f58d53dd0">~SaveService</a> () override=default</td></tr>
+<tr class="separator:a8b39d7af5b6d6b3e2ee4a56f58d53dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静的公開メンバ関数</h2></td></tr>
+<tr class="memitem:a2ee7761fc51f9a210042e5420b126863" id="r_a2ee7761fc51f9a210042e5420b126863"><td class="memItemLeft" align="right" valign="top">static godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863">build_save_path</a> (const godot::String &amp;demo_id)</td></tr>
+<tr class="memdesc:a2ee7761fc51f9a210042e5420b126863"><td class="mdescLeft">&#160;</td><td class="mdescRight">demo_id ごとのセーブファイルパスを返す。  <br /></td></tr>
+<tr class="separator:a2ee7761fc51f9a210042e5420b126863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a577ea37e4cc27752a2885f206da369" id="r_a6a577ea37e4cc27752a2885f206da369"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a6a577ea37e4cc27752a2885f206da369">save_game</a> (const godot::String &amp;demo_id)</td></tr>
+<tr class="memdesc:a6a577ea37e4cc27752a2885f206da369"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkarakuri_1_1AdventureGameStateBase.html">AdventureGameStateBase</a> の状態をファイルに書き出す。  <br /></td></tr>
+<tr class="separator:a6a577ea37e4cc27752a2885f206da369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a351f36d3d2c333428dc66169469e7fa3" id="r_a351f36d3d2c333428dc66169469e7fa3"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a351f36d3d2c333428dc66169469e7fa3">load_game</a> (const godot::String &amp;demo_id)</td></tr>
+<tr class="memdesc:a351f36d3d2c333428dc66169469e7fa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイルから読み込んで <a class="el" href="classkarakuri_1_1AdventureGameStateBase.html">AdventureGameStateBase</a> に反映する。  <br /></td></tr>
+<tr class="separator:a351f36d3d2c333428dc66169469e7fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18824e3aa2a301e067082611edfb9ee1" id="r_a18824e3aa2a301e067082611edfb9ee1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a18824e3aa2a301e067082611edfb9ee1">has_save</a> (const godot::String &amp;demo_id)</td></tr>
+<tr class="memdesc:a18824e3aa2a301e067082611edfb9ee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">セーブファイルが存在するか確認する。  <br /></td></tr>
+<tr class="separator:a18824e3aa2a301e067082611edfb9ee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfd8de774ba5600c25d702eb91fb6dd2" id="r_adfd8de774ba5600c25d702eb91fb6dd2"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#adfd8de774ba5600c25d702eb91fb6dd2">delete_save</a> (const godot::String &amp;demo_id)</td></tr>
+<tr class="memdesc:adfd8de774ba5600c25d702eb91fb6dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">セーブファイルを削除する。  <br /></td></tr>
+<tr class="separator:adfd8de774ba5600c25d702eb91fb6dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+静的非公開メンバ関数</h2></td></tr>
+<tr class="memitem:a90d95d3765f88de6719b84965186cf8e" id="r_a90d95d3765f88de6719b84965186cf8e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e">_bind_methods</a> ()</td></tr>
+<tr class="separator:a90d95d3765f88de6719b84965186cf8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ゲームステート永続化サービス。 </p>
+<p>このノードをシーンに置くか、ScenarioRunner が内部的に使用する。 GDScript から直接呼ぶことも可能: $SaveService.save_game("mystery") $SaveService.load_game("mystery") </p>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="a021bf424e24a2635d15924179736a01e" name="a021bf424e24a2635d15924179736a01e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a021bf424e24a2635d15924179736a01e">&#9670;&#160;</a></span>SaveService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::SaveService::SaveService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b39d7af5b6d6b3e2ee4a56f58d53dd0" name="a8b39d7af5b6d6b3e2ee4a56f58d53dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b39d7af5b6d6b3e2ee4a56f58d53dd0">&#9670;&#160;</a></span>~SaveService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::SaveService::~SaveService </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a90d95d3765f88de6719b84965186cf8e" name="a90d95d3765f88de6719b84965186cf8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90d95d3765f88de6719b84965186cf8e">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::SaveService::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a90d95d3765f88de6719b84965186cf8e_cgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a90d95d3765f88de6719b84965186cf8e_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a90d95d3765f88de6719b84965186cf8e_cgraph" id="aclasskarakuri_1_1SaveService_a90d95d3765f88de6719b84965186cf8e_cgraph">
+<area shape="rect" title=" " alt="" coords="5,97,168,137"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="457,97,619,137"/>
+<area shape="poly" title=" " alt="" coords="105,95,151,54,182,34,215,19,260,6,297,3,334,7,379,19,414,32,448,49,504,86,501,91,445,54,412,37,378,24,333,13,297,8,261,12,217,24,185,39,155,58,108,99"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#adfd8de774ba5600c25d702eb91fb6dd2" title="セーブファイルを削除する。" alt="" coords="216,33,379,73"/>
+<area shape="poly" title=" " alt="" coords="152,95,217,75,219,80,154,100"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a18824e3aa2a301e067082611edfb9ee1" title="セーブファイルが存在するか確認する。" alt="" coords="216,97,379,137"/>
+<area shape="poly" title=" " alt="" coords="168,115,202,115,202,120,168,120"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a351f36d3d2c333428dc66169469e7fa3" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="216,225,379,265"/>
+<area shape="poly" title=" " alt="" coords="112,135,159,173,217,211,229,217,227,222,215,216,156,177,109,140"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a6a577ea37e4cc27752a2885f206da369" title="AdventureGameStateBase の状態をファイルに書き出す。" alt="" coords="216,161,379,201"/>
+<area shape="poly" title=" " alt="" coords="154,135,219,155,217,160,152,140"/>
+<area shape="poly" title=" " alt="" coords="374,71,450,91,448,96,373,76"/>
+<area shape="poly" title=" " alt="" coords="379,115,443,115,443,120,379,120"/>
+<area shape="poly" title=" " alt="" coords="358,223,377,211,392,196,400,180,409,163,425,147,442,137,445,142,428,152,413,167,405,182,396,199,380,215,361,228"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#a9a95da433e66ff1943800b51113c04cb" title=" " alt="" coords="427,225,649,265"/>
+<area shape="poly" title=" " alt="" coords="379,243,413,243,413,248,379,248"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#a1242b068c7106ba52747f2f567b6b19f" title=" " alt="" coords="427,289,649,329"/>
+<area shape="poly" title=" " alt="" coords="374,263,450,283,448,288,373,268"/>
+<area shape="poly" title=" " alt="" coords="373,159,448,138,450,144,374,164"/>
+<area shape="poly" title=" " alt="" coords="374,199,450,219,448,224,373,204"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#aed9cb49c93ddcd658e024fd0350fc90c" title=" " alt="" coords="427,161,649,201"/>
+<area shape="poly" title=" " alt="" coords="379,179,413,179,413,184,379,184"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2ee7761fc51f9a210042e5420b126863" name="a2ee7761fc51f9a210042e5420b126863"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ee7761fc51f9a210042e5420b126863">&#9670;&#160;</a></span>build_save_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::SaveService::build_save_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>demo_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>demo_id ごとのセーブファイルパスを返す。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">demo_id</td><td>デモ識別子 (空文字可)。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>user:// パス文字列。 </dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a2ee7761fc51f9a210042e5420b126863_icgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a2ee7761fc51f9a210042e5420b126863_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a2ee7761fc51f9a210042e5420b126863_icgraph" id="aclasskarakuri_1_1SaveService_a2ee7761fc51f9a210042e5420b126863_icgraph">
+<area shape="rect" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="427,98,589,138"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,98,168,138"/>
+<area shape="poly" title=" " alt="" coords="476,90,432,54,406,37,378,25,333,12,297,8,261,12,217,25,185,40,155,59,108,100,105,96,151,55,182,35,215,20,260,7,297,3,334,7,380,20,408,33,435,49,480,86"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#adfd8de774ba5600c25d702eb91fb6dd2" title="セーブファイルを削除する。" alt="" coords="216,34,379,74"/>
+<area shape="poly" title=" " alt="" coords="428,97,363,77,364,72,429,92"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a18824e3aa2a301e067082611edfb9ee1" title="セーブファイルが存在するか確認する。" alt="" coords="216,98,379,138"/>
+<area shape="poly" title=" " alt="" coords="413,121,379,121,379,116,413,116"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a351f36d3d2c333428dc66169469e7fa3" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="216,162,379,202"/>
+<area shape="poly" title=" " alt="" coords="429,145,364,165,363,160,428,140"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a6a577ea37e4cc27752a2885f206da369" title="AdventureGameStateBase の状態をファイルに書き出す。" alt="" coords="216,226,379,266"/>
+<area shape="poly" title=" " alt="" coords="475,149,431,183,380,217,355,229,353,224,377,212,428,179,472,145"/>
+<area shape="poly" title=" " alt="" coords="218,81,154,101,152,96,217,76"/>
+<area shape="poly" title=" " alt="" coords="202,121,168,121,168,116,202,116"/>
+<area shape="poly" title=" " alt="" coords="217,161,152,141,154,136,218,156"/>
+<area shape="poly" title=" " alt="" coords="227,223,215,217,156,178,109,141,112,136,159,174,217,212,229,218"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adfd8de774ba5600c25d702eb91fb6dd2" name="adfd8de774ba5600c25d702eb91fb6dd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfd8de774ba5600c25d702eb91fb6dd2">&#9670;&#160;</a></span>delete_save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::SaveService::delete_save </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>demo_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>セーブファイルを削除する。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">demo_id</td><td>サブフォルダ。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功なら true。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_cgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_cgraph" id="aclasskarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_cgraph">
+<area shape="rect" title="セーブファイルを削除する。" alt="" coords="5,5,168,45"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="216,5,379,45"/>
+<area shape="poly" title=" " alt="" coords="168,23,202,23,202,28,168,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_icgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_icgraph" id="aclasskarakuri_1_1SaveService_adfd8de774ba5600c25d702eb91fb6dd2_icgraph">
+<area shape="rect" title="セーブファイルを削除する。" alt="" coords="216,5,379,45"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,5,168,45"/>
+<area shape="poly" title=" " alt="" coords="202,28,168,28,168,23,202,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a18824e3aa2a301e067082611edfb9ee1" name="a18824e3aa2a301e067082611edfb9ee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18824e3aa2a301e067082611edfb9ee1">&#9670;&#160;</a></span>has_save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::SaveService::has_save </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>demo_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>セーブファイルが存在するか確認する。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">demo_id</td><td>セーブのサブフォルダ。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>存在なら true。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_cgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_cgraph" id="aclasskarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_cgraph">
+<area shape="rect" title="セーブファイルが存在するか確認する。" alt="" coords="5,5,168,45"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="216,5,379,45"/>
+<area shape="poly" title=" " alt="" coords="168,23,202,23,202,28,168,28"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_icgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_icgraph" id="aclasskarakuri_1_1SaveService_a18824e3aa2a301e067082611edfb9ee1_icgraph">
+<area shape="rect" title="セーブファイルが存在するか確認する。" alt="" coords="216,5,379,45"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,5,168,45"/>
+<area shape="poly" title=" " alt="" coords="202,28,168,28,168,23,202,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a351f36d3d2c333428dc66169469e7fa3" name="a351f36d3d2c333428dc66169469e7fa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a351f36d3d2c333428dc66169469e7fa3">&#9670;&#160;</a></span>load_game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::SaveService::load_game </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>demo_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ファイルから読み込んで <a class="el" href="classkarakuri_1_1AdventureGameStateBase.html">AdventureGameStateBase</a> に反映する。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">demo_id</td><td>読み込むサブフォルダ。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功なら true。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_cgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_cgraph" id="aclasskarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_cgraph">
+<area shape="rect" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="5,69,168,109"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="246,5,409,45"/>
+<area shape="poly" title=" " alt="" coords="162,67,238,46,239,51,163,72"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#a9a95da433e66ff1943800b51113c04cb" title=" " alt="" coords="216,69,439,109"/>
+<area shape="poly" title=" " alt="" coords="169,87,202,87,202,92,169,92"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#a1242b068c7106ba52747f2f567b6b19f" title=" " alt="" coords="216,133,439,173"/>
+<area shape="poly" title=" " alt="" coords="163,107,239,127,238,132,162,112"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_icgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_icgraph" id="aclasskarakuri_1_1SaveService_a351f36d3d2c333428dc66169469e7fa3_icgraph">
+<area shape="rect" title="ファイルから読み込んで AdventureGameStateBase に反映する。" alt="" coords="216,5,379,45"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,5,168,45"/>
+<area shape="poly" title=" " alt="" coords="202,28,168,28,168,23,202,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6a577ea37e4cc27752a2885f206da369" name="a6a577ea37e4cc27752a2885f206da369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a577ea37e4cc27752a2885f206da369">&#9670;&#160;</a></span>save_game()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::SaveService::save_game </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>demo_id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classkarakuri_1_1AdventureGameStateBase.html">AdventureGameStateBase</a> の状態をファイルに書き出す。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">demo_id</td><td>保存先サブフォルダ。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功なら true。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_cgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_cgraph" id="aclasskarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_cgraph">
+<area shape="rect" title="AdventureGameStateBase の状態をファイルに書き出す。" alt="" coords="5,69,168,109"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a2ee7761fc51f9a210042e5420b126863" title="demo_id ごとのセーブファイルパスを返す。" alt="" coords="246,5,409,45"/>
+<area shape="poly" title=" " alt="" coords="162,67,238,46,239,51,163,72"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#aed9cb49c93ddcd658e024fd0350fc90c" title=" " alt="" coords="216,69,439,109"/>
+<area shape="poly" title=" " alt="" coords="169,87,202,87,202,92,169,92"/>
+<area shape="rect" href="classkarakuri_1_1AdventureGameStateBase.html#a9a95da433e66ff1943800b51113c04cb" title=" " alt="" coords="216,133,439,173"/>
+<area shape="poly" title=" " alt="" coords="163,107,239,127,238,132,162,112"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_icgraph.png" border="0" usemap="#aclasskarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_icgraph" id="aclasskarakuri_1_1SaveService_a6a577ea37e4cc27752a2885f206da369_icgraph">
+<area shape="rect" title="AdventureGameStateBase の状態をファイルに書き出す。" alt="" coords="216,5,379,45"/>
+<area shape="rect" href="classkarakuri_1_1SaveService.html#a90d95d3765f88de6719b84965186cf8e" title=" " alt="" coords="5,5,168,45"/>
+<area shape="poly" title=" " alt="" coords="202,28,168,28,168,23,202,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/services/<a class="el" href="save__service_8h_source.html">save_service.h</a></li>
+<li>src/core/services/<a class="el" href="save__service_8cpp.html">save_service.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

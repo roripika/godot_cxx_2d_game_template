@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pending_5faction_5findex_5f_0',['pending_action_index_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5ee931d11a80d9c75e42e76c6350e71e',1,'karakuri::KarakuriScenarioRunner']]],
-  ['pending_5factions_5f_1',['pending_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ade7d5148474321b9c08cb3c46a2d09e2',1,'karakuri::KarakuriScenarioRunner']]],
-  ['pending_5fchoice_5factions_5f_2',['pending_choice_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5585f2f95d83a66bd2ae4999da4e5d5a',1,'karakuri::KarakuriScenarioRunner']]],
-  ['player_5fscene_3',['player_scene',['../classkarakuri_1_1RoguelikeManager.html#af1205bd14c8e25871b85814963c4c944',1,'karakuri::RoguelikeManager']]]
+  ['rect_0',['rect',['../structkarakuri_1_1RoguelikeGenerator_1_1Room.html#a32c49c794551a3a48c8764b9a9a0df8f',1,'karakuri::RoguelikeGenerator::Room']]],
+  ['reset_5fhook_5f_1',['reset_hook_',['../classkarakuri_1_1AdventureGameStateBase.html#a65a5850a8d70081d226183e4075995cc',1,'karakuri::AdventureGameStateBase']]],
+  ['room_5fcount_2',['room_count',['../classkarakuri_1_1RoguelikeManager.html#aaf4530d81867d65cd72f1ba5e1dcdbdd',1,'karakuri::RoguelikeManager']]],
+  ['rooms_3',['rooms',['../classkarakuri_1_1RoguelikeGenerator.html#a1e579c4e8dbf9a8e1f615b38b0ee8a87',1,'karakuri::RoguelikeGenerator']]]
 ];

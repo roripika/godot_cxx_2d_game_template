@@ -1,5 +1,0 @@
-<map id="karakuri::KarakuriScenarioRunner::notify_mode_exit" name="karakuri::KarakuriScenarioRunner::notify_mode_exit">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,197,45"/>
-<area shape="rect" id="Node000002" href="$structkarakuri_1_1KarakuriTestimonySession.html#a77041f159227063c72be72b902514177" title="セッションを初期状態に戻す。" alt="" coords="245,5,448,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,23,232,23,232,28,198,28"/>
-</map>

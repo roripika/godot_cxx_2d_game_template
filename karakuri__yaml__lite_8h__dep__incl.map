@@ -1,7 +1,0 @@
-<map id="src/core/yaml/karakuri_yaml_lite.h" name="src/core/yaml/karakuri_yaml_lite.h">
-<area shape="rect" id="Node000001" title="Basic Game Karakuri: プランナー向けシナリオファイル用のYAML Liteパーサー。" alt="" coords="116,5,283,45"/>
-<area shape="rect" id="Node000002" href="$karakuri__scenario__runner_8cpp.html" title="See karakuri_scenario_runner.h" alt="" coords="5,93,193,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,56,123,95,120,91,165,52"/>
-<area shape="rect" id="Node000003" href="$karakuri__yaml__lite_8cpp.html" title="See karakuri_yaml_lite.h" alt="" coords="217,93,384,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,52,280,91,277,95,231,56"/>
-</map>
