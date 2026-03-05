@@ -1,4 +1,11 @@
-#include "save_service.h"
+#!/usr/bin/env python3
+"""Write clean save_service.cpp (generic API, no AdventureGameStateBase dependency)."""
+import os
+
+WORKSPACE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path = os.path.join(WORKSPACE, "src/core/services/save_service.cpp")
+
+content = r"""#include "save_service.h"
 
 #include <godot_cpp/classes/dir_access.hpp>
 #include <godot_cpp/classes/file_access.hpp>
@@ -139,3 +146,9 @@ void SaveService::_bind_methods() {
 }
 
 } // namespace karakuri
+"""
+
+with open(path, 'w') as f:
+    f.write(content)
+print(f"Written: {path}")
+print(f"Lines: {len(content.splitlines())}")

@@ -1,6 +1,7 @@
 #include "mystery_manager.h"
 #include "../core/adventure_game_state.h"
 #include "../core/scenario/scenario_runner.h"
+#include "../core/services/save_service.h"
 #include "evidence_manager.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
@@ -27,6 +28,14 @@ void MysteryManager::_bind_methods() {
                        &MysteryManager::save_checkpoint);
   ClassDB::bind_method(D_METHOD("load_checkpoint"),
                        &MysteryManager::load_checkpoint);
+  ClassDB::bind_method(D_METHOD("save_state", "demo_id"),
+                       &MysteryManager::save_state);
+  ClassDB::bind_method(D_METHOD("load_state", "demo_id"),
+                       &MysteryManager::load_state);
+  ClassDB::bind_method(D_METHOD("has_save", "demo_id"),
+                       &MysteryManager::has_save);
+  ClassDB::bind_method(D_METHOD("delete_save", "demo_id"),
+                       &MysteryManager::delete_save);
 }
 
 MysteryManager::MysteryManager() {
@@ -258,6 +267,47 @@ void MysteryManager::register_scenario_actions() {
       ags->set_health(ags->get_health() - amount);
     return false; // Non-blocking
   });
+
+  // 4. save  — YAML: { action: save, value: "mystery" }
+  runner->register_action("save", [this](const Variant &p) {
+    String demo_id = p.get_type() == Variant::STRING ? (String)p : "mystery";
+    save_state(demo_id);
+    return false; // Non-blocking
+  });
+
+  // 5. load  — YAML: { action: load, value: "mystery" }
+  runner->register_action("load", [this](const Variant &p) {
+    String demo_id = p.get_type() == Variant::STRING ? (String)p : "mystery";
+    load_state(demo_id);
+    return false; // Non-blocking
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Persistence: SaveService 経由でセーブ・ロード
+// ---------------------------------------------------------------------------
+
+bool MysteryManager::save_state(const String &demo_id) {
+  // MysteryManager::serialize_state() が flags + evidence + health をまとめる
+  Dictionary data = serialize_state();
+  return karakuri::SaveService::save_game(demo_id, data);
+}
+
+bool MysteryManager::load_state(const String &demo_id) {
+  Dictionary data = karakuri::SaveService::load_game(demo_id);
+  if (data.is_empty()) {
+    return false;
+  }
+  deserialize_state(data);
+  return true;
+}
+
+bool MysteryManager::has_save(const String &demo_id) const {
+  return karakuri::SaveService::has_save(demo_id);
+}
+
+bool MysteryManager::delete_save(const String &demo_id) {
+  return karakuri::SaveService::delete_save(demo_id);
 }
 
 } // namespace mystery

@@ -1,4 +1,11 @@
-#ifndef KARAKURI_SAVE_SERVICE_H
+#!/usr/bin/env python3
+"""Write clean save_service.h (generic API)."""
+import os
+
+WORKSPACE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+path = os.path.join(WORKSPACE, "src/core/services/save_service.h")
+
+content = r"""#ifndef KARAKURI_SAVE_SERVICE_H
 #define KARAKURI_SAVE_SERVICE_H
 
 /**
@@ -81,3 +88,9 @@ private:
 } // namespace karakuri
 
 #endif // KARAKURI_SAVE_SERVICE_H
+"""
+
+with open(path, 'w') as f:
+    f.write(content)
+print(f"Written: {path}")
+print(f"Lines: {len(content.splitlines())}")

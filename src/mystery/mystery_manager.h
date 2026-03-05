@@ -53,6 +53,12 @@ public:
   void save_checkpoint(const String &p_scene_path);
   String load_checkpoint();
 
+  // Persistence (via karakuri::SaveService)
+  bool save_state(const String &demo_id);
+  bool load_state(const String &demo_id);
+  bool has_save(const String &demo_id) const;
+  bool delete_save(const String &demo_id);
+
   // Bridge to ScenarioRunner
   void _ready() override;
   void register_scenario_actions();
