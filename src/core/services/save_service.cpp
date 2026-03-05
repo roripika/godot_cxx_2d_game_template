@@ -1,4 +1,4 @@
-#include "karakuri_save_service.h"
+#include "save_service.h"
 
 #include "../adventure_game_state.h"
 
@@ -18,7 +18,7 @@ namespace karakuri {
 // Static helpers
 // ---------------------------------------------------------------------------
 
-String KarakuriSaveService::build_save_path(const String &demo_id) {
+String SaveService::build_save_path(const String &demo_id) {
   if (demo_id.is_empty()) {
     return "user://karakuri/save.json";
   }
@@ -29,10 +29,10 @@ String KarakuriSaveService::build_save_path(const String &demo_id) {
 // Public API
 // ---------------------------------------------------------------------------
 
-bool KarakuriSaveService::save_game(const String &demo_id) { // static
+bool SaveService::save_game(const String &demo_id) { // static
   AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
   if (!state) {
-    UtilityFunctions::printerr("[KarakuriSaveService] save_game: "
+    UtilityFunctions::printerr("[SaveService] save_game: "
                                "AdventureGameStateBase singleton not found.");
     return false;
   }
@@ -86,27 +86,27 @@ bool KarakuriSaveService::save_game(const String &demo_id) { // static
   // --- Write ---
   Ref<FileAccess> file = FileAccess::open(path, FileAccess::WRITE);
   if (file.is_null()) {
-    UtilityFunctions::printerr("[KarakuriSaveService] save_game: "
+    UtilityFunctions::printerr("[SaveService] save_game: "
                                "Failed to open for write: ",
                                path);
     return false;
   }
   file->store_string(json_text);
-  UtilityFunctions::print("[KarakuriSaveService] Saved to: ", path);
+  UtilityFunctions::print("[SaveService] Saved to: ", path);
   return true;
 }
 
-bool KarakuriSaveService::load_game(const String &demo_id) { // static
+bool SaveService::load_game(const String &demo_id) { // static
   AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
   if (!state) {
-    UtilityFunctions::printerr("[KarakuriSaveService] load_game: "
+    UtilityFunctions::printerr("[SaveService] load_game: "
                                "AdventureGameStateBase singleton not found.");
     return false;
   }
 
   String path = build_save_path(demo_id);
   if (!FileAccess::file_exists(path)) {
-    UtilityFunctions::print("[KarakuriSaveService] load_game: "
+    UtilityFunctions::print("[SaveService] load_game: "
                             "No save file at: ",
                             path);
     return false;
@@ -114,7 +114,7 @@ bool KarakuriSaveService::load_game(const String &demo_id) { // static
 
   Ref<FileAccess> file = FileAccess::open(path, FileAccess::READ);
   if (file.is_null()) {
-    UtilityFunctions::printerr("[KarakuriSaveService] load_game: "
+    UtilityFunctions::printerr("[SaveService] load_game: "
                                "Failed to open for read: ",
                                path);
     return false;
@@ -127,7 +127,7 @@ bool KarakuriSaveService::load_game(const String &demo_id) { // static
   parser.instantiate();
   Error err = parser->parse(json_text);
   if (err != OK) {
-    UtilityFunctions::printerr("[KarakuriSaveService] load_game: "
+    UtilityFunctions::printerr("[SaveService] load_game: "
                                "JSON parse error at line ",
                                parser->get_error_line(), ": ",
                                parser->get_error_message());
@@ -136,7 +136,7 @@ bool KarakuriSaveService::load_game(const String &demo_id) { // static
 
   Variant result = parser->get_data();
   if (result.get_type() != Variant::DICTIONARY) {
-    UtilityFunctions::printerr("[KarakuriSaveService] load_game: "
+    UtilityFunctions::printerr("[SaveService] load_game: "
                                "Unexpected JSON root type.");
     return false;
   }
@@ -168,15 +168,15 @@ bool KarakuriSaveService::load_game(const String &demo_id) { // static
     }
   }
 
-  UtilityFunctions::print("[KarakuriSaveService] Loaded from: ", path);
+  UtilityFunctions::print("[SaveService] Loaded from: ", path);
   return true;
 }
 
-bool KarakuriSaveService::has_save(const String &demo_id) { // static
+bool SaveService::has_save(const String &demo_id) { // static
   return FileAccess::file_exists(build_save_path(demo_id));
 }
 
-bool KarakuriSaveService::delete_save(const String &demo_id) { // static
+bool SaveService::delete_save(const String &demo_id) { // static
   String path = build_save_path(demo_id);
   if (!FileAccess::file_exists(path)) {
     return false;
@@ -189,28 +189,28 @@ bool KarakuriSaveService::delete_save(const String &demo_id) { // static
 // Godot bindings
 // ---------------------------------------------------------------------------
 
-void KarakuriSaveService::_bind_methods() {
+void SaveService::_bind_methods() {
   ClassDB::bind_static_method(
-      "KarakuriSaveService",
+      "SaveService",
       D_METHOD("build_save_path", "demo_id"),
-      &KarakuriSaveService::build_save_path);
+      &SaveService::build_save_path);
 
   ClassDB::bind_static_method(
-      "KarakuriSaveService",
+      "SaveService",
       D_METHOD("save_game", "demo_id"),
-      &KarakuriSaveService::save_game);
+      &SaveService::save_game);
   ClassDB::bind_static_method(
-      "KarakuriSaveService",
+      "SaveService",
       D_METHOD("load_game", "demo_id"),
-      &KarakuriSaveService::load_game);
+      &SaveService::load_game);
   ClassDB::bind_static_method(
-      "KarakuriSaveService",
+      "SaveService",
       D_METHOD("has_save", "demo_id"),
-      &KarakuriSaveService::has_save);
+      &SaveService::has_save);
   ClassDB::bind_static_method(
-      "KarakuriSaveService",
+      "SaveService",
       D_METHOD("delete_save", "demo_id"),
-      &KarakuriSaveService::delete_save);
+      &SaveService::delete_save);
 }
 
 } // namespace karakuri

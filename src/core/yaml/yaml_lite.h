@@ -2,7 +2,7 @@
 #define KARAKURI_YAML_LITE_H
 
 /**
- * @file karakuri_yaml_lite.h
+ * @file yaml_lite.h
  * @brief Basic Game Karakuri: プランナー向けシナリオファイル用のYAML
  * Liteパーサー。
  *
@@ -27,7 +27,7 @@ namespace karakuri {
 /**
  * @brief シナリオ用に使用される制限されたサブセット向けの最小のYAMLパーサー。
  */
-class KarakuriYamlLite final {
+class YamlLite final {
 public:
   /**
    * @brief

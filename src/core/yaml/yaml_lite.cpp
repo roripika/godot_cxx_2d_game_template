@@ -1,8 +1,8 @@
-#include "karakuri_yaml_lite.h"
+#include "yaml_lite.h"
 
 /**
  * @file karakuri_yaml_lite.cpp
- * @brief See karakuri_yaml_lite.h
+ * @brief See yaml_lite.h
  */
 
 #include <godot_cpp/variant/array.hpp>
@@ -429,7 +429,7 @@ static Variant parse_block(const PackedStringArray &lines, int &io_index,
 
 } // namespace
 
-bool KarakuriYamlLite::parse(const String &yaml_text, Variant &out_root,
+bool YamlLite::parse(const String &yaml_text, Variant &out_root,
                              String &out_error) {
   out_error = "";
   PackedStringArray lines = yaml_text.split("\n", false);

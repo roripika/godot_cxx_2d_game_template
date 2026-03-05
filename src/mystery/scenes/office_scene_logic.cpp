@@ -9,6 +9,9 @@
 #include <godot_cpp/variant/string_name.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
+namespace mystery {
+
+
 using namespace godot;
 
 static String tr_key(const char *key) {
@@ -103,3 +106,5 @@ void OfficeSceneLogic::_change_scene_callback() {
     state->change_scene("res://samples/mystery/demo_adv.tscn");
   }
 }
+
+} // namespace mystery

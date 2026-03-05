@@ -2,7 +2,7 @@
 #define KARAKURI_LOCALIZATION_SERVICE_H
 
 /**
- * @file karakuri_localization_service.h
+ * @file localization_service.h
  * @brief Basic Game Karakuri: ロケールの保存とランタイム切り替えサービス。
  */
 
@@ -20,12 +20,12 @@ namespace karakuri {
  * - ロケール切り替え用の単一のランタイムAPIを提供。
  * - UIが即座に再描画できるよう `locale_changed(locale)` シグナルを発火。
  */
-class KarakuriLocalizationService : public godot::Node {
-  GDCLASS(KarakuriLocalizationService, godot::Node)
+class LocalizationService : public godot::Node {
+  GDCLASS(LocalizationService, godot::Node)
 
 public:
-  KarakuriLocalizationService() = default;
-  ~KarakuriLocalizationService() override = default;
+  LocalizationService() = default;
+  ~LocalizationService() override = default;
 
   /**
    * @brief Godotのライフサイクルフック。保存されたロケールを復元する。

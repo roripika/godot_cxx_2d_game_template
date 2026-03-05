@@ -3,7 +3,7 @@
 
 #include <godot_cpp/variant/string.hpp>
 
-namespace godot {
+namespace mystery {
 
 enum class MysteryFlag {
   INTRO_DONE,
@@ -24,7 +24,7 @@ enum class EvidenceID {
 
 class MysteryEnumValueConverter {
 public:
-  static String get_flag_key(MysteryFlag flag) {
+  static godot::String get_flag_key(MysteryFlag flag) {
     switch (flag) {
     case MysteryFlag::INTRO_DONE:
       return "intro_done";
@@ -43,7 +43,7 @@ public:
     }
   }
 
-  static String get_evidence_key(EvidenceID id) {
+  static godot::String get_evidence_key(EvidenceID id) {
     switch (id) {
     case EvidenceID::ECTOPLASM:
       return "ectoplasm";
@@ -61,6 +61,6 @@ public:
   }
 };
 
-} // namespace godot
+} // namespace mystery
 
 #endif // MYSTERY_ENUMS_HPP

@@ -1,6 +1,9 @@
 #include "side_scrolling_view.h"
 #include <godot_cpp/core/class_db.hpp>
 
+namespace karakuri {
+
+
 using namespace godot;
 
 void SideScrollingView::_bind_methods() {
@@ -101,3 +104,5 @@ void SideScrollingView::update_visuals() {
     }
   }
 }
+
+} // namespace karakuri

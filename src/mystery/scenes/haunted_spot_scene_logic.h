@@ -6,6 +6,9 @@
 #include <godot_cpp/classes/control.hpp> // For ColorRect ghost
 #include <godot_cpp/classes/node2d.hpp>
 
+namespace mystery {
+
+
 using namespace godot;
 
 class HauntedSpotSceneLogic : public Node2D {
@@ -33,3 +36,5 @@ public:
 };
 
 #endif // HAUNTED_SPOT_SCENE_LOGIC_H
+
+} // namespace mystery

@@ -7,8 +7,8 @@ using namespace godot;
 
 namespace karakuri {
 
-class GameEntity : public CharacterBody2D {
-  GDCLASS(GameEntity, CharacterBody2D)
+class BaseEntity : public CharacterBody2D {
+  GDCLASS(BaseEntity, CharacterBody2D)
 
 private:
   float max_health;
@@ -23,8 +23,8 @@ protected:
   void _notification(int p_what);
 
 public:
-  GameEntity();
-  ~GameEntity();
+  BaseEntity();
+  ~BaseEntity();
 
   // Stats
   void set_max_health(float p_health);

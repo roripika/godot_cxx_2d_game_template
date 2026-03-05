@@ -15,8 +15,8 @@
 
 namespace karakuri {
 
-class KarakuriLogger : public godot::Object {
-  GDCLASS(KarakuriLogger, godot::Object)
+class Logger : public godot::Object {
+  GDCLASS(Logger, godot::Object)
 
 protected:
   static void _bind_methods();
@@ -32,9 +32,9 @@ public:
 } // namespace karakuri
 
 // Convenient C++ Macros for internal use
-#define KARAKURI_DEBUG(msg) karakuri::KarakuriLogger::debug(godot::String(msg))
-#define KARAKURI_INFO(msg) karakuri::KarakuriLogger::info(godot::String(msg))
-#define KARAKURI_WARN(msg) karakuri::KarakuriLogger::warn(godot::String(msg))
-#define KARAKURI_ERR(msg) karakuri::KarakuriLogger::error(godot::String(msg))
+#define KARAKURI_DEBUG(msg) karakuri::Logger::debug(godot::String(msg))
+#define KARAKURI_INFO(msg) karakuri::Logger::info(godot::String(msg))
+#define KARAKURI_WARN(msg) karakuri::Logger::warn(godot::String(msg))
+#define KARAKURI_ERR(msg) karakuri::Logger::error(godot::String(msg))
 
 #endif // KARAKURI_LOGGER_H

@@ -1,7 +1,7 @@
 #ifndef ISOMETRIC_VIEW_H
 #define ISOMETRIC_VIEW_H
 
-#include "../core/universal_world_data.h"
+#include "core/universal_world_data.h"
 #include <godot_cpp/classes/tile_map_layer.hpp>
 #include <godot_cpp/classes/tile_set.hpp>
 

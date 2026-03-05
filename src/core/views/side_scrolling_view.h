@@ -1,9 +1,12 @@
 #ifndef SIDE_SCROLLING_VIEW_H
 #define SIDE_SCROLLING_VIEW_H
 
-#include "../core/universal_world_data.h"
+#include "universal_world_data.h"
 #include <godot_cpp/classes/tile_map_layer.hpp>
 #include <godot_cpp/classes/tile_set.hpp>
+
+namespace karakuri {
+
 
 using namespace godot;
 
@@ -39,3 +42,5 @@ public:
 };
 
 #endif
+
+} // namespace karakuri

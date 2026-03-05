@@ -23,40 +23,35 @@ env.Append(CPPPATH=["src"])
 core_env = env.Clone()
 core_env['CPPPATH'] = [p for p in list(core_env['CPPPATH']) if str(p) != 'src']
 core_env.Append(CPPPATH=[
-    "src/core",    # Core 内ヘッダ解決用
-    "src/plugins", # Core から利用する plugins ヘッダ（views/rhythm 等）
-    "src/views",
-    "src/scenes",
+    "src/core",    # Core internal header resolution
+    "src/plugins/views", # For any shared view interfaces if necessary
 ])
 
-# Layer 1 ソースを防波堤環境でコンパイル
+# Layer 1 Sources (Core infrastructure)
 core_source_files = (
     Glob("src/core/*.cpp") +
     Glob("src/core/components/*.cpp") +
-    Glob("src/core/cycles/*.cpp") +
     Glob("src/core/entities/*.cpp") +
     Glob("src/core/items/*.cpp") +
     Glob("src/core/logger/*.cpp") +
     Glob("src/core/scenario/*.cpp") +
     Glob("src/core/services/*.cpp") +
-    Glob("src/core/ui/*.cpp") +
-    Glob("src/core/yaml/*.cpp")
+    Glob("src/core/yaml/*.cpp") +
+    Glob("src/core/views/*.cpp")
 )
 core_objects = [core_env.SharedObject(f) for f in core_source_files]
 
-# Layer 2+ / その他ソース（通常環境: src/mystery が見える）
+# Layer 2+ / Mystery & Plugins
 other_sources = (
     Glob("src/*.cpp") +
     # Layer 2: Mystery template
     Glob("src/mystery/*.cpp") +
+    # Glob("src/mystery/entities/*.cpp") + # Placeholder if files are added later
+    Glob("src/mystery/scenes/*.cpp") +
     # Plugins (genre-specific, isolated)
     Glob("src/plugins/features/fighting/*.cpp") +
     Glob("src/plugins/features/sandbox/*.cpp") +
-    Glob("src/plugins/features/rhythm/*.cpp") +
-    # Views & Scenes
-    Glob("src/scenes/*.cpp") +
-    Glob("src/views/*.cpp") +
-    Glob("src/views/rhythm/*.cpp")
+    Glob("src/plugins/features/rhythm/*.cpp")
 )
 
 sources = core_objects + other_sources

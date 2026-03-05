@@ -39,11 +39,11 @@ MysteryManager::~MysteryManager() {
 
 MysteryManager *MysteryManager::get_singleton() { return singleton; }
 
-void MysteryManager::set_mystery_flag(MysteryFlag p_flag, bool p_value) {
+void MysteryManager::set_mystery_flag(mystery::MysteryFlag p_flag, bool p_value) {
   set_flag(MysteryEnumValueConverter::get_flag_key(p_flag), p_value);
 }
 
-bool MysteryManager::get_mystery_flag(MysteryFlag p_flag) const {
+bool MysteryManager::get_mystery_flag(mystery::MysteryFlag p_flag) const {
   return get_flag(MysteryEnumValueConverter::get_flag_key(p_flag));
 }
 

@@ -6,6 +6,9 @@
 #include <godot_cpp/classes/canvas_layer.hpp> // For getting karakuri::DialogueUI
 #include <godot_cpp/classes/node2d.hpp>
 
+namespace mystery {
+
+
 using namespace godot;
 
 class OfficeSceneLogic : public Node2D {
@@ -30,3 +33,5 @@ public:
 };
 
 #endif // OFFICE_SCENE_LOGIC_H
+
+} // namespace mystery

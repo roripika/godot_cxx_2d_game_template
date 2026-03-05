@@ -7,24 +7,24 @@ using namespace godot;
 namespace karakuri {
 
 
-void GameEntity::_bind_methods() {
+void BaseEntity::_bind_methods() {
   ClassDB::bind_method(D_METHOD("set_max_health", "health"),
-                       &GameEntity::set_max_health);
-  ClassDB::bind_method(D_METHOD("get_max_health"), &GameEntity::get_max_health);
+                       &BaseEntity::set_max_health);
+  ClassDB::bind_method(D_METHOD("get_max_health"), &BaseEntity::get_max_health);
   ClassDB::bind_method(D_METHOD("set_current_health", "health"),
-                       &GameEntity::set_current_health);
+                       &BaseEntity::set_current_health);
   ClassDB::bind_method(D_METHOD("get_current_health"),
-                       &GameEntity::get_current_health);
-  ClassDB::bind_method(D_METHOD("set_speed", "speed"), &GameEntity::set_speed);
-  ClassDB::bind_method(D_METHOD("get_speed"), &GameEntity::get_speed);
+                       &BaseEntity::get_current_health);
+  ClassDB::bind_method(D_METHOD("set_speed", "speed"), &BaseEntity::set_speed);
+  ClassDB::bind_method(D_METHOD("get_speed"), &BaseEntity::get_speed);
 
   ClassDB::bind_method(D_METHOD("take_damage", "amount"),
-                       &GameEntity::take_damage);
-  ClassDB::bind_method(D_METHOD("heal", "amount"), &GameEntity::heal);
+                       &BaseEntity::take_damage);
+  ClassDB::bind_method(D_METHOD("heal", "amount"), &BaseEntity::heal);
   ClassDB::bind_method(D_METHOD("set_movement_input", "input"),
-                       &GameEntity::set_movement_input);
+                       &BaseEntity::set_movement_input);
   ClassDB::bind_method(D_METHOD("get_movement_input"),
-                       &GameEntity::get_movement_input);
+                       &BaseEntity::get_movement_input);
 
   ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_health"), "set_max_health",
                "get_max_health");
@@ -37,16 +37,16 @@ void GameEntity::_bind_methods() {
   ADD_SIGNAL(MethodInfo("died"));
 }
 
-GameEntity::GameEntity() {
+BaseEntity::BaseEntity() {
   max_health = 100.0f;
   current_health = 100.0f;
   speed = 200.0f;
   movement_input = Vector2(0, 0);
 }
 
-GameEntity::~GameEntity() {}
+BaseEntity::~BaseEntity() {}
 
-void GameEntity::_notification(int p_what) {
+void BaseEntity::_notification(int p_what) {
   if (p_what == NOTIFICATION_PHYSICS_PROCESS) {
     if (is_physics_processing()) {
       apply_movement(get_physics_process_delta_time());
@@ -54,7 +54,7 @@ void GameEntity::_notification(int p_what) {
   }
 }
 
-void GameEntity::set_max_health(float p_health) {
+void BaseEntity::set_max_health(float p_health) {
   max_health = p_health;
   if (current_health > max_health) {
     current_health = max_health;
@@ -62,9 +62,9 @@ void GameEntity::set_max_health(float p_health) {
   }
 }
 
-float GameEntity::get_max_health() const { return max_health; }
+float BaseEntity::get_max_health() const { return max_health; }
 
-void GameEntity::set_current_health(float p_health) {
+void BaseEntity::set_current_health(float p_health) {
   current_health = p_health;
   emit_signal("health_changed", current_health);
   if (current_health <= 0) {
@@ -72,13 +72,13 @@ void GameEntity::set_current_health(float p_health) {
   }
 }
 
-float GameEntity::get_current_health() const { return current_health; }
+float BaseEntity::get_current_health() const { return current_health; }
 
-void GameEntity::set_speed(float p_speed) { speed = p_speed; }
+void BaseEntity::set_speed(float p_speed) { speed = p_speed; }
 
-float GameEntity::get_speed() const { return speed; }
+float BaseEntity::get_speed() const { return speed; }
 
-void GameEntity::take_damage(float p_amount) {
+void BaseEntity::take_damage(float p_amount) {
   current_health -= p_amount;
   emit_signal("health_changed", current_health);
   if (current_health <= 0) {
@@ -86,7 +86,7 @@ void GameEntity::take_damage(float p_amount) {
   }
 }
 
-void GameEntity::heal(float p_amount) {
+void BaseEntity::heal(float p_amount) {
   current_health += p_amount;
   if (current_health > max_health) {
     current_health = max_health;
@@ -94,13 +94,13 @@ void GameEntity::heal(float p_amount) {
   emit_signal("health_changed", current_health);
 }
 
-void GameEntity::set_movement_input(const Vector2 &p_input) {
+void BaseEntity::set_movement_input(const Vector2 &p_input) {
   movement_input = p_input;
 }
 
-Vector2 GameEntity::get_movement_input() const { return movement_input; }
+Vector2 BaseEntity::get_movement_input() const { return movement_input; }
 
-void GameEntity::apply_movement(double delta) {
+void BaseEntity::apply_movement(double delta) {
   Vector2 target_velocity = movement_input * speed;
   set_velocity(target_velocity);
   move_and_slide();

@@ -1,12 +1,12 @@
-#include "karakuri_scenario_runner.h"
+#include "scenario_runner.h"
 
 /**
  * @file karakuri_scenario_runner.cpp
- * @brief See karakuri_scenario_runner.h
+ * @brief See scenario_runner.h
  */
 
-#include "../services/karakuri_save_service.h"
-#include "../yaml/karakuri_yaml_lite.h"
+#include "../services/save_service.h"
+#include "../yaml/yaml_lite.h"
 // Mystery 型への直接依存を除去: duck typing で Node* を取得するヘルパーを使用する
 
 #include <godot_cpp/classes/area2d.hpp>
@@ -124,208 +124,208 @@ static CollisionShape2D *find_collision_shape(Area2D *area) {
 
 } // namespace
 
-KarakuriScenarioRunner::KarakuriScenarioRunner() { init_builtin_actions(); }
+ScenarioRunner::ScenarioRunner() { init_builtin_actions(); }
 
-KarakuriScenarioRunner::~KarakuriScenarioRunner() {}
+ScenarioRunner::~ScenarioRunner() {}
 
-void KarakuriScenarioRunner::register_action(const String &kind,
+void ScenarioRunner::register_action(const String &kind,
                                              ActionHandler handler) {
   action_handlers_[kind] = handler;
 }
 
-void KarakuriScenarioRunner::set_scenario_path(const String &path) {
+void ScenarioRunner::set_scenario_path(const String &path) {
   scenario_path_ = path;
 }
 
-String KarakuriScenarioRunner::get_scenario_path() const {
+String ScenarioRunner::get_scenario_path() const {
   return scenario_path_;
 }
 
-void KarakuriScenarioRunner::set_scene_container_path(const NodePath &path) {
+void ScenarioRunner::set_scene_container_path(const NodePath &path) {
   scene_container_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_scene_container_path() const {
+NodePath ScenarioRunner::get_scene_container_path() const {
   return scene_container_path_;
 }
 
-void KarakuriScenarioRunner::set_dialogue_ui_path(const NodePath &path) {
+void ScenarioRunner::set_dialogue_ui_path(const NodePath &path) {
   dialogue_ui_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_dialogue_ui_path() const {
+NodePath ScenarioRunner::get_dialogue_ui_path() const {
   return dialogue_ui_path_;
 }
 
-void KarakuriScenarioRunner::set_evidence_ui_path(const NodePath &path) {
+void ScenarioRunner::set_evidence_ui_path(const NodePath &path) {
   evidence_ui_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_evidence_ui_path() const {
+NodePath ScenarioRunner::get_evidence_ui_path() const {
   return evidence_ui_path_;
 }
 
-void KarakuriScenarioRunner::set_interaction_manager_path(
+void ScenarioRunner::set_interaction_manager_path(
     const NodePath &path) {
   interaction_manager_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_interaction_manager_path() const {
+NodePath ScenarioRunner::get_interaction_manager_path() const {
   return interaction_manager_path_;
 }
 
-void KarakuriScenarioRunner::set_testimony_system_path(const NodePath &path) {
+void ScenarioRunner::set_testimony_system_path(const NodePath &path) {
   testimony_system_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_testimony_system_path() const {
+NodePath ScenarioRunner::get_testimony_system_path() const {
   return testimony_system_path_;
 }
 
-void KarakuriScenarioRunner::set_transition_manager_path(
+void ScenarioRunner::set_transition_manager_path(
     const godot::NodePath &path) {
   transition_manager_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_transition_manager_path() const {
+NodePath ScenarioRunner::get_transition_manager_path() const {
   return transition_manager_path_;
 }
 
-void KarakuriScenarioRunner::set_transition_rect_path(
+void ScenarioRunner::set_transition_rect_path(
     const godot::NodePath &path) {
   transition_rect_path_ = path;
 }
 
-NodePath KarakuriScenarioRunner::get_transition_rect_path() const {
+NodePath ScenarioRunner::get_transition_rect_path() const {
   return transition_rect_path_;
 }
 
-void KarakuriScenarioRunner::_bind_methods() {
+void ScenarioRunner::_bind_methods() {
   // Signal handlers (must be bound to be callable through Callable
   // connections).
   ClassDB::bind_method(D_METHOD("on_clicked_at", "pos"),
-                       &KarakuriScenarioRunner::on_clicked_at);
+                       &ScenarioRunner::on_clicked_at);
   ClassDB::bind_method(D_METHOD("on_choice_selected", "index", "text"),
-                       &KarakuriScenarioRunner::on_choice_selected);
+                       &ScenarioRunner::on_choice_selected);
   ClassDB::bind_method(D_METHOD("on_dialogue_finished"),
-                       &KarakuriScenarioRunner::on_dialogue_finished);
+                       &ScenarioRunner::on_dialogue_finished);
   ClassDB::bind_method(
       D_METHOD("on_transition_finished", "arg1", "arg2", "arg3"),
-      &KarakuriScenarioRunner::on_transition_finished, DEFVAL(Variant()),
+      &ScenarioRunner::on_transition_finished, DEFVAL(Variant()),
       DEFVAL(Variant()), DEFVAL(Variant()));
   ClassDB::bind_method(D_METHOD("on_testimony_complete", "success"),
-                       &KarakuriScenarioRunner::on_testimony_complete);
+                       &ScenarioRunner::on_testimony_complete);
   ClassDB::bind_method(D_METHOD("on_testimony_next_requested"),
-                       &KarakuriScenarioRunner::on_testimony_next_requested);
+                       &ScenarioRunner::on_testimony_next_requested);
   ClassDB::bind_method(D_METHOD("on_testimony_shake_requested"),
-                       &KarakuriScenarioRunner::on_testimony_shake_requested);
+                       &ScenarioRunner::on_testimony_shake_requested);
   ClassDB::bind_method(D_METHOD("on_testimony_present_requested"),
-                       &KarakuriScenarioRunner::on_testimony_present_requested);
+                       &ScenarioRunner::on_testimony_present_requested);
   ClassDB::bind_method(D_METHOD("on_evidence_selected", "evidence_id"),
-                       &KarakuriScenarioRunner::on_evidence_selected);
+                       &ScenarioRunner::on_evidence_selected);
 
   // Mystery-specific action injection (call from Mystery shell _ready()).
   ClassDB::bind_method(D_METHOD("register_mystery_actions"),
-                       &KarakuriScenarioRunner::register_mystery_actions);
+                       &ScenarioRunner::register_mystery_actions);
 
   ClassDB::bind_method(D_METHOD("load_scenario"),
-                       &KarakuriScenarioRunner::load_scenario);
+                       &ScenarioRunner::load_scenario);
   ClassDB::bind_method(D_METHOD("load_scene_by_id", "scene_id"),
-                       &KarakuriScenarioRunner::load_scene_by_id);
+                       &ScenarioRunner::load_scene_by_id);
   ClassDB::bind_method(D_METHOD("execute_single_action", "action"),
-                       &KarakuriScenarioRunner::execute_single_action);
+                       &ScenarioRunner::execute_single_action);
 
   ClassDB::bind_method(D_METHOD("get_current_scene_id"),
-                       &KarakuriScenarioRunner::get_current_scene_id);
+                       &ScenarioRunner::get_current_scene_id);
 
   ClassDB::bind_method(D_METHOD("is_running"),
-                       &KarakuriScenarioRunner::is_running);
+                       &ScenarioRunner::is_running);
   ClassDB::bind_method(D_METHOD("get_testimony_index"),
-                       &KarakuriScenarioRunner::get_testimony_index);
+                       &ScenarioRunner::get_testimony_index);
   ClassDB::bind_method(D_METHOD("get_testimony_size"),
-                       &KarakuriScenarioRunner::get_testimony_size);
+                       &ScenarioRunner::get_testimony_size);
   ClassDB::bind_method(D_METHOD("get_testimony_active"),
-                       &KarakuriScenarioRunner::get_testimony_active);
+                       &ScenarioRunner::get_testimony_active);
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),
-                       &KarakuriScenarioRunner::set_scenario_path);
+                       &ScenarioRunner::set_scenario_path);
   ClassDB::bind_method(D_METHOD("get_scenario_path"),
-                       &KarakuriScenarioRunner::get_scenario_path);
+                       &ScenarioRunner::get_scenario_path);
   ADD_PROPERTY(PropertyInfo(Variant::STRING, "scenario_path"),
                "set_scenario_path", "get_scenario_path");
 
   ClassDB::bind_method(D_METHOD("set_scene_container_path", "path"),
-                       &KarakuriScenarioRunner::set_scene_container_path);
+                       &ScenarioRunner::set_scene_container_path);
   ClassDB::bind_method(D_METHOD("get_scene_container_path"),
-                       &KarakuriScenarioRunner::get_scene_container_path);
+                       &ScenarioRunner::get_scene_container_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "scene_container_path"),
                "set_scene_container_path", "get_scene_container_path");
 
   ClassDB::bind_method(D_METHOD("set_dialogue_ui_path", "path"),
-                       &KarakuriScenarioRunner::set_dialogue_ui_path);
+                       &ScenarioRunner::set_dialogue_ui_path);
   ClassDB::bind_method(D_METHOD("get_dialogue_ui_path"),
-                       &KarakuriScenarioRunner::get_dialogue_ui_path);
+                       &ScenarioRunner::get_dialogue_ui_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "dialogue_ui_path"),
                "set_dialogue_ui_path", "get_dialogue_ui_path");
 
   ClassDB::bind_method(D_METHOD("set_evidence_ui_path", "path"),
-                       &KarakuriScenarioRunner::set_evidence_ui_path);
+                       &ScenarioRunner::set_evidence_ui_path);
   ClassDB::bind_method(D_METHOD("get_evidence_ui_path"),
-                       &KarakuriScenarioRunner::get_evidence_ui_path);
+                       &ScenarioRunner::get_evidence_ui_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "evidence_ui_path"),
                "set_evidence_ui_path", "get_evidence_ui_path");
 
   ClassDB::bind_method(D_METHOD("set_interaction_manager_path", "path"),
-                       &KarakuriScenarioRunner::set_interaction_manager_path);
+                       &ScenarioRunner::set_interaction_manager_path);
   ClassDB::bind_method(D_METHOD("get_interaction_manager_path"),
-                       &KarakuriScenarioRunner::get_interaction_manager_path);
+                       &ScenarioRunner::get_interaction_manager_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "interaction_manager_path"),
                "set_interaction_manager_path", "get_interaction_manager_path");
 
   ClassDB::bind_method(D_METHOD("set_testimony_system_path", "path"),
-                       &KarakuriScenarioRunner::set_testimony_system_path);
+                       &ScenarioRunner::set_testimony_system_path);
   ClassDB::bind_method(D_METHOD("get_testimony_system_path"),
-                       &KarakuriScenarioRunner::get_testimony_system_path);
+                       &ScenarioRunner::get_testimony_system_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "testimony_system_path"),
                "set_testimony_system_path", "get_testimony_system_path");
 
   ClassDB::bind_method(D_METHOD("set_transition_manager_path", "path"),
-                       &KarakuriScenarioRunner::set_transition_manager_path);
+                       &ScenarioRunner::set_transition_manager_path);
   ClassDB::bind_method(D_METHOD("get_transition_manager_path"),
-                       &KarakuriScenarioRunner::get_transition_manager_path);
+                       &ScenarioRunner::get_transition_manager_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "transition_manager_path"),
                "set_transition_manager_path", "get_transition_manager_path");
 
   ClassDB::bind_method(D_METHOD("set_transition_rect_path", "path"),
-                       &KarakuriScenarioRunner::set_transition_rect_path);
+                       &ScenarioRunner::set_transition_rect_path);
   ClassDB::bind_method(D_METHOD("get_transition_rect_path"),
-                       &KarakuriScenarioRunner::get_transition_rect_path);
+                       &ScenarioRunner::get_transition_rect_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "transition_rect_path"),
                "set_transition_rect_path", "get_transition_rect_path");
 }
 
-bool KarakuriScenarioRunner::is_running() const {
+bool ScenarioRunner::is_running() const {
   return is_executing_actions_ || waiting_for_choice_ ||
          waiting_for_dialogue_ || waiting_for_transition_ ||
          wait_remaining_sec_ > 0.0 || testimony_.active;
 }
 
-int KarakuriScenarioRunner::get_testimony_index() const {
+int ScenarioRunner::get_testimony_index() const {
   return testimony_.index;
 }
 
-int KarakuriScenarioRunner::get_testimony_size() const {
+int ScenarioRunner::get_testimony_size() const {
   return testimony_.lines.size();
 }
-String KarakuriScenarioRunner::get_current_scene_id() const {
+String ScenarioRunner::get_current_scene_id() const {
   return current_scene_id_;
 }
 
-bool KarakuriScenarioRunner::get_testimony_active() const {
+bool ScenarioRunner::get_testimony_active() const {
   return testimony_.active;
 }
 
-void KarakuriScenarioRunner::_ready() {
+void ScenarioRunner::_ready() {
   // Ensure _process runs for the action runner.
   set_process(true);
 
@@ -339,7 +339,7 @@ void KarakuriScenarioRunner::_ready() {
 
   if (!scene_container_) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: scene_container not found: ",
+        "ScenarioRunner: scene_container not found: ",
         String(scene_container_path_));
     return;
   }
@@ -347,7 +347,7 @@ void KarakuriScenarioRunner::_ready() {
   if (!interaction_manager_ ||
       !interaction_manager_->has_signal("clicked_at")) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: InteractionManager missing or no clicked_at "
+        "ScenarioRunner: InteractionManager missing or no clicked_at "
         "signal at: ",
         String(interaction_manager_path_));
     return;
@@ -357,7 +357,7 @@ void KarakuriScenarioRunner::_ready() {
   const Error err = interaction_manager_->connect("clicked_at", cb);
   if (err != OK && err != ERR_ALREADY_EXISTS) {
     UtilityFunctions::push_warning(
-        "KarakuriScenarioRunner: failed to connect clicked_at: ", err);
+        "ScenarioRunner: failed to connect clicked_at: ", err);
   }
 
   if (dialogue_ui_ && dialogue_ui_->has_signal("choice_selected")) {
@@ -365,7 +365,7 @@ void KarakuriScenarioRunner::_ready() {
     const Error err2 = dialogue_ui_->connect("choice_selected", cb2);
     if (err2 != OK && err2 != ERR_ALREADY_EXISTS) {
       UtilityFunctions::push_warning(
-          "KarakuriScenarioRunner: failed to connect choice_selected: ", err2);
+          "ScenarioRunner: failed to connect choice_selected: ", err2);
     }
   }
 
@@ -374,7 +374,7 @@ void KarakuriScenarioRunner::_ready() {
     const Error errdf = dialogue_ui_->connect("dialogue_finished", cbdf);
     if (errdf != OK && errdf != ERR_ALREADY_EXISTS) {
       UtilityFunctions::push_warning(
-          "KarakuriScenarioRunner: failed to connect dialogue_finished: ",
+          "ScenarioRunner: failed to connect dialogue_finished: ",
           errdf);
     }
   }
@@ -386,7 +386,7 @@ void KarakuriScenarioRunner::_ready() {
           testimony_system_->connect("next_requested", cb_next);
       if (err_next != OK && err_next != ERR_ALREADY_EXISTS) {
         UtilityFunctions::push_warning(
-            "KarakuriScenarioRunner: failed to connect next_requested: ",
+            "ScenarioRunner: failed to connect next_requested: ",
             err_next);
       }
     }
@@ -396,7 +396,7 @@ void KarakuriScenarioRunner::_ready() {
           testimony_system_->connect("shake_requested", cb_shake);
       if (err_shake != OK && err_shake != ERR_ALREADY_EXISTS) {
         UtilityFunctions::push_warning(
-            "KarakuriScenarioRunner: failed to connect shake_requested: ",
+            "ScenarioRunner: failed to connect shake_requested: ",
             err_shake);
       }
     }
@@ -406,7 +406,7 @@ void KarakuriScenarioRunner::_ready() {
           testimony_system_->connect("present_requested", cb_present);
       if (err_present != OK && err_present != ERR_ALREADY_EXISTS) {
         UtilityFunctions::push_warning(
-            "KarakuriScenarioRunner: failed to connect present_requested: ",
+            "ScenarioRunner: failed to connect present_requested: ",
             err_present);
       }
     }
@@ -418,7 +418,7 @@ void KarakuriScenarioRunner::_ready() {
           testimony_system_->connect("all_rounds_complete", cb_complete);
       if (err_complete != OK && err_complete != ERR_ALREADY_EXISTS) {
         UtilityFunctions::push_warning(
-            "KarakuriScenarioRunner: failed to connect all_rounds_complete: ",
+            "ScenarioRunner: failed to connect all_rounds_complete: ",
             err_complete);
       }
     }
@@ -429,7 +429,7 @@ void KarakuriScenarioRunner::_ready() {
     const Error err_es = evidence_ui_->connect("evidence_selected", cb_es);
     if (err_es != OK && err_es != ERR_ALREADY_EXISTS) {
       UtilityFunctions::push_warning(
-          "KarakuriScenarioRunner: failed to connect evidence_selected: ",
+          "ScenarioRunner: failed to connect evidence_selected: ",
           err_es);
     }
   }
@@ -441,21 +441,21 @@ void KarakuriScenarioRunner::_ready() {
   const String start_id = dict_get_string(scenario_root_, "start_scene", "");
   if (start_id.is_empty()) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: scenario missing start_scene");
+        "ScenarioRunner: scenario missing start_scene");
     return;
   }
 
   load_scene_by_id(start_id);
 }
 
-void KarakuriScenarioRunner::_process(double delta) {
+void ScenarioRunner::_process(double delta) {
   // トランジションタイムアウト処理（step_actionsとは独立）
   // headlessモード等でfinishedシグナルが発火しない場合に強制遷移
   if (waiting_for_transition_ && transition_timeout_sec_ > 0.0f) {
     transition_timeout_sec_ -= static_cast<float>(delta);
     if (transition_timeout_sec_ <= 0.0f) {
       UtilityFunctions::push_warning(
-          "KarakuriScenarioRunner: Transition timed out → forcing scene load.");
+          "ScenarioRunner: Transition timed out → forcing scene load.");
       waiting_for_transition_ = false;
       const String timed_out_target = transition_target_id_;
       transition_target_id_ = "";
@@ -471,7 +471,7 @@ void KarakuriScenarioRunner::_process(double delta) {
   step_actions(delta);
 }
 
-bool KarakuriScenarioRunner::load_scenario() {
+bool ScenarioRunner::load_scenario() {
   scenario_root_.clear();
   scenes_.clear();
   current_scene_id_ = "";
@@ -479,7 +479,7 @@ bool KarakuriScenarioRunner::load_scenario() {
   Ref<FileAccess> f = FileAccess::open(scenario_path_, FileAccess::READ);
   if (f.is_null()) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: failed to open scenario YAML: ",
+        "ScenarioRunner: failed to open scenario YAML: ",
         scenario_path_);
     return false;
   }
@@ -487,8 +487,8 @@ bool KarakuriScenarioRunner::load_scenario() {
   const String yaml_text = f->get_as_text();
   Variant root;
   String err;
-  if (!KarakuriYamlLite::parse(yaml_text, root, err)) {
-    UtilityFunctions::push_error("KarakuriScenarioRunner: YAML parse error: ",
+  if (!YamlLite::parse(yaml_text, root, err)) {
+    UtilityFunctions::push_error("ScenarioRunner: YAML parse error: ",
                                  err);
     return false;
   }
@@ -496,23 +496,23 @@ bool KarakuriScenarioRunner::load_scenario() {
   scenario_root_ = as_dict(root);
   if (scenario_root_.is_empty()) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: scenario root is empty or not a map");
+        "ScenarioRunner: scenario root is empty or not a map");
     return false;
   }
 
   scenes_ = as_dict(scenario_root_.get("scenes", Dictionary()));
   if (scenes_.is_empty()) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: scenario missing scenes map");
+        "ScenarioRunner: scenario missing scenes map");
     return false;
   }
 
   return true;
 }
 
-bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
+bool ScenarioRunner::load_scene_by_id(const String &scene_id) {
   if (!scenes_.has(scene_id)) {
-    UtilityFunctions::push_error("KarakuriScenarioRunner: unknown scene id: ",
+    UtilityFunctions::push_error("ScenarioRunner: unknown scene id: ",
                                  scene_id);
     return false;
   }
@@ -521,7 +521,7 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   const String scene_path = dict_get_string(scene_dict, "scene_path", "");
   if (scene_path.is_empty()) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: scene missing scene_path: ", scene_id);
+        "ScenarioRunner: scene missing scene_path: ", scene_id);
     return false;
   }
 
@@ -530,7 +530,7 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
 
   if (!scene_container_) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: scene_container_ is null in load_scene_by_id");
+        "ScenarioRunner: scene_container_ is null in load_scene_by_id");
     return false;
   }
 
@@ -547,14 +547,14 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   Ref<PackedScene> packed = ResourceLoader::get_singleton()->load(scene_path);
   if (packed.is_null()) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: failed to load PackedScene: ", scene_path);
+        "ScenarioRunner: failed to load PackedScene: ", scene_path);
     return false;
   }
 
   Node *inst = packed->instantiate();
   if (!inst) {
     UtilityFunctions::push_error(
-        "KarakuriScenarioRunner: failed to instantiate: ", scene_path);
+        "ScenarioRunner: failed to instantiate: ", scene_path);
     return false;
   }
   scene_container_->add_child(inst);
@@ -607,7 +607,7 @@ bool KarakuriScenarioRunner::load_scene_by_id(const String &scene_id) {
   return true;
 }
 
-void KarakuriScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
+void ScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
   hotspot_bindings_.clear();
   if (!current_scene_instance_) {
     return;
@@ -691,7 +691,7 @@ void KarakuriScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
   hotspot_bindings_ = bindings;
 }
 
-void KarakuriScenarioRunner::start_actions(const Array &actions) {
+void ScenarioRunner::start_actions(const Array &actions) {
   pending_actions_ = actions;
   pending_action_index_ = 0;
   wait_remaining_sec_ = 0.0;
@@ -702,7 +702,7 @@ void KarakuriScenarioRunner::start_actions(const Array &actions) {
   set_mode_input_enabled(false);
 }
 
-void KarakuriScenarioRunner::step_actions(double delta) {
+void ScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_) {
     return;
   }
@@ -742,7 +742,7 @@ void KarakuriScenarioRunner::step_actions(double delta) {
   }
 }
 
-bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
+bool ScenarioRunner::execute_single_action(const Variant &action) {
   // Action is expected to be a Dictionary with a single key.
   const Dictionary d = as_dict(action);
   if (d.is_empty()) {
@@ -761,12 +761,12 @@ bool KarakuriScenarioRunner::execute_single_action(const Variant &action) {
     return (*handler)(payload_v);
   }
 
-  UtilityFunctions::push_warning("KarakuriScenarioRunner: unknown action: ",
+  UtilityFunctions::push_warning("ScenarioRunner: unknown action: ",
                                  kind);
   return false;
 }
 
-void KarakuriScenarioRunner::init_builtin_actions() {
+void ScenarioRunner::init_builtin_actions() {
   // ------------------------------------------------------------------ dialogue
   register_action("dialogue", [this](const Variant &payload_v) {
     const Dictionary payload = as_dict(payload_v);
@@ -837,7 +837,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       gm->call("set_flag", flag, value);
     } else {
       UtilityFunctions::printerr(
-          "[KarakuriScenarioRunner] MysteryManager not found.");
+          "[ScenarioRunner] MysteryManager not found.");
     }
     return false;
   });
@@ -855,7 +855,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
       em->call("add_evidence", item_id);
     } else {
       UtilityFunctions::printerr(
-          "[KarakuriScenarioRunner] EvidenceManager not found.");
+          "[ScenarioRunner] EvidenceManager not found.");
     }
     // This action is non-blocking.
     // The evidence_ui_ part is a side effect that doesn't block the action
@@ -1054,7 +1054,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
     if (!dialogue_ui_ || !dialogue_ui_->has_method("show_choices") ||
         !dialogue_ui_->has_signal("choice_selected")) {
       UtilityFunctions::push_error(
-          "KarakuriScenarioRunner: choice requires DialogueUIAdvanced with "
+          "ScenarioRunner: choice requires DialogueUIAdvanced with "
           "show_choices + choice_selected");
       return false;
     }
@@ -1122,7 +1122,7 @@ void KarakuriScenarioRunner::init_builtin_actions() {
   //   user://karakuri/<demo_id>/save.json
   register_action("save", [](const Variant &payload_v) {
     const String demo_id = String(payload_v);
-    return karakuri::KarakuriSaveService::save_game(demo_id);
+    return karakuri::SaveService::save_game(demo_id);
   });
 
   // -------------------------------------------------------------------- load
@@ -1131,11 +1131,11 @@ void KarakuriScenarioRunner::init_builtin_actions() {
   // Returns false when no save file exists (scenario continues unaffected).
   register_action("load", [](const Variant &payload_v) {
     const String demo_id = String(payload_v);
-    return karakuri::KarakuriSaveService::load_game(demo_id);
+    return karakuri::SaveService::load_game(demo_id);
   });
 }
 
-void KarakuriScenarioRunner::register_mystery_actions() {
+void ScenarioRunner::register_mystery_actions() {
   // --------------------------------------------------------------- take_damage
   register_action("take_damage", [this](const Variant &payload_v) {
     int amount = 1;
@@ -1212,7 +1212,7 @@ void KarakuriScenarioRunner::register_mystery_actions() {
   register_action("testimony", [this](const Variant &payload_v) {
     if (!testimony_system_) {
       UtilityFunctions::push_error(
-          "KarakuriScenarioRunner: testimony requires TestimonySystem node");
+          "ScenarioRunner: testimony requires TestimonySystem node");
       return false;
     }
 
@@ -1220,7 +1220,7 @@ void KarakuriScenarioRunner::register_mystery_actions() {
     const Array testimonies = as_array(payload.get("testimonies", Array()));
     if (testimonies.is_empty()) {
       UtilityFunctions::push_error(
-          "KarakuriScenarioRunner: testimony action has empty testimonies");
+          "ScenarioRunner: testimony action has empty testimonies");
       return false;
     }
     testimony_.success_actions = as_array(payload.get("on_success", Array()));
@@ -1290,7 +1290,7 @@ void KarakuriScenarioRunner::register_mystery_actions() {
   });
 }
 
-void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
+void ScenarioRunner::on_clicked_at(const Vector2 &pos) {
   if (is_executing_actions_ || !mode_input_enabled_ ||
       waiting_for_transition_) {
     // Prevent accidental re-entry while scripted actions are running, or during
@@ -1318,7 +1318,7 @@ void KarakuriScenarioRunner::on_clicked_at(const Vector2 &pos) {
   }
 }
 
-void KarakuriScenarioRunner::on_choice_selected(int index, const String &text) {
+void ScenarioRunner::on_choice_selected(int index, const String &text) {
   (void)text;
   if (!waiting_for_choice_) {
     return;
@@ -1340,18 +1340,18 @@ void KarakuriScenarioRunner::on_choice_selected(int index, const String &text) {
   }
 }
 
-void KarakuriScenarioRunner::on_dialogue_finished() {
+void ScenarioRunner::on_dialogue_finished() {
   if (!waiting_for_dialogue_) {
     return;
   }
   waiting_for_dialogue_ = false;
 }
 
-void KarakuriScenarioRunner::on_testimony_complete(bool success) {
+void ScenarioRunner::on_testimony_complete(bool success) {
   complete_testimony(success);
 }
 
-void KarakuriScenarioRunner::on_testimony_next_requested() {
+void ScenarioRunner::on_testimony_next_requested() {
   if (!testimony_.active || testimony_.waiting_for_evidence) {
     return;
   }
@@ -1384,7 +1384,7 @@ void KarakuriScenarioRunner::on_testimony_next_requested() {
   show_current_testimony_line();
 }
 
-void KarakuriScenarioRunner::on_testimony_shake_requested() {
+void ScenarioRunner::on_testimony_shake_requested() {
   if (!testimony_.active || testimony_.index < 0 ||
       testimony_.index >= testimony_.lines.size()) {
     return;
@@ -1416,7 +1416,7 @@ void KarakuriScenarioRunner::on_testimony_shake_requested() {
   }
 }
 
-void KarakuriScenarioRunner::on_testimony_present_requested() {
+void ScenarioRunner::on_testimony_present_requested() {
   if (!testimony_.active || testimony_.waiting_for_evidence || !evidence_ui_) {
     return;
   }
@@ -1434,7 +1434,7 @@ void KarakuriScenarioRunner::on_testimony_present_requested() {
   }
 }
 
-void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
+void ScenarioRunner::on_evidence_selected(const String &evidence_id) {
   if (!testimony_.active || !testimony_.waiting_for_evidence) {
     return;
   }
@@ -1521,7 +1521,7 @@ void KarakuriScenarioRunner::on_evidence_selected(const String &evidence_id) {
   show_current_testimony_line();
 }
 
-void KarakuriScenarioRunner::show_current_testimony_line() {
+void ScenarioRunner::show_current_testimony_line() {
   if (!testimony_.active || !testimony_system_ || testimony_.lines.is_empty()) {
     return;
   }
@@ -1559,7 +1559,7 @@ void KarakuriScenarioRunner::show_current_testimony_line() {
   }
 }
 
-bool KarakuriScenarioRunner::are_all_testimony_contradictions_solved() const {
+bool ScenarioRunner::are_all_testimony_contradictions_solved() const {
   for (int i = 0; i < testimony_.lines.size(); i++) {
     const Dictionary line = as_dict(testimony_.lines[i]);
     const String evidence = dict_get_string(line, "evidence", "");
@@ -1571,7 +1571,7 @@ bool KarakuriScenarioRunner::are_all_testimony_contradictions_solved() const {
   return true;
 }
 
-void KarakuriScenarioRunner::complete_testimony(bool success) {
+void ScenarioRunner::complete_testimony(bool success) {
   if (!testimony_.waiting) {
     return;
   }
@@ -1605,7 +1605,7 @@ void KarakuriScenarioRunner::complete_testimony(bool success) {
   }
 }
 
-void KarakuriScenarioRunner::set_mode_input_enabled(bool enabled) {
+void ScenarioRunner::set_mode_input_enabled(bool enabled) {
   mode_input_enabled_ = enabled;
   if (dialogue_ui_ && dialogue_ui_->has_method("set_mode_input_enabled")) {
     dialogue_ui_->call("set_mode_input_enabled", enabled);
@@ -1619,7 +1619,7 @@ void KarakuriScenarioRunner::set_mode_input_enabled(bool enabled) {
   }
 }
 
-void KarakuriScenarioRunner::notify_mode_exit(const String &next_scene_id) {
+void ScenarioRunner::notify_mode_exit(const String &next_scene_id) {
   if (current_mode_id_.is_empty()) {
     return;
   }
@@ -1636,7 +1636,7 @@ void KarakuriScenarioRunner::notify_mode_exit(const String &next_scene_id) {
   }
 }
 
-void KarakuriScenarioRunner::notify_mode_enter(const String &scene_id,
+void ScenarioRunner::notify_mode_enter(const String &scene_id,
                                                const Dictionary &scene_dict) {
   current_mode_id_ = resolve_mode_id(scene_id, scene_dict);
 
@@ -1654,7 +1654,7 @@ void KarakuriScenarioRunner::notify_mode_enter(const String &scene_id,
 }
 
 String
-KarakuriScenarioRunner::resolve_mode_id(const String &scene_id,
+ScenarioRunner::resolve_mode_id(const String &scene_id,
                                         const Dictionary &scene_dict) const {
   const String explicit_mode = dict_get_string(scene_dict, "mode", "");
   if (!explicit_mode.is_empty()) {
@@ -1672,7 +1672,7 @@ KarakuriScenarioRunner::resolve_mode_id(const String &scene_id,
   return "investigation";
 }
 
-void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
+void ScenarioRunner::on_transition_finished(const Variant &arg1,
                                                     const Variant &arg2,
                                                     const Variant &arg3) {
   waiting_for_transition_ = false;
@@ -1709,7 +1709,7 @@ void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
         // フェードイン完了待ち用のタイムアウト。scene_idは空のままにして再ロードを防ぐ。
         transition_timeout_sec_ = duration * 2.0f + 1.0f;
       } else {
-        UtilityFunctions::push_error("KarakuriScenarioRunner: Tween creation "
+        UtilityFunctions::push_error("ScenarioRunner: Tween creation "
                                      "failed in fade-in stage.");
         waiting_for_transition_ = false;
       }
@@ -1724,7 +1724,7 @@ void KarakuriScenarioRunner::on_transition_finished(const Variant &arg1,
   }
 }
 
-bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,
+bool ScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,
                                                    const Vector2 &pos) const {
   if (!current_scene_instance_) {
     return false;
@@ -1768,13 +1768,13 @@ bool KarakuriScenarioRunner::hotspot_matches_click(const HotspotBinding &hs,
   return false;
 }
 
-void KarakuriScenarioRunner::trigger_hotspot(const HotspotBinding &hs) {
+void ScenarioRunner::trigger_hotspot(const HotspotBinding &hs) {
   if (!hs.on_click_actions.is_empty()) {
     start_actions(hs.on_click_actions);
   }
 }
 
-String KarakuriScenarioRunner::tr_key(const String &key) const {
+String ScenarioRunner::tr_key(const String &key) const {
   TranslationServer *ts = TranslationServer::get_singleton();
   if (!ts) {
     return key;
@@ -1782,7 +1782,7 @@ String KarakuriScenarioRunner::tr_key(const String &key) const {
   return ts->translate(StringName(key));
 }
 
-Node *KarakuriScenarioRunner::resolve_node_path(const NodePath &path) const {
+Node *ScenarioRunner::resolve_node_path(const NodePath &path) const {
   if (path.is_empty()) {
     return nullptr;
   }
@@ -1790,7 +1790,7 @@ Node *KarakuriScenarioRunner::resolve_node_path(const NodePath &path) const {
   return n;
 }
 
-Node *KarakuriScenarioRunner::get_adventure_state() const {
+Node *ScenarioRunner::get_adventure_state() const {
   if (!get_tree()) {
     return nullptr;
   }

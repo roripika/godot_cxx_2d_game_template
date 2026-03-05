@@ -2,7 +2,7 @@
 #define KARAKURI_SAVE_SERVICE_H
 
 /**
- * @file karakuri_save_service.h
+ * @file save_service.h
  * @brief Basic Game Karakuri: AdventureGameStateBase の永続化サービス。
  *
  * 保存パス規約: user://karakuri/<demo_id>/save.json
@@ -16,7 +16,7 @@
  * }
  *
  * ScenarioRunner との連携:
- *   KarakuriScenarioRunner::init_builtin_actions() が
+ *   ScenarioRunner::init_builtin_actions() が
  *   "save" / "load" アクションをこのサービス経由で登録する。
  */
 
@@ -33,12 +33,12 @@ namespace karakuri {
  *   $SaveService.save_game("mystery")
  *   $SaveService.load_game("mystery")
  */
-class KarakuriSaveService : public godot::Node {
-  GDCLASS(KarakuriSaveService, godot::Node)
+class SaveService : public godot::Node {
+  GDCLASS(SaveService, godot::Node)
 
 public:
-  KarakuriSaveService() = default;
-  ~KarakuriSaveService() override = default;
+  SaveService() = default;
+  ~SaveService() override = default;
 
   /**
    * @brief demo_id ごとのセーブファイルパスを返す。

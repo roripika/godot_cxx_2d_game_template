@@ -1,8 +1,8 @@
-#include "karakuri_localization_service.h"
+#include "localization_service.h"
 
 /**
  * @file karakuri_localization_service.cpp
- * @brief See karakuri_localization_service.h
+ * @brief See localization_service.h
  */
 
 #include <godot_cpp/classes/dir_access.hpp>
@@ -16,41 +16,41 @@ using namespace godot;
 
 namespace karakuri {
 
-void KarakuriLocalizationService::_bind_methods() {
+void LocalizationService::_bind_methods() {
   ClassDB::bind_method(D_METHOD("set_locale_store_path", "path"),
-                       &KarakuriLocalizationService::set_locale_store_path);
+                       &LocalizationService::set_locale_store_path);
   ClassDB::bind_method(D_METHOD("get_locale_store_path"),
-                       &KarakuriLocalizationService::get_locale_store_path);
+                       &LocalizationService::get_locale_store_path);
   ADD_PROPERTY(PropertyInfo(Variant::STRING, "locale_store_path"),
                "set_locale_store_path", "get_locale_store_path");
 
   ClassDB::bind_method(D_METHOD("set_locale_prefix", "prefix"),
-                       &KarakuriLocalizationService::set_locale_prefix);
+                       &LocalizationService::set_locale_prefix);
   ClassDB::bind_method(D_METHOD("save_current_locale_prefix"),
-                       &KarakuriLocalizationService::save_current_locale_prefix);
+                       &LocalizationService::save_current_locale_prefix);
   ClassDB::bind_method(D_METHOD("load_saved_locale_prefix"),
-                       &KarakuriLocalizationService::load_saved_locale_prefix);
+                       &LocalizationService::load_saved_locale_prefix);
   ClassDB::bind_method(D_METHOD("get_current_locale_prefix"),
-                       &KarakuriLocalizationService::get_current_locale_prefix);
+                       &LocalizationService::get_current_locale_prefix);
 
   ADD_SIGNAL(
       MethodInfo("locale_changed", PropertyInfo(Variant::STRING, "locale")));
 }
 
-void KarakuriLocalizationService::_ready() { load_saved_locale_prefix(); }
+void LocalizationService::_ready() { load_saved_locale_prefix(); }
 
-void KarakuriLocalizationService::set_locale_store_path(const String &path) {
+void LocalizationService::set_locale_store_path(const String &path) {
   if (path.is_empty()) {
     return;
   }
   locale_store_path_ = path;
 }
 
-String KarakuriLocalizationService::get_locale_store_path() const {
+String LocalizationService::get_locale_store_path() const {
   return locale_store_path_;
 }
 
-String KarakuriLocalizationService::resolve_loaded_locale(
+String LocalizationService::resolve_loaded_locale(
     const String &prefix) const {
   TranslationServer *ts = TranslationServer::get_singleton();
   if (!ts || prefix.is_empty()) {
@@ -68,7 +68,7 @@ String KarakuriLocalizationService::resolve_loaded_locale(
   return prefix;
 }
 
-String KarakuriLocalizationService::extract_prefix(const String &locale) const {
+String LocalizationService::extract_prefix(const String &locale) const {
   if (locale.is_empty()) {
     return "";
   }
@@ -79,7 +79,7 @@ String KarakuriLocalizationService::extract_prefix(const String &locale) const {
   return locale.substr(0, split);
 }
 
-void KarakuriLocalizationService::emit_locale_changed() {
+void LocalizationService::emit_locale_changed() {
   TranslationServer *ts = TranslationServer::get_singleton();
   if (!ts) {
     return;
@@ -87,7 +87,7 @@ void KarakuriLocalizationService::emit_locale_changed() {
   emit_signal("locale_changed", ts->get_locale());
 }
 
-String KarakuriLocalizationService::set_locale_prefix(const String &prefix) {
+String LocalizationService::set_locale_prefix(const String &prefix) {
   if (prefix.is_empty()) {
     return "";
   }
@@ -103,7 +103,7 @@ String KarakuriLocalizationService::set_locale_prefix(const String &prefix) {
   return resolved;
 }
 
-bool KarakuriLocalizationService::save_current_locale_prefix() {
+bool LocalizationService::save_current_locale_prefix() {
   TranslationServer *ts = TranslationServer::get_singleton();
   if (!ts) {
     return false;
@@ -116,7 +116,7 @@ bool KarakuriLocalizationService::save_current_locale_prefix() {
   }
   if (file.is_null()) {
     UtilityFunctions::push_warning(
-        "KarakuriLocalizationService: failed to open locale store path: ",
+        "LocalizationService: failed to open locale store path: ",
         locale_store_path_);
     return false;
   }
@@ -124,7 +124,7 @@ bool KarakuriLocalizationService::save_current_locale_prefix() {
   return true;
 }
 
-String KarakuriLocalizationService::load_saved_locale_prefix() {
+String LocalizationService::load_saved_locale_prefix() {
   TranslationServer *ts = TranslationServer::get_singleton();
   if (!ts) {
     return "";
@@ -149,7 +149,7 @@ String KarakuriLocalizationService::load_saved_locale_prefix() {
   return resolved;
 }
 
-String KarakuriLocalizationService::get_current_locale_prefix() const {
+String LocalizationService::get_current_locale_prefix() const {
   TranslationServer *ts = TranslationServer::get_singleton();
   if (!ts) {
     return "";

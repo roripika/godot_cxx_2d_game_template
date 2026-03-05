@@ -37,8 +37,8 @@ public:
   static MysteryManager *get_singleton();
 
   // Flag Management (Type-safe version for C++)
-  void set_mystery_flag(MysteryFlag p_flag, bool p_value);
-  bool get_mystery_flag(MysteryFlag p_flag) const;
+  void set_mystery_flag(mystery::MysteryFlag p_flag, bool p_value);
+  bool get_mystery_flag(mystery::MysteryFlag p_flag) const;
 
   // GDScript Bridge (String-based)
   void set_flag(const String &p_name, bool p_value);
