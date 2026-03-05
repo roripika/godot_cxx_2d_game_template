@@ -4,6 +4,7 @@
 #include "core/adventure_game_state.h"
 #include "core/components/hitbox_component.h"
 #include "core/components/hurtbox_component.h"
+#include "core/components/interaction_component.h"
 #include "core/components/raycast_component.h"
 #include "core/cycles/roguelike_generator.h"
 #include "core/cycles/roguelike_manager.h"
@@ -28,6 +29,7 @@
 // Layer 2: Mystery template
 #include "mystery/evidence_manager.h"
 #include "mystery/mystery_manager.h"
+#include "mystery/mystery_object.h"
 #include "mystery/mystery_player.h"
 
 // Plugins (genre-specific, isolated)
@@ -67,6 +69,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::Inventory>();
   ClassDB::register_class<karakuri::HitboxComponent>();
   ClassDB::register_class<karakuri::HurtboxComponent>();
+  ClassDB::register_class<karakuri::InteractionComponent>();
   ClassDB::register_class<karakuri::RayCastComponent>();
   ClassDB::register_class<karakuri::InventoryUI>();
   ClassDB::register_class<karakuri::InventorySlotUI>();
@@ -79,6 +82,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::MysteryManager>();
   ClassDB::register_class<mystery::EvidenceManager>();
+  ClassDB::register_class<mystery::MysteryObject>();
   ClassDB::register_class<mystery::MysteryPlayer>();
 
   // Plugins / Features
