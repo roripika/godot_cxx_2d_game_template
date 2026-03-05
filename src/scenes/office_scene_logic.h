@@ -3,7 +3,7 @@
 
 #include "core/dialogue_ui.h"
 #include "core/interaction_manager.h"
-#include <godot_cpp/classes/canvas_layer.hpp> // For getting DialogueUI
+#include <godot_cpp/classes/canvas_layer.hpp> // For getting karakuri::DialogueUI
 #include <godot_cpp/classes/node2d.hpp>
 
 using namespace godot;
@@ -12,8 +12,8 @@ class OfficeSceneLogic : public Node2D {
   GDCLASS(OfficeSceneLogic, Node2D)
 
 private:
-  DialogueUI *dialogue_ui;
-  InteractionManager *interaction_manager;
+  karakuri::DialogueUI *dialogue_ui;
+  karakuri::InteractionManager *interaction_manager;
 
 protected:
   static void _bind_methods();

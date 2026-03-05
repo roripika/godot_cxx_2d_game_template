@@ -3,6 +3,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 void UniversalWorldData::_bind_methods() {
   ClassDB::bind_method(D_METHOD("initialize", "size"),
                        &UniversalWorldData::initialize);
@@ -51,3 +54,5 @@ int UniversalWorldData::get_voxel(const Vector3i &p_pos) const {
   }
   return -1;
 }
+
+} // namespace karakuri

@@ -5,6 +5,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 InventorySlotUI::InventorySlotUI() {
   set_custom_minimum_size(Vector2(40, 40)); // Default size
 }
@@ -78,3 +81,5 @@ void InventorySlotUI::_gui_input(const Ref<InputEvent> &p_event) {
     emit_signal("slot_clicked", slot_index, mb->get_button_index());
   }
 }
+
+} // namespace karakuri

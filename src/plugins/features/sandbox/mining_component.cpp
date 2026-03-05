@@ -33,10 +33,10 @@ void MiningComponent::_bind_methods() {
                         PropertyInfo(Variant::INT, "item_id")));
 }
 
-void MiningComponent::set_world_data(const Ref<UniversalWorldData> &p_data) {
+void MiningComponent::set_world_data(const Ref<karakuri::UniversalWorldData> &p_data) {
   world_data = p_data;
 }
-Ref<UniversalWorldData> MiningComponent::get_world_data() const {
+Ref<karakuri::UniversalWorldData> MiningComponent::get_world_data() const {
   return world_data;
 }
 
@@ -60,7 +60,7 @@ bool MiningComponent::mine(Vector2 global_pos) {
   // Convert global pos to grid pos
   // Assuming 1 unit = 1 pixel for now, but usually tiles are 16x16 or similar.
   // Sandbox usually implies grid based.
-  // UniversalWorldData assumes 3D grid, but we are 2D view.
+  // karakuri::UniversalWorldData assumes 3D grid, but we are 2D view.
   // Need mapping strategy. For now, assume simple mapping: x, y -> x, y, z=0
   // But tile size? IsometricView uses 64x32. SideScrollingView uses ?
   // Let's assume passed pos is already converted or we use a standard grid

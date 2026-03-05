@@ -18,7 +18,7 @@ class SideScrollingView : public TileMapLayer {
   GDCLASS(SideScrollingView, TileMapLayer)
 
 private:
-  Ref<UniversalWorldData> world_data;
+  Ref<karakuri::UniversalWorldData> world_data;
   int depth_layer; // Which Y-slice of the world to render (Depth)
 
 protected:
@@ -29,8 +29,8 @@ public:
   SideScrollingView();
   ~SideScrollingView();
 
-  void set_world_data(const Ref<UniversalWorldData> &p_data);
-  Ref<UniversalWorldData> get_world_data() const;
+  void set_world_data(const Ref<karakuri::UniversalWorldData> &p_data);
+  Ref<karakuri::UniversalWorldData> get_world_data() const;
 
   void set_depth_layer(int p_depth);
   int get_depth_layer() const;

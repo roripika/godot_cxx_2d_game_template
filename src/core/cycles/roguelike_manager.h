@@ -9,6 +9,8 @@
 
 using namespace godot;
 
+namespace karakuri {
+
 class RoguelikeManager : public Node {
   GDCLASS(RoguelikeManager, Node)
 
@@ -52,5 +54,7 @@ public:
   void set_room_count(int p_count);
   int get_room_count() const;
 };
+
+} // namespace karakuri
 
 #endif

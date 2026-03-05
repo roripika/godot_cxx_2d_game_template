@@ -1,7 +1,7 @@
 #ifndef INVENTORY_SLOT_UI_H
 #define INVENTORY_SLOT_UI_H
 
-#include "../../items/inventory.h"
+#include "../items/inventory.h"
 #include <godot_cpp/classes/control.hpp>
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/label.hpp>
@@ -9,6 +9,8 @@
 #include <godot_cpp/classes/texture_rect.hpp>
 
 using namespace godot;
+
+namespace karakuri {
 
 class InventorySlotUI : public Control {
   GDCLASS(InventorySlotUI, Control)
@@ -37,5 +39,7 @@ public:
 
   void _ready() override;
 };
+
+} // namespace karakuri
 
 #endif // INVENTORY_SLOT_UI_H

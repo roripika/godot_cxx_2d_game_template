@@ -1,8 +1,8 @@
 #ifndef NOTE_LANE_H
 #define NOTE_LANE_H
 
-#include "core/rhythm/conductor.h"
-#include "core/rhythm/rhythm_game_manager.h"
+#include "plugins/features/rhythm/conductor.h"
+#include "plugins/features/rhythm/rhythm_game_manager.h"
 #include "rhythm_note.h"
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/node2d.hpp>

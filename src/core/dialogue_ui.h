@@ -8,6 +8,8 @@
 
 using namespace godot;
 
+namespace karakuri {
+
 class DialogueUI : public Control {
   GDCLASS(DialogueUI, Control)
 
@@ -43,5 +45,7 @@ public:
   bool is_typing_active() const;
   void skip_typing();
 };
+
+} // namespace karakuri
 
 #endif

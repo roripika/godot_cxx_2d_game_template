@@ -7,6 +7,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 void RoguelikeManager::_bind_methods() {
   ClassDB::bind_method(D_METHOD("start_level"), &RoguelikeManager::start_level);
 
@@ -182,3 +185,5 @@ int RoguelikeManager::get_map_height() const { return map_height; }
 void RoguelikeManager::set_room_count(int p_count) { room_count = p_count; }
 
 int RoguelikeManager::get_room_count() const { return room_count; }
+
+} // namespace karakuri

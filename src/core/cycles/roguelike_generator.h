@@ -9,6 +9,8 @@
 
 using namespace godot;
 
+namespace karakuri {
+
 class RoguelikeGenerator : public RefCounted {
   GDCLASS(RoguelikeGenerator, RefCounted)
 
@@ -38,5 +40,7 @@ public:
   void generate_dungeon(Ref<UniversalWorldData> world, int map_width,
                         int map_height, int depth_layer, int room_count);
 };
+
+} // namespace karakuri
 
 #endif

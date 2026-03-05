@@ -17,7 +17,7 @@ void WorldGenerator::_bind_methods() {
                        &WorldGenerator::generate_chunk);
 }
 
-void WorldGenerator::generate_chunk(const Ref<UniversalWorldData> &p_world_data,
+void WorldGenerator::generate_chunk(const Ref<karakuri::UniversalWorldData> &p_world_data,
                                     const Vector2i &p_chunk_pos) {
   if (p_world_data.is_null()) {
     UtilityFunctions::printerr("WorldGenerator: UniversalWorldData is null.");

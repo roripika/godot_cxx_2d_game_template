@@ -1,11 +1,12 @@
 #include "adventure_game_state.h"
-#include "features/mystery/evidence_manager.h"
-#include "features/mystery/mystery_manager.h"
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
+
+namespace karakuri {
+
 
 AdventureGameStateBase *AdventureGameStateBase::singleton = nullptr;
 
@@ -43,6 +44,8 @@ void AdventureGameStateBase::_bind_methods() {
   // Game reset
   ClassDB::bind_method(D_METHOD("reset_game"),
                        &AdventureGameStateBase::reset_game);
+  ClassDB::bind_method(D_METHOD("set_reset_hook", "hook"),
+                       &AdventureGameStateBase::set_reset_hook);
 }
 
 void AdventureGameStateBase::change_scene(const String &path) {
@@ -76,15 +79,17 @@ void AdventureGameStateBase::heal(int amount) {
 }
 
 void AdventureGameStateBase::reset_game() {
-  auto *em = EvidenceManager::get_singleton();
-  if (em) {
-    em->clear_all_evidence();
-  }
-  auto *gm = MysteryManager::get_singleton();
-  if (gm) {
-    gm->deserialize_flags(Dictionary());
+  // Mystery 層が登録したフックがあれば呼び出す（EvidenceManager/MysteryManagerのクリア等）
+  if (reset_hook_.is_valid()) {
+    reset_hook_.call();
   }
   health = 3;
   UtilityFunctions::print("Game reset. Health: ", health);
   emit_signal("health_changed", health);
 }
+
+void AdventureGameStateBase::set_reset_hook(const godot::Callable &hook) {
+  reset_hook_ = hook;
+}
+
+} // namespace karakuri

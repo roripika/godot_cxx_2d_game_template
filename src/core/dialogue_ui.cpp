@@ -5,6 +5,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 void DialogueUI::_bind_methods() {
   ClassDB::bind_method(D_METHOD("show_message", "name", "text"),
                        &DialogueUI::show_message);
@@ -120,3 +123,5 @@ void DialogueUI::skip_typing() {
     is_typing = false;
   }
 }
+
+} // namespace karakuri

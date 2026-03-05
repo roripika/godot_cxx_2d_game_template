@@ -1,7 +1,7 @@
 #ifndef RHYTHM_COMMAND_LISTENER_H
 #define RHYTHM_COMMAND_LISTENER_H
 
-#include "core/rhythm/conductor.h"
+#include "conductor.h"
 #include <godot_cpp/classes/input_event.hpp>
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/core/class_db.hpp>

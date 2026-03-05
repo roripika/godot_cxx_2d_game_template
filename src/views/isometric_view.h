@@ -11,7 +11,7 @@ class IsometricView : public TileMapLayer {
   GDCLASS(IsometricView, TileMapLayer)
 
 private:
-  Ref<UniversalWorldData> world_data;
+  Ref<karakuri::UniversalWorldData> world_data;
 
 protected:
   static void _bind_methods();
@@ -23,8 +23,8 @@ public:
   IsometricView();
   ~IsometricView();
 
-  void set_world_data(const Ref<UniversalWorldData> &p_data);
-  Ref<UniversalWorldData> get_world_data() const;
+  void set_world_data(const Ref<karakuri::UniversalWorldData> &p_data);
+  Ref<karakuri::UniversalWorldData> get_world_data() const;
 
   // Helper to interact with the view directly (proxies to data)
   // 2D Interface for Godot Editor/Scripts

@@ -1,6 +1,6 @@
 #include "office_scene_logic.h"
 #include "core/adventure_game_state.h"
-#include "features/mystery/mystery_manager.h"
+#include "mystery/mystery_manager.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
@@ -37,7 +37,7 @@ void OfficeSceneLogic::_ready() {
   if (Engine::get_singleton()->is_editor_hint())
     return;
 
-  interaction_manager = Object::cast_to<InteractionManager>(
+  interaction_manager = Object::cast_to<karakuri::InteractionManager>(
       get_node_or_null("InteractionManager"));
   if (interaction_manager) {
     interaction_manager->connect("clicked_at",
@@ -48,12 +48,12 @@ void OfficeSceneLogic::_ready() {
 
   Node *canvas_layer = get_node_or_null("CanvasLayer");
   if (canvas_layer) {
-    dialogue_ui = Object::cast_to<DialogueUI>(
+    dialogue_ui = Object::cast_to<karakuri::DialogueUI>(
         canvas_layer->get_node_or_null("DialogueUI"));
   }
 
   if (dialogue_ui) {
-    auto *gm = MysteryManager::get_singleton();
+    auto *gm = mystery::MysteryManager::get_singleton();
     if (gm) {
       if (!gm->get_flag("intro_done")) {
         dialogue_ui->show_message("Boss", tr_key("office_boss_intro"));
@@ -71,8 +71,8 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
   // Boss Area
   Rect2 boss_rect(100, 200, 150, 300);
 
-  AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
-  auto *gm = MysteryManager::get_singleton();
+  karakuri::AdventureGameStateBase *state = karakuri::AdventureGameStateBase::get_singleton();
+  auto *gm = mystery::MysteryManager::get_singleton();
   if (!state || !dialogue_ui || !gm)
     return;
 
@@ -98,7 +98,7 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
 }
 
 void OfficeSceneLogic::_change_scene_callback() {
-  AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
+  karakuri::AdventureGameStateBase *state = karakuri::AdventureGameStateBase::get_singleton();
   if (state) {
     state->change_scene("res://samples/mystery/demo_adv.tscn");
   }

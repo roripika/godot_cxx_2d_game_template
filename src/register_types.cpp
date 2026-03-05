@@ -1,55 +1,46 @@
 #include "register_types.h"
 
+// Layer 1: Basic Game Karakuri (core)
 #include "core/adventure_game_state.h"
 #include "core/cycles/roguelike_generator.h"
 #include "core/cycles/roguelike_manager.h"
 #include "core/dialogue_ui.h"
-#include "core/fighting_game_manager.h"
+#include "plugins/features/fighting/fighting_game_manager.h"
+#include "plugins/features/fighting/hit_stop_manager.h"
 #include "core/interaction_manager.h"
 #include "core/universal_world_data.h"
-#include "entities/fighter_controller.h"
-#include "entities/game_entity.h"
-#include "entities/player_controller_iso.h"
-#include "entities/player_controller_side.h"
-#include "items/game_item.h"
-#include "items/inventory.h"
-#include "views/isometric_view.h"
-#include "views/side_scrolling_view.h"
-#include "world_generator.h"
-
-#include "core/hit_stop_manager.h"
-#include "entities/components/hitbox_component.h"
-#include "entities/components/hurtbox_component.h"
-#include "entities/components/raycast_component.h"
-
+#include "core/components/hitbox_component.h"
+#include "core/components/hurtbox_component.h"
+#include "core/components/raycast_component.h"
+#include "core/entities/base_entity.h"
+#include "core/items/game_item.h"
+#include "core/items/inventory.h"
+#include "core/logger/karakuri_logger.h"
+#include "plugins/features/rhythm/conductor.h"
+#include "plugins/features/rhythm/rhythm_game_manager.h"
+#include "core/scenario/karakuri_scenario_runner.h"
+#include "core/services/karakuri_localization_service.h"
+#include "core/services/karakuri_save_service.h"
 #include "core/ui/inventory_slot_ui.h"
 #include "core/ui/inventory_ui.h"
 
-#include "features/sandbox/building_component.h"
-#include "features/sandbox/mining_component.h"
+// Layer 2: Mystery template
+#include "mystery/evidence_manager.h"
+#include "mystery/mystery_manager.h"
 
-#include "features/sandbox/building_component.h"
-#include "features/sandbox/mining_component.h"
+// Plugins (genre-specific, isolated)
+#include "plugins/features/sandbox/building_component.h"
+#include "plugins/features/sandbox/mining_component.h"
+#include "plugins/features/rhythm/rhythm_command_listener.h"
 
-#include "features/sandbox/building_component.h"
-#include "features/sandbox/mining_component.h"
-
-#include "core/rhythm/conductor.h"
-#include "core/rhythm/rhythm_game_manager.h"
-#include "features/rhythm/rhythm_command_listener.h"
+// Views & Scenes
+#include "views/isometric_view.h"
 #include "views/rhythm/note_lane.h"
 #include "views/rhythm/rhythm_note.h"
-
+#include "views/side_scrolling_view.h"
 #include "scenes/haunted_spot_scene_logic.h"
 #include "scenes/office_scene_logic.h"
-
-#include "karakuri/karakuri_localization_service.h"
-#include "karakuri/karakuri_logger.h"
-#include "karakuri/karakuri_save_service.h"
-#include "karakuri/scenario/karakuri_scenario_runner.h"
-
-#include "features/mystery/evidence_manager.h"
-#include "features/mystery/mystery_manager.h"
+#include "world_generator.h"
 
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
@@ -63,43 +54,44 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   }
   godot::UtilityFunctions::print("Sandbox GDExtension Initialized!");
 
-  ClassDB::register_class<AdventureGameStateBase>();
-  ClassDB::register_class<OfficeSceneLogic>();
-  ClassDB::register_class<HauntedSpotSceneLogic>();
+  // Layer 1: Basic Game Karakuri
+  ClassDB::register_class<karakuri::AdventureGameStateBase>();
+  ClassDB::register_class<karakuri::UniversalWorldData>();
+  ClassDB::register_class<karakuri::RoguelikeGenerator>();
+  ClassDB::register_class<karakuri::RoguelikeManager>();
+  ClassDB::register_class<karakuri::InteractionManager>();
+  ClassDB::register_class<karakuri::DialogueUI>();
   ClassDB::register_class<FightingGameManager>();
-  ClassDB::register_class<FighterController>();
-  ClassDB::register_class<UniversalWorldData>();
-  ClassDB::register_class<RoguelikeGenerator>();
-  ClassDB::register_class<RoguelikeManager>();
-  ClassDB::register_class<InteractionManager>();
-  ClassDB::register_class<DialogueUI>();
-  ClassDB::register_class<IsometricView>();
-  ClassDB::register_class<SideScrollingView>();
-  ClassDB::register_class<GameEntity>();
-  ClassDB::register_class<PlayerControllerIso>();
-  ClassDB::register_class<PlayerControllerSide>();
-  ClassDB::register_class<GameItem>();
-  ClassDB::register_class<Inventory>();
-  ClassDB::register_class<WorldGenerator>();
-  ClassDB::register_class<HitboxComponent>();
-  ClassDB::register_class<HurtboxComponent>();
-  ClassDB::register_class<RayCastComponent>();
   ClassDB::register_class<HitStopManager>();
-  ClassDB::register_class<InventoryUI>();
-  ClassDB::register_class<InventorySlotUI>();
-  ClassDB::register_class<MiningComponent>();
-  ClassDB::register_class<BuildingComponent>();
+  ClassDB::register_class<karakuri::GameEntity>();
+  ClassDB::register_class<karakuri::GameItem>();
+  ClassDB::register_class<karakuri::Inventory>();
+  ClassDB::register_class<karakuri::HitboxComponent>();
+  ClassDB::register_class<karakuri::HurtboxComponent>();
+  ClassDB::register_class<karakuri::RayCastComponent>();
   ClassDB::register_class<Conductor>();
   ClassDB::register_class<RhythmGameManager>();
-  ClassDB::register_class<RhythmNote>();
-  ClassDB::register_class<NoteLane>();
-  ClassDB::register_class<RhythmCommandListener>();
+  ClassDB::register_class<karakuri::InventoryUI>();
+  ClassDB::register_class<karakuri::InventorySlotUI>();
   ClassDB::register_class<karakuri::KarakuriLocalizationService>();
   ClassDB::register_class<karakuri::KarakuriLogger>();
   ClassDB::register_class<karakuri::KarakuriSaveService>();
   ClassDB::register_class<karakuri::KarakuriScenarioRunner>();
-  ClassDB::register_class<MysteryManager>();
-  ClassDB::register_class<EvidenceManager>();
+  // Layer 2: Mystery template
+  ClassDB::register_class<mystery::MysteryManager>();
+  ClassDB::register_class<mystery::EvidenceManager>();
+  // Plugins
+  ClassDB::register_class<MiningComponent>();
+  ClassDB::register_class<BuildingComponent>();
+  ClassDB::register_class<RhythmNote>();
+  ClassDB::register_class<NoteLane>();
+  ClassDB::register_class<RhythmCommandListener>();
+  // Views & Scenes
+  ClassDB::register_class<IsometricView>();
+  ClassDB::register_class<SideScrollingView>();
+  ClassDB::register_class<WorldGenerator>();
+  ClassDB::register_class<OfficeSceneLogic>();
+  ClassDB::register_class<HauntedSpotSceneLogic>();
 }
 
 void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {

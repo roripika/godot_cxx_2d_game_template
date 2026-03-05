@@ -12,8 +12,8 @@ class HauntedSpotSceneLogic : public Node2D {
   GDCLASS(HauntedSpotSceneLogic, Node2D)
 
 private:
-  DialogueUI *dialogue_ui;
-  InteractionManager *interaction_manager;
+  karakuri::DialogueUI *dialogue_ui;
+  karakuri::InteractionManager *interaction_manager;
   Control *ghost_sprite; // It is a ColorRect in the tscn
   Vector2 ghost_base_pos;
 

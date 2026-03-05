@@ -6,6 +6,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 void InteractionManager::_bind_methods() {
   ClassDB::bind_method(D_METHOD("set_active", "active"),
                        &InteractionManager::set_active);
@@ -53,3 +56,5 @@ void InteractionManager::set_active(bool p_active) {
 }
 
 bool InteractionManager::is_active() const { return active; }
+
+} // namespace karakuri

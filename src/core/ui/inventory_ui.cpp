@@ -4,6 +4,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 InventoryUI::InventoryUI() { set_anchors_preset(Control::PRESET_FULL_RECT); }
 
 InventoryUI::~InventoryUI() {}
@@ -93,3 +96,5 @@ void InventoryUI::_on_slot_clicked(int index, int button_index) {
 void InventoryUI::_notification(int p_what) {
   //
 }
+
+} // namespace karakuri

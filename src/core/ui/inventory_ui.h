@@ -1,12 +1,14 @@
 #ifndef INVENTORY_UI_H
 #define INVENTORY_UI_H
 
-#include "../../items/inventory.h"
+#include "../items/inventory.h"
 #include "inventory_slot_ui.h"
 #include <godot_cpp/classes/control.hpp>
 #include <godot_cpp/classes/grid_container.hpp>
 
 using namespace godot;
+
+namespace karakuri {
 
 class InventoryUI : public Control {
   GDCLASS(InventoryUI, Control)
@@ -34,5 +36,7 @@ public:
 
   void _ready() override;
 };
+
+} // namespace karakuri
 
 #endif // INVENTORY_UI_H

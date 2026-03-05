@@ -7,6 +7,8 @@
 
 using namespace godot;
 
+namespace karakuri {
+
 class InteractionManager : public Node2D {
   GDCLASS(InteractionManager, Node2D)
 
@@ -31,5 +33,7 @@ public:
   void set_active(bool p_active);
   bool is_active() const;
 };
+
+} // namespace karakuri
 
 #endif

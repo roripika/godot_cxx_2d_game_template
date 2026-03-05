@@ -1,7 +1,7 @@
 #include "haunted_spot_scene_logic.h"
 #include "core/adventure_game_state.h"
-#include "features/mystery/evidence_manager.h"
-#include "features/mystery/mystery_manager.h"
+#include "mystery/evidence_manager.h"
+#include "mystery/mystery_manager.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/scene_tree_timer.hpp>
@@ -40,7 +40,7 @@ void HauntedSpotSceneLogic::_ready() {
   if (Engine::get_singleton()->is_editor_hint())
     return;
 
-  interaction_manager = Object::cast_to<InteractionManager>(
+  interaction_manager = Object::cast_to<karakuri::InteractionManager>(
       get_node_or_null("InteractionManager"));
   if (interaction_manager) {
     interaction_manager->connect("clicked_at",
@@ -49,7 +49,7 @@ void HauntedSpotSceneLogic::_ready() {
 
   Node *canvas_layer = get_node_or_null("CanvasLayer");
   if (canvas_layer) {
-    dialogue_ui = Object::cast_to<DialogueUI>(
+    dialogue_ui = Object::cast_to<karakuri::DialogueUI>(
         canvas_layer->get_node_or_null("DialogueUI"));
   }
 
@@ -88,8 +88,8 @@ void HauntedSpotSceneLogic::_on_clicked_at(Vector2 pos) {
   // Exit Area
   Rect2 exit_rect(0, 0, 100, 648);
 
-  auto *gm = MysteryManager::get_singleton();
-  auto *em = EvidenceManager::get_singleton();
+  auto *gm = mystery::MysteryManager::get_singleton();
+  auto *em = mystery::EvidenceManager::get_singleton();
   if (!dialogue_ui || !gm || !em)
     return;
 
@@ -116,7 +116,7 @@ void HauntedSpotSceneLogic::_on_clicked_at(Vector2 pos) {
 }
 
 void HauntedSpotSceneLogic::_change_scene_callback() {
-  AdventureGameStateBase *state = AdventureGameStateBase::get_singleton();
+  karakuri::AdventureGameStateBase *state = karakuri::AdventureGameStateBase::get_singleton();
   if (state) {
     state->change_scene("res://samples/mystery/office_scene.tscn");
   }

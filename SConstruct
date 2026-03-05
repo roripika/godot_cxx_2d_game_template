@@ -14,8 +14,52 @@ env = SConscript("godot-cpp/SConstruct")
 
 # Tweaks for the binding layout
 env.Append(CPPPATH=["src"])
-env.Append(CPPPATH=["src"])
-sources = Glob("src/*.cpp") + Glob("src/core/*.cpp") + Glob("src/core/cycles/*.cpp") + Glob("src/core/ui/*.cpp") + Glob("src/core/rhythm/*.cpp") + Glob("src/views/*.cpp") + Glob("src/views/rhythm/*.cpp") + Glob("src/entities/*.cpp") + Glob("src/entities/components/*.cpp") + Glob("src/features/sandbox/*.cpp") + Glob("src/features/mystery/*.cpp") + Glob("src/features/rhythm/*.cpp") + Glob("src/items/*.cpp") + Glob("src/scenes/*.cpp") + Glob("src/karakuri/*.cpp") + Glob("src/karakuri/scenario/*.cpp") + Glob("src/karakuri/yaml/*.cpp")
+
+# ── Layer 1 (Core) 専用コンパイル環境 (物理的防波堤) ──────────────────────────
+# src を CPPPATH から取り除き、Core 内部パスのみを追加する。
+# これにより src/core/ 以下が #include "mystery/..." を書いた瞬間に
+# コンパイルエラーが発生し、Layer 1 → Layer 2 の依存混入を物理的に検出できる。
+# (ref: docs/architecture/layer_migration_plan.md §5 Quality Assurance)
+core_env = env.Clone()
+core_env['CPPPATH'] = [p for p in list(core_env['CPPPATH']) if str(p) != 'src']
+core_env.Append(CPPPATH=[
+    "src/core",    # Core 内ヘッダ解決用
+    "src/plugins", # Core から利用する plugins ヘッダ（views/rhythm 等）
+    "src/views",
+    "src/scenes",
+])
+
+# Layer 1 ソースを防波堤環境でコンパイル
+core_source_files = (
+    Glob("src/core/*.cpp") +
+    Glob("src/core/components/*.cpp") +
+    Glob("src/core/cycles/*.cpp") +
+    Glob("src/core/entities/*.cpp") +
+    Glob("src/core/items/*.cpp") +
+    Glob("src/core/logger/*.cpp") +
+    Glob("src/core/scenario/*.cpp") +
+    Glob("src/core/services/*.cpp") +
+    Glob("src/core/ui/*.cpp") +
+    Glob("src/core/yaml/*.cpp")
+)
+core_objects = [core_env.SharedObject(f) for f in core_source_files]
+
+# Layer 2+ / その他ソース（通常環境: src/mystery が見える）
+other_sources = (
+    Glob("src/*.cpp") +
+    # Layer 2: Mystery template
+    Glob("src/mystery/*.cpp") +
+    # Plugins (genre-specific, isolated)
+    Glob("src/plugins/features/fighting/*.cpp") +
+    Glob("src/plugins/features/sandbox/*.cpp") +
+    Glob("src/plugins/features/rhythm/*.cpp") +
+    # Views & Scenes
+    Glob("src/scenes/*.cpp") +
+    Glob("src/views/*.cpp") +
+    Glob("src/views/rhythm/*.cpp")
+)
+
+sources = core_objects + other_sources
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(

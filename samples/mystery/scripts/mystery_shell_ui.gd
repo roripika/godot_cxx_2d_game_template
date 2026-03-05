@@ -10,6 +10,12 @@ func _ready() -> void:
 	if scenario_runner:
 		scenario_runner.register_mystery_actions()
 	
+	# DI: AdventureGameStateBase.reset_game() に Mystery 固有のリセット処理を注入する
+	# (architecture: mystery layer injects reset hook into core layer)
+	var ags = AdventureGameState
+	if ags and ags.has_method("set_reset_hook"):
+		ags.set_reset_hook(Callable(self, "_on_mystery_reset"))
+	
 	if inventory_btn:
 		inventory_btn.pressed.connect(_on_inventory_btn_pressed)
 		
@@ -22,6 +28,16 @@ func _on_inventory_btn_pressed() -> void:
 			inventory_ui.call("hide_inventory")
 		else:
 			inventory_ui.call("show_inventory")
+
+## Mystery 固有のリセット処理（DI: AdventureGameStateBase.set_reset_hook で登録）
+## - EvidenceManager, MysteryManager はシーンルートを動的に検索して実行
+func _on_mystery_reset() -> void:
+	var root := get_tree().root
+	for child in root.get_children():
+		if child.is_class("EvidenceManager") and child.has_method("clear_all_evidence"):
+			child.clear_all_evidence()
+		if child.is_class("MysteryManager") and child.has_method("deserialize_flags"):
+			child.deserialize_flags({})
 
 func _connect_localization_service() -> void:
 	var service := get_tree().root.get_node_or_null("KarakuriLocalization")

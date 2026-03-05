@@ -20,7 +20,7 @@ public:
   WorldGenerator();
   ~WorldGenerator();
 
-  void generate_chunk(const Ref<UniversalWorldData> &p_world_data,
+  void generate_chunk(const Ref<karakuri::UniversalWorldData> &p_world_data,
                       const Vector2i &p_chunk_pos);
 };
 

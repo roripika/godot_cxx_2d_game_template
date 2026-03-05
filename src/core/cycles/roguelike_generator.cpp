@@ -4,6 +4,9 @@
 
 using namespace godot;
 
+namespace karakuri {
+
+
 void RoguelikeGenerator::_bind_methods() {
   ClassDB::bind_method(D_METHOD("generate_dungeon", "world", "width", "height",
                                 "depth_layer", "room_count"),
@@ -108,3 +111,5 @@ void RoguelikeGenerator::generate_dungeon(Ref<UniversalWorldData> world,
 
   UtilityFunctions::print("Dungeon Generated with ", rooms.size(), " rooms.");
 }
+
+} // namespace karakuri

@@ -32,7 +32,7 @@ IsometricView::~IsometricView() {
   }
 }
 
-void IsometricView::set_world_data(const Ref<UniversalWorldData> &p_data) {
+void IsometricView::set_world_data(const Ref<karakuri::UniversalWorldData> &p_data) {
   if (world_data.is_valid()) {
     world_data->disconnect("voxel_changed",
                            Callable(this, "_on_voxel_changed"));
@@ -46,7 +46,7 @@ void IsometricView::set_world_data(const Ref<UniversalWorldData> &p_data) {
   }
 }
 
-Ref<UniversalWorldData> IsometricView::get_world_data() const {
+Ref<karakuri::UniversalWorldData> IsometricView::get_world_data() const {
   return world_data;
 }
 

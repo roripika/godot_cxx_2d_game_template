@@ -8,6 +8,8 @@
 
 using namespace godot;
 
+namespace karakuri {
+
 class UniversalWorldData : public Resource {
   GDCLASS(UniversalWorldData, Resource)
 
@@ -31,5 +33,7 @@ public:
 
   Vector3i get_size() const { return size; }
 };
+
+} // namespace karakuri
 
 #endif

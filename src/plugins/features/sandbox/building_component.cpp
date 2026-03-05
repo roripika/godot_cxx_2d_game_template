@@ -38,17 +38,17 @@ void BuildingComponent::_bind_methods() {
                "set_default_block_id", "get_default_block_id");
 }
 
-void BuildingComponent::set_world_data(const Ref<UniversalWorldData> &p_data) {
+void BuildingComponent::set_world_data(const Ref<karakuri::UniversalWorldData> &p_data) {
   world_data = p_data;
 }
-Ref<UniversalWorldData> BuildingComponent::get_world_data() const {
+Ref<karakuri::UniversalWorldData> BuildingComponent::get_world_data() const {
   return world_data;
 }
 
-void BuildingComponent::set_inventory(const Ref<Inventory> &p_inventory) {
+void BuildingComponent::set_inventory(const Ref<karakuri::Inventory> &p_inventory) {
   inventory = p_inventory;
 }
-Ref<Inventory> BuildingComponent::get_inventory() const { return inventory; }
+Ref<karakuri::Inventory> BuildingComponent::get_inventory() const { return inventory; }
 
 void BuildingComponent::set_range(float p_range) { range = p_range; }
 float BuildingComponent::get_range() const { return range; }
@@ -73,7 +73,7 @@ bool BuildingComponent::place_voxel(Vector2 global_pos, int item_id) {
   // Logic to consume form inventory?
   // If item_id is provided, check if inventory has it.
   // For now, assume strict mapping: Item ID == Voxel ID.
-  // Ideally GameItem has property "voxel_id".
+  // Ideally karakuri::GameItem has property "voxel_id".
   // Let's assume infinite placement for Creative/Demo, or simple consume if
   // inventory is set.
 

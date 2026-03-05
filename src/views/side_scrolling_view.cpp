@@ -33,7 +33,7 @@ SideScrollingView::~SideScrollingView() {
   }
 }
 
-void SideScrollingView::set_world_data(const Ref<UniversalWorldData> &p_data) {
+void SideScrollingView::set_world_data(const Ref<karakuri::UniversalWorldData> &p_data) {
   if (world_data.is_valid()) {
     world_data->disconnect("voxel_changed",
                            Callable(this, "_on_voxel_changed"));
@@ -47,7 +47,7 @@ void SideScrollingView::set_world_data(const Ref<UniversalWorldData> &p_data) {
   }
 }
 
-Ref<UniversalWorldData> SideScrollingView::get_world_data() const {
+Ref<karakuri::UniversalWorldData> SideScrollingView::get_world_data() const {
   return world_data;
 }
 

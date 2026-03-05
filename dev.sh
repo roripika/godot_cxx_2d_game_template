@@ -19,6 +19,7 @@ Commands:
   smoke                 Lightweight smoke test: boot + UI nodes + prologue + locale (~5-10s)
   e2e                   Full E2E test: prologue -> investigate -> deduction -> confrontation -> endings
   monkey                Monkey test: random inputs to detect crashes/deadlocks (env: MONKEY_ACTIONS, MONKEY_SEED)
+  lint                  Layer boundary check: detect Layer1→Layer2 forbidden includes (no Godot needed)
 
 Demo values (examples):
   roguelike | platformer | mystery | sandbox | fighting | rhythm | gallery | menu
@@ -214,8 +215,9 @@ case "$cmd" in
     [[ -n "$GODOT" ]] || die "godot not found. Install Godot or set GODOT_BIN=/path/to/godot"
     "$GODOT" --headless --path "$ROOT_DIR" \
       --script res://samples/mystery/scripts/karakuri_monkey.gd
-    ;;
-  *)
+    ;;  lint)
+    "$ROOT_DIR/scripts/check_layer_boundaries.sh"
+    ;;  *)
     usage
     die "unknown command: $cmd"
     ;;
