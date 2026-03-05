@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Basic Game Karakuri SDK: データフィールド</title>
+<title>Basic Game Karakuri SDK: src/core/services/input_service.h ファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,7 +47,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,14 +68,43 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">データ構造</a> &#124;
+<a href="#namespaces">名前空間</a>  </div>
+  <div class="headertitle"><div class="title">input_service.h ファイル</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">構造体・共用体の全フィールド一覧です。各フィールドが属する構造体・共用体へのリンクがあります。</div>
 
-<h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
-<li>view_path&#160;:&#160;<a class="el" href="classkarakuri_1_1RoguelikeManager.html#a468cb21734a31cfbca172f4ff51405ef">karakuri::RoguelikeManager</a></li>
-<li>virtual_joystick_&#160;:&#160;<a class="el" href="classkarakuri_1_1InputService.html#af28b5f4976c071d32dd74af26384c248">karakuri::InputService</a></li>
-</ul>
-</div><!-- contents -->
+<p>Basic Game Karakuri: クロスプラットフォーム入力抽象化サービス。  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &lt;godot_cpp/classes/node.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/vector2.hpp&gt;</code><br />
+</div>
+<p><a href="input__service_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InputService.html">karakuri::InputService</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+名前空間</h2></td></tr>
+<tr class="memitem:namespacekarakuri" id="r_namespacekarakuri"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html">karakuri</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>Basic Game Karakuri: クロスプラットフォーム入力抽象化サービス。 </p>
+<p>Keyboard / Joypad / Touch (Virtual Joystick) を透過的に扱い、 ゲームロジックへ統一した Vector2 / bool インターフェースを提供する。</p>
+<p>使用する Input Map アクション名: move_left, move_right, move_up, move_down — 4方向移動 interact — 調査・決定ボタン</p>
+<p>タッチ対応: GDScript の VirtualJoystick UI が毎フレーム InputService.set_virtual_joystick(direction) を呼ぶことで、 get_move_direction() がそれを自動合成する。 </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
