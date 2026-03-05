@@ -1,7 +1,13 @@
 var searchData=
 [
-  ['name_5flabel_0',['name_label',['../classDialogueUI.html#a8b6729f3f34d17154a3cb7dce69458f5',1,'DialogueUI']]],
-  ['node_5fid_1',['node_id',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html#a427f8328999b355bfba590b64fe682ac',1,'karakuri::KarakuriScenarioRunner::HotspotBinding']]],
-  ['notify_5fmode_5fenter_2',['notify_mode_enter',['../classkarakuri_1_1KarakuriScenarioRunner.html#a96abc1612fee2c2dcd8e30843c05159f',1,'karakuri::KarakuriScenarioRunner']]],
-  ['notify_5fmode_5fexit_3',['notify_mode_exit',['../classkarakuri_1_1KarakuriScenarioRunner.html#aa03075c743abd6cf940dcc52e2b359a0',1,'karakuri::KarakuriScenarioRunner']]]
+  ['on_5fchoice_5fselected_0',['on_choice_selected',['../classkarakuri_1_1KarakuriScenarioRunner.html#aaaf08bf2ec7c10d872b71bf22e906d53',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5fclick_5factions_1',['on_click_actions',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html#af3c93fc9ff928b2c3f0b584b69cd62b7',1,'karakuri::KarakuriScenarioRunner::HotspotBinding']]],
+  ['on_5fclicked_5fat_2',['on_clicked_at',['../classkarakuri_1_1KarakuriScenarioRunner.html#a3e431bf3c8c0b2635626ca6b4959aabe',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5fdialogue_5ffinished_3',['on_dialogue_finished',['../classkarakuri_1_1KarakuriScenarioRunner.html#af700868dcaa3f9a05de73b206ec5cb82',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5fevidence_5fselected_4',['on_evidence_selected',['../classkarakuri_1_1KarakuriScenarioRunner.html#af786df05bd8166307d97873d4556ab57',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5ftestimony_5fcomplete_5',['on_testimony_complete',['../classkarakuri_1_1KarakuriScenarioRunner.html#a6567473afb0979aa3d317bf9cbb72b5c',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5ftestimony_5fnext_5frequested_6',['on_testimony_next_requested',['../classkarakuri_1_1KarakuriScenarioRunner.html#a8e7bc0782edfd8804d9090083b627e71',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5ftestimony_5fpresent_5frequested_7',['on_testimony_present_requested',['../classkarakuri_1_1KarakuriScenarioRunner.html#a576fa766365fe3e1e7bac13df1831605',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5ftestimony_5fshake_5frequested_8',['on_testimony_shake_requested',['../classkarakuri_1_1KarakuriScenarioRunner.html#abd006837cba9c2bb1463aae8ad2fc2cf',1,'karakuri::KarakuriScenarioRunner']]],
+  ['on_5ftransition_5ffinished_9',['on_transition_finished',['../classkarakuri_1_1KarakuriScenarioRunner.html#ad0c659e1f6c32470cf60078d54c3fd83',1,'karakuri::KarakuriScenarioRunner']]]
 ];

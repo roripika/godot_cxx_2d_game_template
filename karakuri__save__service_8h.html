@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Basic Game Karakuri SDK: src/karakuri/karakuri_save_service.h ファイル</title>
+<title>Basic Game Karakuri SDK: src/core/services/karakuri_save_service.h ファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_6543c30765007aac9b8617911cfd94d1.html">karakuri</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -81,16 +81,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Basic Game Karakuri: <a class="el" href="classAdventureGameStateBase.html">AdventureGameStateBase</a> の永続化サービス。  
+<p>Basic Game Karakuri: AdventureGameStateBase の永続化サービス。  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;godot_cpp/classes/node.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 karakuri_save_service.h の依存先関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="karakuri__save__service_8h__incl.png" border="0" usemap="#asrc_2karakuri_2karakuri__save__service_8h" alt=""/></div>
-<map name="asrc_2karakuri_2karakuri__save__service_8h" id="asrc_2karakuri_2karakuri__save__service_8h">
-<area shape="rect" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="146,5,299,45"/>
+<div class="center"><img src="karakuri__save__service_8h__incl.png" border="0" usemap="#asrc_2core_2services_2karakuri__save__service_8h" alt=""/></div>
+<map name="asrc_2core_2services_2karakuri__save__service_8h" id="asrc_2core_2services_2karakuri__save__service_8h">
+<area shape="rect" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="129,5,316,45"/>
 <area shape="rect" title=" " alt="" coords="5,93,211,119"/>
 <area shape="poly" title=" " alt="" coords="196,48,138,88,135,83,193,43"/>
 <area shape="rect" title=" " alt="" coords="235,93,443,119"/>
@@ -100,13 +100,13 @@ karakuri_save_service.h の依存先関係図:</div>
 </div><div class="textblock"><div class="dynheader">
 被依存関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="karakuri__save__service_8h__dep__incl.png" border="0" usemap="#asrc_2karakuri_2karakuri__save__service_8hdep" alt=""/></div>
-<map name="asrc_2karakuri_2karakuri__save__service_8hdep" id="asrc_2karakuri_2karakuri__save__service_8hdep">
-<area shape="rect" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="109,5,263,45"/>
-<area shape="rect" href="karakuri__save__service_8cpp.html" title=" " alt="" coords="5,93,159,133"/>
-<area shape="poly" title=" " alt="" coords="154,56,107,95,103,91,151,52"/>
-<area shape="rect" href="karakuri__scenario__runner_8cpp.html" title="See karakuri_scenario_runner.h" alt="" coords="183,93,397,133"/>
-<area shape="poly" title=" " alt="" coords="221,52,269,91,265,95,218,56"/>
+<div class="center"><img src="karakuri__save__service_8h__dep__incl.png" border="0" usemap="#asrc_2core_2services_2karakuri__save__service_8hdep" alt=""/></div>
+<map name="asrc_2core_2services_2karakuri__save__service_8hdep" id="asrc_2core_2services_2karakuri__save__service_8hdep">
+<area shape="rect" title="Basic Game Karakuri: AdventureGameStateBase の永続化サービス。" alt="" coords="106,5,293,45"/>
+<area shape="rect" href="karakuri__scenario__runner_8cpp.html" title="See karakuri_scenario_runner.h" alt="" coords="5,93,193,133"/>
+<area shape="poly" title=" " alt="" coords="169,56,123,95,120,91,165,52"/>
+<area shape="rect" href="save__service_8cpp.html" title=" " alt="" coords="217,93,384,133"/>
+<area shape="poly" title=" " alt="" coords="234,52,280,91,277,95,231,56"/>
 </map>
 </div>
 </div>
@@ -124,7 +124,7 @@ karakuri_save_service.h の依存先関係図:</div>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: <a class="el" href="classAdventureGameStateBase.html">AdventureGameStateBase</a> の永続化サービス。 </p>
+<div class="textblock"><p>Basic Game Karakuri: AdventureGameStateBase の永続化サービス。 </p>
 <p>保存パス規約: user://karakuri/&lt;demo_id&gt;/save.json (demo_id が空の場合は user://karakuri/save.json)</p>
 <p>保存フォーマット (JSON): { "flags": { "flag_name": true, ... }, "inventory": ["item1", "item2", ...], "health": 3 }</p>
 <p>ScenarioRunner との連携: KarakuriScenarioRunner::init_builtin_actions() が "save" / "load" アクションをこのサービス経由で登録する。 </p>

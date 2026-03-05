@@ -1,0 +1,5 @@
+<map id="karakuri::HitboxComponent::_on_area_entered" name="karakuri::HitboxComponent::_on_area_entered">
+<area shape="rect" id="Node000001" title=" " alt="" coords="253,5,453,45"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1HitboxComponent.html#afaf40a962588f51de7712f05de5cf042" title=" " alt="" coords="5,5,205,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,28,206,28,206,23,240,23"/>
+</map>

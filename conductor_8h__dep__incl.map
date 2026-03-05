@@ -1,9 +1,0 @@
-<map id="src/core/rhythm/conductor.h" name="src/core/rhythm/conductor.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="133,5,336,31"/>
-<area shape="rect" id="Node000002" href="$conductor_8cpp.html" title=" " alt="" coords="5,86,224,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,41,134,88,131,84,204,36"/>
-<area shape="rect" id="Node000003" href="$rhythm__command__listener_8h.html" title=" " alt="" coords="249,79,461,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="265,36,327,76,324,81,262,41"/>
-<area shape="rect" id="Node000004" href="$rhythm__command__listener_8cpp.html" title=" " alt="" coords="241,167,468,207"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="357,133,357,166,352,166,352,133"/>
-</map>

@@ -25,10 +25,7 @@
 var menudata={children:[
 {text:"総合概要",url:"index.html"},
 {text:"名前空間",url:"namespaces.html",children:[
-{text:"名前空間一覧",url:"namespaces.html"},
-{text:"名前空間メンバ",url:"namespacemembers.html",children:[
-{text:"全て",url:"namespacemembers.html"},
-{text:"列挙型",url:"namespacemembers_enum.html"}]}]},
+{text:"名前空間一覧",url:"namespaces.html"}]},
 {text:"データ構造",url:"annotated.html",children:[
 {text:"データ構造",url:"annotated.html"},
 {text:"データ構造索引",url:"classes.html"},
@@ -45,7 +42,6 @@ var menudata={children:[
 {text:"g",url:"functions_g.html#index_g"},
 {text:"h",url:"functions_h.html#index_h"},
 {text:"i",url:"functions_i.html#index_i"},
-{text:"j",url:"functions_j.html#index_j"},
 {text:"k",url:"functions_k.html#index_k"},
 {text:"l",url:"functions_l.html#index_l"},
 {text:"m",url:"functions_m.html#index_m"},
@@ -66,13 +62,11 @@ var menudata={children:[
 {text:"c",url:"functions_func_c.html#index_c"},
 {text:"d",url:"functions_func_d.html#index_d"},
 {text:"e",url:"functions_func_e.html#index_e"},
-{text:"f",url:"functions_func_f.html#index_f"},
 {text:"g",url:"functions_func_g.html#index_g"},
 {text:"h",url:"functions_func_h.html#index_h"},
 {text:"i",url:"functions_func_i.html#index_i"},
 {text:"k",url:"functions_func_k.html#index_k"},
 {text:"l",url:"functions_func_l.html#index_l"},
-{text:"m",url:"functions_func_m.html#index_m"},
 {text:"n",url:"functions_func_n.html#index_n"},
 {text:"o",url:"functions_func_o.html#index_o"},
 {text:"p",url:"functions_func_p.html#index_p"},
@@ -80,7 +74,6 @@ var menudata={children:[
 {text:"s",url:"functions_func_s.html#index_s"},
 {text:"t",url:"functions_func_t.html#index_t"},
 {text:"u",url:"functions_func_u.html#index_u"},
-{text:"v",url:"functions_func_v.html#index_v"},
 {text:"w",url:"functions_func_w.html#index_w"},
 {text:"~",url:"functions_func_~.html#index__7E"}]},
 {text:"変数",url:"functions_vars.html",children:[
@@ -93,7 +86,6 @@ var menudata={children:[
 {text:"g",url:"functions_vars.html#index_g"},
 {text:"h",url:"functions_vars.html#index_h"},
 {text:"i",url:"functions_vars.html#index_i"},
-{text:"j",url:"functions_vars.html#index_j"},
 {text:"k",url:"functions_vars.html#index_k"},
 {text:"l",url:"functions_vars.html#index_l"},
 {text:"m",url:"functions_vars.html#index_m"},
@@ -105,9 +97,7 @@ var menudata={children:[
 {text:"t",url:"functions_vars.html#index_t"},
 {text:"v",url:"functions_vars.html#index_v"},
 {text:"w",url:"functions_vars.html#index_w"}]},
-{text:"型定義",url:"functions_type.html"},
-{text:"列挙型",url:"functions_enum.html"},
-{text:"列挙値",url:"functions_eval.html"}]}]},
+{text:"型定義",url:"functions_type.html"}]}]},
 {text:"ファイル",url:"files.html",children:[
 {text:"ファイル一覧",url:"files.html"},
 {text:"大域各種",url:"globals.html",children:[

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['buildingcomponent_0',['BuildingComponent',['../classBuildingComponent.html',1,'']]]
+  ['dialogueui_0',['DialogueUI',['../classkarakuri_1_1DialogueUI.html',1,'karakuri']]]
 ];

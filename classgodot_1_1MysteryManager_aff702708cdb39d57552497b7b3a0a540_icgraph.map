@@ -1,9 +1,0 @@
-<map id="godot::MysteryManager::log_change" name="godot::MysteryManager::log_change">
-<area shape="rect" id="Node000001" title=" " alt="" coords="456,37,633,77"/>
-<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryManager.html#a5a93db0efb7271259b115b55174db576" title=" " alt="" coords="231,37,408,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="443,60,408,60,408,55,443,55"/>
-<area shape="rect" id="Node000003" href="$classgodot_1_1MysteryManager.html#a441637f4b0be58d6c60b6e85cddcd5c9" title=" " alt="" coords="5,5,183,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="217,45,182,41,183,35,218,40"/>
-<area shape="rect" id="Node000004" href="$classgodot_1_1MysteryManager.html#a1f4be3b0d8153af3ddb4606e831b25dc" title=" " alt="" coords="5,69,183,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="218,74,183,79,182,74,217,69"/>
-</map>

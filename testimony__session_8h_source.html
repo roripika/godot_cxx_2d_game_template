@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/scenario/testimony_session.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_015d90f1c684ae9d1a4fb606cf47b5f0.html">scenario</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">testimony_session.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="testimony__session_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KARAKURI_TESTIMONY_SESSION_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KARAKURI_TESTIMONY_SESSION_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;godot_cpp/variant/array.hpp&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;godot_cpp/variant/string.hpp&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;godot_cpp/variant/utility_functions.hpp&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;godot_cpp/variant/variant.hpp&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html">   59</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structkarakuri_1_1KarakuriTestimonySession.html">KarakuriTestimonySession</a> {</div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="};">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html">   66</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html">Line</a> {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0181c717d8a1ac37f2e4ac0552edb49e">   67</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0181c717d8a1ac37f2e4ac0552edb49e">speaker_key</a>;  </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a08ceff308b26e6cc48b8e33abee5f1e7">   68</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a08ceff308b26e6cc48b8e33abee5f1e7">speaker_text</a>; </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#ae84c7785d94f9cd0d88de793ca0faae5">   69</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#ae84c7785d94f9cd0d88de793ca0faae5">text_key</a>;     </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97eb983a9d538991923e8459bed6323d">   70</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97eb983a9d538991923e8459bed6323d">text_text</a>;    </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a2295f1526bd23b2d3787bfb3be13d38e">   71</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a2295f1526bd23b2d3787bfb3be13d38e">evidence_id</a>;  </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97342fc72da98314b586c56cea7c7d5f">   72</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97342fc72da98314b586c56cea7c7d5f">shake_key</a>;    </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a3c9a057fd1281c648df1c3a8fe6aa0c4">   73</a></span>    godot::String <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a3c9a057fd1281c648df1c3a8fe6aa0c4">shake_text</a>;   </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0f6f5e0629e25c52de550589aaa0f926">   74</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0f6f5e0629e25c52de550589aaa0f926">solved</a> = <span class="keyword">false</span>;        </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  };</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#a1773a73f8c043acfc69e2a00cec294ce">   78</a></span>  godot::Array <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a1773a73f8c043acfc69e2a00cec294ce">lines</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#a06f9f96a9048c937404ff6e0d5a5c34f">   81</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a06f9f96a9048c937404ff6e0d5a5c34f">index</a> = 0;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#a949f1e7844098926b445c6c39a6242e4">   84</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a949f1e7844098926b445c6c39a6242e4">max_rounds</a> = 1;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#ad77ea48c668d1519224b023b799888a1">   87</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#ad77ea48c668d1519224b023b799888a1">round</a> = 0;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#a54d98486d229c5451bce52b2cf1b0be4">   90</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a54d98486d229c5451bce52b2cf1b0be4">active</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#ab18c8f8fabbc07d92d08fd43c6183d09">   93</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#ab18c8f8fabbc07d92d08fd43c6183d09">waiting</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#ad2f5c21001104dd730091fe5badae728">   96</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#ad2f5c21001104dd730091fe5badae728">waiting_for_evidence</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#aa94880908ad847e905ffc3131ef02472">   99</a></span>  godot::Array <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#aa94880908ad847e905ffc3131ef02472">success_actions</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#a5f41a39286424e2f5e979e9950a300b9">  102</a></span>  godot::Array <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a5f41a39286424e2f5e979e9950a300b9">failure_actions</a>;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structkarakuri_1_1KarakuriTestimonySession.html#a77041f159227063c72be72b902514177">  105</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="structkarakuri_1_1KarakuriTestimonySession.html#a77041f159227063c72be72b902514177">reset</a>(<span class="keyword">const</span> godot::String &amp; <span class="comment">/*reason*/</span>) {</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a54d98486d229c5451bce52b2cf1b0be4">active</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#ab18c8f8fabbc07d92d08fd43c6183d09">waiting</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#ad2f5c21001104dd730091fe5badae728">waiting_for_evidence</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a06f9f96a9048c937404ff6e0d5a5c34f">index</a> = 0;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#ad77ea48c668d1519224b023b799888a1">round</a> = 0;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a949f1e7844098926b445c6c39a6242e4">max_rounds</a> = 1;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a1773a73f8c043acfc69e2a00cec294ce">lines</a>.clear();</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#aa94880908ad847e905ffc3131ef02472">success_actions</a>.clear();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_variable" href="structkarakuri_1_1KarakuriTestimonySession.html#a5f41a39286424e2f5e979e9950a300b9">failure_actions</a>.clear();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  }</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>};</div>
+</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif </span><span class="comment">// KARAKURI_TESTIMONY_SESSION_H</span></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> adventure_game_state.cpp:8</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html">karakuri::KarakuriTestimonySession::Line</a></div><div class="ttdoc">一行分の証言データ。</div><div class="ttdef"><b>Definition</b> testimony_session.h:66</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a0181c717d8a1ac37f2e4ac0552edb49e"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0181c717d8a1ac37f2e4ac0552edb49e">karakuri::KarakuriTestimonySession::Line::speaker_key</a></div><div class="ttdeci">godot::String speaker_key</div><div class="ttdoc">話者ローカライズキー</div><div class="ttdef"><b>Definition</b> testimony_session.h:67</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a08ceff308b26e6cc48b8e33abee5f1e7"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a08ceff308b26e6cc48b8e33abee5f1e7">karakuri::KarakuriTestimonySession::Line::speaker_text</a></div><div class="ttdeci">godot::String speaker_text</div><div class="ttdoc">話者フォールバックテキスト</div><div class="ttdef"><b>Definition</b> testimony_session.h:68</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a0f6f5e0629e25c52de550589aaa0f926"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a0f6f5e0629e25c52de550589aaa0f926">karakuri::KarakuriTestimonySession::Line::solved</a></div><div class="ttdeci">bool solved</div><div class="ttdoc">この行の矛盾が解決済みか</div><div class="ttdef"><b>Definition</b> testimony_session.h:74</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a2295f1526bd23b2d3787bfb3be13d38e"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a2295f1526bd23b2d3787bfb3be13d38e">karakuri::KarakuriTestimonySession::Line::evidence_id</a></div><div class="ttdeci">godot::String evidence_id</div><div class="ttdoc">正解の証拠ID（空なら矛盾なし）</div><div class="ttdef"><b>Definition</b> testimony_session.h:71</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a3c9a057fd1281c648df1c3a8fe6aa0c4"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a3c9a057fd1281c648df1c3a8fe6aa0c4">karakuri::KarakuriTestimonySession::Line::shake_text</a></div><div class="ttdeci">godot::String shake_text</div><div class="ttdoc">ゆさぶり応答フォールバックテキスト</div><div class="ttdef"><b>Definition</b> testimony_session.h:73</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a97342fc72da98314b586c56cea7c7d5f"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97342fc72da98314b586c56cea7c7d5f">karakuri::KarakuriTestimonySession::Line::shake_key</a></div><div class="ttdeci">godot::String shake_key</div><div class="ttdoc">ゆさぶり応答ローカライズキー</div><div class="ttdef"><b>Definition</b> testimony_session.h:72</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_a97eb983a9d538991923e8459bed6323d"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#a97eb983a9d538991923e8459bed6323d">karakuri::KarakuriTestimonySession::Line::text_text</a></div><div class="ttdeci">godot::String text_text</div><div class="ttdoc">台詞フォールバックテキスト</div><div class="ttdef"><b>Definition</b> testimony_session.h:70</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_1_1Line_html_ae84c7785d94f9cd0d88de793ca0faae5"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession_1_1Line.html#ae84c7785d94f9cd0d88de793ca0faae5">karakuri::KarakuriTestimonySession::Line::text_key</a></div><div class="ttdeci">godot::String text_key</div><div class="ttdoc">台詞ローカライズキー</div><div class="ttdef"><b>Definition</b> testimony_session.h:69</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html">karakuri::KarakuriTestimonySession</a></div><div class="ttdoc">証言システム（Testimony confrontation）の進行ステートを保持する ストラクト。</div><div class="ttdef"><b>Definition</b> testimony_session.h:59</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_a06f9f96a9048c937404ff6e0d5a5c34f"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#a06f9f96a9048c937404ff6e0d5a5c34f">karakuri::KarakuriTestimonySession::index</a></div><div class="ttdeci">int index</div><div class="ttdoc">現在表示中の行インデックス（0-based）。</div><div class="ttdef"><b>Definition</b> testimony_session.h:81</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_a1773a73f8c043acfc69e2a00cec294ce"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#a1773a73f8c043acfc69e2a00cec294ce">karakuri::KarakuriTestimonySession::lines</a></div><div class="ttdeci">godot::Array lines</div><div class="ttdoc">証言行のリスト（YAML lines リストから構築）。</div><div class="ttdef"><b>Definition</b> testimony_session.h:78</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_a54d98486d229c5451bce52b2cf1b0be4"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#a54d98486d229c5451bce52b2cf1b0be4">karakuri::KarakuriTestimonySession::active</a></div><div class="ttdeci">bool active</div><div class="ttdoc">現在 testimony フェーズが進行中か。</div><div class="ttdef"><b>Definition</b> testimony_session.h:90</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_a5f41a39286424e2f5e979e9950a300b9"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#a5f41a39286424e2f5e979e9950a300b9">karakuri::KarakuriTestimonySession::failure_actions</a></div><div class="ttdeci">godot::Array failure_actions</div><div class="ttdoc">testimony 失敗時（HP 切れ等）に実行するアクション列。</div><div class="ttdef"><b>Definition</b> testimony_session.h:102</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_a77041f159227063c72be72b902514177"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#a77041f159227063c72be72b902514177">karakuri::KarakuriTestimonySession::reset</a></div><div class="ttdeci">void reset(const godot::String &amp;)</div><div class="ttdoc">セッションを初期状態に戻す。</div><div class="ttdef"><b>Definition</b> testimony_session.h:105</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_a949f1e7844098926b445c6c39a6242e4"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#a949f1e7844098926b445c6c39a6242e4">karakuri::KarakuriTestimonySession::max_rounds</a></div><div class="ttdeci">int max_rounds</div><div class="ttdoc">最大ラウンド数（YAML max_rounds）。</div><div class="ttdef"><b>Definition</b> testimony_session.h:84</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_aa94880908ad847e905ffc3131ef02472"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#aa94880908ad847e905ffc3131ef02472">karakuri::KarakuriTestimonySession::success_actions</a></div><div class="ttdeci">godot::Array success_actions</div><div class="ttdoc">testimony 成功時に実行するアクション列。</div><div class="ttdef"><b>Definition</b> testimony_session.h:99</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_ab18c8f8fabbc07d92d08fd43c6183d09"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#ab18c8f8fabbc07d92d08fd43c6183d09">karakuri::KarakuriTestimonySession::waiting</a></div><div class="ttdeci">bool waiting</div><div class="ttdoc">testimony の完了（成功/失敗）を待機中か。</div><div class="ttdef"><b>Definition</b> testimony_session.h:93</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_ad2f5c21001104dd730091fe5badae728"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#ad2f5c21001104dd730091fe5badae728">karakuri::KarakuriTestimonySession::waiting_for_evidence</a></div><div class="ttdeci">bool waiting_for_evidence</div><div class="ttdoc">証拠選択 UI の応答待ちか（present アクション中）。</div><div class="ttdef"><b>Definition</b> testimony_session.h:96</div></div>
+<div class="ttc" id="astructkarakuri_1_1KarakuriTestimonySession_html_ad77ea48c668d1519224b023b799888a1"><div class="ttname"><a href="structkarakuri_1_1KarakuriTestimonySession.html#ad77ea48c668d1519224b023b799888a1">karakuri::KarakuriTestimonySession::round</a></div><div class="ttdeci">int round</div><div class="ttdoc">現在のラウンド番号（0-based）。</div><div class="ttdef"><b>Definition</b> testimony_session.h:87</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

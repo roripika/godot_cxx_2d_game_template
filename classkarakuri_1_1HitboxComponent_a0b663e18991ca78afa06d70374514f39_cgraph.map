@@ -1,0 +1,11 @@
+<map id="karakuri::HitboxComponent::_on_area_entered" name="karakuri::HitboxComponent::_on_area_entered">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,205,109"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1HurtboxComponent.html#aee21150393efd162afb9f29467729f23" title=" " alt="" coords="253,69,463,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,87,240,87,240,92,205,92"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1HitboxComponent.html#ae7ba4aafdb37cf6dd75a67d29aa79637" title=" " alt="" coords="511,5,711,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="437,67,517,46,519,51,438,72"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1HitboxComponent.html#a5dca4b0e84fd05b0e09bd557399e46ed" title=" " alt="" coords="511,69,711,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="463,87,497,87,497,92,463,92"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1HitboxComponent.html#a5da0946a58ed2cf5320211f267e2d2b0" title=" " alt="" coords="511,133,711,173"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="438,107,519,127,517,133,437,112"/>
+</map>

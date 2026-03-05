@@ -1,7 +1,0 @@
-<map id="InventoryUI::refresh" name="InventoryUI::refresh">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,45,157,70"/>
-<area shape="rect" id="Node000002" href="$classInventorySlotUI.html#a57c98958c92a3ec081300e248bade1fe" title=" " alt="" coords="205,5,356,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,43,192,37,192,42,158,48"/>
-<area shape="rect" id="Node000003" href="$classInventorySlotUI.html#aa8524c8ec4f4c28d933c1dc69c008c48" title=" " alt="" coords="205,69,356,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,67,192,72,192,78,157,72"/>
-</map>

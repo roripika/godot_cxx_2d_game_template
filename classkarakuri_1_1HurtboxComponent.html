@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::HurtboxComponent クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1HurtboxComponent.html">HurtboxComponent</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::HurtboxComponent クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="hurtbox__component_8h_source.html">hurtbox_component.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::HurtboxComponent の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent__inherit__graph.png" border="0" usemap="#akarakuri_1_1HurtboxComponent_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1HurtboxComponent_inherit__map" id="akarakuri_1_1HurtboxComponent_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,215,104"/>
+<area shape="rect" title=" " alt="" coords="75,5,145,31"/>
+<area shape="poly" title=" " alt="" coords="113,44,113,79,107,79,107,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::HurtboxComponent 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent__coll__graph.png" border="0" usemap="#akarakuri_1_1HurtboxComponent_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1HurtboxComponent_coll__map" id="akarakuri_1_1HurtboxComponent_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,215,104"/>
+<area shape="rect" title=" " alt="" coords="75,5,145,31"/>
+<area shape="poly" title=" " alt="" coords="113,44,113,79,107,79,107,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab52e048643c32d7a6d011d6707e56e4b" id="r_ab52e048643c32d7a6d011d6707e56e4b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#ab52e048643c32d7a6d011d6707e56e4b">HurtboxComponent</a> ()</td></tr>
+<tr class="separator:ab52e048643c32d7a6d011d6707e56e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a620ede18ca99386ee60777c88645a63f" id="r_a620ede18ca99386ee60777c88645a63f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#a620ede18ca99386ee60777c88645a63f">~HurtboxComponent</a> ()</td></tr>
+<tr class="separator:a620ede18ca99386ee60777c88645a63f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee21150393efd162afb9f29467729f23" id="r_aee21150393efd162afb9f29467729f23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#aee21150393efd162afb9f29467729f23">take_hit</a> (<a class="el" href="classkarakuri_1_1HitboxComponent.html">HitboxComponent</a> *hitbox)</td></tr>
+<tr class="separator:aee21150393efd162afb9f29467729f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb0c4f478acb916478f64276392021f" id="r_a8eb0c4f478acb916478f64276392021f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#a8eb0c4f478acb916478f64276392021f">set_invincible</a> (bool p_invincible)</td></tr>
+<tr class="separator:a8eb0c4f478acb916478f64276392021f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88db2e87b18aa4876647363089afebd7" id="r_a88db2e87b18aa4876647363089afebd7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#a88db2e87b18aa4876647363089afebd7">is_invincible</a> () const</td></tr>
+<tr class="separator:a88db2e87b18aa4876647363089afebd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:aa8f1dec8c03b4fcfddd24c83d115eb01" id="r_aa8f1dec8c03b4fcfddd24c83d115eb01"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#aa8f1dec8c03b4fcfddd24c83d115eb01">_bind_methods</a> ()</td></tr>
+<tr class="separator:aa8f1dec8c03b4fcfddd24c83d115eb01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:a4a03d61958a60315a25e037602b0d484" id="r_a4a03d61958a60315a25e037602b0d484"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1HurtboxComponent.html#a4a03d61958a60315a25e037602b0d484">invincible</a> = false</td></tr>
+<tr class="separator:a4a03d61958a60315a25e037602b0d484"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ab52e048643c32d7a6d011d6707e56e4b" name="ab52e048643c32d7a6d011d6707e56e4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab52e048643c32d7a6d011d6707e56e4b">&#9670;&#160;</a></span>HurtboxComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::HurtboxComponent::HurtboxComponent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a620ede18ca99386ee60777c88645a63f" name="a620ede18ca99386ee60777c88645a63f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a620ede18ca99386ee60777c88645a63f">&#9670;&#160;</a></span>~HurtboxComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::HurtboxComponent::~HurtboxComponent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="aa8f1dec8c03b4fcfddd24c83d115eb01" name="aa8f1dec8c03b4fcfddd24c83d115eb01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8f1dec8c03b4fcfddd24c83d115eb01">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::HurtboxComponent::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent_aa8f1dec8c03b4fcfddd24c83d115eb01_cgraph.png" border="0" usemap="#aclasskarakuri_1_1HurtboxComponent_aa8f1dec8c03b4fcfddd24c83d115eb01_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1HurtboxComponent_aa8f1dec8c03b4fcfddd24c83d115eb01_cgraph" id="aclasskarakuri_1_1HurtboxComponent_aa8f1dec8c03b4fcfddd24c83d115eb01_cgraph">
+<area shape="rect" title=" " alt="" coords="5,69,215,109"/>
+<area shape="rect" href="classkarakuri_1_1HurtboxComponent.html#a88db2e87b18aa4876647363089afebd7" title=" " alt="" coords="263,5,472,45"/>
+<area shape="poly" title=" " alt="" coords="191,67,273,46,274,51,192,72"/>
+<area shape="rect" href="classkarakuri_1_1HurtboxComponent.html#a8eb0c4f478acb916478f64276392021f" title=" " alt="" coords="263,69,472,109"/>
+<area shape="poly" title=" " alt="" coords="215,87,249,87,249,92,215,92"/>
+<area shape="rect" href="classkarakuri_1_1HurtboxComponent.html#aee21150393efd162afb9f29467729f23" title=" " alt="" coords="263,133,472,173"/>
+<area shape="poly" title=" " alt="" coords="192,107,274,127,273,133,191,112"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#ae7ba4aafdb37cf6dd75a67d29aa79637" title=" " alt="" coords="520,69,720,109"/>
+<area shape="poly" title=" " alt="" coords="446,131,527,110,528,115,448,136"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#a5dca4b0e84fd05b0e09bd557399e46ed" title=" " alt="" coords="520,133,720,173"/>
+<area shape="poly" title=" " alt="" coords="472,151,506,151,506,156,472,156"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#a5da0946a58ed2cf5320211f267e2d2b0" title=" " alt="" coords="520,197,720,237"/>
+<area shape="poly" title=" " alt="" coords="448,171,528,191,527,197,446,176"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a88db2e87b18aa4876647363089afebd7" name="a88db2e87b18aa4876647363089afebd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88db2e87b18aa4876647363089afebd7">&#9670;&#160;</a></span>is_invincible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::HurtboxComponent::is_invincible </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent_a88db2e87b18aa4876647363089afebd7_icgraph.png" border="0" usemap="#aclasskarakuri_1_1HurtboxComponent_a88db2e87b18aa4876647363089afebd7_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1HurtboxComponent_a88db2e87b18aa4876647363089afebd7_icgraph" id="aclasskarakuri_1_1HurtboxComponent_a88db2e87b18aa4876647363089afebd7_icgraph">
+<area shape="rect" title=" " alt="" coords="263,5,472,45"/>
+<area shape="rect" href="classkarakuri_1_1HurtboxComponent.html#aa8f1dec8c03b4fcfddd24c83d115eb01" title=" " alt="" coords="5,5,215,45"/>
+<area shape="poly" title=" " alt="" coords="249,28,215,28,215,23,249,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8eb0c4f478acb916478f64276392021f" name="a8eb0c4f478acb916478f64276392021f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb0c4f478acb916478f64276392021f">&#9670;&#160;</a></span>set_invincible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::HurtboxComponent::set_invincible </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>p_invincible</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent_a8eb0c4f478acb916478f64276392021f_icgraph.png" border="0" usemap="#aclasskarakuri_1_1HurtboxComponent_a8eb0c4f478acb916478f64276392021f_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1HurtboxComponent_a8eb0c4f478acb916478f64276392021f_icgraph" id="aclasskarakuri_1_1HurtboxComponent_a8eb0c4f478acb916478f64276392021f_icgraph">
+<area shape="rect" title=" " alt="" coords="263,5,472,45"/>
+<area shape="rect" href="classkarakuri_1_1HurtboxComponent.html#aa8f1dec8c03b4fcfddd24c83d115eb01" title=" " alt="" coords="5,5,215,45"/>
+<area shape="poly" title=" " alt="" coords="249,28,215,28,215,23,249,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aee21150393efd162afb9f29467729f23" name="aee21150393efd162afb9f29467729f23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee21150393efd162afb9f29467729f23">&#9670;&#160;</a></span>take_hit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::HurtboxComponent::take_hit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkarakuri_1_1HitboxComponent.html">HitboxComponent</a> *&#160;</td>
+          <td class="paramname"><em>hitbox</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_cgraph.png" border="0" usemap="#aclasskarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_cgraph" id="aclasskarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_cgraph">
+<area shape="rect" title=" " alt="" coords="5,69,215,109"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#ae7ba4aafdb37cf6dd75a67d29aa79637" title=" " alt="" coords="263,5,463,45"/>
+<area shape="poly" title=" " alt="" coords="189,67,269,46,271,51,190,72"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#a5dca4b0e84fd05b0e09bd557399e46ed" title=" " alt="" coords="263,69,463,109"/>
+<area shape="poly" title=" " alt="" coords="215,87,249,87,249,92,215,92"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#a5da0946a58ed2cf5320211f267e2d2b0" title=" " alt="" coords="263,133,463,173"/>
+<area shape="poly" title=" " alt="" coords="190,107,271,127,269,133,189,112"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_icgraph.png" border="0" usemap="#aclasskarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_icgraph" id="aclasskarakuri_1_1HurtboxComponent_aee21150393efd162afb9f29467729f23_icgraph">
+<area shape="rect" title=" " alt="" coords="511,37,720,77"/>
+<area shape="rect" href="classkarakuri_1_1HurtboxComponent.html#aa8f1dec8c03b4fcfddd24c83d115eb01" title=" " alt="" coords="253,5,463,45"/>
+<area shape="poly" title=" " alt="" coords="497,45,462,41,463,36,497,40"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#a0b663e18991ca78afa06d70374514f39" title=" " alt="" coords="258,69,458,109"/>
+<area shape="poly" title=" " alt="" coords="497,75,459,80,458,74,497,69"/>
+<area shape="rect" href="classkarakuri_1_1HitboxComponent.html#afaf40a962588f51de7712f05de5cf042" title=" " alt="" coords="5,69,205,109"/>
+<area shape="poly" title=" " alt="" coords="244,92,206,92,206,87,244,87"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="a4a03d61958a60315a25e037602b0d484" name="a4a03d61958a60315a25e037602b0d484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a03d61958a60315a25e037602b0d484">&#9670;&#160;</a></span>invincible</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::HurtboxComponent::invincible = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/components/<a class="el" href="hurtbox__component_8h_source.html">hurtbox_component.h</a></li>
+<li>src/core/components/<a class="el" href="hurtbox__component_8cpp.html">hurtbox_component.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

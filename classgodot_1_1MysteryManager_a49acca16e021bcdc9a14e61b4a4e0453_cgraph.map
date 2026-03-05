@@ -1,9 +1,0 @@
-<map id="godot::MysteryManager::save_checkpoint" name="godot::MysteryManager::save_checkpoint">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,183,77"/>
-<area shape="rect" id="Node000002" href="$classgodot_1_1MysteryManager.html#a98412af1726a20305309be5a06bdbade" title=" " alt="" coords="231,37,408,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,55,217,55,217,60,183,60"/>
-<area shape="rect" id="Node000003" href="$classAdventureGameStateBase.html#a767e0549c0dd778d0665fcd6aa0e942a" title=" " alt="" coords="456,5,651,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="408,43,442,38,443,43,408,48"/>
-<area shape="rect" id="Node000004" href="$classgodot_1_1EvidenceManager.html#a555decc9e7175abeeb617a53a429b7f9" title=" " alt="" coords="462,69,645,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="408,67,449,72,448,78,408,72"/>
-</map>

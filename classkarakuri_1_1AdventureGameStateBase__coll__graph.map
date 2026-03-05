@@ -1,0 +1,6 @@
+<map id="karakuri::AdventureGameStateBase" name="karakuri::AdventureGameStateBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,260,105"/>
+<area shape="poly" id="edge2_Node000001_Node000001" title=" " alt="" coords="275,86,287,93,278,99,261,101,260,96,277,94,281,93,273,91"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="105,5,161,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,45,135,80,130,80,130,45"/>
+</map>

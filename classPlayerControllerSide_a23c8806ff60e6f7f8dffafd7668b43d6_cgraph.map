@@ -1,7 +1,0 @@
-<map id="PlayerControllerSide::apply_movement" name="PlayerControllerSide::apply_movement">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,35,160,75"/>
-<area shape="rect" id="Node000002" href="$classGameEntity.html#ac7aa36c6115a3af7bf7d2376d598bdc0" title=" " alt="" coords="208,5,413,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,42,194,38,195,43,161,47"/>
-<area shape="rect" id="Node000003" href="$classGameEntity.html#a8d5a1f285adcbbdc44f95bd62f976373" title=" " alt="" coords="224,70,397,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,61,211,68,210,73,160,67"/>
-</map>

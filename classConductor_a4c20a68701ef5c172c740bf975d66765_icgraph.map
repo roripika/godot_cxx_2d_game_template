@@ -1,8 +1,0 @@
-<map id="Conductor::set_bpm" name="Conductor::set_bpm">
-<area shape="rect" id="Node000001" title=" " alt="" coords="420,5,572,31"/>
-<area shape="rect" id="Node000002" href="$classConductor.html#a451b4eb68fcfaa6370c34368891b6c33" title=" " alt="" coords="5,5,200,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="406,21,200,21,200,15,406,15"/>
-<area shape="rect" id="Node000003" href="$classConductor.html#a278e515ae3d6811918c6f57d5e08e3d0" title=" " alt="" coords="248,31,372,56"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="406,33,372,38,372,32,406,28"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="234,37,200,33,201,27,235,32"/>
-</map>

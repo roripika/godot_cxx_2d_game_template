@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['offset_0',['offset',['../classConductor.html#a92873b58719ee63057bb17ec923f0170',1,'Conductor']]],
-  ['on_5fclick_5factions_1',['on_click_actions',['../structkarakuri_1_1KarakuriScenarioRunner_1_1HotspotBinding.html#af3c93fc9ff928b2c3f0b584b69cd62b7',1,'karakuri::KarakuriScenarioRunner::HotspotBinding']]],
-  ['original_5ftime_5fscale_2',['original_time_scale',['../classHitStopManager.html#ac17dfad61419e77e5e5722f657724150',1,'HitStopManager']]]
+  ['pending_5faction_5findex_5f_0',['pending_action_index_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5ee931d11a80d9c75e42e76c6350e71e',1,'karakuri::KarakuriScenarioRunner']]],
+  ['pending_5factions_5f_1',['pending_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ade7d5148474321b9c08cb3c46a2d09e2',1,'karakuri::KarakuriScenarioRunner']]],
+  ['pending_5fchoice_5factions_5f_2',['pending_choice_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5585f2f95d83a66bd2ae4999da4e5d5a',1,'karakuri::KarakuriScenarioRunner']]],
+  ['player_5fscene_3',['player_scene',['../classkarakuri_1_1RoguelikeManager.html#af1205bd14c8e25871b85814963c4c944',1,'karakuri::RoguelikeManager']]]
 ];

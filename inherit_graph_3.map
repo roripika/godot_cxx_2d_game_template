@@ -1,3 +1,11 @@
 <map id="クラス階層図" name="クラス階層図">
-<area shape="rect" id="Node000000" href="$classgodot_1_1MysteryEnumValueConverter.html" title=" " alt="" coords="5,5,263,31"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,99,107,125"/>
+<area shape="rect" id="Node000001" href="$classkarakuri_1_1KarakuriLocalizationService.html" title="全デモで共通利用されるロケールサービス。" alt="" coords="155,5,370,45"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="88,89,154,55,186,43,187,48,156,60,90,94"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1KarakuriSaveService.html" title="ゲームステート永続化サービス。" alt="" coords="155,70,371,95"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="120,100,173,93,173,98,121,106"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1KarakuriScenarioRunner.html" title="プランナーが記述したYAMLを読み込み、アドベンチャーデモを駆動するシナリオランナー。" alt="" coords="167,120,359,160"/>
+<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="121,118,167,124,166,130,120,123"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1RoguelikeManager.html" title=" " alt="" coords="161,185,364,210"/>
+<area shape="poly" id="edge10_Node000000_Node000004" title=" " alt="" coords="87,131,119,151,156,170,194,182,192,187,154,174,117,156,84,135"/>
 </map>

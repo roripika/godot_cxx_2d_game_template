@@ -1,0 +1,12 @@
+<map id="src/core/items/inventory.h" name="src/core/items/inventory.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="117,5,307,31"/>
+<area shape="rect" id="Node000002" href="$game__item_8h.html" title=" " alt="" coords="158,86,266,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,31,215,72,209,72,209,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,167,235,192"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="196,33,170,53,148,80,132,117,125,153,120,152,127,115,143,77,167,49,192,29"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="290,79,449,119"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="236,28,320,70,318,75,234,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="200,114,146,160,142,156,197,109"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="259,167,495,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="237,109,342,158,340,163,235,114"/>
+</map>

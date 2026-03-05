@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/items/game_item.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_b56a81ad93acd68d1a68c3526f84c6eb.html">items</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">game_item.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="game__item_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef GAME_ITEM_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define GAME_ITEM_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;godot_cpp/classes/resource.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;godot_cpp/classes/texture2d.hpp&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using namespace </span>godot;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="};">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameItem.html">   11</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1GameItem.html">GameItem</a> : <span class="keyword">public</span> Resource {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  GDCLASS(<a class="code hl_class" href="classkarakuri_1_1GameItem.html">GameItem</a>, Resource)</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameItem.html#ac4cdc2bbfe237b3d1d17df6242c31026">   15</a></span>  String <a class="code hl_variable" href="classkarakuri_1_1GameItem.html#ac4cdc2bbfe237b3d1d17df6242c31026">item_name</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7">   16</a></span>  String <a class="code hl_variable" href="classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7">description</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameItem.html#a7e1da2d5b73833df74a9d3c62253ff2f">   17</a></span>  Ref&lt;Texture2D&gt; <a class="code hl_variable" href="classkarakuri_1_1GameItem.html#a7e1da2d5b73833df74a9d3c62253ff2f">icon</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameItem.html#a097d0bae3a6624bc7912e9da52201bbc">   18</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkarakuri_1_1GameItem.html#a097d0bae3a6624bc7912e9da52201bbc">stackable</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameItem.html#a589c756815847d0eff47d4ec9c045693">   19</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classkarakuri_1_1GameItem.html#a589c756815847d0eff47d4ec9c045693">max_stack</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#aa20f058ea41ff486fb63d145c57cb552">_bind_methods</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a76aca8c1437de2f3766429ce9a19fb73">GameItem</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a62c1227040467ba311aa5420d808604a">~GameItem</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a3a4e94a46041bf5dccd163e7d5c3ea58">set_item_name</a>(<span class="keyword">const</span> String &amp;p_name);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  String <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a6d2543560562e6614652c558aa3da1d8">get_item_name</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a0ccc06681534783726b6ee03d946fb93">set_description</a>(<span class="keyword">const</span> String &amp;p_desc);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  String <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a8b373682ddb03337994ca9baa809e254">get_description</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#abcad6c9e116e68898b94300ee77437c7">set_icon</a>(<span class="keyword">const</span> Ref&lt;Texture2D&gt; &amp;p_icon);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Ref&lt;Texture2D&gt; <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a5851567d809fc6491a77e4865468f521">get_icon</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#aabc5e766c8666b2455434e7358d4ae64">set_stackable</a>(<span class="keywordtype">bool</span> p_stackable);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a8cf75a31532f64633d7a110920d841cc">is_stackable</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#ab32f11532cf0057e97b7dc54679ee8e6">set_max_stack</a>(<span class="keywordtype">int</span> p_max);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classkarakuri_1_1GameItem.html#a8f9d60546ab6fa34b6c9ee993d3e4ea9">get_max_stack</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>};</div>
+</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html"><div class="ttname"><a href="classkarakuri_1_1GameItem.html">karakuri::GameItem</a></div><div class="ttdef"><b>Definition</b> game_item.h:11</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a097d0bae3a6624bc7912e9da52201bbc"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a097d0bae3a6624bc7912e9da52201bbc">karakuri::GameItem::stackable</a></div><div class="ttdeci">bool stackable</div><div class="ttdef"><b>Definition</b> game_item.h:18</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a0ccc06681534783726b6ee03d946fb93"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a0ccc06681534783726b6ee03d946fb93">karakuri::GameItem::set_description</a></div><div class="ttdeci">void set_description(const String &amp;p_desc)</div><div class="ttdef"><b>Definition</b> game_item.cpp:52</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a3a4e94a46041bf5dccd163e7d5c3ea58"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a3a4e94a46041bf5dccd163e7d5c3ea58">karakuri::GameItem::set_item_name</a></div><div class="ttdeci">void set_item_name(const String &amp;p_name)</div><div class="ttdef"><b>Definition</b> game_item.cpp:48</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a5851567d809fc6491a77e4865468f521"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a5851567d809fc6491a77e4865468f521">karakuri::GameItem::get_icon</a></div><div class="ttdeci">Ref&lt; Texture2D &gt; get_icon() const</div><div class="ttdef"><b>Definition</b> game_item.cpp:58</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a589c756815847d0eff47d4ec9c045693"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a589c756815847d0eff47d4ec9c045693">karakuri::GameItem::max_stack</a></div><div class="ttdeci">int max_stack</div><div class="ttdef"><b>Definition</b> game_item.h:19</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a62c1227040467ba311aa5420d808604a"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a62c1227040467ba311aa5420d808604a">karakuri::GameItem::~GameItem</a></div><div class="ttdeci">~GameItem()</div><div class="ttdef"><b>Definition</b> game_item.cpp:46</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a6d2543560562e6614652c558aa3da1d8"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a6d2543560562e6614652c558aa3da1d8">karakuri::GameItem::get_item_name</a></div><div class="ttdeci">String get_item_name() const</div><div class="ttdef"><b>Definition</b> game_item.cpp:50</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a76aca8c1437de2f3766429ce9a19fb73"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a76aca8c1437de2f3766429ce9a19fb73">karakuri::GameItem::GameItem</a></div><div class="ttdeci">GameItem()</div><div class="ttdef"><b>Definition</b> game_item.cpp:39</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a7e1da2d5b73833df74a9d3c62253ff2f"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a7e1da2d5b73833df74a9d3c62253ff2f">karakuri::GameItem::icon</a></div><div class="ttdeci">Ref&lt; Texture2D &gt; icon</div><div class="ttdef"><b>Definition</b> game_item.h:17</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a8b373682ddb03337994ca9baa809e254"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a8b373682ddb03337994ca9baa809e254">karakuri::GameItem::get_description</a></div><div class="ttdeci">String get_description() const</div><div class="ttdef"><b>Definition</b> game_item.cpp:54</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a8cf75a31532f64633d7a110920d841cc"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a8cf75a31532f64633d7a110920d841cc">karakuri::GameItem::is_stackable</a></div><div class="ttdeci">bool is_stackable() const</div><div class="ttdef"><b>Definition</b> game_item.cpp:62</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_a8f9d60546ab6fa34b6c9ee993d3e4ea9"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#a8f9d60546ab6fa34b6c9ee993d3e4ea9">karakuri::GameItem::get_max_stack</a></div><div class="ttdeci">int get_max_stack() const</div><div class="ttdef"><b>Definition</b> game_item.cpp:66</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_aa20f058ea41ff486fb63d145c57cb552"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#aa20f058ea41ff486fb63d145c57cb552">karakuri::GameItem::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> game_item.cpp:9</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_aabc5e766c8666b2455434e7358d4ae64"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#aabc5e766c8666b2455434e7358d4ae64">karakuri::GameItem::set_stackable</a></div><div class="ttdeci">void set_stackable(bool p_stackable)</div><div class="ttdef"><b>Definition</b> game_item.cpp:60</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_ab106a2875985c181d181ff5521e712b7"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7">karakuri::GameItem::description</a></div><div class="ttdeci">String description</div><div class="ttdef"><b>Definition</b> game_item.h:16</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_ab32f11532cf0057e97b7dc54679ee8e6"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#ab32f11532cf0057e97b7dc54679ee8e6">karakuri::GameItem::set_max_stack</a></div><div class="ttdeci">void set_max_stack(int p_max)</div><div class="ttdef"><b>Definition</b> game_item.cpp:64</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_abcad6c9e116e68898b94300ee77437c7"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#abcad6c9e116e68898b94300ee77437c7">karakuri::GameItem::set_icon</a></div><div class="ttdeci">void set_icon(const Ref&lt; Texture2D &gt; &amp;p_icon)</div><div class="ttdef"><b>Definition</b> game_item.cpp:56</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameItem_html_ac4cdc2bbfe237b3d1d17df6242c31026"><div class="ttname"><a href="classkarakuri_1_1GameItem.html#ac4cdc2bbfe237b3d1d17df6242c31026">karakuri::GameItem::item_name</a></div><div class="ttdeci">String item_name</div><div class="ttdef"><b>Definition</b> game_item.h:15</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> adventure_game_state.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,7 +1,0 @@
-<map id="godot::MysteryManager::serialize_state" name="godot::MysteryManager::serialize_state">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,183,77"/>
-<area shape="rect" id="Node000002" href="$classAdventureGameStateBase.html#a767e0549c0dd778d0665fcd6aa0e942a" title=" " alt="" coords="231,5,425,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,43,217,38,217,43,183,48"/>
-<area shape="rect" id="Node000003" href="$classgodot_1_1EvidenceManager.html#a555decc9e7175abeeb617a53a429b7f9" title=" " alt="" coords="237,69,419,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,67,223,72,223,78,182,72"/>
-</map>

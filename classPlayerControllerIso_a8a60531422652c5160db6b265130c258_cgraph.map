@@ -1,9 +1,0 @@
-<map id="PlayerControllerIso::_notification" name="PlayerControllerIso::_notification">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,152,77"/>
-<area shape="rect" id="Node000002" href="$classPlayerControllerIso.html#a50e9500b2d306bf92ea8a4fb03453c17" title=" " alt="" coords="229,5,375,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,44,215,35,216,40,153,49"/>
-<area shape="rect" id="Node000004" href="$classGameEntity.html#a12730846d66908ac2c15c23abb4e07e5" title=" " alt="" coords="200,69,404,109"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="153,65,187,70,186,75,152,70"/>
-<area shape="rect" id="Node000003" href="$classGameEntity.html#ad87efbe4e694898a11225b2184e6f1dd" title=" " alt="" coords="452,13,672,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="375,23,438,23,438,28,375,28"/>
-</map>

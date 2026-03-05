@@ -1,0 +1,15 @@
+<map id="karakuri::DialogueUI::_bind_methods" name="karakuri::DialogueUI::_bind_methods">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,165,160,205"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1DialogueUI.html#af740c145443596832c8a051bddbaf14f" title=" " alt="" coords="208,5,363,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,163,143,111,173,81,206,55,215,50,218,54,210,60,177,85,147,114,101,167"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1DialogueUI.html#acf78914cfa7988f7bace15568eb91823" title=" " alt="" coords="208,69,363,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,163,207,119,221,112,224,117,209,124,122,168"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1DialogueUI.html#ad82181a4a3f457468c957cc4b8309415" title=" " alt="" coords="208,133,363,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,171,194,165,195,170,161,176"/>
+<area shape="rect" id="Node000005" href="$classkarakuri_1_1DialogueUI.html#a25e1f06b59c3fa8195d2cb8b8b7caf7f" title=" " alt="" coords="208,197,363,237"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="161,195,195,200,194,206,160,200"/>
+<area shape="rect" id="Node000006" href="$classkarakuri_1_1DialogueUI.html#a7385c99827c8419a0d75524ad4d407b9" title=" " alt="" coords="208,261,363,301"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="122,203,209,247,224,253,221,258,207,252,120,208"/>
+<area shape="rect" id="Node000007" href="$classkarakuri_1_1DialogueUI.html#afd3ce3d97e3c024262ca177336edc586" title=" " alt="" coords="208,325,363,365"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="101,204,147,256,177,285,210,311,218,317,215,321,206,316,173,289,143,260,97,207"/>
+</map>

@@ -1,0 +1,755 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::RoguelikeManager クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1RoguelikeManager.html">RoguelikeManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::RoguelikeManager クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="roguelike__manager_8h_source.html">roguelike_manager.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::RoguelikeManager の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager__inherit__graph.png" border="0" usemap="#akarakuri_1_1RoguelikeManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1RoguelikeManager_inherit__map" id="akarakuri_1_1RoguelikeManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,208,104"/>
+<area shape="rect" title=" " alt="" coords="56,5,157,31"/>
+<area shape="poly" title=" " alt="" coords="109,44,109,79,104,79,104,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::RoguelikeManager 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager__coll__graph.png" border="0" usemap="#akarakuri_1_1RoguelikeManager_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1RoguelikeManager_coll__map" id="akarakuri_1_1RoguelikeManager_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,208,104"/>
+<area shape="rect" title=" " alt="" coords="56,5,157,31"/>
+<area shape="poly" title=" " alt="" coords="109,44,109,79,104,79,104,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a78aaffbb1608486ffa9d6920c4e91763" id="r_a78aaffbb1608486ffa9d6920c4e91763"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a78aaffbb1608486ffa9d6920c4e91763">RoguelikeManager</a> ()</td></tr>
+<tr class="separator:a78aaffbb1608486ffa9d6920c4e91763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44165ff7ff6e7c02a398884af3d09d33" id="r_a44165ff7ff6e7c02a398884af3d09d33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a44165ff7ff6e7c02a398884af3d09d33">~RoguelikeManager</a> ()</td></tr>
+<tr class="separator:a44165ff7ff6e7c02a398884af3d09d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e6dc12d60d5b4f2e22f63afc5aa6e88" id="r_a0e6dc12d60d5b4f2e22f63afc5aa6e88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a0e6dc12d60d5b4f2e22f63afc5aa6e88">_ready</a> () override</td></tr>
+<tr class="separator:a0e6dc12d60d5b4f2e22f63afc5aa6e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a1eed311d07b6564b16f2c235db212" id="r_a60a1eed311d07b6564b16f2c235db212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a60a1eed311d07b6564b16f2c235db212">start_level</a> ()</td></tr>
+<tr class="separator:a60a1eed311d07b6564b16f2c235db212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c4020234668aea0a949564953675d04" id="r_a9c4020234668aea0a949564953675d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a9c4020234668aea0a949564953675d04">set_view_path</a> (const NodePath &amp;p_path)</td></tr>
+<tr class="separator:a9c4020234668aea0a949564953675d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2efcb0c517f80eb235ad5c67275a3695" id="r_a2efcb0c517f80eb235ad5c67275a3695"><td class="memItemLeft" align="right" valign="top">NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a2efcb0c517f80eb235ad5c67275a3695">get_view_path</a> () const</td></tr>
+<tr class="separator:a2efcb0c517f80eb235ad5c67275a3695"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b235e4e0b0ef94a213d84aa98ada2b" id="r_ab5b235e4e0b0ef94a213d84aa98ada2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#ab5b235e4e0b0ef94a213d84aa98ada2b">set_player_scene</a> (const Ref&lt; PackedScene &gt; &amp;p_scene)</td></tr>
+<tr class="separator:ab5b235e4e0b0ef94a213d84aa98ada2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02c5621667847f35137ffce8f0923684" id="r_a02c5621667847f35137ffce8f0923684"><td class="memItemLeft" align="right" valign="top">Ref&lt; PackedScene &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a02c5621667847f35137ffce8f0923684">get_player_scene</a> () const</td></tr>
+<tr class="separator:a02c5621667847f35137ffce8f0923684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdd3bd44eb93e918bd4faade5b27fa5c" id="r_afdd3bd44eb93e918bd4faade5b27fa5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#afdd3bd44eb93e918bd4faade5b27fa5c">set_map_width</a> (int p_width)</td></tr>
+<tr class="separator:afdd3bd44eb93e918bd4faade5b27fa5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad38fbac50c783882dd31ae07b2a8004b" id="r_ad38fbac50c783882dd31ae07b2a8004b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#ad38fbac50c783882dd31ae07b2a8004b">get_map_width</a> () const</td></tr>
+<tr class="separator:ad38fbac50c783882dd31ae07b2a8004b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ff0d5ebc10752dfbd9eb3007c36976" id="r_ab2ff0d5ebc10752dfbd9eb3007c36976"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#ab2ff0d5ebc10752dfbd9eb3007c36976">set_map_height</a> (int p_height)</td></tr>
+<tr class="separator:ab2ff0d5ebc10752dfbd9eb3007c36976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd61a30186fd782fa4929cca8ca0d17" id="r_acbd61a30186fd782fa4929cca8ca0d17"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#acbd61a30186fd782fa4929cca8ca0d17">get_map_height</a> () const</td></tr>
+<tr class="separator:acbd61a30186fd782fa4929cca8ca0d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae83532a8d9932661a75a392531de5a" id="r_a1ae83532a8d9932661a75a392531de5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a1ae83532a8d9932661a75a392531de5a">set_room_count</a> (int p_count)</td></tr>
+<tr class="separator:a1ae83532a8d9932661a75a392531de5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f345219e21798d2c0c4d4ccac87359" id="r_a80f345219e21798d2c0c4d4ccac87359"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a80f345219e21798d2c0c4d4ccac87359">get_room_count</a> () const</td></tr>
+<tr class="separator:a80f345219e21798d2c0c4d4ccac87359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:af673d2fe0046e59af12ca2043702f5ec" id="r_af673d2fe0046e59af12ca2043702f5ec"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec">_bind_methods</a> ()</td></tr>
+<tr class="separator:af673d2fe0046e59af12ca2043702f5ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:aa4488b8b006fe2725a0df38b65bd8eb2" id="r_aa4488b8b006fe2725a0df38b65bd8eb2"><td class="memItemLeft" align="right" valign="top">Ref&lt; <a class="el" href="classkarakuri_1_1UniversalWorldData.html">UniversalWorldData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#aa4488b8b006fe2725a0df38b65bd8eb2">world_data</a></td></tr>
+<tr class="separator:aa4488b8b006fe2725a0df38b65bd8eb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8b92310f13bcf50b6e607ca269a9691" id="r_ab8b92310f13bcf50b6e607ca269a9691"><td class="memItemLeft" align="right" valign="top">Ref&lt; <a class="el" href="classkarakuri_1_1RoguelikeGenerator.html">RoguelikeGenerator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#ab8b92310f13bcf50b6e607ca269a9691">generator</a></td></tr>
+<tr class="separator:ab8b92310f13bcf50b6e607ca269a9691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a468cb21734a31cfbca172f4ff51405ef" id="r_a468cb21734a31cfbca172f4ff51405ef"><td class="memItemLeft" align="right" valign="top">NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a468cb21734a31cfbca172f4ff51405ef">view_path</a></td></tr>
+<tr class="separator:a468cb21734a31cfbca172f4ff51405ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1205bd14c8e25871b85814963c4c944" id="r_af1205bd14c8e25871b85814963c4c944"><td class="memItemLeft" align="right" valign="top">Ref&lt; PackedScene &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#af1205bd14c8e25871b85814963c4c944">player_scene</a></td></tr>
+<tr class="separator:af1205bd14c8e25871b85814963c4c944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91928026862b6cb7ffc40e952e42f175" id="r_a91928026862b6cb7ffc40e952e42f175"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a91928026862b6cb7ffc40e952e42f175">map_width</a></td></tr>
+<tr class="separator:a91928026862b6cb7ffc40e952e42f175"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fd4fa686d180077f282f3ebea67521f" id="r_a5fd4fa686d180077f282f3ebea67521f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#a5fd4fa686d180077f282f3ebea67521f">map_height</a></td></tr>
+<tr class="separator:a5fd4fa686d180077f282f3ebea67521f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4530d81867d65cd72f1ba5e1dcdbdd" id="r_aaf4530d81867d65cd72f1ba5e1dcdbdd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1RoguelikeManager.html#aaf4530d81867d65cd72f1ba5e1dcdbdd">room_count</a></td></tr>
+<tr class="separator:aaf4530d81867d65cd72f1ba5e1dcdbdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a78aaffbb1608486ffa9d6920c4e91763" name="a78aaffbb1608486ffa9d6920c4e91763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78aaffbb1608486ffa9d6920c4e91763">&#9670;&#160;</a></span>RoguelikeManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::RoguelikeManager::RoguelikeManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a44165ff7ff6e7c02a398884af3d09d33" name="a44165ff7ff6e7c02a398884af3d09d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44165ff7ff6e7c02a398884af3d09d33">&#9670;&#160;</a></span>~RoguelikeManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::RoguelikeManager::~RoguelikeManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="af673d2fe0046e59af12ca2043702f5ec" name="af673d2fe0046e59af12ca2043702f5ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af673d2fe0046e59af12ca2043702f5ec">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_af673d2fe0046e59af12ca2043702f5ec_cgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_af673d2fe0046e59af12ca2043702f5ec_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_af673d2fe0046e59af12ca2043702f5ec_cgraph" id="aclasskarakuri_1_1RoguelikeManager_af673d2fe0046e59af12ca2043702f5ec_cgraph">
+<area shape="rect" title=" " alt="" coords="5,325,208,365"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#acbd61a30186fd782fa4929cca8ca0d17" title=" " alt="" coords="256,5,459,45"/>
+<area shape="poly" title=" " alt="" coords="110,324,126,271,154,199,196,122,223,86,254,55,261,50,264,55,258,59,227,90,200,125,158,201,131,273,115,326"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#ad38fbac50c783882dd31ae07b2a8004b" title=" " alt="" coords="256,69,459,109"/>
+<area shape="poly" title=" " alt="" coords="113,324,132,282,163,227,203,169,228,142,254,119,262,114,265,118,258,123,231,146,207,172,167,229,137,284,118,326"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a02c5621667847f35137ffce8f0923684" title=" " alt="" coords="256,133,459,173"/>
+<area shape="poly" title=" " alt="" coords="119,323,173,255,211,216,255,183,265,177,268,182,257,188,215,220,177,259,124,327"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a80f345219e21798d2c0c4d4ccac87359" title=" " alt="" coords="256,197,459,237"/>
+<area shape="poly" title=" " alt="" coords="133,323,188,285,255,247,272,240,274,245,257,252,191,289,136,327"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a2efcb0c517f80eb235ad5c67275a3695" title=" " alt="" coords="256,261,459,301"/>
+<area shape="poly" title=" " alt="" coords="185,323,265,302,266,307,186,328"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#ab2ff0d5ebc10752dfbd9eb3007c36976" title=" " alt="" coords="256,325,459,365"/>
+<area shape="poly" title=" " alt="" coords="208,343,242,343,242,348,208,348"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#afdd3bd44eb93e918bd4faade5b27fa5c" title=" " alt="" coords="256,389,459,429"/>
+<area shape="poly" title=" " alt="" coords="186,363,266,383,265,389,185,368"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#ab5b235e4e0b0ef94a213d84aa98ada2b" title=" " alt="" coords="256,453,459,493"/>
+<area shape="poly" title=" " alt="" coords="136,363,191,401,257,439,274,446,272,451,255,444,188,406,133,368"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a1ae83532a8d9932661a75a392531de5a" title=" " alt="" coords="256,517,459,557"/>
+<area shape="poly" title=" " alt="" coords="124,364,177,432,215,470,257,503,268,509,265,514,255,508,211,474,173,436,119,367"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a9c4020234668aea0a949564953675d04" title=" " alt="" coords="256,581,459,621"/>
+<area shape="poly" title=" " alt="" coords="118,364,137,407,167,461,207,518,231,544,258,567,265,572,262,577,254,571,228,548,203,522,163,464,132,409,113,366"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a60a1eed311d07b6564b16f2c235db212" title=" " alt="" coords="256,645,459,685"/>
+<area shape="poly" title=" " alt="" coords="115,365,131,418,158,490,200,566,227,601,258,631,264,636,261,640,254,635,223,604,196,569,154,492,126,420,110,366"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0e6dc12d60d5b4f2e22f63afc5aa6e88" name="a0e6dc12d60d5b4f2e22f63afc5aa6e88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e6dc12d60d5b4f2e22f63afc5aa6e88">&#9670;&#160;</a></span>_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a0e6dc12d60d5b4f2e22f63afc5aa6e88_cgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a0e6dc12d60d5b4f2e22f63afc5aa6e88_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a0e6dc12d60d5b4f2e22f63afc5aa6e88_cgraph" id="aclasskarakuri_1_1RoguelikeManager_a0e6dc12d60d5b4f2e22f63afc5aa6e88_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,208,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a60a1eed311d07b6564b16f2c235db212" title=" " alt="" coords="256,5,459,45"/>
+<area shape="poly" title=" " alt="" coords="208,23,242,23,242,28,208,28"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acbd61a30186fd782fa4929cca8ca0d17" name="acbd61a30186fd782fa4929cca8ca0d17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbd61a30186fd782fa4929cca8ca0d17">&#9670;&#160;</a></span>get_map_height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::RoguelikeManager::get_map_height </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_acbd61a30186fd782fa4929cca8ca0d17_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_acbd61a30186fd782fa4929cca8ca0d17_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_acbd61a30186fd782fa4929cca8ca0d17_icgraph" id="aclasskarakuri_1_1RoguelikeManager_acbd61a30186fd782fa4929cca8ca0d17_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad38fbac50c783882dd31ae07b2a8004b" name="ad38fbac50c783882dd31ae07b2a8004b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad38fbac50c783882dd31ae07b2a8004b">&#9670;&#160;</a></span>get_map_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::RoguelikeManager::get_map_width </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_ad38fbac50c783882dd31ae07b2a8004b_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_ad38fbac50c783882dd31ae07b2a8004b_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_ad38fbac50c783882dd31ae07b2a8004b_icgraph" id="aclasskarakuri_1_1RoguelikeManager_ad38fbac50c783882dd31ae07b2a8004b_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a02c5621667847f35137ffce8f0923684" name="a02c5621667847f35137ffce8f0923684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c5621667847f35137ffce8f0923684">&#9670;&#160;</a></span>get_player_scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt; PackedScene &gt; karakuri::RoguelikeManager::get_player_scene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a02c5621667847f35137ffce8f0923684_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a02c5621667847f35137ffce8f0923684_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a02c5621667847f35137ffce8f0923684_icgraph" id="aclasskarakuri_1_1RoguelikeManager_a02c5621667847f35137ffce8f0923684_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a80f345219e21798d2c0c4d4ccac87359" name="a80f345219e21798d2c0c4d4ccac87359"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80f345219e21798d2c0c4d4ccac87359">&#9670;&#160;</a></span>get_room_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::RoguelikeManager::get_room_count </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a80f345219e21798d2c0c4d4ccac87359_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a80f345219e21798d2c0c4d4ccac87359_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a80f345219e21798d2c0c4d4ccac87359_icgraph" id="aclasskarakuri_1_1RoguelikeManager_a80f345219e21798d2c0c4d4ccac87359_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2efcb0c517f80eb235ad5c67275a3695" name="a2efcb0c517f80eb235ad5c67275a3695"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2efcb0c517f80eb235ad5c67275a3695">&#9670;&#160;</a></span>get_view_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::RoguelikeManager::get_view_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a2efcb0c517f80eb235ad5c67275a3695_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a2efcb0c517f80eb235ad5c67275a3695_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a2efcb0c517f80eb235ad5c67275a3695_icgraph" id="aclasskarakuri_1_1RoguelikeManager_a2efcb0c517f80eb235ad5c67275a3695_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab2ff0d5ebc10752dfbd9eb3007c36976" name="ab2ff0d5ebc10752dfbd9eb3007c36976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ff0d5ebc10752dfbd9eb3007c36976">&#9670;&#160;</a></span>set_map_height()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::set_map_height </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_height</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_ab2ff0d5ebc10752dfbd9eb3007c36976_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_ab2ff0d5ebc10752dfbd9eb3007c36976_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_ab2ff0d5ebc10752dfbd9eb3007c36976_icgraph" id="aclasskarakuri_1_1RoguelikeManager_ab2ff0d5ebc10752dfbd9eb3007c36976_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afdd3bd44eb93e918bd4faade5b27fa5c" name="afdd3bd44eb93e918bd4faade5b27fa5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdd3bd44eb93e918bd4faade5b27fa5c">&#9670;&#160;</a></span>set_map_width()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::set_map_width </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_width</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_afdd3bd44eb93e918bd4faade5b27fa5c_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_afdd3bd44eb93e918bd4faade5b27fa5c_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_afdd3bd44eb93e918bd4faade5b27fa5c_icgraph" id="aclasskarakuri_1_1RoguelikeManager_afdd3bd44eb93e918bd4faade5b27fa5c_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab5b235e4e0b0ef94a213d84aa98ada2b" name="ab5b235e4e0b0ef94a213d84aa98ada2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5b235e4e0b0ef94a213d84aa98ada2b">&#9670;&#160;</a></span>set_player_scene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::set_player_scene </td>
+          <td>(</td>
+          <td class="paramtype">const Ref&lt; PackedScene &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_scene</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_ab5b235e4e0b0ef94a213d84aa98ada2b_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_ab5b235e4e0b0ef94a213d84aa98ada2b_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_ab5b235e4e0b0ef94a213d84aa98ada2b_icgraph" id="aclasskarakuri_1_1RoguelikeManager_ab5b235e4e0b0ef94a213d84aa98ada2b_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1ae83532a8d9932661a75a392531de5a" name="a1ae83532a8d9932661a75a392531de5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae83532a8d9932661a75a392531de5a">&#9670;&#160;</a></span>set_room_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::set_room_count </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>p_count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a1ae83532a8d9932661a75a392531de5a_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a1ae83532a8d9932661a75a392531de5a_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a1ae83532a8d9932661a75a392531de5a_icgraph" id="aclasskarakuri_1_1RoguelikeManager_a1ae83532a8d9932661a75a392531de5a_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9c4020234668aea0a949564953675d04" name="a9c4020234668aea0a949564953675d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c4020234668aea0a949564953675d04">&#9670;&#160;</a></span>set_view_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::set_view_path </td>
+          <td>(</td>
+          <td class="paramtype">const NodePath &amp;&#160;</td>
+          <td class="paramname"><em>p_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a9c4020234668aea0a949564953675d04_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a9c4020234668aea0a949564953675d04_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a9c4020234668aea0a949564953675d04_icgraph" id="aclasskarakuri_1_1RoguelikeManager_a9c4020234668aea0a949564953675d04_icgraph">
+<area shape="rect" title=" " alt="" coords="256,5,459,45"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a60a1eed311d07b6564b16f2c235db212" name="a60a1eed311d07b6564b16f2c235db212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60a1eed311d07b6564b16f2c235db212">&#9670;&#160;</a></span>start_level()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::RoguelikeManager::start_level </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1RoguelikeManager_a60a1eed311d07b6564b16f2c235db212_icgraph.png" border="0" usemap="#aclasskarakuri_1_1RoguelikeManager_a60a1eed311d07b6564b16f2c235db212_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1RoguelikeManager_a60a1eed311d07b6564b16f2c235db212_icgraph" id="aclasskarakuri_1_1RoguelikeManager_a60a1eed311d07b6564b16f2c235db212_icgraph">
+<area shape="rect" title=" " alt="" coords="256,37,459,77"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#af673d2fe0046e59af12ca2043702f5ec" title=" " alt="" coords="5,5,208,45"/>
+<area shape="poly" title=" " alt="" coords="242,45,208,41,208,36,243,40"/>
+<area shape="rect" href="classkarakuri_1_1RoguelikeManager.html#a0e6dc12d60d5b4f2e22f63afc5aa6e88" title=" " alt="" coords="5,69,208,109"/>
+<area shape="poly" title=" " alt="" coords="243,75,208,79,208,74,242,69"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="ab8b92310f13bcf50b6e607ca269a9691" name="ab8b92310f13bcf50b6e607ca269a9691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8b92310f13bcf50b6e607ca269a9691">&#9670;&#160;</a></span>generator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt;<a class="el" href="classkarakuri_1_1RoguelikeGenerator.html">RoguelikeGenerator</a>&gt; karakuri::RoguelikeManager::generator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5fd4fa686d180077f282f3ebea67521f" name="a5fd4fa686d180077f282f3ebea67521f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fd4fa686d180077f282f3ebea67521f">&#9670;&#160;</a></span>map_height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::RoguelikeManager::map_height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a91928026862b6cb7ffc40e952e42f175" name="a91928026862b6cb7ffc40e952e42f175"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91928026862b6cb7ffc40e952e42f175">&#9670;&#160;</a></span>map_width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::RoguelikeManager::map_width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af1205bd14c8e25871b85814963c4c944" name="af1205bd14c8e25871b85814963c4c944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1205bd14c8e25871b85814963c4c944">&#9670;&#160;</a></span>player_scene</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt;PackedScene&gt; karakuri::RoguelikeManager::player_scene</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf4530d81867d65cd72f1ba5e1dcdbdd" name="aaf4530d81867d65cd72f1ba5e1dcdbdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf4530d81867d65cd72f1ba5e1dcdbdd">&#9670;&#160;</a></span>room_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::RoguelikeManager::room_count</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a468cb21734a31cfbca172f4ff51405ef" name="a468cb21734a31cfbca172f4ff51405ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a468cb21734a31cfbca172f4ff51405ef">&#9670;&#160;</a></span>view_path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::RoguelikeManager::view_path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa4488b8b006fe2725a0df38b65bd8eb2" name="aa4488b8b006fe2725a0df38b65bd8eb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4488b8b006fe2725a0df38b65bd8eb2">&#9670;&#160;</a></span>world_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ref&lt;<a class="el" href="classkarakuri_1_1UniversalWorldData.html">UniversalWorldData</a>&gt; karakuri::RoguelikeManager::world_data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/cycles/<a class="el" href="roguelike__manager_8h_source.html">roguelike_manager.h</a></li>
+<li>src/core/cycles/<a class="el" href="roguelike__manager_8cpp.html">roguelike_manager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

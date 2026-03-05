@@ -1,0 +1,9 @@
+<map id="karakuri::RoguelikeGenerator::generate_dungeon" name="karakuri::RoguelikeGenerator::generate_dungeon">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,216,109"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1RoguelikeGenerator.html#a70ca16450f02021d3fd290079965d6ca" title=" " alt="" coords="264,5,475,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,67,274,46,276,51,193,72"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1RoguelikeGenerator.html#ad4d5c9b92e4f49e743cf1128ddfd152c" title=" " alt="" coords="264,69,475,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,87,251,87,251,92,216,92"/>
+<area shape="rect" id="Node000004" href="$classkarakuri_1_1RoguelikeGenerator.html#aabdf8d4deb698d1d23262aaf3bdaf0c4" title=" " alt="" coords="264,133,475,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,107,276,127,274,133,192,112"/>
+</map>

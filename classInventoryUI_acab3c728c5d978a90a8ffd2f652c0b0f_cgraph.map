@@ -1,9 +1,0 @@
-<map id="InventoryUI::set_inventory" name="InventoryUI::set_inventory">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,45,200,70"/>
-<area shape="rect" id="Node000002" href="$classInventoryUI.html#a55b1825d866cb795215f28a13155f305" title=" " alt="" coords="248,45,400,70"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,55,234,55,234,60,201,60"/>
-<area shape="rect" id="Node000003" href="$classInventorySlotUI.html#a57c98958c92a3ec081300e248bade1fe" title=" " alt="" coords="448,5,599,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="400,43,434,37,435,42,401,48"/>
-<area shape="rect" id="Node000004" href="$classInventorySlotUI.html#aa8524c8ec4f4c28d933c1dc69c008c48" title=" " alt="" coords="448,69,599,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="401,67,435,72,434,78,400,72"/>
-</map>

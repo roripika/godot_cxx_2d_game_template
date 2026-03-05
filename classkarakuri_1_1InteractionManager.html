@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::InteractionManager クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1InteractionManager.html">InteractionManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::InteractionManager クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="interaction__manager_8h_source.html">interaction_manager.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::InteractionManager の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1InteractionManager__inherit__graph.png" border="0" usemap="#akarakuri_1_1InteractionManager_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1InteractionManager_inherit__map" id="akarakuri_1_1InteractionManager_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,215,104"/>
+<area shape="rect" title=" " alt="" coords="73,5,147,31"/>
+<area shape="poly" title=" " alt="" coords="113,44,113,79,107,79,107,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::InteractionManager 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1InteractionManager__coll__graph.png" border="0" usemap="#akarakuri_1_1InteractionManager_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1InteractionManager_coll__map" id="akarakuri_1_1InteractionManager_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,215,104"/>
+<area shape="rect" title=" " alt="" coords="73,5,147,31"/>
+<area shape="poly" title=" " alt="" coords="113,44,113,79,107,79,107,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a9e5b0e0fe4880a40096486d3b51eb202" id="r_a9e5b0e0fe4880a40096486d3b51eb202"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#a9e5b0e0fe4880a40096486d3b51eb202">InteractionManager</a> ()</td></tr>
+<tr class="separator:a9e5b0e0fe4880a40096486d3b51eb202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8141d120466986c09e720015d7a19526" id="r_a8141d120466986c09e720015d7a19526"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#a8141d120466986c09e720015d7a19526">~InteractionManager</a> ()</td></tr>
+<tr class="separator:a8141d120466986c09e720015d7a19526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa821dcbeded11a809b209f2bec384612" id="r_aa821dcbeded11a809b209f2bec384612"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#aa821dcbeded11a809b209f2bec384612">_unhandled_input</a> (const Ref&lt; InputEvent &gt; &amp;p_event) override</td></tr>
+<tr class="separator:aa821dcbeded11a809b209f2bec384612"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3bdca1656c9b4a170db8c58846aadb1" id="r_aa3bdca1656c9b4a170db8c58846aadb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#aa3bdca1656c9b4a170db8c58846aadb1">set_active</a> (bool p_active)</td></tr>
+<tr class="separator:aa3bdca1656c9b4a170db8c58846aadb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e635e766d135c7e74eedb75901da21e" id="r_a1e635e766d135c7e74eedb75901da21e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#a1e635e766d135c7e74eedb75901da21e">is_active</a> () const</td></tr>
+<tr class="separator:a1e635e766d135c7e74eedb75901da21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab64cbb6a58cdb238894612b421d3ad4f" id="r_ab64cbb6a58cdb238894612b421d3ad4f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#ab64cbb6a58cdb238894612b421d3ad4f">_bind_methods</a> ()</td></tr>
+<tr class="separator:ab64cbb6a58cdb238894612b421d3ad4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:a4d48fb16335b2cc9d49326c2a819cff2" id="r_a4d48fb16335b2cc9d49326c2a819cff2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#a4d48fb16335b2cc9d49326c2a819cff2">active</a></td></tr>
+<tr class="separator:a4d48fb16335b2cc9d49326c2a819cff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb7c3385dc9bfa725745baffd644ace7" id="r_abb7c3385dc9bfa725745baffd644ace7"><td class="memItemLeft" align="right" valign="top">Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1InteractionManager.html#abb7c3385dc9bfa725745baffd644ace7">cursor_position</a></td></tr>
+<tr class="separator:abb7c3385dc9bfa725745baffd644ace7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a9e5b0e0fe4880a40096486d3b51eb202" name="a9e5b0e0fe4880a40096486d3b51eb202"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5b0e0fe4880a40096486d3b51eb202">&#9670;&#160;</a></span>InteractionManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::InteractionManager::InteractionManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8141d120466986c09e720015d7a19526" name="a8141d120466986c09e720015d7a19526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8141d120466986c09e720015d7a19526">&#9670;&#160;</a></span>~InteractionManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::InteractionManager::~InteractionManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="ab64cbb6a58cdb238894612b421d3ad4f" name="ab64cbb6a58cdb238894612b421d3ad4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64cbb6a58cdb238894612b421d3ad4f">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::InteractionManager::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1InteractionManager_ab64cbb6a58cdb238894612b421d3ad4f_cgraph.png" border="0" usemap="#aclasskarakuri_1_1InteractionManager_ab64cbb6a58cdb238894612b421d3ad4f_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1InteractionManager_ab64cbb6a58cdb238894612b421d3ad4f_cgraph" id="aclasskarakuri_1_1InteractionManager_ab64cbb6a58cdb238894612b421d3ad4f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,37,215,77"/>
+<area shape="rect" href="classkarakuri_1_1InteractionManager.html#a1e635e766d135c7e74eedb75901da21e" title=" " alt="" coords="263,5,472,45"/>
+<area shape="poly" title=" " alt="" coords="215,42,249,37,250,43,215,47"/>
+<area shape="rect" href="classkarakuri_1_1InteractionManager.html#aa3bdca1656c9b4a170db8c58846aadb1" title=" " alt="" coords="263,69,472,109"/>
+<area shape="poly" title=" " alt="" coords="215,68,250,72,249,77,215,73"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa821dcbeded11a809b209f2bec384612" name="aa821dcbeded11a809b209f2bec384612"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa821dcbeded11a809b209f2bec384612">&#9670;&#160;</a></span>_unhandled_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::InteractionManager::_unhandled_input </td>
+          <td>(</td>
+          <td class="paramtype">const Ref&lt; InputEvent &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p_event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e635e766d135c7e74eedb75901da21e" name="a1e635e766d135c7e74eedb75901da21e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e635e766d135c7e74eedb75901da21e">&#9670;&#160;</a></span>is_active()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::InteractionManager::is_active </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1InteractionManager_a1e635e766d135c7e74eedb75901da21e_icgraph.png" border="0" usemap="#aclasskarakuri_1_1InteractionManager_a1e635e766d135c7e74eedb75901da21e_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1InteractionManager_a1e635e766d135c7e74eedb75901da21e_icgraph" id="aclasskarakuri_1_1InteractionManager_a1e635e766d135c7e74eedb75901da21e_icgraph">
+<area shape="rect" title=" " alt="" coords="263,5,472,45"/>
+<area shape="rect" href="classkarakuri_1_1InteractionManager.html#ab64cbb6a58cdb238894612b421d3ad4f" title=" " alt="" coords="5,5,215,45"/>
+<area shape="poly" title=" " alt="" coords="249,28,215,28,215,23,249,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa3bdca1656c9b4a170db8c58846aadb1" name="aa3bdca1656c9b4a170db8c58846aadb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3bdca1656c9b4a170db8c58846aadb1">&#9670;&#160;</a></span>set_active()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::InteractionManager::set_active </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>p_active</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1InteractionManager_aa3bdca1656c9b4a170db8c58846aadb1_icgraph.png" border="0" usemap="#aclasskarakuri_1_1InteractionManager_aa3bdca1656c9b4a170db8c58846aadb1_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1InteractionManager_aa3bdca1656c9b4a170db8c58846aadb1_icgraph" id="aclasskarakuri_1_1InteractionManager_aa3bdca1656c9b4a170db8c58846aadb1_icgraph">
+<area shape="rect" title=" " alt="" coords="263,5,472,45"/>
+<area shape="rect" href="classkarakuri_1_1InteractionManager.html#ab64cbb6a58cdb238894612b421d3ad4f" title=" " alt="" coords="5,5,215,45"/>
+<area shape="poly" title=" " alt="" coords="249,28,215,28,215,23,249,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="a4d48fb16335b2cc9d49326c2a819cff2" name="a4d48fb16335b2cc9d49326c2a819cff2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d48fb16335b2cc9d49326c2a819cff2">&#9670;&#160;</a></span>active</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::InteractionManager::active</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb7c3385dc9bfa725745baffd644ace7" name="abb7c3385dc9bfa725745baffd644ace7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb7c3385dc9bfa725745baffd644ace7">&#9670;&#160;</a></span>cursor_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2 karakuri::InteractionManager::cursor_position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/<a class="el" href="interaction__manager_8h_source.html">interaction_manager.h</a></li>
+<li>src/core/<a class="el" href="interaction__manager_8cpp.html">interaction_manager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['enums_2ehpp_0',['enums.hpp',['../enums_8hpp.html',1,'']]],
-  ['evidence_5fmanager_2ecpp_1',['evidence_manager.cpp',['../evidence__manager_8cpp.html',1,'']]],
-  ['evidence_5fmanager_2eh_2',['evidence_manager.h',['../evidence__manager_8h.html',1,'']]]
+  ['hitbox_5fcomponent_2ecpp_0',['hitbox_component.cpp',['../hitbox__component_8cpp.html',1,'']]],
+  ['hitbox_5fcomponent_2eh_1',['hitbox_component.h',['../hitbox__component_8h.html',1,'']]],
+  ['hurtbox_5fcomponent_2ecpp_2',['hurtbox_component.cpp',['../hurtbox__component_8cpp.html',1,'']]],
+  ['hurtbox_5fcomponent_2eh_3',['hurtbox_component.h',['../hurtbox__component_8h.html',1,'']]]
 ];

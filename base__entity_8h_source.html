@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/entities/base_entity.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_21e94e928a9d8686219292557599c4fb.html">entities</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">base_entity.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="base__entity_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef GAME_ENTITY_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define GAME_ENTITY_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;godot_cpp/classes/character_body2d.hpp&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using namespace </span>godot;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameEntity.html">   10</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1GameEntity.html">GameEntity</a> : <span class="keyword">public</span> CharacterBody2D {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  GDCLASS(<a class="code hl_class" href="classkarakuri_1_1GameEntity.html">GameEntity</a>, CharacterBody2D)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameEntity.html#afc0e202cb41c9d6489505e1668235517">   14</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classkarakuri_1_1GameEntity.html#afc0e202cb41c9d6489505e1668235517">max_health</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameEntity.html#afb77355e24badb46d9ae19760936536c">   15</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classkarakuri_1_1GameEntity.html#afb77355e24badb46d9ae19760936536c">current_health</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameEntity.html#a1bf4e16a4cd216b01700c5d318f372c9">   16</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classkarakuri_1_1GameEntity.html#a1bf4e16a4cd216b01700c5d318f372c9">speed</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="comment">// Abstract input direction (to be set by controller logic)</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classkarakuri_1_1GameEntity.html#a4d7d05b5d1ab5dda078296b4997f1fda">   19</a></span>  Vector2 <a class="code hl_variable" href="classkarakuri_1_1GameEntity.html#a4d7d05b5d1ab5dda078296b4997f1fda">movement_input</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#ac047d433b0701c2cde70eeee03c1cc65">_bind_methods</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a2282bf2e75a605cc784c0dc60a4b28ec">_notification</a>(<span class="keywordtype">int</span> p_what);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a992152de6d575b0b44a01f6d84ec2a65">GameEntity</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#ad88c95c84f80770f01a319d508517740">~GameEntity</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="comment">// Stats</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a3055b8f90f6190bfe71217f8f71d7496">set_max_health</a>(<span class="keywordtype">float</span> p_health);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a2d4db52280730fcfe18847b158f0a68c">get_max_health</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#abf0924f5c25cc3fb5bfc3f999af59521">set_current_health</a>(<span class="keywordtype">float</span> p_health);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#adddcf55554ce7c18a4411b75068d4373">get_current_health</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a895f5c0378f4797e7985b04916bf59ea">set_speed</a>(<span class="keywordtype">float</span> p_speed);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a4c55618474c38cfb253bace4c42bc5c5">get_speed</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// Actions</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a5f6cb602891ad81efb733bfd62790b90">take_damage</a>(<span class="keywordtype">float</span> p_amount);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a5639e1c87563f0d4e8d8d16d436c913b">heal</a>(<span class="keywordtype">float</span> p_amount);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">// Movement Control</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#afd6421f0e468ae92c4268faa17cb1958">set_movement_input</a>(<span class="keyword">const</span> Vector2 &amp;p_input);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  Vector2 <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a7a3d5f6f70b9a8c7e2707ba9c6420a28">get_movement_input</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="comment">// Simple movement logic (can be overridden or handled by components)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="comment">// Applies velocity based on input * speed and calls move_and_slide()</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1GameEntity.html#a8c9294ea04c8a74553b0fc772e0156b4">apply_movement</a>(<span class="keywordtype">double</span> delta);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
+</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html">karakuri::GameEntity</a></div><div class="ttdef"><b>Definition</b> base_entity.h:10</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a1bf4e16a4cd216b01700c5d318f372c9"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a1bf4e16a4cd216b01700c5d318f372c9">karakuri::GameEntity::speed</a></div><div class="ttdeci">float speed</div><div class="ttdef"><b>Definition</b> base_entity.h:16</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a2282bf2e75a605cc784c0dc60a4b28ec"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a2282bf2e75a605cc784c0dc60a4b28ec">karakuri::GameEntity::_notification</a></div><div class="ttdeci">void _notification(int p_what)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:49</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a2d4db52280730fcfe18847b158f0a68c"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a2d4db52280730fcfe18847b158f0a68c">karakuri::GameEntity::get_max_health</a></div><div class="ttdeci">float get_max_health() const</div><div class="ttdef"><b>Definition</b> base_entity.cpp:65</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a3055b8f90f6190bfe71217f8f71d7496"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a3055b8f90f6190bfe71217f8f71d7496">karakuri::GameEntity::set_max_health</a></div><div class="ttdeci">void set_max_health(float p_health)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:57</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a4c55618474c38cfb253bace4c42bc5c5"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a4c55618474c38cfb253bace4c42bc5c5">karakuri::GameEntity::get_speed</a></div><div class="ttdeci">float get_speed() const</div><div class="ttdef"><b>Definition</b> base_entity.cpp:79</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a4d7d05b5d1ab5dda078296b4997f1fda"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a4d7d05b5d1ab5dda078296b4997f1fda">karakuri::GameEntity::movement_input</a></div><div class="ttdeci">Vector2 movement_input</div><div class="ttdef"><b>Definition</b> base_entity.h:19</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a5639e1c87563f0d4e8d8d16d436c913b"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a5639e1c87563f0d4e8d8d16d436c913b">karakuri::GameEntity::heal</a></div><div class="ttdeci">void heal(float p_amount)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:89</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a5f6cb602891ad81efb733bfd62790b90"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a5f6cb602891ad81efb733bfd62790b90">karakuri::GameEntity::take_damage</a></div><div class="ttdeci">void take_damage(float p_amount)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:81</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a7a3d5f6f70b9a8c7e2707ba9c6420a28"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a7a3d5f6f70b9a8c7e2707ba9c6420a28">karakuri::GameEntity::get_movement_input</a></div><div class="ttdeci">Vector2 get_movement_input() const</div><div class="ttdef"><b>Definition</b> base_entity.cpp:101</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a895f5c0378f4797e7985b04916bf59ea"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a895f5c0378f4797e7985b04916bf59ea">karakuri::GameEntity::set_speed</a></div><div class="ttdeci">void set_speed(float p_speed)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:77</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a8c9294ea04c8a74553b0fc772e0156b4"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a8c9294ea04c8a74553b0fc772e0156b4">karakuri::GameEntity::apply_movement</a></div><div class="ttdeci">virtual void apply_movement(double delta)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:103</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_a992152de6d575b0b44a01f6d84ec2a65"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#a992152de6d575b0b44a01f6d84ec2a65">karakuri::GameEntity::GameEntity</a></div><div class="ttdeci">GameEntity()</div><div class="ttdef"><b>Definition</b> base_entity.cpp:40</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_abf0924f5c25cc3fb5bfc3f999af59521"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#abf0924f5c25cc3fb5bfc3f999af59521">karakuri::GameEntity::set_current_health</a></div><div class="ttdeci">void set_current_health(float p_health)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:67</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_ac047d433b0701c2cde70eeee03c1cc65"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#ac047d433b0701c2cde70eeee03c1cc65">karakuri::GameEntity::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> base_entity.cpp:10</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_ad88c95c84f80770f01a319d508517740"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#ad88c95c84f80770f01a319d508517740">karakuri::GameEntity::~GameEntity</a></div><div class="ttdeci">~GameEntity()</div><div class="ttdef"><b>Definition</b> base_entity.cpp:47</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_adddcf55554ce7c18a4411b75068d4373"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#adddcf55554ce7c18a4411b75068d4373">karakuri::GameEntity::get_current_health</a></div><div class="ttdeci">float get_current_health() const</div><div class="ttdef"><b>Definition</b> base_entity.cpp:75</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_afb77355e24badb46d9ae19760936536c"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#afb77355e24badb46d9ae19760936536c">karakuri::GameEntity::current_health</a></div><div class="ttdeci">float current_health</div><div class="ttdef"><b>Definition</b> base_entity.h:15</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_afc0e202cb41c9d6489505e1668235517"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#afc0e202cb41c9d6489505e1668235517">karakuri::GameEntity::max_health</a></div><div class="ttdeci">float max_health</div><div class="ttdef"><b>Definition</b> base_entity.h:14</div></div>
+<div class="ttc" id="aclasskarakuri_1_1GameEntity_html_afd6421f0e468ae92c4268faa17cb1958"><div class="ttname"><a href="classkarakuri_1_1GameEntity.html#afd6421f0e468ae92c4268faa17cb1958">karakuri::GameEntity::set_movement_input</a></div><div class="ttdeci">void set_movement_input(const Vector2 &amp;p_input)</div><div class="ttdef"><b>Definition</b> base_entity.cpp:97</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> adventure_game_state.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

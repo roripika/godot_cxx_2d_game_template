@@ -1,7 +1,7 @@
 <map id="クラス階層図" name="クラス階層図">
 <area shape="rect" id="Node000000" title=" " alt="" coords="5,31,76,56"/>
-<area shape="rect" id="Node000001" href="$classHitboxComponent.html" title=" " alt="" coords="129,5,269,31"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="89,33,128,27,129,32,90,38"/>
-<area shape="rect" id="Node000002" href="$classHurtboxComponent.html" title=" " alt="" coords="124,55,273,80"/>
-<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="90,48,124,53,123,59,89,53"/>
+<area shape="rect" id="Node000001" href="$classkarakuri_1_1HitboxComponent.html" title=" " alt="" coords="129,5,329,31"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="90,34,134,28,135,33,90,39"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1HurtboxComponent.html" title=" " alt="" coords="124,55,333,80"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="90,47,130,52,129,57,90,52"/>
 </map>

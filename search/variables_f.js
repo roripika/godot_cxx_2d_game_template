@@ -1,19 +1,8 @@
 var searchData=
 [
-  ['p1_5fcombo_0',['p1_combo',['../classFightingGameManager.html#a97e3e80c81a1c00861afc004fd684ba9',1,'FightingGameManager']]],
-  ['p1_5fcombo_5flabel_1',['p1_combo_label',['../classFightingGameManager.html#a84258e726c65826ea7abc5e8cb69fff4',1,'FightingGameManager']]],
-  ['p1_5fcombo_5ftimer_2',['p1_combo_timer',['../classFightingGameManager.html#a147ed9f11adccaf45c8c4ea0ecef9322',1,'FightingGameManager']]],
-  ['p1_5fhealth_5fbar_3',['p1_health_bar',['../classFightingGameManager.html#a923a7cc11effd88eb9a4059de4846019',1,'FightingGameManager']]],
-  ['p1_5fwins_4',['p1_wins',['../classFightingGameManager.html#ab7b9aba7c8172b109113f16ce3836c97',1,'FightingGameManager']]],
-  ['p2_5fcombo_5',['p2_combo',['../classFightingGameManager.html#a045dff4712b0db3e3ed8573534aa89e3',1,'FightingGameManager']]],
-  ['p2_5fcombo_5flabel_6',['p2_combo_label',['../classFightingGameManager.html#a089d9de70a400a44c20e1af5f3c2bb1d',1,'FightingGameManager']]],
-  ['p2_5fcombo_5ftimer_7',['p2_combo_timer',['../classFightingGameManager.html#a022d04d8d9dbf8e07fce9d4b90017857',1,'FightingGameManager']]],
-  ['p2_5fhealth_5fbar_8',['p2_health_bar',['../classFightingGameManager.html#aea509874aa00b3897358a1b2b9d122cc',1,'FightingGameManager']]],
-  ['p2_5fwins_9',['p2_wins',['../classFightingGameManager.html#aaf4c980e3cfbeef54440c3b32dea8be9',1,'FightingGameManager']]],
-  ['pending_5faction_5findex_5f_10',['pending_action_index_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5ee931d11a80d9c75e42e76c6350e71e',1,'karakuri::KarakuriScenarioRunner']]],
-  ['pending_5factions_5f_11',['pending_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ade7d5148474321b9c08cb3c46a2d09e2',1,'karakuri::KarakuriScenarioRunner']]],
-  ['pending_5fchoice_5factions_5f_12',['pending_choice_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#a5585f2f95d83a66bd2ae4999da4e5d5a',1,'karakuri::KarakuriScenarioRunner']]],
-  ['perfect_5fwindow_13',['perfect_window',['../classRhythmGameManager.html#a0edc9408fd34bf912e7cbf612db45f6b',1,'RhythmGameManager']]],
-  ['player_5fid_14',['player_id',['../classFighterController.html#a1163b98cf387b5929e7b009fef28117e',1,'FighterController']]],
-  ['player_5fscene_15',['player_scene',['../classRoguelikeManager.html#a6f4821582053c729763737582e7b1dac',1,'RoguelikeManager']]]
+  ['rect_0',['rect',['../structkarakuri_1_1RoguelikeGenerator_1_1Room.html#a32c49c794551a3a48c8764b9a9a0df8f',1,'karakuri::RoguelikeGenerator::Room']]],
+  ['reset_5fhook_5f_1',['reset_hook_',['../classkarakuri_1_1AdventureGameStateBase.html#a65a5850a8d70081d226183e4075995cc',1,'karakuri::AdventureGameStateBase']]],
+  ['room_5fcount_2',['room_count',['../classkarakuri_1_1RoguelikeManager.html#aaf4530d81867d65cd72f1ba5e1dcdbdd',1,'karakuri::RoguelikeManager']]],
+  ['rooms_3',['rooms',['../classkarakuri_1_1RoguelikeGenerator.html#a1e579c4e8dbf9a8e1f615b38b0ee8a87',1,'karakuri::RoguelikeGenerator']]],
+  ['round_4',['round',['../structkarakuri_1_1KarakuriTestimonySession.html#ad77ea48c668d1519224b023b799888a1',1,'karakuri::KarakuriTestimonySession']]]
 ];

@@ -1,9 +1,9 @@
 <map id="クラス階層図" name="クラス階層図">
 <area shape="rect" id="Node000000" title=" " alt="" coords="5,55,75,80"/>
-<area shape="rect" id="Node000001" href="$classDialogueUI.html" title=" " alt="" coords="137,5,231,31"/>
-<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="87,49,145,28,147,33,88,54"/>
-<area shape="rect" id="Node000002" href="$classInventorySlotUI.html" title=" " alt="" coords="123,55,245,80"/>
-<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="88,65,122,65,122,70,88,70"/>
-<area shape="rect" id="Node000003" href="$classInventoryUI.html" title=" " alt="" coords="135,104,233,129"/>
-<area shape="poly" id="edge9_Node000000_Node000003" title=" " alt="" coords="88,81,147,101,145,106,87,86"/>
+<area shape="rect" id="Node000001" href="$classkarakuri_1_1DialogueUI.html" title=" " alt="" coords="137,5,291,31"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="87,50,122,39,163,28,164,33,123,45,89,55"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1InventorySlotUI.html" title=" " alt="" coords="123,55,305,80"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="88,65,122,65,122,70,88,70"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1InventoryUI.html" title=" " alt="" coords="135,104,293,129"/>
+<area shape="poly" id="edge6_Node000000_Node000003" title=" " alt="" coords="89,79,123,89,168,101,166,106,122,94,87,84"/>
 </map>

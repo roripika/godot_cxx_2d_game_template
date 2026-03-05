@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::DialogueUI クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1DialogueUI.html">DialogueUI</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
+<a href="#pri-attribs">非公開変数類</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::DialogueUI クラス</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="dialogue__ui_8h_source.html">dialogue_ui.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::DialogueUI の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI__inherit__graph.png" border="0" usemap="#akarakuri_1_1DialogueUI_inherit__map" alt="Inheritance graph"/></div>
+<map name="akarakuri_1_1DialogueUI_inherit__map" id="akarakuri_1_1DialogueUI_inherit__map">
+<area shape="rect" title=" " alt="" coords="5,79,160,104"/>
+<area shape="rect" title=" " alt="" coords="48,5,117,31"/>
+<area shape="poly" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+karakuri::DialogueUI 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI__coll__graph.png" border="0" usemap="#akarakuri_1_1DialogueUI_coll__map" alt="Collaboration graph"/></div>
+<map name="akarakuri_1_1DialogueUI_coll__map" id="akarakuri_1_1DialogueUI_coll__map">
+<area shape="rect" title=" " alt="" coords="5,79,160,104"/>
+<area shape="rect" title=" " alt="" coords="48,5,117,31"/>
+<area shape="poly" title=" " alt="" coords="85,44,85,79,80,79,80,44"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a1997728a2e84435451e8b870046923f4" id="r_a1997728a2e84435451e8b870046923f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a1997728a2e84435451e8b870046923f4">DialogueUI</a> ()</td></tr>
+<tr class="separator:a1997728a2e84435451e8b870046923f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c6d103faa25a92a4d91b2da50dc9dd0" id="r_a7c6d103faa25a92a4d91b2da50dc9dd0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a7c6d103faa25a92a4d91b2da50dc9dd0">~DialogueUI</a> ()</td></tr>
+<tr class="separator:a7c6d103faa25a92a4d91b2da50dc9dd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0427eaed1c1c58845cec20bdcbd00613" id="r_a0427eaed1c1c58845cec20bdcbd00613"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a0427eaed1c1c58845cec20bdcbd00613">_ready</a> () override</td></tr>
+<tr class="separator:a0427eaed1c1c58845cec20bdcbd00613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38ffd43aad468234ddb151b737aace06" id="r_a38ffd43aad468234ddb151b737aace06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a38ffd43aad468234ddb151b737aace06">_process</a> (double delta) override</td></tr>
+<tr class="separator:a38ffd43aad468234ddb151b737aace06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7385c99827c8419a0d75524ad4d407b9" id="r_a7385c99827c8419a0d75524ad4d407b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a7385c99827c8419a0d75524ad4d407b9">show_message</a> (const String &amp;name, const String &amp;text)</td></tr>
+<tr class="separator:a7385c99827c8419a0d75524ad4d407b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf78914cfa7988f7bace15568eb91823" id="r_acf78914cfa7988f7bace15568eb91823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#acf78914cfa7988f7bace15568eb91823">hide_dialogue</a> ()</td></tr>
+<tr class="separator:acf78914cfa7988f7bace15568eb91823"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25e1f06b59c3fa8195d2cb8b8b7caf7f" id="r_a25e1f06b59c3fa8195d2cb8b8b7caf7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a25e1f06b59c3fa8195d2cb8b8b7caf7f">set_type_speed</a> (float p_speed)</td></tr>
+<tr class="separator:a25e1f06b59c3fa8195d2cb8b8b7caf7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af740c145443596832c8a051bddbaf14f" id="r_af740c145443596832c8a051bddbaf14f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#af740c145443596832c8a051bddbaf14f">get_type_speed</a> () const</td></tr>
+<tr class="separator:af740c145443596832c8a051bddbaf14f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad82181a4a3f457468c957cc4b8309415" id="r_ad82181a4a3f457468c957cc4b8309415"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#ad82181a4a3f457468c957cc4b8309415">is_typing_active</a> () const</td></tr>
+<tr class="separator:ad82181a4a3f457468c957cc4b8309415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd3ce3d97e3c024262ca177336edc586" id="r_afd3ce3d97e3c024262ca177336edc586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#afd3ce3d97e3c024262ca177336edc586">skip_typing</a> ()</td></tr>
+<tr class="separator:afd3ce3d97e3c024262ca177336edc586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a52ba6aff750ac7e525c36989cb038772" id="r_a52ba6aff750ac7e525c36989cb038772"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772">_bind_methods</a> ()</td></tr>
+<tr class="separator:a52ba6aff750ac7e525c36989cb038772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+非公開変数類</h2></td></tr>
+<tr class="memitem:a44fae11159f98bf1fc5f06551b8f24fc" id="r_a44fae11159f98bf1fc5f06551b8f24fc"><td class="memItemLeft" align="right" valign="top">Panel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a44fae11159f98bf1fc5f06551b8f24fc">background_panel</a></td></tr>
+<tr class="separator:a44fae11159f98bf1fc5f06551b8f24fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94bb848bd67af1e83cc55c8c4262b5b6" id="r_a94bb848bd67af1e83cc55c8c4262b5b6"><td class="memItemLeft" align="right" valign="top">Label *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a94bb848bd67af1e83cc55c8c4262b5b6">name_label</a></td></tr>
+<tr class="separator:a94bb848bd67af1e83cc55c8c4262b5b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41a352dc2ea5f7b36b87d7cd291e01ce" id="r_a41a352dc2ea5f7b36b87d7cd291e01ce"><td class="memItemLeft" align="right" valign="top">RichTextLabel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a41a352dc2ea5f7b36b87d7cd291e01ce">text_label</a></td></tr>
+<tr class="separator:a41a352dc2ea5f7b36b87d7cd291e01ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25ab6420eeaaedc05aa5a46c7c8395be" id="r_a25ab6420eeaaedc05aa5a46c7c8395be"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a25ab6420eeaaedc05aa5a46c7c8395be">current_text</a></td></tr>
+<tr class="separator:a25ab6420eeaaedc05aa5a46c7c8395be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033cb1091862580784200f611b0c979c" id="r_a033cb1091862580784200f611b0c979c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a033cb1091862580784200f611b0c979c">type_speed</a></td></tr>
+<tr class="separator:a033cb1091862580784200f611b0c979c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f9b1998fb4100e3324f730ea7ee59f1" id="r_a7f9b1998fb4100e3324f730ea7ee59f1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#a7f9b1998fb4100e3324f730ea7ee59f1">current_display_index</a></td></tr>
+<tr class="separator:a7f9b1998fb4100e3324f730ea7ee59f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbda4a1db8d80f832005a7da0f12959f" id="r_acbda4a1db8d80f832005a7da0f12959f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1DialogueUI.html#acbda4a1db8d80f832005a7da0f12959f">is_typing</a></td></tr>
+<tr class="separator:acbda4a1db8d80f832005a7da0f12959f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="a1997728a2e84435451e8b870046923f4" name="a1997728a2e84435451e8b870046923f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1997728a2e84435451e8b870046923f4">&#9670;&#160;</a></span>DialogueUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::DialogueUI::DialogueUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c6d103faa25a92a4d91b2da50dc9dd0" name="a7c6d103faa25a92a4d91b2da50dc9dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c6d103faa25a92a4d91b2da50dc9dd0">&#9670;&#160;</a></span>~DialogueUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">karakuri::DialogueUI::~DialogueUI </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a52ba6aff750ac7e525c36989cb038772" name="a52ba6aff750ac7e525c36989cb038772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ba6aff750ac7e525c36989cb038772">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_a52ba6aff750ac7e525c36989cb038772_cgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_a52ba6aff750ac7e525c36989cb038772_cgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_a52ba6aff750ac7e525c36989cb038772_cgraph" id="aclasskarakuri_1_1DialogueUI_a52ba6aff750ac7e525c36989cb038772_cgraph">
+<area shape="rect" title=" " alt="" coords="5,165,160,205"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#af740c145443596832c8a051bddbaf14f" title=" " alt="" coords="208,5,363,45"/>
+<area shape="poly" title=" " alt="" coords="97,163,143,111,173,81,206,55,215,50,218,54,210,60,177,85,147,114,101,167"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#acf78914cfa7988f7bace15568eb91823" title=" " alt="" coords="208,69,363,109"/>
+<area shape="poly" title=" " alt="" coords="120,163,207,119,221,112,224,117,209,124,122,168"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#ad82181a4a3f457468c957cc4b8309415" title=" " alt="" coords="208,133,363,173"/>
+<area shape="poly" title=" " alt="" coords="160,171,194,165,195,170,161,176"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a25e1f06b59c3fa8195d2cb8b8b7caf7f" title=" " alt="" coords="208,197,363,237"/>
+<area shape="poly" title=" " alt="" coords="161,195,195,200,194,206,160,200"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a7385c99827c8419a0d75524ad4d407b9" title=" " alt="" coords="208,261,363,301"/>
+<area shape="poly" title=" " alt="" coords="122,203,209,247,224,253,221,258,207,252,120,208"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#afd3ce3d97e3c024262ca177336edc586" title=" " alt="" coords="208,325,363,365"/>
+<area shape="poly" title=" " alt="" coords="101,204,147,256,177,285,210,311,218,317,215,321,206,316,173,289,143,260,97,207"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a38ffd43aad468234ddb151b737aace06" name="a38ffd43aad468234ddb151b737aace06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ffd43aad468234ddb151b737aace06">&#9670;&#160;</a></span>_process()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::_process </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0427eaed1c1c58845cec20bdcbd00613" name="a0427eaed1c1c58845cec20bdcbd00613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0427eaed1c1c58845cec20bdcbd00613">&#9670;&#160;</a></span>_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af740c145443596832c8a051bddbaf14f" name="af740c145443596832c8a051bddbaf14f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af740c145443596832c8a051bddbaf14f">&#9670;&#160;</a></span>get_type_speed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float karakuri::DialogueUI::get_type_speed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_af740c145443596832c8a051bddbaf14f_icgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_af740c145443596832c8a051bddbaf14f_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_af740c145443596832c8a051bddbaf14f_icgraph" id="aclasskarakuri_1_1DialogueUI_af740c145443596832c8a051bddbaf14f_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,45"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772" title=" " alt="" coords="5,5,160,45"/>
+<area shape="poly" title=" " alt="" coords="194,28,161,28,161,23,194,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acf78914cfa7988f7bace15568eb91823" name="acf78914cfa7988f7bace15568eb91823"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf78914cfa7988f7bace15568eb91823">&#9670;&#160;</a></span>hide_dialogue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::hide_dialogue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_acf78914cfa7988f7bace15568eb91823_icgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_acf78914cfa7988f7bace15568eb91823_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_acf78914cfa7988f7bace15568eb91823_icgraph" id="aclasskarakuri_1_1DialogueUI_acf78914cfa7988f7bace15568eb91823_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,45"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772" title=" " alt="" coords="5,5,160,45"/>
+<area shape="poly" title=" " alt="" coords="194,28,161,28,161,23,194,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad82181a4a3f457468c957cc4b8309415" name="ad82181a4a3f457468c957cc4b8309415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad82181a4a3f457468c957cc4b8309415">&#9670;&#160;</a></span>is_typing_active()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::DialogueUI::is_typing_active </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_ad82181a4a3f457468c957cc4b8309415_icgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_ad82181a4a3f457468c957cc4b8309415_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_ad82181a4a3f457468c957cc4b8309415_icgraph" id="aclasskarakuri_1_1DialogueUI_ad82181a4a3f457468c957cc4b8309415_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,45"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772" title=" " alt="" coords="5,5,160,45"/>
+<area shape="poly" title=" " alt="" coords="194,28,161,28,161,23,194,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a25e1f06b59c3fa8195d2cb8b8b7caf7f" name="a25e1f06b59c3fa8195d2cb8b8b7caf7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25e1f06b59c3fa8195d2cb8b8b7caf7f">&#9670;&#160;</a></span>set_type_speed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::set_type_speed </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p_speed</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_a25e1f06b59c3fa8195d2cb8b8b7caf7f_icgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_a25e1f06b59c3fa8195d2cb8b8b7caf7f_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_a25e1f06b59c3fa8195d2cb8b8b7caf7f_icgraph" id="aclasskarakuri_1_1DialogueUI_a25e1f06b59c3fa8195d2cb8b8b7caf7f_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,45"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772" title=" " alt="" coords="5,5,160,45"/>
+<area shape="poly" title=" " alt="" coords="194,28,161,28,161,23,194,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7385c99827c8419a0d75524ad4d407b9" name="a7385c99827c8419a0d75524ad4d407b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7385c99827c8419a0d75524ad4d407b9">&#9670;&#160;</a></span>show_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::show_message </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_a7385c99827c8419a0d75524ad4d407b9_icgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_a7385c99827c8419a0d75524ad4d407b9_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_a7385c99827c8419a0d75524ad4d407b9_icgraph" id="aclasskarakuri_1_1DialogueUI_a7385c99827c8419a0d75524ad4d407b9_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,45"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772" title=" " alt="" coords="5,5,160,45"/>
+<area shape="poly" title=" " alt="" coords="194,28,161,28,161,23,194,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afd3ce3d97e3c024262ca177336edc586" name="afd3ce3d97e3c024262ca177336edc586"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd3ce3d97e3c024262ca177336edc586">&#9670;&#160;</a></span>skip_typing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::DialogueUI::skip_typing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="classkarakuri_1_1DialogueUI_afd3ce3d97e3c024262ca177336edc586_icgraph.png" border="0" usemap="#aclasskarakuri_1_1DialogueUI_afd3ce3d97e3c024262ca177336edc586_icgraph" alt=""/></div>
+<map name="aclasskarakuri_1_1DialogueUI_afd3ce3d97e3c024262ca177336edc586_icgraph" id="aclasskarakuri_1_1DialogueUI_afd3ce3d97e3c024262ca177336edc586_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,45"/>
+<area shape="rect" href="classkarakuri_1_1DialogueUI.html#a52ba6aff750ac7e525c36989cb038772" title=" " alt="" coords="5,5,160,45"/>
+<area shape="poly" title=" " alt="" coords="194,28,161,28,161,23,194,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">フィールド詳解</h2>
+<a id="a44fae11159f98bf1fc5f06551b8f24fc" name="a44fae11159f98bf1fc5f06551b8f24fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44fae11159f98bf1fc5f06551b8f24fc">&#9670;&#160;</a></span>background_panel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Panel* karakuri::DialogueUI::background_panel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f9b1998fb4100e3324f730ea7ee59f1" name="a7f9b1998fb4100e3324f730ea7ee59f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f9b1998fb4100e3324f730ea7ee59f1">&#9670;&#160;</a></span>current_display_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float karakuri::DialogueUI::current_display_index</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a25ab6420eeaaedc05aa5a46c7c8395be" name="a25ab6420eeaaedc05aa5a46c7c8395be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25ab6420eeaaedc05aa5a46c7c8395be">&#9670;&#160;</a></span>current_text</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String karakuri::DialogueUI::current_text</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbda4a1db8d80f832005a7da0f12959f" name="acbda4a1db8d80f832005a7da0f12959f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbda4a1db8d80f832005a7da0f12959f">&#9670;&#160;</a></span>is_typing</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::DialogueUI::is_typing</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94bb848bd67af1e83cc55c8c4262b5b6" name="a94bb848bd67af1e83cc55c8c4262b5b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94bb848bd67af1e83cc55c8c4262b5b6">&#9670;&#160;</a></span>name_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Label* karakuri::DialogueUI::name_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41a352dc2ea5f7b36b87d7cd291e01ce" name="a41a352dc2ea5f7b36b87d7cd291e01ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a352dc2ea5f7b36b87d7cd291e01ce">&#9670;&#160;</a></span>text_label</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RichTextLabel* karakuri::DialogueUI::text_label</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a033cb1091862580784200f611b0c979c" name="a033cb1091862580784200f611b0c979c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a033cb1091862580784200f611b0c979c">&#9670;&#160;</a></span>type_speed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float karakuri::DialogueUI::type_speed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/<a class="el" href="dialogue__ui_8h_source.html">dialogue_ui.h</a></li>
+<li>src/core/<a class="el" href="dialogue__ui_8cpp.html">dialogue_ui.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['icon_5ftexture_0',['icon_texture',['../classInventorySlotUI.html#af002734e6d3475b87d33497d92806067',1,'InventorySlotUI']]],
-  ['index_1',['index',['../structkarakuri_1_1KarakuriTestimonySession.html#a06f9f96a9048c937404ff6e0d5a5c34f',1,'karakuri::KarakuriTestimonySession']]],
-  ['interaction_5fmanager_5f_2',['interaction_manager_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ab2f03ecd285395383bd63ebffe6c8065',1,'karakuri::KarakuriScenarioRunner']]],
-  ['interaction_5fmanager_5fpath_5f_3',['interaction_manager_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#aa12eba9644e7df8369a76c6b2fe58c15',1,'karakuri::KarakuriScenarioRunner']]],
-  ['inventory_4',['inventory',['../classInventoryUI.html#a9898457144eb0ed8f75eb20a42bd96f1',1,'InventoryUI::inventory'],['../classBuildingComponent.html#a6c22710af96b584ee822635ced3c6f84',1,'BuildingComponent::inventory']]],
-  ['invincible_5',['invincible',['../classHurtboxComponent.html#abf8700f4d5cd1d0deedf83a255764ce2',1,'HurtboxComponent']]],
-  ['is_5fexecuting_5factions_5f_6',['is_executing_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#af2bc962db7f5f6adafc65230e08c65ae',1,'karakuri::KarakuriScenarioRunner']]],
-  ['is_5fplaying_7',['is_playing',['../classConductor.html#ad7af87250f1d54f08ce01331a6e67138',1,'Conductor']]],
-  ['is_5fstopped_8',['is_stopped',['../classHitStopManager.html#a7bd0bbd1d64c7d14d302694a66673bca',1,'HitStopManager']]],
-  ['is_5ftyping_9',['is_typing',['../classDialogueUI.html#aa55fcaf370b8f61fe5b75c886af8c9f2',1,'DialogueUI']]],
-  ['item_10',['item',['../classInventorySlotUI.html#aa348dfed1f4ede698db88a69ffc967d2',1,'InventorySlotUI']]]
+  ['icon_0',['icon',['../classkarakuri_1_1GameItem.html#a7e1da2d5b73833df74a9d3c62253ff2f',1,'karakuri::GameItem']]],
+  ['icon_5ftexture_1',['icon_texture',['../classkarakuri_1_1InventorySlotUI.html#a436d5ba8bc445c79ef3006cd9412e92a',1,'karakuri::InventorySlotUI']]],
+  ['index_2',['index',['../structkarakuri_1_1KarakuriTestimonySession.html#a06f9f96a9048c937404ff6e0d5a5c34f',1,'karakuri::KarakuriTestimonySession']]],
+  ['interaction_5fmanager_5f_3',['interaction_manager_',['../classkarakuri_1_1KarakuriScenarioRunner.html#ab2f03ecd285395383bd63ebffe6c8065',1,'karakuri::KarakuriScenarioRunner']]],
+  ['interaction_5fmanager_5fpath_5f_4',['interaction_manager_path_',['../classkarakuri_1_1KarakuriScenarioRunner.html#aa12eba9644e7df8369a76c6b2fe58c15',1,'karakuri::KarakuriScenarioRunner']]],
+  ['inventory_5',['inventory',['../classkarakuri_1_1InventoryUI.html#a3c0fc7851e9a11a74c68235a9ab12952',1,'karakuri::InventoryUI']]],
+  ['invincible_6',['invincible',['../classkarakuri_1_1HurtboxComponent.html#a4a03d61958a60315a25e037602b0d484',1,'karakuri::HurtboxComponent']]],
+  ['is_5fexecuting_5factions_5f_7',['is_executing_actions_',['../classkarakuri_1_1KarakuriScenarioRunner.html#af2bc962db7f5f6adafc65230e08c65ae',1,'karakuri::KarakuriScenarioRunner']]],
+  ['is_5ftyping_8',['is_typing',['../classkarakuri_1_1DialogueUI.html#acbda4a1db8d80f832005a7da0f12959f',1,'karakuri::DialogueUI']]],
+  ['item_9',['item',['../structkarakuri_1_1InventorySlot.html#abf56c8533107b0cb3aa303de7111f2ab',1,'karakuri::InventorySlot::item'],['../classkarakuri_1_1InventorySlotUI.html#aa1dfc2c1893dbe4954b8fe58f28fb6f1',1,'karakuri::InventorySlotUI::item']]],
+  ['item_5fname_10',['item_name',['../classkarakuri_1_1GameItem.html#ac4cdc2bbfe237b3d1d17df6242c31026',1,'karakuri::GameItem']]]
 ];

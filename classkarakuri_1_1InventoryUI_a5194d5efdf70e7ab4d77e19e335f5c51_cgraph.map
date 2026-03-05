@@ -1,0 +1,7 @@
+<map id="karakuri::InventoryUI::refresh" name="karakuri::InventoryUI::refresh">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,164,77"/>
+<area shape="rect" id="Node000002" href="$classkarakuri_1_1InventorySlotUI.html#ac0939a2773089a4a587651800eca69bd" title=" " alt="" coords="212,5,395,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,43,198,38,199,43,165,48"/>
+<area shape="rect" id="Node000003" href="$classkarakuri_1_1InventorySlotUI.html#a8d1c7c9e41d7b762b17f4bdd9e8cd9b4" title=" " alt="" coords="212,69,395,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="165,66,199,71,198,77,164,72"/>
+</map>

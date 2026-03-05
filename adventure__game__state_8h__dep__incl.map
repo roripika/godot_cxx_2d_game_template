@@ -1,9 +1,7 @@
 <map id="src/core/adventure_game_state.h" name="src/core/adventure_game_state.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="187,5,329,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="95,5,237,45"/>
 <area shape="rect" id="Node000002" href="$adventure__game__state_8cpp.html" title=" " alt="" coords="5,93,148,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,54,118,96,115,91,205,49"/>
-<area shape="rect" id="Node000003" href="$mystery__manager_8cpp.html" title=" " alt="" coords="173,93,343,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="261,59,261,93,255,93,255,59"/>
-<area shape="rect" id="Node000004" href="$karakuri__save__service_8cpp.html" title=" " alt="" coords="368,93,521,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="312,49,405,91,403,96,310,53"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,57,98,95,95,91,134,53"/>
+<area shape="rect" id="Node000003" href="$save__service_8cpp.html" title=" " alt="" coords="172,93,339,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,53,237,91,234,95,194,57"/>
 </map>

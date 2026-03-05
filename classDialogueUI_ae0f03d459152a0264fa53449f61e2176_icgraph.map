@@ -1,5 +1,0 @@
-<map id="DialogueUI::skip_typing" name="DialogueUI::skip_typing">
-<area shape="rect" id="Node000001" title=" " alt="" coords="255,5,432,31"/>
-<area shape="rect" id="Node000002" href="$classDialogueUI.html#a09b246089a4558c873ea07744b42d1fb" title=" " alt="" coords="5,5,207,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,21,207,21,207,15,241,15"/>
-</map>

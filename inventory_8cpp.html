@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/items/inventory.cpp ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_b56a81ad93acd68d1a68c3526f84c6eb.html">items</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">名前空間</a>  </div>
+  <div class="headertitle"><div class="title">inventory.cpp ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="inventory_8h_source.html">inventory.h</a>&quot;</code><br />
+<code>#include &lt;godot_cpp/core/class_db.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+inventory.cpp の依存先関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="inventory_8cpp__incl.png" border="0" usemap="#asrc_2core_2items_2inventory_8cpp" alt=""/></div>
+<map name="asrc_2core_2items_2inventory_8cpp" id="asrc_2core_2items_2inventory_8cpp">
+<area shape="rect" title=" " alt="" coords="260,5,465,31"/>
+<area shape="rect" href="inventory_8h.html" title=" " alt="" coords="165,86,259,111"/>
+<area shape="poly" title=" " alt="" coords="342,33,248,82,245,77,339,28"/>
+<area shape="rect" title=" " alt="" coords="283,79,442,119"/>
+<area shape="poly" title=" " alt="" coords="365,31,365,65,360,65,360,31"/>
+<area shape="rect" title=" " alt="" coords="467,86,701,111"/>
+<area shape="poly" title=" " alt="" coords="396,28,540,79,538,84,394,33"/>
+<area shape="rect" href="game__item_8h.html" title=" " alt="" coords="158,174,266,199"/>
+<area shape="poly" title=" " alt="" coords="215,112,215,160,209,160,209,112"/>
+<area shape="rect" title=" " alt="" coords="5,255,235,280"/>
+<area shape="poly" title=" " alt="" coords="198,113,172,137,148,168,133,205,125,241,120,240,128,204,143,165,168,133,195,110"/>
+<area shape="rect" title=" " alt="" coords="290,167,449,207"/>
+<area shape="poly" title=" " alt="" coords="234,109,324,158,322,162,232,114"/>
+<area shape="poly" title=" " alt="" coords="200,202,146,248,142,244,197,197"/>
+<area shape="rect" title=" " alt="" coords="259,255,495,280"/>
+<area shape="poly" title=" " alt="" coords="237,197,342,246,340,251,235,202"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+名前空間</h2></td></tr>
+<tr class="memitem:namespacekarakuri" id="r_namespacekarakuri"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html">karakuri</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

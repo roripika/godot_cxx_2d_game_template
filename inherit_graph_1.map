@@ -1,11 +1,5 @@
 <map id="クラス階層図" name="クラス階層図">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,141,56"/>
-<area shape="rect" id="Node000001" href="$classFighterController.html" title=" " alt="" coords="189,5,320,31"/>
-<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="155,29,189,24,189,30,155,35"/>
-<area shape="rect" id="Node000002" href="$classGameEntity.html" title=" " alt="" coords="205,55,304,80"/>
-<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="156,52,205,58,205,63,155,57"/>
-<area shape="rect" id="Node000003" href="$classPlayerControllerIso.html" title=" " alt="" coords="372,29,519,55"/>
-<area shape="poly" id="edge5_Node000002_Node000003" title=" " alt="" coords="318,56,372,49,372,54,318,62"/>
-<area shape="rect" id="Node000004" href="$classPlayerControllerSide.html" title=" " alt="" coords="368,79,523,104"/>
-<area shape="poly" id="edge6_Node000002_Node000004" title=" " alt="" coords="318,73,368,79,367,84,318,78"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,5,141,31"/>
+<area shape="rect" id="Node000001" href="$classkarakuri_1_1GameEntity.html" title=" " alt="" coords="189,5,348,31"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="155,15,189,15,189,21,155,21"/>
 </map>

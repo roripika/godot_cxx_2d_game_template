@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['kmajor_0',['kMajor',['../structkarakuri_1_1Version.html#a7a5754401395cf849d51b90913a41296',1,'karakuri::Version']]],
-  ['kminor_1',['kMinor',['../structkarakuri_1_1Version.html#a134df6ec3dc52af8649682214397c3c7',1,'karakuri::Version']]],
-  ['knockback_5fforce_2',['knockback_force',['../classHitboxComponent.html#a98169176a8a55e07d79c97aab5a89970',1,'HitboxComponent']]],
-  ['kpatch_3',['kPatch',['../structkarakuri_1_1Version.html#abd5e14ad4c2616932d50cd58a64dd166',1,'karakuri::Version']]]
+  ['lines_0',['lines',['../structkarakuri_1_1KarakuriTestimonySession.html#a1773a73f8c043acfc69e2a00cec294ce',1,'karakuri::KarakuriTestimonySession']]],
+  ['locale_5fstore_5fpath_5f_1',['locale_store_path_',['../classkarakuri_1_1KarakuriLocalizationService.html#ad0752125b6cc2c09ef4012df75dae0a9',1,'karakuri::KarakuriLocalizationService']]]
 ];

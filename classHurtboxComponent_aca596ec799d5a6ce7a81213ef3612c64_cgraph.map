@@ -1,9 +1,0 @@
-<map id="HurtboxComponent::take_hit" name="HurtboxComponent::take_hit">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,77,215,102"/>
-<area shape="rect" id="Node000002" href="$classHitboxComponent.html#a05dc4f7e4b98eecb23ceee7b6d9c8ca7" title=" " alt="" coords="263,5,432,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,74,259,46,260,52,159,79"/>
-<area shape="rect" id="Node000003" href="$classHitboxComponent.html#a2e45eb85614ca5e9af65fddf9bb72ab4" title=" " alt="" coords="263,69,432,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,87,249,87,249,92,215,92"/>
-<area shape="rect" id="Node000004" href="$classHitboxComponent.html#a4e5f159fa1a6ea1cbdef25f92e5f49f5" title=" " alt="" coords="263,133,432,173"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="159,100,260,127,259,132,158,105"/>
-</map>
