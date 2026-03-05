@@ -1,7 +1,0 @@
-<map id="karakuri::ScenarioRunner::notify_mode_enter" name="karakuri::ScenarioRunner::notify_mode_enter">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,189,77"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831" title=" " alt="" coords="242,5,426,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,42,228,37,229,42,190,48"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="237,69,431,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,67,224,72,223,77,189,72"/>
-</map>

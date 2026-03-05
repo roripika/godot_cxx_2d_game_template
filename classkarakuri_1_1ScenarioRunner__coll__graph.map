@@ -1,5 +1,0 @@
-<map id="karakuri::ScenarioRunner" name="karakuri::ScenarioRunner">
-<area shape="rect" id="Node000001" title="汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。" alt="" coords="5,79,189,104"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="47,5,148,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
-</map>

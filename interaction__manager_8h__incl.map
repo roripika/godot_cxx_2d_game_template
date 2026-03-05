@@ -1,9 +1,0 @@
-<map id="src/core/interaction_manager.h" name="src/core/interaction_manager.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="245,5,392,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,184,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,48,157,91,155,86,269,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="208,101,429,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="321,46,321,87,316,87,316,46"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="454,101,674,126"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="373,43,520,94,518,99,372,48"/>
-</map>

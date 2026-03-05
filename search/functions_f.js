@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['take_5fdamage_0',['take_damage',['../classkarakuri_1_1AdventureGameStateBase.html#a38dd54021b5cbd058b54e9910b379e42',1,'karakuri::AdventureGameStateBase::take_damage()'],['../classkarakuri_1_1BaseEntity.html#a63a39382d15c4f7ffbc3112748c129b9',1,'karakuri::BaseEntity::take_damage()']]],
-  ['take_5fhit_1',['take_hit',['../classkarakuri_1_1HurtboxComponent.html#aee21150393efd162afb9f29467729f23',1,'karakuri::HurtboxComponent']]],
-  ['tr_5fkey_2',['tr_key',['../classkarakuri_1_1ScenarioRunner.html#aec0b269d5a9b4ed0153e17caa738ae32',1,'karakuri::ScenarioRunner']]],
-  ['trigger_5fhotspot_3',['trigger_hotspot',['../classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0',1,'karakuri::ScenarioRunner']]]
+  ['raycastcomponent_0',['RayCastComponent',['../classkarakuri_1_1RayCastComponent.html#aa79ad22946d6b8612db6f9cb55cab82a',1,'karakuri::RayCastComponent']]],
+  ['refresh_1',['refresh',['../classkarakuri_1_1InventoryUI.html#a5194d5efdf70e7ab4d77e19e335f5c51',1,'karakuri::InventoryUI']]],
+  ['register_5faction_2',['register_action',['../classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb',1,'karakuri::ScenarioRunner']]],
+  ['register_5fhit_3',['register_hit',['../classRhythmGameManager.html#aebbe4f7d7737adc8e5c995200fe38a40',1,'RhythmGameManager']]],
+  ['register_5fmiss_4',['register_miss',['../classRhythmGameManager.html#a780ffad8cb76a4a39143dd01bef04875',1,'RhythmGameManager']]],
+  ['remove_5fitem_5',['remove_item',['../classkarakuri_1_1Inventory.html#aab102153d32de4ddefaab5f8fdfd3261',1,'karakuri::Inventory']]],
+  ['report_5fbeat_6',['report_beat',['../classConductor.html#af7e05613087dc3f539d5dd57c196b9e0',1,'Conductor']]],
+  ['reset_7',['reset',['../classRhythmGameManager.html#a85a1eee50b98df313860351a1c740386',1,'RhythmGameManager']]],
+  ['reset_5fgame_8',['reset_game',['../classkarakuri_1_1AdventureGameStateBase.html#a34e02bec87f35d8283602b4150b64fc3',1,'karakuri::AdventureGameStateBase']]],
+  ['resolve_5floaded_5flocale_9',['resolve_loaded_locale',['../classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c',1,'karakuri::LocalizationService']]],
+  ['resolve_5fmode_5fid_10',['resolve_mode_id',['../classkarakuri_1_1ScenarioRunner.html#aa5199d967a955a3e944def28ed966831',1,'karakuri::ScenarioRunner']]],
+  ['resolve_5fnode_5fpath_11',['resolve_node_path',['../classkarakuri_1_1ScenarioRunner.html#aa1565f648605e5d9d1a9bcd5d73bdf9e',1,'karakuri::ScenarioRunner']]],
+  ['rhythmcommandlistener_12',['RhythmCommandListener',['../classRhythmCommandListener.html#a2b10c93317233c4ccc2f132317f0ec2e',1,'RhythmCommandListener']]],
+  ['rhythmgamemanager_13',['RhythmGameManager',['../classRhythmGameManager.html#a79f4bbd745f63bb05ef6ca8f173416ea',1,'RhythmGameManager']]],
+  ['rhythmnote_14',['RhythmNote',['../classRhythmNote.html#a3e633e3212681ccaf35fa65345dff992',1,'RhythmNote']]],
+  ['roguelikegenerator_15',['RoguelikeGenerator',['../classkarakuri_1_1RoguelikeGenerator.html#a19c2d7ab0326f6a95083c57a63b31941',1,'karakuri::RoguelikeGenerator']]],
+  ['roguelikemanager_16',['RoguelikeManager',['../classkarakuri_1_1RoguelikeManager.html#a78aaffbb1608486ffa9d6920c4e91763',1,'karakuri::RoguelikeManager']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['generator_0',['generator',['../classkarakuri_1_1RoguelikeManager.html#ab8b92310f13bcf50b6e607ca269a9691',1,'karakuri::RoguelikeManager']]],
-  ['grid_5fcontainer_1',['grid_container',['../classkarakuri_1_1InventoryUI.html#a8dbdefe938b5ed232060bf8d73314f3d',1,'karakuri::InventoryUI']]]
+  ['fighter1_0',['fighter1',['../classFightingGameManager.html#aadb4dc581a446acbc8481323a5a2398c',1,'FightingGameManager']]],
+  ['fighter2_1',['fighter2',['../classFightingGameManager.html#aaeb2711ba0679addb4c6f898b5cf029b',1,'FightingGameManager']]]
 ];

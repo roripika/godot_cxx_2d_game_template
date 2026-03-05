@@ -1,5 +1,0 @@
-<map id="karakuri::LocalizationService::get_current_locale_prefix" name="karakuri::LocalizationService::get_current_locale_prefix">
-<area shape="rect" id="Node000001" title="現在のロケールプレフィックス（en, ja など）を解決する。" alt="" coords="261,5,469,45"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1LocalizationService.html#a3ecb4d696a032b36078130d8930a3d25" title=" " alt="" coords="5,5,213,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,28,213,28,213,23,248,23"/>
-</map>

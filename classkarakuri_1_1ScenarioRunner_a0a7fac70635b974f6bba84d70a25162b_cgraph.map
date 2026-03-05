@@ -1,5 +1,0 @@
-<map id="karakuri::ScenarioRunner::load_scenario_internal" name="karakuri::ScenarioRunner::load_scenario_internal">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,189,45"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1YamlLite.html#a9642a726e21681bbe01bf5338cf0f282" title="YAMLテキストをGodotのVariantツリー（Dictionary/Array/スカラー等）としてパースする。" alt="" coords="237,5,375,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,23,224,23,224,28,190,28"/>
-</map>

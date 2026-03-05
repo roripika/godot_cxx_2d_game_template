@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['locale_5fstore_5fpath_5f_0',['locale_store_path_',['../classkarakuri_1_1LocalizationService.html#ae12491022e4badc45baa6f122d57fc82',1,'karakuri::LocalizationService']]]
+  ['kmajor_0',['kMajor',['../structkarakuri_1_1Version.html#a7a5754401395cf849d51b90913a41296',1,'karakuri::Version']]],
+  ['kminor_1',['kMinor',['../structkarakuri_1_1Version.html#a134df6ec3dc52af8649682214397c3c7',1,'karakuri::Version']]],
+  ['knockback_5fforce_2',['knockback_force',['../classkarakuri_1_1HitboxComponent.html#a526a8c21ffc62b5e3b45242db5a6e87c',1,'karakuri::HitboxComponent']]],
+  ['kpatch_3',['kPatch',['../structkarakuri_1_1Version.html#abd5e14ad4c2616932d50cd58a64dd166',1,'karakuri::Version']]]
 ];

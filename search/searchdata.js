@@ -1,13 +1,15 @@
 var indexSectionsWithContent =
 {
-  0: "_abcdeghiklmnoprstuvwy~",
-  1: "abdghilrsuvy",
+  0: "_abcdefghiklmnoprstuvwy~",
+  1: "abcdfghilmnrsuvy",
   2: "k",
-  3: "abdghiklrsuy",
-  4: "_abcdeghilnoprstuw~",
-  5: "abcdeghiklmnoprstvw",
+  3: "abcdfghiklmnrsuy",
+  4: "_abcdefghilmnoprstuw~",
+  5: "abcdefghiklmnoprstvw",
   6: "a",
-  7: "k"
+  7: "g",
+  8: "cfrw",
+  9: "k"
 };
 
 var indexSectionNames =
@@ -19,7 +21,9 @@ var indexSectionNames =
   4: "functions",
   5: "variables",
   6: "typedefs",
-  7: "defines"
+  7: "enums",
+  8: "enumvalues",
+  9: "defines"
 };
 
 var indexSectionLabels =
@@ -31,6 +35,8 @@ var indexSectionLabels =
   4: "関数",
   5: "変数",
   6: "型定義",
-  7: "マクロ定義"
+  7: "列挙型",
+  8: "列挙値",
+  9: "マクロ定義"
 };
 

@@ -1,7 +1,0 @@
-<map id="karakuri::LocalizationService::load_saved_locale_prefix" name="karakuri::LocalizationService::load_saved_locale_prefix">
-<area shape="rect" id="Node000001" title="保存されたロケールプレフィックスを読み込み、適用する。" alt="" coords="5,37,213,77"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e" title=" " alt="" coords="261,5,469,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,42,247,37,248,43,214,47"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1LocalizationService.html#ab79a6c2bebaae6eba28b995dce79e66c" title=" " alt="" coords="261,69,469,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,68,248,72,247,77,213,73"/>
-</map>

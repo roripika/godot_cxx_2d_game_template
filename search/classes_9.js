@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['universalworlddata_0',['UniversalWorldData',['../classkarakuri_1_1UniversalWorldData.html',1,'karakuri']]]
+  ['miningcomponent_0',['MiningComponent',['../classMiningComponent.html',1,'']]]
 ];

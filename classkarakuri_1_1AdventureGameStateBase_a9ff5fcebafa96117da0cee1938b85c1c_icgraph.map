@@ -1,5 +1,0 @@
-<map id="karakuri::AdventureGameStateBase::set_reset_hook" name="karakuri::AdventureGameStateBase::set_reset_hook">
-<area shape="rect" id="Node000001" title="Mystery等の上位層がリセット時の追加処理を注入するためのフック。 DI: mystery shell の _ready() から一度だけ登録する。" alt="" coords="276,5,499,45"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1AdventureGameStateBase.html#a30b54f36aaaa720e161e61e375fdd2c6" title=" " alt="" coords="5,5,228,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="262,28,228,28,228,23,262,23"/>
-</map>

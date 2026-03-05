@@ -1,9 +1,0 @@
-<map id="src/core/services/save_service.h" name="src/core/services/save_service.h">
-<area shape="rect" id="Node000001" title="Basic Game Karakuri: JSON ファイル I/O の汎用セーブサービス。" alt="" coords="269,5,435,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,211,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="294,48,158,92,156,86,293,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="235,93,469,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="355,46,355,79,349,79,349,46"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="493,93,701,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="412,43,550,87,548,92,410,48"/>
-</map>

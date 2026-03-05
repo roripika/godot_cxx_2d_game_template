@@ -1,7 +1,0 @@
-<map id="karakuri::ScenarioRunner::trigger_hotspot" name="karakuri::ScenarioRunner::trigger_hotspot">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,189,45"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa" title=" " alt="" coords="237,5,421,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,23,223,23,223,28,190,28"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c" title=" " alt="" coords="469,5,663,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="421,23,456,23,456,28,421,28"/>
-</map>

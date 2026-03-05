@@ -1,7 +1,0 @@
-<map id="karakuri::InventorySlotUI::_bind_methods" name="karakuri::InventorySlotUI::_bind_methods">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,188,77"/>
-<area shape="rect" id="Node000002" href="$classkarakuri_1_1InventorySlotUI.html#ae5070eee26d6a503ae6c67d9ce939f6d" title=" " alt="" coords="236,5,419,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,42,222,37,223,43,188,47"/>
-<area shape="rect" id="Node000003" href="$classkarakuri_1_1InventorySlotUI.html#a8d1c7c9e41d7b762b17f4bdd9e8cd9b4" title=" " alt="" coords="236,69,419,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,67,223,72,222,77,188,73"/>
-</map>

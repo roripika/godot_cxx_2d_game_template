@@ -1,13 +1,15 @@
 var searchData=
 [
-  ['load_5fgame_0',['load_game',['../classkarakuri_1_1SaveService.html#a0fc5bd8bc7d996e6595b09d6ba65eff6',1,'karakuri::SaveService']]],
-  ['load_5fsaved_5flocale_5fprefix_1',['load_saved_locale_prefix',['../classkarakuri_1_1LocalizationService.html#a778a478d9007a6960667b73d7ae7d111',1,'karakuri::LocalizationService']]],
-  ['load_5fscenario_2',['load_scenario',['../classkarakuri_1_1ScenarioRunner.html#aee25586a80bd674b095d0ff8e8d7ef54',1,'karakuri::ScenarioRunner']]],
-  ['load_5fscenario_5finternal_3',['load_scenario_internal',['../classkarakuri_1_1ScenarioRunner.html#a0a7fac70635b974f6bba84d70a25162b',1,'karakuri::ScenarioRunner']]],
-  ['load_5fscene_5fby_5fid_4',['load_scene_by_id',['../classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd',1,'karakuri::ScenarioRunner']]],
-  ['locale_5fstore_5fpath_5f_5',['locale_store_path_',['../classkarakuri_1_1LocalizationService.html#ae12491022e4badc45baa6f122d57fc82',1,'karakuri::LocalizationService']]],
-  ['localization_5fservice_2ecpp_6',['localization_service.cpp',['../localization__service_8cpp.html',1,'']]],
-  ['localization_5fservice_2eh_7',['localization_service.h',['../localization__service_8h.html',1,'']]],
-  ['localizationservice_8',['localizationservice',['../classkarakuri_1_1LocalizationService.html',1,'karakuri::LocalizationService'],['../classkarakuri_1_1LocalizationService.html#afb5d3906c76ec556d6156870250e80c1',1,'karakuri::LocalizationService::LocalizationService()']]],
-  ['logger_9',['Logger',['../classkarakuri_1_1Logger.html',1,'karakuri']]]
+  ['karakuri_0',['karakuri',['../namespacekarakuri.html',1,'']]],
+  ['karakuri_2eh_1',['karakuri.h',['../karakuri_8h.html',1,'']]],
+  ['karakuri_5fdebug_2',['KARAKURI_DEBUG',['../karakuri__logger_8h.html#ac5542d01eab8f31fbec4590496eb4aaa',1,'karakuri_logger.h']]],
+  ['karakuri_5ferr_3',['KARAKURI_ERR',['../karakuri__logger_8h.html#aa077768238603038a9b10a31a2bacdfd',1,'karakuri_logger.h']]],
+  ['karakuri_5finfo_4',['KARAKURI_INFO',['../karakuri__logger_8h.html#aabde2ec0e681e2dc73f2cebd5fd524fc',1,'karakuri_logger.h']]],
+  ['karakuri_5flogger_2ecpp_5',['karakuri_logger.cpp',['../karakuri__logger_8cpp.html',1,'']]],
+  ['karakuri_5flogger_2eh_6',['karakuri_logger.h',['../karakuri__logger_8h.html',1,'']]],
+  ['karakuri_5fwarn_7',['KARAKURI_WARN',['../karakuri__logger_8h.html#a838e5e523840fc1130095ce8254b0607',1,'karakuri_logger.h']]],
+  ['kmajor_8',['kMajor',['../structkarakuri_1_1Version.html#a7a5754401395cf849d51b90913a41296',1,'karakuri::Version']]],
+  ['kminor_9',['kMinor',['../structkarakuri_1_1Version.html#a134df6ec3dc52af8649682214397c3c7',1,'karakuri::Version']]],
+  ['knockback_5fforce_10',['knockback_force',['../classkarakuri_1_1HitboxComponent.html#a526a8c21ffc62b5e3b45242db5a6e87c',1,'karakuri::HitboxComponent']]],
+  ['kpatch_11',['kPatch',['../structkarakuri_1_1Version.html#abd5e14ad4c2616932d50cd58a64dd166',1,'karakuri::Version']]]
 ];
