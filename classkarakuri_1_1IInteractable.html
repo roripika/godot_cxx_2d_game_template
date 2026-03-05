@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: karakuri::IInteractable クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacekarakuri.html">karakuri</a></li><li class="navelem"><a class="el" href="classkarakuri_1_1IInteractable.html">IInteractable</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公開メンバ関数</a>  </div>
+  <div class="headertitle"><div class="title">karakuri::IInteractable クラス<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>プレイヤーが調査・インタラクト可能なオブジェクトの純粋仮想インターフェース。  
+ <a href="classkarakuri_1_1IInteractable.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="i__interactable_8h_source.html">i_interactable.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a025594a8cc7aa852d9b82567fb595c46" id="r_a025594a8cc7aa852d9b82567fb595c46"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1IInteractable.html#a025594a8cc7aa852d9b82567fb595c46">~IInteractable</a> ()=default</td></tr>
+<tr class="separator:a025594a8cc7aa852d9b82567fb595c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e4a7b9a534a8d492ee5ae8dff8f2943" id="r_a4e4a7b9a534a8d492ee5ae8dff8f2943"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1IInteractable.html#a4e4a7b9a534a8d492ee5ae8dff8f2943">on_interact</a> ()=0</td></tr>
+<tr class="memdesc:a4e4a7b9a534a8d492ee5ae8dff8f2943"><td class="mdescLeft">&#160;</td><td class="mdescRight">プレイヤーが調査アクションを実行したときに呼ばれる。  <br /></td></tr>
+<tr class="separator:a4e4a7b9a534a8d492ee5ae8dff8f2943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19d7dca7fe41baa1d0312896c0ea2ed9" id="r_a19d7dca7fe41baa1d0312896c0ea2ed9"><td class="memItemLeft" align="right" valign="top">virtual godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1IInteractable.html#a19d7dca7fe41baa1d0312896c0ea2ed9">get_interaction_label</a> () const</td></tr>
+<tr class="memdesc:a19d7dca7fe41baa1d0312896c0ea2ed9"><td class="mdescLeft">&#160;</td><td class="mdescRight">調査アイコン（「！」等）に表示するラベルを返す。  <br /></td></tr>
+<tr class="separator:a19d7dca7fe41baa1d0312896c0ea2ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>プレイヤーが調査・インタラクト可能なオブジェクトの純粋仮想インターフェース。 </p>
+<dl class="section note"><dt>覚え書き</dt><dd>Godot の GDCLASS には属さない純粋 C++ ABC。 動的型検査は dynamic_cast&lt;IInteractable*&gt; で行う。 </dd></dl>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="a025594a8cc7aa852d9b82567fb595c46" name="a025594a8cc7aa852d9b82567fb595c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a025594a8cc7aa852d9b82567fb595c46">&#9670;&#160;</a></span>~IInteractable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual karakuri::IInteractable::~IInteractable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a19d7dca7fe41baa1d0312896c0ea2ed9" name="a19d7dca7fe41baa1d0312896c0ea2ed9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19d7dca7fe41baa1d0312896c0ea2ed9">&#9670;&#160;</a></span>get_interaction_label()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual godot::String karakuri::IInteractable::get_interaction_label </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>調査アイコン（「！」等）に表示するラベルを返す。 </p>
+<dl class="section return"><dt>戻り値</dt><dd>空文字列の場合はデフォルトアイコンを表示。 </dd></dl>
+
+</div>
+</div>
+<a id="a4e4a7b9a534a8d492ee5ae8dff8f2943" name="a4e4a7b9a534a8d492ee5ae8dff8f2943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e4a7b9a534a8d492ee5ae8dff8f2943">&#9670;&#160;</a></span>on_interact()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void karakuri::IInteractable::on_interact </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>プレイヤーが調査アクションを実行したときに呼ばれる。 </p>
+<p>実装例:</p><ul>
+<li>シナリオ JSON を読み込んで会話を開始する</li>
+<li>フラグを確認してセリフを分岐する</li>
+<li>証拠品をインベントリに追加する </li>
+</ul>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>src/core/interfaces/<a class="el" href="i__interactable_8h_source.html">i_interactable.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

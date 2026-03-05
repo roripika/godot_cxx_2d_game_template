@@ -7,6 +7,7 @@ var searchData=
   ['on_5fdialogue_5ffinished_4',['on_dialogue_finished',['../classkarakuri_1_1ScenarioRunner.html#a01a9b2b785d9580e0186f87bf8aa88c7',1,'karakuri::ScenarioRunner']]],
   ['on_5fevidence_5fselected_5',['on_evidence_selected',['../classkarakuri_1_1ScenarioRunner.html#a62eb16e61cf610b22910d2d0ef6b0465',1,'karakuri::ScenarioRunner']]],
   ['on_5fhit_5fconfirmed_6',['on_hit_confirmed',['../classFightingGameManager.html#a5528ebd9b22b9e22ebf0675b9e809f63',1,'FightingGameManager']]],
-  ['on_5ftransition_5ffinished_7',['on_transition_finished',['../classkarakuri_1_1ScenarioRunner.html#a614a8f0a89852726f3bd550519077d96',1,'karakuri::ScenarioRunner']]],
-  ['original_5ftime_5fscale_8',['original_time_scale',['../classHitStopManager.html#ac17dfad61419e77e5e5722f657724150',1,'HitStopManager']]]
+  ['on_5finteract_7',['on_interact',['../classkarakuri_1_1IInteractable.html#a4e4a7b9a534a8d492ee5ae8dff8f2943',1,'karakuri::IInteractable']]],
+  ['on_5ftransition_5ffinished_8',['on_transition_finished',['../classkarakuri_1_1ScenarioRunner.html#a614a8f0a89852726f3bd550519077d96',1,'karakuri::ScenarioRunner']]],
+  ['original_5ftime_5fscale_9',['original_time_scale',['../classHitStopManager.html#ac17dfad61419e77e5e5722f657724150',1,'HitStopManager']]]
 ];

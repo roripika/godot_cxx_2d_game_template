@@ -1,15 +1,18 @@
 var searchData=
 [
-  ['input_5fservice_2ecpp_0',['input_service.cpp',['../input__service_8cpp.html',1,'']]],
-  ['input_5fservice_2eh_1',['input_service.h',['../input__service_8h.html',1,'']]],
-  ['interaction_5fmanager_2ecpp_2',['interaction_manager.cpp',['../interaction__manager_8cpp.html',1,'']]],
-  ['interaction_5fmanager_2eh_3',['interaction_manager.h',['../interaction__manager_8h.html',1,'']]],
-  ['inventory_2ecpp_4',['inventory.cpp',['../inventory_8cpp.html',1,'']]],
-  ['inventory_2eh_5',['inventory.h',['../inventory_8h.html',1,'']]],
-  ['inventory_5fslot_5fui_2ecpp_6',['inventory_slot_ui.cpp',['../inventory__slot__ui_8cpp.html',1,'']]],
-  ['inventory_5fslot_5fui_2eh_7',['inventory_slot_ui.h',['../inventory__slot__ui_8h.html',1,'']]],
-  ['inventory_5fui_2ecpp_8',['inventory_ui.cpp',['../inventory__ui_8cpp.html',1,'']]],
-  ['inventory_5fui_2eh_9',['inventory_ui.h',['../inventory__ui_8h.html',1,'']]],
-  ['isometric_5fview_2ecpp_10',['isometric_view.cpp',['../isometric__view_8cpp.html',1,'']]],
-  ['isometric_5fview_2eh_11',['isometric_view.h',['../isometric__view_8h.html',1,'']]]
+  ['i_5finteractable_2eh_0',['i_interactable.h',['../i__interactable_8h.html',1,'']]],
+  ['input_5fservice_2ecpp_1',['input_service.cpp',['../input__service_8cpp.html',1,'']]],
+  ['input_5fservice_2eh_2',['input_service.h',['../input__service_8h.html',1,'']]],
+  ['interaction_5fcomponent_2ecpp_3',['interaction_component.cpp',['../interaction__component_8cpp.html',1,'']]],
+  ['interaction_5fcomponent_2eh_4',['interaction_component.h',['../interaction__component_8h.html',1,'']]],
+  ['interaction_5fmanager_2ecpp_5',['interaction_manager.cpp',['../interaction__manager_8cpp.html',1,'']]],
+  ['interaction_5fmanager_2eh_6',['interaction_manager.h',['../interaction__manager_8h.html',1,'']]],
+  ['inventory_2ecpp_7',['inventory.cpp',['../inventory_8cpp.html',1,'']]],
+  ['inventory_2eh_8',['inventory.h',['../inventory_8h.html',1,'']]],
+  ['inventory_5fslot_5fui_2ecpp_9',['inventory_slot_ui.cpp',['../inventory__slot__ui_8cpp.html',1,'']]],
+  ['inventory_5fslot_5fui_2eh_10',['inventory_slot_ui.h',['../inventory__slot__ui_8h.html',1,'']]],
+  ['inventory_5fui_2ecpp_11',['inventory_ui.cpp',['../inventory__ui_8cpp.html',1,'']]],
+  ['inventory_5fui_2eh_12',['inventory_ui.h',['../inventory__ui_8h.html',1,'']]],
+  ['isometric_5fview_2ecpp_13',['isometric_view.cpp',['../isometric__view_8cpp.html',1,'']]],
+  ['isometric_5fview_2eh_14',['isometric_view.h',['../isometric__view_8h.html',1,'']]]
 ];

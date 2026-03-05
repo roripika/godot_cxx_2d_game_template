@@ -5,6 +5,7 @@ var searchData=
   ['default_5fblock_5fid_2',['default_block_id',['../classBuildingComponent.html#a3cb2a6ee3aac7a06acd0477098b47e6f',1,'BuildingComponent']]],
   ['depth_5flayer_3',['depth_layer',['../classkarakuri_1_1SideScrollingView.html#abca8f4c94227f5ca74d2b01af2e2f6a2',1,'karakuri::SideScrollingView']]],
   ['description_4',['description',['../classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7',1,'karakuri::GameItem']]],
-  ['dialogue_5fui_5f_5',['dialogue_ui_',['../classkarakuri_1_1ScenarioRunner.html#a6867ecf0f1faac393641eed9201841cb',1,'karakuri::ScenarioRunner']]],
-  ['dialogue_5fui_5fpath_5f_6',['dialogue_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a6b072df9efc44e61a30895e1ce019c7c',1,'karakuri::ScenarioRunner']]]
+  ['detection_5fradius_5f_5',['detection_radius_',['../classkarakuri_1_1InteractionComponent.html#a6050e80cd66281f2ef242e1ca6f1d939',1,'karakuri::InteractionComponent']]],
+  ['dialogue_5fui_5f_6',['dialogue_ui_',['../classkarakuri_1_1ScenarioRunner.html#a6867ecf0f1faac393641eed9201841cb',1,'karakuri::ScenarioRunner']]],
+  ['dialogue_5fui_5fpath_5f_7',['dialogue_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a6b072df9efc44e61a30895e1ce019c7c',1,'karakuri::ScenarioRunner']]]
 ];
