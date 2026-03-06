@@ -50,7 +50,8 @@ private:
   /// @brief 調査アイコンに表示するカスタムラベル（省略可）。
   /// 空の場合 InteractionComponent がデフォルトアイコンを使う。
   godot::String interaction_label_ = "";
-
+  /// @brief 交差時に自動的にインベントリに追加する ItemService ID（空文字で無効）。
+  godot::String item_id_ = "";
   static void _bind_methods();
 
 public:
@@ -84,12 +85,14 @@ public:
   void set_interaction_label_prop(const godot::String &label);
   godot::String get_interaction_label_prop() const;
 
+  void set_item_id(const godot::String &id);
+  godot::String get_item_id() const;
+
   // ------------------------------------------------------------------
-  // Signals (定義は _bind_methods で ClassDB::add_signal)
+  // Signals
   // ------------------------------------------------------------------
   // interacted(scenario_id: String)
-  //   → on_interact() が呼ばれたとき発火。
-  //     シーン側の GDScript でシナリオ開始処理に接続する。
+  // item_collected(item_id: String)  → ItemService に追加完了後に発火。
 };
 
 } // namespace mystery

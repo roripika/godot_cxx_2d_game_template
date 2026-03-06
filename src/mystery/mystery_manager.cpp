@@ -1,6 +1,7 @@
 #include "mystery_manager.h"
 #include "../core/adventure_game_state.h"
 #include "../core/scenario/scenario_runner.h"
+#include "../core/services/item_service.h"
 #include "../core/services/save_service.h"
 #include "evidence_manager.h"
 #include <godot_cpp/classes/engine.hpp>
@@ -259,7 +260,42 @@ void MysteryManager::register_scenario_actions() {
     return false;
   });
 
-  // 3. take_damage
+  // 3. give_item — インベントリに追加 (give_evidence と独立した汎用版)
+  runner->register_action("give_item", [](const Variant &p) {
+    String id = p;
+    auto *svc = karakuri::ItemService::get_singleton();
+    if (svc)
+      svc->add_item(id);
+    return false; // Non-blocking
+  });
+
+  // 4. present_evidence — 証拠を提示してシナリオを分岐
+  //    YAML: { action: present_evidence, value: { item_id: "...", on_correct: [...], on_wrong: [...] } }
+  runner->register_action("present_evidence", [runner](const Variant &p) {
+    if (p.get_type() != Variant::DICTIONARY) {
+      return false;
+    }
+    Dictionary params = p;
+    String item_id;
+    if (params.has("item_id")) {
+      item_id = String(params["item_id"]);
+    }
+    auto *svc = karakuri::ItemService::get_singleton();
+    bool correct = svc && !item_id.is_empty() && svc->has_item(item_id);
+
+    // on_correct / on_wrong いずれかのサブ配列でシナリオを差し込む
+    String branch_key = correct ? "on_correct" : "on_wrong";
+    if (params.has(branch_key)) {
+      Variant branch = params[branch_key];
+      if (branch.get_type() == Variant::ARRAY) {
+        Array steps = branch;
+        runner->inject_steps(steps);
+      }
+    }
+    return false; // Non-blocking (inject した分は次フレームで実行)
+  });
+
+  // 5. take_damage
   runner->register_action("take_damage", [this](const Variant &p) {
     int amount = (int)p;
     auto *ags = karakuri::AdventureGameStateBase::get_singleton();

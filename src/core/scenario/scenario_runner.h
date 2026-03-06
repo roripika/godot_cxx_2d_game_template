@@ -64,6 +64,16 @@ public:
   bool execute_single_action(const godot::Variant &action);
   void complete_custom_action();
 
+  /**
+   * @brief 現在のアクション直後にステップを挿入する。
+   *
+   * present_evidence 等の分岐アクションから呼び出すことで、
+   * on_correct / on_wrong などのサブ配列をキューに挿入できる。
+   *
+   * @param steps 挿入するアクション配列。
+   */
+  void inject_steps(const godot::Array &steps);
+
 protected:
   static void _bind_methods();
 

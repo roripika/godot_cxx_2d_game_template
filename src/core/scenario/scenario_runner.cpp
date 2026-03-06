@@ -8,6 +8,7 @@
 #include <godot_cpp/classes/collision_shape2d.hpp>
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/file_access.hpp>
+#include <godot_cpp/classes/json.hpp>
 #include <godot_cpp/classes/node2d.hpp>
 #include <godot_cpp/classes/packed_scene.hpp>
 #include <godot_cpp/classes/rectangle_shape2d.hpp>
@@ -121,6 +122,29 @@ String ScenarioRunner::get_current_scene_id() const {
 
 void ScenarioRunner::complete_custom_action() {
   waiting_for_custom_action_ = false;
+}
+
+void ScenarioRunner::inject_steps(const Array &steps) {
+  if (steps.is_empty())
+    return;
+  // pending_action_index_ はすでにインクリメント済みなので、現在位置に挿入する。
+  Array before;
+  for (int i = 0; i < pending_action_index_; ++i) {
+    before.append(pending_actions_[i]);
+  }
+  Array after;
+  for (int i = pending_action_index_; i < pending_actions_.size(); ++i) {
+    after.append(pending_actions_[i]);
+  }
+  Array merged;
+  for (int i = 0; i < before.size(); ++i)
+    merged.append(before[i]);
+  for (int i = 0; i < steps.size(); ++i)
+    merged.append(steps[i]);
+  for (int i = 0; i < after.size(); ++i)
+    merged.append(after[i]);
+  pending_actions_ = merged;
+  // pending_action_index_ はそのまま。次の step_actions() で挿入分が実行される。
 }
 
 void ScenarioRunner::_bind_methods() {
@@ -259,25 +283,46 @@ bool ScenarioRunner::load_scenario_internal() {
     return false;
   Variant root;
   String err;
-  if (!YamlLite::parse(f->get_as_text(), root, err))
-    return false;
+
+  if (scenario_path_.ends_with(".json")) {
+    root = JSON::parse_string(f->get_as_text());
+    if (root.get_type() == Variant::NIL) {
+      godot::UtilityFunctions::print(
+          String("[ScenarioRunner] Error: Failed to parse JSON: ") +
+          scenario_path_);
+      return false;
+    }
+  } else {
+    if (!YamlLite::parse(f->get_as_text(), root, err)) {
+      godot::UtilityFunctions::print(
+          String("[ScenarioRunner] Error: Failed to parse YAML: ") + err);
+      return false;
+    }
+  }
+
   scenario_root_ = as_dict(root);
   scenes_ = as_dict(scenario_root_.get("scenes", Dictionary()));
+  godot::UtilityFunctions::print(
+      String("[ScenarioRunner] Loaded scenario from ") + scenario_path_ +
+      ". Scenes count: " + String::num(scenes_.size()));
   return !scenes_.is_empty();
 }
 
 void ScenarioRunner::load_scene_by_id(const String &scene_id) {
-  if (!scenes_.has(scene_id))
+  godot::UtilityFunctions::print(String("[ScenarioRunner] load_scene_by_id: ") +
+                                 scene_id);
+  if (!scenes_.has(scene_id)) {
+    godot::UtilityFunctions::print(
+        String("[ScenarioRunner] Error: Scene ID not found: ") + scene_id);
     return;
+  }
   const Dictionary scene_dict = as_dict(scenes_[scene_id]);
   const String scene_path = dict_get_string(scene_dict, "scene_path", "");
-  if (scene_path.is_empty())
-    return;
 
   notify_mode_exit(current_mode_id_, scene_id);
   current_scene_id_ = scene_id;
 
-  if (scene_container_) {
+  if (!scene_path.is_empty() && scene_container_) {
     for (int i = scene_container_->get_child_count() - 1; i >= 0; i--) {
       Node *c = scene_container_->get_child(i);
       if (c)
@@ -302,7 +347,11 @@ void ScenarioRunner::load_scene_by_id(const String &scene_id) {
 
   bind_scene_hotspots(scene_dict);
   notify_mode_enter(scene_id, scene_dict);
-  start_actions(as_array(scene_dict.get("on_enter", Array())));
+  Array actions = as_array(scene_dict.get("on_enter", Array()));
+  godot::UtilityFunctions::print(
+      String("[ScenarioRunner] starting actions for ") + scene_id +
+      ". Action count: " + String::num(actions.size()));
+  start_actions(actions);
 }
 
 void ScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
@@ -401,11 +450,18 @@ void ScenarioRunner::init_builtin_actions() {
   });
   register_action("dialogue", [this](const Variant &p) {
     Dictionary d = as_dict(p);
+    godot::UtilityFunctions::print(
+        String("[ScenarioRunner] dialogue action: speaker=") +
+        dict_get_string(d, "speaker") + " text=" + dict_get_string(d, "text"));
     if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
       waiting_for_dialogue_ = true;
       dialogue_ui_->call("show_message", dict_get_string(d, "speaker"),
                          dict_get_string(d, "text"));
       return true;
+    } else {
+      godot::UtilityFunctions::print(
+          String("[ScenarioRunner] dialogue_ui_ is ") +
+          (dialogue_ui_ ? "valid but missing show_message" : "null"));
     }
     return false;
   });
