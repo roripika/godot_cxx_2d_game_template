@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Basic Game Karakuri SDK: src/core/services/item_service.h ファイル</title>
+<title>Basic Game Karakuri SDK: src/core/services/sound_service.h ファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,22 +77,20 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">データ構造</a> &#124;
 <a href="#namespaces">名前空間</a>  </div>
-  <div class="headertitle"><div class="title">item_service.h ファイル</div></div>
+  <div class="headertitle"><div class="title">sound_service.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Basic Game Karakuri: 汎用アイテム管理サービス。  
+<p>Basic Game Karakuri: 音響・ハプティクスサービス。  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;godot_cpp/classes/node.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/variant/array.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
 </div>
-<p><a href="item__service_8h_source.html">[ソースコード]</a></p>
+<p><a href="sound__service_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ItemService.html">karakuri::ItemService</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SoundService.html">karakuri::SoundService</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -101,36 +99,28 @@ $(function() {
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: 汎用アイテム管理サービス。 </p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<div class="textblock"><p>Basic Game Karakuri: 音響・ハプティクスサービス。 </p>
+<h2><a class="anchor" id="autotoc_md13"></a>
 役割</h2>
 <ul>
-<li>アイテムマスターカタログ（JSON からロード可能）の管理。</li>
-<li>プレイヤーの現在所持アイテム（インベントリ）の管理。</li>
-<li>SaveService と連携した所持状態の保存・復元。</li>
+<li>BGM の再生管理（フェードイン/アウト付きチャンネル切替え）。</li>
+<li>SE の再生（同時再生プール：最大 8ch）。</li>
+<li>モバイル端末のハプティクス（振動）制御。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 設計ポリシー (karakuri 層)</h2>
 <ul>
-<li>ミステリー固有の概念（証拠品・証言等）を一切知らない。</li>
-<li>mystery 層は ItemService を利用して「証拠品フィルタリング」等を行う。</li>
+<li>ミステリー固有の概念を一切知らない。</li>
+<li>ActionRunner と独立して動作し、mystery 層から同時呼び出しできる。</li>
+<li>AudioStreamPlayer を内部にプールとして持ち、シーン側に露出しない。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 使い方</h2>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> *svc = <a class="code hl_function" href="classkarakuri_1_1ItemService.html#a71ae44b3c624e3b75d391d662d72bc1c">karakuri::ItemService::get_singleton</a>();</div>
-<div class="line">svc-&gt;register_item(<span class="stringliteral">&quot;knife&quot;</span>, { <span class="stringliteral">&quot;name&quot;</span>: <span class="stringliteral">&quot;血のナイフ&quot;</span>, ... });</div>
-<div class="line">svc-&gt;add_item(<span class="stringliteral">&quot;knife&quot;</span>);</div>
-<div class="line"><span class="keywordtype">bool</span> has = svc-&gt;has_item(<span class="stringliteral">&quot;knife&quot;</span>);  <span class="comment">// true</span></div>
-<div class="ttc" id="aclasskarakuri_1_1ItemService_html_a71ae44b3c624e3b75d391d662d72bc1c"><div class="ttname"><a href="classkarakuri_1_1ItemService.html#a71ae44b3c624e3b75d391d662d72bc1c">karakuri::ItemService::get_singleton</a></div><div class="ttdeci">static ItemService * get_singleton()</div><div class="ttdef"><b>Definition</b> item_service.cpp:26</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
-マスターカタログの Dictionary 形式</h2>
-<div class="fragment"><div class="line">{</div>
-<div class="line">  &quot;id&quot;: &quot;knife&quot;,</div>
-<div class="line">  &quot;name&quot;: &quot;血のついたナイフ&quot;,</div>
-<div class="line">  &quot;description&quot;: &quot;被害者の部屋で発見。&quot;,</div>
-<div class="line">  &quot;icon_path&quot;: &quot;res://assets/items/knife.png&quot;,</div>
-<div class="line">  &quot;metadata&quot;: {}</div>
-<div class="line">}</div>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> *snd = <a class="code hl_function" href="classkarakuri_1_1SoundService.html#af9a8ec57fe973ab10095958e9c9f0763">karakuri::SoundService::get_singleton</a>();</div>
+<div class="line">snd-&gt;play_bgm(<span class="stringliteral">&quot;res://audio/bgm_investigation.ogg&quot;</span>, 1.0f);</div>
+<div class="line">snd-&gt;play_se(<span class="stringliteral">&quot;res://audio/se_item_get.wav&quot;</span>);</div>
+<div class="line">snd-&gt;vibrate(2, 0.3f);  <span class="comment">// 強度2、0.3秒</span></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_af9a8ec57fe973ab10095958e9c9f0763"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#af9a8ec57fe973ab10095958e9c9f0763">karakuri::SoundService::get_singleton</a></div><div class="ttdeci">static SoundService * get_singleton()</div><div class="ttdef"><b>Definition</b> sound_service.cpp:33</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

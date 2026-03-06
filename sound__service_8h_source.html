@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/services/sound_service.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">sound_service.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sound__service_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KARAKURI_SOUND_SERVICE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KARAKURI_SOUND_SERVICE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;godot_cpp/classes/node.hpp&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;godot_cpp/variant/string.hpp&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00032" data-start="{" data-end="};">
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html">   32</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1SoundService.html">SoundService</a> : <span class="keyword">public</span> godot::Node {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  GDCLASS(<a class="code hl_class" href="classkarakuri_1_1SoundService.html">SoundService</a>, godot::Node)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#a609641fd6dee26a28e1abb2671faf8b1">   36</a></span>  <span class="keyword">static</span> <a class="code hl_class" href="classkarakuri_1_1SoundService.html">SoundService</a> *<a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a609641fd6dee26a28e1abb2671faf8b1">singleton_</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#a8e995904b1654354d41b6907d464cdde">   38</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a8e995904b1654354d41b6907d464cdde">SE_POOL_SIZE</a> = 8;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#a1ea3e2aac00c9f4d263be3b7063ff57f">   41</a></span>  godot::Node *<a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a1ea3e2aac00c9f4d263be3b7063ff57f">bgm_players_</a>[2] = {<span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#aa06e21822225fd14fe9e491395a7f764">   42</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classkarakuri_1_1SoundService.html#aa06e21822225fd14fe9e491395a7f764">bgm_active_</a> = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#a9ed4a7a6bf3722036c5f7b72e57c86fa">   45</a></span>  godot::Node *<a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a9ed4a7a6bf3722036c5f7b72e57c86fa">se_pool_</a>[<a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a8e995904b1654354d41b6907d464cdde">SE_POOL_SIZE</a>] = {};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#abe3b8c76469214ca7f50b25a4696c897">   48</a></span>  godot::String <a class="code hl_variable" href="classkarakuri_1_1SoundService.html#abe3b8c76469214ca7f50b25a4696c897">current_bgm_path_</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#a75432e95c5447b27339ab457e0030679">   51</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a75432e95c5447b27339ab457e0030679">bgm_volume_db_</a> = 0.0f;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SoundService.html#a449045ca0339338e18c06e500a119a45">   53</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="classkarakuri_1_1SoundService.html#a449045ca0339338e18c06e500a119a45">se_volume_db_</a> = 0.0f;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#ad1aabb49af90afa8d3dc15059931ddb8">_bind_methods</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#af85e87b6a0bea5b4165f3801e74e820d">ensure_players</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  godot::Node *<a class="code hl_function" href="classkarakuri_1_1SoundService.html#a488eae5b023b06680c06471d916937b2">get_free_se_player</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <a class="code hl_function" href="classkarakuri_1_1SoundService.html#a5339ff2a6494fb5064ad458cd1b10a0a">SoundService</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_function" href="classkarakuri_1_1SoundService.html#a8434f32619a6de8d7e996f836b2a94c0">~SoundService</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#aa4923c47d801189b3b2e6a4de3eff7e1">_ready</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keyword">static</span> <a class="code hl_class" href="classkarakuri_1_1SoundService.html">SoundService</a> *<a class="code hl_function" href="classkarakuri_1_1SoundService.html#af9a8ec57fe973ab10095958e9c9f0763">get_singleton</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="comment">// BGM</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#ae94363d27d93493a6fbb1514d4e09dd5">play_bgm</a>(<span class="keyword">const</span> godot::String &amp;stream_path, <span class="keywordtype">float</span> fade_sec = 0.0f);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#adda474d69c2811bc8aab2f0dc5188a26">stop_bgm</a>(<span class="keywordtype">float</span> fade_sec = 0.0f);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="comment">// SE</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#a6af4537cfc3dd9bd225a2b3f6d7ecbec">play_se</a>(<span class="keyword">const</span> godot::String &amp;stream_path, <span class="keywordtype">float</span> volume_db = 0.0f);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">// ハプティクス</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#a620f1fdcbdc534b6878a574a7327a1c7">vibrate</a>(<span class="keywordtype">int</span> intensity, <span class="keywordtype">float</span> duration_sec);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="comment">// 音量設定</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#a6fea0ecbf808c47abe498346febe9d0c">set_bgm_volume_db</a>(<span class="keywordtype">float</span> db);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#aee190eb1b937f34bc0f99c740baee738">get_bgm_volume_db</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#ade2a00f430ac193ba06352f7b8b25c1e">set_se_volume_db</a>(<span class="keywordtype">float</span> db);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classkarakuri_1_1SoundService.html#a51a02798425f2921e38e01b1456f38e6">get_se_volume_db</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>};</div>
+</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="preprocessor">#endif </span><span class="comment">// KARAKURI_SOUND_SERVICE_H</span></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html"><div class="ttname"><a href="classkarakuri_1_1SoundService.html">karakuri::SoundService</a></div><div class="ttdef"><b>Definition</b> sound_service.h:32</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a1ea3e2aac00c9f4d263be3b7063ff57f"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a1ea3e2aac00c9f4d263be3b7063ff57f">karakuri::SoundService::bgm_players_</a></div><div class="ttdeci">godot::Node * bgm_players_[2]</div><div class="ttdoc">BGM 専用プレイヤー (index 0: current, index 1: next for crossfade)</div><div class="ttdef"><b>Definition</b> sound_service.h:41</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a449045ca0339338e18c06e500a119a45"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a449045ca0339338e18c06e500a119a45">karakuri::SoundService::se_volume_db_</a></div><div class="ttdeci">float se_volume_db_</div><div class="ttdoc">SE 基本音量 (dB)</div><div class="ttdef"><b>Definition</b> sound_service.h:53</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a488eae5b023b06680c06471d916937b2"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a488eae5b023b06680c06471d916937b2">karakuri::SoundService::get_free_se_player</a></div><div class="ttdeci">godot::Node * get_free_se_player()</div><div class="ttdef"><b>Definition</b> sound_service.cpp:161</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a51a02798425f2921e38e01b1456f38e6"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a51a02798425f2921e38e01b1456f38e6">karakuri::SoundService::get_se_volume_db</a></div><div class="ttdeci">float get_se_volume_db() const</div><div class="ttdef"><b>Definition</b> sound_service.cpp:208</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a5339ff2a6494fb5064ad458cd1b10a0a"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a5339ff2a6494fb5064ad458cd1b10a0a">karakuri::SoundService::SoundService</a></div><div class="ttdeci">SoundService()</div><div class="ttdef"><b>Definition</b> sound_service.cpp:21</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a609641fd6dee26a28e1abb2671faf8b1"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a609641fd6dee26a28e1abb2671faf8b1">karakuri::SoundService::singleton_</a></div><div class="ttdeci">static SoundService * singleton_</div><div class="ttdef"><b>Definition</b> sound_service.h:36</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a620f1fdcbdc534b6878a574a7327a1c7"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a620f1fdcbdc534b6878a574a7327a1c7">karakuri::SoundService::vibrate</a></div><div class="ttdeci">void vibrate(int intensity, float duration_sec)</div><div class="ttdoc">デバイスを振動させる（モバイル端末のみ有効）。</div><div class="ttdef"><b>Definition</b> sound_service.cpp:191</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a6af4537cfc3dd9bd225a2b3f6d7ecbec"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a6af4537cfc3dd9bd225a2b3f6d7ecbec">karakuri::SoundService::play_se</a></div><div class="ttdeci">void play_se(const godot::String &amp;stream_path, float volume_db=0.0f)</div><div class="ttdoc">SE を再生する（プールから空きチャンネルを使用）。</div><div class="ttdef"><b>Definition</b> sound_service.cpp:170</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a6fea0ecbf808c47abe498346febe9d0c"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a6fea0ecbf808c47abe498346febe9d0c">karakuri::SoundService::set_bgm_volume_db</a></div><div class="ttdeci">void set_bgm_volume_db(float db)</div><div class="ttdef"><b>Definition</b> sound_service.cpp:204</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a75432e95c5447b27339ab457e0030679"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a75432e95c5447b27339ab457e0030679">karakuri::SoundService::bgm_volume_db_</a></div><div class="ttdeci">float bgm_volume_db_</div><div class="ttdoc">BGM 基本音量 (dB)</div><div class="ttdef"><b>Definition</b> sound_service.h:51</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a8434f32619a6de8d7e996f836b2a94c0"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a8434f32619a6de8d7e996f836b2a94c0">karakuri::SoundService::~SoundService</a></div><div class="ttdeci">~SoundService() override</div><div class="ttdef"><b>Definition</b> sound_service.cpp:27</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a8e995904b1654354d41b6907d464cdde"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a8e995904b1654354d41b6907d464cdde">karakuri::SoundService::SE_POOL_SIZE</a></div><div class="ttdeci">static constexpr int SE_POOL_SIZE</div><div class="ttdef"><b>Definition</b> sound_service.h:38</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_a9ed4a7a6bf3722036c5f7b72e57c86fa"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#a9ed4a7a6bf3722036c5f7b72e57c86fa">karakuri::SoundService::se_pool_</a></div><div class="ttdeci">godot::Node * se_pool_[SE_POOL_SIZE]</div><div class="ttdoc">SE プール</div><div class="ttdef"><b>Definition</b> sound_service.h:45</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_aa06e21822225fd14fe9e491395a7f764"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#aa06e21822225fd14fe9e491395a7f764">karakuri::SoundService::bgm_active_</a></div><div class="ttdeci">int bgm_active_</div><div class="ttdef"><b>Definition</b> sound_service.h:42</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_aa4923c47d801189b3b2e6a4de3eff7e1"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#aa4923c47d801189b3b2e6a4de3eff7e1">karakuri::SoundService::_ready</a></div><div class="ttdeci">void _ready() override</div><div class="ttdef"><b>Definition</b> sound_service.cpp:62</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_abe3b8c76469214ca7f50b25a4696c897"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#abe3b8c76469214ca7f50b25a4696c897">karakuri::SoundService::current_bgm_path_</a></div><div class="ttdeci">godot::String current_bgm_path_</div><div class="ttdoc">現在再生中の BGM パス（重複再生防止）</div><div class="ttdef"><b>Definition</b> sound_service.h:48</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_ad1aabb49af90afa8d3dc15059931ddb8"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#ad1aabb49af90afa8d3dc15059931ddb8">karakuri::SoundService::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> sound_service.cpp:35</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_adda474d69c2811bc8aab2f0dc5188a26"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#adda474d69c2811bc8aab2f0dc5188a26">karakuri::SoundService::stop_bgm</a></div><div class="ttdeci">void stop_bgm(float fade_sec=0.0f)</div><div class="ttdoc">BGM をフェードアウトして停止する。</div><div class="ttdef"><b>Definition</b> sound_service.cpp:141</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_ade2a00f430ac193ba06352f7b8b25c1e"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#ade2a00f430ac193ba06352f7b8b25c1e">karakuri::SoundService::set_se_volume_db</a></div><div class="ttdeci">void set_se_volume_db(float db)</div><div class="ttdef"><b>Definition</b> sound_service.cpp:207</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_ae94363d27d93493a6fbb1514d4e09dd5"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#ae94363d27d93493a6fbb1514d4e09dd5">karakuri::SoundService::play_bgm</a></div><div class="ttdeci">void play_bgm(const godot::String &amp;stream_path, float fade_sec=0.0f)</div><div class="ttdoc">BGM を再生する。既に同じトラックが再生中なら無視する。</div><div class="ttdef"><b>Definition</b> sound_service.cpp:92</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_aee190eb1b937f34bc0f99c740baee738"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#aee190eb1b937f34bc0f99c740baee738">karakuri::SoundService::get_bgm_volume_db</a></div><div class="ttdeci">float get_bgm_volume_db() const</div><div class="ttdef"><b>Definition</b> sound_service.cpp:205</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_af85e87b6a0bea5b4165f3801e74e820d"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#af85e87b6a0bea5b4165f3801e74e820d">karakuri::SoundService::ensure_players</a></div><div class="ttdeci">void ensure_players()</div><div class="ttdef"><b>Definition</b> sound_service.cpp:66</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SoundService_html_af9a8ec57fe973ab10095958e9c9f0763"><div class="ttname"><a href="classkarakuri_1_1SoundService.html#af9a8ec57fe973ab10095958e9c9f0763">karakuri::SoundService::get_singleton</a></div><div class="ttdeci">static SoundService * get_singleton()</div><div class="ttdef"><b>Definition</b> sound_service.cpp:33</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> adventure_game_state.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

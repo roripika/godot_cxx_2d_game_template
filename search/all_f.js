@@ -18,5 +18,9 @@ var searchData=
   ['perfect_5fwindow_15',['perfect_window',['../classRhythmGameManager.html#a0edc9408fd34bf912e7cbf612db45f6b',1,'RhythmGameManager']]],
   ['place_5fvoxel_16',['place_voxel',['../classBuildingComponent.html#a7711269dac0c214c5bd2462f23f0252a',1,'BuildingComponent']]],
   ['play_17',['play',['../classConductor.html#a278e515ae3d6811918c6f57d5e08e3d0',1,'Conductor']]],
-  ['player_5fscene_18',['player_scene',['../classkarakuri_1_1RoguelikeManager.html#af1205bd14c8e25871b85814963c4c944',1,'karakuri::RoguelikeManager']]]
+  ['play_5fbgm_18',['play_bgm',['../classkarakuri_1_1SoundService.html#ae94363d27d93493a6fbb1514d4e09dd5',1,'karakuri::SoundService']]],
+  ['play_5feffect_19',['play_effect',['../classkarakuri_1_1ActionRunner.html#a3ca12a4c23fbeae9391b25078bb46d56',1,'karakuri::ActionRunner']]],
+  ['play_5fse_20',['play_se',['../classkarakuri_1_1SoundService.html#a6af4537cfc3dd9bd225a2b3f6d7ecbec',1,'karakuri::SoundService']]],
+  ['play_5fsequence_21',['play_sequence',['../classkarakuri_1_1ActionRunner.html#a711b9c29b07910c78b0284b77909bf47',1,'karakuri::ActionRunner']]],
+  ['player_5fscene_22',['player_scene',['../classkarakuri_1_1RoguelikeManager.html#af1205bd14c8e25871b85814963c4c944',1,'karakuri::RoguelikeManager']]]
 ];
