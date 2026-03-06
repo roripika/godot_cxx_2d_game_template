@@ -15,10 +15,12 @@
 #include "core/items/inventory.h"
 #include "core/logger/karakuri_logger.h"
 #include "core/scenario/scenario_runner.h"
+#include "core/services/action_runner.h"
 #include "core/services/input_service.h"
 #include "core/services/item_service.h"
 #include "core/services/localization_service.h"
 #include "core/services/save_service.h"
+#include "core/services/sound_service.h"
 #include "core/ui/inventory_slot_ui.h"
 #include "core/ui/inventory_ui.h"
 #include "core/universal_world_data.h"
@@ -30,6 +32,8 @@
 // Layer 2: Mystery template
 #include "mystery/evidence.h"
 #include "mystery/evidence_manager.h"
+#include "mystery/evidence_presenter.h"
+#include "mystery/mystery_effect_map.h"
 #include "mystery/mystery_manager.h"
 #include "mystery/mystery_object.h"
 #include "mystery/mystery_player.h"
@@ -77,13 +81,17 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::InventorySlotUI>();
   ClassDB::register_class<karakuri::LocalizationService>();
   ClassDB::register_class<karakuri::Logger>();
+  ClassDB::register_class<karakuri::ActionRunner>();
   ClassDB::register_class<karakuri::InputService>();
   ClassDB::register_class<karakuri::ItemService>();
   ClassDB::register_class<karakuri::SaveService>();
+  ClassDB::register_class<karakuri::SoundService>();
   ClassDB::register_class<karakuri::ScenarioRunner>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::Evidence>();
+  ClassDB::register_class<mystery::EvidencePresenter>();
+  ClassDB::register_class<mystery::MysteryEffectMap>();
   ClassDB::register_class<mystery::MysteryManager>();
   ClassDB::register_class<mystery::EvidenceManager>();
   ClassDB::register_class<mystery::MysteryObject>();

@@ -4,6 +4,7 @@
 #include "../core/services/item_service.h"
 #include "../core/services/save_service.h"
 #include "evidence_manager.h"
+#include "mystery_effect_map.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/window.hpp>
@@ -295,7 +296,19 @@ void MysteryManager::register_scenario_actions() {
     return false; // Non-blocking (inject した分は次フレームで実行)
   });
 
-  // 5. take_damage
+  // 5. play_effect — MysteryEffectMap のプリセット発火
+  //    YAML: { action: play_effect, value: "contradict_impact" }
+  runner->register_action("play_effect", [](const Variant &p) {
+    String preset = p.get_type() == Variant::STRING ? (String)p : String("");
+    if (preset.is_empty())
+      return false;
+    auto *emap = MysteryEffectMap::get_singleton();
+    if (emap)
+      emap->fire(preset);
+    return false; // Non-blocking
+  });
+
+  // 6. take_damage
   runner->register_action("take_damage", [this](const Variant &p) {
     int amount = (int)p;
     auto *ags = karakuri::AdventureGameStateBase::get_singleton();
