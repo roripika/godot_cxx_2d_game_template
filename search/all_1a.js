@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['層_0',['設計ポリシー (karakuri 層)',['../interaction__component_8h.html#autotoc_md1',1,'']]]
+  ['使い方_0',['使い方',['../i__interactable_8h.html#autotoc_md4',1,'使い方'],['../item__service_8h.html#autotoc_md7',1,'使い方']]]
 ];

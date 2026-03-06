@@ -7,7 +7,7 @@ var searchData=
   ['scenes_5f_4',['scenes_',['../classkarakuri_1_1ScenarioRunner.html#a71600f3941d971418011dfef881bbbab',1,'karakuri::ScenarioRunner']]],
   ['score_5',['score',['../classRhythmGameManager.html#a36937f28d322c55ec1246e975ffad614',1,'RhythmGameManager']]],
   ['singleton_6',['singleton',['../classkarakuri_1_1AdventureGameStateBase.html#a9aeca1a0f6cd3829b5d626ced1f67c0c',1,'karakuri::AdventureGameStateBase::singleton'],['../classHitStopManager.html#a56499aa34aede5b7623b1e8f01778974',1,'HitStopManager::singleton']]],
-  ['singleton_5f_7',['singleton_',['../classkarakuri_1_1InputService.html#a7575be4f970acd21aa021133b2011889',1,'karakuri::InputService']]],
+  ['singleton_5f_7',['singleton_',['../classkarakuri_1_1InputService.html#a7575be4f970acd21aa021133b2011889',1,'karakuri::InputService::singleton_'],['../classkarakuri_1_1ItemService.html#a8e3e98c8df05b292f89cdc7caaec51be',1,'karakuri::ItemService::singleton_']]],
   ['size_8',['size',['../classkarakuri_1_1UniversalWorldData.html#a0fea69bea3d3f8ef4942a4e78d473362',1,'karakuri::UniversalWorldData']]],
   ['slot_5findex_9',['slot_index',['../classkarakuri_1_1InventorySlotUI.html#aaa8217ae9888edb9adf9c01d20e1cb5b',1,'karakuri::InventorySlotUI']]],
   ['slots_10',['slots',['../classkarakuri_1_1Inventory.html#a3b538792e7317decad8982f257ec68b2',1,'karakuri::Inventory']]],

@@ -7,10 +7,12 @@ var searchData=
   ['delete_5fsave_4',['delete_save',['../classkarakuri_1_1SaveService.html#aa7b79f2e120a962f370e50f531e3afc8',1,'karakuri::SaveService']]],
   ['depth_5flayer_5',['depth_layer',['../classkarakuri_1_1SideScrollingView.html#abca8f4c94227f5ca74d2b01af2e2f6a2',1,'karakuri::SideScrollingView']]],
   ['description_6',['description',['../classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7',1,'karakuri::GameItem']]],
-  ['detection_5fradius_5f_7',['detection_radius_',['../classkarakuri_1_1InteractionComponent.html#a6050e80cd66281f2ef242e1ca6f1d939',1,'karakuri::InteractionComponent']]],
-  ['dialogue_5fui_2ecpp_8',['dialogue_ui.cpp',['../dialogue__ui_8cpp.html',1,'']]],
-  ['dialogue_5fui_2eh_9',['dialogue_ui.h',['../dialogue__ui_8h.html',1,'']]],
-  ['dialogue_5fui_5f_10',['dialogue_ui_',['../classkarakuri_1_1ScenarioRunner.html#a6867ecf0f1faac393641eed9201841cb',1,'karakuri::ScenarioRunner']]],
-  ['dialogue_5fui_5fpath_5f_11',['dialogue_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a6b072df9efc44e61a30895e1ce019c7c',1,'karakuri::ScenarioRunner']]],
-  ['dialogueui_12',['dialogueui',['../classkarakuri_1_1DialogueUI.html',1,'karakuri::DialogueUI'],['../classkarakuri_1_1DialogueUI.html#a1997728a2e84435451e8b870046923f4',1,'karakuri::DialogueUI::DialogueUI()']]]
+  ['deserialize_7',['deserialize',['../classkarakuri_1_1ItemService.html#a32a47d73f20cdc95779c994295ea0cdd',1,'karakuri::ItemService']]],
+  ['detection_5fradius_5f_8',['detection_radius_',['../classkarakuri_1_1InteractionComponent.html#a6050e80cd66281f2ef242e1ca6f1d939',1,'karakuri::InteractionComponent']]],
+  ['dialogue_5fui_2ecpp_9',['dialogue_ui.cpp',['../dialogue__ui_8cpp.html',1,'']]],
+  ['dialogue_5fui_2eh_10',['dialogue_ui.h',['../dialogue__ui_8h.html',1,'']]],
+  ['dialogue_5fui_5f_11',['dialogue_ui_',['../classkarakuri_1_1ScenarioRunner.html#a6867ecf0f1faac393641eed9201841cb',1,'karakuri::ScenarioRunner']]],
+  ['dialogue_5fui_5fpath_5f_12',['dialogue_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a6b072df9efc44e61a30895e1ce019c7c',1,'karakuri::ScenarioRunner']]],
+  ['dialogueui_13',['dialogueui',['../classkarakuri_1_1DialogueUI.html',1,'karakuri::DialogueUI'],['../classkarakuri_1_1DialogueUI.html#a1997728a2e84435451e8b870046923f4',1,'karakuri::DialogueUI::DialogueUI()']]],
+  ['dictionary_20形式_14',['マスターカタログの Dictionary 形式',['../item__service_8h.html#autotoc_md8',1,'']]]
 ];

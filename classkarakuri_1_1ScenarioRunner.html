@@ -159,6 +159,9 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:afd99d51ff26f3ae0a28930e9d919c306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc233c883e7d81d4bfe454c8c370c9c" id="r_a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6cc233c883e7d81d4bfe454c8c370c9c">complete_custom_action</a> ()</td></tr>
 <tr class="separator:a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60b3248b36f97785a957a108b2d0446a" id="r_a60b3248b36f97785a957a108b2d0446a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a60b3248b36f97785a957a108b2d0446a">inject_steps</a> (const godot::Array &amp;steps)</td></tr>
+<tr class="memdesc:a60b3248b36f97785a957a108b2d0446a"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在のアクション直後にステップを挿入する。  <br /></td></tr>
+<tr class="separator:a60b3248b36f97785a957a108b2d0446a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 静的限定公開メンバ関数</h2></td></tr>
@@ -686,6 +689,33 @@ karakuri::ScenarioRunner の継承関係図</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60b3248b36f97785a957a108b2d0446a" name="a60b3248b36f97785a957a108b2d0446a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60b3248b36f97785a957a108b2d0446a">&#9670;&#160;</a></span>inject_steps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::inject_steps </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Array &amp;&#160;</td>
+          <td class="paramname"><em>steps</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>現在のアクション直後にステップを挿入する。 </p>
+<p>present_evidence 等の分岐アクションから呼び出すことで、 on_correct / on_wrong などのサブ配列をキューに挿入できる。</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">steps</td><td>挿入するアクション配列。 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

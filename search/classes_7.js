@@ -8,5 +8,6 @@ var searchData=
   ['inventoryslot_5',['InventorySlot',['../structkarakuri_1_1InventorySlot.html',1,'karakuri']]],
   ['inventoryslotui_6',['InventorySlotUI',['../classkarakuri_1_1InventorySlotUI.html',1,'karakuri']]],
   ['inventoryui_7',['InventoryUI',['../classkarakuri_1_1InventoryUI.html',1,'karakuri']]],
-  ['isometricview_8',['IsometricView',['../classIsometricView.html',1,'']]]
+  ['isometricview_8',['IsometricView',['../classIsometricView.html',1,'']]],
+  ['itemservice_9',['ItemService',['../classkarakuri_1_1ItemService.html',1,'karakuri']]]
 ];

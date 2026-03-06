@@ -4,7 +4,7 @@ var searchData=
   ['actionhandler_1',['ActionHandler',['../classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7',1,'karakuri::ScenarioRunner']]],
   ['active_2',['active',['../classkarakuri_1_1InteractionManager.html#a4d48fb16335b2cc9d49326c2a819cff2',1,'karakuri::InteractionManager']]],
   ['active_5fnotes_3',['active_notes',['../classNoteLane.html#a54da3868c6e887ebd8e1dedb1240cca0',1,'NoteLane']]],
-  ['add_5fitem_4',['add_item',['../classkarakuri_1_1Inventory.html#a5af41748786a55aaad77fb4ec8f14a3c',1,'karakuri::Inventory']]],
+  ['add_5fitem_4',['add_item',['../classkarakuri_1_1Inventory.html#a5af41748786a55aaad77fb4ec8f14a3c',1,'karakuri::Inventory::add_item()'],['../classkarakuri_1_1ItemService.html#a907c6f05043a795d7a23bd36ee8e66c2',1,'karakuri::ItemService::add_item()']]],
   ['adventure_5fgame_5fstate_2ecpp_5',['adventure_game_state.cpp',['../adventure__game__state_8cpp.html',1,'']]],
   ['adventure_5fgame_5fstate_2eh_6',['adventure_game_state.h',['../adventure__game__state_8h.html',1,'']]],
   ['adventuregamestatebase_7',['adventuregamestatebase',['../classkarakuri_1_1AdventureGameStateBase.html',1,'karakuri::AdventureGameStateBase'],['../classkarakuri_1_1AdventureGameStateBase.html#afed16e07446c18dbf92fe9a554308a51',1,'karakuri::AdventureGameStateBase::AdventureGameStateBase()']]],
