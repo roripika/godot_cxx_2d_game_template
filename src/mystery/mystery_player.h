@@ -33,6 +33,8 @@ public:
   MysteryPlayer();
   ~MysteryPlayer() override = default;
 
+  void _ready() override;
+
   /**
    * @brief 調査・インタラクトアクション ("interact") が
    *        このフレームにトリガーされたら true を返す。
