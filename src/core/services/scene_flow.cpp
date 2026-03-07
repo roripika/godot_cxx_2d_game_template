@@ -1,6 +1,9 @@
 #include "services/scene_flow.h"
 
+#include <godot_cpp/classes/packed_scene.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
+#include <godot_cpp/classes/window.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -76,11 +79,11 @@ void SceneFlow::_bind_methods() {
 // 内部ヘルパー
 // ------------------------------------------------------------------
 
-void SceneFlow::do_change_scene(const String &path) {
+void SceneFlow::do_replace_scene(const String &path) {
   SceneTree *tree = get_tree();
   if (tree == nullptr) {
     UtilityFunctions::push_error(
-        "[SceneFlow] do_change_scene: SceneTree が null です。"
+        "[SceneFlow] do_replace_scene: SceneTree が null です。"
         "SceneFlow が Autoload として登録されていることを確認してください。");
     return;
   }
@@ -112,59 +115,130 @@ void SceneFlow::replace_scene(const String &path, const Dictionary &params) {
   String from = current_path_;
   current_path_ = path;
   current_params_ = params;
+  active_pushed_scene_ = nullptr;  // SceneTree が新シーンを管理する
 
   UtilityFunctions::print(
       String("[SceneFlow] replace: ") + from + String(" → ") + path);
 
   emit_signal("scene_replaced", from, path);
-  do_change_scene(path);
+  do_replace_scene(path);
 }
 
 void SceneFlow::push_scene(const String &path, const Dictionary &params) {
-  String from = current_path_;
+  SceneTree *tree = get_tree();
+  if (tree == nullptr) {
+    UtilityFunctions::push_error(
+        "[SceneFlow] push_scene: SceneTree が null です。Autoload 設定を確認してください。");
+    return;
+  }
 
-  // 現在のシーンパスをスタックに保存
-  Dictionary entry;
-  entry["path"] = current_path_;
-  entry["params"] = current_params_;
-  history_stack_.append(entry);
+  // ① 現在アクティブなシーンノードを取得する。
+  //    初回 push なら SceneTree が管理しているシーンを使う。
+  //    2 回目以降の push なら自前で追跡している active_pushed_scene_ を使う。
+  Node *current = (active_pushed_scene_ != nullptr)
+                      ? active_pushed_scene_
+                      : tree->get_current_scene();
 
-  current_path_ = path;
-  current_params_ = params;
+  // ② ルートから取り外す（queue_free しない！メモリ上に保持する）
+  if (current != nullptr) {
+    tree->get_root()->remove_child(current);
+  }
+
+  // ③ スタックに保存
+  SceneRecord record;
+  record.path            = current_path_;
+  record.params          = current_params_;
+  record.suspended_scene = current;
+  history_stack_.push_back(record);
+
+  // ④ 新しいシーンをロードしてインスタンス化
+  Ref<PackedScene> packed = ResourceLoader::get_singleton()->load(path);
+  if (packed.is_null()) {
+    UtilityFunctions::push_error(
+        String("[SceneFlow] push_scene: シーンのロードに失敗しました: ") + path);
+    // ロールバック: 取り外したシーンを戻す
+    if (current != nullptr) {
+      tree->get_root()->add_child(current);
+    }
+    history_stack_.pop_back();
+    return;
+  }
+
+  Node *new_scene = packed->instantiate();
+  if (new_scene == nullptr) {
+    UtilityFunctions::push_error(
+        String("[SceneFlow] push_scene: instantiate() が null を返しました: ") + path);
+    if (current != nullptr) {
+      tree->get_root()->add_child(current);
+    }
+    history_stack_.pop_back();
+    return;
+  }
+
+  // ⑤ ルートに追加してアクティブに設定
+  tree->get_root()->add_child(new_scene);
+  active_pushed_scene_ = new_scene;
+
+  String from       = record.path;
+  current_path_     = path;
+  current_params_   = params;
 
   UtilityFunctions::print(
       String("[SceneFlow] push: ") + from + String(" → ") + path +
-      String(" (stack depth: ") + String::num(history_stack_.size()) +
+      String(" (stack depth: ") + String::num_int64((int64_t)history_stack_.size()) +
       String(")"));
 
   emit_signal("scene_pushed", from, path);
-  do_change_scene(path);
+  emit_signal("transition_started", path);
+  emit_signal("transition_finished");
 }
 
 void SceneFlow::pop_scene() {
-  if (history_stack_.is_empty()) {
+  if (history_stack_.empty()) {
     UtilityFunctions::push_warning(
         "[SceneFlow] pop_scene: 履歴スタックが空です。can_pop() で確認してください。");
     return;
   }
 
+  SceneTree *tree = get_tree();
+  if (tree == nullptr) {
+    UtilityFunctions::push_error(
+        "[SceneFlow] pop_scene: SceneTree が null です。");
+    return;
+  }
+
   String from = current_path_;
 
-  // スタックから直前のエントリを取り出す
-  Dictionary entry = history_stack_[history_stack_.size() - 1];
-  history_stack_.resize(history_stack_.size() - 1);
+  // ① 現在表示中のシーンを解放する
+  if (active_pushed_scene_ != nullptr) {
+    active_pushed_scene_->queue_free();
+    active_pushed_scene_ = nullptr;
+  }
 
-  String to = String(entry.get("path", String("")));
-  current_path_ = to;
-  current_params_ = Dictionary(entry.get("params", Dictionary()));
+  // ② スタックから直前のレコードを取り出す
+  SceneRecord record = history_stack_.back();
+  history_stack_.pop_back();
+
+  current_path_   = record.path;
+  current_params_ = record.params;
+
+  // ③ suspend していたシーンノードをルートに再接続して復元する
+  Node *restored = record.suspended_scene;
+  if (restored != nullptr) {
+    tree->get_root()->add_child(restored);
+    active_pushed_scene_ = restored;
+  } else {
+    active_pushed_scene_ = nullptr;
+  }
 
   UtilityFunctions::print(
-      String("[SceneFlow] pop: ") + from + String(" → ") + to +
-      String(" (stack depth: ") + String::num(history_stack_.size()) +
+      String("[SceneFlow] pop: ") + from + String(" → ") + current_path_ +
+      String(" (stack depth: ") + String::num_int64((int64_t)history_stack_.size()) +
       String(")"));
 
-  emit_signal("scene_popped", from, to);
-  do_change_scene(to);
+  emit_signal("scene_popped", from, current_path_);
+  emit_signal("transition_started", current_path_);
+  emit_signal("transition_finished");
 }
 
 // ------------------------------------------------------------------
@@ -172,7 +246,7 @@ void SceneFlow::pop_scene() {
 // ------------------------------------------------------------------
 
 bool SceneFlow::can_pop() const {
-  return !history_stack_.is_empty();
+  return !history_stack_.empty();
 }
 
 String SceneFlow::get_current_path() const {
@@ -184,10 +258,16 @@ Dictionary SceneFlow::get_current_params() const {
 }
 
 int SceneFlow::get_stack_depth() const {
-  return history_stack_.size();
+  return (int)history_stack_.size();
 }
 
 void SceneFlow::clear_history() {
+  // スタックに保持されている全 suspend 済みシーンノードを解放する
+  for (auto &record : history_stack_) {
+    if (record.suspended_scene != nullptr) {
+      record.suspended_scene->queue_free();
+    }
+  }
   history_stack_.clear();
   UtilityFunctions::print("[SceneFlow] clear_history: 履歴スタックをクリアしました。");
 }
@@ -200,13 +280,24 @@ void SceneFlow::return_to_title() {
     return;
   }
   String from = current_path_;
-  history_stack_.clear();          // 履歴を全クリアして「戻れない」状態にする
-  current_path_ = title_scene_path_;
+
+  // ① push_scene で表示中のシーンを解放する
+  if (active_pushed_scene_ != nullptr) {
+    active_pushed_scene_->queue_free();
+    active_pushed_scene_ = nullptr;
+  }
+
+  // ② スタックに保持されている全 suspend 済みシーンを解放してクリア
+  clear_history();
+
+  current_path_   = title_scene_path_;
   current_params_ = Dictionary();
+
   UtilityFunctions::print(String("[SceneFlow] return_to_title: ") + from +
                           String(" → ") + title_scene_path_);
+
   emit_signal("scene_replaced", from, title_scene_path_);
-  do_change_scene(title_scene_path_);
+  do_replace_scene(title_scene_path_);
 }
 
 // ------------------------------------------------------------------

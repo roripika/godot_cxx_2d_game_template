@@ -56,10 +56,10 @@
  * タイトルへの「強制脱出」として使う。
  */
 
+#include <vector>
+
 #include <godot_cpp/classes/node.hpp>
-#include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
-#include <godot_cpp/variant/node_path.hpp>
 #include <godot_cpp/variant/string.hpp>
 
 namespace karakuri {
@@ -67,10 +67,24 @@ namespace karakuri {
 class SceneFlow : public godot::Node {
   GDCLASS(SceneFlow, godot::Node)
 
+  // ------------------------------------------------------------------
+  // ノード保持型スタックエントリ
+  // ------------------------------------------------------------------
+  /// push_scene で suspend したシーンのレコード
+  struct SceneRecord {
+    godot::String     path;             ///< シーンリソースパス
+    godot::Dictionary params;           ///< 渡されたパラメータ
+    godot::Node*      suspended_scene;  ///< remove_child() で取り外したノード（解放しない！）
+  };
+
   static SceneFlow *singleton_;
 
-  /// スタックの各エントリ: { "path": String, "params": Dictionary }
-  godot::Array history_stack_;
+  /// push されて一時停止中のシーンのスタック（後入れ先出し）
+  std::vector<SceneRecord> history_stack_;
+
+  /// push_scene で表示中のシーンノード。
+  /// replace_scene 直後（push 前）は nullptr（SceneTree が管理）。
+  godot::Node* active_pushed_scene_ = nullptr;
 
   /// 現在のシーンパス（遷移後に更新）
   godot::String current_path_;
@@ -81,8 +95,8 @@ class SceneFlow : public godot::Node {
   /// return_to_title() で戻る先のパス（インスペクタまたはコードから設定）
   godot::String title_scene_path_;
 
-  /// 内部: SceneTree::change_scene_to_file を呼び、transition シグナルを発火
-  void do_change_scene(const godot::String &path);
+  /// replace_scene / return_to_title 専用: change_scene_to_file + シグナル
+  void do_replace_scene(const godot::String &path);
 
 protected:
   static void _bind_methods();
@@ -105,14 +119,19 @@ public:
                      const godot::Dictionary &params = godot::Dictionary());
 
   /**
-   * @brief 現在シーンを履歴スタックに積んで新しいシーンへ移る。
-   * ポーズメニューやサブ画面のような「戻れる遷移」に使う。
+   * @brief 現在シーンをメモリ上に保持したまま新しいシーンへ移る。
+   *
+   * 現在のノードを SceneTree から remove_child()（= 凍結）し、
+   * 新しいシーンを即座に instantiate() して add_child() する。
+   * pop_scene() で凍結したノードをそのまま復元できる（リロード不要）。
    */
   void push_scene(const godot::String &path,
                   const godot::Dictionary &params = godot::Dictionary());
 
   /**
-   * @brief スタックから直前のシーンに戻る。
+   * @brief 現在のシーンを破棄し、スタックに保持していた直前のシーンを復元する。
+   *
+   * 現在シーンを queue_free() し、suspend 中のノードを add_child() で再接続する。
    * スタックが空の場合は何もしない。
    */
   void pop_scene();
@@ -143,7 +162,7 @@ public:
   /** @brief 履歴スタックの深さ（push した回数）を返す。 */
   int get_stack_depth() const;
 
-  /** @brief 履歴スタックを全クリアする。ゲームオーバー等でリセット用。 */
+  /** @brief スタックに保持している全シーンノードを queue_free し、履歴をクリアする。 */
   void clear_history();
 
   // ------------------------------------------------------------------
