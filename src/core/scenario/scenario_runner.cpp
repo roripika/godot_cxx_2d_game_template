@@ -3,6 +3,7 @@
 #include "../logic/condition_evaluator.h"
 #include "../services/flag_service.h"
 #include "../services/save_service.h"
+#include "../tasks/sequence_player.h"
 #include "../yaml/yaml_lite.h"
 
 #include <godot_cpp/classes/area2d.hpp>
@@ -144,6 +145,21 @@ void ScenarioRunner::restore_to(const String &scene_id, int action_index) {
   }
 }
 
+void ScenarioRunner::set_sequence_player_path(const NodePath &path) {
+  sequence_player_path_ = path;
+}
+
+NodePath ScenarioRunner::get_sequence_player_path() const {
+  return sequence_player_path_;
+}
+
+Node *ScenarioRunner::find_sequence_player() const {
+  if (!sequence_player_path_.is_empty()) {
+    return get_node_or_null(sequence_player_path_);
+  }
+  return nullptr;
+}
+
 void ScenarioRunner::complete_custom_action() {
   waiting_for_custom_action_ = false;
 }
@@ -201,6 +217,13 @@ void ScenarioRunner::_bind_methods() {
   ClassDB::bind_method(D_METHOD("restore_to", "scene_id", "action_index"),
                        &ScenarioRunner::restore_to);
   ClassDB::bind_method(D_METHOD("is_running"), &ScenarioRunner::is_running);
+
+  ClassDB::bind_method(D_METHOD("set_sequence_player_path", "path"),
+                       &ScenarioRunner::set_sequence_player_path);
+  ClassDB::bind_method(D_METHOD("get_sequence_player_path"),
+                       &ScenarioRunner::get_sequence_player_path);
+  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "sequence_player_path"),
+               "set_sequence_player_path", "get_sequence_player_path");
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),
                        &ScenarioRunner::set_scenario_path);
@@ -346,6 +369,17 @@ void ScenarioRunner::load_scene_by_id(const String &scene_id) {
   }
   const Dictionary scene_dict = as_dict(scenes_[scene_id]);
   const String scene_path = dict_get_string(scene_dict, "scene_path", "");
+
+  // can_rollback: true の場合、シーン開始前にスナップショットをスタックに積む
+  // (アクション開始前の状態を保存するため、start_actions より前で行う)
+  bool can_rollback = bool(scene_dict.get("can_rollback", false));
+  if (can_rollback) {
+    if (Node *sp_node = find_sequence_player()) {
+      if (SequencePlayer *sp = Object::cast_to<SequencePlayer>(sp_node)) {
+        sp->create_snapshot();
+      }
+    }
+  }
 
   notify_mode_exit(current_mode_id_, scene_id);
   current_scene_id_ = scene_id;

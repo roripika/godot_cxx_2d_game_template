@@ -90,6 +90,15 @@ public:
    */
   void inject_steps(const godot::Array &steps);
 
+  /**
+   * @brief SequencePlayer への NodePath を設定する。
+   * シーン定義に `can_rollback: true` がある場合、自動で
+   * SequencePlayer::create_snapshot() を呼ぶために使用する。
+   * 設計書 §6-4 対応。
+   */
+  void set_sequence_player_path(const godot::NodePath &path);
+  godot::NodePath get_sequence_player_path() const;
+
 protected:
   static void _bind_methods();
 
@@ -143,7 +152,11 @@ private:
   godot::String transition_target_type_;
   float transition_timeout_sec_ = -1.0f;
 
+  /// can_rollback: true のシーン開始時に自動スナップショットを取る SequencePlayer パス
+  godot::NodePath sequence_player_path_;
+
   bool load_scenario_internal();
+  godot::Node *find_sequence_player() const;
   void bind_scene_hotspots(const godot::Dictionary &scene_dict);
 
   void start_actions(const godot::Array &actions);

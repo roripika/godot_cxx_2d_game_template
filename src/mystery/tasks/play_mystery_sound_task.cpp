@@ -3,7 +3,6 @@
 #include "../../core/services/sound_service.h"
 #include "../mystery_effect_map.h"
 
-#include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
@@ -42,14 +41,10 @@ void PlayMysterySoundTask::_bind_methods() {
 
 void PlayMysterySoundTask::play_sound() {
   if (!preset_name_.is_empty()) {
-    // MysteryEffectMap のシングルトンを取得して fire()
-    auto *effect_map_obj =
-        Engine::get_singleton()->get_singleton("MysteryEffectMap");
-    if (effect_map_obj != nullptr) {
-      auto *effect_map = Object::cast_to<MysteryEffectMap>(effect_map_obj);
-      if (effect_map != nullptr) {
-        effect_map->fire(preset_name_);
-      }
+    // MysteryEffectMap シングルトンを直接取得して fire()
+    auto *effect_map = mystery::MysteryEffectMap::get_singleton();
+    if (effect_map != nullptr) {
+      effect_map->fire(preset_name_);
     }
   } else if (!se_path_.is_empty()) {
     auto *ss = karakuri::SoundService::get_singleton();

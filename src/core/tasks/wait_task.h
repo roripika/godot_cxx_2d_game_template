@@ -49,6 +49,23 @@ public:
   void complete_instantly() override;
 
   // ------------------------------------------------------------------
+  // シグナル待機サポート
+  // ------------------------------------------------------------------
+
+  /**
+   * @brief 外部シグナルからこのメソッドを呼ぶとタスクが完了する。
+   *
+   * ## 使い方（GDScript）
+   * ```gdscript
+   * var task = WaitTask.new()
+   * # duration を設定しないとシグナル待機モードになる
+   * some_node.connect("animation_finished", task.mark_signal_received)
+   * sequence_player.add_task(task)
+   * ```
+   */
+  void mark_signal_received();
+
+  // ------------------------------------------------------------------
   // プロパティアクセサ
   // ------------------------------------------------------------------
   void set_duration(double seconds);
