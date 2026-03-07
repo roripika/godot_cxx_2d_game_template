@@ -33,6 +33,7 @@ public:
 
   void _ready() override;
   void _process(double delta) override;
+  void _gui_input(const Ref<InputEvent> &p_event) override;
 
   // API
   void show_message(const String &name, const String &text);

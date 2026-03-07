@@ -34,11 +34,13 @@ func _on_focus_changed(node: Node, is_focused: bool) -> void:
 		interact_icon.text = "！ " + node.get_interaction_label()
 
 func _on_object_interacted(scenario_id: String) -> void:
+	print("[InvestigationStage] Object interacted! scenario_id: ", scenario_id)
 	# Camera zoom effect
 	var tween = create_tween()
 	tween.tween_property(camera, "zoom", Vector2(1.2, 1.2), 0.3).set_trans(Tween.TRANS_SINE)
 	
 	# Execute scenario
+	print("[InvestigationStage] Calling scenario_runner.load_scene_by_id: ", scenario_id)
 	scenario_runner.load_scene_by_id(scenario_id)
 	
 	# Wait for scenario to finish (simplified)

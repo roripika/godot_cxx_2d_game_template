@@ -6,7 +6,6 @@ using namespace godot;
 
 namespace karakuri {
 
-
 void BaseEntity::_bind_methods() {
   ClassDB::bind_method(D_METHOD("set_max_health", "health"),
                        &BaseEntity::set_max_health);
@@ -42,6 +41,10 @@ BaseEntity::BaseEntity() {
   current_health = 100.0f;
   speed = 200.0f;
   movement_input = Vector2(0, 0);
+
+  // 重要: physics process を有効にしないと _notification に
+  // NOTIFICATION_PHYSICS_PROCESS が流れてこない。
+  set_physics_process(true);
 }
 
 BaseEntity::~BaseEntity() {}

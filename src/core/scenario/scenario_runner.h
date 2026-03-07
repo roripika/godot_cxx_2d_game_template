@@ -55,6 +55,22 @@ public:
   bool is_running() const;
   godot::String get_current_scene_id() const;
 
+  /**
+   * @brief 現在実行中の pending_action_index_ を返す。
+   * SequencePlayer::create_snapshot() からスナップショット保存に使用する。
+   */
+  int get_pending_action_index() const;
+
+  /**
+   * @brief ScenarioRunner の状態を指定シーン・コマンドインデックスに復元する。
+   * SequencePlayer::rollback_to_last_snapshot() から呼ばれる。
+   * シーン遷移が必要な場合は load_scene_by_id() を内部で呼ぶ。
+   *
+   * @param scene_id     復元先のシーン ID
+   * @param action_index 復元先の pending_action_index_
+   */
+  void restore_to(const godot::String &scene_id, int action_index);
+
   void _ready() override;
   void _process(double delta) override;
 

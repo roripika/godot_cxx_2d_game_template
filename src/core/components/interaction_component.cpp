@@ -16,7 +16,9 @@ namespace karakuri {
 // Construction
 // ---------------------------------------------------------------------------
 
-InteractionComponent::InteractionComponent() : detection_radius_(64.0f) {}
+InteractionComponent::InteractionComponent() : detection_radius_(64.0f) {
+  set_physics_process(true);
+}
 
 // ---------------------------------------------------------------------------
 // Godot bindings
@@ -33,19 +35,18 @@ void InteractionComponent::_bind_methods() {
                "set_detection_radius", "get_detection_radius");
 
   // State queries
-  ClassDB::bind_method(D_METHOD("has_focus"),
-                       &InteractionComponent::has_focus);
+  ClassDB::bind_method(D_METHOD("has_focus"), &InteractionComponent::has_focus);
   ClassDB::bind_method(D_METHOD("get_focused_node"),
                        &InteractionComponent::get_focused_node);
 
   // Signals
-  ADD_SIGNAL(MethodInfo("focus_changed",
-                        PropertyInfo(Variant::OBJECT, "node",
-                                     PROPERTY_HINT_NODE_TYPE, "Node"),
-                        PropertyInfo(Variant::BOOL, "is_focused")));
-  ADD_SIGNAL(MethodInfo("interacted",
-                        PropertyInfo(Variant::OBJECT, "node",
-                                     PROPERTY_HINT_NODE_TYPE, "Node")));
+  ADD_SIGNAL(MethodInfo(
+      "focus_changed",
+      PropertyInfo(Variant::OBJECT, "node", PROPERTY_HINT_NODE_TYPE, "Node"),
+      PropertyInfo(Variant::BOOL, "is_focused")));
+  ADD_SIGNAL(
+      MethodInfo("interacted", PropertyInfo(Variant::OBJECT, "node",
+                                            PROPERTY_HINT_NODE_TYPE, "Node")));
 }
 
 // ---------------------------------------------------------------------------
@@ -113,6 +114,11 @@ void InteractionComponent::_physics_process(double /*delta*/) {
     // 新しいフォーカスを通知
     if (focused_node_ != nullptr) {
       emit_signal("focus_changed", focused_node_, true);
+      godot::UtilityFunctions::print(
+          String("[InteractionComponent] New focus: ") +
+          focused_node_->get_name() +
+          (focused_ ? " (Target: OK)"
+                    : " (Target: NULL - dynamic_cast failed!)"));
     }
   }
 
@@ -127,8 +133,13 @@ void InteractionComponent::_physics_process(double /*delta*/) {
   }
 
   if (input_svc->is_action_just_pressed("interact")) {
-    focused_->on_interact();
-    emit_signal("interacted", focused_node_);
+    godot::UtilityFunctions::print(
+        String("[InteractionComponent] Interact button pressed. focused: ") +
+        (focused_ ? "valid" : "null"));
+    if (focused_) {
+      focused_->on_interact();
+      emit_signal("interacted", focused_node_);
+    }
   }
 }
 

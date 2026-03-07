@@ -122,6 +122,28 @@ String ScenarioRunner::get_current_scene_id() const {
   return current_scene_id_;
 }
 
+int ScenarioRunner::get_pending_action_index() const {
+  return pending_action_index_;
+}
+
+void ScenarioRunner::restore_to(const String &scene_id, int action_index) {
+  // 実行中の待ち状態をクリア
+  wait_remaining_sec_ = 0.0;
+  waiting_for_choice_ = false;
+  waiting_for_dialogue_ = false;
+  waiting_for_transition_ = false;
+  waiting_for_custom_action_ = false;
+  is_executing_actions_ = false;
+
+  // アクションインデックスを復元
+  pending_action_index_ = action_index;
+
+  // シーン遷移が必要なときのみ load_scene_by_id を呼ぶ
+  if (!scene_id.is_empty() && scene_id != current_scene_id_) {
+    load_scene_by_id(scene_id);
+  }
+}
+
 void ScenarioRunner::complete_custom_action() {
   waiting_for_custom_action_ = false;
 }
@@ -174,6 +196,10 @@ void ScenarioRunner::_bind_methods() {
                        &ScenarioRunner::execute_single_action);
   ClassDB::bind_method(D_METHOD("get_current_scene_id"),
                        &ScenarioRunner::get_current_scene_id);
+  ClassDB::bind_method(D_METHOD("get_pending_action_index"),
+                       &ScenarioRunner::get_pending_action_index);
+  ClassDB::bind_method(D_METHOD("restore_to", "scene_id", "action_index"),
+                       &ScenarioRunner::restore_to);
   ClassDB::bind_method(D_METHOD("is_running"), &ScenarioRunner::is_running);
 
   ClassDB::bind_method(D_METHOD("set_scenario_path", "path"),

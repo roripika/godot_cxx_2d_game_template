@@ -30,6 +30,18 @@
 #include "plugins/features/rhythm/conductor.h"
 #include "plugins/features/rhythm/rhythm_game_manager.h"
 
+// Task sequence system (core)
+#include "core/tasks/task_base.h"
+#include "core/tasks/wait_task.h"
+#include "core/tasks/task_group.h"
+#include "core/tasks/state_snapshot.h"
+#include "core/tasks/sequence_player.h"
+
+// Task sequence system (mystery)
+#include "mystery/tasks/zoom_camera_task.h"
+#include "mystery/tasks/show_evidence_ui_task.h"
+#include "mystery/tasks/play_mystery_sound_task.h"
+
 // Layer 2: Mystery template
 #include "mystery/evidence.h"
 #include "mystery/evidence_manager.h"
@@ -90,6 +102,18 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::SaveService>();
   ClassDB::register_class<karakuri::SoundService>();
   ClassDB::register_class<karakuri::ScenarioRunner>();
+
+  // Task sequence system (core)
+  ClassDB::register_class<karakuri::TaskBase>();
+  ClassDB::register_class<karakuri::WaitTask>();
+  ClassDB::register_class<karakuri::TaskGroup>();
+  ClassDB::register_class<karakuri::StateSnapshot>();
+  ClassDB::register_class<karakuri::SequencePlayer>();
+
+  // Task sequence system (mystery)
+  ClassDB::register_class<mystery::ZoomCameraTask>();
+  ClassDB::register_class<mystery::ShowEvidenceUITask>();
+  ClassDB::register_class<mystery::PlayMysterySoundTask>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::Evidence>();

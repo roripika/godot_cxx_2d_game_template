@@ -33,8 +33,8 @@ static int count_indent_spaces(const String &line, String &err) {
 }
 
 static String strip_comment(const String &line) {
-  // Very small rule: everything after '#' is treated as a comment if not quoted.
-  // This is sufficient for our scenario YAML where values are simple.
+  // Very small rule: everything after '#' is treated as a comment if not
+  // quoted. This is sufficient for our scenario YAML where values are simple.
   const int idx = line.find("#");
   if (idx < 0) {
     return line;
@@ -268,7 +268,7 @@ static bool split_key_value(const String &line_no_indent, String &out_key,
     return false;
   }
 
-  out_key = line_no_indent.substr(0, colon).strip_edges();
+  out_key = parse_inline_key(line_no_indent.substr(0, colon).strip_edges());
   if (out_key.is_empty()) {
     err = "Empty key in mapping line.";
     return false;
@@ -430,7 +430,7 @@ static Variant parse_block(const PackedStringArray &lines, int &io_index,
 } // namespace
 
 bool YamlLite::parse(const String &yaml_text, Variant &out_root,
-                             String &out_error) {
+                     String &out_error) {
   out_error = "";
   PackedStringArray lines = yaml_text.split("\n", false);
   int idx = 0;
