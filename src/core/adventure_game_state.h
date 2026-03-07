@@ -27,9 +27,10 @@ public:
 
   static AdventureGameStateBase *get_singleton();
 
-  void change_scene(const String &path);
-
-  // HP management
+  // -------------------------------------------------------------------
+  // HP 管理 (アドベンチャードメイン層のドメインロジック)
+  // シーン遷移は SceneFlow (karakuri::SceneFlow) に責務分離済み。
+  // -------------------------------------------------------------------
   void set_health(int hp);
   int get_health() const;
   void take_damage();

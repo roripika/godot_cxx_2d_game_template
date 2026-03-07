@@ -1,5 +1,4 @@
 #include "adventure_game_state.h"
-#include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -27,10 +26,7 @@ AdventureGameStateBase *AdventureGameStateBase::get_singleton() {
 }
 
 void AdventureGameStateBase::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("change_scene", "path"),
-                       &AdventureGameStateBase::change_scene);
-
-  // HP management
+  // HP 管理
   ClassDB::bind_method(D_METHOD("set_health", "hp"),
                        &AdventureGameStateBase::set_health);
   ClassDB::bind_method(D_METHOD("get_health"),
@@ -41,19 +37,11 @@ void AdventureGameStateBase::_bind_methods() {
                        &AdventureGameStateBase::heal);
   ADD_SIGNAL(MethodInfo("health_changed", PropertyInfo(Variant::INT, "hp")));
 
-  // Game reset
+  // ゲームリセット
   ClassDB::bind_method(D_METHOD("reset_game"),
                        &AdventureGameStateBase::reset_game);
   ClassDB::bind_method(D_METHOD("set_reset_hook", "hook"),
                        &AdventureGameStateBase::set_reset_hook);
-}
-
-void AdventureGameStateBase::change_scene(const String &path) {
-  UtilityFunctions::print("Changing scene to: ", path);
-  SceneTree *tree = get_tree();
-  if (tree) {
-    tree->change_scene_to_file(path);
-  }
 }
 
 void AdventureGameStateBase::set_health(int hp) {

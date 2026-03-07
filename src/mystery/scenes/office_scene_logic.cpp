@@ -1,5 +1,5 @@
 #include "office_scene_logic.h"
-#include "core/adventure_game_state.h"
+#include "core/services/scene_flow.h"
 #include "mystery/mystery_manager.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
@@ -74,9 +74,8 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
   // Boss Area
   Rect2 boss_rect(100, 200, 150, 300);
 
-  karakuri::AdventureGameStateBase *state = karakuri::AdventureGameStateBase::get_singleton();
   auto *gm = mystery::MysteryManager::get_singleton();
-  if (!state || !dialogue_ui || !gm)
+  if (!dialogue_ui || !gm)
     return;
 
   if (door_rect.has_point(pos)) {
@@ -101,9 +100,9 @@ void OfficeSceneLogic::_on_clicked_at(Vector2 pos) {
 }
 
 void OfficeSceneLogic::_change_scene_callback() {
-  karakuri::AdventureGameStateBase *state = karakuri::AdventureGameStateBase::get_singleton();
-  if (state) {
-    state->change_scene("res://samples/mystery/demo_adv.tscn");
+  karakuri::SceneFlow *sf = karakuri::SceneFlow::get_singleton();
+  if (sf) {
+    sf->replace_scene("res://samples/mystery/demo_adv.tscn");
   }
 }
 

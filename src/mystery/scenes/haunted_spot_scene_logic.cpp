@@ -1,5 +1,5 @@
 #include "haunted_spot_scene_logic.h"
-#include "core/adventure_game_state.h"
+#include "core/services/scene_flow.h"
 #include "mystery/evidence_manager.h"
 #include "mystery/mystery_manager.h"
 #include <godot_cpp/classes/engine.hpp>
@@ -119,9 +119,9 @@ void HauntedSpotSceneLogic::_on_clicked_at(Vector2 pos) {
 }
 
 void HauntedSpotSceneLogic::_change_scene_callback() {
-  karakuri::AdventureGameStateBase *state = karakuri::AdventureGameStateBase::get_singleton();
-  if (state) {
-    state->change_scene("res://samples/mystery/office_scene.tscn");
+  karakuri::SceneFlow *sf = karakuri::SceneFlow::get_singleton();
+  if (sf) {
+    sf->replace_scene("res://samples/mystery/office_scene.tscn");
   }
 }
 

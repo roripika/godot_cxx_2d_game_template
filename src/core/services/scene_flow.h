@@ -42,9 +42,18 @@
  * ```
  *
  * ## シグナル
+ * ### 遷移イベント（スタック変化）
  * - `scene_replaced(from_path, to_path)`
  * - `scene_pushed(from_path, to_path)`
  * - `scene_popped(from_path, to_path)` : from=元いた画面, to=戻り先
+ *
+ * ### 演出フック（フェードイン/アウト連携用）
+ * - `transition_started(to_path)` : 遷移直前に発火。GDScript 側でフェードアウトを開始する。
+ * - `transition_finished()`        : do_change_scene() 直後に発火。フェードイン開始の合図。
+ *
+ * ## `return_to_title()` について
+ * `title_scene_path` プロパティに登録したシーンへ、履歴を全クリアして戻る。
+ * タイトルへの「強制脱出」として使う。
  */
 
 #include <godot_cpp/classes/node.hpp>
@@ -69,7 +78,10 @@ class SceneFlow : public godot::Node {
   /// 遷移先がシーンから受け取れるパラメータ
   godot::Dictionary current_params_;
 
-  /// 実際の SceneTree::change_scene_to_file を呼ぶ内部メソッド
+  /// return_to_title() で戻る先のパス（インスペクタまたはコードから設定）
+  godot::String title_scene_path_;
+
+  /// 内部: SceneTree::change_scene_to_file を呼び、transition シグナルを発火
   void do_change_scene(const godot::String &path);
 
 protected:
@@ -105,6 +117,13 @@ public:
    */
   void pop_scene();
 
+  /**
+   * @brief 履歴スタックを全クリアし、title_scene_path へ遷移する。
+   * ゲームオーバーやタイトルへの「強制脱出」に使う。
+   * title_scene_path が空の場合は警告を出して何もしない。
+   */
+  void return_to_title();
+
   // ------------------------------------------------------------------
   // 参照 API
   // ------------------------------------------------------------------
@@ -126,6 +145,12 @@ public:
 
   /** @brief 履歴スタックを全クリアする。ゲームオーバー等でリセット用。 */
   void clear_history();
+
+  // ------------------------------------------------------------------
+  // title_scene_path プロパティ
+  // ------------------------------------------------------------------
+  void set_title_scene_path(const godot::String &path);
+  godot::String get_title_scene_path() const;
 };
 
 } // namespace karakuri
