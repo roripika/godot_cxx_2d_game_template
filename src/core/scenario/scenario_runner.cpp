@@ -1,5 +1,7 @@
 #include "scenario_runner.h"
 #include "../logger/karakuri_logger.h"
+#include "../logic/condition_evaluator.h"
+#include "../services/flag_service.h"
 #include "../services/save_service.h"
 #include "../yaml/yaml_lite.h"
 
@@ -464,6 +466,46 @@ void ScenarioRunner::init_builtin_actions() {
           (dialogue_ui_ ? "valid but missing show_message" : "null"));
     }
     return false;
+  });
+
+  // if — ConditionEvaluator 経由で条件分岐
+  // YAML: { if: { condition: {...}, then: [...], else: [...] } }
+  register_action("if", [this](const Variant &p) {
+    Dictionary d = as_dict(p);
+    Variant cond_v = d.has("condition") ? d["condition"] : Variant();
+    bool result = false;
+    if (cond_v.get_type() == Variant::DICTIONARY) {
+      result = karakuri::ConditionEvaluator::evaluate(Dictionary(cond_v));
+    } else if (cond_v.get_type() == Variant::BOOL) {
+      result = bool(cond_v);
+    }
+    String branch_key = result ? "then" : "else";
+    if (d.has(branch_key)) {
+      Variant branch = d[branch_key];
+      if (branch.get_type() == Variant::ARRAY) {
+        inject_steps(Array(branch));
+      }
+    }
+    return false; // Non-blocking
+  });
+
+  // set_flag — FlagService にフラグをセット
+  // YAML: { set_flag: { name: "flag_name", value: true } }
+  //       または { set_flag: "flag_name" }  (値は true になる)
+  register_action("set_flag", [](const Variant &p) {
+    auto *fs = karakuri::FlagService::get_singleton();
+    if (!fs)
+      return false;
+    if (p.get_type() == Variant::STRING) {
+      fs->set_flag(String(p), true);
+    } else if (p.get_type() == Variant::DICTIONARY) {
+      Dictionary d = p;
+      String name = d.has("name") ? String(d["name"]) : String("");
+      Variant value = d.has("value") ? d["value"] : Variant(true);
+      if (!name.is_empty())
+        fs->set_flag(name, value);
+    }
+    return false; // Non-blocking
   });
 }
 

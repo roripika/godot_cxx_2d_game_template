@@ -16,6 +16,7 @@
 #include "core/logger/karakuri_logger.h"
 #include "core/scenario/scenario_runner.h"
 #include "core/services/action_runner.h"
+#include "core/services/flag_service.h"
 #include "core/services/input_service.h"
 #include "core/services/item_service.h"
 #include "core/services/localization_service.h"
@@ -33,6 +34,7 @@
 #include "mystery/evidence.h"
 #include "mystery/evidence_manager.h"
 #include "mystery/evidence_presenter.h"
+#include "mystery/mystery_trigger.h"
 #include "mystery/mystery_effect_map.h"
 #include "mystery/mystery_manager.h"
 #include "mystery/mystery_object.h"
@@ -82,6 +84,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::LocalizationService>();
   ClassDB::register_class<karakuri::Logger>();
   ClassDB::register_class<karakuri::ActionRunner>();
+  ClassDB::register_class<karakuri::FlagService>();
   ClassDB::register_class<karakuri::InputService>();
   ClassDB::register_class<karakuri::ItemService>();
   ClassDB::register_class<karakuri::SaveService>();
@@ -96,6 +99,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<mystery::EvidenceManager>();
   ClassDB::register_class<mystery::MysteryObject>();
   ClassDB::register_class<mystery::MysteryPlayer>();
+  ClassDB::register_class<mystery::MysteryTrigger>();
 
   // Plugins / Features
   ClassDB::register_class<FightingGameManager>();
