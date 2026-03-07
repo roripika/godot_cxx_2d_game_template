@@ -21,6 +21,7 @@
 #include "core/services/item_service.h"
 #include "core/services/localization_service.h"
 #include "core/services/save_service.h"
+#include "core/services/scene_flow.h"
 #include "core/services/sound_service.h"
 #include "core/ui/inventory_slot_ui.h"
 #include "core/ui/inventory_ui.h"
@@ -100,6 +101,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::InputService>();
   ClassDB::register_class<karakuri::ItemService>();
   ClassDB::register_class<karakuri::SaveService>();
+  ClassDB::register_class<karakuri::SceneFlow>();
   ClassDB::register_class<karakuri::SoundService>();
   ClassDB::register_class<karakuri::ScenarioRunner>();
 
