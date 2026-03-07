@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/services/flag_service.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">flag_service.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="flag__service_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KARAKURI_FLAG_SERVICE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KARAKURI_FLAG_SERVICE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;godot_cpp/classes/node.hpp&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;godot_cpp/variant/array.hpp&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;godot_cpp/variant/dictionary.hpp&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &lt;godot_cpp/variant/string.hpp&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;godot_cpp/variant/variant.hpp&gt;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classkarakuri_1_1FlagService.html">   36</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1FlagService.html">FlagService</a> : <span class="keyword">public</span> godot::Node {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  GDCLASS(<a class="code hl_class" href="classkarakuri_1_1FlagService.html">FlagService</a>, godot::Node)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classkarakuri_1_1FlagService.html#af3f4cb9a8394d403728a03e66c3468a9">   40</a></span>  <span class="keyword">static</span> <a class="code hl_class" href="classkarakuri_1_1FlagService.html">FlagService</a> *<a class="code hl_variable" href="classkarakuri_1_1FlagService.html#af3f4cb9a8394d403728a03e66c3468a9">singleton_</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classkarakuri_1_1FlagService.html#af62445c95557be34b39678cf2c262183">   42</a></span>  godot::Dictionary <a class="code hl_variable" href="classkarakuri_1_1FlagService.html#af62445c95557be34b39678cf2c262183">flags_</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a92e4c3e6cdf2786bacfa6f64da6b20a3">_bind_methods</a>();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a5ba20e727ba3d9eb0b308322d6348f06">FlagService</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a52c26cd30ff3b1b6921c474b5e109791">~FlagService</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keyword">static</span> <a class="code hl_class" href="classkarakuri_1_1FlagService.html">FlagService</a> *<a class="code hl_function" href="classkarakuri_1_1FlagService.html#a3893f1fbb165009454f68a0236c50da1">get_singleton</a>();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="comment">// フラグ操作</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a26ed2b1b642bfaba49659d84160fcd46">set_flag</a>(<span class="keyword">const</span> godot::String &amp;name, <span class="keyword">const</span> godot::Variant &amp;value);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  godot::Variant <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a559ee8d05785a9db0521662c90ac27a4">get_flag</a>(<span class="keyword">const</span> godot::String &amp;name,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                          <span class="keyword">const</span> godot::Variant &amp;p_default = godot::Variant()) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a5125f894ebb69aecfce1020911efac48">has_flag</a>(<span class="keyword">const</span> godot::String &amp;name) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#ae41ced50225177e154224801bff4d304">erase_flag</a>(<span class="keyword">const</span> godot::String &amp;name);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a5c57e088f283c9cd905e9c1133455e04">clear_flags</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  godot::Array <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a20b04cf6059de38a272ba23defbd23b4">get_flag_names</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#aa49963e13c1b42d1792bc1b7baf97c98">sync_from</a>(<span class="keyword">const</span> godot::Dictionary &amp;data);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="comment">// シリアライズ (SaveService 連携)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  godot::Dictionary <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a2708c9b85d3e316c61b6b1fe61ea7804">serialize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a90477395d29d6330bc1885984ab9847a">deserialize</a>(<span class="keyword">const</span> godot::Dictionary &amp;data);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="comment">// Signals</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="comment">// flag_changed(name: String, value: Variant)  → フラグ変更時</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>};</div>
+</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif </span><span class="comment">// KARAKURI_FLAG_SERVICE_H</span></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html"><div class="ttname"><a href="classkarakuri_1_1FlagService.html">karakuri::FlagService</a></div><div class="ttdef"><b>Definition</b> flag_service.h:36</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a20b04cf6059de38a272ba23defbd23b4"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a20b04cf6059de38a272ba23defbd23b4">karakuri::FlagService::get_flag_names</a></div><div class="ttdeci">godot::Array get_flag_names() const</div><div class="ttdoc">設定されているフラグ名の一覧を返す。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:69</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a26ed2b1b642bfaba49659d84160fcd46"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a26ed2b1b642bfaba49659d84160fcd46">karakuri::FlagService::set_flag</a></div><div class="ttdeci">void set_flag(const godot::String &amp;name, const godot::Variant &amp;value)</div><div class="ttdoc">フラグを設定する。値は任意の Variant 型が使える。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:45</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a2708c9b85d3e316c61b6b1fe61ea7804"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a2708c9b85d3e316c61b6b1fe61ea7804">karakuri::FlagService::serialize</a></div><div class="ttdeci">godot::Dictionary serialize() const</div><div class="ttdef"><b>Definition</b> flag_service.cpp:84</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a3893f1fbb165009454f68a0236c50da1"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a3893f1fbb165009454f68a0236c50da1">karakuri::FlagService::get_singleton</a></div><div class="ttdeci">static FlagService * get_singleton()</div><div class="ttdef"><b>Definition</b> flag_service.cpp:22</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a5125f894ebb69aecfce1020911efac48"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a5125f894ebb69aecfce1020911efac48">karakuri::FlagService::has_flag</a></div><div class="ttdeci">bool has_flag(const godot::String &amp;name) const</div><div class="ttdoc">フラグが設定済みか確認する。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:57</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a52c26cd30ff3b1b6921c474b5e109791"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a52c26cd30ff3b1b6921c474b5e109791">karakuri::FlagService::~FlagService</a></div><div class="ttdeci">~FlagService() override</div><div class="ttdef"><b>Definition</b> flag_service.cpp:17</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a559ee8d05785a9db0521662c90ac27a4"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a559ee8d05785a9db0521662c90ac27a4">karakuri::FlagService::get_flag</a></div><div class="ttdeci">godot::Variant get_flag(const godot::String &amp;name, const godot::Variant &amp;p_default=godot::Variant()) const</div><div class="ttdoc">フラグ値を取得する。未設定なら p_default を返す。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:50</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a5ba20e727ba3d9eb0b308322d6348f06"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a5ba20e727ba3d9eb0b308322d6348f06">karakuri::FlagService::FlagService</a></div><div class="ttdeci">FlagService()</div><div class="ttdef"><b>Definition</b> flag_service.cpp:12</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a5c57e088f283c9cd905e9c1133455e04"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a5c57e088f283c9cd905e9c1133455e04">karakuri::FlagService::clear_flags</a></div><div class="ttdeci">void clear_flags()</div><div class="ttdoc">全フラグをクリアする。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:65</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a90477395d29d6330bc1885984ab9847a"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a90477395d29d6330bc1885984ab9847a">karakuri::FlagService::deserialize</a></div><div class="ttdeci">void deserialize(const godot::Dictionary &amp;data)</div><div class="ttdef"><b>Definition</b> flag_service.cpp:90</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a92e4c3e6cdf2786bacfa6f64da6b20a3"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a92e4c3e6cdf2786bacfa6f64da6b20a3">karakuri::FlagService::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> flag_service.cpp:24</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_aa49963e13c1b42d1792bc1b7baf97c98"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#aa49963e13c1b42d1792bc1b7baf97c98">karakuri::FlagService::sync_from</a></div><div class="ttdeci">void sync_from(const godot::Dictionary &amp;data)</div><div class="ttdoc">既存の Dictionary をまとめてマージする（上書き）。 MysteryManager::flags_ からの移行等に使用。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:73</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_ae41ced50225177e154224801bff4d304"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#ae41ced50225177e154224801bff4d304">karakuri::FlagService::erase_flag</a></div><div class="ttdeci">void erase_flag(const godot::String &amp;name)</div><div class="ttdoc">フラグを削除する。</div><div class="ttdef"><b>Definition</b> flag_service.cpp:61</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_af3f4cb9a8394d403728a03e66c3468a9"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#af3f4cb9a8394d403728a03e66c3468a9">karakuri::FlagService::singleton_</a></div><div class="ttdeci">static FlagService * singleton_</div><div class="ttdef"><b>Definition</b> flag_service.h:40</div></div>
+<div class="ttc" id="aclasskarakuri_1_1FlagService_html_af62445c95557be34b39678cf2c262183"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#af62445c95557be34b39678cf2c262183">karakuri::FlagService::flags_</a></div><div class="ttdeci">godot::Dictionary flags_</div><div class="ttdoc">フラグストア: { name: Variant }</div><div class="ttdef"><b>Definition</b> flag_service.h:42</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> adventure_game_state.cpp:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

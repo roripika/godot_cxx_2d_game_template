@@ -20,7 +20,7 @@ var searchData=
   ['interaction_5fmanager_5fpath_5f_17',['interaction_manager_path_',['../classkarakuri_1_1ScenarioRunner.html#ae0670191d41106baf1fbdf709c106cdd',1,'karakuri::ScenarioRunner']]],
   ['interactioncomponent_18',['interactioncomponent',['../classkarakuri_1_1InteractionComponent.html#a0e4d3647b280c08a000829bb42db1cc4',1,'karakuri::InteractionComponent::InteractionComponent()'],['../classkarakuri_1_1InteractionComponent.html',1,'karakuri::InteractionComponent']]],
   ['interactionmanager_19',['interactionmanager',['../classkarakuri_1_1InteractionManager.html#a9e5b0e0fe4880a40096486d3b51eb202',1,'karakuri::InteractionManager::InteractionManager()'],['../classkarakuri_1_1InteractionManager.html',1,'karakuri::InteractionManager']]],
-  ['inventory_20',['inventory',['../classkarakuri_1_1InventoryUI.html#a3c0fc7851e9a11a74c68235a9ab12952',1,'karakuri::InventoryUI::inventory'],['../classkarakuri_1_1Inventory.html#a0ebd5b93d3b84800ed405e933d37841d',1,'karakuri::Inventory::Inventory()'],['../classBuildingComponent.html#ac13e8989f168e2f1a5531a4ff56b67c6',1,'BuildingComponent::inventory'],['../classkarakuri_1_1Inventory.html',1,'karakuri::Inventory']]],
+  ['inventory_20',['inventory',['../classkarakuri_1_1InventoryUI.html#a3c0fc7851e9a11a74c68235a9ab12952',1,'karakuri::InventoryUI::inventory'],['../classBuildingComponent.html#ac13e8989f168e2f1a5531a4ff56b67c6',1,'BuildingComponent::inventory'],['../classkarakuri_1_1Inventory.html#a0ebd5b93d3b84800ed405e933d37841d',1,'karakuri::Inventory::Inventory()'],['../classkarakuri_1_1Inventory.html',1,'karakuri::Inventory']]],
   ['inventory_2ecpp_21',['inventory.cpp',['../inventory_8cpp.html',1,'']]],
   ['inventory_2eh_22',['inventory.h',['../inventory_8h.html',1,'']]],
   ['inventory_5f_23',['inventory_',['../classkarakuri_1_1ItemService.html#a191e0e76fc1a38d1f4d3e30dd0cf6661',1,'karakuri::ItemService']]],
@@ -51,7 +51,9 @@ var searchData=
   ['item_48',['item',['../structkarakuri_1_1InventorySlot.html#abf56c8533107b0cb3aa303de7111f2ab',1,'karakuri::InventorySlot::item'],['../classkarakuri_1_1InventorySlotUI.html#aa1dfc2c1893dbe4954b8fe58f28fb6f1',1,'karakuri::InventorySlotUI::item']]],
   ['item_5fmaster_5f_49',['item_master_',['../classkarakuri_1_1ItemService.html#a4f8ce4e5cf62376d257afa139221684a',1,'karakuri::ItemService']]],
   ['item_5fname_50',['item_name',['../classkarakuri_1_1GameItem.html#ac4cdc2bbfe237b3d1d17df6242c31026',1,'karakuri::GameItem']]],
-  ['item_5fservice_2ecpp_51',['item_service.cpp',['../item__service_8cpp.html',1,'']]],
-  ['item_5fservice_2eh_52',['item_service.h',['../item__service_8h.html',1,'']]],
-  ['itemservice_53',['itemservice',['../classkarakuri_1_1ItemService.html',1,'karakuri::ItemService'],['../classkarakuri_1_1ItemService.html#aa3712f38c5e42c09e7ec234f20d1dd11',1,'karakuri::ItemService::ItemService()']]]
+  ['item_5fowned_20—_20itemservice_20との連携_51',['item_owned — ItemService との連携',['../condition__evaluator_8h.html#autotoc_md8',1,'']]],
+  ['item_5fservice_2ecpp_52',['item_service.cpp',['../item__service_8cpp.html',1,'']]],
+  ['item_5fservice_2eh_53',['item_service.h',['../item__service_8h.html',1,'']]],
+  ['itemservice_54',['itemservice',['../classkarakuri_1_1ItemService.html',1,'karakuri::ItemService'],['../classkarakuri_1_1ItemService.html#aa3712f38c5e42c09e7ec234f20d1dd11',1,'karakuri::ItemService::ItemService()']]],
+  ['itemservice_20との連携_55',['item_owned — ItemService との連携',['../condition__evaluator_8h.html#autotoc_md8',1,'']]]
 ];
