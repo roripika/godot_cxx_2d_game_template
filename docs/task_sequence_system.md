@@ -2,35 +2,29 @@
 
 ## 1. 目的
 演出、音、ロジック、UI操作を「数珠つなぎ（直列）」または「一斉実行（並列）」で実行するための、柔軟な非同期タスク管理システムを構築します。
-これにより、複雑なイベント演出をC++コードのハードコーディングではなく、データ定義によって量産可能にします。
+本システムでは、商業レベルのUXを実現するため、**「演出のスキップ（即時完了）」**および**「状態の巻き戻し（ロールバック）」**を基盤レベルでサポートします。
 
 ## 2. アーキテクチャ構成 (2層分離)
 
 ### A. Karakuri層 (src/core/) - 汎用タスク基盤
-特定のゲームジャンルに依存しない、タスクの実行・管理の仕組みを提供します。
-
 - **TaskBase**: 全てのタスクの基底クラス。
-  - `on_start()`: 開始処理。
-  - `on_update(delta)`: 毎フレームの更新。
-  - `is_finished()`: 完了判定。
+  - `on_start()` / `on_update(delta)` / `is_finished()`.
+  - **`complete_instantly()`**: 演出をスキップし、タスクがもたらすべき最終状態（フラグ更新等）を即座に適用して終了させる。
 - **SequencePlayer**: タスクの実行エンジン。
-  - `SerialQueue`: タスクを一つずつ順番に実行。
-  - `ParallelGroup`: 複数のタスクを同時に実行し、全て終わるのを待つ。
+  - `skip_all()`: 実行中の全タスクに対し `complete_instantly()` を呼び出し、シーケンスを最速で完了させる。
+  - **`StateSnapshot`**: フラグやアイテム等の「ゲームの状態」をキャプチャし、後で復元するためのスナップショット機能。
 - **WaitTask**: 指定秒数待機、または特定のシグナル入力を待機する汎用タスク。
 
 ### B. Mystery層 (src/mystery/) - ミステリー専用アクション
-Karakuriの `TaskBase` を継承し、ゲーム固有の具体的な振る舞いを実装します。
-
 - **MysteryActions**:
-  - `ZoomCameraTask`: キャラクターや証拠品にカメラを寄せる。
-  - `ShowEvidenceUITask`: 証拠品ゲット画面を表示し、プレイヤーの入力を待つ。
-  - `PlayMysterySoundTask`: ミステリー演出用のSEやBGMを再生。
+  - `ZoomCameraTask` / `ShowEvidenceUITask` / `PlayMysterySoundTask`.
+  - 各タスクは `complete_instantly()` をオーバーライドし、「カメラを目標位置へワープさせる」「アイテムを即座に所持状態にする」等のスキップ処理を実装する。
 
 ---
 
 ## 3. クラス設計 (C++)
 
-### [Core] TaskBase & SequencePlayer
+### [Core] TaskBase, SequencePlayer & StateSnapshot
 ```cpp
 namespace karakuri {
 
@@ -41,52 +35,35 @@ public:
     virtual void on_start() {}
     virtual void on_update(double delta) {}
     virtual bool is_finished() const = 0;
+    
+    // スキップ用：即座に最終状態を適用して完了フラグを立てる
+    virtual void complete_instantly() { /* デフォルトは何もしない */ }
+};
+
+// ゲーム状態のスナップショット
+struct StateSnapshot {
+    Dictionary flags;     // FlagService のコピー
+    Array inventory;      // ItemService の所持リストのコピー
+    String current_scene; // 現在のシーンID
 };
 
 // シーケンス実行エンジン
 class SequencePlayer : public Node {
     GDCLASS(SequencePlayer, Node)
 private:
-    Array task_queue; // 現在実行待ち・実行中の TaskBase ポインタ
-    bool is_parallel = false;
+    Array task_queue;
+    std::vector<StateSnapshot> rollback_stack; // 巻き戻し用のスタック
 
 public:
     void add_task(const Ref<TaskBase> &p_task);
-    void clear();
-    bool is_running() const;
-
-    // _process 等で毎フレーム呼ばれる
     void process_tasks(double delta);
-};
-
-// 待機タスクの実装例
-class WaitTask : public TaskBase {
-private:
-    double remaining_time;
-public:
-    WaitTask(double p_time) : remaining_time(p_time) {}
-    void on_update(double delta) override { remaining_time -= delta; }
-    bool is_finished() const override { return remaining_time <= 0; }
-};
-
-}
-```
-
-### [Mystery] 具体的なアクションタスク
-```cpp
-namespace mystery {
-
-// カメラズームタスク
-class ZoomCameraTask : public karakuri::TaskBase {
-private:
-    Vector2 target_pos;
-    float zoom_level;
-    bool finished = false;
-public:
-    void on_start() override {
-        // Tween 等を使ってカメラを動かし、完了時に finished = true にする
-    }
-    bool is_finished() const override { return finished; }
+    
+    // スキップ：全タスクを即時完了させる
+    void skip_all();
+    
+    // ロールバック：シーケンス開始前の状態を保存・復元
+    void create_snapshot();
+    void rollback_to_last_snapshot();
 };
 
 }
@@ -94,14 +71,19 @@ public:
 
 ---
 
-## 4. タスクのライフサイクル
+## 4. スキップとロールバックのフロー
 
-1.  **生成**: JSON の `action` 定義から対応する `TaskBase` サブクラスをインスタンス化。
-2.  **登録**: `SequencePlayer` のキューに追加。
-3.  **開始 (`on_start`)**: キューの先頭に来た（または並列実行が始まった）瞬間に一度だけ呼ばれる。
-4.  **更新 (`on_update`)**: 毎フレーム呼ばれ、内部の状態を更新する。
-5.  **完了 (`is_finished`)**: 毎フレームチェックされ、`true` を返すと次のタスクへ移行（またはグループ完了）。
-6.  **破棄**: 実行完了したタスクはキューから取り除かれる。
+### 4.1. インスタンススキップ (Skip)
+プレイヤーがボタンを連打、またはスキップボタンを押した際の挙動：
+1. `SequencePlayer::skip_all()` を呼び出す。
+2. 実行中の全てのタスクの `complete_instantly()` が呼ばれる。
+3. 視覚的な演出（ズーム等）はスキップされるが、データ的な更新（フラグセット、アイテム取得）は確実に実行される。
+
+### 4.2. ステートロールバック (Rollback)
+「1つ前のセリフや選択肢に戻る」際の挙動：
+1. 各重要シーケンス（会話の塊など）の開始時に `create_snapshot()` を実行。
+2. `FlagService` や `ItemService` の現在のデータをコピーしてスタックに積む。
+3. ロールバック要求時、スタックから最新の `StateSnapshot` を取り出し、各 Service にデータを書き戻す。
 
 ---
 
@@ -110,16 +92,11 @@ public:
 ```json
 {
   "scene_id": "discovery_knife",
+  "can_rollback": true, // このシーケンスの開始時にスナップショットを作成するか
   "sequence": [
-    { "type": "wait", "time": 0.5 },
-    { "type": "play_se", "id": "highlight_jingle" },
-    { 
-      "parallel": [
-        { "type": "zoom_camera", "target": "knife_sprite", "duration": 1.0 },
-        { "type": "screen_flash", "color": "#FFFFFF", "duration": 0.2 }
-      ]
-    },
-    { "type": "show_message", "text": "これは...血のついたナイフだ！" },
+    { "type": "play_effect", "id": "highlight" },
+    { "type": "zoom_camera", "target": "knife" },
+    { "type": "set_flag", "name": "found_knife", "value": true },
     { "type": "give_item", "id": "blood_knife" }
   ]
 }
@@ -129,12 +106,11 @@ public:
 
 ## 6. Copilot（実装担当）への実装ガイド
 
-1.  **TaskBase / SequencePlayer の実装**:
-    - `src/core/logic/task_base.h` および `src/core/logic/sequence_player.h` を作成せよ。
-    - `SequencePlayer` は、直列実行（Queue）と並列実行（Group）を切り替えられるか、あるいは別々のクラスとして実装することを検討せよ。
-2.  **イベントループとの同期**:
-    - `SequencePlayer::_process` 内でタスクを回し、デルタ時間を `on_update` に渡すこと。
-3.  **ファクトリパターンの採用**:
-    - JSON の `type` 弦から適切なタスククラスを生成する `TaskFactory` を作成すると、拡張性が高くなる。
-4.  **ScenarioRunner 連携**:
-    - `ScenarioRunner` がアクション配列を実行する際、内部で `SequencePlayer` を使って演出を処理するようにリファクタリングせよ。
+1.  **副作用の分離**:
+    - タスクの `on_update` で少しずつデータを変えるのではなく、`on_start` または `complete_instantly` でデータ更新を一気に行う設計を徹底せよ。これがないとスキップ時にデータの整合性が崩れる。
+2.  **Snapshot のディープコピー**:
+    - `FlagService` 等の `Dictionary` を保存する際は、参照渡しではなく必ず `duplicate(true)` でディープコピーを作成せよ。
+3.  **Undo 可能な設計**:
+    - `ActionRunner` (演出) や `SoundService` (音) は、ロールバック時に「停止」または「巻き戻し」が必要になる場合がある。`SequencePlayer` の `rollback` 命令と各サービスをどう連携させるか検討せよ。
+4.  **ScenarioRunner との統合**:
+    - シナリオの各ノード実行前に自動で `create_snapshot()` を呼ぶオプションを `ScenarioRunner` に追加せよ。
