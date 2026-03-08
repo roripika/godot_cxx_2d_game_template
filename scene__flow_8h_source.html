@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/services/scene_flow.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">scene_flow.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="scene__flow_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KARAKURI_SCENE_FLOW_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KARAKURI_SCENE_FLOW_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &lt;godot_cpp/classes/node.hpp&gt;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#include &lt;godot_cpp/variant/dictionary.hpp&gt;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#include &lt;godot_cpp/variant/string.hpp&gt;</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="};">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html">   67</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1SceneFlow.html">SceneFlow</a> : <span class="keyword">public</span> godot::Node {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  GDCLASS(<a class="code hl_class" href="classkarakuri_1_1SceneFlow.html">SceneFlow</a>, godot::Node)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="comment">// ノード保持型スタックエントリ</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html">   74</a></span>  struct <a class="code hl_struct" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html">SceneRecord</a> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#a723bb6c620e4f404a367e6b444cbcb5b">   75</a></span>    godot::String     <a class="code hl_variable" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#a723bb6c620e4f404a367e6b444cbcb5b">path</a>;             </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#a65c555e59f496564a0d8ce88a5bc0fc5">   76</a></span>    godot::Dictionary <a class="code hl_variable" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#a65c555e59f496564a0d8ce88a5bc0fc5">params</a>;           </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#ae431add3e6d7924c789c917188d0886e">   77</a></span>    godot::Node*      <a class="code hl_variable" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#ae431add3e6d7924c789c917188d0886e">suspended_scene</a>;  </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  };</div>
+</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html#a53dfd08d6977ea063d7e92e164c2b154">   80</a></span>  <span class="keyword">static</span> <a class="code hl_class" href="classkarakuri_1_1SceneFlow.html">SceneFlow</a> *<a class="code hl_variable" href="classkarakuri_1_1SceneFlow.html#a53dfd08d6977ea063d7e92e164c2b154">singleton_</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html#a09f0cb3c1e0226ba8187b005f96266a7">   83</a></span>  std::vector&lt;SceneRecord&gt; <a class="code hl_variable" href="classkarakuri_1_1SceneFlow.html#a09f0cb3c1e0226ba8187b005f96266a7">history_stack_</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html#a30af17a41e0eb74e64bd32cfa241ccba">   87</a></span>  godot::Node* <a class="code hl_variable" href="classkarakuri_1_1SceneFlow.html#a30af17a41e0eb74e64bd32cfa241ccba">active_pushed_scene_</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html#a780d5b8ec997fd574b1fc11a01fe2766">   90</a></span>  godot::String <a class="code hl_variable" href="classkarakuri_1_1SceneFlow.html#a780d5b8ec997fd574b1fc11a01fe2766">current_path_</a>;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html#acc252921e12e33227aa6069cf9e332b5">   93</a></span>  godot::Dictionary <a class="code hl_variable" href="classkarakuri_1_1SceneFlow.html#acc252921e12e33227aa6069cf9e332b5">current_params_</a>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classkarakuri_1_1SceneFlow.html#a0fed4602c53f253d4ea1a6672e2ef6e0">   96</a></span>  godot::String <a class="code hl_variable" href="classkarakuri_1_1SceneFlow.html#a0fed4602c53f253d4ea1a6672e2ef6e0">title_scene_path_</a>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#ae61f6c525029a67f36e12bd7bd6f5a52">do_replace_scene</a>(<span class="keyword">const</span> godot::String &amp;path);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a7a74dc189169baab3731b9171ff3259a">_bind_methods</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a8ffdf0e6cd6f6b43941595781b7b0ace">SceneFlow</a>();</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a95b2de04253718886e29f11bcb56afb6">~SceneFlow</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keyword">static</span> <a class="code hl_class" href="classkarakuri_1_1SceneFlow.html">SceneFlow</a> *<a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a7278def243ea7a54baaf765b3cc550e3">get_singleton</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="comment">// 遷移 API</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#ab386c789892ce148ed263abf8fcafa44">replace_scene</a>(<span class="keyword">const</span> godot::String &amp;path,</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                     <span class="keyword">const</span> godot::Dictionary &amp;params = godot::Dictionary());</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#abcd0516be85ee6aecd634c8eeed8826c">push_scene</a>(<span class="keyword">const</span> godot::String &amp;path,</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>                  <span class="keyword">const</span> godot::Dictionary &amp;params = godot::Dictionary());</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#ac4a768d4015b2bf310ceb0dd4b800f8a">pop_scene</a>();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#aae065ed2f7d4b2529cf2bc9ff0f4d06e">return_to_title</a>();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="comment">// 参照 API</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#aa33c28969a9607c3f30ea97a705a5872">can_pop</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#ada033bef815bd307a626bf4de0fd51c1">get_current_path</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  godot::Dictionary <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a9c9f65a8ad57f776e26816a83a194ac8">get_current_params</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a418540432268f504e925b862b159faa0">get_stack_depth</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a71c315d6d52bc0f2cbafd0abfa931db8">clear_history</a>();</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="comment">// title_scene_path プロパティ</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a57dd22a57dcae80fea508829e5ee0d75">set_title_scene_path</a>(<span class="keyword">const</span> godot::String &amp;path);</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  godot::String <a class="code hl_function" href="classkarakuri_1_1SceneFlow.html#a70b1525d89ef23901517913d0a9a54af">get_title_scene_path</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>};</div>
+</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">#endif </span><span class="comment">// KARAKURI_SCENE_FLOW_H</span></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html">karakuri::SceneFlow</a></div><div class="ttdef"><b>Definition</b> scene_flow.h:67</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a09f0cb3c1e0226ba8187b005f96266a7"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a09f0cb3c1e0226ba8187b005f96266a7">karakuri::SceneFlow::history_stack_</a></div><div class="ttdeci">std::vector&lt; SceneRecord &gt; history_stack_</div><div class="ttdoc">push されて一時停止中のシーンのスタック（後入れ先出し）</div><div class="ttdef"><b>Definition</b> scene_flow.h:83</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a0fed4602c53f253d4ea1a6672e2ef6e0"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a0fed4602c53f253d4ea1a6672e2ef6e0">karakuri::SceneFlow::title_scene_path_</a></div><div class="ttdeci">godot::String title_scene_path_</div><div class="ttdoc">return_to_title() で戻る先のパス（インスペクタまたはコードから設定）</div><div class="ttdef"><b>Definition</b> scene_flow.h:96</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a30af17a41e0eb74e64bd32cfa241ccba"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a30af17a41e0eb74e64bd32cfa241ccba">karakuri::SceneFlow::active_pushed_scene_</a></div><div class="ttdeci">godot::Node * active_pushed_scene_</div><div class="ttdef"><b>Definition</b> scene_flow.h:87</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a418540432268f504e925b862b159faa0"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a418540432268f504e925b862b159faa0">karakuri::SceneFlow::get_stack_depth</a></div><div class="ttdeci">int get_stack_depth() const</div><div class="ttdoc">履歴スタックの深さ（push した回数）を返す。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:260</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a53dfd08d6977ea063d7e92e164c2b154"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a53dfd08d6977ea063d7e92e164c2b154">karakuri::SceneFlow::singleton_</a></div><div class="ttdeci">static SceneFlow * singleton_</div><div class="ttdef"><b>Definition</b> scene_flow.h:80</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a57dd22a57dcae80fea508829e5ee0d75"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a57dd22a57dcae80fea508829e5ee0d75">karakuri::SceneFlow::set_title_scene_path</a></div><div class="ttdeci">void set_title_scene_path(const godot::String &amp;path)</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:307</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a70b1525d89ef23901517913d0a9a54af"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a70b1525d89ef23901517913d0a9a54af">karakuri::SceneFlow::get_title_scene_path</a></div><div class="ttdeci">godot::String get_title_scene_path() const</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:311</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a71c315d6d52bc0f2cbafd0abfa931db8"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a71c315d6d52bc0f2cbafd0abfa931db8">karakuri::SceneFlow::clear_history</a></div><div class="ttdeci">void clear_history()</div><div class="ttdoc">スタックに保持している全シーンノードを queue_free し、履歴をクリアする。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:264</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a7278def243ea7a54baaf765b3cc550e3"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a7278def243ea7a54baaf765b3cc550e3">karakuri::SceneFlow::get_singleton</a></div><div class="ttdeci">static SceneFlow * get_singleton()</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:28</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a780d5b8ec997fd574b1fc11a01fe2766"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a780d5b8ec997fd574b1fc11a01fe2766">karakuri::SceneFlow::current_path_</a></div><div class="ttdeci">godot::String current_path_</div><div class="ttdoc">現在のシーンパス（遷移後に更新）</div><div class="ttdef"><b>Definition</b> scene_flow.h:90</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a7a74dc189169baab3731b9171ff3259a"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a7a74dc189169baab3731b9171ff3259a">karakuri::SceneFlow::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:34</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a8ffdf0e6cd6f6b43941595781b7b0ace"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a8ffdf0e6cd6f6b43941595781b7b0ace">karakuri::SceneFlow::SceneFlow</a></div><div class="ttdeci">SceneFlow()</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:16</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a95b2de04253718886e29f11bcb56afb6"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a95b2de04253718886e29f11bcb56afb6">karakuri::SceneFlow::~SceneFlow</a></div><div class="ttdeci">~SceneFlow() override</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:22</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_a9c9f65a8ad57f776e26816a83a194ac8"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#a9c9f65a8ad57f776e26816a83a194ac8">karakuri::SceneFlow::get_current_params</a></div><div class="ttdeci">godot::Dictionary get_current_params() const</div><div class="ttdoc">遷移時に渡されたパラメータを返す。 遷移先の _ready() から呼ぶことで呼び出し元のデータを受け取れる。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:256</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_aa33c28969a9607c3f30ea97a705a5872"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#aa33c28969a9607c3f30ea97a705a5872">karakuri::SceneFlow::can_pop</a></div><div class="ttdeci">bool can_pop() const</div><div class="ttdoc">戻れる履歴が残っているか。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:248</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_aae065ed2f7d4b2529cf2bc9ff0f4d06e"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#aae065ed2f7d4b2529cf2bc9ff0f4d06e">karakuri::SceneFlow::return_to_title</a></div><div class="ttdeci">void return_to_title()</div><div class="ttdoc">履歴スタックを全クリアし、title_scene_path へ遷移する。 ゲームオーバーやタイトルへの「強制脱出」に使う。 title_scene_path が空の場合は警告を出して何もしない。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:275</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_ab386c789892ce148ed263abf8fcafa44"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#ab386c789892ce148ed263abf8fcafa44">karakuri::SceneFlow::replace_scene</a></div><div class="ttdeci">void replace_scene(const godot::String &amp;path, const godot::Dictionary &amp;params=godot::Dictionary())</div><div class="ttdoc">履歴に残さず現在シーンを置き換える。 タイトル→ゲームのような「戻らない遷移」に使う。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:114</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_abcd0516be85ee6aecd634c8eeed8826c"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#abcd0516be85ee6aecd634c8eeed8826c">karakuri::SceneFlow::push_scene</a></div><div class="ttdeci">void push_scene(const godot::String &amp;path, const godot::Dictionary &amp;params=godot::Dictionary())</div><div class="ttdoc">現在シーンをメモリ上に保持したまま新しいシーンへ移る。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:127</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_ac4a768d4015b2bf310ceb0dd4b800f8a"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#ac4a768d4015b2bf310ceb0dd4b800f8a">karakuri::SceneFlow::pop_scene</a></div><div class="ttdeci">void pop_scene()</div><div class="ttdoc">現在のシーンを破棄し、スタックに保持していた直前のシーンを復元する。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:196</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_acc252921e12e33227aa6069cf9e332b5"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#acc252921e12e33227aa6069cf9e332b5">karakuri::SceneFlow::current_params_</a></div><div class="ttdeci">godot::Dictionary current_params_</div><div class="ttdoc">遷移先がシーンから受け取れるパラメータ</div><div class="ttdef"><b>Definition</b> scene_flow.h:93</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_ada033bef815bd307a626bf4de0fd51c1"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#ada033bef815bd307a626bf4de0fd51c1">karakuri::SceneFlow::get_current_path</a></div><div class="ttdeci">godot::String get_current_path() const</div><div class="ttdoc">現在のシーンパスを返す。</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:252</div></div>
+<div class="ttc" id="aclasskarakuri_1_1SceneFlow_html_ae61f6c525029a67f36e12bd7bd6f5a52"><div class="ttname"><a href="classkarakuri_1_1SceneFlow.html#ae61f6c525029a67f36e12bd7bd6f5a52">karakuri::SceneFlow::do_replace_scene</a></div><div class="ttdeci">void do_replace_scene(const godot::String &amp;path)</div><div class="ttdoc">replace_scene / return_to_title 専用: change_scene_to_file + シグナル</div><div class="ttdef"><b>Definition</b> scene_flow.cpp:82</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> hitbox_component.cpp:7</div></div>
+<div class="ttc" id="astructkarakuri_1_1SceneFlow_1_1SceneRecord_html"><div class="ttname"><a href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html">karakuri::SceneFlow::SceneRecord</a></div><div class="ttdoc">push_scene で suspend したシーンのレコード</div><div class="ttdef"><b>Definition</b> scene_flow.h:74</div></div>
+<div class="ttc" id="astructkarakuri_1_1SceneFlow_1_1SceneRecord_html_a65c555e59f496564a0d8ce88a5bc0fc5"><div class="ttname"><a href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#a65c555e59f496564a0d8ce88a5bc0fc5">karakuri::SceneFlow::SceneRecord::params</a></div><div class="ttdeci">godot::Dictionary params</div><div class="ttdoc">渡されたパラメータ</div><div class="ttdef"><b>Definition</b> scene_flow.h:76</div></div>
+<div class="ttc" id="astructkarakuri_1_1SceneFlow_1_1SceneRecord_html_a723bb6c620e4f404a367e6b444cbcb5b"><div class="ttname"><a href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#a723bb6c620e4f404a367e6b444cbcb5b">karakuri::SceneFlow::SceneRecord::path</a></div><div class="ttdeci">godot::String path</div><div class="ttdoc">シーンリソースパス</div><div class="ttdef"><b>Definition</b> scene_flow.h:75</div></div>
+<div class="ttc" id="astructkarakuri_1_1SceneFlow_1_1SceneRecord_html_ae431add3e6d7924c789c917188d0886e"><div class="ttname"><a href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#ae431add3e6d7924c789c917188d0886e">karakuri::SceneFlow::SceneRecord::suspended_scene</a></div><div class="ttdeci">godot::Node * suspended_scene</div><div class="ttdoc">remove_child() で取り外したノード（解放しない！）</div><div class="ttdef"><b>Definition</b> scene_flow.h:77</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

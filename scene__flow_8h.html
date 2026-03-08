@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/services/scene_flow.h ファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">データ構造</a> &#124;
+<a href="#namespaces">名前空間</a>  </div>
+  <div class="headertitle"><div class="title">scene_flow.h ファイル</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Basic Game Karakuri: 汎用シーン遷移スタック管理サービス。  
+<a href="#details">[詳解]</a></p>
+<div class="textblock"><code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/node.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
+</div>
+<p><a href="scene__flow_8h_source.html">[ソースコード]</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1SceneFlow.html">karakuri::SceneFlow</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html">karakuri::SceneFlow::SceneRecord</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">push_scene で suspend したシーンのレコード  <a href="structkarakuri_1_1SceneFlow_1_1SceneRecord.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+名前空間</h2></td></tr>
+<tr class="memitem:namespacekarakuri" id="r_namespacekarakuri"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html">karakuri</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>Basic Game Karakuri: 汎用シーン遷移スタック管理サービス。 </p>
+<h2><a class="anchor" id="autotoc_md25"></a>
+役割</h2>
+<p><code>push</code>, <code>pop</code>, <code>replace</code> の3つのAPIで画面スタックを管理する。 Autoload として /root に配置することで、全シーンから参照できるシングルトンになる。</p>
+<h2><a class="anchor" id="autotoc_md26"></a>
+push / pop / replace の使い分け</h2>
+<h3><a class="anchor" id="autotoc_md27"></a>
+replace_scene(path, params)</h3>
+<p>履歴に残さず現在のシーンを置き換える。タイトル → ゲーム本編のように 「戻る必要がない遷移」に使う。</p>
+<h3><a class="anchor" id="autotoc_md28"></a>
+push_scene(path, params)</h3>
+<p>現在のシーンパスを履歴スタックに積んでから新しいシーンに移る。 ゲーム本編 → ポーズメニューのように「戻れる遷移」に使う。</p>
+<h3><a class="anchor" id="autotoc_md29"></a>
+pop_scene()</h3>
+<p>スタックから直前のシーンパスを取り出し、そのシーンに戻る。 スタックが空のときは何もしない（<code>can_pop()</code> で事前確認推奨）。</p>
+<h2><a class="anchor" id="autotoc_md30"></a>
+パラメータ渡し（params）</h2>
+<p>遷移先のシーンは <code>SceneFlow::get_singleton()-&gt;get_current_params()</code> を 呼ぶことで、呼び出し元が渡した Dictionary を受け取れる。</p>
+<h2><a class="anchor" id="autotoc_md31"></a>
+使い方（GDScript）</h2>
+<div class="fragment"><div class="line"># 戻れない遷移</div>
+<div class="line">SceneFlow.replace_scene(&quot;res://scenes/game.tscn&quot;)</div>
+<div class="line"> </div>
+<div class="line"># 戻れる遷移（ポーズなど）</div>
+<div class="line">SceneFlow.push_scene(&quot;res://scenes/pause_menu.tscn&quot;, {&quot;from&quot;: &quot;game&quot;})</div>
+<div class="line"># ...ポーズ解除</div>
+<div class="line">SceneFlow.pop_scene()</div>
+<div class="line"> </div>
+<div class="line"># 遷移先でパラメータを受け取る</div>
+<div class="line">var params = SceneFlow.get_current_params()</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+シグナル</h2>
+<h3><a class="anchor" id="autotoc_md33"></a>
+遷移イベント（スタック変化）</h3>
+<ul>
+<li><code>scene_replaced(from_path, to_path)</code></li>
+<li><code>scene_pushed(from_path, to_path)</code></li>
+<li><code>scene_popped(from_path, to_path)</code> : from=元いた画面, to=戻り先</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md34"></a>
+演出フック（フェードイン/アウト連携用）</h3>
+<ul>
+<li><code>transition_started(to_path)</code> : 遷移直前に発火。GDScript 側でフェードアウトを開始する。</li>
+<li><code>transition_finished()</code> : do_change_scene() 直後に発火。フェードイン開始の合図。</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md35"></a>
+&lt;tt&gt;return_to_title()&lt;/tt&gt; について</h2>
+<p><code>title_scene_path</code> プロパティに登録したシーンへ、履歴を全クリアして戻る。 タイトルへの「強制脱出」として使う。 </p>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

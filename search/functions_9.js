@@ -14,11 +14,12 @@ var searchData=
   ['is_5faction_5fpressed_11',['is_action_pressed',['../classkarakuri_1_1InputService.html#ac5794899ee0dd78277af4a905d20bac5',1,'karakuri::InputService']]],
   ['is_5factive_12',['is_active',['../classkarakuri_1_1InteractionManager.html#a1e635e766d135c7e74eedb75901da21e',1,'karakuri::InteractionManager']]],
   ['is_5fcolliding_5fwith_5ftype_13',['is_colliding_with_type',['../classkarakuri_1_1RayCastComponent.html#a6734acdcc9ac9d51fbb5869d4ae684ea',1,'karakuri::RayCastComponent']]],
-  ['is_5finvincible_14',['is_invincible',['../classkarakuri_1_1HurtboxComponent.html#a88db2e87b18aa4876647363089afebd7',1,'karakuri::HurtboxComponent']]],
-  ['is_5fknown_5fitem_15',['is_known_item',['../classkarakuri_1_1ItemService.html#aa54bebe3a80f8afb83e230f13df0cba4',1,'karakuri::ItemService']]],
-  ['is_5frunning_16',['is_running',['../classkarakuri_1_1ScenarioRunner.html#a0f6657e8d2f79d00580d14e34294ec9c',1,'karakuri::ScenarioRunner']]],
-  ['is_5fstackable_17',['is_stackable',['../classkarakuri_1_1GameItem.html#a8cf75a31532f64633d7a110920d841cc',1,'karakuri::GameItem']]],
-  ['is_5ftyping_5factive_18',['is_typing_active',['../classkarakuri_1_1DialogueUI.html#ad82181a4a3f457468c957cc4b8309415',1,'karakuri::DialogueUI']]],
-  ['isometricview_19',['IsometricView',['../classIsometricView.html#a39e5b3ca5277af2e3aa1d3e8ca040a2d',1,'IsometricView']]],
-  ['itemservice_20',['ItemService',['../classkarakuri_1_1ItemService.html#aa3712f38c5e42c09e7ec234f20d1dd11',1,'karakuri::ItemService']]]
+  ['is_5ffinished_14',['is_finished',['../classkarakuri_1_1TaskBase.html#ab1e0325d79b4d5a4041c9778d006ffe2',1,'karakuri::TaskBase::is_finished()'],['../classkarakuri_1_1TaskGroup.html#a22d8a11a3c0402c5c6e35c4fc786809e',1,'karakuri::TaskGroup::is_finished()'],['../classkarakuri_1_1WaitTask.html#a0ae3b8478aca39135dce297d91979bf8',1,'karakuri::WaitTask::is_finished()']]],
+  ['is_5finvincible_15',['is_invincible',['../classkarakuri_1_1HurtboxComponent.html#a88db2e87b18aa4876647363089afebd7',1,'karakuri::HurtboxComponent']]],
+  ['is_5fknown_5fitem_16',['is_known_item',['../classkarakuri_1_1ItemService.html#aa54bebe3a80f8afb83e230f13df0cba4',1,'karakuri::ItemService']]],
+  ['is_5frunning_17',['is_running',['../classkarakuri_1_1ScenarioRunner.html#a0f6657e8d2f79d00580d14e34294ec9c',1,'karakuri::ScenarioRunner::is_running()'],['../classkarakuri_1_1SequencePlayer.html#acd5caf924c694ab6b58a0c68ac21a40e',1,'karakuri::SequencePlayer::is_running()']]],
+  ['is_5fstackable_18',['is_stackable',['../classkarakuri_1_1GameItem.html#a8cf75a31532f64633d7a110920d841cc',1,'karakuri::GameItem']]],
+  ['is_5ftyping_5factive_19',['is_typing_active',['../classkarakuri_1_1DialogueUI.html#ad82181a4a3f457468c957cc4b8309415',1,'karakuri::DialogueUI']]],
+  ['isometricview_20',['IsometricView',['../classIsometricView.html#a39e5b3ca5277af2e3aa1d3e8ca040a2d',1,'IsometricView']]],
+  ['itemservice_21',['ItemService',['../classkarakuri_1_1ItemService.html#aa3712f38c5e42c09e7ec234f20d1dd11',1,'karakuri::ItemService']]]
 ];

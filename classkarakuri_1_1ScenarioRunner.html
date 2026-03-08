@@ -147,6 +147,12 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:a0f6657e8d2f79d00580d14e34294ec9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afab3dd95e54c4e3d348f979d829c4cf9" id="r_afab3dd95e54c4e3d348f979d829c4cf9"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#afab3dd95e54c4e3d348f979d829c4cf9">get_current_scene_id</a> () const</td></tr>
 <tr class="separator:afab3dd95e54c4e3d348f979d829c4cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada1410584f4451e919c1bd4d9f668ad5" id="r_ada1410584f4451e919c1bd4d9f668ad5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ada1410584f4451e919c1bd4d9f668ad5">get_pending_action_index</a> () const</td></tr>
+<tr class="memdesc:ada1410584f4451e919c1bd4d9f668ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在実行中の pending_action_index_ を返す。 <a class="el" href="classkarakuri_1_1SequencePlayer.html#a4920807fc306f8a16eef08739121f0df">SequencePlayer::create_snapshot()</a> からスナップショット保存に使用する。  <br /></td></tr>
+<tr class="separator:ada1410584f4451e919c1bd4d9f668ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef84e2597239dd897dc663c1266b5537" id="r_aef84e2597239dd897dc663c1266b5537"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aef84e2597239dd897dc663c1266b5537">restore_to</a> (const godot::String &amp;scene_id, int action_index)</td></tr>
+<tr class="memdesc:aef84e2597239dd897dc663c1266b5537"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkarakuri_1_1ScenarioRunner.html" title="汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。">ScenarioRunner</a> の状態を指定シーン・コマンドインデックスに復元する。 <a class="el" href="classkarakuri_1_1SequencePlayer.html#af3226fd1cd10203218ff728d326243fb">SequencePlayer::rollback_to_last_snapshot()</a> から呼ばれる。 シーン遷移が必要な場合は <a class="el" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd">load_scene_by_id()</a> を内部で呼ぶ。  <br /></td></tr>
+<tr class="separator:aef84e2597239dd897dc663c1266b5537"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f0aba18ea01d10f9cc195e1a8de72e4" id="r_a0f0aba18ea01d10f9cc195e1a8de72e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0f0aba18ea01d10f9cc195e1a8de72e4">_ready</a> () override</td></tr>
 <tr class="separator:a0f0aba18ea01d10f9cc195e1a8de72e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ae5f997f165487d55b4d8901c1fde97" id="r_a5ae5f997f165487d55b4d8901c1fde97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5ae5f997f165487d55b4d8901c1fde97">_process</a> (double delta) override</td></tr>
@@ -162,6 +168,11 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="memitem:a60b3248b36f97785a957a108b2d0446a" id="r_a60b3248b36f97785a957a108b2d0446a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a60b3248b36f97785a957a108b2d0446a">inject_steps</a> (const godot::Array &amp;steps)</td></tr>
 <tr class="memdesc:a60b3248b36f97785a957a108b2d0446a"><td class="mdescLeft">&#160;</td><td class="mdescRight">現在のアクション直後にステップを挿入する。  <br /></td></tr>
 <tr class="separator:a60b3248b36f97785a957a108b2d0446a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ff8b3e5d73d34251a6ac1292ff82a0a" id="r_a0ff8b3e5d73d34251a6ac1292ff82a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0ff8b3e5d73d34251a6ac1292ff82a0a">set_sequence_player_path</a> (const godot::NodePath &amp;path)</td></tr>
+<tr class="memdesc:a0ff8b3e5d73d34251a6ac1292ff82a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classkarakuri_1_1SequencePlayer.html">SequencePlayer</a> への NodePath を設定する。 シーン定義に <code>can_rollback: true</code> がある場合、自動で <a class="el" href="classkarakuri_1_1SequencePlayer.html#a4920807fc306f8a16eef08739121f0df">SequencePlayer::create_snapshot()</a> を呼ぶために使用する。 設計書 §6-4 対応。  <br /></td></tr>
+<tr class="separator:a0ff8b3e5d73d34251a6ac1292ff82a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af49f8306163a2f86aa24d21f71d647a8" id="r_af49f8306163a2f86aa24d21f71d647a8"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af49f8306163a2f86aa24d21f71d647a8">get_sequence_player_path</a> () const</td></tr>
+<tr class="separator:af49f8306163a2f86aa24d21f71d647a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 静的限定公開メンバ関数</h2></td></tr>
@@ -172,6 +183,8 @@ karakuri::ScenarioRunner の継承関係図</div>
 非公開メンバ関数</h2></td></tr>
 <tr class="memitem:a0a7fac70635b974f6bba84d70a25162b" id="r_a0a7fac70635b974f6bba84d70a25162b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0a7fac70635b974f6bba84d70a25162b">load_scenario_internal</a> ()</td></tr>
 <tr class="separator:a0a7fac70635b974f6bba84d70a25162b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff891a528b2a7f92d13470aa76fd780d" id="r_aff891a528b2a7f92d13470aa76fd780d"><td class="memItemLeft" align="right" valign="top">godot::Node *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#aff891a528b2a7f92d13470aa76fd780d">find_sequence_player</a> () const</td></tr>
+<tr class="separator:aff891a528b2a7f92d13470aa76fd780d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af512f5cf6d2e05c8aaa50fc374943f3d" id="r_af512f5cf6d2e05c8aaa50fc374943f3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af512f5cf6d2e05c8aaa50fc374943f3d">bind_scene_hotspots</a> (const godot::Dictionary &amp;scene_dict)</td></tr>
 <tr class="separator:af512f5cf6d2e05c8aaa50fc374943f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e8a47e2ae6a81fb053e07ebadcc85aa" id="r_a5e8a47e2ae6a81fb053e07ebadcc85aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa">start_actions</a> (const godot::Array &amp;actions)</td></tr>
@@ -273,6 +286,9 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:a82ec3ba371092edcd179dd3045d465dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99b01dc0c8a6eca2fe00544d69b7bdf7" id="r_a99b01dc0c8a6eca2fe00544d69b7bdf7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a99b01dc0c8a6eca2fe00544d69b7bdf7">transition_timeout_sec_</a> = -1.0f</td></tr>
 <tr class="separator:a99b01dc0c8a6eca2fe00544d69b7bdf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc4be45848cc81201275d1547098be71" id="r_abc4be45848cc81201275d1547098be71"><td class="memItemLeft" align="right" valign="top">godot::NodePath&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#abc4be45848cc81201275d1547098be71">sequence_player_path_</a></td></tr>
+<tr class="memdesc:abc4be45848cc81201275d1547098be71"><td class="mdescLeft">&#160;</td><td class="mdescRight">can_rollback: true のシーン開始時に自動スナップショットを取る <a class="el" href="classkarakuri_1_1SequencePlayer.html">SequencePlayer</a> パス  <br /></td></tr>
+<tr class="separator:abc4be45848cc81201275d1547098be71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a626d17d9c01259194eb4ddbb0a82ada6" id="r_a626d17d9c01259194eb4ddbb0a82ada6"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a626d17d9c01259194eb4ddbb0a82ada6">current_mode_id_</a></td></tr>
 <tr class="separator:a626d17d9c01259194eb4ddbb0a82ada6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3eb1b1ec388ebb6f50a74e1ab965579" id="r_af3eb1b1ec388ebb6f50a74e1ab965579"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#af3eb1b1ec388ebb6f50a74e1ab965579">mode_input_enabled_</a> = true</td></tr>
@@ -470,6 +486,31 @@ karakuri::ScenarioRunner の継承関係図</div>
 
 </div>
 </div>
+<a id="aff891a528b2a7f92d13470aa76fd780d" name="aff891a528b2a7f92d13470aa76fd780d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff891a528b2a7f92d13470aa76fd780d">&#9670;&#160;</a></span>find_sequence_player()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Node * karakuri::ScenarioRunner::find_sequence_player </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a54e5551b2a1b673f6169610e80a1f373" name="a54e5551b2a1b673f6169610e80a1f373"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a54e5551b2a1b673f6169610e80a1f373">&#9670;&#160;</a></span>get_adventure_state()</h2>
 
@@ -563,6 +604,25 @@ karakuri::ScenarioRunner の継承関係図</div>
 
 </div>
 </div>
+<a id="ada1410584f4451e919c1bd4d9f668ad5" name="ada1410584f4451e919c1bd4d9f668ad5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada1410584f4451e919c1bd4d9f668ad5">&#9670;&#160;</a></span>get_pending_action_index()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int karakuri::ScenarioRunner::get_pending_action_index </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>現在実行中の pending_action_index_ を返す。 <a class="el" href="classkarakuri_1_1SequencePlayer.html#a4920807fc306f8a16eef08739121f0df">SequencePlayer::create_snapshot()</a> からスナップショット保存に使用する。 </p>
+
+</div>
+</div>
 <a id="a6f4b69e80ce21b8c9952d9b161b7bd63" name="a6f4b69e80ce21b8c9952d9b161b7bd63"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f4b69e80ce21b8c9952d9b161b7bd63">&#9670;&#160;</a></span>get_scenario_path()</h2>
 
@@ -588,6 +648,23 @@ karakuri::ScenarioRunner の継承関係図</div>
       <table class="memname">
         <tr>
           <td class="memname">NodePath karakuri::ScenarioRunner::get_scene_container_path </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af49f8306163a2f86aa24d21f71d647a8" name="af49f8306163a2f86aa24d21f71d647a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af49f8306163a2f86aa24d21f71d647a8">&#9670;&#160;</a></span>get_sequence_player_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NodePath karakuri::ScenarioRunner::get_sequence_player_path </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1115,6 +1192,43 @@ karakuri::ScenarioRunner の継承関係図</div>
 
 </div>
 </div>
+<a id="aef84e2597239dd897dc663c1266b5537" name="aef84e2597239dd897dc663c1266b5537"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef84e2597239dd897dc663c1266b5537">&#9670;&#160;</a></span>restore_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::restore_to </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>scene_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>action_index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classkarakuri_1_1ScenarioRunner.html" title="汎用シナリオエンジン。アクションディスパッチャーパターンにより、 ジャンル固有のロジック（ミステリーの証言等）は外部から登録される。">ScenarioRunner</a> の状態を指定シーン・コマンドインデックスに復元する。 <a class="el" href="classkarakuri_1_1SequencePlayer.html#af3226fd1cd10203218ff728d326243fb">SequencePlayer::rollback_to_last_snapshot()</a> から呼ばれる。 シーン遷移が必要な場合は <a class="el" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd">load_scene_by_id()</a> を内部で呼ぶ。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scene_id</td><td>復元先のシーン ID </td></tr>
+    <tr><td class="paramname">action_index</td><td>復元先の pending_action_index_ </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a430709ae392465c777ddce2c67da6fd5" name="a430709ae392465c777ddce2c67da6fd5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a430709ae392465c777ddce2c67da6fd5">&#9670;&#160;</a></span>set_dialogue_ui_path()</h2>
 
@@ -1228,6 +1342,26 @@ karakuri::ScenarioRunner の継承関係図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ff8b3e5d73d34251a6ac1292ff82a0a" name="a0ff8b3e5d73d34251a6ac1292ff82a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ff8b3e5d73d34251a6ac1292ff82a0a">&#9670;&#160;</a></span>set_sequence_player_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::set_sequence_player_path </td>
+          <td>(</td>
+          <td class="paramtype">const godot::NodePath &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="classkarakuri_1_1SequencePlayer.html">SequencePlayer</a> への NodePath を設定する。 シーン定義に <code>can_rollback: true</code> がある場合、自動で <a class="el" href="classkarakuri_1_1SequencePlayer.html#a4920807fc306f8a16eef08739121f0df">SequencePlayer::create_snapshot()</a> を呼ぶために使用する。 設計書 §6-4 対応。 </p>
 
 </div>
 </div>
@@ -1835,6 +1969,30 @@ karakuri::ScenarioRunner の継承関係図</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc4be45848cc81201275d1547098be71" name="abc4be45848cc81201275d1547098be71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc4be45848cc81201275d1547098be71">&#9670;&#160;</a></span>sequence_player_path_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::NodePath karakuri::ScenarioRunner::sequence_player_path_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>can_rollback: true のシーン開始時に自動スナップショットを取る <a class="el" href="classkarakuri_1_1SequencePlayer.html">SequencePlayer</a> パス </p>
 
 </div>
 </div>

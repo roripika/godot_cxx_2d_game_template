@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['universalworlddata_0',['UniversalWorldData',['../classkarakuri_1_1UniversalWorldData.html#a199961a515ff704308fff0da59f4df67',1,'karakuri::UniversalWorldData']]],
-  ['update_5fposition_1',['update_position',['../classRhythmNote.html#a99d516b3cedf3e6870691dcf504531e1',1,'RhythmNote']]],
-  ['update_5fui_2',['update_ui',['../classFightingGameManager.html#a9ca0aeae1f3865f97c5727f43c93d942',1,'FightingGameManager']]],
-  ['update_5fvisuals_3',['update_visuals',['../classkarakuri_1_1SideScrollingView.html#a5b57986b0fde06dd9f67ce95e3f45a09',1,'karakuri::SideScrollingView::update_visuals()'],['../classIsometricView.html#a7bd36e1118a60554558f8d5953962567',1,'IsometricView::update_visuals()']]]
+  ['take_5fdamage_0',['take_damage',['../classkarakuri_1_1BaseEntity.html#a63a39382d15c4f7ffbc3112748c129b9',1,'karakuri::BaseEntity']]],
+  ['take_5fhit_1',['take_hit',['../classkarakuri_1_1HurtboxComponent.html#aee21150393efd162afb9f29467729f23',1,'karakuri::HurtboxComponent']]],
+  ['taskbase_2',['TaskBase',['../classkarakuri_1_1TaskBase.html#a8202e8b29387500221d48a70fced3421',1,'karakuri::TaskBase']]],
+  ['taskgroup_3',['TaskGroup',['../classkarakuri_1_1TaskGroup.html#aed4f6bb75d9fcd5f3b5512732761092c',1,'karakuri::TaskGroup']]],
+  ['tr_5fkey_4',['tr_key',['../classkarakuri_1_1ScenarioRunner.html#aec0b269d5a9b4ed0153e17caa738ae32',1,'karakuri::ScenarioRunner']]],
+  ['trigger_5fhotspot_5',['trigger_hotspot',['../classkarakuri_1_1ScenarioRunner.html#a4b5c5755c0a93076ca6797ab96a1fea0',1,'karakuri::ScenarioRunner']]]
 ];

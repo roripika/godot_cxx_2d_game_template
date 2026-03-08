@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['notelane_0',['NoteLane',['../classNoteLane.html',1,'']]]
+  ['miningcomponent_0',['MiningComponent',['../classMiningComponent.html',1,'']]]
 ];

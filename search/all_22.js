@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['複合条件_0',['複合条件',['../condition__evaluator_8h.html#autotoc_md9',1,'']]]
+  ['ポリシー_0',['duplicate(true) ポリシー',['../state__snapshot_8h.html#autotoc_md43',1,'']]]
 ];

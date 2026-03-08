@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['設計ポリシー_0',['設計ポリシー',['../i__interactable_8h.html#autotoc_md3',1,'']]],
-  ['設計ポリシー_20karakuri_20層_1',['設計ポリシー karakuri 層',['../interaction__component_8h.html#autotoc_md1',1,'設計ポリシー (karakuri 層)'],['../action__runner_8h.html#autotoc_md12',1,'設計ポリシー (karakuri 層)'],['../flag__service_8h.html#autotoc_md16',1,'設計ポリシー (karakuri 層)'],['../item__service_8h.html#autotoc_md19',1,'設計ポリシー (karakuri 層)'],['../sound__service_8h.html#autotoc_md23',1,'設計ポリシー (karakuri 層)']]]
+  ['マスターカタログの_20dictionary_20形式_0',['マスターカタログの Dictionary 形式',['../item__service_8h.html#autotoc_md24',1,'']]]
 ];
