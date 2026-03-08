@@ -44,9 +44,6 @@ class MysteryGameState : public karakuri::KarakuriGameState {
 protected:
   static void _bind_methods();
 
-  /** @brief ノード通知ハンドラ。NOTIFICATION_READY で _ready() を呼び出す。 */
-  void _notification(int p_what);
-
 public:
   MysteryGameState();
   ~MysteryGameState() override;

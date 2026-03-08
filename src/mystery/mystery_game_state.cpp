@@ -34,7 +34,9 @@ MysteryGameState *MysteryGameState::get_singleton() {
 }
 
 void MysteryGameState::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("_ready"), &MysteryGameState::_ready);
+  // _ready() は Godot virtual メソッドのため bind_method 登録は不要。
+  // GDExtension では C++ で override するだけで自動的に呼ばれる。
+
   // HP 管理
   ClassDB::bind_method(D_METHOD("set_health", "hp"),
                        &MysteryGameState::set_health);
@@ -63,19 +65,6 @@ void MysteryGameState::_bind_methods() {
   ClassDB::bind_static_method("MysteryGameState",
                               D_METHOD("get_singleton"),
                               &MysteryGameState::get_singleton);
-}
-
-// ------------------------------------------------------------------
-// ノード通知 / _ready() ディスパッチ
-// ------------------------------------------------------------------
-
-void MysteryGameState::_notification(int p_what) {
-  // NOTIFICATION_READY (13) のときだけ _ready() を呼ぶ。
-  // GDExtension の _notification は Godot のノードライフサイクルに直接フックするため、
-  // GDScript 側で super._ready() を呼ばなくても C++ 実装が確実に実行される。
-  if (p_what == Node::NOTIFICATION_READY) {
-    _ready();
-  }
 }
 
 // ------------------------------------------------------------------
