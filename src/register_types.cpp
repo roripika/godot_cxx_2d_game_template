@@ -43,6 +43,7 @@
 #include "mystery/tasks/zoom_camera_task.h"
 #include "mystery/tasks/show_evidence_ui_task.h"
 #include "mystery/tasks/play_mystery_sound_task.h"
+#include "mystery/tasks/task_add_evidence.h"
 
 // Layer 2: Mystery template
 #include "mystery/mystery_game_state.h"
@@ -119,6 +120,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<mystery::ZoomCameraTask>();
   ClassDB::register_class<mystery::ShowEvidenceUITask>();
   ClassDB::register_class<mystery::PlayMysterySoundTask>();
+  ClassDB::register_class<mystery::TaskAddEvidence>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::MysteryGameState>();
