@@ -24,6 +24,8 @@
  * 取得できる（is-a 関係を活用）。
  */
 
+#include <godot_cpp/variant/typed_array.hpp>
+
 #include "core/karakuri_game_state.h"
 
 namespace mystery {
@@ -35,6 +37,9 @@ class MysteryGameState : public karakuri::KarakuriGameState {
 
   /// HP（ミス許容回数）。デフォルト 3。
   int health_ = 3;
+
+  /// 収集済み証拠品 ID のリスト
+  godot::TypedArray<godot::String> collected_evidences_;
 
 protected:
   static void _bind_methods();
@@ -61,6 +66,27 @@ public:
 
   /** @brief amount だけ回復し、health_changed を発火する。 */
   void heal(int amount);
+
+  /** @brief HP を初期値 3 に戻し、health_changed を発火する。 */
+  void reset_health();
+
+  // ------------------------------------------------------------------
+  // 証拠品管理
+  // ------------------------------------------------------------------
+
+  /**
+   * @brief 証拠品 ID をリストに追加し、evidence_added を発火する。
+   * 既に持っている場合は何もしない。
+   */
+  void add_evidence(const godot::String &evidence_id);
+
+  /**
+   * @brief 指定の証拠品 ID をすでに持っているか判定する。
+   */
+  bool has_evidence(const godot::String &evidence_id) const;
+
+  /** @brief 収集済み証拠品リストを返す。 */
+  godot::TypedArray<godot::String> get_collected_evidences() const;
 
   // ------------------------------------------------------------------
   // リセットのオーバーライド

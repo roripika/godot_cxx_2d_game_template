@@ -37,9 +37,20 @@ void MysteryGameState::_bind_methods() {
   ClassDB::bind_method(D_METHOD("get_health"), &MysteryGameState::get_health);
   ClassDB::bind_method(D_METHOD("take_damage"), &MysteryGameState::take_damage);
   ClassDB::bind_method(D_METHOD("heal", "amount"), &MysteryGameState::heal);
+  ClassDB::bind_method(D_METHOD("reset_health"), &MysteryGameState::reset_health);
 
   ADD_PROPERTY(PropertyInfo(Variant::INT, "health"), "set_health", "get_health");
   ADD_SIGNAL(MethodInfo("health_changed", PropertyInfo(Variant::INT, "hp")));
+
+  // 証拠品管理
+  ClassDB::bind_method(D_METHOD("add_evidence", "evidence_id"),
+                       &MysteryGameState::add_evidence);
+  ClassDB::bind_method(D_METHOD("has_evidence", "evidence_id"),
+                       &MysteryGameState::has_evidence);
+  ClassDB::bind_method(D_METHOD("get_collected_evidences"),
+                       &MysteryGameState::get_collected_evidences);
+  ADD_SIGNAL(MethodInfo("evidence_added",
+                        PropertyInfo(Variant::STRING, "evidence_id")));
 
   // リセット
   ClassDB::bind_method(D_METHOD("reset_game"), &MysteryGameState::reset_game);
@@ -78,6 +89,34 @@ void MysteryGameState::heal(int amount) {
   emit_signal("health_changed", health_);
 }
 
+void MysteryGameState::reset_health() {
+  health_ = 3;
+  UtilityFunctions::print("[MysteryGameState] reset_health(). health = ", health_);
+  emit_signal("health_changed", health_);
+}
+
+// ------------------------------------------------------------------
+// 証拠品管理
+// ------------------------------------------------------------------
+
+void MysteryGameState::add_evidence(const String &evidence_id) {
+  if (has_evidence(evidence_id)) {
+    UtilityFunctions::print("[MysteryGameState] add_evidence: 既に所持 ", evidence_id);
+    return;
+  }
+  collected_evidences_.append(evidence_id);
+  UtilityFunctions::print("[MysteryGameState] evidence added: ", evidence_id);
+  emit_signal("evidence_added", evidence_id);
+}
+
+bool MysteryGameState::has_evidence(const String &evidence_id) const {
+  return collected_evidences_.has(evidence_id);
+}
+
+TypedArray<String> MysteryGameState::get_collected_evidences() const {
+  return collected_evidences_;
+}
+
 // ------------------------------------------------------------------
 // リセット（オーバーライド）
 // ------------------------------------------------------------------
@@ -90,6 +129,10 @@ void MysteryGameState::reset_game() {
   health_ = 3;
   UtilityFunctions::print("[MysteryGameState] reset_game(). health = ", health_);
   emit_signal("health_changed", health_);
+
+  // ③ 証拠品リストもクリア
+  collected_evidences_.clear();
+  UtilityFunctions::print("[MysteryGameState] collected_evidences cleared.");
 }
 
 } // namespace mystery
