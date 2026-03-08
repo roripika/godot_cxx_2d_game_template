@@ -34,22 +34,25 @@ Karakuri基盤はパフォーマンスと堅牢性を重視し **C++ (GDExtensio
 ### 🟢 Karakuri (src/core/) に【入れる】もの
 ゲームの土台となる「作品の違いが出ない部分」。
 
-| コンポーネント | 説明 | 実装方針 |
-| :--- | :--- | :--- |
-| **Save / Load** | 保存先、スロット、暗号化などの共通化 | C++ (静的メソッド または Autoload) |
-| **Localization** | 多言語切替、CSV/JSONからの辞書ロード | C++ (Autoload) |
-| **SceneFlow** | `push`, `pop`, `replace` 等の画面遷移API | C++ (Autoload) |
-| **ScenarioRunner** | YAML/JSONを読み込み、順次アクションを発火する実行器 | C++ (Node) |
-| **TaskRunner** | 非同期処理、スキップ、ロールバックの基盤 | C++ (RefCounted / Node) |
-| **Debug Hooks** | FPS表示、フラグ確認、E2Eテスト用の入力注入基盤 | C++ |
+| コンポーネント         | 説明                                                | 実装方針                           |
+| :--------------------- | :-------------------------------------------------- | :--------------------------------- |
+| **Save / Load**        | 保存先、スロット、暗号化などの共通化                | C++ (静的メソッド または Autoload) |
+| **Localization**       | 多言語切替、CSV/JSONからの辞書ロード                | C++ (Autoload)                     |
+| **SceneFlow**          | `push`, `pop`, `replace` 等の画面遷移API            | C++ (Autoload)                     |
+| **ScenarioRunner**     | YAML/JSONを読み込み、順次アクションを発火する実行器 | C++ (Node)                         |
+| **TaskRunner**         | 非同期処理、スキップ、ロールバックの基盤            | C++ (RefCounted / Node)            |
+| **FlagService**        | フラグ（Bool, Int, String）の保持と永続化           | C++ (Autoload)                     |
+| **ConditionEvaluator** | JSON形式の論理判定エンジン (AND/OR/NOT)             | C++ (Static Logic)                 |
+| **Debug Hooks**        | FPS表示、フラグ確認、E2Eテスト用の入力注入基盤      | C++                                |
 
 ### 🔴 各ゲーム層 (src/mystery/ 等) に【逃がす】もの
 作品性が強く、ジャンルや手触りに直結する部分。
 
-| コンポーネント | 説明 | 実装方針 |
-| :--- | :--- | :--- |
-| **Mystery固有Action** | 証拠品の入手、尋問UIの起動、カメラの特定ズーム | C++ (KarakuriのActionを継承) |
-| **ドメインモデル** | `Evidence` (証拠), `Testimony` (証言) などの状態管理 | C++ または GDScript |
-| **UI・演出** | 会話ウィンドウの見た目、証拠品リストUI、HPバー | Scene (.tscn) + GDScript |
-| **プレイヤー操作** | 調査モードのクリック判定、キャラの移動ロジック | Scene内のNode |
-| **ジャンル専用ルール** | 推理の正誤判定、コンボ計算など | C++ または GDScript |
+| コンポーネント         | 説明                                                 | 実装方針                     |
+| :--------------------- | :--------------------------------------------------- | :--------------------------- |
+| **Mystery固有Action**  | 証拠品の入手、尋問UIの起動、カメラの特定ズーム       | C++ (KarakuriのActionを継承) |
+| **ドメインモデル**     | `Evidence` (証拠), `Testimony` (証言) などの状態管理 | C++ または GDScript          |
+| **MysteryTrigger**     | 条件判定エンジンを用いたイベント発火ノード           | C++ (Node)                   |
+| **UI・演出**           | 会話ウィンドウの見た目、証拠品リストUI、HPバー       | Scene (.tscn) + GDScript     |
+| **プレイヤー操作**     | 調査モードのクリック判定、キャラの移動ロジック       | Scene内のNode                |
+| **ジャンル専用ルール** | 推理の正誤判定、コンボ計算など                       | C++ または GDScript          |
