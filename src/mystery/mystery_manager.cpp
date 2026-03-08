@@ -1,5 +1,5 @@
 #include "mystery_manager.h"
-#include "../core/adventure_game_state.h"
+#include "mystery_game_state.h"
 #include "../core/scenario/scenario_runner.h"
 #include "../core/services/item_service.h"
 #include "../core/services/save_service.h"
@@ -96,9 +96,9 @@ Dictionary MysteryManager::serialize_state() const {
     dict["evidence"] = em->serialize_evidence();
   }
 
-  auto *ags = karakuri::AdventureGameStateBase::get_singleton();
-  if (ags) {
-    dict["health"] = ags->get_health();
+  auto *mgs = MysteryGameState::get_singleton();
+  if (mgs) {
+    dict["health"] = mgs->get_health();
   }
 
   return dict;
@@ -117,9 +117,9 @@ void MysteryManager::deserialize_state(const Dictionary &p_dict) {
   }
 
   if (p_dict.has("health")) {
-    auto *ags = karakuri::AdventureGameStateBase::get_singleton();
-    if (ags) {
-      ags->set_health(p_dict["health"]);
+    auto *mgs = MysteryGameState::get_singleton();
+    if (mgs) {
+      mgs->set_health(p_dict["health"]);
     }
   }
 }
@@ -188,8 +188,8 @@ void MysteryManager::validate_state() {
   }
 
   // 3. Health check
-  auto *ags = karakuri::AdventureGameStateBase::get_singleton();
-  if (ags && ags->get_health() <= 0 && !get_flag("game_over")) {
+  auto *mgs = MysteryGameState::get_singleton();
+  if (mgs && mgs->get_health() <= 0 && !get_flag("game_over")) {
     UtilityFunctions::print(
         "[GUARDRAIL] CRITICAL: Health is 0 but game_over flag is not set!");
   }
@@ -310,10 +310,9 @@ void MysteryManager::register_scenario_actions() {
 
   // 6. take_damage
   runner->register_action("take_damage", [this](const Variant &p) {
-    int amount = (int)p;
-    auto *ags = karakuri::AdventureGameStateBase::get_singleton();
-    if (ags)
-      ags->set_health(ags->get_health() - amount);
+    auto *mgs = MysteryGameState::get_singleton();
+    if (mgs)
+      mgs->take_damage();
     return false; // Non-blocking
   });
 

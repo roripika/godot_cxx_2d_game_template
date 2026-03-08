@@ -1,7 +1,7 @@
 #include "register_types.h"
 
 // Layer 1: Basic Game Karakuri (core)
-#include "core/adventure_game_state.h"
+#include "core/karakuri_game_state.h"
 #include "core/components/hitbox_component.h"
 #include "core/components/hurtbox_component.h"
 #include "core/components/interaction_component.h"
@@ -44,6 +44,7 @@
 #include "mystery/tasks/play_mystery_sound_task.h"
 
 // Layer 2: Mystery template
+#include "mystery/mystery_game_state.h"
 #include "mystery/evidence.h"
 #include "mystery/evidence_manager.h"
 #include "mystery/evidence_presenter.h"
@@ -79,7 +80,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   godot::UtilityFunctions::print("Sandbox GDExtension Initialized!");
 
   // Layer 1: Basic Game Karakuri
-  ClassDB::register_class<karakuri::AdventureGameStateBase>();
+  ClassDB::register_class<karakuri::KarakuriGameState>();
   ClassDB::register_class<karakuri::UniversalWorldData>();
   ClassDB::register_class<karakuri::RoguelikeGenerator>();
   ClassDB::register_class<karakuri::RoguelikeManager>();
@@ -118,6 +119,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<mystery::PlayMysterySoundTask>();
 
   // Layer 2: Mystery template
+  ClassDB::register_class<mystery::MysteryGameState>();
   ClassDB::register_class<mystery::Evidence>();
   ClassDB::register_class<mystery::EvidencePresenter>();
   ClassDB::register_class<mystery::MysteryEffectMap>();

@@ -1,0 +1,78 @@
+#ifndef MYSTERY_GAME_STATE_H
+#define MYSTERY_GAME_STATE_H
+
+/**
+ * @file mystery_game_state.h
+ * @brief Mystery テンプレート専用ゲームステート。
+ *
+ * ## 責務（Mystery 境界内）
+ * - HP 管理（デフォルト 3 回のミス許容）
+ * - health_changed シグナルの発火
+ * - reset_game() のオーバーライド（HP を 3 にリセット）
+ *
+ * ## 継承元
+ * karakuri::KarakuriGameState — リセットフック管理を継承する。
+ *
+ * ## Godot クラス階層
+ * Node
+ *   ↳ KarakuriGameState  (reset_hook のみ。他ゲームでも再利用可)
+ *       ↳ MysteryGameState (HP・証拠フラグ等、Mystery 固有の状態)
+ *
+ * ## シングルトンについて
+ * MysteryGameState のコンストラクタは KarakuriGameState::singleton_ も自身のポインタで
+ * 更新するため、`KarakuriGameState::get_singleton()` 経由でも MysteryGameState インスタンスを
+ * 取得できる（is-a 関係を活用）。
+ */
+
+#include "core/karakuri_game_state.h"
+
+namespace mystery {
+
+class MysteryGameState : public karakuri::KarakuriGameState {
+  GDCLASS(MysteryGameState, karakuri::KarakuriGameState)
+
+  static MysteryGameState *singleton_;
+
+  /// HP（ミス許容回数）。デフォルト 3。
+  int health_ = 3;
+
+protected:
+  static void _bind_methods();
+
+public:
+  MysteryGameState();
+  ~MysteryGameState() override;
+
+  /** @brief 唯一の MysteryGameState インスタンスを返す。 */
+  static MysteryGameState *get_singleton();
+
+  // ------------------------------------------------------------------
+  // HP 管理
+  // ------------------------------------------------------------------
+
+  /** @brief HP を直接設定し、health_changed を発火する。 */
+  void set_health(int hp);
+
+  /** @brief 現在の HP を返す。 */
+  int get_health() const;
+
+  /** @brief 1 ダメージを受け、health_changed を発火する。 */
+  void take_damage();
+
+  /** @brief amount だけ回復し、health_changed を発火する。 */
+  void heal(int amount);
+
+  // ------------------------------------------------------------------
+  // リセットのオーバーライド
+  // ------------------------------------------------------------------
+
+  /**
+   * @brief ゲームをリセットする。
+   * 基盤の reset_hook_ を呼び出した後、Mystery 固有の HP を 3 に戻す。
+   */
+  void reset_game() override;
+};
+
+} // namespace mystery
+
+#endif // MYSTERY_GAME_STATE_H
