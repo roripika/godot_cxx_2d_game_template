@@ -2,6 +2,7 @@
 
 // Layer 1: Basic Game Karakuri (core)
 #include "core/karakuri_game_state.h"
+#include "core/condition_evaluator.h"
 #include "core/components/hitbox_component.h"
 #include "core/components/hurtbox_component.h"
 #include "core/components/interaction_component.h"
@@ -81,6 +82,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
 
   // Layer 1: Basic Game Karakuri
   ClassDB::register_class<karakuri::KarakuriGameState>();
+  ClassDB::register_class<karakuri::ConditionEvaluator>();
   ClassDB::register_class<karakuri::UniversalWorldData>();
   ClassDB::register_class<karakuri::RoguelikeGenerator>();
   ClassDB::register_class<karakuri::RoguelikeManager>();
