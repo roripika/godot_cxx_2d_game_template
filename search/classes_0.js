@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['actionrunner_0',['ActionRunner',['../classkarakuri_1_1ActionRunner.html',1,'karakuri']]]
+  ['actionregistry_0',['ActionRegistry',['../classkarakuri_1_1ActionRegistry.html',1,'karakuri']]],
+  ['actionrunner_1',['ActionRunner',['../classkarakuri_1_1ActionRunner.html',1,'karakuri']]]
 ];

@@ -102,14 +102,14 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: ゲーム状態のスナップショット（フラグ・インベントリ・シーン位置）。 </p>
-<h2><a class="anchor" id="autotoc_md51"></a>
+<h2><a class="anchor" id="autotoc_md54"></a>
 役割</h2>
 <ul>
 <li>SequencePlayer が rollback 用に任意タイミングで状態を保存する。</li>
 <li>capture(scene_id, action_index) で現在の FlagService + ItemService の内容を ディープコピーして保持する。</li>
 <li>restore() で FlagService・ItemService を保存時の状態に戻す。 ScenarioRunner への位置復元は SequencePlayer が担当する。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md52"></a>
+<h2><a class="anchor" id="autotoc_md55"></a>
 duplicate(true) ポリシー</h2>
 <p>Dictionary::duplicate(true) / Array::duplicate(true) を用いてネストも含めた ディープコピーを行う。シャローコピーでは復元時に意図しない変更が混入するため注意。 </p>
 </div></div><!-- contents -->

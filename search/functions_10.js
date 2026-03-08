@@ -2,7 +2,7 @@ var searchData=
 [
   ['raycastcomponent_0',['RayCastComponent',['../classkarakuri_1_1RayCastComponent.html#aa79ad22946d6b8612db6f9cb55cab82a',1,'karakuri::RayCastComponent']]],
   ['refresh_1',['refresh',['../classkarakuri_1_1InventoryUI.html#a5194d5efdf70e7ab4d77e19e335f5c51',1,'karakuri::InventoryUI']]],
-  ['register_5faction_2',['register_action',['../classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb',1,'karakuri::ScenarioRunner']]],
+  ['register_5faction_2',['register_action',['../classkarakuri_1_1ActionRegistry.html#a5eb5221a6457d18f3e9c1d54d7b5597d',1,'karakuri::ActionRegistry::register_action()'],['../classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb',1,'karakuri::ScenarioRunner::register_action()']]],
   ['register_5fhit_3',['register_hit',['../classRhythmGameManager.html#aebbe4f7d7737adc8e5c995200fe38a40',1,'RhythmGameManager']]],
   ['register_5fitem_4',['register_item',['../classkarakuri_1_1ItemService.html#a3e96f535314d09cd3a79d702f724b647',1,'karakuri::ItemService']]],
   ['register_5fmiss_5',['register_miss',['../classRhythmGameManager.html#a780ffad8cb76a4a39143dd01bef04875',1,'RhythmGameManager']]],

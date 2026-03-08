@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Basic Game Karakuri SDK: src/core/tasks/task_base.h ファイル</title>
+<title>Basic Game Karakuri SDK: src/core/action_registry.h ファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,26 +70,30 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_3c623fb49c2c95ca25f6fe90d3efbb5b.html">tasks</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">データ構造</a> &#124;
 <a href="#namespaces">名前空間</a>  </div>
-  <div class="headertitle"><div class="title">task_base.h ファイル</div></div>
+  <div class="headertitle"><div class="title">action_registry.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Basic Game Karakuri: 全タスクの基底クラス。  
+<p>Basic Game Karakuri: アクション名 → Godot クラス名 の動的ディスパッチ登録簿。  
 <a href="#details">[詳解]</a></p>
-<div class="textblock"><code>#include &lt;godot_cpp/classes/ref_counted.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;godot_cpp/classes/object.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/ref.hpp&gt;</code><br />
+<code>#include &quot;<a class="el" href="task__base_8h_source.html">tasks/task_base.h</a>&quot;</code><br />
 </div>
-<p><a href="task__base_8h_source.html">[ソースコード]</a></p>
+<p><a href="action__registry_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html">karakuri::TaskBase</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html">karakuri::ActionRegistry</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -98,18 +102,27 @@ $(function() {
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: 全タスクの基底クラス。 </p>
-<h2><a class="anchor" id="autotoc_md56"></a>
-役割</h2>
+<div class="textblock"><p>Basic Game Karakuri: アクション名 → Godot クラス名 の動的ディスパッチ登録簿。 </p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+目的</h2>
+<p>YAML / JSON の <code>{"action": "add_evidence", "evidence_id": "knife"}</code> 形式のデータから C++ クラスを動的に生成・実行できるようにする。 Core 層は Mystery 層のヘッダを一切 include しない（依存逆転防止）。</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+登録フロー</h2>
+<div class="fragment"><div class="line">[Mystery 初期化時]</div>
+<div class="line">  MysteryGameState::_ready()</div>
+<div class="line">    → ActionRegistry::register_action(&quot;add_evidence&quot;, &quot;TaskAddEvidence&quot;)</div>
+<div class="line"> </div>
+<div class="line">[シナリオ実行時]</div>
+<div class="line">  ScenarioRunner::execute_single_action({<span class="stringliteral">&quot;action&quot;</span>:<span class="stringliteral">&quot;add_evidence&quot;</span>,<span class="stringliteral">&quot;evidence_id&quot;</span>:<span class="stringliteral">&quot;knife&quot;</span>})</div>
+<div class="line">    → ActionRegistry::create_task(<span class="stringliteral">&quot;add_evidence&quot;</span>)   <span class="comment">// ClassDBSingleton::instantiate</span></div>
+<div class="line">    → task-&gt;set(&quot;evidence_id&quot;, &quot;knife&quot;)              <span class="comment">// Godot リフレクションで注入</span></div>
+<div class="line">    → task-&gt;on_start()</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2"></a>
+アーキテクチャ境界</h2>
 <ul>
-<li>on_start() / on_update(delta) / is_finished() の契約を定義する。</li>
-<li>complete_instantly() でスキップ時の最終状態を一括適用する。</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md57"></a>
-設計ポリシー</h2>
-<ul>
-<li>RefCounted を継承することで Ref&lt;TaskBase&gt; による自動メモリ管理に対応。</li>
-<li>副作用（フラグ・アイテム更新）は on_start() か complete_instantly() で行い、 on_update() には「段階的な演出」のみを書く。これによりスキップ時の整合性を保証。 </li>
+<li>このクラスは src/core/ にのみ置く。</li>
+<li>src/mystery/ のヘッダを一切 include しない。</li>
+<li>ClassDBSingleton::instantiate() でクラス名から Object を生成するため、 登録されたクラス名が Godot に正しく register_class されている必要がある。 </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

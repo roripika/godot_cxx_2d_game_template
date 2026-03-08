@@ -101,28 +101,28 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: JSON 駆動の条件評価エンジン。 </p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 役割</h2>
 <ul>
 <li>Dictionary（JSON）形式の条件式を再帰的に評価し true/false を返す。</li>
 <li><code>FlagService</code> の現在値を参照することで、コード変更なしに シナリオデータだけで複雑な論理判定を表現できる。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 サポートする構文</h2>
-<h3><a class="anchor" id="autotoc_md19"></a>
+<h3><a class="anchor" id="autotoc_md22"></a>
 Leaf 判定（基本）</h3>
 <div class="fragment"><div class="line">{ &quot;flag&quot;: &quot;is_cabinet_opened&quot;, &quot;op&quot;: &quot;==&quot;, &quot;value&quot;: true }</div>
 <div class="line">{ &quot;flag&quot;: &quot;player_level&quot;,      &quot;op&quot;: &quot;&gt;=&quot;, &quot;value&quot;: 5    }</div>
 </div><!-- fragment --><p> <code>is</code> はエイリアス（<code>op: "=="</code> の省略形）: </p><div class="fragment"><div class="line">{ &quot;flag&quot;: &quot;has_key&quot;, &quot;is&quot;: true }</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md23"></a>
 item_owned — ItemService との連携</h3>
 <div class="fragment"><div class="line">{ &quot;item_owned&quot;: &quot;blood_knife&quot; }</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md21"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md24"></a>
 複合条件</h3>
 <div class="fragment"><div class="line">{ &quot;all&quot;: [ ...conditions ] }   // AND</div>
 <div class="line">{ &quot;any&quot;: [ ...conditions ] }   // OR</div>
 <div class="line">{ &quot;not&quot;: { ...condition }  }   // NOT</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md22"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
 使い方</h2>
 <div class="fragment"><div class="line">Dictionary cond = ...;  <span class="comment">// JSON から変換済み</span></div>
 <div class="line"><span class="keywordtype">bool</span> result = <a class="code hl_function" href="classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5">karakuri::ConditionEvaluator::evaluate</a>(cond);</div>

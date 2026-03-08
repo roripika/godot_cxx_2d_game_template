@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Basic Game Karakuri SDK: src/core/scenario/scenario_runner.cpp ファイル</title>
+<title>Basic Game Karakuri SDK: src/core/action_registry.cpp ファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,40 +70,18 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_015d90f1c684ae9d1a4fb606cf47b5f0.html">scenario</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#namespaces">名前空間</a>  </div>
-  <div class="headertitle"><div class="title">scenario_runner.cpp ファイル</div></div>
+  <div class="headertitle"><div class="title">action_registry.cpp ファイル</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="scenario__runner_8h_source.html">scenario_runner.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="action__registry_8h_source.html">../action_registry.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="karakuri__logger_8h_source.html">../logger/karakuri_logger.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="logic_2condition__evaluator_8h_source.html">../logic/condition_evaluator.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="flag__service_8h_source.html">../services/flag_service.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="save__service_8h_source.html">../services/save_service.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="sequence__player_8h_source.html">../tasks/sequence_player.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="yaml__lite_8h_source.html">../yaml/yaml_lite.h</a>&quot;</code><br />
-<code>#include &lt;godot_cpp/classes/area2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/circle_shape2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/collision_shape2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/engine.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/file_access.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/json.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/node2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/packed_scene.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/rectangle_shape2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/resource_loader.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/scene_tree.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/sprite2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/texture2d.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/translation_server.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/classes/window.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/variant/callable.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/variant/rect2.hpp&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="action__registry_8h_source.html">action_registry.h</a>&quot;</code><br />
+<code>#include &lt;godot_cpp/classes/class_db_singleton.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/core/class_db.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/utility_functions.hpp&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>

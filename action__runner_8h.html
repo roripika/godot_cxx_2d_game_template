@@ -103,24 +103,24 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 汎用演出ランナー。 </p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md26"></a>
 役割</h2>
 <p>画面シェイク・ズーム・フェード・フラッシュ・スローモーション等の 演出ステップをキューで管理し、Tween を用いて順次または並列実行する。</p>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md27"></a>
 設計ポリシー (karakuri 層)</h2>
 <ul>
 <li>ミステリー固有の概念（証拠品・矛盾等）を一切知らない。</li>
 <li>EffectType をビットフラグとして組合せることで並列演出に対応。</li>
 <li>camera_path / overlay_path を設定しない場合はログのみ (安全フォールバック)。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 Godot シーンでの使い方</h2>
 <ol type="1">
 <li>ActionRunner ノードを任意の位置に配置。</li>
 <li>インスペクタで camera_path (Camera2D) と overlay_path (ColorRect) を設定。</li>
 <li>GDScript or C++ から play_effect("shake", {intensity:12, duration:0.4}) を呼ぶ。</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 シグナル</h2>
 <ul>
 <li>effect_sequence_finished() : play_sequence() の全ステップ完了時 </li>
