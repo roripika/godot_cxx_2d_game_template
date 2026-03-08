@@ -51,6 +51,9 @@ public:
   /** @brief 唯一の MysteryGameState インスタンスを返す。 */
   static MysteryGameState *get_singleton();
 
+  /** @brief Autoload に追加された直後、Mystery 固有のアクションを ActionRegistry に登録する。 */
+  void _ready() override;
+
   // ------------------------------------------------------------------
   // HP 管理
   // ------------------------------------------------------------------

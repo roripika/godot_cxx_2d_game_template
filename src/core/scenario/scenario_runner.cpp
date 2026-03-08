@@ -1,4 +1,5 @@
 #include "scenario_runner.h"
+#include "../action_registry.h"
 #include "../logger/karakuri_logger.h"
 #include "../logic/condition_evaluator.h"
 #include "../services/flag_service.h"
@@ -489,6 +490,46 @@ bool ScenarioRunner::execute_single_action(const Variant &action) {
   Dictionary d = as_dict(action);
   if (d.is_empty())
     return false;
+
+  // ── 新形式: { "action": "add_evidence", "evidence_id": "knife", ... }
+  // action キーが存在する場合は ActionRegistry 経由で動的ディスパッチする。
+  // Core 層は Mystery 層の型を一切知らない。リフレクション (set) でパラメータを注入。
+  if (d.has("action")) {
+    const String action_name = d["action"];
+    ActionRegistry *reg = ActionRegistry::get_singleton();
+    if (reg == nullptr || !reg->has_action(action_name)) {
+      UtilityFunctions::push_warning(
+          String("[ScenarioRunner] ActionRegistry に未登録のアクション: \"") +
+          action_name + "\"");
+      return false;
+    }
+
+    Ref<TaskBase> task = reg->create_task(action_name);
+    if (task.is_null()) {
+      return false;
+    }
+
+    // JSON の残りキー ("action" を除く) をリフレクション (set) でタスクに注入する。
+    // Core 層はタスクの具体的な型を知らなくてもプロパティを渡せる。
+    Array keys = d.keys();
+    for (int i = 0; i < keys.size(); i++) {
+      const String k = keys[i];
+      if (k == "action") continue;
+      task->set(k, d[k]);
+    }
+
+    task->on_start();
+
+    // 即時完了のタスク (TaskAddEvidence 等) は is_finished() == true → non-blocking
+    // 非同期タスクは false → blocking (ScenarioPlayer が complete 待ちへ)
+    const bool blocking = !task->is_finished();
+    if (blocking) {
+      waiting_for_custom_action_ = true;
+    }
+    return blocking;
+  }
+
+  // ── 旧形式: { "kind": value }  (builtin actions / lambda handlers)
   String kind = d.keys()[0];
   if (action_handlers_.has(kind)) {
     bool blocking = action_handlers_[kind](d[kind]);

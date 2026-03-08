@@ -1,5 +1,8 @@
 #include "mystery_game_state.h"
 
+#include "core/action_registry.h"
+
+#include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
@@ -31,6 +34,7 @@ MysteryGameState *MysteryGameState::get_singleton() {
 }
 
 void MysteryGameState::_bind_methods() {
+  ClassDB::bind_method(D_METHOD("_ready"), &MysteryGameState::_ready);
   // HP 管理
   ClassDB::bind_method(D_METHOD("set_health", "hp"),
                        &MysteryGameState::set_health);
@@ -59,6 +63,29 @@ void MysteryGameState::_bind_methods() {
   ClassDB::bind_static_method("MysteryGameState",
                               D_METHOD("get_singleton"),
                               &MysteryGameState::get_singleton);
+}
+
+// ------------------------------------------------------------------
+// アクション登録 (_ready)
+// ------------------------------------------------------------------
+
+void MysteryGameState::_ready() {
+  if (godot::Engine::get_singleton()->is_editor_hint()) return;
+
+  karakuri::ActionRegistry *reg = karakuri::ActionRegistry::get_singleton();
+  if (reg == nullptr) {
+    UtilityFunctions::push_error(
+        "[MysteryGameState] ActionRegistry が null です。"
+        "ActionRegistry を MysteryGameState より前に Autoload 登録してください。");
+    return;
+  }
+
+  // Mystery 固有のアクションを登録する。
+  // core 層は Mystery 層の型を知らない・インクルードしない。
+  // 文字列のクラス名だけで登録し、ClassDBSingleton が動的生成する。
+  reg->register_action("add_evidence",   "TaskAddEvidence");
+
+  UtilityFunctions::print("[MysteryGameState] Mystery アクションを登録しました。");
 }
 
 // ------------------------------------------------------------------
