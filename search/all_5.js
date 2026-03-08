@@ -8,7 +8,7 @@ var searchData=
   ['error_5',['error',['../classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e',1,'karakuri::Logger']]],
   ['eval_5fleaf_6',['eval_leaf',['../classkarakuri_1_1ConditionEvaluator.html#a81581898e5153d7bf364ee61dd63f249',1,'karakuri::ConditionEvaluator']]],
   ['eval_5frecursive_7',['eval_recursive',['../classkarakuri_1_1ConditionEvaluator.html#a62021d2df0142117073651abfc690c84',1,'karakuri::ConditionEvaluator']]],
-  ['evaluate_8',['evaluate',['../classkarakuri_1_1ConditionEvaluator.html#aa5e2c23d688c7407d63fc49cf1f1d43d',1,'karakuri::ConditionEvaluator']]],
+  ['evaluate_8',['evaluate',['../classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5',1,'karakuri::ConditionEvaluator::evaluate(const godot::Dictionary &amp;condition)'],['../classkarakuri_1_1ConditionEvaluator.html#ad3595202e763b25423d668dce06c3a90',1,'karakuri::ConditionEvaluator::evaluate(const godot::Variant &amp;condition, FlagService *flags=nullptr)']]],
   ['evidence_5fui_5f_9',['evidence_ui_',['../classkarakuri_1_1ScenarioRunner.html#aade185b207b2b234df5adc2b65d95847',1,'karakuri::ScenarioRunner']]],
   ['evidence_5fui_5fpath_5f_10',['evidence_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a54ecfcabb2fede561eddf40ca1267e53',1,'karakuri::ScenarioRunner']]],
   ['execute_5fsingle_5faction_11',['execute_single_action',['../classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306',1,'karakuri::ScenarioRunner']]],

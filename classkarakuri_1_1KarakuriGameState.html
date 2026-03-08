@@ -104,6 +104,15 @@ karakuri::KarakuriGameState の継承関係図</div>
 <tr class="memitem:a3b7cdacc1b7decf84afd252e8443b355" id="r_a3b7cdacc1b7decf84afd252e8443b355"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriGameState.html#a3b7cdacc1b7decf84afd252e8443b355">set_reset_hook</a> (const godot::Callable &amp;hook)</td></tr>
 <tr class="memdesc:a3b7cdacc1b7decf84afd252e8443b355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mystery 等の上位層がリセット時の追加処理を注入するフックを登録する。 _ready() 等で一度だけ呼ぶ。  <br /></td></tr>
 <tr class="separator:a3b7cdacc1b7decf84afd252e8443b355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59824e75c62364e396dd8454e3c851e5" id="r_a59824e75c62364e396dd8454e3c851e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriGameState.html#a59824e75c62364e396dd8454e3c851e5">set_flag</a> (const godot::String &amp;key, const godot::Variant &amp;value)</td></tr>
+<tr class="memdesc:a59824e75c62364e396dd8454e3c851e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">フラグに任意の値をセットする。  <br /></td></tr>
+<tr class="separator:a59824e75c62364e396dd8454e3c851e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f1ba4138439e491994bdca32a45364" id="r_a70f1ba4138439e491994bdca32a45364"><td class="memItemLeft" align="right" valign="top">godot::Variant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriGameState.html#a70f1ba4138439e491994bdca32a45364">get_flag</a> (const godot::String &amp;key, const godot::Variant &amp;default_value=godot::Variant()) const</td></tr>
+<tr class="memdesc:a70f1ba4138439e491994bdca32a45364"><td class="mdescLeft">&#160;</td><td class="mdescRight">フラグの値を返す。未設定の場合は default_value を返す。  <br /></td></tr>
+<tr class="separator:a70f1ba4138439e491994bdca32a45364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3591db515d8053ce41bce775f7a8a6b2" id="r_a3591db515d8053ce41bce775f7a8a6b2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriGameState.html#a3591db515d8053ce41bce775f7a8a6b2">has_flag</a> (const godot::String &amp;key) const</td></tr>
+<tr class="memdesc:a3591db515d8053ce41bce775f7a8a6b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">フラグが存在するか判定する。  <br /></td></tr>
+<tr class="separator:a3591db515d8053ce41bce775f7a8a6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静的公開メンバ関数</h2></td></tr>
@@ -121,6 +130,9 @@ karakuri::KarakuriGameState の継承関係図</div>
 <tr class="memitem:a1d8cd09c8d93c980b54ec79366e3e89a" id="r_a1d8cd09c8d93c980b54ec79366e3e89a"><td class="memItemLeft" align="right" valign="top">godot::Callable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriGameState.html#a1d8cd09c8d93c980b54ec79366e3e89a">reset_hook_</a></td></tr>
 <tr class="memdesc:a1d8cd09c8d93c980b54ec79366e3e89a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mystery 等の上層が登録するリセットフック（Callable / invalid == 未登録）  <br /></td></tr>
 <tr class="separator:a1d8cd09c8d93c980b54ec79366e3e89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac97885e291c5ef29104c7609ff6e1e7a" id="r_ac97885e291c5ef29104c7609ff6e1e7a"><td class="memItemLeft" align="right" valign="top">godot::Dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1KarakuriGameState.html#ac97885e291c5ef29104c7609ff6e1e7a">global_flags_</a></td></tr>
+<tr class="memdesc:ac97885e291c5ef29104c7609ff6e1e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">汎用フラグストア。条件評価エンジン (<a class="el" href="classkarakuri_1_1ConditionEvaluator.html">ConditionEvaluator</a>) が参照する。  <br /></td></tr>
+<tr class="separator:ac97885e291c5ef29104c7609ff6e1e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 静的限定公開変数類</h2></td></tr>
@@ -197,6 +209,36 @@ karakuri::KarakuriGameState の継承関係図</div>
 
 </div>
 </div>
+<a id="a70f1ba4138439e491994bdca32a45364" name="a70f1ba4138439e491994bdca32a45364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f1ba4138439e491994bdca32a45364">&#9670;&#160;</a></span>get_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Variant karakuri::KarakuriGameState::get_flag </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Variant &amp;&#160;</td>
+          <td class="paramname"><em>default_value</em> = <code>godot::Variant()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>フラグの値を返す。未設定の場合は default_value を返す。 </p>
+
+</div>
+</div>
 <a id="a44d331b61247ca190a34c85e238092d8" name="a44d331b61247ca190a34c85e238092d8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a44d331b61247ca190a34c85e238092d8">&#9670;&#160;</a></span>get_singleton()</h2>
 
@@ -221,6 +263,26 @@ karakuri::KarakuriGameState の継承関係図</div>
 </div><div class="memdoc">
 
 <p>唯一のインスタンスを返す（Autoload 前提）。 </p>
+
+</div>
+</div>
+<a id="a3591db515d8053ce41bce775f7a8a6b2" name="a3591db515d8053ce41bce775f7a8a6b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3591db515d8053ce41bce775f7a8a6b2">&#9670;&#160;</a></span>has_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::KarakuriGameState::has_flag </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>フラグが存在するか判定する。 </p>
 
 </div>
 </div>
@@ -251,6 +313,36 @@ karakuri::KarakuriGameState の継承関係図</div>
 
 </div>
 </div>
+<a id="a59824e75c62364e396dd8454e3c851e5" name="a59824e75c62364e396dd8454e3c851e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59824e75c62364e396dd8454e3c851e5">&#9670;&#160;</a></span>set_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::KarakuriGameState::set_flag </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Variant &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>フラグに任意の値をセットする。 </p>
+
+</div>
+</div>
 <a id="a3b7cdacc1b7decf84afd252e8443b355" name="a3b7cdacc1b7decf84afd252e8443b355"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b7cdacc1b7decf84afd252e8443b355">&#9670;&#160;</a></span>set_reset_hook()</h2>
 
@@ -272,6 +364,30 @@ karakuri::KarakuriGameState の継承関係図</div>
 </div>
 </div>
 <h2 class="groupheader">フィールド詳解</h2>
+<a id="ac97885e291c5ef29104c7609ff6e1e7a" name="ac97885e291c5ef29104c7609ff6e1e7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac97885e291c5ef29104c7609ff6e1e7a">&#9670;&#160;</a></span>global_flags_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Dictionary karakuri::KarakuriGameState::global_flags_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>汎用フラグストア。条件評価エンジン (<a class="el" href="classkarakuri_1_1ConditionEvaluator.html">ConditionEvaluator</a>) が参照する。 </p>
+
+</div>
+</div>
 <a id="a1d8cd09c8d93c980b54ec79366e3e89a" name="a1d8cd09c8d93c980b54ec79366e3e89a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d8cd09c8d93c980b54ec79366e3e89a">&#9670;&#160;</a></span>reset_hook_</h2>
 

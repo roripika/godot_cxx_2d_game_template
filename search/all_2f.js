@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['遷移イベント（スタック変化）_0',['遷移イベント（スタック変化）',['../scene__flow_8h.html#autotoc_md33',1,'']]]
+  ['継承クラスへ）_0',['責務外（境界外 → 継承クラスへ）',['../karakuri__game__state_8h.html#autotoc_md15',1,'']]]
 ];

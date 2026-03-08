@@ -29,7 +29,7 @@ var searchData=
   ['get_5fdialogue_5fui_5fpath_26',['get_dialogue_ui_path',['../classkarakuri_1_1ScenarioRunner.html#ac4202e43bbd713b0ebd033cdb7bc7c45',1,'karakuri::ScenarioRunner']]],
   ['get_5fduration_27',['get_duration',['../classkarakuri_1_1WaitTask.html#a644b578f2b93fc475b71cee44f2748b0',1,'karakuri::WaitTask']]],
   ['get_5fevidence_5fui_5fpath_28',['get_evidence_ui_path',['../classkarakuri_1_1ScenarioRunner.html#af75d49b2e6f353a0271223ea4a00175e',1,'karakuri::ScenarioRunner']]],
-  ['get_5fflag_29',['get_flag',['../classkarakuri_1_1FlagService.html#a559ee8d05785a9db0521662c90ac27a4',1,'karakuri::FlagService']]],
+  ['get_5fflag_29',['get_flag',['../classkarakuri_1_1KarakuriGameState.html#a70f1ba4138439e491994bdca32a45364',1,'karakuri::KarakuriGameState::get_flag()'],['../classkarakuri_1_1FlagService.html#a559ee8d05785a9db0521662c90ac27a4',1,'karakuri::FlagService::get_flag(const godot::String &amp;name, const godot::Variant &amp;p_default=godot::Variant()) const']]],
   ['get_5fflag_5fnames_30',['get_flag_names',['../classkarakuri_1_1FlagService.html#a20b04cf6059de38a272ba23defbd23b4',1,'karakuri::FlagService']]],
   ['get_5fflags_31',['get_flags',['../classkarakuri_1_1StateSnapshot.html#af289ab678ba1c696ab3a8a9b641af336',1,'karakuri::StateSnapshot']]],
   ['get_5ffocused_5fnode_32',['get_focused_node',['../classkarakuri_1_1InteractionComponent.html#aa3fd85a30aa4212a208041ab7f48409b',1,'karakuri::InteractionComponent']]],
@@ -83,7 +83,8 @@ var searchData=
   ['get_5fvirtual_5fjoystick_80',['get_virtual_joystick',['../classkarakuri_1_1InputService.html#a50a49efa6b56b5c97380a2c26f8719d7',1,'karakuri::InputService']]],
   ['get_5fvoxel_81',['get_voxel',['../classkarakuri_1_1UniversalWorldData.html#a2998ac6ad70151163c779714583ff740',1,'karakuri::UniversalWorldData::get_voxel()'],['../classIsometricView.html#aa9a77880cf426babce7ed1176d801798',1,'IsometricView::get_voxel()']]],
   ['get_5fworld_5fdata_82',['get_world_data',['../classkarakuri_1_1SideScrollingView.html#a2dc84e0cf0a3507dbd87c6058ddc602b',1,'karakuri::SideScrollingView::get_world_data()'],['../classBuildingComponent.html#ae57500d474268ead50607739b1a8b510',1,'BuildingComponent::get_world_data()'],['../classMiningComponent.html#a2eea7fc926869e6759c239f6907f6999',1,'MiningComponent::get_world_data()'],['../classIsometricView.html#aabf790f51e852c55bfc0690807da4b73',1,'IsometricView::get_world_data()']]],
-  ['godot_20シーンでの使い方_83',['godot シーンでの使い方',['../interaction__component_8h.html#autotoc_md2',1,'Godot シーンでの使い方'],['../action__runner_8h.html#autotoc_md16',1,'Godot シーンでの使い方']]],
-  ['good_5fwindow_84',['good_window',['../classRhythmGameManager.html#a9de21cbb261443b676f0f0a7545d95fd',1,'RhythmGameManager']]],
-  ['grid_5fcontainer_85',['grid_container',['../classkarakuri_1_1InventoryUI.html#a8dbdefe938b5ed232060bf8d73314f3d',1,'karakuri::InventoryUI']]]
+  ['global_5fflags_5f_83',['global_flags_',['../classkarakuri_1_1KarakuriGameState.html#ac97885e291c5ef29104c7609ff6e1e7a',1,'karakuri::KarakuriGameState']]],
+  ['godot_20シーンでの使い方_84',['godot シーンでの使い方',['../interaction__component_8h.html#autotoc_md2',1,'Godot シーンでの使い方'],['../action__runner_8h.html#autotoc_md25',1,'Godot シーンでの使い方']]],
+  ['good_5fwindow_85',['good_window',['../classRhythmGameManager.html#a9de21cbb261443b676f0f0a7545d95fd',1,'RhythmGameManager']]],
+  ['grid_5fcontainer_86',['grid_container',['../classkarakuri_1_1InventoryUI.html#a8dbdefe938b5ed232060bf8d73314f3d',1,'karakuri::InventoryUI']]]
 ];

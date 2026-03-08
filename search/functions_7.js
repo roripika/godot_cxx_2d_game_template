@@ -25,7 +25,7 @@ var searchData=
   ['get_5fdialogue_5fui_5fpath_22',['get_dialogue_ui_path',['../classkarakuri_1_1ScenarioRunner.html#ac4202e43bbd713b0ebd033cdb7bc7c45',1,'karakuri::ScenarioRunner']]],
   ['get_5fduration_23',['get_duration',['../classkarakuri_1_1WaitTask.html#a644b578f2b93fc475b71cee44f2748b0',1,'karakuri::WaitTask']]],
   ['get_5fevidence_5fui_5fpath_24',['get_evidence_ui_path',['../classkarakuri_1_1ScenarioRunner.html#af75d49b2e6f353a0271223ea4a00175e',1,'karakuri::ScenarioRunner']]],
-  ['get_5fflag_25',['get_flag',['../classkarakuri_1_1FlagService.html#a559ee8d05785a9db0521662c90ac27a4',1,'karakuri::FlagService']]],
+  ['get_5fflag_25',['get_flag',['../classkarakuri_1_1KarakuriGameState.html#a70f1ba4138439e491994bdca32a45364',1,'karakuri::KarakuriGameState::get_flag()'],['../classkarakuri_1_1FlagService.html#a559ee8d05785a9db0521662c90ac27a4',1,'karakuri::FlagService::get_flag(const godot::String &amp;name, const godot::Variant &amp;p_default=godot::Variant()) const']]],
   ['get_5fflag_5fnames_26',['get_flag_names',['../classkarakuri_1_1FlagService.html#a20b04cf6059de38a272ba23defbd23b4',1,'karakuri::FlagService']]],
   ['get_5fflags_27',['get_flags',['../classkarakuri_1_1StateSnapshot.html#af289ab678ba1c696ab3a8a9b641af336',1,'karakuri::StateSnapshot']]],
   ['get_5ffocused_5fnode_28',['get_focused_node',['../classkarakuri_1_1InteractionComponent.html#aa3fd85a30aa4212a208041ab7f48409b',1,'karakuri::InteractionComponent']]],

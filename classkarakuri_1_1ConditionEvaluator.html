@@ -76,18 +76,33 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">静的公開メンバ関数</a> &#124;
+<a href="#pro-static-methods">静的限定公開メンバ関数</a> &#124;
 <a href="#pri-static-methods">静的非公開メンバ関数</a>  </div>
   <div class="headertitle"><div class="title">karakuri::ConditionEvaluator クラス</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="condition__evaluator_8h_source.html">condition_evaluator.h</a>&gt;</code></p>
+<div class="dynheader">
+karakuri::ConditionEvaluator の継承関係図</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classkarakuri_1_1ConditionEvaluator.png" alt=""/>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静的公開メンバ関数</h2></td></tr>
-<tr class="memitem:aa5e2c23d688c7407d63fc49cf1f1d43d" id="r_aa5e2c23d688c7407d63fc49cf1f1d43d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#aa5e2c23d688c7407d63fc49cf1f1d43d">evaluate</a> (const godot::Variant &amp;condition, <a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *flags=nullptr)</td></tr>
-<tr class="memdesc:aa5e2c23d688c7407d63fc49cf1f1d43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">条件 Dictionary を評価して結果を返す（静的メソッド）。  <br /></td></tr>
-<tr class="separator:aa5e2c23d688c7407d63fc49cf1f1d43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b07fc70e13bad14c251f747e5b860c5" id="r_a3b07fc70e13bad14c251f747e5b860c5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5">evaluate</a> (const godot::Dictionary &amp;condition)</td></tr>
+<tr class="memdesc:a3b07fc70e13bad14c251f747e5b860c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dictionary 形式の条件式を評価して真偽値を返す。  <br /></td></tr>
+<tr class="separator:a3b07fc70e13bad14c251f747e5b860c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3595202e763b25423d668dce06c3a90" id="r_ad3595202e763b25423d668dce06c3a90"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#ad3595202e763b25423d668dce06c3a90">evaluate</a> (const godot::Variant &amp;condition, <a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *flags=nullptr)</td></tr>
+<tr class="memdesc:ad3595202e763b25423d668dce06c3a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">条件 Dictionary を評価して結果を返す（静的メソッド）。  <br /></td></tr>
+<tr class="separator:ad3595202e763b25423d668dce06c3a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
+静的限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a317fdf4c8ae5a912740bf96cead4bf9b" id="r_a317fdf4c8ae5a912740bf96cead4bf9b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a317fdf4c8ae5a912740bf96cead4bf9b">_bind_methods</a> ()</td></tr>
+<tr class="separator:a317fdf4c8ae5a912740bf96cead4bf9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 静的非公開メンバ関数</h2></td></tr>
@@ -101,6 +116,31 @@ $(function() {
 <tr class="separator:aa91af7c28dde9dd57b1342898b3e3a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">関数詳解</h2>
+<a id="a317fdf4c8ae5a912740bf96cead4bf9b" name="a317fdf4c8ae5a912740bf96cead4bf9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a317fdf4c8ae5a912740bf96cead4bf9b">&#9670;&#160;</a></span>_bind_methods()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ConditionEvaluator::_bind_methods </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa91af7c28dde9dd57b1342898b3e3a06" name="aa91af7c28dde9dd57b1342898b3e3a06"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa91af7c28dde9dd57b1342898b3e3a06">&#9670;&#160;</a></span>compare()</h2>
 
@@ -219,8 +259,8 @@ $(function() {
 
 </div>
 </div>
-<a id="aa5e2c23d688c7407d63fc49cf1f1d43d" name="aa5e2c23d688c7407d63fc49cf1f1d43d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5e2c23d688c7407d63fc49cf1f1d43d">&#9670;&#160;</a></span>evaluate()</h2>
+<a id="a3b07fc70e13bad14c251f747e5b860c5" name="a3b07fc70e13bad14c251f747e5b860c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b07fc70e13bad14c251f747e5b860c5">&#9670;&#160;</a></span>evaluate() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,7 +269,36 @@ $(function() {
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool karakuri::ConditionEvaluator::evaluate </td>
+          <td class="memname">static bool karakuri::ConditionEvaluator::evaluate </td>
+          <td>(</td>
+          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramname"><em>condition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dictionary 形式の条件式を評価して真偽値を返す。 </p>
+<p>スタック再帰で and / or / not / flag / eq をサポート。 未知のキーは false として扱う。 </p>
+
+</div>
+</div>
+<a id="ad3595202e763b25423d668dce06c3a90" name="ad3595202e763b25423d668dce06c3a90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3595202e763b25423d668dce06c3a90">&#9670;&#160;</a></span>evaluate() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool karakuri::ConditionEvaluator::evaluate </td>
           <td>(</td>
           <td class="paramtype">const godot::Variant &amp;&#160;</td>
           <td class="paramname"><em>condition</em>, </td>
@@ -266,8 +335,10 @@ $(function() {
 </div>
 </div>
 <hr/>このクラス詳解は次のファイルから抽出されました:<ul>
-<li>src/core/logic/<a class="el" href="condition__evaluator_8h_source.html">condition_evaluator.h</a></li>
-<li>src/core/logic/<a class="el" href="condition__evaluator_8cpp.html">condition_evaluator.cpp</a></li>
+<li>src/core/<a class="el" href="condition__evaluator_8h_source.html">condition_evaluator.h</a></li>
+<li>src/core/logic/<a class="el" href="logic_2condition__evaluator_8h_source.html">condition_evaluator.h</a></li>
+<li>src/core/<a class="el" href="condition__evaluator_8cpp.html">condition_evaluator.cpp</a></li>
+<li>src/core/logic/<a class="el" href="logic_2condition__evaluator_8cpp.html">condition_evaluator.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

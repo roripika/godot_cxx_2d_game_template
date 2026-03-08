@@ -103,7 +103,7 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: タスクシーケンスを管理・実行するノード。 </p>
-<h2><a class="anchor" id="autotoc_md39"></a>
+<h2><a class="anchor" id="autotoc_md48"></a>
 役割</h2>
 <ul>
 <li>Ref&lt;TaskBase&gt; の配列（キュー）を順番に処理する。</li>
@@ -111,10 +111,10 @@ $(function() {
 <li>rollback_to_last_snapshot() で直前のスナップショットに戻す。 このとき ActionRunner::stop_all()・SoundService::stop_bgm() も呼ぶ。</li>
 <li>skip_all() で全タスクを complete_instantly() してシーケンスを即完了させる。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md49"></a>
 NodePath 設定</h2>
 <p>インスペクタから scenario_runner_path を設定することで、 ロールバック時に ScenarioRunner の位置も復元する。</p>
-<h2><a class="anchor" id="autotoc_md41"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 シグナル</h2>
 <ul>
 <li>sequence_finished: 全タスクが完了したとき</li>

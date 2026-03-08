@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['継承クラスへ）_0',['責務外（境界外 → 継承クラスへ）',['../karakuri__game__state_8h.html#autotoc_md6',1,'']]]
+  ['条件_0',['条件',['../condition__evaluator_8h.html#autotoc_md5',1,'AND 条件'],['../condition__evaluator_8h.html#autotoc_md7',1,'NOT 条件'],['../condition__evaluator_8h.html#autotoc_md6',1,'OR 条件']]]
 ];
