@@ -70,9 +70,14 @@
 #include "plugins/views/rhythm/rhythm_note.h"
 #include "world_generator.h"
 
+#include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
+
+// ActionRegistry は GDExtension 初期化時に Engine singleton として生成する。
+// これにより、任意の Autoload ノードの _ready() より前に get_singleton() が有効になる。
+static karakuri::ActionRegistry *s_action_registry = nullptr;
 
 using namespace godot;
 
@@ -151,11 +156,24 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<WorldGenerator>();
   ClassDB::register_class<mystery::OfficeSceneLogic>();
   ClassDB::register_class<mystery::HauntedSpotSceneLogic>();
+
+  // ------------------------------------------------------------------
+  // Engine singleton: ActionRegistry
+  // Autoload ノードの _ready() より先にインスタンスを作成し、
+  // MysteryGameState::_ready() から get_singleton() で参照できるようにする。
+  // ------------------------------------------------------------------
+  s_action_registry = memnew(karakuri::ActionRegistry);
+  Engine::get_singleton()->register_singleton("ActionRegistry", s_action_registry);
 }
 
 void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {
   if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
     return;
+  }
+  if (s_action_registry != nullptr) {
+    Engine::get_singleton()->unregister_singleton("ActionRegistry");
+    memdelete(s_action_registry);
+    s_action_registry = nullptr;
   }
 }
 
