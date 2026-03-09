@@ -59,7 +59,11 @@
 #include "mystery/mystery_player.h"
 #include "mystery/mystery_trigger.h"
 
-// Plugins (genre-specific, isolated)
+// Plugins (genre-specific, isolated) - Invaders
+#include "invaders/invader_bullet.h"
+#include "invaders/invader_enemy.h"
+#include "invaders/invader_manager.h"
+#include "invaders/invader_player.h"
 #include "plugins/features/sandbox/building_component.h"
 #include "plugins/features/sandbox/mining_component.h"
 
@@ -109,8 +113,6 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::InventoryUI>();
   ClassDB::register_class<karakuri::InventorySlotUI>();
   ClassDB::register_class<karakuri::LocalizationService>();
-  ClassDB::register_class<karakuri::Logger>();
-  ClassDB::register_class<karakuri::ActionRunner>();
   ClassDB::register_class<karakuri::FlagService>();
   ClassDB::register_class<karakuri::InputService>();
   ClassDB::register_class<karakuri::ItemService>();
@@ -161,6 +163,12 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<WorldGenerator>();
   ClassDB::register_class<mystery::OfficeSceneLogic>();
   ClassDB::register_class<mystery::HauntedSpotSceneLogic>();
+
+  // Invaders
+  ClassDB::register_class<invaders::InvaderPlayer>();
+  ClassDB::register_class<invaders::InvaderBullet>();
+  ClassDB::register_class<invaders::InvaderEnemy>();
+  ClassDB::register_class<invaders::InvaderManager>();
 
   // ------------------------------------------------------------------
   // Engine singleton: ActionRegistry
