@@ -1,0 +1,7 @@
+[gd_scene load_steps=1 format=3 uid="uid://karakuri_autoloads"]
+
+[node name="KarakuriAutoloads" type="Node"]
+
+[node name="InputService" type="InputService" parent="."]
+
+[node name="MysteryGameState" type="MysteryGameState" parent="."]

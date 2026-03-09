@@ -4,17 +4,20 @@ extends Node2D
 @onready var health_label: Label = $SystemUiLayer/HealthLabel
 @onready var inventory_btn: Button = $SystemUiLayer/InventoryButton
 @onready var inventory_ui: EvidenceInventoryUI = $InstantSubInfoUiLayer/InventoryUI
+@onready var portrait_rect: TextureRect = $MainInfoUiLayer/PortraitContainer/PortraitRect
+@onready var scene_container: Node2D = $SceneContainer
 @onready var scenario_runner = $ScenarioRunner
 
 func _ready() -> void:
 	if scenario_runner:
 		scenario_runner.register_mystery_actions()
 	
-	# DI: AdventureGameStateBase.reset_game() に Mystery 固有のリセット処理を注入する
-	# (architecture: mystery layer injects reset hook into core layer)
-	var ags = AdventureGameState
-	if ags and ags.has_method("set_reset_hook"):
-		ags.set_reset_hook(Callable(self, "_on_mystery_reset"))
+	# Connect to MysteryGameState (C++ Singleton via Autoload)
+	var mgs = MysteryGameState.get_singleton()
+	if mgs:
+		mgs.portrait_requested.connect(_on_portrait_requested)
+		mgs.background_requested.connect(_on_background_requested)
+		mgs.set_reset_hook(Callable(self, "_on_mystery_reset"))
 	
 	if inventory_btn:
 		inventory_btn.pressed.connect(_on_inventory_btn_pressed)
@@ -55,4 +58,44 @@ func _refresh_locale() -> void:
 	if ui_guide_label: ui_guide_label.text = tr("mystery.ui.guide")
 	if health_label: health_label.text = tr("mystery.ui.health_label")
 	if inventory_btn: inventory_btn.text = tr("mystery.ui.inventory_button")
+
+# --- 演出ハンドラ (C++ 信号の受け皿) ---------------------------------
+
+func _on_portrait_requested(character_id: String, emotion: String) -> void:
+	if character_id == "" or character_id == "none":
+		portrait_rect.texture = null
+		return
+		
+	# アセットパスの解決 (res://assets/mystery/characters/portraits/{id}.png)
+	var path = "res://assets/mystery/characters/portraits/%s.png" % character_id
+	# TODO: emotion (表情) に応じたパス分岐が必要ならここで実装
+	
+	if ResourceLoader.exists(path):
+		var tex = load(path)
+		portrait_rect.texture = tex
+		print("[View] Portrait changed to: ", character_id)
+	else:
+		printerr("[View] Portrait NOT FOUND: ", path)
+
+func _on_background_requested(background_id: String) -> void:
+	if background_id == "":
+		return
+		
+	# アセットパスの解決 (res://assets/mystery/backgrounds/bg_{id}.png)
+	var path = "res://assets/mystery/backgrounds/bg_%s.png" % background_id
+	
+	if ResourceLoader.exists(path):
+		var tex = load(path)
+		# SceneContainer 内の既存の背景ノードを探すか、Sprite2D を生成
+		var bg_node = scene_container.get_node_or_null("BackgroundSprite")
+		if not bg_node:
+			bg_node = Sprite2D.new()
+			bg_node.name = "BackgroundSprite"
+			bg_node.centered = false
+			scene_container.add_child(bg_node)
+		
+		bg_node.texture = tex
+		print("[View] Background changed to: ", background_id)
+	else:
+		printerr("[View] Background NOT FOUND: ", path)
 

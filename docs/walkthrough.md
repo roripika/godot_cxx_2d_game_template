@@ -18,6 +18,10 @@
 - **`RoguelikeManager`**: レベル生成とプレイヤースポーンを統括するノード。
 
 ### 4. アドベンチャー機能 (`src/core`)
+- **Phase 6: Ace Attorney UI Integration** (2026-03-09)
+    - [x] 演出タスク (`show_portrait`, `change_background`) の C++ 実装
+    - [x] `MysteryGameState` シグナル経由での GDScript 演出結線
+    - [x] `test_ui_integration.json` による E2E 疎通確認
 - **`InteractionManager`**: マウスインタラクションを処理。
     - シグナル: `clicked_at(position)`
     - 座標空間: `position` は Canvas/World 座標（`Area2D.global_position` と同じ空間）。

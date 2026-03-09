@@ -28,6 +28,26 @@ func _initialize():
 	print("[PASS] add_evidence action is registered: ", reg.get_registered_actions())
 
 	# --- UI Verification ---
+	var test_scenario_path = "res://samples/mystery/scenario/test_ui_integration.json"
+	
+	print("--- E2E Test: UI Integration ---")
+	
+	# Signal capture flags
+	var flags = {
+		"portrait": false,
+		"background": false
+	}
+	
+	mgs.portrait_requested.connect(func(id, emo): 
+		print("[Test] portrait_requested signal received: ", id)
+		if id == "detective":
+			flags["portrait"] = true
+	)
+	mgs.background_requested.connect(func(id): 
+		print("[Test] background_requested signal received: ", id)
+		if id == "office":
+			flags["background"] = true
+	)
 	var inv_scene = load("res://samples/mystery/ui/evidence_inventory_ui.tscn")
 	var inv_ui = inv_scene.instantiate()
 	get_root().add_child(inv_ui)
@@ -62,5 +82,25 @@ func _initialize():
 		quit(1)
 		return
 
-	print("[E2E SUCCESS] Data-driven pipeline and UI Connection are both OPEN!")
+	# 4. Trigger Portrait and Background actions
+	var portrait_task = reg.create_task("show_portrait")
+	portrait_task.set("character_id", "detective")
+	portrait_task.on_start()
+	
+	var bg_task = reg.create_task("change_background")
+	bg_task.set("background_id", "office")
+	bg_task.on_start()
+
+	# 5. Verify Portrait and Background signals
+	if not flags["portrait"]:
+		printerr("[FAIL] portrait_requested signal not received or incorrect ID")
+		quit(1)
+		return
+	if not flags["background"]:
+		printerr("[FAIL] background_requested signal not received or incorrect ID")
+		quit(1)
+		return
+	print("[PASS] Portrait and Background signals verified")
+
+	print("\n--- ALL E2E TESTS PASSED ---")
 	quit(0)

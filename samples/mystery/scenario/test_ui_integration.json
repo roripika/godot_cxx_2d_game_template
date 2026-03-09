@@ -1,0 +1,15 @@
+[
+    {
+        "action": "change_background",
+        "background_id": "office"
+    },
+    {
+        "action": "show_portrait",
+        "character_id": "detective",
+        "emotion": "default"
+    },
+    {
+        "action": "add_evidence",
+        "evidence_id": "footprint"
+    }
+]

@@ -19,9 +19,9 @@
  *       ↳ MysteryGameState (HP・証拠フラグ等、Mystery 固有の状態)
  *
  * ## シングルトンについて
- * MysteryGameState のコンストラクタは KarakuriGameState::singleton_ も自身のポインタで
- * 更新するため、`KarakuriGameState::get_singleton()` 経由でも MysteryGameState インスタンスを
- * 取得できる（is-a 関係を活用）。
+ * MysteryGameState のコンストラクタは KarakuriGameState::singleton_
+ * も自身のポインタで 更新するため、`KarakuriGameState::get_singleton()`
+ * 経由でも MysteryGameState インスタンスを 取得できる（is-a 関係を活用）。
  */
 
 #include <godot_cpp/variant/typed_array.hpp>
@@ -51,7 +51,8 @@ public:
   /** @brief 唯一の MysteryGameState インスタンスを返す。 */
   static MysteryGameState *get_singleton();
 
-  /** @brief Autoload に追加された直後、Mystery 固有のアクションを ActionRegistry に登録する。 */
+  /** @brief Autoload に追加された直後、Mystery 固有のアクションを
+   * ActionRegistry に登録する。 */
   void _ready() override;
 
   // ------------------------------------------------------------------
@@ -100,6 +101,17 @@ public:
    * 基盤の reset_hook_ を呼び出した後、Mystery 固有の HP を 3 に戻す。
    */
   void reset_game() override;
+
+  // ------------------------------------------------------------------
+  // 演出要求（シグナル発行のみ。View 層がパスを解決する）
+  // ------------------------------------------------------------------
+
+  /** @brief キャラ立ち絵の表示/変更を要求する。 */
+  void request_portrait(const godot::String &character_id,
+                        const godot::String &emotion);
+
+  /** @brief 背景の変更を要求する。 */
+  void request_background(const godot::String &background_id);
 };
 
 } // namespace mystery

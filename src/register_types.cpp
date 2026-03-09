@@ -1,13 +1,12 @@
 #include "register_types.h"
 
 // Layer 1: Basic Game Karakuri (core)
-#include "core/karakuri_game_state.h"
 #include "core/action_registry.h"
-#include "core/condition_evaluator.h"
 #include "core/components/hitbox_component.h"
 #include "core/components/hurtbox_component.h"
 #include "core/components/interaction_component.h"
 #include "core/components/raycast_component.h"
+#include "core/condition_evaluator.h"
 #include "core/cycles/roguelike_generator.h"
 #include "core/cycles/roguelike_manager.h"
 #include "core/dialogue_ui.h"
@@ -15,6 +14,7 @@
 #include "core/interaction_manager.h"
 #include "core/items/game_item.h"
 #include "core/items/inventory.h"
+#include "core/karakuri_game_state.h"
 #include "core/logger/karakuri_logger.h"
 #include "core/scenario/scenario_runner.h"
 #include "core/services/action_runner.h"
@@ -34,28 +34,30 @@
 #include "plugins/features/rhythm/rhythm_game_manager.h"
 
 // Task sequence system (core)
-#include "core/tasks/task_base.h"
-#include "core/tasks/wait_task.h"
-#include "core/tasks/task_group.h"
-#include "core/tasks/state_snapshot.h"
 #include "core/tasks/sequence_player.h"
+#include "core/tasks/state_snapshot.h"
+#include "core/tasks/task_base.h"
+#include "core/tasks/task_group.h"
+#include "core/tasks/wait_task.h"
 
 // Task sequence system (mystery)
-#include "mystery/tasks/zoom_camera_task.h"
-#include "mystery/tasks/show_evidence_ui_task.h"
 #include "mystery/tasks/play_mystery_sound_task.h"
+#include "mystery/tasks/show_evidence_ui_task.h"
 #include "mystery/tasks/task_add_evidence.h"
+#include "mystery/tasks/task_change_background.h"
+#include "mystery/tasks/task_show_portrait.h"
+#include "mystery/tasks/zoom_camera_task.h"
 
 // Layer 2: Mystery template
-#include "mystery/mystery_game_state.h"
 #include "mystery/evidence.h"
 #include "mystery/evidence_manager.h"
 #include "mystery/evidence_presenter.h"
-#include "mystery/mystery_trigger.h"
 #include "mystery/mystery_effect_map.h"
+#include "mystery/mystery_game_state.h"
 #include "mystery/mystery_manager.h"
 #include "mystery/mystery_object.h"
 #include "mystery/mystery_player.h"
+#include "mystery/mystery_trigger.h"
 
 // Plugins (genre-specific, isolated)
 #include "plugins/features/sandbox/building_component.h"
@@ -76,7 +78,8 @@
 #include <godot_cpp/godot.hpp>
 
 // ActionRegistry は GDExtension 初期化時に Engine singleton として生成する。
-// これにより、任意の Autoload ノードの _ready() より前に get_singleton() が有効になる。
+// これにより、任意の Autoload ノードの _ready() より前に get_singleton()
+// が有効になる。
 static karakuri::ActionRegistry *s_action_registry = nullptr;
 
 using namespace godot;
@@ -128,6 +131,8 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<mystery::ShowEvidenceUITask>();
   ClassDB::register_class<mystery::PlayMysterySoundTask>();
   ClassDB::register_class<mystery::TaskAddEvidence>();
+  ClassDB::register_class<mystery::TaskShowPortrait>();
+  ClassDB::register_class<mystery::TaskChangeBackground>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::MysteryGameState>();
@@ -163,7 +168,8 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   // MysteryGameState::_ready() から get_singleton() で参照できるようにする。
   // ------------------------------------------------------------------
   s_action_registry = memnew(karakuri::ActionRegistry);
-  Engine::get_singleton()->register_singleton("ActionRegistry", s_action_registry);
+  Engine::get_singleton()->register_singleton("ActionRegistry",
+                                              s_action_registry);
 }
 
 void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {

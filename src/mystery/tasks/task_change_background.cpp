@@ -1,0 +1,35 @@
+#include "task_change_background.h"
+#include "../mystery_game_state.h"
+#include <godot_cpp/core/class_db.hpp>
+
+using namespace godot;
+
+namespace mystery {
+
+void TaskChangeBackground::_bind_methods() {
+  ClassDB::bind_method(D_METHOD("set_background_id", "id"),
+                       &TaskChangeBackground::set_background_id);
+  ClassDB::bind_method(D_METHOD("get_background_id"),
+                       &TaskChangeBackground::get_background_id);
+  ADD_PROPERTY(PropertyInfo(Variant::STRING, "background_id"),
+               "set_background_id", "get_background_id");
+}
+
+void TaskChangeBackground::on_start() {
+  MysteryGameState *mgs = MysteryGameState::get_singleton();
+  if (mgs) {
+    mgs->request_background(background_id_);
+  }
+  finished_ = true;
+}
+
+void TaskChangeBackground::complete_instantly() { on_start(); }
+
+void TaskChangeBackground::set_background_id(const String &id) {
+  background_id_ = id;
+}
+String TaskChangeBackground::get_background_id() const {
+  return background_id_;
+}
+
+} // namespace mystery
