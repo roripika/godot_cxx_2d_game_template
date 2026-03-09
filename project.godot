@@ -21,11 +21,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AdventureGameState="*res://samples/mystery/adventure_game_state.gd"
-Evidences="*res://samples/mystery/evidence_manager.gd"
+InputService="*res://samples/common/input_service.tscn"
+MysteryGameState="*res://samples/mystery/mystery_game_state.tscn"
 KarakuriLocalization="*res://samples/common/karakuri_localization_service.tscn"
 GameMaster="*res://samples/mystery/mystery_manager.gd"
-InputService="*res://samples/common/input_service.gd"
 
 [display]
 

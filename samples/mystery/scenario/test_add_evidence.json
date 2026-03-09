@@ -1,0 +1,12 @@
+{
+    "scenes": {
+        "test_scene": {
+            "actions": [
+                {
+                    "action": "add_evidence",
+                    "evidence_id": "footprint"
+                }
+            ]
+        }
+    }
+}

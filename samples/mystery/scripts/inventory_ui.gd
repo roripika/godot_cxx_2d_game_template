@@ -27,10 +27,13 @@ func _ready() -> void:
 		close_btn.pressed.connect(_on_close_pressed)
 	if present_btn:
 		present_btn.pressed.connect(_on_present_pressed)
+	
 	_load_evidence_resources()
 	_clear_detail()
 	_connect_localization_service()
+	_connect_game_state() # 追加
 	_refresh_static_labels()
+	_sync_with_game_state() # 追加
 
 func _on_close_pressed() -> void:
 	if not _mode_input_enabled:
@@ -131,6 +134,7 @@ func show_inventory() -> void:
 	_presentation_mode = false
 	visible = true
 	mouse_filter = MOUSE_FILTER_STOP
+	_sync_with_game_state() # 追加：表示時に最新の状態に更新
 	_update_present_button()
 	_refresh_ui()
 
@@ -267,3 +271,32 @@ func _connect_localization_service() -> void:
 
 func _on_locale_changed(_locale: String) -> void:
 	_refresh_ui()
+
+# --- C++ MysteryGameState との同期 -------------------------------------
+
+func _connect_game_state() -> void:
+	var mgs = MysteryGameState.get_singleton()
+	if mgs == null:
+		print("[InventoryUI] WARNING: MysteryGameState singleton not found")
+		return
+	
+	if not mgs.is_connected("evidence_added", _on_cpp_evidence_added):
+		mgs.evidence_added.connect(_on_cpp_evidence_added)
+
+func _sync_with_game_state() -> void:
+	var mgs = MysteryGameState.get_singleton()
+	if mgs == null:
+		return
+		
+	var ids = mgs.get_collected_evidences()
+	evidence_list.clear()
+	for id in ids:
+		if evidence_resources.has(id):
+			evidence_list.append(evidence_resources[id])
+	
+	evidence_list.sort_custom(_sort_evidence)
+	_refresh_ui()
+
+func _on_cpp_evidence_added(evidence_id: String) -> void:
+	print("[InventoryUI] evidence_added signal received from C++: ", evidence_id)
+	add_evidence(evidence_id)
