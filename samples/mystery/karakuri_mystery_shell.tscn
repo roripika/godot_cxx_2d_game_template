@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://samples/mystery/scripts/ui_capture_driver.gd" id="6_ui_capture_driver"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/mystery_shell_ui.gd" id="7_shell_ui"]
 
-[ext_resource type="Script" path="res://samples/mystery/scripts/mystery_shell_ui.gd" id="7_shell_ui"]
 [ext_resource type="Script" path="res://samples/mystery/scripts/transition_manager.gd" id="8_trans"]
 
 [node name="KarakuriMysteryShell" type="Node2D"]
@@ -29,6 +28,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ScenarioRunner" type="ScenarioRunner" parent="."]
+scenario_path = "res://samples/mystery/scenario/test_ui_integration.json"
 scene_container_path = NodePath("../SceneContainer")
 dialogue_ui_path = NodePath("../MainInfoUiLayer/DialogueUI")
 evidence_ui_path = NodePath("../InstantSubInfoUiLayer/InventoryUI")
@@ -109,29 +109,17 @@ layer = 20
 [node name="InventoryUI" parent="InstantSubInfoUiLayer" instance=ExtResource("2_evidence_inventory")]
 
 [node name="MainInfoUiLayer" type="CanvasLayer" parent="."]
-layer = 10
+layer = 20
 
-[node name="PortraitContainer" type="Control" parent="MainInfoUiLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PortraitRect" type="TextureRect" parent="MainInfoUiLayer/PortraitContainer"]
-layout_mode = 0
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
 
 [node name="DialogueUI" type="Control" parent="MainInfoUiLayer"]
-layout_mode = 0
+layout_mode = 3
 anchor_left = 0.24
 anchor_top = 0.6
 anchor_right = 0.98
 anchor_bottom = 0.98
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dialogue_adv")
 
 [node name="Background" type="ColorRect" parent="MainInfoUiLayer/DialogueUI"]
@@ -151,13 +139,16 @@ offset_bottom = 30.0
 text = "会話UI（メイン情報）"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainInfoUiLayer/DialogueUI"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 12.0
 offset_top = 36.0
 offset_right = -12.0
 offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 8
 
 [node name="NameLabel" type="Label" parent="MainInfoUiLayer/DialogueUI/VBoxContainer"]
@@ -182,6 +173,26 @@ visible = false
 position = Vector2(820, 220)
 color = Color(1, 1, 1, 0.8)
 polygon = PackedVector2Array(0, 0, 20, 0, 10, 15)
+[node name="PortraitLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="PortraitContainer" type="Control" parent="PortraitLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PortraitRect" type="TextureRect" parent="PortraitLayer/PortraitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="TestimonySystem" parent="MainInfoUiLayer" instance=ExtResource("4_testimony_system")]
 

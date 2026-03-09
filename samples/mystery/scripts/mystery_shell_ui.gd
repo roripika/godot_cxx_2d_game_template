@@ -4,13 +4,12 @@ extends Node2D
 @onready var health_label: Label = $SystemUiLayer/HealthLabel
 @onready var inventory_btn: Button = $SystemUiLayer/InventoryButton
 @onready var inventory_ui: EvidenceInventoryUI = $InstantSubInfoUiLayer/InventoryUI
-@onready var portrait_rect: TextureRect = $MainInfoUiLayer/PortraitContainer/PortraitRect
+@onready var portrait_rect: TextureRect = $PortraitLayer/PortraitContainer/PortraitRect
 @onready var scene_container: Node2D = $SceneContainer
 @onready var scenario_runner = $ScenarioRunner
 
 func _ready() -> void:
-	if scenario_runner:
-		scenario_runner.register_mystery_actions()
+	# Note: Mystery actions are now registered automatically in MysteryGameState._ready()
 	
 	# Connect to MysteryGameState (C++ Singleton via Autoload)
 	var mgs = MysteryGameState.get_singleton()
@@ -73,7 +72,9 @@ func _on_portrait_requested(character_id: String, emotion: String) -> void:
 	if ResourceLoader.exists(path):
 		var tex = load(path)
 		portrait_rect.texture = tex
-		print("[View] Portrait changed to: ", character_id)
+		portrait_rect.visible = true
+		print("[View] Portrait changed to: ", character_id, " (Path: ", path, ")")
+		print("[View] PortraitRect Status - Visible: ", portrait_rect.visible, " Size: ", portrait_rect.size, " Texture: ", portrait_rect.texture)
 	else:
 		printerr("[View] Portrait NOT FOUND: ", path)
 

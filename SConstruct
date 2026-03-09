@@ -40,10 +40,11 @@ core_objects = core_env.SharedObject(core_sources)
 
 # Layer 2+ / Mystery & Plugins
 mystery_sources = get_recursive_cpp("src/mystery")
+invaders_sources = get_recursive_cpp("src/invaders")
 plugin_sources = get_recursive_cpp("src/plugins")
 root_sources = Glob("src/*.cpp")
 
-other_sources = mystery_sources + plugin_sources + root_sources
+other_sources = mystery_sources + invaders_sources + plugin_sources + root_sources
 other_objects = env.SharedObject(other_sources)
 
 sources = core_objects + other_objects

@@ -10,6 +10,7 @@ extends Node2D
 # ────────────────────────────────────────────
 const BULLET_SCENE    := preload("res://samples/invaders/invader_bullet_view.tscn")
 const ENEMY_SCENE     := preload("res://samples/invaders/invader_enemy_view.tscn")
+const BARRIER_SCENE   := preload("res://samples/invaders/invader_barrier_view.tscn")
 const PLAYER_TEXTURE  := preload("res://samples/invaders/assets_v3/pilot_ship.png")
 
 # ────────────────────────────────────────────
@@ -28,6 +29,7 @@ func _ready() -> void:
 	_setup_ui()
 	_setup_player()
 	_setup_enemies()
+	_setup_barriers()
 	print("[InvaderMain] All nodes created and signals connected via code.")
 
 # ════════════════════════════════════════════
@@ -120,6 +122,22 @@ func _setup_enemies() -> void:
 
 			# 撃破シグナル → InvaderManager.add_score に直結
 			enemy.died.connect(_manager.add_score)
+			# 敵の射撃シグナル
+			enemy.bullet_fired.connect(_on_enemy_bullet_fired)
+
+# ════════════════════════════════════════════
+# セットアップ: InvaderBarrier
+# ════════════════════════════════════════════
+func _setup_barriers() -> void:
+	const COUNT := 3
+	const START_X := 350.0
+	const STEP_X := 225.0
+	const Y_POS := 430.0
+
+	for i in COUNT:
+		var barrier := BARRIER_SCENE.instantiate()
+		barrier.position = Vector2(START_X + i * STEP_X, Y_POS)
+		add_child(barrier)
 
 # ════════════════════════════════════════════
 # シグナルハンドラ
@@ -129,6 +147,18 @@ func _setup_enemies() -> void:
 func _on_player_bullet_fired(spawn_pos: Vector2) -> void:
 	var bullet = BULLET_SCENE.instantiate()
 	bullet.global_position = spawn_pos
+	add_child(bullet)
+
+## 敵が弾を発射
+func _on_enemy_bullet_fired(spawn_pos: Vector2) -> void:
+	var bullet = BULLET_SCENE.instantiate()
+	bullet.global_position = spawn_pos
+	# C++ 側で弾速の正負やグループ分けをしていない場合は、ここで調整が必要かもしれないが、
+	# 現状の InvaderBullet は単に「進む」だけなので、敵の弾は下に進ませる必要がある。
+	# とりあえず簡易的に、弾の速度を反転させるプロパティ等があればセットする。
+	# 今の InvaderBullet.cpp は forward 方向固定かもしれないので確認が必要。
+	if bullet.has_method("set_direction"):
+		bullet.set_direction(Vector2.DOWN)
 	add_child(bullet)
 
 ## プレイヤーの当たり判定に Area2D が侵入

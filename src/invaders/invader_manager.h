@@ -38,6 +38,13 @@ class InvaderManager : public godot::Node {
   /// 最初の一回をスキップするためのフラグ
   bool initialized_ = false;
 
+  /// ゲーム開始時の敵の総数
+  int initial_enemy_count_ = 0;
+  /// 基礎移動速度
+  float base_move_speed_ = 60.0f;
+  /// 最大速度倍率
+  float max_speed_multiplier_ = 3.0f;
+
 protected:
   static void _bind_methods();
 
@@ -71,6 +78,12 @@ public:
 
   godot::String get_enemy_group() const;
   void set_enemy_group(const godot::String &v);
+
+  float get_base_move_speed() const;
+  void set_base_move_speed(float v);
+
+  float get_max_speed_multiplier() const;
+  void set_max_speed_multiplier(float v);
 
 private:
   void emit_game_over();

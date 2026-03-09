@@ -60,6 +60,7 @@
 #include "mystery/mystery_trigger.h"
 
 // Plugins (genre-specific, isolated) - Invaders
+#include "invaders/invader_barrier.h"
 #include "invaders/invader_bullet.h"
 #include "invaders/invader_enemy.h"
 #include "invaders/invader_manager.h"
@@ -168,6 +169,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<invaders::InvaderPlayer>();
   ClassDB::register_class<invaders::InvaderBullet>();
   ClassDB::register_class<invaders::InvaderEnemy>();
+  ClassDB::register_class<invaders::InvaderBarrier>();
   ClassDB::register_class<invaders::InvaderManager>();
 
   // ------------------------------------------------------------------

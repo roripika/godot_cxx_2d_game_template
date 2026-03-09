@@ -1,15 +1,28 @@
-[
-    {
-        "action": "change_background",
-        "background_id": "office"
-    },
-    {
-        "action": "show_portrait",
-        "character_id": "detective",
-        "emotion": "default"
-    },
-    {
-        "action": "add_evidence",
-        "evidence_id": "footprint"
+{
+    "start_scene": "test_scene",
+    "scenes": {
+        "test_scene": {
+            "on_enter": [
+                {
+                    "action": "change_background",
+                    "background_id": "office"
+                },
+                {
+                    "action": "show_portrait",
+                    "character_id": "boss",
+                    "emotion": "default"
+                },
+                {
+                    "action": "add_evidence",
+                    "evidence_id": "footprint"
+                },
+                {
+                    "dialogue": {
+                        "speaker": "System",
+                        "text": "C++ 駆動の統合テストを開始します。背景と人物が表示されているはずです。"
+                    }
+                }
+            ]
+        }
     }
-]
+}

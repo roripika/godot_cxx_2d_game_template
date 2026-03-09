@@ -16,8 +16,6 @@ void DialogueUI::_bind_methods() {
   ClassDB::bind_method(D_METHOD("show_message", "name", "text"),
                        &DialogueUI::show_message);
   ClassDB::bind_method(D_METHOD("hide_dialogue"), &DialogueUI::hide_dialogue);
-  ClassDB::bind_method(D_METHOD("_gui_input", "event"),
-                       &DialogueUI::_gui_input);
   ADD_SIGNAL(MethodInfo("dialogue_finished"));
   ClassDB::bind_method(D_METHOD("skip_typing"), &DialogueUI::skip_typing);
 

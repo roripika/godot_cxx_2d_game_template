@@ -1,4 +1,5 @@
 #include "invader_manager.h"
+#include "invader_enemy.h"
 
 #include <godot_cpp/classes/node2d.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
@@ -45,6 +46,20 @@ void InvaderManager::_bind_methods() {
                        &InvaderManager::set_enemy_group);
   ADD_PROPERTY(PropertyInfo(Variant::STRING, "enemy_group"), "set_enemy_group",
                "get_enemy_group");
+
+  ClassDB::bind_method(D_METHOD("get_base_move_speed"),
+                       &InvaderManager::get_base_move_speed);
+  ClassDB::bind_method(D_METHOD("set_base_move_speed", "v"),
+                       &InvaderManager::set_base_move_speed);
+  ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "base_move_speed"),
+               "set_base_move_speed", "get_base_move_speed");
+
+  ClassDB::bind_method(D_METHOD("get_max_speed_multiplier"),
+                       &InvaderManager::get_max_speed_multiplier);
+  ClassDB::bind_method(D_METHOD("set_max_speed_multiplier", "v"),
+                       &InvaderManager::set_max_speed_multiplier);
+  ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "max_speed_multiplier"),
+               "set_max_speed_multiplier", "get_max_speed_multiplier");
 }
 
 InvaderManager::InvaderManager() {}
@@ -68,11 +83,19 @@ void InvaderManager::_process(double /*delta*/) {
   if (!initialized_) {
     if (enemies.size() > 0) {
       initialized_ = true;
+      initial_enemy_count_ = enemies.size();
       UtilityFunctions::print("[InvaderManager] Initialized with ",
-                              enemies.size(), " enemies.");
+                              initial_enemy_count_, " enemies.");
     }
     return;
   }
+
+  // 速度倍率の計算 (1.0 〜 max_speed_multiplier_)
+  float remaining_ratio =
+      1.0f - (static_cast<float>(enemies.size()) / initial_enemy_count_);
+  float speed_multiplier =
+      1.0f + (max_speed_multiplier_ - 1.0f) * remaining_ratio;
+  float current_speed = base_move_speed_ * speed_multiplier;
 
   // 全滅チェック (初期化後のみ)
   if (enemies.size() == 0) {
@@ -83,10 +106,17 @@ void InvaderManager::_process(double /*delta*/) {
     return;
   }
 
-  // 敵が下限 Y を超えていないかチェック
+  // 敵の更新（速度アップ含む監視）
   for (int i = 0; i < enemies.size(); ++i) {
-    Node2D *enemy = Object::cast_to<Node2D>(enemies[i]);
-    if (enemy != nullptr && enemy->get_position().y >= game_over_y_) {
+    InvaderEnemy *enemy = Object::cast_to<InvaderEnemy>(enemies[i]);
+    if (enemy == nullptr)
+      continue;
+
+    // 速度を動的に更新
+    enemy->set_move_speed(current_speed);
+
+    // 下限 Y チェック
+    if (enemy->get_position().y >= game_over_y_) {
       emit_game_over();
       return;
     }
@@ -137,5 +167,15 @@ void InvaderManager::set_game_over_y(float v) { game_over_y_ = v; }
 
 String InvaderManager::get_enemy_group() const { return enemy_group_; }
 void InvaderManager::set_enemy_group(const String &v) { enemy_group_ = v; }
+
+float InvaderManager::get_base_move_speed() const { return base_move_speed_; }
+void InvaderManager::set_base_move_speed(float v) { base_move_speed_ = v; }
+
+float InvaderManager::get_max_speed_multiplier() const {
+  return max_speed_multiplier_;
+}
+void InvaderManager::set_max_speed_multiplier(float v) {
+  max_speed_multiplier_ = v;
+}
 
 } // namespace invaders
