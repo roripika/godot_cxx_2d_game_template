@@ -44,7 +44,8 @@
 ### 運用ルール（固定）
 - [ ] 作業者は antigravity に固定し、PR本文に `Scope / Out of Scope / 検証結果` を必ず記載する
 - [x] `src/karakuri/**` の C++ は公開 API に Doxygen コメントを必須化する（commit: `0403f7f`）
-- [ ] Basic Game Karakuri にデモ固有ロジックを入れない（依存は `samples -> karakuri` のみ）
+- [x] Basic Game Karakuri にデモ固有ロジックを入れない（依存は `samples -> karakuri` のみ）
+  - ActionRegistry により Core 層が Mystery 型を一切 include しない依存逆転を実現（commit: `5af8f3b`）
 
 ### 現状確認（2026-02-19）
 - [x] ミステリーの起動入口は `res://samples/mystery/karakuri_mystery_shell.tscn`
@@ -91,6 +92,8 @@
 - [x] 実行中の EN/JA 切替を各モードで確認する（`karakuri_scenario_smoke.gd`）
 - [x] PRごとに手動テスト結果をチェックリストで添付する（テンプレート定義: `docs/mystery_antigravity_handover.md`）
 - [x] ヘッドレスの最低動作確認を固定する（`samples/mystery/scripts/karakuri_scenario_smoke.gd`, latest pass: `0403f7f`）
+- [x] ActionRegistry E2E スモークテストを追加・全 PASS 確認（`samples/mystery/scripts/action_registry_smoke.gd`, commit: `930089b`）
+  - ActionRegistry singleton / add_evidence 登録 / ScenarioRunner.execute_single_action / MysteryGameState.has_evidence の4段階を headless 検証
 
 ### M8: ドキュメント同期
 - [x] `TASK.md`、`docs/mystery_design.md`、`README.md`、引き継ぎ資料を同一内容に同期する（commit: `0403f7f`）
@@ -181,13 +184,18 @@
     - [x] `DialogueUI`: Text display components.
 - [ ] **Core Adventure Systems**
     - [x] `GlobalState` → `AdventureGameStateBase`（C++）で代替済み
+    - [x] **ActionRegistry**: アクション名→クラス名の動的ディスパッチ登録簿（`src/core/action_registry.h`, commit: `5af8f3b`）
+      - Core 層が Mystery 型を知らずに `ClassDBSingleton::instantiate()` でタスクを動的生成
+      - ScenarioRunner: `{"action":"add_evidence","evidence_id":"knife"}` JSON フォーマット対応
+    - [x] **ConditionEvaluator**: JSON DSL 論理判定エンジン（`src/core/condition_evaluator.h`, commit: `4dd0ce9`）
     - [ ] `SceneTransitionManager`: Seamless scene switching with fade effects.
     - [x] `ChoiceManager` → `KarakuriScenarioRunner::choice` アクションで代替済み
     - [x] `FlagCondition` → `KarakuriScenarioRunner::if_flag` アクションで代替済み
 - [ ] **Evidence & Inventory**
-    - [ ] `EvidenceItem` (Resource): Evidence data (Name, Description, Icon, Category).
-    - [ ] `EvidenceManager`: Add/Remove/Check evidence.
-    - [ ] `InventoryUI`: Display evidence list with details view.
+    - [x] `EvidenceItem` (Resource): `mystery::Evidence` C++ クラスとして実装済み（commit: `20a120b`）
+    - [x] `EvidenceManager`: Add/Remove/Check evidence — `mystery::EvidenceManager` C++ 実装済み（commit: `20a120b`）
+    - [x] `TaskAddEvidence`: ScenarioRunner から証拠追加を行う即時完了タスク（commit: `11a119a`）
+    - [ ] `InventoryUI`: Display evidence list with details view（GDScript View 層が未完）.
     - [ ] `EvidencePresentSystem`: Click evidence to present in dialogue.
 - [ ] **Character & Presentation**
     - [ ] `CharacterPortrait`: Sprite with multiple expressions/poses.
