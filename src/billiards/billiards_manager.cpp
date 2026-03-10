@@ -40,6 +40,7 @@ struct BilliardsManager::JoltData {
   JPH::JobSystemThreadPool *job_system = nullptr;
   JPH::PhysicsSystem *physics_system = nullptr;
   JPH::BodyID cue_ball_id;
+  int debug_frame_count = 0;  // 診断用フレームカウンター
 
   // Filters
   class ObjectLayerPairFilterImpl : public JPH::ObjectLayerPairFilter {
@@ -221,8 +222,11 @@ void BilliardsManager::strike_cue_ball(godot::Vector3 p_direction,
     body_interface.ActivateBody(jolt_data->cue_ball_id);
     body_interface.AddImpulse(jolt_data->cue_ball_id, impulse);
 
-    UtilityFunctions::print("BilliardsManager: Struck cue ball with power: ",
-                            p_power);
+    JPH::RVec3 pos = body_interface.GetPosition(jolt_data->cue_ball_id);
+    JPH::Vec3  vel = body_interface.GetLinearVelocity(jolt_data->cue_ball_id);
+    UtilityFunctions::print("BilliardsManager: Struck cue ball with power: ", p_power,
+                            "  pos=(", pos.GetX(), ",", pos.GetY(), ",", pos.GetZ(), ")",
+                            "  vel=(", vel.GetX(), ",", vel.GetY(), ",", vel.GetZ(), ")");
   }
 }
 
@@ -239,8 +243,20 @@ void BilliardsManager::_physics_process(double delta) {
       JPH::RVec3 pos = body_interface.GetPosition(jolt_data->cue_ball_id);
       Vector3 gpos(pos.GetX(), pos.GetY(), pos.GetZ());
 
+      // 60フレームに1回座標をログ出力（診断用）
+      jolt_data->debug_frame_count++;
+      if (jolt_data->debug_frame_count % 60 == 0) {
+        UtilityFunctions::print(
+            "[BilliardsManager] frame=", jolt_data->debug_frame_count,
+            " ball_pos=(", gpos.x, ", ", gpos.y, ", ", gpos.z, ")");
+      }
+
       emit_signal("ball_position_updated", gpos);
+    } else {
+      UtilityFunctions::printerr("[BilliardsManager] cue_ball_id is INVALID — start_simulation() が呼ばれていない可能性");
     }
+  } else {
+    UtilityFunctions::printerr("[BilliardsManager] physics_system is NULL");
   }
 }
 
