@@ -23,7 +23,10 @@ public:
   ~BilliardsManager() override;
 
   void start_simulation();
+  void spawn_ball(int p_id, godot::Vector3 p_position,
+                  bool p_is_cue_ball = false);
   void strike_cue_ball(godot::Vector3 p_direction, float p_power);
+  void respawn_cue_ball();
   void _physics_process(double delta) override;
 };
 

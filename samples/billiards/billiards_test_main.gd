@@ -33,10 +33,12 @@ func _ready():
     add_child(manager)
 
     setup_cushions()
+    setup_pockets()
     setup_cue()
     setup_hud()
 
     manager.ball_position_updated.connect(_on_ball_position_updated)
+    manager.ball_pocketed.connect(_on_ball_pocketed)
     manager.start_simulation()
     setup_game_balls()
 
@@ -157,6 +159,30 @@ func setup_cushions() -> void:
         mi.position = Vector3(w[3], w[4], w[5])
         add_child(mi)
 
+## 6か所のポケットを黒い薄いディスクで可視化。C++側と同じ座標とする。
+func setup_pockets() -> void:
+    var pocket_mat = StandardMaterial3D.new()
+    pocket_mat.albedo_color = Color(0.0, 0.0, 0.0)
+
+    var pockets = [
+        Vector3(-1.5, 0.0, -3.0),  # 左奥
+        Vector3( 1.5, 0.0, -3.0),  # 右奥
+        Vector3(-1.5, 0.0,  0.0),  # 左中
+        Vector3( 1.5, 0.0,  0.0),  # 右中
+        Vector3(-1.5, 0.0,  3.0),  # 左手前
+        Vector3( 1.5, 0.0,  3.0),  # 右手前
+    ]
+    for p in pockets:
+        var mi  = MeshInstance3D.new()
+        var cyl = CylinderMesh.new()
+        cyl.top_radius    = 0.42
+        cyl.bottom_radius = 0.42
+        cyl.height        = 0.01  # 薄いディスク
+        mi.mesh = cyl
+        mi.material_override = pocket_mat
+        mi.position = p
+        add_child(mi)
+
 # ════════════════════════════════════════════════════════════════════
 #  毎フレーム処理
 # ════════════════════════════════════════════════════════════════════
@@ -258,3 +284,35 @@ func _on_ball_position_updated(id: int, new_position: Vector3) -> void:
         ball_meshes[id].global_position = new_position
     if id == 0:
         cue_ball_pos = new_position
+
+## ポケット判定シグナルのコールバック
+func _on_ball_pocketed(id: int) -> void:
+    if id == 0:
+        # ─── スクラッチ（手球落下）
+        print("Billiards: SCRATCH! 手球がポケットに落ちました...")
+        # 手球メッシュを一時的に非表示
+        if ball_meshes.has(0):
+            ball_meshes[0].visible = false
+
+        # already_struck リセット（発射禁止を解除しない — respawn後に解除）
+        await get_tree().create_timer(2.0).timeout
+
+        # C++ 側で再生成
+        manager.respawn_cue_ball()
+
+        # メッシュを初期位置に戻して再表示
+        var initial_pos = Vector3(0.0, 0.3, 2.0)
+        cue_ball_pos = initial_pos
+        if ball_meshes.has(0):
+            ball_meshes[0].global_position = initial_pos
+            ball_meshes[0].visible = true
+
+        already_struck = false
+        strike_power   = 0.0
+        print("Billiards: 手球を初期位置に復帰しました。ゲームを再開できます。")
+    else:
+        # ─── 的球ポケットイン
+        print("Billiards: 的球 ", id, " をポケットイン！ ナイスショット！")
+        if ball_meshes.has(id):
+            ball_meshes[id].queue_free()
+            ball_meshes.erase(id)
