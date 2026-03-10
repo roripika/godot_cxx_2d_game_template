@@ -178,30 +178,47 @@ void BilliardsManager::start_simulation() {
   JPH::BodyInterface &body_interface =
       jolt_data->physics_system->GetBodyInterface();
 
-  // Create Floor
-  JPH::BoxShapeSettings floor_shape_settings(JPH::Vec3(500.0f, 1.0f, 500.0f));
-  JPH::Shape::ShapeResult floor_shape_result = floor_shape_settings.Create();
-  if (floor_shape_result.HasError()) {
-    UtilityFunctions::printerr(
-        "BilliardsManager: Failed to create floor shape: ",
-        floor_shape_result.GetError().c_str());
-    return;
-  }
-  JPH::ShapeRefC floor_shape = floor_shape_result.Get();
+  // ── ヘルパー: Static な壁を1行で追加 ──────────────────────────────────
+  auto add_static_box = [&](JPH::Vec3 half_size, JPH::RVec3 pos,
+                             float friction, float restitution) {
+    JPH::BoxShapeSettings s(half_size);
+    JPH::ShapeRefC shape = s.Create().Get();
+    JPH::BodyCreationSettings bs(shape, pos, JPH::Quat::sIdentity(),
+                                  JPH::EMotionType::Static, Layers::NON_MOVING);
+    bs.mFriction    = friction;
+    bs.mRestitution = restitution;
+    body_interface.CreateAndAddBody(bs, JPH::EActivation::DontActivate);
+  };
 
-  JPH::BodyCreationSettings floor_settings(
-      floor_shape, JPH::RVec3(0.0f, -1.0f, 0.0f), JPH::Quat::sIdentity(),
-      JPH::EMotionType::Static, Layers::NON_MOVING);
-  body_interface.CreateAndAddBody(floor_settings,
-                                  JPH::EActivation::DontActivate);
+  // ── 床 ────────────────────────────────────────────────────────────────
+  add_static_box(JPH::Vec3(500.0f, 1.0f, 500.0f),
+                 JPH::RVec3(0.0f, -1.0f, 0.0f), 0.5f, 0.5f);
 
-  // Create Cue Ball
-  JPH::SphereShapeSettings ball_shape_settings(1.0f);
+  // ── クッション壁（テーブル内寸 X:3m / Z:6m）─────────────────────────
+  // 奥壁 (Z-)
+  add_static_box(JPH::Vec3(1.5f, 0.5f, 0.25f),
+                 JPH::RVec3(0.0f, 0.5f, -3.25f), 0.2f, 0.8f);
+  // 手前壁 (Z+)
+  add_static_box(JPH::Vec3(1.5f, 0.5f, 0.25f),
+                 JPH::RVec3(0.0f, 0.5f, 3.25f), 0.2f, 0.8f);
+  // 左壁 (X-)
+  add_static_box(JPH::Vec3(0.25f, 0.5f, 3.5f),
+                 JPH::RVec3(-1.75f, 0.5f, 0.0f), 0.2f, 0.8f);
+  // 右壁 (X+)
+  add_static_box(JPH::Vec3(0.25f, 0.5f, 3.5f),
+                 JPH::RVec3(1.75f, 0.5f, 0.0f), 0.2f, 0.8f);
+
+  // ── 手球 ──────────────────────────────────────────────────────────────
+  JPH::SphereShapeSettings ball_shape_settings(0.3f); // 実寸: 直径 6cm
   JPH::ShapeRefC ball_shape = ball_shape_settings.Create().Get();
 
   JPH::BodyCreationSettings ball_settings(
-      ball_shape, JPH::RVec3(0.0f, 1.0f, 0.0f), JPH::Quat::sIdentity(),
+      ball_shape, JPH::RVec3(0.0f, 1.0f, 2.0f), JPH::Quat::sIdentity(),
       JPH::EMotionType::Dynamic, Layers::MOVING);
+  ball_settings.mFriction        = 0.2f;
+  ball_settings.mRestitution     = 0.9f;
+  ball_settings.mLinearDamping   = 0.6f;  // ラシャ摩擦で自然減速
+  ball_settings.mAngularDamping  = 0.6f;
   jolt_data->cue_ball_id = body_interface.CreateAndAddBody(
       ball_settings, JPH::EActivation::Activate);
 
