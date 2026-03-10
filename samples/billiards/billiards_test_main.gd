@@ -100,27 +100,53 @@ func setup_cue():
     cue_mesh.material_override = mat
     add_child(cue_mesh)
 
-func setup_hud():
+func setup_hud() -> void:
     var canvas = CanvasLayer.new()
     add_child(canvas)
 
-    # 背景バー（グレー）
-    power_bg = ColorRect.new()
-    power_bg.color = Color(0.2, 0.2, 0.2, 0.75)
-    power_bg.set_anchor_and_offset(SIDE_LEFT,   0.5, -60.0)
-    power_bg.set_anchor_and_offset(SIDE_RIGHT,  0.5,  60.0)
-    power_bg.set_anchor_and_offset(SIDE_TOP,    1.0, -30.0)
-    power_bg.set_anchor_and_offset(SIDE_BOTTOM, 1.0, -10.0)
-    canvas.add_child(power_bg)
+    # ルート Control — フルスクリーン。これがないと anchor が画面に対して計算されない
+    var root = Control.new()
+    root.set_anchors_preset(Control.PRESET_FULL_RECT)
+    canvas.add_child(root)
 
-    # パワーバー（赤→黄）
+    # 「POWER」ラベル
+    var label = Label.new()
+    label.text = "POWER"
+    label.anchor_left   = 0.5
+    label.anchor_right  = 0.5
+    label.anchor_top    = 1.0
+    label.anchor_bottom = 1.0
+    label.offset_left   = -30.0
+    label.offset_right  =  30.0
+    label.offset_top    = -56.0
+    label.offset_bottom = -40.0
+    root.add_child(label)
+
+    # 背景バー（グレー）: 画面下部中央、幅240 × 高さ18 px
+    power_bg = ColorRect.new()
+    power_bg.color = Color(0.15, 0.15, 0.15, 0.85)
+    power_bg.anchor_left   = 0.5
+    power_bg.anchor_right  = 0.5
+    power_bg.anchor_top    = 1.0
+    power_bg.anchor_bottom = 1.0
+    power_bg.offset_left   = -120.0
+    power_bg.offset_right  =  120.0
+    power_bg.offset_top    = -38.0
+    power_bg.offset_bottom = -20.0
+    root.add_child(power_bg)
+
+    # パワーバー: 幅 0 → 240 px に伸びる
     power_bar = ColorRect.new()
-    power_bar.color = Color(1.0, 0.2, 0.1)
-    power_bar.set_anchor_and_offset(SIDE_LEFT,   0.5, -60.0)
-    power_bar.set_anchor_and_offset(SIDE_RIGHT,  0.5, -60.0)  # 幅 0 から始める
-    power_bar.set_anchor_and_offset(SIDE_TOP,    1.0, -30.0)
-    power_bar.set_anchor_and_offset(SIDE_BOTTOM, 1.0, -10.0)
-    canvas.add_child(power_bar)
+    power_bar.color = Color(0.1, 0.9, 0.2)
+    power_bar.anchor_left   = 0.5
+    power_bar.anchor_right  = 0.5
+    power_bar.anchor_top    = 1.0
+    power_bar.anchor_bottom = 1.0
+    power_bar.offset_left   = -120.0
+    power_bar.offset_right  = -120.0   # 幅 0 で起動
+    power_bar.offset_top    = -38.0
+    power_bar.offset_bottom = -20.0
+    root.add_child(power_bar)
 
 func setup_game_balls():
     spawn_ball_view(0, Vector3(0.0, 0.3, 2.0), Color.WHITE, true)
@@ -235,8 +261,8 @@ func _update_hud() -> void:
     if not is_instance_valid(power_bar):
         return
     var ratio = strike_power / MAX_POWER
-    # 幅 0〜120 px でパワーを表示（左端 -60 → 右端 -60 + 120*ratio）
-    power_bar.set_anchor_and_offset(SIDE_RIGHT, 0.5, -60.0 + 120.0 * ratio)
+    # offset_right だけ変えて幼を 0→240 px に増やす
+    power_bar.offset_right = -120.0 + 240.0 * ratio
     power_bar.color = Color(ratio, 1.0 - ratio * 0.8, 0.1)
 
 # ════════════════════════════════════════════════════════════════════
