@@ -65,6 +65,13 @@
 #include "invaders/invader_enemy.h"
 #include "invaders/invader_manager.h"
 #include "invaders/invader_player.h"
+
+// Othello
+#include "othello/othello_manager.h"
+
+// Billiards
+#include "billiards/billiards_manager.h"
+
 #include "plugins/features/sandbox/building_component.h"
 #include "plugins/features/sandbox/mining_component.h"
 
@@ -171,6 +178,12 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<invaders::InvaderEnemy>();
   ClassDB::register_class<invaders::InvaderBarrier>();
   ClassDB::register_class<invaders::InvaderManager>();
+
+  // Othello
+  ClassDB::register_class<othello::OthelloManager>();
+
+  // Billiards
+  ClassDB::register_class<billiards::BilliardsManager>();
 
   // ------------------------------------------------------------------
   // Engine singleton: ActionRegistry

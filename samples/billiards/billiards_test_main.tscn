@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://billiards_test_main"]
+
+[ext_resource type="Script" path="res://samples/billiards/billiards_test_main.gd" id="1_script"]
+
+[node name="BilliardsTestMain" type="Node3D"]
+script = ExtResource("1_script")
