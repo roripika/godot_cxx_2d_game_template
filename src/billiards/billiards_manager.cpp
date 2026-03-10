@@ -216,11 +216,12 @@ void BilliardsManager::strike_cue_ball(godot::Vector3 p_direction,
       !jolt_data->cue_ball_id.IsInvalid()) {
     JPH::BodyInterface &body_interface =
         jolt_data->physics_system->GetBodyInterface();
-    JPH::Vec3 impulse(p_direction.x * p_power, p_direction.y * p_power,
-                      p_direction.z * p_power);
-    // スリープ中でも力が反映されるよう、先にボディをアクティブ化する
+    JPH::Vec3 velocity(p_direction.x * p_power, p_direction.y * p_power,
+                       p_direction.z * p_power);
+    // AddImpulse は質量依存 (4000kg球では 60N·s ≒ 0.014m/s にしかならない)
+    // SetLinearVelocity で「方向 × 速度(m/s)」をダイレクトに指定する
     body_interface.ActivateBody(jolt_data->cue_ball_id);
-    body_interface.AddImpulse(jolt_data->cue_ball_id, impulse);
+    body_interface.SetLinearVelocity(jolt_data->cue_ball_id, velocity);
 
     JPH::RVec3 pos = body_interface.GetPosition(jolt_data->cue_ball_id);
     JPH::Vec3  vel = body_interface.GetLinearVelocity(jolt_data->cue_ball_id);
