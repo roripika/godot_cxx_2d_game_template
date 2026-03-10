@@ -7,7 +7,7 @@ const CAM_RADIUS      := 3.0    ## カメラ旋回半径 (m)
 const CAM_HEIGHT      := 1.6    ## カメラ高さ (m)
 const CUE_LENGTH      := 1.5    ## キュー全長 (m)
 const CUE_PULL_MAX    := 0.8    ## フルチャージ時の引き量 (m)
-const MOUSE_SENS      := 0.004  ## マウス感度 (rad/px)
+const DRAG_SENS       := 0.008  ## ドラッグ感度 (rad/px)
 
 # ─── ノード参照 ──────────────────────────────────────────────────────
 var manager: BilliardsManager
@@ -42,12 +42,22 @@ func _ready():
     manager.start_simulation()
     setup_game_balls()
 
-    # マウスをロックして操作開始
-    Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-    print("Billiards: Ready. Drag mouse to aim, hold LMB to charge, release to shoot!")
+    # マウスはキャプチャしない — カーソルを表示したまま使う
+    Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+    print("Billiards: Ready. Click & drag to aim, hold LMB to charge, release to shoot!")
 
 # ────────────────────────────────────────────────────────────────────
 func setup_environment():
+    # ─── WorldEnvironment: 背景をダークグレーにして他シーンが透過しないようにする
+    var world_env = WorldEnvironment.new()
+    var env = Environment.new()
+    env.background_mode = Environment.BG_COLOR
+    env.background_color = Color(0.08, 0.08, 0.12)  # 暗い紺
+    env.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+    env.ambient_light_color = Color(0.3, 0.3, 0.3)
+    world_env.environment = env
+    add_child(world_env)
+
     # カメラ（後で _process で動かす）
     camera = Camera3D.new()
     camera.position = Vector3(0.0, CAM_HEIGHT, CAM_RADIUS)
@@ -230,35 +240,24 @@ func _update_hud() -> void:
     power_bar.color = Color(ratio, 1.0 - ratio * 0.8, 0.1)
 
 # ════════════════════════════════════════════════════════════════════
-#  入力処理
+#  入力処理  ── クリック&ドラッグでエイム。マウスは常に可視。
 # ════════════════════════════════════════════════════════════════════
 func _unhandled_input(event: InputEvent) -> void:
-    # Escape でマウス解放
-    if event.is_action_pressed("ui_cancel"):
-        Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-        return
-
-    # クリックでマウスを再キャプチャ
-    if event is InputEventMouseButton and event.pressed:
-        if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
-            Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-            return
-
-    # マウス移動でエイム
-    if event is InputEventMouseMotion:
-        if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-            aim_yaw -= event.relative.x * MOUSE_SENS
-
-    # 左クリック押下 → チャージ開始
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
         if event.pressed:
+            # ─── ドラッグ開始 + チャージ開始
             if not already_struck:
-                is_charging = true
+                is_charging  = true
                 strike_power = 0.0
         else:
-            # 離した瞬間 → 発射
+            # ─── ドラッグ終了 = 発射
             if is_charging:
                 _do_strike()
+
+    # ドラッグ中の左右移動でエイム
+    if event is InputEventMouseMotion:
+        if is_charging and not already_struck:
+            aim_yaw -= event.relative.x * DRAG_SENS
 
 func _do_strike() -> void:
     if already_struck:
