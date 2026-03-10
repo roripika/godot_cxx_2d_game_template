@@ -118,8 +118,9 @@ void BilliardsManager::_bind_methods() {
 }
 
 void BilliardsManager::_notification(int p_what) {
-  if (p_what == NOTIFICATION_POSTINITIALIZE) {
+  if (p_what == NOTIFICATION_READY) {
     set_physics_process(true);
+    UtilityFunctions::print("BilliardsManager: physics_process ENABLED");
   }
 }
 
