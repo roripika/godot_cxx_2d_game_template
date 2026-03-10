@@ -105,8 +105,10 @@ func setup_hud() -> void:
     add_child(canvas)
 
     # ルート Control — フルスクリーン。これがないと anchor が画面に対して計算されない
+    # MOUSE_FILTER_IGNORE: クリックを透過させて 3D 側に届くようにする
     var root = Control.new()
     root.set_anchors_preset(Control.PRESET_FULL_RECT)
+    root.mouse_filter = Control.MOUSE_FILTER_IGNORE
     canvas.add_child(root)
 
     # 「POWER」ラベル
@@ -133,6 +135,7 @@ func setup_hud() -> void:
     power_bg.offset_right  =  120.0
     power_bg.offset_top    = -38.0
     power_bg.offset_bottom = -20.0
+    power_bg.mouse_filter  = Control.MOUSE_FILTER_IGNORE
     root.add_child(power_bg)
 
     # パワーバー: 幅 0 → 240 px に伸びる
@@ -146,6 +149,7 @@ func setup_hud() -> void:
     power_bar.offset_right  = -120.0   # 幅 0 で起動
     power_bar.offset_top    = -38.0
     power_bar.offset_bottom = -20.0
+    power_bar.mouse_filter  = Control.MOUSE_FILTER_IGNORE
     root.add_child(power_bar)
 
 func setup_game_balls():
