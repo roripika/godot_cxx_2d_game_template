@@ -13,11 +13,22 @@ env = SConscript("godot-cpp/SConstruct")
 # - LINKFLAGS are for linking flags
 
 # Tweaks for the binding layout
-env.Append(CPPPATH=["src"])
+env.Append(CPPPATH=["src", "src/thirdparty/jolt"])
+
+# Jolt Physics Defines
+# JPH_USE_NEON は意図的に外す — apple-m4 AArch64 でも DVec3.inl の
+# float64x2x2_t.val[] コンパイルエラーを回避するためスカラー fallback を使用
+env.Append(CPPDEFINES=[
+    "JPH_USE_CUSTOM_STL",
+    "JPH_PLATFORM_MACOS",
+    "JPH_CPU_ARM",
+])
+
+# Jolt 専用コンパイル環境（-mcpu=apple-m4 を外して NEON intrinsics を無効化）
+jolt_env = env.Clone()
+jolt_env['CCFLAGS'] = [f for f in list(jolt_env.get('CCFLAGS', [])) if '-mcpu' not in str(f) and '-O' not in str(f)]
 
 # ── Layer 1 (Core) 専用コンパイル環境 (物理的防波堤) ──────────────────────────
-# src を CPPPATH から取り除き、Core 内部パスのみを追加する。
-# これにより src/core/ 以下が #include "mystery/..." を書いた瞬間に
 # コンパイルエラーが発生し、Layer 1 → Layer 2 の依存混入を物理的に検出できる。
 core_env = env.Clone()
 core_env['CPPPATH'] = [p for p in list(core_env['CPPPATH']) if str(p) != 'src']
@@ -41,13 +52,18 @@ core_objects = core_env.SharedObject(core_sources)
 # Layer 2+ / Mystery & Plugins
 mystery_sources = get_recursive_cpp("src/mystery")
 invaders_sources = get_recursive_cpp("src/invaders")
+othello_sources = get_recursive_cpp("src/othello")
+billiards_sources = get_recursive_cpp("src/billiards")
+jolt_sources = get_recursive_cpp("src/thirdparty/jolt/Jolt")
 plugin_sources = get_recursive_cpp("src/plugins")
 root_sources = Glob("src/*.cpp")
 
-other_sources = mystery_sources + invaders_sources + plugin_sources + root_sources
-other_objects = env.SharedObject(other_sources)
+# Jolt ソースは jolt_env（NEON なし）でコンパイル
+jolt_objects   = jolt_env.SharedObject(jolt_sources + ["src/thirdparty/jolt_shim.cpp"])
+other_sources  = mystery_sources + invaders_sources + othello_sources + billiards_sources + plugin_sources + root_sources
+other_objects  = env.SharedObject(other_sources)
 
-sources = core_objects + other_objects
+sources = core_objects + other_objects + jolt_objects
 
 if env["platform"] == "macos":
     library = env.SharedLibrary(
@@ -58,8 +74,8 @@ if env["platform"] == "macos":
     )
     
     # Use Apple's libc++
-    env.Append(CXXFLAGS=["-stdlib=libc++"])
-    env.Append(LINKFLAGS=["-stdlib=libc++"])
+    env.Append(CXXFLAGS=["-stdlib=libc++", "-std=c++17"])
+    env.Append(LINKFLAGS=["-stdlib=libc++", "-lc++"])
 
     # M4 / Apple Silicon optimization
     if env["arch"] == "arm64":
