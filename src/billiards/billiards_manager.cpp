@@ -179,7 +179,7 @@ void BilliardsManager::start_simulation() {
       jolt_data->physics_system->GetBodyInterface();
 
   // Create Floor
-  JPH::BoxShapeSettings floor_shape_settings(JPH::Vec3(50.0f, 1.0f, 50.0f));
+  JPH::BoxShapeSettings floor_shape_settings(JPH::Vec3(500.0f, 1.0f, 500.0f));
   JPH::Shape::ShapeResult floor_shape_result = floor_shape_settings.Create();
   if (floor_shape_result.HasError()) {
     UtilityFunctions::printerr(
