@@ -15,6 +15,12 @@ var camera: Camera3D
 var cue_mesh: MeshInstance3D
 var power_bar: ColorRect   ## 2D HUD — パワーゲージ
 var power_bg: ColorRect
+var remaining_label: Label  ## 残り的球数 HUD
+
+# ─── オーディオ ──────────────────────────────────────────────────────
+var hit_sound = preload("res://samples/billiards/assets/hit.wav")
+var audio_pool: Array[AudioStreamPlayer3D] = []
+const POOL_SIZE = 10
 
 # ─── ゲーム状態 ──────────────────────────────────────────────────────
 var ball_meshes: Dictionary = {}   ## ID -> MeshInstance3D
@@ -23,6 +29,7 @@ var aim_yaw      := 0.0            ## XZ 平面の旋回角 (rad)
 var strike_power := 0.0
 var is_charging  := false
 var already_struck := false        ## 連打防止フラグ
+var remaining_balls := 15          ## 残り的球数
 
 # ════════════════════════════════════════════════════════════════════
 func _ready():
@@ -36,9 +43,13 @@ func _ready():
     setup_pockets()
     setup_cue()
     setup_hud()
+    setup_audio_pool()
 
     manager.ball_position_updated.connect(_on_ball_position_updated)
     manager.ball_pocketed.connect(_on_ball_pocketed)
+    manager.collision_sound_requested.connect(_on_collision_sound_requested)
+    manager.game_clear.connect(_on_game_clear)
+    
     manager.start_simulation()
     setup_game_balls()
 
@@ -151,6 +162,20 @@ func setup_hud() -> void:
     power_bar.offset_bottom = -20.0
     power_bar.mouse_filter  = Control.MOUSE_FILTER_IGNORE
     root.add_child(power_bar)
+
+    # 残り的球数を画面左上に表示
+    remaining_label = Label.new()
+    remaining_label.text = "Remaining: 15"
+    remaining_label.anchor_left   = 0.0
+    remaining_label.anchor_right  = 0.0
+    remaining_label.anchor_top    = 0.0
+    remaining_label.anchor_bottom = 0.0
+    remaining_label.offset_left   = 12.0
+    remaining_label.offset_right  = 200.0
+    remaining_label.offset_top    = 12.0
+    remaining_label.offset_bottom = 40.0
+    remaining_label.mouse_filter  = Control.MOUSE_FILTER_IGNORE
+    root.add_child(remaining_label)
 
 func setup_game_balls():
     spawn_ball_view(0, Vector3(0.0, 0.3, 2.0), Color.WHITE, true)
@@ -314,6 +339,26 @@ func _on_ball_position_updated(id: int, new_position: Vector3) -> void:
     if id == 0:
         cue_ball_pos = new_position
 
+## 衝突音の再生要求
+func _on_collision_sound_requested(pos: Vector3, force: float) -> void:
+    for ap in audio_pool:
+        if not ap.playing:
+            ap.global_position = pos
+            # force に応じて音量を調整 (0.5 ~ 20.0 程度を想定)
+            var volume = linear_to_db(clamp(force / 10.0, 0.01, 1.0))
+            ap.volume_db = volume
+            ap.pitch_scale = randf_range(0.9, 1.1) # わずかにピッチを変える
+            ap.play()
+            return
+
+func setup_audio_pool() -> void:
+    for i in range(POOL_SIZE):
+        var ap = AudioStreamPlayer3D.new()
+        ap.stream = hit_sound
+        ap.bus = "Master"
+        add_child(ap)
+        audio_pool.append(ap)
+
 ## ポケット判定シグナルのコールバック
 func _on_ball_pocketed(id: int) -> void:
     if id == 0:
@@ -345,3 +390,46 @@ func _on_ball_pocketed(id: int) -> void:
         if ball_meshes.has(id):
             ball_meshes[id].queue_free()
             ball_meshes.erase(id)
+        remaining_balls -= 1
+        if is_instance_valid(remaining_label):
+            remaining_label.text = "Remaining: %d" % remaining_balls
+
+# ゲームクリアコールバック
+func _on_game_clear() -> void:
+    print("Billiards: GAME CLEAR! 全ての的球をポケットイン！")
+    Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+    # ─── 「CLEAR!!」ラベルを画面中央に大きく表示
+    var canvas = CanvasLayer.new()
+    add_child(canvas)
+    var clear_root = Control.new()
+    clear_root.set_anchors_preset(Control.PRESET_FULL_RECT)
+    clear_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    canvas.add_child(clear_root)
+
+    var bg = ColorRect.new()
+    bg.color = Color(0.0, 0.0, 0.0, 0.55)
+    bg.anchor_left   = 0.0
+    bg.anchor_right  = 1.0
+    bg.anchor_top    = 0.0
+    bg.anchor_bottom = 1.0
+    bg.mouse_filter  = Control.MOUSE_FILTER_IGNORE
+    clear_root.add_child(bg)
+
+    var lbl = Label.new()
+    lbl.text = "CLEAR!!"
+    lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    lbl.vertical_alignment   = VERTICAL_ALIGNMENT_CENTER
+    lbl.anchor_left   = 0.0
+    lbl.anchor_right  = 1.0
+    lbl.anchor_top    = 0.0
+    lbl.anchor_bottom = 1.0
+    lbl.add_theme_font_size_override("font_size", 96)
+    lbl.add_theme_color_override("font_color", Color(1.0, 0.9, 0.1))
+    lbl.mouse_filter  = Control.MOUSE_FILTER_IGNORE
+    clear_root.add_child(lbl)
+
+    # ─── 4秒待機→メインメニューに遷移
+    await get_tree().create_timer(4.0).timeout
+    print("Billiards: タイトル画面に戻ります...")
+    get_tree().change_scene_to_file("res://samples/main_menu.tscn")

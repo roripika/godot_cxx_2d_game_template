@@ -5,6 +5,7 @@
 #include <Jolt/Core/JobSystemThreadPool.h>
 #include <Jolt/Core/TempAllocator.h>
 #include <Jolt/Physics/Body/BodyCreationSettings.h>
+#include <Jolt/Physics/Collision/ContactListener.h>
 #include <Jolt/Physics/Collision/Shape/BoxShape.h>
 #include <Jolt/Physics/Collision/Shape/SphereShape.h>
 #include <Jolt/Physics/PhysicsSystem.h>
@@ -19,6 +20,7 @@
 
 // Standard Headers
 #include <map>
+#include <mutex>
 #include <vector>
 
 using namespace godot;
@@ -38,6 +40,11 @@ static constexpr JPH::BroadPhaseLayer MOVING(1);
 static constexpr JPH::uint NUM_LAYERS = 2;
 } // namespace BroadPhaseLayers
 
+struct CollisionEvent {
+  godot::Vector3 pos;
+  float force;
+};
+
 // Opaque data implementation
 struct BilliardsManager::JoltData {
   JPH::TempAllocatorImpl *temp_allocator = nullptr;
@@ -45,9 +52,42 @@ struct BilliardsManager::JoltData {
   JPH::PhysicsSystem *physics_system = nullptr;
 
   JPH::BodyID cue_ball_id;
-  std::map<int, JPH::BodyID> balls; // ID maps to Jolt BodyID
+  std::map<int, JPH::BodyID> balls;
 
-  int debug_frame_count = 0;
+  std::vector<CollisionEvent> collision_events;
+  std::mutex collision_mutex;
+
+  // Contact Listener
+  class MyContactListener : public JPH::ContactListener {
+  public:
+    JoltData *data = nullptr;
+
+    JPH::ValidateResult OnContactValidate(
+        const JPH::Body &inBody1, const JPH::Body &inBody2,
+        JPH::RVec3Arg inBaseOffset,
+        const JPH::CollideShapeResult &inCollisionResult) override {
+      return JPH::ValidateResult::AcceptAllContactsForThisBodyPair;
+    }
+
+    void OnContactAdded(const JPH::Body &inBody1, const JPH::Body &inBody2,
+                        const JPH::ContactManifold &inManifold,
+                        JPH::ContactSettings &ioSettings) override {
+      // Calculate relative velocity as "force"
+      JPH::Vec3 v1 = inBody1.GetLinearVelocity();
+      JPH::Vec3 v2 = inBody2.GetLinearVelocity();
+      float force = (v1 - v2).Length();
+
+      if (force > 0.5f) {
+        std::lock_guard<std::mutex> lock(data->collision_mutex);
+        JPH::RVec3 world_pos = inManifold.GetWorldSpaceContactPointOn1(0);
+        data->collision_events.push_back(
+            {Vector3(world_pos.GetX(), world_pos.GetY(), world_pos.GetZ()),
+             force});
+      }
+    }
+  };
+
+  MyContactListener contact_listener;
 
   // Filters
   class ObjectLayerPairFilterImpl : public JPH::ObjectLayerPairFilter {
@@ -122,58 +162,50 @@ void BilliardsManager::_bind_methods() {
                        &BilliardsManager::spawn_ball, DEFVAL(false));
   ClassDB::bind_method(D_METHOD("strike_cue_ball", "direction", "power"),
                        &BilliardsManager::strike_cue_ball);
-
   ClassDB::bind_method(D_METHOD("respawn_cue_ball"),
                        &BilliardsManager::respawn_cue_ball);
 
   ADD_SIGNAL(MethodInfo("ball_position_updated",
                         PropertyInfo(Variant::INT, "id"),
                         PropertyInfo(Variant::VECTOR3, "new_position")));
-  ADD_SIGNAL(MethodInfo("ball_pocketed",
-                        PropertyInfo(Variant::INT, "id")));
+  ADD_SIGNAL(MethodInfo("ball_pocketed", PropertyInfo(Variant::INT, "id")));
+  ADD_SIGNAL(MethodInfo("collision_sound_requested",
+                        PropertyInfo(Variant::VECTOR3, "position"),
+                        PropertyInfo(Variant::FLOAT, "force")));
+  ADD_SIGNAL(MethodInfo("game_clear"));
 }
 
 void BilliardsManager::_notification(int p_what) {
   if (p_what == NOTIFICATION_READY) {
     set_physics_process(true);
-    UtilityFunctions::print("BilliardsManager: physics_process ENABLED");
   }
 }
 
 BilliardsManager::BilliardsManager() {
-  UtilityFunctions::print("BilliardsManager: Constructor started.");
-
   if (JPH::Factory::sInstance == nullptr) {
-    UtilityFunctions::print("BilliardsManager: Registering Jolt Types...");
     JPH::RegisterDefaultAllocator();
     JPH::Factory::sInstance = new JPH::Factory();
     JPH::RegisterTypes();
   }
 
-  UtilityFunctions::print("BilliardsManager: Allocating JoltData...");
   jolt_data = new JoltData();
+  jolt_data->contact_listener.data = jolt_data;
 
-  UtilityFunctions::print(
-      "BilliardsManager: Setting up TempAllocator and JobSystem...");
-  jolt_data->temp_allocator =
-      new JPH::TempAllocatorImpl(10 * 1024 * 1024); // 10MB
+  jolt_data->temp_allocator = new JPH::TempAllocatorImpl(10 * 1024 * 1024);
   jolt_data->job_system = new JPH::JobSystemThreadPool(
       JPH::cMaxPhysicsJobs, JPH::cMaxPhysicsBarriers, 4);
 
-  UtilityFunctions::print("BilliardsManager: Initializing PhysicsSystem...");
   jolt_data->physics_system = new JPH::PhysicsSystem();
   jolt_data->physics_system->Init(1024, 0, 1024, 1024,
                                   jolt_data->broad_phase_layer_interface,
                                   jolt_data->object_vs_broadphase_filter,
                                   jolt_data->object_vs_object_filter);
 
-  UtilityFunctions::print(
-      "BilliardsManager: Jolt Physics Initialized Successfully.");
+  jolt_data->physics_system->SetContactListener(&jolt_data->contact_listener);
 }
 
 BilliardsManager::~BilliardsManager() {
   if (jolt_data) {
-    UtilityFunctions::print("BilliardsManager: Cleaning up Jolt Physics...");
     delete jolt_data->physics_system;
     delete jolt_data->job_system;
     delete jolt_data->temp_allocator;
@@ -186,7 +218,6 @@ void BilliardsManager::start_simulation() {
   if (!jolt_data || !jolt_data->physics_system)
     return;
 
-  UtilityFunctions::print("BilliardsManager: start_simulation() called.");
   JPH::BodyInterface &body_interface =
       jolt_data->physics_system->GetBodyInterface();
 
@@ -201,11 +232,8 @@ void BilliardsManager::start_simulation() {
     body_interface.CreateAndAddBody(bs, JPH::EActivation::DontActivate);
   };
 
-  // 床
   add_static_box(JPH::Vec3(500.0f, 1.0f, 500.0f), JPH::RVec3(0.0f, -1.0f, 0.0f),
                  0.5f, 0.5f);
-
-  // クッション壁
   add_static_box(JPH::Vec3(1.5f, 0.5f, 0.25f), JPH::RVec3(0.0f, 0.5f, -3.25f),
                  0.2f, 0.8f);
   add_static_box(JPH::Vec3(1.5f, 0.5f, 0.25f), JPH::RVec3(0.0f, 0.5f, 3.25f),
@@ -214,15 +242,13 @@ void BilliardsManager::start_simulation() {
                  0.2f, 0.8f);
   add_static_box(JPH::Vec3(0.25f, 0.5f, 3.5f), JPH::RVec3(1.75f, 0.5f, 0.0f),
                  0.2f, 0.8f);
-
-  UtilityFunctions::print("BilliardsManager: Table setup complete.");
+  remaining_target_balls = 15;
 }
 
 void BilliardsManager::spawn_ball(int p_id, godot::Vector3 p_position,
                                   bool p_is_cue_ball) {
   if (!jolt_data || !jolt_data->physics_system)
     return;
-
   JPH::BodyInterface &body_interface =
       jolt_data->physics_system->GetBodyInterface();
 
@@ -232,22 +258,17 @@ void BilliardsManager::spawn_ball(int p_id, godot::Vector3 p_position,
   JPH::BodyCreationSettings ball_settings(
       ball_shape, JPH::RVec3(p_position.x, p_position.y, p_position.z),
       JPH::Quat::sIdentity(), JPH::EMotionType::Dynamic, Layers::MOVING);
-
   ball_settings.mFriction = 0.2f;
   ball_settings.mRestitution = 0.9f;
   ball_settings.mLinearDamping = 0.6f;
   ball_settings.mAngularDamping = 0.6f;
+  ball_settings.mAllowSleeping = true;
 
   JPH::BodyID bid = body_interface.CreateAndAddBody(ball_settings,
                                                     JPH::EActivation::Activate);
   jolt_data->balls[p_id] = bid;
-
-  if (p_is_cue_ball) {
+  if (p_is_cue_ball)
     jolt_data->cue_ball_id = bid;
-  }
-
-  UtilityFunctions::print("BilliardsManager: Spawned ball ID=", p_id,
-                          " bid=", bid.GetIndex(), " is_cue=", p_is_cue_ball);
 }
 
 void BilliardsManager::strike_cue_ball(godot::Vector3 p_direction,
@@ -258,49 +279,45 @@ void BilliardsManager::strike_cue_ball(godot::Vector3 p_direction,
         jolt_data->physics_system->GetBodyInterface();
     JPH::Vec3 velocity(p_direction.x * p_power, p_direction.y * p_power,
                        p_direction.z * p_power);
-
     body_interface.ActivateBody(jolt_data->cue_ball_id);
     body_interface.SetLinearVelocity(jolt_data->cue_ball_id, velocity);
-
-    UtilityFunctions::print("BilliardsManager: Struck cue ball with power: ",
-                            p_power);
   }
 }
 
-// ─── ポケット座標（テーブル内寸: X±1.5, Z±3.0）─────────────────────
 static const JPH::Vec3 POCKET_POSITIONS[] = {
-    {-1.5f, 0.0f, -3.0f}, // 左奥
-    { 1.5f, 0.0f, -3.0f}, // 右奥
-    {-1.5f, 0.0f,  0.0f}, // 左中
-    { 1.5f, 0.0f,  0.0f}, // 右中
-    {-1.5f, 0.0f,  3.0f}, // 左手前
-    { 1.5f, 0.0f,  3.0f}, // 右手前
+    {-1.5f, 0.0f, -3.0f}, {1.5f, 0.0f, -3.0f}, {-1.5f, 0.0f, 0.0f},
+    {1.5f, 0.0f, 0.0f},   {-1.5f, 0.0f, 3.0f}, {1.5f, 0.0f, 3.0f},
 };
-static constexpr float POCKET_RADIUS = 0.45f; // 球半径(0.3)×1.5
-static constexpr int   POCKET_COUNT  = 6;
+static constexpr float POCKET_RADIUS = 0.45f;
+static constexpr int POCKET_COUNT = 6;
 
 void BilliardsManager::_physics_process(double delta) {
   if (!jolt_data || !jolt_data->physics_system)
     return;
 
-  jolt_data->physics_system->Update(
-      (float)delta, 1, jolt_data->temp_allocator, jolt_data->job_system);
+  jolt_data->physics_system->Update((float)delta, 1, jolt_data->temp_allocator,
+                                    jolt_data->job_system);
+
+  // 1. Flush Collision Events
+  {
+    std::lock_guard<std::mutex> lock(jolt_data->collision_mutex);
+    for (const auto &ev : jolt_data->collision_events) {
+      emit_signal("collision_sound_requested", ev.pos, ev.force);
+    }
+    jolt_data->collision_events.clear();
+  }
 
   JPH::BodyInterface &body_interface =
       jolt_data->physics_system->GetBodyInterface();
-
-  // ─── 位置シグナル発行 & ポケット判定 ───────────────────────────────
   std::vector<int> pocketed_ids;
 
   for (auto const &[id, bid] : jolt_data->balls) {
     if (bid.IsInvalid())
       continue;
-
     JPH::RVec3 jpos = body_interface.GetPosition(bid);
-    Vector3 gpos(jpos.GetX(), jpos.GetY(), jpos.GetZ());
-    emit_signal("ball_position_updated", id, gpos);
+    emit_signal("ball_position_updated", id,
+                Vector3(jpos.GetX(), jpos.GetY(), jpos.GetZ()));
 
-    // ポケット距離チェック（XZ 平面のみ）
     for (int p = 0; p < POCKET_COUNT; ++p) {
       float dx = jpos.GetX() - POCKET_POSITIONS[p].GetX();
       float dz = jpos.GetZ() - POCKET_POSITIONS[p].GetZ();
@@ -311,40 +328,37 @@ void BilliardsManager::_physics_process(double delta) {
     }
   }
 
-  // ─── ポケットイン処理（イテレーション外で実施）────────────────────
   for (int id : pocketed_ids) {
     auto it = jolt_data->balls.find(id);
-    if (it == jolt_data->balls.end())
-      continue;
-
-    JPH::BodyID bid = it->second;
-    body_interface.RemoveBody(bid);
-    body_interface.DestroyBody(bid);
-    jolt_data->balls.erase(it);
-
-    if (id == 0)
-      jolt_data->cue_ball_id = JPH::BodyID(); // 無効化
-
-    UtilityFunctions::print("BilliardsManager: Ball ", id, " pocketed.");
-    emit_signal("ball_pocketed", id);
+    if (it != jolt_data->balls.end()) {
+      body_interface.RemoveBody(it->second);
+      body_interface.DestroyBody(it->second);
+      jolt_data->balls.erase(it);
+      if (id == 0)
+        jolt_data->cue_ball_id = JPH::BodyID();
+      emit_signal("ball_pocketed", id);
+      // 的球のカウントダウン
+      if (id > 0) {
+        remaining_target_balls -= 1;
+        if (remaining_target_balls <= 0) {
+          UtilityFunctions::print("BilliardsManager: All balls pocketed! Game Clear!");
+          emit_signal("game_clear");
+        }
+      }
+    }
   }
 }
 
 void BilliardsManager::respawn_cue_ball() {
   if (!jolt_data || !jolt_data->physics_system)
     return;
-
-  // 既存の手球が残っていれば削除
   if (!jolt_data->cue_ball_id.IsInvalid()) {
     JPH::BodyInterface &bi = jolt_data->physics_system->GetBodyInterface();
     bi.RemoveBody(jolt_data->cue_ball_id);
     bi.DestroyBody(jolt_data->cue_ball_id);
     jolt_data->balls.erase(0);
   }
-
-  // 手球を初期位置で再生成
   spawn_ball(0, Vector3(0.0f, 0.3f, 2.0f), true);
-  UtilityFunctions::print("BilliardsManager: Cue ball respawned.");
 }
 
 } // namespace billiards

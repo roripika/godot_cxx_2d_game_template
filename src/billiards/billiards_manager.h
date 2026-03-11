@@ -9,10 +9,9 @@ class BilliardsManager : public godot::Node {
   GDCLASS(BilliardsManager, godot::Node)
 
 private:
-  // Opaque pointer to Jolt-specific data to avoid header leakage and name
-  // conflicts
   struct JoltData;
   JoltData *jolt_data = nullptr;
+  int remaining_target_balls = 15;
 
 protected:
   static void _bind_methods();
