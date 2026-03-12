@@ -33,6 +33,8 @@ class TaskAddEvidence : public karakuri::TaskBase {
   /// 追加する証拠品 ID
   godot::String evidence_id_;
 
+  bool started_ = false;
+
 protected:
   static void _bind_methods();
 
@@ -41,18 +43,11 @@ public:
   ~TaskAddEvidence() override = default;
 
   // ------------------------------------------------------------------
-  // ライフサイクル
+  // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
 
-  /**
-   * @brief 証拠品を MysteryGameState に追加し、即座に完了する。
-   * evidence_added シグナルは MysteryGameState 側から発火される。
-   */
-  void on_start() override;
-
-  /**
-   * @brief スキップ時も同じく証拠品追加を確実に実行して完了する。
-   */
+  karakuri::TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

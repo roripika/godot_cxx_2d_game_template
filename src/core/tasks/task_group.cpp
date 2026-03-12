@@ -16,52 +16,69 @@ void TaskGroup::_bind_methods() {
 // ライフサイクル
 // ------------------------------------------------------------------
 
-void TaskGroup::on_start() {
-  for (int i = 0; i < tasks_.size(); ++i) {
-    Ref<TaskBase> task = tasks_[i];
-    if (task.is_valid()) {
-      task->on_start();
-    }
-  }
-}
+// ------------------------------------------------------------------
+// ライフサイクル (ABI v1)
+// ------------------------------------------------------------------
 
-void TaskGroup::on_update(double delta) {
-  for (int i = 0; i < tasks_.size(); ++i) {
-    Ref<TaskBase> task = tasks_[i];
-    if (task.is_valid() && !task->is_finished()) {
-      task->on_update(delta);
-    }
+TaskResult TaskGroup::execute(double delta) {
+  if (tasks_.is_empty()) {
+    return TaskResult::Success;
   }
 
-  // 全タスク完了チェック
+  // 初回実行時に完了フラグを初期化
+  if (completed_flags_.size() != tasks_.size()) {
+    completed_flags_.resize(tasks_.size());
+    for (int i = 0; i < completed_flags_.size(); ++i) {
+      completed_flags_[i] = false;
+    }
+  }
+
   bool all_done = true;
   for (int i = 0; i < tasks_.size(); ++i) {
+    if (completed_flags_[i]) {
+      continue;
+    }
+
     Ref<TaskBase> task = tasks_[i];
-    if (task.is_valid() && !task->is_finished()) {
-      all_done = false;
-      break;
+    if (task.is_valid()) {
+      TaskResult res = task->execute(delta);
+      if (res == TaskResult::Success) {
+        completed_flags_[i] = true;
+      } else if (res == TaskResult::Failed) {
+        return TaskResult::Failed;
+      } else {
+        all_done = false;
+      }
+    } else {
+      completed_flags_[i] = true;
     }
   }
-  if (all_done) {
-    finished_ = true;
-  }
+
+  return all_done ? TaskResult::Success : TaskResult::Waiting;
 }
 
-bool TaskGroup::is_finished() const {
-  if (tasks_.is_empty()) {
-    return true;
+godot::Error TaskGroup::validate_and_setup(const godot::Dictionary &spec) {
+  if (spec.has("tasks")) {
+    Array arr = spec["tasks"];
+    for (int i = 0; i < arr.size(); ++i) {
+      add_task(arr[i]);
+    }
   }
-  return finished_;
+  return godot::OK;
 }
 
 void TaskGroup::complete_instantly() {
   for (int i = 0; i < tasks_.size(); ++i) {
     Ref<TaskBase> task = tasks_[i];
-    if (task.is_valid() && !task->is_finished()) {
+    if (task.is_valid()) {
       task->complete_instantly();
     }
   }
-  finished_ = true;
+  // 全て完了したものとする
+  completed_flags_.resize(tasks_.size());
+  for (int i = 0; i < completed_flags_.size(); ++i) {
+    completed_flags_[i] = true;
+  }
 }
 
 // ------------------------------------------------------------------
@@ -76,6 +93,7 @@ void TaskGroup::add_task(const Ref<TaskBase> &task) {
 
 void TaskGroup::clear_tasks() {
   tasks_.clear();
+  completed_flags_.clear();
   finished_ = false;
 }
 

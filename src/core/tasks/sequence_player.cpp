@@ -59,15 +59,13 @@ void SequencePlayer::_process(double delta) {
     return;
   }
 
-  if (!started_current_) {
-    current->on_start();
-    started_current_ = true;
-  }
+  TaskResult res = current->execute(delta);
 
-  current->on_update(delta);
-
-  if (current->is_finished()) {
+  if (res == TaskResult::Success) {
     advance();
+  } else if (res == TaskResult::Failed) {
+    running_ = false;
+    UtilityFunctions::push_error("SequencePlayer: Task failed. Stopping sequence.");
   }
 }
 
@@ -94,12 +92,11 @@ void SequencePlayer::clear_tasks() {
 
 void SequencePlayer::start() {
   if (task_queue_.is_empty()) {
-    finish_sequence();
     return;
   }
+  running_ = true;
   current_task_index_ = 0;
   started_current_ = false;
-  running_ = true;
 }
 
 void SequencePlayer::skip_all() {
@@ -110,9 +107,6 @@ void SequencePlayer::skip_all() {
   for (int i = current_task_index_; i < task_queue_.size(); ++i) {
     Ref<TaskBase> task = task_queue_[i];
     if (task.is_valid()) {
-      if (i == current_task_index_ && !started_current_) {
-        task->on_start();
-      }
       task->complete_instantly();
     }
   }

@@ -100,9 +100,16 @@ void MysteryGameState::_ready() {
   // Mystery 固有のアクションを登録する。
   // core 層は Mystery 層の型を知らない・インクルードしない。
   // 文字列のクラス名だけで登録し、ClassDBSingleton が動的生成する。
-  reg->register_action("add_evidence", "TaskAddEvidence");
+  reg->register_action("give_evidence", "TaskAddEvidence");
   reg->register_action("show_portrait", "TaskShowPortrait");
   reg->register_action("change_background", "TaskChangeBackground");
+  reg->register_action("play_sound", "PlayMysterySoundTask");
+  reg->register_action("show_evidence_ui", "ShowEvidenceUITask");
+  reg->register_action("zoom_camera", "ZoomCameraTask");
+  reg->register_action("take_damage", "TakeDamageTask");
+  reg->register_action("testimony", "TestimonyTask");
+  reg->register_action("reset_game", "ResetGameTask");
+  reg->register_action("change_root_scene", "ChangeRootSceneTask");
 
   UtilityFunctions::print(
       "[MysteryGameState] Mystery アクションを登録しました。");

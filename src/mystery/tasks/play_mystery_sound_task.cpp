@@ -54,14 +54,40 @@ void PlayMysterySoundTask::play_sound() {
   }
 }
 
-void PlayMysterySoundTask::on_start() {
-  play_sound();
-  finished_ = true;
+// ------------------------------------------------------------------
+// ライフサイクル (ABI v1)
+// ------------------------------------------------------------------
+
+karakuri::TaskResult PlayMysterySoundTask::execute(double /*delta*/) {
+  if (!started_) {
+    play_sound();
+    started_ = true;
+  }
+  return karakuri::TaskResult::Success;
+}
+
+godot::Error PlayMysterySoundTask::validate_and_setup(const godot::Dictionary &spec) {
+  if (spec.has("preset_name")) {
+    preset_name_ = spec["preset_name"];
+  } else if (spec.has("preset")) {
+    preset_name_ = spec["preset"];
+  } else if (spec.has("se_path")) {
+    se_path_ = spec["se_path"];
+  } else {
+    // どちらも空の場合は何もしないタスクとして許容するか、エラーにする。
+    // ここでは ERR_INVALID_DATA を返す。
+    return godot::ERR_INVALID_DATA;
+  }
+
+  if (spec.has("effect_map_path")) {
+    effect_map_path_ = spec["effect_map_path"];
+  }
+
+  return godot::OK;
 }
 
 void PlayMysterySoundTask::complete_instantly() {
-  play_sound();
-  finished_ = true;
+  execute(0.0);
 }
 
 // ------------------------------------------------------------------

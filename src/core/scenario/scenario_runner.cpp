@@ -5,6 +5,13 @@
 #include "../services/flag_service.h"
 #include "../services/save_service.h"
 #include "../tasks/sequence_player.h"
+#include "../tasks/wait_task.h"
+#include "../tasks/dialogue_task.h"
+#include "../tasks/choice_task.h"
+#include "../tasks/goto_task.h"
+#include "../tasks/if_flag_task.h"
+#include "../tasks/if_has_items_task.h"
+#include "../tasks/transition_object_task.h"
 #include "../yaml/yaml_lite.h"
 
 #include <godot_cpp/classes/area2d.hpp>
@@ -79,19 +86,6 @@ NodePath ScenarioRunner::get_scene_container_path() const {
   return scene_container_path_;
 }
 
-void ScenarioRunner::set_dialogue_ui_path(const NodePath &path) {
-  dialogue_ui_path_ = path;
-}
-NodePath ScenarioRunner::get_dialogue_ui_path() const {
-  return dialogue_ui_path_;
-}
-
-void ScenarioRunner::set_evidence_ui_path(const NodePath &path) {
-  evidence_ui_path_ = path;
-}
-NodePath ScenarioRunner::get_evidence_ui_path() const {
-  return evidence_ui_path_;
-}
 
 void ScenarioRunner::set_interaction_manager_path(const NodePath &path) {
   interaction_manager_path_ = path;
@@ -168,24 +162,30 @@ void ScenarioRunner::complete_custom_action() {
 void ScenarioRunner::inject_steps(const Array &steps) {
   if (steps.is_empty())
     return;
-  // pending_action_index_ はすでにインクリメント済みなので、現在位置に挿入する。
-  Array before;
-  for (int i = 0; i < pending_action_index_; ++i) {
-    before.append(pending_actions_[i]);
+
+  Array compiled_steps;
+  for (int i = 0; i < steps.size(); i++) {
+    Ref<TaskBase> task = compile_action(steps[i]);
+    if (task.is_valid()) {
+      compiled_steps.append(task);
+    }
   }
-  Array after;
-  for (int i = pending_action_index_; i < pending_actions_.size(); ++i) {
-    after.append(pending_actions_[i]);
-  }
+
+  if (compiled_steps.is_empty()) return;
+
+  // pending_action_index_ は現在実行中のタスクを指している。
+  // その直後に割込ませる。
   Array merged;
-  for (int i = 0; i < before.size(); ++i)
-    merged.append(before[i]);
-  for (int i = 0; i < steps.size(); ++i)
-    merged.append(steps[i]);
-  for (int i = 0; i < after.size(); ++i)
-    merged.append(after[i]);
+  for (int i = 0; i <= pending_action_index_ && i < pending_actions_.size(); ++i) {
+    merged.append(pending_actions_[i]);
+  }
+  for (int i = 0; i < compiled_steps.size(); ++i) {
+    merged.append(compiled_steps[i]);
+  }
+  for (int i = pending_action_index_ + 1; i < pending_actions_.size(); ++i) {
+    merged.append(pending_actions_[i]);
+  }
   pending_actions_ = merged;
-  // pending_action_index_ はそのまま。次の step_actions() で挿入分が実行される。
 }
 
 void ScenarioRunner::_bind_methods() {
@@ -202,9 +202,6 @@ void ScenarioRunner::_bind_methods() {
       &ScenarioRunner::on_transition_finished, DEFVAL(Variant()),
       DEFVAL(Variant()), DEFVAL(Variant()));
 
-  // register_action (uses std::function) cannot be bound to ClassDB directly.
-  // It is intended for C++ internal extension.
-
   ClassDB::bind_method(D_METHOD("load_scenario"),
                        &ScenarioRunner::load_scenario);
   ClassDB::bind_method(D_METHOD("load_scene_by_id", "scene_id"),
@@ -218,6 +215,13 @@ void ScenarioRunner::_bind_methods() {
   ClassDB::bind_method(D_METHOD("restore_to", "scene_id", "action_index"),
                        &ScenarioRunner::restore_to);
   ClassDB::bind_method(D_METHOD("is_running"), &ScenarioRunner::is_running);
+  ClassDB::bind_method(D_METHOD("trigger_hotspot_by_id", "hotspot_id"),
+                       &ScenarioRunner::trigger_hotspot_by_id);
+
+  ClassDB::bind_method(D_METHOD("advance_dialogue"),
+                       &ScenarioRunner::advance_dialogue);
+  ClassDB::bind_method(D_METHOD("submit_choice", "index"),
+                       &ScenarioRunner::submit_choice);
 
   ClassDB::bind_method(D_METHOD("set_sequence_player_path", "path"),
                        &ScenarioRunner::set_sequence_player_path);
@@ -240,20 +244,6 @@ void ScenarioRunner::_bind_methods() {
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "scene_container_path"),
                "set_scene_container_path", "get_scene_container_path");
 
-  ClassDB::bind_method(D_METHOD("set_dialogue_ui_path", "path"),
-                       &ScenarioRunner::set_dialogue_ui_path);
-  ClassDB::bind_method(D_METHOD("get_dialogue_ui_path"),
-                       &ScenarioRunner::get_dialogue_ui_path);
-  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "dialogue_ui_path"),
-               "set_dialogue_ui_path", "get_dialogue_ui_path");
-
-  ClassDB::bind_method(D_METHOD("set_evidence_ui_path", "path"),
-                       &ScenarioRunner::set_evidence_ui_path);
-  ClassDB::bind_method(D_METHOD("get_evidence_ui_path"),
-                       &ScenarioRunner::get_evidence_ui_path);
-  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "evidence_ui_path"),
-               "set_evidence_ui_path", "get_evidence_ui_path");
-
   ClassDB::bind_method(D_METHOD("set_interaction_manager_path", "path"),
                        &ScenarioRunner::set_interaction_manager_path);
   ClassDB::bind_method(D_METHOD("get_interaction_manager_path"),
@@ -274,13 +264,18 @@ void ScenarioRunner::_bind_methods() {
                        &ScenarioRunner::get_transition_rect_path);
   ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "transition_rect_path"),
                "set_transition_rect_path", "get_transition_rect_path");
+
+  // Decoupling Signals
+  ADD_SIGNAL(MethodInfo("dialogue_requested", PropertyInfo(Variant::STRING, "speaker"), PropertyInfo(Variant::STRING, "text")));
+  ADD_SIGNAL(MethodInfo("choices_requested", PropertyInfo(Variant::ARRAY, "choices")));
+  ADD_SIGNAL(MethodInfo("mode_input_enabled_changed", PropertyInfo(Variant::BOOL, "enabled")));
+  ADD_SIGNAL(MethodInfo("mode_entered", PropertyInfo(Variant::STRING, "mode_id"), PropertyInfo(Variant::STRING, "scene_id")));
+  ADD_SIGNAL(MethodInfo("mode_exited", PropertyInfo(Variant::STRING, "current_mode_id"), PropertyInfo(Variant::STRING, "next_scene_id")));
 }
 
 void ScenarioRunner::_ready() {
   set_process(true);
   scene_container_ = resolve_node_path(scene_container_path_);
-  dialogue_ui_ = resolve_node_path(dialogue_ui_path_);
-  evidence_ui_ = resolve_node_path(evidence_ui_path_);
   interaction_manager_ = resolve_node_path(interaction_manager_path_);
   transition_manager_ = resolve_node_path(transition_manager_path_);
   transition_rect_ = resolve_node_path(transition_rect_path_);
@@ -288,18 +283,6 @@ void ScenarioRunner::_ready() {
   if (interaction_manager_ && interaction_manager_->has_signal("clicked_at")) {
     interaction_manager_->connect("clicked_at",
                                   Callable(this, "on_clicked_at"));
-  }
-  if (dialogue_ui_) {
-    if (dialogue_ui_->has_signal("choice_selected"))
-      dialogue_ui_->connect("choice_selected",
-                            Callable(this, "on_choice_selected"));
-    if (dialogue_ui_->has_signal("dialogue_finished"))
-      dialogue_ui_->connect("dialogue_finished",
-                            Callable(this, "on_dialogue_finished"));
-  }
-  if (evidence_ui_ && evidence_ui_->has_signal("evidence_selected")) {
-    evidence_ui_->connect("evidence_selected",
-                          Callable(this, "on_evidence_selected"));
   }
 
   load_scenario_internal();
@@ -353,11 +336,95 @@ bool ScenarioRunner::load_scenario_internal() {
   }
 
   scenario_root_ = as_dict(root);
-  scenes_ = as_dict(scenario_root_.get("scenes", Dictionary()));
+  Dictionary raw_scenes = as_dict(scenario_root_.get("scenes", Dictionary()));
+
+  // コンパイルフェーズ: 全てのシーンとアクションを事前に検証・インスタンス化する
+  Array scene_keys = raw_scenes.keys();
+  for (int i = 0; i < scene_keys.size(); i++) {
+    String scene_id = scene_keys[i];
+    Dictionary scene_dict = as_dict(raw_scenes[scene_id]);
+
+    CompiledScene compiled;
+    compiled.raw_dict = scene_dict;
+
+    Array actions = as_array(scene_dict.get("on_enter", Array()));
+    for (int j = 0; j < actions.size(); j++) {
+      Ref<TaskBase> task = compile_action(actions[j]);
+      if (task.is_null()) {
+        godot::UtilityFunctions::push_error(
+            String("[ScenarioRunner] Scene \"") + scene_id +
+            "\" のアクションコンパイルに失敗しました。ロードを中止します。");
+        scenes_.clear();
+        return false;
+      }
+      compiled.tasks.append(task);
+    }
+    scenes_[scene_id] = compiled;
+  }
+
   godot::UtilityFunctions::print(
-      String("[ScenarioRunner] Loaded scenario from ") + scenario_path_ +
-      ". Scenes count: " + String::num(scenes_.size()));
+      String("[ScenarioRunner] Loaded and compiled scenario from ") +
+      scenario_path_ + ". Scenes count: " + String::num(scenes_.size()));
   return !scenes_.is_empty();
+}
+
+Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
+  Dictionary d = as_dict(action);
+  if (d.is_empty())
+    return nullptr;
+
+  String action_name = "";
+  Dictionary payload;
+
+  // 1. 形式の判別
+  if (d.has("action")) {
+    // 明示的形式: { action: "dialogue", text: "..." }
+    action_name = d["action"];
+    payload = d;
+  } else if (d.size() == 1) {
+    // 短縮形式: { dialogue: "..." } または { dialogue: { text: "..." } }
+    action_name = d.keys()[0];
+    Variant val = d[action_name];
+    if (val.get_type() == Variant::DICTIONARY) {
+      payload = val;
+    } else {
+      // { wait: 1.0 } -> { value: 1.0 } に正規化
+      payload["value"] = val; 
+    }
+  }
+
+  if (action_name.is_empty()) return nullptr;
+
+  // 2. ActionRegistry 経由でのコンパイル (新形式 ABI v1)
+  ActionRegistry *reg = ActionRegistry::get_singleton();
+  if (reg && reg->has_action(action_name)) {
+    // ダイアログ等は payload["text"] を期待する場合があるため、
+    // 必要に応じて展開する (backward compatibility for normalization)
+    if (action_name == "dialogue" && !payload.has("text") && !payload.has("text_key") && payload.has("value")) {
+       payload["text"] = payload["value"];
+    }
+
+    Ref<TaskBase> task = reg->compile_task(action_name, payload);
+    if (task.is_valid()) {
+      // 共通のコンテキスト注入 (ABI v1: TaskBase::set_runner)
+      task->set_runner(this);
+      
+      return task;
+    }
+  }
+
+  // 3. ハードコードされたフォールバック (将来的に廃止)
+  if (action_name == "wait") {
+    Ref<WaitTask> task = memnew(WaitTask);
+    Dictionary wait_spec;
+    if (payload.has("value")) wait_spec["duration"] = payload["value"];
+    else wait_spec = payload;
+    
+    if (task->validate_and_setup(wait_spec) == OK) return task;
+  }
+
+  godot::UtilityFunctions::push_error(String("[ScenarioRunner] 未対応のアクション形式またはコンパイル失敗: ") + action_name);
+  return nullptr;
 }
 
 void ScenarioRunner::load_scene_by_id(const String &scene_id) {
@@ -368,11 +435,11 @@ void ScenarioRunner::load_scene_by_id(const String &scene_id) {
         String("[ScenarioRunner] Error: Scene ID not found: ") + scene_id);
     return;
   }
-  const Dictionary scene_dict = as_dict(scenes_[scene_id]);
+  const CompiledScene &compiled = scenes_[scene_id];
+  const Dictionary scene_dict = compiled.raw_dict;
   const String scene_path = dict_get_string(scene_dict, "scene_path", "");
 
   // can_rollback: true の場合、シーン開始前にスナップショットをスタックに積む
-  // (アクション開始前の状態を保存するため、start_actions より前で行う)
   bool can_rollback = bool(scene_dict.get("can_rollback", false));
   if (can_rollback) {
     if (Node *sp_node = find_sequence_player()) {
@@ -401,20 +468,13 @@ void ScenarioRunner::load_scene_by_id(const String &scene_id) {
     }
   }
 
-  if (dialogue_ui_) {
-    if (dialogue_ui_->has_method("hide_dialogue"))
-      dialogue_ui_->call("hide_dialogue");
-    else
-      dialogue_ui_->set("visible", false);
-  }
-
   bind_scene_hotspots(scene_dict);
   notify_mode_enter(scene_id, scene_dict);
-  Array actions = as_array(scene_dict.get("on_enter", Array()));
+  
   godot::UtilityFunctions::print(
-      String("[ScenarioRunner] starting actions for ") + scene_id +
-      ". Action count: " + String::num(actions.size()));
-  start_actions(actions);
+      String("[ScenarioRunner] starting compiled actions for ") + scene_id +
+      ". Action count: " + String::num(compiled.tasks.size()));
+  start_actions(compiled.tasks);
 }
 
 void ScenarioRunner::bind_scene_hotspots(const Dictionary &scene_dict) {
@@ -464,113 +524,63 @@ void ScenarioRunner::start_actions(const Array &actions) {
 void ScenarioRunner::step_actions(double delta) {
   if (!is_executing_actions_)
     return;
-  if (waiting_for_choice_ || waiting_for_dialogue_ || waiting_for_transition_ ||
-      waiting_for_custom_action_)
-    return;
-  if (wait_remaining_sec_ > 0.0) {
-    wait_remaining_sec_ -= delta;
-    return;
-  }
 
+  // consolidated execute loop: タスクの戻り値に基づいて進行を制御する
   while (pending_action_index_ < pending_actions_.size()) {
-    if (execute_single_action(pending_actions_[pending_action_index_++]))
-      break;
+    Ref<TaskBase> task = pending_actions_[pending_action_index_];
+    if (task.is_null()) {
+      pending_action_index_++;
+      continue;
+    }
+
+    TaskResult res = task->execute(delta);
+
+    if (res == TaskResult::Success) {
+      pending_action_index_++;
+      // 同一フレーム内で次のアクションに進む
+      continue;
+    } else if (res == TaskResult::Waiting) {
+      // 入力待ち。現在のフレームの処理を終了。
+      return;
+    } else if (res == TaskResult::Yielded) {
+      // 演出中など、1フレーム待機して次フレームで再開。
+      return;
+    } else if (res == TaskResult::Failed) {
+      // 致命的エラー。実行を停止。
+      is_executing_actions_ = false;
+      godot::UtilityFunctions::push_error(
+          "[ScenarioRunner] Task execution failed. Stopping scenario.");
+      return;
+    }
   }
 
   if (pending_action_index_ >= pending_actions_.size()) {
-    if (!waiting_for_dialogue_ && !waiting_for_choice_ &&
-        !waiting_for_transition_) {
-      is_executing_actions_ = false;
-      set_mode_input_enabled(true);
-    }
+    is_executing_actions_ = false;
+    set_mode_input_enabled(true);
   }
 }
 
 bool ScenarioRunner::execute_single_action(const Variant &action) {
-  Dictionary d = as_dict(action);
-  if (d.is_empty())
-    return false;
-
-  // ── 新形式: { "action": "add_evidence", "evidence_id": "knife", ... }
-  // action キーが存在する場合は ActionRegistry 経由で動的ディスパッチする。
-  // Core 層は Mystery 層の型を一切知らない。リフレクション (set) でパラメータを注入。
-  if (d.has("action")) {
-    const String action_name = d["action"];
-    ActionRegistry *reg = ActionRegistry::get_singleton();
-    if (reg == nullptr || !reg->has_action(action_name)) {
-      UtilityFunctions::push_warning(
-          String("[ScenarioRunner] ActionRegistry に未登録のアクション: \"") +
-          action_name + "\"");
-      return false;
-    }
-
-    Ref<TaskBase> task = reg->create_task(action_name);
-    if (task.is_null()) {
-      return false;
-    }
-
-    // JSON の残りキー ("action" を除く) をリフレクション (set) でタスクに注入する。
-    // Core 層はタスクの具体的な型を知らなくてもプロパティを渡せる。
-    Array keys = d.keys();
-    for (int i = 0; i < keys.size(); i++) {
-      const String k = keys[i];
-      if (k == "action") continue;
-      task->set(k, d[k]);
-    }
-
-    task->on_start();
-
-    // 即時完了のタスク (TaskAddEvidence 等) は is_finished() == true → non-blocking
-    // 非同期タスクは false → blocking (ScenarioPlayer が complete 待ちへ)
-    const bool blocking = !task->is_finished();
-    if (blocking) {
-      waiting_for_custom_action_ = true;
-    }
-    return blocking;
-  }
-
-  // ── 旧形式: { "kind": value }  (builtin actions / lambda handlers)
-  String kind = d.keys()[0];
-  if (action_handlers_.has(kind)) {
-    bool blocking = action_handlers_[kind](d[kind]);
-    if (blocking && !waiting_for_dialogue_ && !waiting_for_choice_ &&
-        !waiting_for_transition_) {
-      waiting_for_custom_action_ = true;
-    }
-    return blocking;
+  // 動的実行用 (hotspot など)。コンパイルしてインジェクションする。
+  Ref<TaskBase> task = compile_action(action);
+  if (task.is_valid()) {
+    Array single;
+    single.append(task);
+    inject_steps(single);
+    return true;
   }
   return false;
 }
 
 void ScenarioRunner::init_builtin_actions() {
-  register_action("wait", [this](const Variant &p) {
-    wait_remaining_sec_ = (double)p;
-    return true;
-  });
+  // ABI v1 では組み込みアクションも compile_action 内で Task 化されるため、
+  // ここでの lambda 登録は後方互換性が必要なもののみに限定するか、整理する。
   register_action("goto", [this](const Variant &p) {
     load_scene_by_id(String(p));
     return true;
   });
-  register_action("dialogue", [this](const Variant &p) {
-    Dictionary d = as_dict(p);
-    godot::UtilityFunctions::print(
-        String("[ScenarioRunner] dialogue action: speaker=") +
-        dict_get_string(d, "speaker") + " text=" + dict_get_string(d, "text"));
-    if (dialogue_ui_ && dialogue_ui_->has_method("show_message")) {
-      waiting_for_dialogue_ = true;
-      dialogue_ui_->call("show_message", dict_get_string(d, "speaker"),
-                         dict_get_string(d, "text"));
-      return true;
-    } else {
-      godot::UtilityFunctions::print(
-          String("[ScenarioRunner] dialogue_ui_ is ") +
-          (dialogue_ui_ ? "valid but missing show_message" : "null"));
-    }
-    return false;
-  });
 
   // if — ConditionEvaluator 経由で条件分岐
-  // YAML: { if: { condition: {...}, then: [...], else: [...] } }
   register_action("if", [this](const Variant &p) {
     Dictionary d = as_dict(p);
     Variant cond_v = d.has("condition") ? d["condition"] : Variant();
@@ -591,8 +601,6 @@ void ScenarioRunner::init_builtin_actions() {
   });
 
   // set_flag — FlagService にフラグをセット
-  // YAML: { set_flag: { name: "flag_name", value: true } }
-  //       または { set_flag: "flag_name" }  (値は true になる)
   register_action("set_flag", [](const Variant &p) {
     auto *fs = karakuri::FlagService::get_singleton();
     if (!fs)
@@ -608,6 +616,24 @@ void ScenarioRunner::init_builtin_actions() {
     }
     return false; // Non-blocking
   });
+}
+
+void ScenarioRunner::advance_dialogue() {
+  if (waiting_for_dialogue_) {
+    waiting_for_dialogue_ = false;
+  }
+}
+
+void ScenarioRunner::submit_choice(int index) {
+  if (waiting_for_choice_ && index >= 0 && index < pending_choice_actions_.size()) {
+    waiting_for_choice_ = false;
+    Dictionary choice = as_dict(pending_choice_actions_[index]);
+    Array actions = as_array(choice.get("then", Array()));
+    if (!actions.is_empty()) {
+      inject_steps(actions);
+    }
+    pending_choice_actions_.clear();
+  }
 }
 
 void ScenarioRunner::on_clicked_at(const Vector2 &pos) {
@@ -676,21 +702,32 @@ void ScenarioRunner::trigger_hotspot(const HotspotBinding &hs) {
     start_actions(hs.on_click_actions);
 }
 
+void ScenarioRunner::trigger_hotspot_by_id(const String &id) {
+  for (int i = 0; i < hotspot_bindings_.size(); i++) {
+    Dictionary b = as_dict(hotspot_bindings_[i]);
+    if (dict_get_string(b, "hotspot_id") == id) {
+      HotspotBinding hs;
+      hs.hotspot_id = id;
+      hs.node_id = dict_get_string(b, "node_id");
+      hs.on_click_actions = as_array(b["on_click"]);
+      trigger_hotspot(hs);
+      return;
+    }
+  }
+}
+
 void ScenarioRunner::set_mode_input_enabled(bool enabled) {
   mode_input_enabled_ = enabled;
-  if (dialogue_ui_ && dialogue_ui_->has_method("set_mode_input_enabled"))
-    dialogue_ui_->call("set_mode_input_enabled", enabled);
+  emit_signal("mode_input_enabled_changed", enabled);
 }
 
 void ScenarioRunner::notify_mode_exit(const String &m, const String &n) {
-  if (dialogue_ui_ && dialogue_ui_->has_method("on_mode_exit"))
-    dialogue_ui_->call("on_mode_exit", m, n);
+  emit_signal("mode_exited", m, n);
 }
 
 void ScenarioRunner::notify_mode_enter(const String &s, const Dictionary &d) {
   current_mode_id_ = resolve_mode_id(s, d);
-  if (dialogue_ui_ && dialogue_ui_->has_method("on_mode_enter"))
-    dialogue_ui_->call("on_mode_enter", current_mode_id_, s);
+  emit_signal("mode_entered", current_mode_id_, s);
   set_mode_input_enabled(true);
 }
 

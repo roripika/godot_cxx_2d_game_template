@@ -37,6 +37,8 @@ class PlayMysterySoundTask : public karakuri::TaskBase {
   godot::String preset_name_; ///< セットすると MysteryEffectMap::fire() を使う
   godot::String se_path_;     ///< セットすると SoundService::play_se() を使う（preset が空の場合）
 
+  bool started_ = false;
+
 protected:
   static void _bind_methods();
   void play_sound();
@@ -46,9 +48,11 @@ public:
   ~PlayMysterySoundTask() override = default;
 
   // ------------------------------------------------------------------
-  // ライフサイクル
+  // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
-  void on_start() override;
+
+  karakuri::TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

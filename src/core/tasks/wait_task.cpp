@@ -15,45 +15,43 @@ void WaitTask::_bind_methods() {
 }
 
 // ------------------------------------------------------------------
-// ライフサイクル
+// ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-void WaitTask::on_start() {
-  elapsed_ = 0.0;
-  signal_received_ = false;
-}
-
-void WaitTask::on_update(double delta) {
-  if (finished_) {
-    return;
+TaskResult WaitTask::execute(double delta) {
+  if (!started_) {
+    elapsed_ = 0.0;
+    signal_received_ = false;
+    started_ = true;
   }
+
   // シグナル待機モード: duration_ == 0.0 のとき mark_signal_received() を待つ
   if (duration_ <= 0.0) {
-    if (signal_received_) {
-      finished_ = true;
-    }
-    return;
+    return signal_received_ ? TaskResult::Success : TaskResult::Waiting;
   }
+
   // タイマーモード
   elapsed_ += delta;
-  if (elapsed_ >= duration_) {
-    finished_ = true;
-  }
+  return (elapsed_ >= duration_) ? TaskResult::Success : TaskResult::Yielded;
 }
 
-bool WaitTask::is_finished() const {
-  return finished_;
+godot::Error WaitTask::validate_and_setup(const godot::Dictionary &spec) {
+  if (spec.has("duration")) {
+    duration_ = (double)spec["duration"];
+  } else {
+    // duration がない場合はシグナル待機モードとみなす
+    duration_ = 0.0;
+  }
+  return godot::OK;
 }
 
 void WaitTask::complete_instantly() {
   elapsed_ = duration_;
   signal_received_ = true;
-  finished_ = true;
 }
 
 void WaitTask::mark_signal_received() {
   signal_received_ = true;
-  finished_ = true;
 }
 
 // ------------------------------------------------------------------

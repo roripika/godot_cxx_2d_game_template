@@ -33,6 +33,8 @@ class WaitTask : public TaskBase {
   double elapsed_ = 0.0;
   bool signal_received_ = false;
 
+  bool started_ = false;
+
 protected:
   static void _bind_methods();
 
@@ -41,11 +43,10 @@ public:
   ~WaitTask() override = default;
 
   // ------------------------------------------------------------------
-  // ライフサイクル
+  // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
-  void on_start() override;
-  void on_update(double delta) override;
-  bool is_finished() const override;
+  TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

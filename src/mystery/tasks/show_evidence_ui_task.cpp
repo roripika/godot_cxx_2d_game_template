@@ -46,19 +46,39 @@ void ShowEvidenceUITask::_bind_methods() {
 // ライフサイクル
 // ------------------------------------------------------------------
 
-void ShowEvidenceUITask::on_start() {
-  finished_ = false;
-  result_correct_ = false;
-  result_selected_id_ = "";
+// ------------------------------------------------------------------
+// ライフサイクル (ABI v1)
+// ------------------------------------------------------------------
 
-  // Note: ShowEvidenceUITask は RefCounted なのでノードツリーに参照を持てない。
-  // EvidencePresenter へのアクセスは SequencePlayer または呼び出し元が
-  // 外部から _on_selection_finished() を直接呼ぶことで完了通知を受け取る設計。
-  // GDScript 側から evidence_presenter.connect("selection_finished", task._on_selection_finished)
-  // のように接続することを推奨する。
-  //
-  // C++ からは SequencePlayer が NodePath 経由で EvidencePresenter を取得し、
-  // start_selection() を呼ぶとともにシグナルをこのタスクのメソッドに接続する。
+karakuri::TaskResult ShowEvidenceUITask::execute(double /*delta*/) {
+  if (!started_) {
+    result_correct_ = false;
+    result_selected_id_ = "";
+    // Setup logic normally happens via GDScript or SequencePlayer.
+    // ABI v1 assumes the task is ready or setup during validate_and_setup.
+    started_ = true;
+    return karakuri::TaskResult::Waiting;
+  }
+
+  if (finished_) {
+    return karakuri::TaskResult::Success;
+  }
+
+  return karakuri::TaskResult::Waiting;
+}
+
+godot::Error ShowEvidenceUITask::validate_and_setup(const godot::Dictionary &spec) {
+  if (spec.has("target_statement_id")) {
+    target_statement_id_ = spec["target_statement_id"];
+  }
+  if (spec.has("candidate_ids")) {
+    candidate_ids_ = spec["candidate_ids"];
+  }
+  if (spec.has("evidence_presenter_path")) {
+    evidence_presenter_path_ = spec["evidence_presenter_path"];
+  }
+  
+  return godot::OK;
 }
 
 void ShowEvidenceUITask::complete_instantly() {

@@ -33,6 +33,9 @@ class ShowEvidenceUITask : public karakuri::TaskBase {
   bool result_correct_ = false;
   godot::String result_selected_id_;
 
+  bool started_ = false;
+  bool finished_ = false;
+
 protected:
   static void _bind_methods();
 
@@ -41,9 +44,11 @@ public:
   ~ShowEvidenceUITask() override = default;
 
   // ------------------------------------------------------------------
-  // ライフサイクル
+  // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
-  void on_start() override;
+
+  karakuri::TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

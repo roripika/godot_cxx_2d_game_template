@@ -16,6 +16,8 @@ class TaskChangeBackground : public karakuri::TaskBase {
 
   godot::String background_id_;
 
+  bool started_ = false;
+
 protected:
   static void _bind_methods();
 
@@ -23,7 +25,12 @@ public:
   TaskChangeBackground() = default;
   ~TaskChangeBackground() override = default;
 
-  void on_start() override;
+  // ------------------------------------------------------------------
+  // ライフサイクル (ABI v1)
+  // ------------------------------------------------------------------
+
+  karakuri::TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   void set_background_id(const godot::String &id);

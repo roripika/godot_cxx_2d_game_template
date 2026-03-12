@@ -17,6 +17,8 @@ class TaskShowPortrait : public karakuri::TaskBase {
   godot::String character_id_;
   godot::String emotion_ = "default";
 
+  bool started_ = false;
+
 protected:
   static void _bind_methods();
 
@@ -24,7 +26,12 @@ public:
   TaskShowPortrait() = default;
   ~TaskShowPortrait() override = default;
 
-  void on_start() override;
+  // ------------------------------------------------------------------
+  // ライフサイクル (ABI v1)
+  // ------------------------------------------------------------------
+
+  karakuri::TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   void set_character_id(const godot::String &id);

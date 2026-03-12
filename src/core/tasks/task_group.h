@@ -26,7 +26,9 @@ namespace karakuri {
 class TaskGroup : public TaskBase {
   GDCLASS(TaskGroup, TaskBase)
 
-  godot::Array tasks_; ///< Ref<TaskBase> の配列
+  godot::Array tasks_;           ///< Ref<TaskBase> の配列
+  godot::Array completed_flags_; ///< tasks_ と同サイズの bool 配列
+  bool finished_ = false;
 
 protected:
   static void _bind_methods();
@@ -36,19 +38,11 @@ public:
   ~TaskGroup() override = default;
 
   // ------------------------------------------------------------------
-  // ライフサイクル
+  // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
 
-  /** @brief 全子タスクの on_start() を呼ぶ。 */
-  void on_start() override;
-
-  /** @brief 未完了の子タスクを全て on_update() する。 */
-  void on_update(double delta) override;
-
-  /** @brief 全子タスクが is_finished() == true のとき true を返す。 */
-  bool is_finished() const override;
-
-  /** @brief 全子タスクの complete_instantly() を呼ぶ。 */
+  TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

@@ -1,55 +1,56 @@
 #ifndef KARAKURI_TASK_BASE_H
 #define KARAKURI_TASK_BASE_H
 
-/**
- * @file task_base.h
- * @brief Basic Game Karakuri: 全タスクの基底クラス。
- *
- * ## 役割
- * - on_start() / on_update(delta) / is_finished() の契約を定義する。
- * - complete_instantly() でスキップ時の最終状態を一括適用する。
- *
- * ## 設計ポリシー
- * - RefCounted を継承することで Ref<TaskBase> による自動メモリ管理に対応。
- * - 副作用（フラグ・アイテム更新）は on_start() か complete_instantly() で行い、
- *   on_update() には「段階的な演出」のみを書く。これによりスキップ時の整合性を保証。
- */
-
 #include <godot_cpp/classes/ref_counted.hpp>
+#include <godot_cpp/variant/dictionary.hpp>
+#include <godot_cpp/core/error_macros.hpp>
 
 namespace karakuri {
+
+enum class TaskResult {
+  Success,  // 完了。次へ。
+  Waiting,  // 外部入力待ち。次フレームで再開。
+  Failed,   // 致命的エラー。実行停止。
+  Yielded   // 1フレーム待機（演出継続中）。
+};
+
+class ScenarioRunner;
 
 class TaskBase : public godot::RefCounted {
   GDCLASS(TaskBase, godot::RefCounted)
 
 protected:
-  bool finished_ = false;
-
   static void _bind_methods();
 
 public:
   TaskBase() = default;
-  ~TaskBase() override = default;
+  virtual ~TaskBase() override = default;
 
-  // ------------------------------------------------------------------
-  // タスクライフサイクル（サブクラスでオーバーライド）
-  // ------------------------------------------------------------------
+  /**
+   * @brief タスクを実行する。毎フレーム呼ばれる。
+   * @param delta フレーム間の差分時間
+   * @return TaskResult 実行結果
+   */
+  virtual TaskResult execute(double delta) = 0;
 
-  /** @brief タスク開始時に一度だけ呼ばれる。副作用はここか complete_instantly() で。 */
-  virtual void on_start();
-
-  /** @brief 毎フレーム呼ばれる。演出の進行のみを担う。 */
-  virtual void on_update(double delta);
-
-  /** @brief タスクが完了しているかを返す。 */
-  virtual bool is_finished() const;
+  /**
+   * @brief シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。
+   * ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。
+   * @param spec タスクの定義データ
+   * @return Error OK またはエラーコード
+   */
+  virtual godot::Error validate_and_setup(const godot::Dictionary &spec) = 0;
 
   /**
    * @brief スキップ時に呼ばれる。
    * 演出をスキップし、このタスクがもたらすべき最終状態を即座に適用して終了させる。
-   * サブクラスは必ずこれをオーバーライドしてデータ更新を確実に行うこと。
    */
-  virtual void complete_instantly();
+  virtual void complete_instantly() = 0;
+
+  /**
+   * @brief Runner コンテキストの注入 (Option)
+   */
+  virtual void set_runner(ScenarioRunner *runner) {}
 };
 
 } // namespace karakuri

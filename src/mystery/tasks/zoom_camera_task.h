@@ -35,6 +35,8 @@ class ZoomCameraTask : public karakuri::TaskBase {
   double duration_ = 0.5;
   double elapsed_ = 0.0;
 
+  bool started_ = false;
+
 protected:
   static void _bind_methods();
 
@@ -43,16 +45,11 @@ public:
   ~ZoomCameraTask() override = default;
 
   // ------------------------------------------------------------------
-  // ライフサイクル
+  // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
-  void on_start() override;
-  void on_update(double delta) override;
-  bool is_finished() const override;
 
-  /**
-   * @brief카메라 zoom を即座にワープして完了する。
-   * ActionRunner のアニメーションをスキップし、Camera2D::set_zoom() を直接呼ぶ。
-   */
+  karakuri::TaskResult execute(double delta) override;
+  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

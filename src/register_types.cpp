@@ -39,14 +39,25 @@
 #include "core/tasks/task_base.h"
 #include "core/tasks/task_group.h"
 #include "core/tasks/wait_task.h"
+#include "core/tasks/dialogue_task.h"
+#include "core/tasks/choice_task.h"
+#include "core/tasks/goto_task.h"
+#include "core/tasks/wait_task.h"
+#include "core/tasks/set_flag_task.h"
+#include "core/tasks/if_flag_task.h"
+#include "core/tasks/if_has_items_task.h"
+#include "core/tasks/transition_object_task.h"
+#include "core/tasks/change_root_scene_task.h"
 
-// Task sequence system (mystery)
-#include "mystery/tasks/play_mystery_sound_task.h"
-#include "mystery/tasks/show_evidence_ui_task.h"
 #include "mystery/tasks/task_add_evidence.h"
 #include "mystery/tasks/task_change_background.h"
 #include "mystery/tasks/task_show_portrait.h"
+#include "mystery/tasks/play_mystery_sound_task.h"
+#include "mystery/tasks/show_evidence_ui_task.h"
 #include "mystery/tasks/zoom_camera_task.h"
+#include "mystery/tasks/take_damage_task.h"
+#include "mystery/tasks/reset_game_task.h"
+#include "mystery/tasks/testimony_task.h"
 
 // Layer 2: Mystery template
 #include "mystery/evidence.h"
@@ -130,8 +141,16 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::ScenarioRunner>();
 
   // Task sequence system (core)
-  ClassDB::register_class<karakuri::TaskBase>();
+  ClassDB::register_abstract_class<karakuri::TaskBase>();
   ClassDB::register_class<karakuri::WaitTask>();
+  ClassDB::register_class<karakuri::DialogueTask>();
+  ClassDB::register_class<karakuri::ChoiceTask>();
+  ClassDB::register_class<karakuri::GotoTask>();
+  ClassDB::register_class<karakuri::SetFlagTask>();
+  ClassDB::register_class<karakuri::IfFlagTask>();
+  ClassDB::register_class<karakuri::IfHasItemsTask>();
+  ClassDB::register_class<karakuri::TransitionObjectTask>();
+  ClassDB::register_class<karakuri::ChangeRootSceneTask>();
   ClassDB::register_class<karakuri::TaskGroup>();
   ClassDB::register_class<karakuri::StateSnapshot>();
   ClassDB::register_class<karakuri::SequencePlayer>();
@@ -143,6 +162,9 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<mystery::TaskAddEvidence>();
   ClassDB::register_class<mystery::TaskShowPortrait>();
   ClassDB::register_class<mystery::TaskChangeBackground>();
+  ClassDB::register_class<mystery::TakeDamageTask>();
+  ClassDB::register_class<mystery::ResetGameTask>();
+  ClassDB::register_class<mystery::TestimonyTask>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::MysteryGameState>();

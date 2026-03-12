@@ -46,46 +46,44 @@ void ZoomCameraTask::_bind_methods() {
 // ライフサイクル
 // ------------------------------------------------------------------
 
-void ZoomCameraTask::on_start() {
-  elapsed_ = 0.0;
-  finished_ = false;
+// ------------------------------------------------------------------
+// ライフサイクル (ABI v1)
+// ------------------------------------------------------------------
 
-  // ActionRunner に zoom エフェクトをリクエスト
-  // SequencePlayer が action_runner_path のある SceneTree ノードを保持していないため、
-  // ここでは get_owner() から辿る。
-  // Note: このタスクは RefCounted なので get_node は使えない。
-  // ActionRunner は TaskGroup の SequencePlayer のノードツリーを通じて
-  // start 時に NodePath の参照ができないため、
-  // ZoomCameraTask はシーンツリーを必要としない fire-and-forget 方式を採用する。
-  // duration_ の経過をトラッキングして自己完了する設計。
-
-  // ZoomCameraTask はスタンドアロンタスクなので、ActionRunner への直接参照は持てない。
-  // SequencePlayer が ActionRunner 参照を渡す場合はサブクラスでオーバーライドするか、
-  // MysteryEffectMap 経由を使うことを推奨する。
-  // ここでは elapsed をトラッキングするのみ。
-}
-
-void ZoomCameraTask::on_update(double delta) {
-  if (finished_) {
-    return;
+karakuri::TaskResult ZoomCameraTask::execute(double delta) {
+  if (!started_) {
+    elapsed_ = 0.0;
+    started_ = true;
+    // zoom エフェクト本体のリクエストは本来ここで行うが、
+    // 現状は elapsed_ のトラッキングのみ行う（fire-and-forget 互換）。
   }
+
   elapsed_ += delta;
   if (elapsed_ >= duration_) {
-    finished_ = true;
+    return karakuri::TaskResult::Success;
   }
+  return karakuri::TaskResult::Yielded;
 }
 
-bool ZoomCameraTask::is_finished() const {
-  return finished_;
+godot::Error ZoomCameraTask::validate_and_setup(const godot::Dictionary &spec) {
+  if (spec.has("target_zoom")) {
+    target_zoom_ = spec["target_zoom"];
+  }
+  if (spec.has("duration")) {
+    duration_ = spec["duration"];
+  }
+  if (spec.has("camera_path")) {
+    camera_path_ = spec["camera_path"];
+  }
+  if (spec.has("action_runner_path")) {
+    action_runner_path_ = spec["action_runner_path"];
+  }
+  
+  return godot::OK;
 }
 
 void ZoomCameraTask::complete_instantly() {
-  // Camera2D に直接ワープ（スキップ）
-  // この実装では camera_path_ が設定されている必要があるが、
-  // RefCounted なのでノードへのアクセスができない。
-  // 代わりに finished_ をセットして演出をスキップする。
   elapsed_ = duration_;
-  finished_ = true;
 }
 
 // ------------------------------------------------------------------
