@@ -83,7 +83,7 @@ $(function() {
 
 <p>Basic Game Karakuri: JSON 駆動の条件評価エンジン。  
 <a href="#details">[詳解]</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="flag__service_8h_source.html">../services/flag_service.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;../world_state.h&quot;</code><br />
 <code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/variant.hpp&gt;</code><br />
 </div>
@@ -105,7 +105,7 @@ $(function() {
 役割</h2>
 <ul>
 <li>Dictionary（JSON）形式の条件式を再帰的に評価し true/false を返す。</li>
-<li><code>FlagService</code> の現在値を参照することで、コード変更なしに シナリオデータだけで複雑な論理判定を表現できる。</li>
+<li><code>WorldState</code> の現在値を参照することで、コード変更なしに シナリオデータだけで複雑な論理判定を表現できる。</li>
 </ul>
 <h2><a class="anchor" id="autotoc_md21"></a>
 サポートする構文</h2>

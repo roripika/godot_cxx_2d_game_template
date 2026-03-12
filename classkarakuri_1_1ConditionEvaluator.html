@@ -95,9 +95,9 @@ karakuri::ConditionEvaluator の継承関係図</div>
 <tr class="memitem:a3b07fc70e13bad14c251f747e5b860c5" id="r_a3b07fc70e13bad14c251f747e5b860c5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5">evaluate</a> (const godot::Dictionary &amp;condition)</td></tr>
 <tr class="memdesc:a3b07fc70e13bad14c251f747e5b860c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dictionary 形式の条件式を評価して真偽値を返す。  <br /></td></tr>
 <tr class="separator:a3b07fc70e13bad14c251f747e5b860c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3595202e763b25423d668dce06c3a90" id="r_ad3595202e763b25423d668dce06c3a90"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#ad3595202e763b25423d668dce06c3a90">evaluate</a> (const godot::Variant &amp;condition, <a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *flags=nullptr)</td></tr>
-<tr class="memdesc:ad3595202e763b25423d668dce06c3a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">条件 Dictionary を評価して結果を返す（静的メソッド）。  <br /></td></tr>
-<tr class="separator:ad3595202e763b25423d668dce06c3a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3caf56030f950a2724e2b725fd111a" id="r_a4d3caf56030f950a2724e2b725fd111a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a4d3caf56030f950a2724e2b725fd111a">evaluate</a> (const godot::Variant &amp;condition)</td></tr>
+<tr class="memdesc:a4d3caf56030f950a2724e2b725fd111a"><td class="mdescLeft">&#160;</td><td class="mdescRight">条件 Dictionary を評価して結果を返す（静的メソッド）。  <br /></td></tr>
+<tr class="separator:a4d3caf56030f950a2724e2b725fd111a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 静的限定公開メンバ関数</h2></td></tr>
@@ -106,11 +106,14 @@ karakuri::ConditionEvaluator の継承関係図</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 静的非公開メンバ関数</h2></td></tr>
-<tr class="memitem:a62021d2df0142117073651abfc690c84" id="r_a62021d2df0142117073651abfc690c84"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a62021d2df0142117073651abfc690c84">eval_recursive</a> (const godot::Variant &amp;node, <a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *flags)</td></tr>
-<tr class="separator:a62021d2df0142117073651abfc690c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81581898e5153d7bf364ee61dd63f249" id="r_a81581898e5153d7bf364ee61dd63f249"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a81581898e5153d7bf364ee61dd63f249">eval_leaf</a> (const godot::Dictionary &amp;d, <a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *flags)</td></tr>
-<tr class="memdesc:a81581898e5153d7bf364ee61dd63f249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leaf 判定: { flag, op, value } または { flag, is }  <br /></td></tr>
-<tr class="separator:a81581898e5153d7bf364ee61dd63f249"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acecba5536c563df2fdf851193a39001e" id="r_acecba5536c563df2fdf851193a39001e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#acecba5536c563df2fdf851193a39001e">eval_recursive</a> (const godot::Variant &amp;node)</td></tr>
+<tr class="separator:acecba5536c563df2fdf851193a39001e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7ac30f3ab20bdf903d48583892f2996" id="r_ad7ac30f3ab20bdf903d48583892f2996"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#ad7ac30f3ab20bdf903d48583892f2996">eval_leaf</a> (const godot::Dictionary &amp;d)</td></tr>
+<tr class="memdesc:ad7ac30f3ab20bdf903d48583892f2996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leaf 判定: { flag, op, value } または { flag, is } flag 名には "&lt;ns&gt;:&lt;scope&gt;:&lt;key&gt;" 形式と後方互換の単純文字列形式を受け付ける。  <br /></td></tr>
+<tr class="separator:ad7ac30f3ab20bdf903d48583892f2996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7af313c6eee05eebbed92a8cbeec70c3" id="r_a7af313c6eee05eebbed92a8cbeec70c3"><td class="memItemLeft" align="right" valign="top">static godot::Variant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#a7af313c6eee05eebbed92a8cbeec70c3">resolve_flag</a> (const godot::String &amp;flag_expr)</td></tr>
+<tr class="memdesc:a7af313c6eee05eebbed92a8cbeec70c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">"&lt;ns&gt;:&lt;scope_str&gt;:&lt;key&gt;" を分解して WorldState から値を取得する。  <br /></td></tr>
+<tr class="separator:a7af313c6eee05eebbed92a8cbeec70c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa91af7c28dde9dd57b1342898b3e3a06" id="r_aa91af7c28dde9dd57b1342898b3e3a06"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ConditionEvaluator.html#aa91af7c28dde9dd57b1342898b3e3a06">compare</a> (const godot::Variant &amp;lhs, const godot::String &amp;op, const godot::Variant &amp;rhs)</td></tr>
 <tr class="memdesc:aa91af7c28dde9dd57b1342898b3e3a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">演算子文字列で 2値を比較する  <br /></td></tr>
 <tr class="separator:aa91af7c28dde9dd57b1342898b3e3a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,8 +188,8 @@ karakuri::ConditionEvaluator の継承関係図</div>
 
 </div>
 </div>
-<a id="a81581898e5153d7bf364ee61dd63f249" name="a81581898e5153d7bf364ee61dd63f249"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81581898e5153d7bf364ee61dd63f249">&#9670;&#160;</a></span>eval_leaf()</h2>
+<a id="ad7ac30f3ab20bdf903d48583892f2996" name="ad7ac30f3ab20bdf903d48583892f2996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7ac30f3ab20bdf903d48583892f2996">&#9670;&#160;</a></span>eval_leaf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,18 +201,8 @@ karakuri::ConditionEvaluator の継承関係図</div>
           <td class="memname">bool karakuri::ConditionEvaluator::eval_leaf </td>
           <td>(</td>
           <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
-          <td class="paramname"><em>d</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>d</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *&#160;</td>
-          <td class="paramname"><em>flags</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -219,12 +212,12 @@ karakuri::ConditionEvaluator の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p>Leaf 判定: { flag, op, value } または { flag, is } </p>
+<p>Leaf 判定: { flag, op, value } または { flag, is } flag 名には "&lt;ns&gt;:&lt;scope&gt;:&lt;key&gt;" 形式と後方互換の単純文字列形式を受け付ける。 </p>
 
 </div>
 </div>
-<a id="a62021d2df0142117073651abfc690c84" name="a62021d2df0142117073651abfc690c84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62021d2df0142117073651abfc690c84">&#9670;&#160;</a></span>eval_recursive()</h2>
+<a id="acecba5536c563df2fdf851193a39001e" name="acecba5536c563df2fdf851193a39001e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acecba5536c563df2fdf851193a39001e">&#9670;&#160;</a></span>eval_recursive()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,18 +229,8 @@ karakuri::ConditionEvaluator の継承関係図</div>
           <td class="memname">bool karakuri::ConditionEvaluator::eval_recursive </td>
           <td>(</td>
           <td class="paramtype">const godot::Variant &amp;&#160;</td>
-          <td class="paramname"><em>node</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>node</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *&#160;</td>
-          <td class="paramname"><em>flags</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -288,8 +271,8 @@ karakuri::ConditionEvaluator の継承関係図</div>
 
 </div>
 </div>
-<a id="ad3595202e763b25423d668dce06c3a90" name="ad3595202e763b25423d668dce06c3a90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3595202e763b25423d668dce06c3a90">&#9670;&#160;</a></span>evaluate() <span class="overload">[2/2]</span></h2>
+<a id="a4d3caf56030f950a2724e2b725fd111a" name="a4d3caf56030f950a2724e2b725fd111a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d3caf56030f950a2724e2b725fd111a">&#9670;&#160;</a></span>evaluate() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,18 +284,8 @@ karakuri::ConditionEvaluator の継承関係図</div>
           <td class="memname">static bool karakuri::ConditionEvaluator::evaluate </td>
           <td>(</td>
           <td class="paramtype">const godot::Variant &amp;&#160;</td>
-          <td class="paramname"><em>condition</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>condition</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classkarakuri_1_1FlagService.html">FlagService</a> *&#160;</td>
-          <td class="paramname"><em>flags</em> = <code>nullptr</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -326,11 +299,38 @@ karakuri::ConditionEvaluator の継承関係図</div>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
     <tr><td class="paramname">condition</td><td>条件式の Dictionary または Array。 </td></tr>
-    <tr><td class="paramname">flags</td><td>参照するフラグストア。nullptr の場合 <a class="el" href="classkarakuri_1_1FlagService.html#a3893f1fbb165009454f68a0236c50da1">FlagService::get_singleton()</a> を使う。 </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>条件が満たされれば true。 </dd></dl>
+
+</div>
+</div>
+<a id="a7af313c6eee05eebbed92a8cbeec70c3" name="a7af313c6eee05eebbed92a8cbeec70c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7af313c6eee05eebbed92a8cbeec70c3">&#9670;&#160;</a></span>resolve_flag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Variant karakuri::ConditionEvaluator::resolve_flag </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>flag_expr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>"&lt;ns&gt;:&lt;scope_str&gt;:&lt;key&gt;" を分解して WorldState から値を取得する。 </p>
 
 </div>
 </div>

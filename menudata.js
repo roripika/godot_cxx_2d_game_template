@@ -111,4 +111,5 @@ var menudata={children:[
 {text:"ファイル一覧",url:"files.html"},
 {text:"大域各種",url:"globals.html",children:[
 {text:"全て",url:"globals.html"},
+{text:"変数",url:"globals_vars.html"},
 {text:"マクロ定義",url:"globals_defs.html"}]}]}]}
