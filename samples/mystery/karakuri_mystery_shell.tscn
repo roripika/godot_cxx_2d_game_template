@@ -28,7 +28,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ScenarioRunner" type="ScenarioRunner" parent="."]
-scenario_path = "res://samples/mystery/scenario/test_ui_integration.json"
+scenario_path = "res://samples/mystery/scenario/mystery.yaml"
 scene_container_path = NodePath("../SceneContainer")
 dialogue_ui_path = NodePath("../MainInfoUiLayer/DialogueUI")
 evidence_ui_path = NodePath("../InstantSubInfoUiLayer/InventoryUI")

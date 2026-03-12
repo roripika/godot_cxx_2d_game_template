@@ -53,6 +53,7 @@ struct BilliardsManager::JoltData {
 
   JPH::BodyID cue_ball_id;
   std::map<int, JPH::BodyID> balls;
+  std::vector<JPH::BodyID> all_bodies; // 全てのリソースを確実に追跡
 
   std::vector<CollisionEvent> collision_events;
   std::mutex collision_mutex;
@@ -206,6 +207,21 @@ BilliardsManager::BilliardsManager() {
 
 BilliardsManager::~BilliardsManager() {
   if (jolt_data) {
+    if (jolt_data->physics_system) {
+      JPH::BodyInterface &bi = jolt_data->physics_system->GetBodyInterface();
+      
+      // 全ての追跡対象ボディを確実に削除・破棄
+      for (JPH::BodyID &bid : jolt_data->all_bodies) {
+        if (!bid.IsInvalid()) {
+          if (bi.IsAdded(bid)) {
+            bi.RemoveBody(bid);
+          }
+          bi.DestroyBody(bid);
+        }
+      }
+      jolt_data->all_bodies.clear();
+      jolt_data->balls.clear();
+    }
     delete jolt_data->physics_system;
     delete jolt_data->job_system;
     delete jolt_data->temp_allocator;
@@ -229,7 +245,9 @@ void BilliardsManager::start_simulation() {
                                  JPH::EMotionType::Static, Layers::NON_MOVING);
     bs.mFriction = friction;
     bs.mRestitution = restitution;
-    body_interface.CreateAndAddBody(bs, JPH::EActivation::DontActivate);
+    JPH::BodyID bid =
+        body_interface.CreateAndAddBody(bs, JPH::EActivation::DontActivate);
+    jolt_data->all_bodies.push_back(bid);
   };
 
   add_static_box(JPH::Vec3(500.0f, 1.0f, 500.0f), JPH::RVec3(0.0f, -1.0f, 0.0f),
@@ -267,6 +285,7 @@ void BilliardsManager::spawn_ball(int p_id, godot::Vector3 p_position,
   JPH::BodyID bid = body_interface.CreateAndAddBody(ball_settings,
                                                     JPH::EActivation::Activate);
   jolt_data->balls[p_id] = bid;
+  jolt_data->all_bodies.push_back(bid);
   if (p_is_cue_ball)
     jolt_data->cue_ball_id = bid;
 }
@@ -298,13 +317,16 @@ void BilliardsManager::_physics_process(double delta) {
   jolt_data->physics_system->Update((float)delta, 1, jolt_data->temp_allocator,
                                     jolt_data->job_system);
 
-  // 1. Flush Collision Events
+  // 1. Flush Collision Events (Thread-safe: emit outside lock)
+  std::vector<CollisionEvent> collisions_to_process;
   {
     std::lock_guard<std::mutex> lock(jolt_data->collision_mutex);
-    for (const auto &ev : jolt_data->collision_events) {
-      emit_signal("collision_sound_requested", ev.pos, ev.force);
-    }
+    collisions_to_process = std::move(jolt_data->collision_events);
     jolt_data->collision_events.clear();
+  }
+
+  for (const auto &ev : collisions_to_process) {
+    emit_signal("collision_sound_requested", ev.pos, ev.force);
   }
 
   JPH::BodyInterface &body_interface =
@@ -333,6 +355,13 @@ void BilliardsManager::_physics_process(double delta) {
     if (it != jolt_data->balls.end()) {
       body_interface.RemoveBody(it->second);
       body_interface.DestroyBody(it->second);
+      
+      // all_bodies からも削除
+      auto it_all = std::find(jolt_data->all_bodies.begin(), jolt_data->all_bodies.end(), it->second);
+      if (it_all != jolt_data->all_bodies.end()) {
+        jolt_data->all_bodies.erase(it_all);
+      }
+
       jolt_data->balls.erase(it);
       if (id == 0)
         jolt_data->cue_ball_id = JPH::BodyID();
@@ -356,6 +385,10 @@ void BilliardsManager::respawn_cue_ball() {
     JPH::BodyInterface &bi = jolt_data->physics_system->GetBodyInterface();
     bi.RemoveBody(jolt_data->cue_ball_id);
     bi.DestroyBody(jolt_data->cue_ball_id);
+    auto it_all = std::find(jolt_data->all_bodies.begin(), jolt_data->all_bodies.end(), jolt_data->cue_ball_id);
+    if (it_all != jolt_data->all_bodies.end()) {
+      jolt_data->all_bodies.erase(it_all);
+    }
     jolt_data->balls.erase(0);
   }
   spawn_ball(0, Vector3(0.0f, 0.3f, 2.0f), true);

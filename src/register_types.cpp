@@ -17,8 +17,8 @@
 #include "core/karakuri_game_state.h"
 #include "core/logger/karakuri_logger.h"
 #include "core/scenario/scenario_runner.h"
+#include "core/world_state.h"
 #include "core/services/action_runner.h"
-#include "core/services/flag_service.h"
 #include "core/services/input_service.h"
 #include "core/services/item_service.h"
 #include "core/services/localization_service.h"
@@ -132,7 +132,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::InventoryUI>();
   ClassDB::register_class<karakuri::InventorySlotUI>();
   ClassDB::register_class<karakuri::LocalizationService>();
-  ClassDB::register_class<karakuri::FlagService>();
+  ClassDB::register_class<karakuri::WorldState>();
   ClassDB::register_class<karakuri::InputService>();
   ClassDB::register_class<karakuri::ItemService>();
   ClassDB::register_class<karakuri::SaveService>();

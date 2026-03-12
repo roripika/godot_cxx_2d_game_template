@@ -402,6 +402,12 @@ func _on_choice_pressed(index: int, text: String) -> void:
 		return
 	_clear_choices()
 	_choice_defs.clear()
+	
+	# Core (C++) に進捗を伝える
+	var runner = get_node_or_null("../../ScenarioRunner")
+	if runner and runner.has_method("submit_choice"):
+		runner.submit_choice(index)
+		
 	choice_selected.emit(index, text)
 
 func _rebuild_choices() -> void:
@@ -529,8 +535,14 @@ func _input(event: InputEvent) -> void:
 			skip_typing()
 			get_viewport().set_input_as_handled()
 		elif _waiting_for_click:
-			print("[DialogueUI] Dialogue finished, emitting signal")
+			print("[DialogueUI] Dialogue finished, emitting signal and advancing runner")
 			_waiting_for_click = false
+			
+			# Core (C++) に進捗を伝える
+			var runner = get_node_or_null("../../ScenarioRunner")
+			if runner and runner.has_method("advance_dialogue"):
+				runner.advance_dialogue()
+				
 			dialogue_finished.emit()
 			get_viewport().set_input_as_handled()
 		else:

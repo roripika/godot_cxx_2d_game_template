@@ -3,7 +3,7 @@ start_scene: "prologue"
 scenes:
   prologue:
     mode: "investigation"
-    scene_path: "res://samples/mystery/office_base.tscn"
+    scene_path: "res://samples/mystery/office_3d.tscn"
     on_enter:
       - dialogue: { speaker_key: "speaker.system", speaker: "System", text_key: "mystery.prologue.system" }
       - transition_object: { target: "yui", type: "fade_in", duration: 0.8, mode: "in" }
@@ -18,9 +18,10 @@ scenes:
           fade_duration: 1.0
           transition_type: "split_cols"
 
+
   warehouse_investigation:
     mode: "investigation"
-    scene_path: "res://samples/mystery/warehouse_base.tscn"
+    scene_path: "res://samples/mystery/warehouse_3d.tscn"
     on_enter:
       - transition_object: { target: "detective", type: "jump_zoom", duration: 0.5, mode: "in" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.warehouse.intro" }
@@ -128,7 +129,7 @@ scenes:
 
   deduction:
     mode: "deduction"
-    scene_path: "res://samples/mystery/office_base.tscn"
+    scene_path: "res://samples/mystery/office_3d.tscn"
     on_enter:
       - transition_object: { target: "boss", type: "fade_in", duration: 0.5, mode: "in" }
       - dialogue: { speaker_key: "speaker.boss", speaker: "Ken", text_key: "mystery.deduction.question", portrait_side: "right", portrait_enter: "shake" }
@@ -155,7 +156,7 @@ scenes:
 
   confrontation:
     mode: "confrontation"
-    scene_path: "res://samples/mystery/warehouse_base.tscn"
+    scene_path: "res://samples/mystery/warehouse_3d.tscn"
     on_enter:
       - transition_object: { target: "detective", type: "slide_right", duration: 0.5, mode: "in" }
       - dialogue: { speaker_key: "speaker.detective", speaker: "Ren", text_key: "mystery.confrontation.start1" }

@@ -21,8 +21,60 @@ func _ready() -> void:
 	if inventory_btn:
 		inventory_btn.pressed.connect(_on_inventory_btn_pressed)
 		
+	_connect_scenario_runner_signals()
 	_connect_localization_service()
 	_refresh_locale()
+
+func _connect_scenario_runner_signals() -> void:
+	if not scenario_runner: return
+	
+	scenario_runner.dialogue_requested.connect(_on_dialogue_requested)
+	scenario_runner.choices_requested.connect(_on_choices_requested)
+	scenario_runner.mode_entered.connect(_on_mode_entered)
+	scenario_runner.mode_exited.connect(_on_mode_exited)
+	scenario_runner.mode_input_enabled_changed.connect(_on_mode_input_enabled_changed)
+	scenario_runner.scene_change_requested.connect(_on_scene_change_requested)
+
+func _on_scene_change_requested(scene_path: String) -> void:
+	if scene_path == "" or not scene_container: return
+	
+	print("[Shell] Switching scene to: ", scene_path)
+	# Clear existing scene
+	for child in scene_container.get_children():
+		child.queue_free()
+		
+	# Instance new scene
+	if ResourceLoader.exists(scene_path):
+		var packed = load(scene_path)
+		var inst = packed.instantiate()
+		scene_container.add_child(inst)
+	else:
+		printerr("[Shell] Scene NOT FOUND: ", scene_path)
+
+func _on_dialogue_requested(speaker: String, text: String) -> void:
+	var dialogue_ui = get_node_or_null("MainInfoUiLayer/DialogueUI")
+	if dialogue_ui and dialogue_ui.has_method("show_message"):
+		dialogue_ui.show_message(speaker, text)
+
+func _on_choices_requested(choices: Array) -> void:
+	var dialogue_ui = get_node_or_null("MainInfoUiLayer/DialogueUI")
+	if dialogue_ui and dialogue_ui.has_method("show_choices"):
+		dialogue_ui.show_choices(choices)
+
+func _on_mode_entered(mode_id: String, scene_id: String) -> void:
+	var dialogue_ui = get_node_or_null("MainInfoUiLayer/DialogueUI")
+	if dialogue_ui and dialogue_ui.has_method("on_mode_enter"):
+		dialogue_ui.on_mode_enter(mode_id, scene_id)
+
+func _on_mode_exited(current_mode_id: String, next_scene_id: String) -> void:
+	var dialogue_ui = get_node_or_null("MainInfoUiLayer/DialogueUI")
+	if dialogue_ui and dialogue_ui.has_method("on_mode_exit"):
+		dialogue_ui.on_mode_exit(current_mode_id, next_scene_id)
+
+func _on_mode_input_enabled_changed(enabled: bool) -> void:
+	var dialogue_ui = get_node_or_null("MainInfoUiLayer/DialogueUI")
+	if dialogue_ui and dialogue_ui.has_method("set_mode_input_enabled"):
+		dialogue_ui.set_mode_input_enabled(enabled)
 
 func _on_inventory_btn_pressed() -> void:
 	if inventory_ui:

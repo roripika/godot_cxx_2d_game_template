@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Godot C++ Game Template"
-run/main_scene="res://samples/mystery/mystery_title.tscn"
+run/main_scene="res://samples/mystery/karakuri_mystery_shell.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,7 +24,7 @@ config/icon="res://icon.svg"
 InputService="*res://samples/common/input_service.tscn"
 MysteryGameState="*res://samples/mystery/mystery_game_state.tscn"
 KarakuriLocalization="*res://samples/common/karakuri_localization_service.tscn"
-GameMaster="*res://samples/mystery/mystery_manager.gd"
+MysteryManager="*res://samples/mystery/mystery_manager.gd"
 
 [display]
 

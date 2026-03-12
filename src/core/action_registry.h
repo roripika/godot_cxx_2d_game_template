@@ -49,6 +49,7 @@ class ActionRegistry : public godot::Object {
 
 protected:
   static void _bind_methods();
+  void init_builtin_actions();
 
 public:
   ActionRegistry();
@@ -72,21 +73,18 @@ public:
   void register_action(const godot::String &action_name,
                        const godot::String &class_name);
 
-  // ------------------------------------------------------------------
-  // 生成 API
-  // ------------------------------------------------------------------
-
   /**
-   * @brief アクション名から TaskBase インスタンスを動的に生成して返す。
+   * @brief アクション名から TaskBase インスタンスを生成・検証し、初期化済みのタスクを返す。
    *
    * 内部では ClassDBSingleton::instantiate() によりクラス名からオブジェクトを生成し、
-   * TaskBase にキャストして Ref<> で返す。
-   * 未登録のアクション名の場合は null Ref を返す。
+   * validate_and_setup(spec) を呼び出して検証を行う。
+   * 検証に失敗した場合は null Ref を返す。
    *
    * @param action_name  register_action() で登録したアクション名
-   * @return Ref<TaskBase> (未登録または cast 失敗時は null)
+   * @param spec         アクションの定義データ（パラメータ等）
+   * @return Ref<TaskBase> (未登録、生成失敗、または検証失敗時は null)
    */
-  godot::Ref<TaskBase> create_task(const godot::String &action_name);
+  godot::Ref<TaskBase> compile_task(const godot::String &action_name, const godot::Dictionary &spec);
 
   /** @brief 登録されているアクション名の一覧を返す（デバッグ用）。 */
   godot::Array get_registered_actions() const;

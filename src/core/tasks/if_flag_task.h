@@ -27,7 +27,7 @@ public:
   IfFlagTask() = default;
   ~IfFlagTask() override = default;
 
-  void set_runner(ScenarioRunner *runner) { runner_ = runner; }
+  void set_runner(ScenarioRunner *r) override { runner_ = r; }
 
   TaskResult execute(double delta) override;
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
