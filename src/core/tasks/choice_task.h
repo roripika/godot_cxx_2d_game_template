@@ -23,7 +23,7 @@ public:
   ChoiceTask() = default;
   ~ChoiceTask() override = default;
 
-  void set_runner(ScenarioRunner *runner) { runner_ = runner; }
+  void set_runner(ScenarioRunner *runner) override { runner_ = runner; }
 
   TaskResult execute(double delta) override;
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
