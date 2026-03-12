@@ -11,15 +11,38 @@ namespace karakuri {
 // ---------------------------------------------------------------------------
 // パブリックエントリポイント
 // ---------------------------------------------------------------------------
-bool ConditionEvaluator::evaluate(const Variant &condition, FlagService *flags) {
-  FlagService *fs = flags ? flags : FlagService::get_singleton();
-  return eval_recursive(condition, fs);
+// ---------------------------------------------------------------------------
+// 内部ヘルパー: フラグ式を WorldState から解決する
+// フォーマット: "<ns>:<scope_str>:<key>"  or  "<key>"(後方互換)
+// ---------------------------------------------------------------------------
+Variant ConditionEvaluator::resolve_flag(const String &flag_expr) {
+  auto *ws = WorldState::get_singleton();
+  if (!ws) return Variant();
+
+  if (flag_expr.contains(":")) {
+    PackedStringArray parts = flag_expr.split(":");
+    if (parts.size() >= 3) {
+      String ns        = parts[0];
+      String scope_str = parts[1];
+      String key       = parts[2];
+      int scope = WorldState::SCOPE_GLOBAL;
+      if      (scope_str == "session") scope = WorldState::SCOPE_SESSION;
+      else if (scope_str == "scene")   scope = WorldState::SCOPE_SCENE;
+      return ws->get_state(ns, scope, key);
+    }
+  }
+  // 後方互換: 単純文字列 → namespace="core", scope=GLOBAL
+  return ws->get_state("core", WorldState::SCOPE_GLOBAL, flag_expr);
+}
+
+bool ConditionEvaluator::evaluate(const Variant &condition) {
+  return eval_recursive(condition);
 }
 
 // ---------------------------------------------------------------------------
 // 再帰評価
 // ---------------------------------------------------------------------------
-bool ConditionEvaluator::eval_recursive(const Variant &node, FlagService *flags) {
+bool ConditionEvaluator::eval_recursive(const Variant &node) {
   if (node.get_type() == Variant::DICTIONARY) {
     Dictionary d = node;
 
@@ -31,7 +54,7 @@ bool ConditionEvaluator::eval_recursive(const Variant &node, FlagService *flags)
         return false;
       Array arr = v;
       for (int i = 0; i < arr.size(); ++i) {
-        if (!eval_recursive(arr[i], flags))
+        if (!eval_recursive(arr[i]))
           return false;
       }
       return true;
@@ -44,7 +67,7 @@ bool ConditionEvaluator::eval_recursive(const Variant &node, FlagService *flags)
         return false;
       Array arr = v;
       for (int i = 0; i < arr.size(); ++i) {
-        if (eval_recursive(arr[i], flags))
+        if (eval_recursive(arr[i]))
           return true;
       }
       return false;
@@ -52,7 +75,7 @@ bool ConditionEvaluator::eval_recursive(const Variant &node, FlagService *flags)
 
     // not: NOT
     if (d.has("not")) {
-      return !eval_recursive(d["not"], flags);
+      return !eval_recursive(d["not"]);
     }
 
     // ── 特殊 Leaf ──────────────────────────────────────────────
@@ -64,14 +87,14 @@ bool ConditionEvaluator::eval_recursive(const Variant &node, FlagService *flags)
     }
 
     // ── 基本 Leaf ──────────────────────────────────────────────
-    return eval_leaf(d, flags);
+    return eval_leaf(d);
   }
 
   // Array は暗黙 all として扱う
   if (node.get_type() == Variant::ARRAY) {
     Array arr = node;
     for (int i = 0; i < arr.size(); ++i) {
-      if (!eval_recursive(arr[i], flags))
+      if (!eval_recursive(arr[i]))
         return false;
     }
     return true;
@@ -90,21 +113,15 @@ bool ConditionEvaluator::eval_recursive(const Variant &node, FlagService *flags)
 // ---------------------------------------------------------------------------
 // Leaf 評価
 // ---------------------------------------------------------------------------
-bool ConditionEvaluator::eval_leaf(const Dictionary &d, FlagService *flags) {
+bool ConditionEvaluator::eval_leaf(const Dictionary &d) {
   if (!d.has("flag")) {
     UtilityFunctions::push_warning(
         "ConditionEvaluator: leaf node has no 'flag' key.");
     return false;
   }
 
-  String flag_name = String(d["flag"]);
-  Variant lhs;
-  if (flags) {
-    lhs = flags->get_flag(flag_name);
-  } else {
-    auto *fs = FlagService::get_singleton();
-    lhs = fs ? fs->get_flag(flag_name) : Variant();
-  }
+  String flag_expr = String(d["flag"]);
+  Variant lhs = resolve_flag(flag_expr);
 
   // `is` ショートカット → op == でリダイレクト
   if (d.has("is")) {
@@ -113,13 +130,13 @@ bool ConditionEvaluator::eval_leaf(const Dictionary &d, FlagService *flags) {
 
   // 明示的な op + value
   if (d.has("op") && d.has("value")) {
-    String op = String(d["op"]);
+    String op  = String(d["op"]);
     Variant rhs = d["value"];
     return compare(lhs, op, rhs);
   }
 
   UtilityFunctions::push_warning(
-      "ConditionEvaluator: leaf for flag '" + flag_name +
+      "ConditionEvaluator: leaf for flag '" + flag_expr +
       "' has neither 'is' nor 'op'/'value'.");
   return false;
 }

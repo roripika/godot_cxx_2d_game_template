@@ -2,7 +2,6 @@
 #include "../action_registry.h"
 #include "../logger/karakuri_logger.h"
 #include "../logic/condition_evaluator.h"
-#include "../services/flag_service.h"
 #include "../services/save_service.h"
 #include "../tasks/wait_task.h"
 #include "../tasks/dialogue_task.h"
@@ -415,19 +414,19 @@ void ScenarioRunner::init_builtin_actions() {
     return false; // Non-blocking
   });
 
-  // set_flag — FlagService にフラグをセット
+  // set_flag — WorldState にフラグをセット
   register_action("set_flag", [](const Variant &p) {
-    auto *fs = karakuri::FlagService::get_singleton();
-    if (!fs)
+    auto *ws = karakuri::WorldState::get_singleton();
+    if (!ws)
       return false;
     if (p.get_type() == Variant::STRING) {
-      fs->set_flag(String(p), true);
+      ws->set_flag(String(p), true);
     } else if (p.get_type() == Variant::DICTIONARY) {
       Dictionary d = p;
-      String name = d.has("name") ? String(d["name"]) : String("");
-      Variant value = d.has("value") ? d["value"] : Variant(true);
+      String name  = d.has("name")  ? String(d["name"])    : String("");
+      Variant value = d.has("value") ? d["value"]           : Variant(true);
       if (!name.is_empty())
-        fs->set_flag(name, value);
+        ws->set_flag(name, value);
     }
     return false; // Non-blocking
   });

@@ -1,6 +1,6 @@
 #include "state_snapshot.h"
 
-#include "../services/flag_service.h"
+#include "../world_state.h"
 #include "../services/item_service.h"
 
 #include <godot_cpp/core/class_db.hpp>
@@ -31,9 +31,9 @@ Ref<StateSnapshot> StateSnapshot::capture(const String &scene_id,
                                           int action_index) {
   Ref<StateSnapshot> snap = memnew(StateSnapshot);
 
-  FlagService *fs = FlagService::get_singleton();
-  if (fs != nullptr) {
-    snap->flags_ = fs->serialize().duplicate(true);
+  WorldState *ws = WorldState::get_singleton();
+  if (ws != nullptr) {
+    snap->flags_ = ws->serialize_globals().duplicate(true);
   }
 
   ItemService *is = ItemService::get_singleton();
@@ -52,9 +52,9 @@ Ref<StateSnapshot> StateSnapshot::capture(const String &scene_id,
 // ------------------------------------------------------------------
 
 void StateSnapshot::restore_services() const {
-  FlagService *fs = FlagService::get_singleton();
-  if (fs != nullptr) {
-    fs->deserialize(flags_);
+  WorldState *ws = WorldState::get_singleton();
+  if (ws != nullptr) {
+    ws->deserialize_globals(flags_);
   }
 
   ItemService *is = ItemService::get_singleton();

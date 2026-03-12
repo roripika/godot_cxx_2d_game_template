@@ -7,7 +7,7 @@
  *
  * ## 役割
  * - Dictionary（JSON）形式の条件式を再帰的に評価し true/false を返す。
- * - `FlagService` の現在値を参照することで、コード変更なしに
+ * - `WorldState` の現在値を参照することで、コード変更なしに
  *   シナリオデータだけで複雑な論理判定を表現できる。
  *
  * ## サポートする構文
@@ -41,7 +41,7 @@
  * ```
  */
 
-#include "../services/flag_service.h"
+#include "../world_state.h"
 
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/variant.hpp>
@@ -53,17 +53,19 @@ public:
   /**
    * @brief 条件 Dictionary を評価して結果を返す（静的メソッド）。
    * @param condition 条件式の Dictionary または Array。
-   * @param flags     参照するフラグストア。nullptr の場合 FlagService::get_singleton() を使う。
    * @return 条件が満たされれば true。
    */
-  static bool evaluate(const godot::Variant &condition,
-                       FlagService *flags = nullptr);
+  static bool evaluate(const godot::Variant &condition);
 
 private:
-  static bool eval_recursive(const godot::Variant &node, FlagService *flags);
+  static bool eval_recursive(const godot::Variant &node);
 
   /// @brief Leaf 判定: { flag, op, value } または { flag, is }
-  static bool eval_leaf(const godot::Dictionary &d, FlagService *flags);
+  /// flag 名には "<ns>:<scope>:<key>" 形式と後方互換の単純文字列形式を受け付ける。
+  static bool eval_leaf(const godot::Dictionary &d);
+
+  /// @brief "<ns>:<scope_str>:<key>" を分解して WorldState から値を取得する。
+  static godot::Variant resolve_flag(const godot::String &flag_expr);
 
   /// @brief 演算子文字列で 2値を比較する
   static bool compare(const godot::Variant &lhs, const godot::String &op,
