@@ -16,11 +16,7 @@ var searchData=
   ['hitbox_5fcomponent_2eh_13',['hitbox_component.h',['../hitbox__component_8h.html',1,'']]],
   ['hitboxcomponent_14',['hitboxcomponent',['../classkarakuri_1_1HitboxComponent.html#a972e54cb5cad38e39642f93806364c34',1,'karakuri::HitboxComponent::HitboxComponent()'],['../classkarakuri_1_1HitboxComponent.html',1,'karakuri::HitboxComponent']]],
   ['hitstopmanager_15',['hitstopmanager',['../classHitStopManager.html#a5a3e227b3463b1b38a9a65703ab17489',1,'HitStopManager::HitStopManager()'],['../classHitStopManager.html',1,'HitStopManager']]],
-  ['hotspot_5fbindings_5f_16',['hotspot_bindings_',['../classkarakuri_1_1ScenarioRunner.html#a70f7ea84fb0b95b918fc8ec778a6d80a',1,'karakuri::ScenarioRunner']]],
-  ['hotspot_5fid_17',['hotspot_id',['../structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html#a32f7959367b4a58074ff298fee4c223c',1,'karakuri::ScenarioRunner::HotspotBinding']]],
-  ['hotspot_5fmatches_5fclick_18',['hotspot_matches_click',['../classkarakuri_1_1ScenarioRunner.html#a8214a6443add202caffb399425fd1a41',1,'karakuri::ScenarioRunner']]],
-  ['hotspotbinding_19',['HotspotBinding',['../structkarakuri_1_1ScenarioRunner_1_1HotspotBinding.html',1,'karakuri::ScenarioRunner']]],
-  ['hurtbox_5fcomponent_2ecpp_20',['hurtbox_component.cpp',['../hurtbox__component_8cpp.html',1,'']]],
-  ['hurtbox_5fcomponent_2eh_21',['hurtbox_component.h',['../hurtbox__component_8h.html',1,'']]],
-  ['hurtboxcomponent_22',['hurtboxcomponent',['../classkarakuri_1_1HurtboxComponent.html',1,'karakuri::HurtboxComponent'],['../classkarakuri_1_1HurtboxComponent.html#ab52e048643c32d7a6d011d6707e56e4b',1,'karakuri::HurtboxComponent::HurtboxComponent()']]]
+  ['hurtbox_5fcomponent_2ecpp_16',['hurtbox_component.cpp',['../hurtbox__component_8cpp.html',1,'']]],
+  ['hurtbox_5fcomponent_2eh_17',['hurtbox_component.h',['../hurtbox__component_8h.html',1,'']]],
+  ['hurtboxcomponent_18',['hurtboxcomponent',['../classkarakuri_1_1HurtboxComponent.html',1,'karakuri::HurtboxComponent'],['../classkarakuri_1_1HurtboxComponent.html#ab52e048643c32d7a6d011d6707e56e4b',1,'karakuri::HurtboxComponent::HurtboxComponent()']]]
 ];

@@ -22,6 +22,8 @@ var searchData=
   ['is_5fstackable_19',['is_stackable',['../classkarakuri_1_1GameItem.html#a8cf75a31532f64633d7a110920d841cc',1,'karakuri::GameItem']]],
   ['is_5ftruthy_20',['is_truthy',['../namespacekarakuri.html#ae739ccf83fa5a76a7823e7c334ada54b',1,'karakuri']]],
   ['is_5ftyping_5factive_21',['is_typing_active',['../classkarakuri_1_1DialogueUI.html#ad82181a4a3f457468c957cc4b8309415',1,'karakuri::DialogueUI']]],
-  ['isometricview_22',['IsometricView',['../classIsometricView.html#a39e5b3ca5277af2e3aa1d3e8ca040a2d',1,'IsometricView']]],
-  ['itemservice_23',['ItemService',['../classkarakuri_1_1ItemService.html#aa3712f38c5e42c09e7ec234f20d1dd11',1,'karakuri::ItemService']]]
+  ['is_5fwaiting_5ffor_5fchoice_22',['is_waiting_for_choice',['../classkarakuri_1_1ScenarioRunner.html#a05eaa4f1c613048d60e25c8bf3661a74',1,'karakuri::ScenarioRunner']]],
+  ['is_5fwaiting_5ffor_5fdialogue_23',['is_waiting_for_dialogue',['../classkarakuri_1_1ScenarioRunner.html#a160a26aef0a8dd6e6421e6e7834141e0',1,'karakuri::ScenarioRunner']]],
+  ['isometricview_24',['IsometricView',['../classIsometricView.html#a39e5b3ca5277af2e3aa1d3e8ca040a2d',1,'IsometricView']]],
+  ['itemservice_25',['ItemService',['../classkarakuri_1_1ItemService.html#aa3712f38c5e42c09e7ec234f20d1dd11',1,'karakuri::ItemService']]]
 ];
