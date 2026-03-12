@@ -7,7 +7,6 @@
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/string.hpp>
-#include <map>
 
 using namespace godot;
 
@@ -18,7 +17,6 @@ class MysteryManager : public Node {
 
 private:
   static MysteryManager *singleton;
-  std::map<String, bool> flags;
 
   // Checkpoint data
   bool has_checkpoint = false;

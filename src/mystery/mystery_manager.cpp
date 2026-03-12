@@ -3,6 +3,7 @@
 #include "../core/scenario/scenario_runner.h"
 #include "../core/services/item_service.h"
 #include "../core/services/save_service.h"
+#include "../core/world_state.h"
 #include "evidence_manager.h"
 #include "mystery_effect_map.h"
 #include <godot_cpp/classes/engine.hpp>
@@ -64,30 +65,35 @@ bool MysteryManager::get_mystery_flag(mystery::MysteryFlag p_flag) const {
 }
 
 void MysteryManager::set_flag(const String &p_name, bool p_value) {
-  bool old_value = false;
-  if (flags.count(p_name)) {
-    old_value = flags[p_name];
-  }
+  bool old_value = get_flag(p_name);
 
   if (old_value != p_value) {
-    flags[p_name] = p_value;
+    auto *ws = karakuri::WorldState::get_singleton();
+    if (ws) ws->set_state("mystery", karakuri::WorldState::SCOPE_GLOBAL, p_name, p_value);
     log_change("Flag", p_name, old_value, p_value, "set_flag");
     validate_state();
   }
 }
 
 bool MysteryManager::get_flag(const String &p_name) const {
-  if (flags.count(p_name)) {
-    return flags.at(p_name);
-  }
-  return false;
+  auto *ws = karakuri::WorldState::get_singleton();
+  if (!ws) return false;
+  return ws->has_flag("mystery", karakuri::WorldState::SCOPE_GLOBAL, p_name);
 }
 
 Dictionary MysteryManager::serialize_state() const {
   Dictionary dict;
   Dictionary flags_dict;
-  for (const auto &pair : flags) {
-    flags_dict[pair.first] = pair.second;
+  auto *ws_ser = karakuri::WorldState::get_singleton();
+  if (ws_ser) {
+    // WorldState の mystery 名前空間・ SCOPE_GLOBAL のフラグをフラット辞書に展開
+    Dictionary all_globals = ws_ser->serialize_globals();
+    if (all_globals.has("global")) {
+      Dictionary global_scope = Dictionary(all_globals["global"]);
+      if (global_scope.has("mystery")) {
+        flags_dict = Dictionary(global_scope["mystery"]).duplicate();
+      }
+    }
   }
   dict["flags"] = flags_dict;
 
@@ -125,11 +131,14 @@ void MysteryManager::deserialize_state(const Dictionary &p_dict) {
 }
 
 void MysteryManager::deserialize_flags(const Dictionary &p_dict) {
+  auto *ws = karakuri::WorldState::get_singleton();
+  if (!ws) return;
+  // 既存の mystery グローバルフラグをクリアしてから再ロード
+  ws->clear_namespace("mystery");
   Array keys = p_dict.keys();
-  flags.clear();
   for (int i = 0; i < keys.size(); i++) {
     String key = keys[i];
-    flags[key] = p_dict[key];
+    ws->set_state("mystery", karakuri::WorldState::SCOPE_GLOBAL, key, p_dict[key]);
   }
   UtilityFunctions::print("[LOG] Flags: ALL | Old: VARIOUS | New: "
                           "DESERIALIZED | Reason: deserialize_flags");
@@ -239,15 +248,10 @@ void MysteryManager::register_scenario_actions() {
     // or press.
 
     Dictionary line = testimonies[0];
-    Node *dialogue_ui =
-        runner->get_node_or_null(runner->get_dialogue_ui_path());
-    if (dialogue_ui && dialogue_ui->has_method("show_message")) {
-      dialogue_ui->call("show_message", line.get("speaker", "Witness"),
+    runner->emit_signal("dialogue_requested", line.get("speaker", "Witness"),
                         line.get("text_key", "..."));
-      // In a real implementation, we would store 'testimonies' in
-      // MysteryManager and handle 'press' or 'present' signals. For now, we'll
-      // just allow it to "block" indefinitely or until a signal.
-    }
+
+    return true; // Blocking
 
     return true; // Blocking
   });

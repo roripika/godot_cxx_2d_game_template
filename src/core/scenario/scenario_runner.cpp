@@ -3,6 +3,7 @@
 #include "../logger/karakuri_logger.h"
 #include "../logic/condition_evaluator.h"
 #include "../services/save_service.h"
+#include "../world_state.h"
 #include "../tasks/wait_task.h"
 #include "../tasks/dialogue_task.h"
 #include "../tasks/choice_task.h"
@@ -299,6 +300,11 @@ Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
 }
 
 void ScenarioRunner::load_scene_by_id(const String &scene_id) {
+  // シーン遷移時に SCOPE_SCENE のメモリを解放し、前シーンのローカル状態を破棄する
+  if (auto *ws = WorldState::get_singleton()) {
+    ws->clear_scope(WorldState::SCOPE_SCENE);
+  }
+
   godot::UtilityFunctions::print(String("[ScenarioRunner] load_scene_by_id: ") +
                                  scene_id);
   if (!scenes_.has(scene_id)) {
