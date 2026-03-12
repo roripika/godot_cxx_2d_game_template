@@ -29,6 +29,7 @@ var menudata={children:[
 {text:"名前空間メンバ",url:"namespacemembers.html",children:[
 {text:"全て",url:"namespacemembers.html"},
 {text:"関数",url:"namespacemembers_func.html"},
+{text:"変数",url:"namespacemembers_vars.html"},
 {text:"列挙型",url:"namespacemembers_enum.html"}]}]},
 {text:"データ構造",url:"annotated.html",children:[
 {text:"データ構造",url:"annotated.html"},
@@ -111,5 +112,6 @@ var menudata={children:[
 {text:"ファイル一覧",url:"files.html"},
 {text:"大域各種",url:"globals.html",children:[
 {text:"全て",url:"globals.html"},
+{text:"関数",url:"globals_func.html"},
 {text:"変数",url:"globals_vars.html"},
 {text:"マクロ定義",url:"globals_defs.html"}]}]}]}

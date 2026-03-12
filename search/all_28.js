@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['層_0',['層',['../interaction__component_8h.html#autotoc_md4',1,'設計ポリシー (karakuri 層)'],['../action__runner_8h.html#autotoc_md27',1,'設計ポリシー (karakuri 層)'],['../flag__service_8h.html#autotoc_md31',1,'設計ポリシー (karakuri 層)'],['../item__service_8h.html#autotoc_md34',1,'設計ポリシー (karakuri 層)'],['../sound__service_8h.html#autotoc_md49',1,'設計ポリシー (karakuri 層)']]]
+  ['境界内）_0',['責務（Karakuri 境界内）',['../karakuri__game__state_8h.html#autotoc_md17',1,'']]]
 ];

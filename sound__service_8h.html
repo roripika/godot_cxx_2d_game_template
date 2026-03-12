@@ -100,21 +100,21 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 音響・ハプティクスサービス。 </p>
-<h2><a class="anchor" id="autotoc_md48"></a>
+<h2><a class="anchor" id="autotoc_md45"></a>
 役割</h2>
 <ul>
 <li>BGM の再生管理（フェードイン/アウト付きチャンネル切替え）。</li>
 <li>SE の再生（同時再生プール：最大 8ch）。</li>
 <li>モバイル端末のハプティクス（振動）制御。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md49"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 設計ポリシー (karakuri 層)</h2>
 <ul>
 <li>ミステリー固有の概念を一切知らない。</li>
 <li>ActionRunner と独立して動作し、mystery 層から同時呼び出しできる。</li>
 <li>AudioStreamPlayer を内部にプールとして持ち、シーン側に露出しない。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md50"></a>
+<h2><a class="anchor" id="autotoc_md47"></a>
 使い方</h2>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> *snd = <a class="code hl_function" href="classkarakuri_1_1SoundService.html#af9a8ec57fe973ab10095958e9c9f0763">karakuri::SoundService::get_singleton</a>();</div>
 <div class="line">snd-&gt;play_bgm(<span class="stringliteral">&quot;res://audio/bgm_investigation.ogg&quot;</span>, 1.0f);</div>

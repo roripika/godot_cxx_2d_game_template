@@ -3,7 +3,7 @@ var searchData=
   ['ifflagtask_0',['IfFlagTask',['../classkarakuri_1_1IfFlagTask.html#a6e6211b5e56b85490d8ceccc7bceda00',1,'karakuri::IfFlagTask']]],
   ['ifhasitemstask_1',['IfHasItemsTask',['../classkarakuri_1_1IfHasItemsTask.html#a15407dc41d4a77974b2b5fa0b23a8cb4',1,'karakuri::IfHasItemsTask']]],
   ['info_2',['info',['../classkarakuri_1_1Logger.html#a2f718487ff1de78c7e3948060f5ebc15',1,'karakuri::Logger']]],
-  ['init_5fbuiltin_5factions_3',['init_builtin_actions',['../classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e',1,'karakuri::ScenarioRunner']]],
+  ['init_5fbuiltin_5factions_3',['init_builtin_actions',['../classkarakuri_1_1ActionRegistry.html#a1252dba959c92ccfb6a3cb329f55d08f',1,'karakuri::ActionRegistry::init_builtin_actions()'],['../classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e',1,'karakuri::ScenarioRunner::init_builtin_actions()']]],
   ['initialize_4',['initialize',['../classkarakuri_1_1UniversalWorldData.html#aaf17c13088af38d076cb010d55ec87f4',1,'karakuri::UniversalWorldData']]],
   ['inject_5fsteps_5',['inject_steps',['../classkarakuri_1_1ScenarioRunner.html#a60b3248b36f97785a957a108b2d0446a',1,'karakuri::ScenarioRunner']]],
   ['inputservice_6',['InputService',['../classkarakuri_1_1InputService.html#a358e688990d9cf09b5fbac3d2f8d13f6',1,'karakuri::InputService']]],

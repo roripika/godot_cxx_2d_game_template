@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Basic Game Karakuri SDK: src/core/services/flag_service.h ファイル</title>
+<title>Basic Game Karakuri SDK: src/core/world_state.h ファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,60 +70,60 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_6f7c79f93c023cda2e1e10f53a059d83.html">services</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">データ構造</a> &#124;
-<a href="#namespaces">名前空間</a>  </div>
-  <div class="headertitle"><div class="title">flag_service.h ファイル</div></div>
+<a href="#namespaces">名前空間</a> &#124;
+<a href="#func-members">関数</a>  </div>
+  <div class="headertitle"><div class="title">world_state.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Basic Game Karakuri: 汎用フラグ管理サービス。  
-<a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;godot_cpp/classes/node.hpp&gt;</code><br />
-<code>#include &lt;godot_cpp/variant/array.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/variant.hpp&gt;</code><br />
 </div>
-<p><a href="flag__service_8h_source.html">[ソースコード]</a></p>
+<p><a href="world__state_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1FlagService.html">karakuri::FlagService</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1WorldState.html">karakuri::WorldState</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Karakuri OS のメモリサンドボックス機構 (旧 FlagService)。 単一のグローバル辞書による状態汚染を防ぐため、名前空間（Namespace）と 生存期間（Scope）による厳格なメモリ管理・分離を行う。  <a href="classkarakuri_1_1WorldState.html#details">[詳解]</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 名前空間</h2></td></tr>
 <tr class="memitem:namespacekarakuri" id="r_namespacekarakuri"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html">karakuri</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+関数</h2></td></tr>
+<tr class="memitem:a72daf70b2cf447243e8684545969f336" id="r_a72daf70b2cf447243e8684545969f336"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world__state_8h.html#a72daf70b2cf447243e8684545969f336">VARIANT_ENUM_CAST</a> (<a class="el" href="classkarakuri_1_1WorldState.html#ad17e0b91ac0e561071b15fdb8c05fa5c">karakuri::WorldState::Scope</a>)</td></tr>
+<tr class="separator:a72daf70b2cf447243e8684545969f336"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: 汎用フラグ管理サービス。 </p>
-<h2><a class="anchor" id="autotoc_md30"></a>
-役割</h2>
-<ul>
-<li>ゲーム内の全フラグ（Boolean / Integer / String / Float）を 型に縛られない Variant として一元管理するシングルトン。</li>
-<li>SaveService と連携し、serialize()/deserialize() でフラグを永続化。</li>
-<li>ConditionEvaluator が参照する唯一のフラグストアとして機能する。</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
-設計ポリシー (karakuri 層)</h2>
-<ul>
-<li>ミステリー固有の概念（証拠品・証言等）を一切知らない。</li>
-<li>MysteryManager の既存フラグ（flags_）と互換させるため MysteryManager から deserialize 時に sync_from() で移行可能。</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md32"></a>
-使い方</h2>
-<div class="fragment"><div class="line"><span class="keyword">auto</span> *fs = <a class="code hl_function" href="classkarakuri_1_1FlagService.html#a3893f1fbb165009454f68a0236c50da1">karakuri::FlagService::get_singleton</a>();</div>
-<div class="line">fs-&gt;set_flag(<span class="stringliteral">&quot;is_cabinet_opened&quot;</span>, <span class="keyword">true</span>);</div>
-<div class="line"><span class="keywordtype">bool</span> open = bool(fs-&gt;get_flag(<span class="stringliteral">&quot;is_cabinet_opened&quot;</span>)); <span class="comment">// true</span></div>
-<div class="line">fs-&gt;set_flag(<span class="stringliteral">&quot;player_level&quot;</span>, 5);</div>
-<div class="ttc" id="aclasskarakuri_1_1FlagService_html_a3893f1fbb165009454f68a0236c50da1"><div class="ttname"><a href="classkarakuri_1_1FlagService.html#a3893f1fbb165009454f68a0236c50da1">karakuri::FlagService::get_singleton</a></div><div class="ttdeci">static FlagService * get_singleton()</div><div class="ttdef"><b>Definition</b> flag_service.cpp:22</div></div>
-</div><!-- fragment --> </div></div><!-- contents -->
+<h2 class="groupheader">関数詳解</h2>
+<a id="a72daf70b2cf447243e8684545969f336" name="a72daf70b2cf447243e8684545969f336"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72daf70b2cf447243e8684545969f336">&#9670;&#160;</a></span>VARIANT_ENUM_CAST()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VARIANT_ENUM_CAST </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkarakuri_1_1WorldState.html#ad17e0b91ac0e561071b15fdb8c05fa5c">karakuri::WorldState::Scope</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

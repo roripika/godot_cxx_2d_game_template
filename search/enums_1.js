@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['taskresult_0',['TaskResult',['../namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea',1,'karakuri']]]
+  ['scope_0',['Scope',['../classkarakuri_1_1WorldState.html#ad17e0b91ac0e561071b15fdb8c05fa5c',1,'karakuri::WorldState']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['境界内）_0',['責務（Karakuri 境界内）',['../karakuri__game__state_8h.html#autotoc_md17',1,'']]]
+  ['判定（基本）_0',['Leaf 判定（基本）',['../logic_2condition__evaluator_8h.html#autotoc_md22',1,'']]],
+  ['判定_1',['フラグ存在チェック (truthy 判定)',['../condition__evaluator_8h.html#autotoc_md11',1,'']]]
 ];
