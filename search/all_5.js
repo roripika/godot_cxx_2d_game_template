@@ -1,16 +1,19 @@
 var searchData=
 [
   ['elapsed_5f_0',['elapsed_',['../classkarakuri_1_1WaitTask.html#ab5eed80019f12e784bed0fd5e56bb3e9',1,'karakuri::WaitTask']]],
-  ['emit_5flocale_5fchanged_1',['emit_locale_changed',['../classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e',1,'karakuri::LocalizationService']]],
-  ['end_5fround_2',['end_round',['../classFightingGameManager.html#a826409157f6085e5e20511c76424f2ef',1,'FightingGameManager']]],
-  ['ensure_5fplayers_3',['ensure_players',['../classkarakuri_1_1SoundService.html#af85e87b6a0bea5b4165f3801e74e820d',1,'karakuri::SoundService']]],
-  ['erase_5fflag_4',['erase_flag',['../classkarakuri_1_1FlagService.html#ae41ced50225177e154224801bff4d304',1,'karakuri::FlagService']]],
-  ['error_5',['error',['../classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e',1,'karakuri::Logger']]],
-  ['eval_5fleaf_6',['eval_leaf',['../classkarakuri_1_1ConditionEvaluator.html#a81581898e5153d7bf364ee61dd63f249',1,'karakuri::ConditionEvaluator']]],
-  ['eval_5frecursive_7',['eval_recursive',['../classkarakuri_1_1ConditionEvaluator.html#a62021d2df0142117073651abfc690c84',1,'karakuri::ConditionEvaluator']]],
-  ['evaluate_8',['evaluate',['../classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5',1,'karakuri::ConditionEvaluator::evaluate(const godot::Dictionary &amp;condition)'],['../classkarakuri_1_1ConditionEvaluator.html#ad3595202e763b25423d668dce06c3a90',1,'karakuri::ConditionEvaluator::evaluate(const godot::Variant &amp;condition, FlagService *flags=nullptr)']]],
-  ['evidence_5fui_5f_9',['evidence_ui_',['../classkarakuri_1_1ScenarioRunner.html#aade185b207b2b234df5adc2b65d95847',1,'karakuri::ScenarioRunner']]],
-  ['evidence_5fui_5fpath_5f_10',['evidence_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a54ecfcabb2fede561eddf40ca1267e53',1,'karakuri::ScenarioRunner']]],
-  ['execute_5fsingle_5faction_11',['execute_single_action',['../classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306',1,'karakuri::ScenarioRunner']]],
-  ['extract_5fprefix_12',['extract_prefix',['../classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a',1,'karakuri::LocalizationService']]]
+  ['else_5fbranch_5f_1',['else_branch_',['../classkarakuri_1_1IfFlagTask.html#a485786df5f150becb12a2a5d10943583',1,'karakuri::IfFlagTask::else_branch_'],['../classkarakuri_1_1IfHasItemsTask.html#ab552d42a2850ac6e779ebea9245c60ac',1,'karakuri::IfHasItemsTask::else_branch_']]],
+  ['emit_5flocale_5fchanged_2',['emit_locale_changed',['../classkarakuri_1_1LocalizationService.html#a22be34f1732574c7cf2f83192db1428e',1,'karakuri::LocalizationService']]],
+  ['end_5fround_3',['end_round',['../classFightingGameManager.html#a826409157f6085e5e20511c76424f2ef',1,'FightingGameManager']]],
+  ['ensure_5fplayers_4',['ensure_players',['../classkarakuri_1_1SoundService.html#af85e87b6a0bea5b4165f3801e74e820d',1,'karakuri::SoundService']]],
+  ['erase_5fflag_5',['erase_flag',['../classkarakuri_1_1FlagService.html#ae41ced50225177e154224801bff4d304',1,'karakuri::FlagService']]],
+  ['error_6',['error',['../classkarakuri_1_1Logger.html#a9ceb63d30a2b175aacfc1f1a035f573e',1,'karakuri::Logger']]],
+  ['eval_5fleaf_7',['eval_leaf',['../classkarakuri_1_1ConditionEvaluator.html#a81581898e5153d7bf364ee61dd63f249',1,'karakuri::ConditionEvaluator']]],
+  ['eval_5frecursive_8',['eval_recursive',['../classkarakuri_1_1ConditionEvaluator.html#a62021d2df0142117073651abfc690c84',1,'karakuri::ConditionEvaluator']]],
+  ['evaluate_9',['evaluate',['../classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5',1,'karakuri::ConditionEvaluator::evaluate(const godot::Dictionary &amp;condition)'],['../classkarakuri_1_1ConditionEvaluator.html#ad3595202e763b25423d668dce06c3a90',1,'karakuri::ConditionEvaluator::evaluate(const godot::Variant &amp;condition, FlagService *flags=nullptr)']]],
+  ['evidence_5fui_5f_10',['evidence_ui_',['../classkarakuri_1_1ScenarioRunner.html#aade185b207b2b234df5adc2b65d95847',1,'karakuri::ScenarioRunner']]],
+  ['evidence_5fui_5fpath_5f_11',['evidence_ui_path_',['../classkarakuri_1_1ScenarioRunner.html#a54ecfcabb2fede561eddf40ca1267e53',1,'karakuri::ScenarioRunner']]],
+  ['execute_12',['execute',['../classkarakuri_1_1ChangeRootSceneTask.html#a29e8318f08a592d76cb92592d0f4d8a5',1,'karakuri::ChangeRootSceneTask::execute()'],['../classkarakuri_1_1WaitTask.html#a1143e9142f8f9969bc94c174d45cf61a',1,'karakuri::WaitTask::execute()'],['../classkarakuri_1_1TransitionObjectTask.html#a224224c526bcce27bb52d2d4a3514a90',1,'karakuri::TransitionObjectTask::execute()'],['../classkarakuri_1_1TaskGroup.html#afc5af1c9547f5175cc8a8f19b335c11f',1,'karakuri::TaskGroup::execute()'],['../classkarakuri_1_1TaskBase.html#afa2cfb0af3e68b324957617f9f8a888b',1,'karakuri::TaskBase::execute()'],['../classkarakuri_1_1SetFlagTask.html#acf4bdfd71ec0d5672c0930a76a80808d',1,'karakuri::SetFlagTask::execute()'],['../classkarakuri_1_1IfHasItemsTask.html#a44c79dd6eb3db5bb61ecddd138b5a256',1,'karakuri::IfHasItemsTask::execute()'],['../classkarakuri_1_1IfFlagTask.html#a014f95ba732e073f1261fb3b6d186f43',1,'karakuri::IfFlagTask::execute()'],['../classkarakuri_1_1GotoTask.html#ac1a3bad021b0685bfb28e79ba57b15e1',1,'karakuri::GotoTask::execute()'],['../classkarakuri_1_1DialogueTask.html#ab735c94f3afa8ad607822d95c2c14359',1,'karakuri::DialogueTask::execute()'],['../classkarakuri_1_1ChoiceTask.html#a3f13055b279a5e974e4eb9d6f496b58f',1,'karakuri::ChoiceTask::execute()']]],
+  ['execute_5fsingle_5faction_13',['execute_single_action',['../classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306',1,'karakuri::ScenarioRunner']]],
+  ['expected_5fvalue_5f_14',['expected_value_',['../classkarakuri_1_1IfFlagTask.html#a65dbb1118bb4e32d0db3539088539cf9',1,'karakuri::IfFlagTask']]],
+  ['extract_5fprefix_15',['extract_prefix',['../classkarakuri_1_1LocalizationService.html#a8bbe0996dc5b421e9bf1ecc7c4a29d0a',1,'karakuri::LocalizationService']]]
 ];

@@ -28,7 +28,8 @@ var menudata={children:[
 {text:"名前空間一覧",url:"namespaces.html"},
 {text:"名前空間メンバ",url:"namespacemembers.html",children:[
 {text:"全て",url:"namespacemembers.html"},
-{text:"関数",url:"namespacemembers_func.html"}]}]},
+{text:"関数",url:"namespacemembers_func.html"},
+{text:"列挙型",url:"namespacemembers_enum.html"}]}]},
 {text:"データ構造",url:"annotated.html",children:[
 {text:"データ構造",url:"annotated.html"},
 {text:"データ構造索引",url:"classes.html"},

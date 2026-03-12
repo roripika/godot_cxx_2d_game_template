@@ -76,14 +76,14 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">データ構造</a> &#124;
-<a href="#namespaces">名前空間</a>  </div>
+<a href="#namespaces">名前空間</a> &#124;
+<a href="#enum-members">列挙型</a>  </div>
   <div class="headertitle"><div class="title">task_base.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Basic Game Karakuri: 全タスクの基底クラス。  
-<a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;godot_cpp/classes/ref_counted.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/core/error_macros.hpp&gt;</code><br />
 </div>
 <p><a href="task__base_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
@@ -96,22 +96,17 @@ $(function() {
 名前空間</h2></td></tr>
 <tr class="memitem:namespacekarakuri" id="r_namespacekarakuri"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html">karakuri</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:a7b866ecf57d6173e927d9368fed1f3ea" id="r_a7b866ecf57d6173e927d9368fed1f3ea"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">karakuri::TaskResult</a> { <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3eaa505a83f220c02df2f85c3810cd9ceb38">karakuri::Success</a>
+, <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3eaa5706de961fb376d701be6e7762d8b09c">karakuri::Waiting</a>
+, <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3eaad7c8c85bf79bbe1b7188497c32c3b0ca">karakuri::Failed</a>
+, <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3eaa75240d8d8bc1132a0503b99d9eca880c">karakuri::Yielded</a>
+ }</td></tr>
+<tr class="separator:a7b866ecf57d6173e927d9368fed1f3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: 全タスクの基底クラス。 </p>
-<h2><a class="anchor" id="autotoc_md56"></a>
-役割</h2>
-<ul>
-<li>on_start() / on_update(delta) / is_finished() の契約を定義する。</li>
-<li>complete_instantly() でスキップ時の最終状態を一括適用する。</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md57"></a>
-設計ポリシー</h2>
-<ul>
-<li>RefCounted を継承することで Ref&lt;TaskBase&gt; による自動メモリ管理に対応。</li>
-<li>副作用（フラグ・アイテム更新）は on_start() か complete_instantly() で行い、 on_update() には「段階的な演出」のみを書く。これによりスキップ時の整合性を保証。 </li>
-</ul>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

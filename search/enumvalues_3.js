@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['waiting_0',['WAITING',['../classFightingGameManager.html#aa857313869dee6dc300c11b6175b8959a42a8f230da672e6ba0e8ecc937ddb070',1,'FightingGameManager']]]
+  ['success_0',['Success',['../namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3eaa505a83f220c02df2f85c3810cd9ceb38',1,'karakuri']]]
 ];
