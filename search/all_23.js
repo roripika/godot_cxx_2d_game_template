@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ポリシー_0',['duplicate(true) ポリシー',['../state__snapshot_8h.html#autotoc_md52',1,'']]]
+  ['フラグ存在チェック_20truthy_20判定_0',['フラグ存在チェック (truthy 判定)',['../condition__evaluator_8h.html#autotoc_md10',1,'']]]
 ];

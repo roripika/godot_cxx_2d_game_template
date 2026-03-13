@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['マスターカタログの_20dictionary_20形式_0',['マスターカタログの Dictionary 形式',['../item__service_8h.html#autotoc_md33',1,'']]]
+  ['ポリシー_0',['duplicate(true) ポリシー',['../state__snapshot_8h.html#autotoc_md51',1,'']]]
 ];

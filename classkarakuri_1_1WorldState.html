@@ -174,10 +174,10 @@ karakuri::WorldState の継承関係図</div>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Karakuri OS のメモリサンドボックス機構 (旧 FlagService)。 単一のグローバル辞書による状態汚染を防ぐため、名前空間（Namespace）と 生存期間（Scope）による厳格なメモリ管理・分離を行う。 </p>
-<h2><a class="anchor" id="autotoc_md58"></a>
+<h2><a class="anchor" id="autotoc_md57"></a>
 内部データ構造</h2>
 <p>スコープごとに独立した Dictionary を持ち、その中で Namespace により ツリー化する: { namespace: { key: value } }</p>
-<h2><a class="anchor" id="autotoc_md59"></a>
+<h2><a class="anchor" id="autotoc_md58"></a>
 後方互換 (旧 FlagService)</h2>
 <ul>
 <li>set_flag / get_flag / has_flag を namespace="core", scope=SCOPE_GLOBAL で ラップするメソッドとして提供。 </li>

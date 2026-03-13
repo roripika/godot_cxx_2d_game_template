@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Basic Game Karakuri: アクション名 → Godot クラス名 の動的ディスパッチ登録簿。  
+<p>Karakuri Kernel ABI v1.5: アクション名 → C++ クラスのマッピングと ロード時コンパイル（型付き IR 生成）を担うファクトリ。  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;godot_cpp/classes/object.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
@@ -102,27 +102,20 @@ $(function() {
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Basic Game Karakuri: アクション名 → Godot クラス名 の動的ディスパッチ登録簿。 </p>
+<div class="textblock"><p>Karakuri Kernel ABI v1.5: アクション名 → C++ クラスのマッピングと ロード時コンパイル（型付き IR 生成）を担うファクトリ。 </p>
 <h2><a class="anchor" id="autotoc_md0"></a>
-目的</h2>
-<p>YAML / JSON の <code>{"action": "add_evidence", "evidence_id": "knife"}</code> 形式のデータから C++ クラスを動的に生成・実行できるようにする。 Core 層は Mystery 層のヘッダを一切 include しない（依存逆転防止）。</p>
+設計方針 (ABI v1.5)</h2>
+<ul>
+<li>動的プロパティ注入 (task-&gt;set(k, v)) を禁止。</li>
+<li>compile_task(spec) でクラスの instantiate と validate_and_setup() を一括実行。</li>
+<li>バリデーション失敗は Fail-Fast: null を返し、ロード段階でエラーを確定させる。</li>
+<li>実行フェーズ (_process) は検証済みタスクを execute() するだけの状態機械となる。</li>
+</ul>
 <h2><a class="anchor" id="autotoc_md1"></a>
-登録フロー</h2>
-<div class="fragment"><div class="line">[Mystery 初期化時]</div>
-<div class="line">  MysteryGameState::_ready()</div>
-<div class="line">    → ActionRegistry::register_action(&quot;add_evidence&quot;, &quot;TaskAddEvidence&quot;)</div>
-<div class="line"> </div>
-<div class="line">[シナリオ実行時]</div>
-<div class="line">  ScenarioRunner::execute_single_action({<span class="stringliteral">&quot;action&quot;</span>:<span class="stringliteral">&quot;add_evidence&quot;</span>,<span class="stringliteral">&quot;evidence_id&quot;</span>:<span class="stringliteral">&quot;knife&quot;</span>})</div>
-<div class="line">    → ActionRegistry::create_task(<span class="stringliteral">&quot;add_evidence&quot;</span>)   <span class="comment">// ClassDBSingleton::instantiate</span></div>
-<div class="line">    → task-&gt;set(&quot;evidence_id&quot;, &quot;knife&quot;)              <span class="comment">// Godot リフレクションで注入</span></div>
-<div class="line">    → task-&gt;on_start()</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md2"></a>
 アーキテクチャ境界</h2>
 <ul>
-<li>このクラスは src/core/ にのみ置く。</li>
-<li>src/mystery/ のヘッダを一切 include しない。</li>
-<li>ClassDBSingleton::instantiate() でクラス名から Object を生成するため、 登録されたクラス名が Godot に正しく register_class されている必要がある。 </li>
+<li>src/core/ にのみ置く。src/mystery/ を include しない（依存逆転防止）。</li>
+<li>Mystery 層の拡張タスクは MysteryGameState::_ready() で register_action() する。 </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

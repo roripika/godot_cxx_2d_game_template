@@ -98,6 +98,7 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 公開型</h2></td></tr>
 <tr class="memitem:a416b4e5b1c36c12d1b20388c9a3b6ce7" id="r_a416b4e5b1c36c12d1b20388c9a3b6ce7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a> = std::function&lt; bool(const godot::Variant &amp;payload)&gt;</td></tr>
+<tr class="memdesc:a416b4e5b1c36c12d1b20388c9a3b6ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mystery 層等から登録するカスタムアクションハンドラの型。 登録されたハンドラは <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0574e6e0a86b38d152b91c0391b3b7db">compile_action()</a> で InlineHandlerTask にラップされ、 ロード時に <a class="el" href="structkarakuri_1_1CompiledScene.html#ac11e511ac1bb3c8ee890ea0d6206b730">CompiledScene.tasks</a> に格納される。  <br /></td></tr>
 <tr class="separator:a416b4e5b1c36c12d1b20388c9a3b6ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -107,7 +108,7 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="memitem:a1a11ec90c114e1c8b67c6ecfdc8ba1b0" id="r_a1a11ec90c114e1c8b67c6ecfdc8ba1b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a1a11ec90c114e1c8b67c6ecfdc8ba1b0">~ScenarioRunner</a> ()</td></tr>
 <tr class="separator:a1a11ec90c114e1c8b67c6ecfdc8ba1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f1525a75bfc99f1d8c5ff8b6680fffb" id="r_a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a1f1525a75bfc99f1d8c5ff8b6680fffb">register_action</a> (const godot::String &amp;kind, <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7">ActionHandler</a> handler)</td></tr>
-<tr class="memdesc:a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">外部からカスタムアクションを登録する。  <br /></td></tr>
+<tr class="memdesc:a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mystery 層からカスタムアクションを登録する拡張フック。  <br /></td></tr>
 <tr class="separator:a1f1525a75bfc99f1d8c5ff8b6680fffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2a5cd95c37a773e5429dc978987fe39" id="r_ac2a5cd95c37a773e5429dc978987fe39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ac2a5cd95c37a773e5429dc978987fe39">set_scenario_path</a> (const godot::String &amp;path)</td></tr>
 <tr class="separator:ac2a5cd95c37a773e5429dc978987fe39"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,8 +132,6 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:aee25586a80bd674b095d0ff8e8d7ef54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2923fd2fb4eaade40637591760775bd" id="r_ab2923fd2fb4eaade40637591760775bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ab2923fd2fb4eaade40637591760775bd">load_scene_by_id</a> (const godot::String &amp;scene_id)</td></tr>
 <tr class="separator:ab2923fd2fb4eaade40637591760775bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd99d51ff26f3ae0a28930e9d919c306" id="r_afd99d51ff26f3ae0a28930e9d919c306"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#afd99d51ff26f3ae0a28930e9d919c306">execute_single_action</a> (const godot::Variant &amp;action)</td></tr>
-<tr class="separator:afd99d51ff26f3ae0a28930e9d919c306"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc233c883e7d81d4bfe454c8c370c9c" id="r_a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6cc233c883e7d81d4bfe454c8c370c9c">complete_custom_action</a> ()</td></tr>
 <tr class="separator:a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c1fa23314e6f94757c69b3539e40425" id="r_a8c1fa23314e6f94757c69b3539e40425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a8c1fa23314e6f94757c69b3539e40425">advance_dialogue</a> ()</td></tr>
@@ -170,8 +169,6 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:a5e8a47e2ae6a81fb053e07ebadcc85aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aacfac50c4cb83def98929176a497a8" id="r_a2aacfac50c4cb83def98929176a497a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a2aacfac50c4cb83def98929176a497a8">step_actions</a> (double delta)</td></tr>
 <tr class="separator:a2aacfac50c4cb83def98929176a497a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" id="r_a9be7bdc1c0c6a84c2f6b1cc1d17dd16e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e">init_builtin_actions</a> ()</td></tr>
-<tr class="separator:a9be7bdc1c0c6a84c2f6b1cc1d17dd16e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a702283c95079fb5d7a190085ebeff45c" id="r_a702283c95079fb5d7a190085ebeff45c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c">set_mode_input_enabled</a> (bool enabled)</td></tr>
 <tr class="separator:a702283c95079fb5d7a190085ebeff45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a576e893e8fe435fbbbc45f3ea85ea662" id="r_a576e893e8fe435fbbbc45f3ea85ea662"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662">notify_mode_exit</a> (const godot::String &amp;current_mode, const godot::String &amp;next_scene_id)</td></tr>
@@ -230,6 +227,8 @@ karakuri::ScenarioRunner の継承関係図</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Mystery 層等から登録するカスタムアクションハンドラの型。 登録されたハンドラは <a class="el" href="classkarakuri_1_1ScenarioRunner.html#a0574e6e0a86b38d152b91c0391b3b7db">compile_action()</a> で InlineHandlerTask にラップされ、 ロード時に <a class="el" href="structkarakuri_1_1CompiledScene.html#ac11e511ac1bb3c8ee890ea0d6206b730">CompiledScene.tasks</a> に格納される。 </p>
 
 </div>
 </div>
@@ -407,24 +406,6 @@ karakuri::ScenarioRunner の継承関係図</div>
 
 </div>
 </div>
-<a id="afd99d51ff26f3ae0a28930e9d919c306" name="afd99d51ff26f3ae0a28930e9d919c306"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd99d51ff26f3ae0a28930e9d919c306">&#9670;&#160;</a></span>execute_single_action()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool karakuri::ScenarioRunner::execute_single_action </td>
-          <td>(</td>
-          <td class="paramtype">const godot::Variant &amp;&#160;</td>
-          <td class="paramname"><em>action</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="afab3dd95e54c4e3d348f979d829c4cf9" name="afab3dd95e54c4e3d348f979d829c4cf9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afab3dd95e54c4e3d348f979d829c4cf9">&#9670;&#160;</a></span>get_current_scene_id()</h2>
 
@@ -474,31 +455,6 @@ karakuri::ScenarioRunner の継承関係図</div>
           <td> const</td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9be7bdc1c0c6a84c2f6b1cc1d17dd16e" name="a9be7bdc1c0c6a84c2f6b1cc1d17dd16e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9be7bdc1c0c6a84c2f6b1cc1d17dd16e">&#9670;&#160;</a></span>init_builtin_actions()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void karakuri::ScenarioRunner::init_builtin_actions </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -755,7 +711,14 @@ karakuri::ScenarioRunner の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p>外部からカスタムアクションを登録する。 </p>
+<p>Mystery 層からカスタムアクションを登録する拡張フック。 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kind</td><td>アクション名 (YAML の "action" 値と一致する文字列) </td></tr>
+    <tr><td class="paramname">handler</td><td>非ブロッキング (return false) またはブロッキング (return true) ラムダ </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

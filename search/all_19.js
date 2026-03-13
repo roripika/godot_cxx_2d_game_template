@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['→_20継承クラスへ）_0',['責務外（境界外 → 継承クラスへ）',['../karakuri__game__state_8h.html#autotoc_md18',1,'']]]
+  ['—_20itemservice_20との連携_0',['item_owned — ItemService との連携',['../logic_2condition__evaluator_8h.html#autotoc_md22',1,'']]]
 ];

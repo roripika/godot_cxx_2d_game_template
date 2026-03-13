@@ -102,9 +102,9 @@ karakuri::ActionRegistry の継承関係図</div>
 <tr class="memitem:a5eb5221a6457d18f3e9c1d54d7b5597d" id="r_a5eb5221a6457d18f3e9c1d54d7b5597d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#a5eb5221a6457d18f3e9c1d54d7b5597d">register_action</a> (const godot::String &amp;action_name, const godot::String &amp;class_name)</td></tr>
 <tr class="memdesc:a5eb5221a6457d18f3e9c1d54d7b5597d"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクション名と Godot クラス名を紐付ける。  <br /></td></tr>
 <tr class="separator:a5eb5221a6457d18f3e9c1d54d7b5597d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b53b5debcc9df835bda5aea839c0db7" id="r_a0b53b5debcc9df835bda5aea839c0db7"><td class="memItemLeft" align="right" valign="top">godot::Ref&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#a0b53b5debcc9df835bda5aea839c0db7">compile_task</a> (const godot::String &amp;action_name, const godot::Dictionary &amp;spec)</td></tr>
-<tr class="memdesc:a0b53b5debcc9df835bda5aea839c0db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクション名から <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> インスタンスを生成・検証し、初期化済みのタスクを返す。  <br /></td></tr>
-<tr class="separator:a0b53b5debcc9df835bda5aea839c0db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e75ebd56724d41f9366e09d5c6e569c" id="r_a7e75ebd56724d41f9366e09d5c6e569c"><td class="memItemLeft" align="right" valign="top">godot::Ref&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#a7e75ebd56724d41f9366e09d5c6e569c">compile_task</a> (const godot::Dictionary &amp;spec)</td></tr>
+<tr class="memdesc:a7e75ebd56724d41f9366e09d5c6e569c"><td class="mdescLeft">&#160;</td><td class="mdescRight">辞書(spec)を受け取り、対応するクラスを Instantiate 後、即座に validate_and_setup() を呼び出す。 エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。  <br /></td></tr>
+<tr class="separator:a7e75ebd56724d41f9366e09d5c6e569c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab06c2a6606f0b7262f410c4af701cd18" id="r_ab06c2a6606f0b7262f410c4af701cd18"><td class="memItemLeft" align="right" valign="top">godot::Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#ab06c2a6606f0b7262f410c4af701cd18">get_registered_actions</a> () const</td></tr>
 <tr class="memdesc:ab06c2a6606f0b7262f410c4af701cd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録されているアクション名の一覧を返す（デバッグ用）。  <br /></td></tr>
 <tr class="separator:ab06c2a6606f0b7262f410c4af701cd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,8 +208,8 @@ karakuri::ActionRegistry の継承関係図</div>
 
 </div>
 </div>
-<a id="a0b53b5debcc9df835bda5aea839c0db7" name="a0b53b5debcc9df835bda5aea839c0db7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b53b5debcc9df835bda5aea839c0db7">&#9670;&#160;</a></span>compile_task()</h2>
+<a id="a7e75ebd56724d41f9366e09d5c6e569c" name="a7e75ebd56724d41f9366e09d5c6e569c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e75ebd56724d41f9366e09d5c6e569c">&#9670;&#160;</a></span>compile_task()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,33 +217,21 @@ karakuri::ActionRegistry の継承関係図</div>
         <tr>
           <td class="memname">Ref&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> &gt; karakuri::ActionRegistry::compile_task </td>
           <td>(</td>
-          <td class="paramtype">const godot::String &amp;&#160;</td>
-          <td class="paramname"><em>action_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
-          <td class="paramname"><em>spec</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>spec</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>アクション名から <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> インスタンスを生成・検証し、初期化済みのタスクを返す。 </p>
-<p>内部では ClassDBSingleton::instantiate() によりクラス名からオブジェクトを生成し、 validate_and_setup(spec) を呼び出して検証を行う。 検証に失敗した場合は null Ref を返す。</p>
+<p>辞書(spec)を受け取り、対応するクラスを Instantiate 後、即座に validate_and_setup() を呼び出す。 エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">action_name</td><td><a class="el" href="classkarakuri_1_1ActionRegistry.html#a5eb5221a6457d18f3e9c1d54d7b5597d" title="アクション名と Godot クラス名を紐付ける。">register_action()</a> で登録したアクション名 </td></tr>
-    <tr><td class="paramname">spec</td><td>アクションの定義データ（パラメータ等） </td></tr>
+    <tr><td class="paramname">spec</td><td>YAML/JSON で記述された1つのアクション定義 (必須キー: "action") </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>戻り値</dt><dd>Ref&lt;TaskBase&gt; (未登録、生成失敗、または検証失敗時は null) </dd></dl>
+<dl class="section return"><dt>戻り値</dt><dd>Ref&lt;TaskBase&gt; 検証に成功した実行可能なタスク、失敗時は null </dd></dl>
 
 </div>
 </div>

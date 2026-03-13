@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['条件_0',['条件',['../condition__evaluator_8h.html#autotoc_md8',1,'AND 条件'],['../condition__evaluator_8h.html#autotoc_md10',1,'NOT 条件'],['../condition__evaluator_8h.html#autotoc_md9',1,'OR 条件']]]
+  ['旧_20flagservice_0',['後方互換 (旧 FlagService)',['../classkarakuri_1_1WorldState.html#autotoc_md58',1,'']]]
 ];
