@@ -3,31 +3,18 @@
 
 /**
  * @file action_registry.h
- * @brief Basic Game Karakuri: アクション名 → Godot クラス名 の動的ディスパッチ登録簿。
+ * @brief Karakuri Kernel ABI v1.5: アクション名 → C++ クラスのマッピングと
+ *        ロード時コンパイル（型付き IR 生成）を担うファクトリ。
  *
- * ## 目的
- * YAML / JSON の `{"action": "add_evidence", "evidence_id": "knife"}` 形式のデータから
- * C++ クラスを動的に生成・実行できるようにする。
- * Core 層は Mystery 層のヘッダを一切 include しない（依存逆転防止）。
- *
- * ## 登録フロー
- * ```
- * [Mystery 初期化時]
- *   MysteryGameState::_ready()
- *     → ActionRegistry::register_action("add_evidence", "TaskAddEvidence")
- *
- * [シナリオ実行時]
- *   ScenarioRunner::execute_single_action({"action":"add_evidence","evidence_id":"knife"})
- *     → ActionRegistry::create_task("add_evidence")   // ClassDBSingleton::instantiate
- *     → task->set("evidence_id", "knife")              // Godot リフレクションで注入
- *     → task->on_start()
- * ```
+ * ## 設計方針 (ABI v1.5)
+ * - 動的プロパティ注入 (task->set(k, v)) を禁止。
+ * - compile_task(spec) でクラスの instantiate と validate_and_setup() を一括実行。
+ * - バリデーション失敗は Fail-Fast: null を返し、ロード段階でエラーを確定させる。
+ * - 実行フェーズ (_process) は検証済みタスクを execute() するだけの状態機械となる。
  *
  * ## アーキテクチャ境界
- * - このクラスは src/core/ にのみ置く。
- * - src/mystery/ のヘッダを一切 include しない。
- * - ClassDBSingleton::instantiate() でクラス名から Object を生成するため、
- *   登録されたクラス名が Godot に正しく register_class されている必要がある。
+ * - src/core/ にのみ置く。src/mystery/ を include しない（依存逆転防止）。
+ * - Mystery 層の拡張タスクは MysteryGameState::_ready() で register_action() する。
  */
 
 #include <godot_cpp/classes/object.hpp>
@@ -74,17 +61,13 @@ public:
                        const godot::String &class_name);
 
   /**
-   * @brief アクション名から TaskBase インスタンスを生成・検証し、初期化済みのタスクを返す。
+   * @brief 辞書(spec)を受け取り、対応するクラスを Instantiate 後、即座に validate_and_setup() を呼び出す。
+   * エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。
    *
-   * 内部では ClassDBSingleton::instantiate() によりクラス名からオブジェクトを生成し、
-   * validate_and_setup(spec) を呼び出して検証を行う。
-   * 検証に失敗した場合は null Ref を返す。
-   *
-   * @param action_name  register_action() で登録したアクション名
-   * @param spec         アクションの定義データ（パラメータ等）
-   * @return Ref<TaskBase> (未登録、生成失敗、または検証失敗時は null)
+   * @param spec YAML/JSON で記述された1つのアクション定義 (必須キー: "action")
+   * @return Ref<TaskBase> 検証に成功した実行可能なタスク、失敗時は null
    */
-  godot::Ref<TaskBase> compile_task(const godot::String &action_name, const godot::Dictionary &spec);
+  godot::Ref<TaskBase> compile_task(const godot::Dictionary &spec);
 
   /** @brief 登録されているアクション名の一覧を返す（デバッグ用）。 */
   godot::Array get_registered_actions() const;

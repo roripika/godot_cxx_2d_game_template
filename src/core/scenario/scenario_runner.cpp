@@ -4,13 +4,6 @@
 #include "../logic/condition_evaluator.h"
 #include "../services/save_service.h"
 #include "../world_state.h"
-#include "../tasks/wait_task.h"
-#include "../tasks/dialogue_task.h"
-#include "../tasks/choice_task.h"
-#include "../tasks/goto_task.h"
-#include "../tasks/if_flag_task.h"
-#include "../tasks/if_has_items_task.h"
-#include "../tasks/transition_object_task.h"
 #include "../yaml/yaml_lite.h"
 
 #include <godot_cpp/classes/engine.hpp>
@@ -26,6 +19,7 @@ using namespace godot;
 namespace karakuri {
 
 namespace {
+// --- 匿名ヘルパー群 ---------------------------------------------------------
 static Dictionary as_dict(const Variant &v) {
   return (v.get_type() == Variant::DICTIONARY) ? (Dictionary)v : Dictionary();
 }
@@ -42,13 +36,35 @@ static String dict_get_string(const Dictionary &d, const String &key,
              ? String(v)
              : def;
 }
+
+// --- InlineHandlerTask: ActionHandler ラムダを TaskBase にラップする ----------
+// GDCLASS 不使用 (Godot リフレクション不要の C++ 内部専用タスク)
+class InlineHandlerTask : public TaskBase {
+  ScenarioRunner::ActionHandler handler_;
+  Variant payload_;
+  bool done_ = false;
+
+public:
+  InlineHandlerTask(ScenarioRunner::ActionHandler h, Variant p)
+      : handler_(std::move(h)), payload_(std::move(p)) {}
+
+  TaskResult execute(double /*delta*/) override {
+    if (!done_) {
+      handler_(payload_);
+      done_ = true;
+    }
+    return TaskResult::Success;
+  }
+  godot::Error validate_and_setup(const godot::Dictionary &) override { return godot::OK; }
+  void complete_instantly() override { done_ = true; }
+};
+
 } // namespace
 
-ScenarioRunner::ScenarioRunner() { init_builtin_actions(); }
+ScenarioRunner::ScenarioRunner() {}
 ScenarioRunner::~ScenarioRunner() {}
 
-void ScenarioRunner::register_action(const String &kind,
-                                     ActionHandler handler) {
+void ScenarioRunner::register_action(const String &kind, ActionHandler handler) {
   action_handlers_[kind] = handler;
 }
 
@@ -127,8 +143,6 @@ void ScenarioRunner::_bind_methods() {
                        &ScenarioRunner::load_scenario);
   ClassDB::bind_method(D_METHOD("load_scene_by_id", "scene_id"),
                        &ScenarioRunner::load_scene_by_id);
-  ClassDB::bind_method(D_METHOD("execute_single_action", "action"),
-                       &ScenarioRunner::execute_single_action);
   ClassDB::bind_method(D_METHOD("complete_custom_action"),
                        &ScenarioRunner::complete_custom_action);
   ClassDB::bind_method(D_METHOD("inject_steps", "steps"),
@@ -276,26 +290,31 @@ Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
        payload["text"] = payload["value"];
     }
 
-    Ref<TaskBase> task = reg->compile_task(action_name, payload);
+    // ABI v1.5: we need to ensure payload has "action" key
+    payload["action"] = action_name;
+
+    Ref<TaskBase> task = reg->compile_task(payload);
     if (task.is_valid()) {
-      // 共通のコンテキスト注入 (ABI v1: TaskBase::set_runner)
       task->set_runner(this);
       
       return task;
     }
   }
 
-  // 3. ハードコードされたフォールバック (将来的に廃止)
-  if (action_name == "wait") {
-    Ref<WaitTask> task = memnew(WaitTask);
-    Dictionary wait_spec;
-    if (payload.has("value")) wait_spec["duration"] = payload["value"];
-    else wait_spec = payload;
-    
-    if (task->validate_and_setup(wait_spec) == OK) return task;
+  // 3. ActionHandler フォールバック (Mystery 層カスタムアクション用)
+  // ロード時にラッパータスクを生成し、CompiledScene.tasks に格納する。
+  if (action_handlers_.has(action_name)) {
+    Variant call_payload = payload.is_empty()
+                               ? Variant(action_name)
+                               : Variant(payload);
+    Ref<InlineHandlerTask> task = memnew(InlineHandlerTask(
+        action_handlers_[action_name], call_payload));
+    task->set_runner(this);
+    return task;
   }
 
-  godot::UtilityFunctions::push_error(String("[ScenarioRunner] 未対応のアクション形式またはコンパイル失敗: ") + action_name);
+  // 4. 未登録アクション: Fail-Fast
+  UtilityFunctions::push_error(String("[ScenarioRunner] 未登録または未対応のアクション: \"") + action_name + "\". ActionRegistry に register_action() で登録してください。");
   return nullptr;
 }
 
@@ -378,64 +397,6 @@ void ScenarioRunner::step_actions(double delta) {
     is_executing_actions_ = false;
     set_mode_input_enabled(true);
   }
-}
-
-bool ScenarioRunner::execute_single_action(const Variant &action) {
-  // 動的実行用 (hotspot など)。コンパイルしてインジェクションする。
-  Ref<TaskBase> task = compile_action(action);
-  if (task.is_valid()) {
-    Array single;
-    single.append(task);
-    inject_steps(single);
-    return true;
-  }
-  return false;
-}
-
-void ScenarioRunner::init_builtin_actions() {
-  // ABI v1 では組み込みアクションも compile_action 内で Task 化されるため、
-  // ここでの lambda 登録は後方互換性が必要なもののみに限定するか、整理する。
-  register_action("goto", [this](const Variant &p) {
-    load_scene_by_id(String(p));
-    return true;
-  });
-
-  // if — ConditionEvaluator 経由で条件分岐
-  register_action("if", [this](const Variant &p) {
-    Dictionary d = as_dict(p);
-    Variant cond_v = d.has("condition") ? d["condition"] : Variant();
-    bool result = false;
-    if (cond_v.get_type() == Variant::DICTIONARY) {
-      result = karakuri::ConditionEvaluator::evaluate(Dictionary(cond_v));
-    } else if (cond_v.get_type() == Variant::BOOL) {
-      result = bool(cond_v);
-    }
-    String branch_key = result ? "then" : "else";
-    if (d.has(branch_key)) {
-      Variant branch = d[branch_key];
-      if (branch.get_type() == Variant::ARRAY) {
-        inject_steps(Array(branch));
-      }
-    }
-    return false; // Non-blocking
-  });
-
-  // set_flag — WorldState にフラグをセット
-  register_action("set_flag", [](const Variant &p) {
-    auto *ws = karakuri::WorldState::get_singleton();
-    if (!ws)
-      return false;
-    if (p.get_type() == Variant::STRING) {
-      ws->set_flag(String(p), true);
-    } else if (p.get_type() == Variant::DICTIONARY) {
-      Dictionary d = p;
-      String name  = d.has("name")  ? String(d["name"])    : String("");
-      Variant value = d.has("value") ? d["value"]           : Variant(true);
-      if (!name.is_empty())
-        ws->set_flag(name, value);
-    }
-    return false; // Non-blocking
-  });
 }
 
 void ScenarioRunner::advance_dialogue() {

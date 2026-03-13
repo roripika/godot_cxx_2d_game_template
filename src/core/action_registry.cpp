@@ -41,7 +41,7 @@ ActionRegistry *ActionRegistry::get_singleton() {
 void ActionRegistry::_bind_methods() {
   ClassDB::bind_method(D_METHOD("register_action", "action_name", "class_name"),
                        &ActionRegistry::register_action);
-  ClassDB::bind_method(D_METHOD("compile_task", "action_name", "spec"),
+  ClassDB::bind_method(D_METHOD("compile_task", "spec"),
                        &ActionRegistry::compile_task);
   ClassDB::bind_method(D_METHOD("has_action", "action_name"),
                        &ActionRegistry::has_action);
@@ -68,7 +68,14 @@ void ActionRegistry::register_action(const String &action_name,
 // 生成 API
 // ------------------------------------------------------------------
 
-Ref<TaskBase> ActionRegistry::compile_task(const String &action_name, const Dictionary &spec) {
+Ref<TaskBase> ActionRegistry::compile_task(const Dictionary &spec) {
+  if (!spec.has("action")) {
+    UtilityFunctions::push_error("[ActionRegistry] 'action' key is missing from spec.");
+    return Ref<TaskBase>();
+  }
+  
+  String action_name = spec["action"];
+
   if (!registry_.has(action_name)) {
     UtilityFunctions::push_error(
         String("[ActionRegistry] 未登録のアクション: \"") + action_name +

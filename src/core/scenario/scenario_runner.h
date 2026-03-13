@@ -26,13 +26,20 @@ class ScenarioRunner : public godot::Node {
   GDCLASS(ScenarioRunner, godot::Node)
 
 public:
+  /**
+   * @brief Mystery 層等から登録するカスタムアクションハンドラの型。
+   * 登録されたハンドラは compile_action() で InlineHandlerTask にラップされ、
+   * ロード時に CompiledScene.tasks に格納される。
+   */
   using ActionHandler = std::function<bool(const godot::Variant &payload)>;
 
   ScenarioRunner();
   ~ScenarioRunner();
 
   /**
-   * @brief 外部からカスタムアクションを登録する。
+   * @brief Mystery 層からカスタムアクションを登録する拡張フック。
+   * @param kind     アクション名 (YAML の "action" 値と一致する文字列)
+   * @param handler  非ブロッキング (return false) またはブロッキング (return true) ラムダ
    */
   void register_action(const godot::String &kind, ActionHandler handler);
 
@@ -64,7 +71,6 @@ public:
   // 公開メソッド (GDScriptからの呼び出し用)
   void load_scenario();
   void load_scene_by_id(const godot::String &scene_id);
-  bool execute_single_action(const godot::Variant &action);
   void complete_custom_action();
 
   /**
@@ -124,8 +130,6 @@ private:
 
   void start_actions(const godot::Array &actions);
   void step_actions(double delta);
-
-  void init_builtin_actions();
 
   void set_mode_input_enabled(bool enabled);
   void notify_mode_exit(const godot::String &current_mode,
