@@ -2,6 +2,7 @@
 #include "../scenario/scenario_runner.h"
 #include "../world_state.h"
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
 
@@ -53,6 +54,7 @@ Error IfFlagTask::validate_and_setup(const Dictionary &spec) {
     then_branch_ = spec.has("then") ? Array(spec["then"]) : Array();
     else_branch_ = spec.has("else") ? Array(spec["else"]) : Array();
   } else {
+    UtilityFunctions::push_error("IfFlagTask: 'key' is missing from spec.");
     return ERR_INVALID_DATA;
   }
   return OK;

@@ -1,6 +1,7 @@
 #include "set_flag_task.h"
 #include "../world_state.h"
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
 
@@ -43,6 +44,7 @@ Error SetFlagTask::validate_and_setup(const Dictionary &spec) {
     key_ = spec["name"];
     value_ = spec.has("value") ? spec["value"] : Variant(true);
   } else {
+    UtilityFunctions::push_error("SetFlagTask: 'key' (or 'name') is missing from spec.");
     return ERR_INVALID_DATA;
   }
   return OK;

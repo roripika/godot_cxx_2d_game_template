@@ -2,19 +2,15 @@
 #include "../scenario/scenario_runner.h"
 
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
 
 namespace karakuri {
 
 void DialogueTask::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("set_speaker", "speaker"), &DialogueTask::set_speaker);
   ClassDB::bind_method(D_METHOD("get_speaker"), &DialogueTask::get_speaker);
-  ClassDB::bind_method(D_METHOD("set_text", "text"), &DialogueTask::set_text);
   ClassDB::bind_method(D_METHOD("get_text"), &DialogueTask::get_text);
-  
-  ADD_PROPERTY(PropertyInfo(Variant::STRING, "speaker"), "set_speaker", "get_speaker");
-  ADD_PROPERTY(PropertyInfo(Variant::STRING, "text"), "set_text", "get_text");
 }
 
 TaskResult DialogueTask::execute(double /*delta*/) {
@@ -49,7 +45,7 @@ Error DialogueTask::validate_and_setup(const Dictionary &spec) {
   } else if (spec.has("text_key")) {
     text_ = spec["text_key"];
   } else {
-    // text または text_key は必須
+    UtilityFunctions::push_error("DialogueTask: 'text' (or 'text_key') key is missing or not a String in spec.");
     return ERR_INVALID_DATA;
   }
   

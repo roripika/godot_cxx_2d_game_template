@@ -27,7 +27,6 @@ public:
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
-  void set_scene_id(const godot::String &id) { scene_id_ = id; }
   godot::String get_scene_id() const { return scene_id_; }
 };
 

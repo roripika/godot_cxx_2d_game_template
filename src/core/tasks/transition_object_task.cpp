@@ -34,8 +34,11 @@ TaskResult TransitionObjectTask::execute(double /*delta*/) {
 }
 
 Error TransitionObjectTask::validate_and_setup(const Dictionary &spec) {
+  if (!spec.has("target")) {
+    UtilityFunctions::push_error("TransitionObjectTask: 'target' key is missing from spec.");
+    return ERR_INVALID_DATA;
+  }
   params_ = spec;
-  if (!params_.has("target")) return ERR_INVALID_DATA;
   return OK;
 }
 

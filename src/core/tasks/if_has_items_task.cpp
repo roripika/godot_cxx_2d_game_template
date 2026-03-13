@@ -2,6 +2,7 @@
 #include "../scenario/scenario_runner.h"
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/engine.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 
 using namespace godot;
 
@@ -48,6 +49,7 @@ Error IfHasItemsTask::validate_and_setup(const Dictionary &spec) {
     then_branch_ = spec.has("then") ? Array(spec["then"]) : Array();
     else_branch_ = spec.has("else") ? Array(spec["else"]) : Array();
   } else {
+    UtilityFunctions::push_error("IfHasItemsTask: 'items' key is missing from spec.");
     return ERR_INVALID_DATA;
   }
   return OK;

@@ -6,14 +6,13 @@
  * @brief Basic Game Karakuri: 秒数またはシグナル待機タスク。
  *
  * ## 使い方
- * ```cpp
- * // 秒数待機
- * Ref<WaitTask> t = memnew(WaitTask);
- * t->set_duration(2.0f);
+ * ```yaml
+ * # 秒数待機
+ * - action: wait
+ *   duration: 2.0
  *
- * // シグナル待機（OBJECT_PATH:signal_name 形式）
- * Ref<WaitTask> t2 = memnew(WaitTask);
- * t2->set_signal_source("res://ui/dialogue_box.tscn:dialogue_finished");
+ * # シグナル待機（duration を省略または 0 にすると mark_signal_received() 待ちになる）
+ * - action: wait
  * ```
  *
  * ## スキップ
@@ -69,7 +68,6 @@ public:
   // ------------------------------------------------------------------
   // プロパティアクセサ
   // ------------------------------------------------------------------
-  void set_duration(double seconds);
   double get_duration() const;
 };
 

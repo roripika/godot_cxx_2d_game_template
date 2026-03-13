@@ -9,10 +9,7 @@ using namespace godot;
 namespace karakuri {
 
 void ChoiceTask::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("set_choices", "choices"), &ChoiceTask::set_choices);
   ClassDB::bind_method(D_METHOD("get_choices"), &ChoiceTask::get_choices);
-  
-  ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "choices"), "set_choices", "get_choices");
 }
 
 TaskResult ChoiceTask::execute(double /*delta*/) {
@@ -57,6 +54,7 @@ Error ChoiceTask::validate_and_setup(const Dictionary &spec) {
   if (spec.has("choices")) {
     choices_ = spec["choices"];
   } else {
+    UtilityFunctions::push_error("ChoiceTask: 'choices' key is missing from spec.");
     return ERR_INVALID_DATA;
   }
   return OK;

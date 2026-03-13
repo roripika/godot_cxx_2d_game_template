@@ -31,10 +31,8 @@ public:
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
-  void set_speaker(const godot::String &speaker) { speaker_ = speaker; }
   godot::String get_speaker() const { return speaker_; }
   
-  void set_text(const godot::String &text) { text_ = text; }
   godot::String get_text() const { return text_; }
 };
 

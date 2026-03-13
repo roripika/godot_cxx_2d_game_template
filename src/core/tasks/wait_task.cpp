@@ -7,11 +7,8 @@ using namespace godot;
 namespace karakuri {
 
 void WaitTask::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("set_duration", "seconds"), &WaitTask::set_duration);
   ClassDB::bind_method(D_METHOD("get_duration"), &WaitTask::get_duration);
   ClassDB::bind_method(D_METHOD("mark_signal_received"), &WaitTask::mark_signal_received);
-
-  ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "duration"), "set_duration", "get_duration");
 }
 
 // ------------------------------------------------------------------
@@ -55,12 +52,8 @@ void WaitTask::mark_signal_received() {
 }
 
 // ------------------------------------------------------------------
-// プロパティアクセサ
+// プロパティ
 // ------------------------------------------------------------------
-
-void WaitTask::set_duration(double seconds) {
-  duration_ = seconds;
-}
 
 double WaitTask::get_duration() const {
   return duration_;

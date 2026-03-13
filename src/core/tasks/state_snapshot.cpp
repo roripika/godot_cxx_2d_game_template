@@ -13,14 +13,9 @@ void StateSnapshot::_bind_methods() {
   ClassDB::bind_method(D_METHOD("restore_services"), &StateSnapshot::restore_services);
 
   ClassDB::bind_method(D_METHOD("get_scene_id"), &StateSnapshot::get_scene_id);
-  ClassDB::bind_method(D_METHOD("set_scene_id", "id"), &StateSnapshot::set_scene_id);
   ClassDB::bind_method(D_METHOD("get_command_index"), &StateSnapshot::get_command_index);
-  ClassDB::bind_method(D_METHOD("set_command_index", "index"), &StateSnapshot::set_command_index);
   ClassDB::bind_method(D_METHOD("get_flags"), &StateSnapshot::get_flags);
   ClassDB::bind_method(D_METHOD("get_inventory"), &StateSnapshot::get_inventory);
-
-  ADD_PROPERTY(PropertyInfo(Variant::STRING, "scene_id"), "set_scene_id", "get_scene_id");
-  ADD_PROPERTY(PropertyInfo(Variant::INT, "command_index"), "set_command_index", "get_command_index");
 }
 
 // ------------------------------------------------------------------
@@ -74,8 +69,5 @@ String StateSnapshot::get_scene_id() const { return current_scene_id_; }
 int StateSnapshot::get_command_index() const { return current_command_index_; }
 Dictionary StateSnapshot::get_flags() const { return flags_; }
 Array StateSnapshot::get_inventory() const { return inventory_; }
-
-void StateSnapshot::set_scene_id(const String &id) { current_scene_id_ = id; }
-void StateSnapshot::set_command_index(int index) { current_command_index_ = index; }
 
 } // namespace karakuri

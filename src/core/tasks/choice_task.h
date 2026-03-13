@@ -29,7 +29,6 @@ public:
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
-  void set_choices(const godot::Array &choices) { choices_ = choices; }
   godot::Array get_choices() const { return choices_; }
 };
 

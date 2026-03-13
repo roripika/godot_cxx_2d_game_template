@@ -71,12 +71,6 @@ public:
   int get_command_index() const;
   godot::Dictionary get_flags() const;
   godot::Array get_inventory() const;
-
-  // ------------------------------------------------------------------
-  // セッター（エディタ用・GDScript からの手動設定用）
-  // ------------------------------------------------------------------
-  void set_scene_id(const godot::String &id);
-  void set_command_index(int index);
 };
 
 } // namespace karakuri
