@@ -1,11 +1,8 @@
 #include "mystery_manager.h"
 #include "mystery_game_state.h"
-#include "../core/scenario/scenario_runner.h"
-#include "../core/services/item_service.h"
 #include "../core/services/save_service.h"
 #include "../core/world_state.h"
 #include "evidence_manager.h"
-#include "mystery_effect_map.h"
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/window.hpp>
@@ -211,128 +208,9 @@ void MysteryManager::_ready() {
 }
 
 void MysteryManager::register_scenario_actions() {
-  Node *root = get_tree()->get_root();
-  // Search for ScenarioRunner in the tree
-  // In our template it might be named "ScenarioRunner" or "DetectiveRunner"
-  karakuri::ScenarioRunner *runner = nullptr;
-
-  // Try to find it by class first (Duck typing or search)
-  // Since we have the header, we can use find_child
-  Node *n = root->find_child("ScenarioRunner", true, false);
-  if (!n)
-    n = root->find_child("DetectiveRunner", true, false);
-
-  runner = Object::cast_to<karakuri::ScenarioRunner>(n);
-
-  if (!runner) {
-    UtilityFunctions::print(
-        "[MysteryManager] ScenarioRunner NOT found. Skipping registration.");
-    return;
-  }
-
-  UtilityFunctions::print(
-      "[MysteryManager] Registering mystery actions to ScenarioRunner.");
-
-  // 1. testimony
-  runner->register_action("testimony", [this, runner](const Variant &p) {
-    Dictionary d = p;
-    Array testimonies = d.get("testimonies", Array());
-    if (testimonies.is_empty())
-      return false;
-
-    UtilityFunctions::print("[Mystery] Starting testimony flow.");
-
-    // We'll use a simple state to track current line of testimony
-    // Since this is a lambda, we need to capture or use MysteryManager state.
-    // For the demo, let's just show the first line and then wait for evidence
-    // or press.
-
-    Dictionary line = testimonies[0];
-    runner->emit_signal("dialogue_requested", line.get("speaker", "Witness"),
-                        line.get("text_key", "..."));
-
-    return true; // Blocking
-
-    return true; // Blocking
-  });
-
-  // 2. give_evidence (scenario uses 'give_evidence', not 'add_evidence')
-  runner->register_action("give_evidence", [this](const Variant &p) {
-    String id = p;
-    EvidenceManager *em = EvidenceManager::get_singleton();
-    if (em)
-      em->add_evidence(id);
-    return false;
-  });
-
-  // 3. give_item — インベントリに追加 (give_evidence と独立した汎用版)
-  runner->register_action("give_item", [](const Variant &p) {
-    String id = p;
-    auto *svc = karakuri::ItemService::get_singleton();
-    if (svc)
-      svc->add_item(id);
-    return false; // Non-blocking
-  });
-
-  // 4. present_evidence — 証拠を提示してシナリオを分岐
-  //    YAML: { action: present_evidence, value: { item_id: "...", on_correct: [...], on_wrong: [...] } }
-  runner->register_action("present_evidence", [runner](const Variant &p) {
-    if (p.get_type() != Variant::DICTIONARY) {
-      return false;
-    }
-    Dictionary params = p;
-    String item_id;
-    if (params.has("item_id")) {
-      item_id = String(params["item_id"]);
-    }
-    auto *svc = karakuri::ItemService::get_singleton();
-    bool correct = svc && !item_id.is_empty() && svc->has_item(item_id);
-
-    // on_correct / on_wrong いずれかのサブ配列でシナリオを差し込む
-    String branch_key = correct ? "on_correct" : "on_wrong";
-    if (params.has(branch_key)) {
-      Variant branch = params[branch_key];
-      if (branch.get_type() == Variant::ARRAY) {
-        Array steps = branch;
-        runner->inject_steps(steps);
-      }
-    }
-    return false; // Non-blocking (inject した分は次フレームで実行)
-  });
-
-  // 5. play_effect — MysteryEffectMap のプリセット発火
-  //    YAML: { action: play_effect, value: "contradict_impact" }
-  runner->register_action("play_effect", [](const Variant &p) {
-    String preset = p.get_type() == Variant::STRING ? (String)p : String("");
-    if (preset.is_empty())
-      return false;
-    auto *emap = MysteryEffectMap::get_singleton();
-    if (emap)
-      emap->fire(preset);
-    return false; // Non-blocking
-  });
-
-  // 6. take_damage
-  runner->register_action("take_damage", [this](const Variant &p) {
-    auto *mgs = MysteryGameState::get_singleton();
-    if (mgs)
-      mgs->take_damage();
-    return false; // Non-blocking
-  });
-
-  // 4. save  — YAML: { action: save, value: "mystery" }
-  runner->register_action("save", [this](const Variant &p) {
-    String demo_id = p.get_type() == Variant::STRING ? (String)p : "mystery";
-    save_state(demo_id);
-    return false; // Non-blocking
-  });
-
-  // 5. load  — YAML: { action: load, value: "mystery" }
-  runner->register_action("load", [this](const Variant &p) {
-    String demo_id = p.get_type() == Variant::STRING ? (String)p : "mystery";
-    load_state(demo_id);
-    return false; // Non-blocking
-  });
+  // [ABI v1.5 Phase 4] 全アクションは ActionRegistry + Typed Task に移行済み。
+  // 登録は MysteryGameState::_ready() が ActionRegistry::register_action() 経由で行う。
+  // このメソッドは後方互換のため宣言を維持するが、何もしない。
 }
 
 // ---------------------------------------------------------------------------

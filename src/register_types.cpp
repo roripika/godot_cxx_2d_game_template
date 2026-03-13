@@ -58,6 +58,13 @@
 #include "mystery/tasks/take_damage_task.h"
 #include "mystery/tasks/reset_game_task.h"
 #include "mystery/tasks/testimony_task.h"
+// Phase 4: Typed Tasks
+#include "mystery/tasks/give_evidence_task.h"
+#include "mystery/tasks/give_item_task.h"
+#include "mystery/tasks/play_effect_task.h"
+#include "mystery/tasks/present_evidence_task.h"
+#include "mystery/tasks/save_state_task.h"
+#include "mystery/tasks/load_state_task.h"
 
 // Layer 2: Mystery template
 #include "mystery/evidence.h"
@@ -165,6 +172,13 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<mystery::TakeDamageTask>();
   ClassDB::register_class<mystery::ResetGameTask>();
   ClassDB::register_class<mystery::TestimonyTask>();
+  // Phase 4: Typed Tasks
+  ClassDB::register_class<mystery::GiveEvidenceTask>();
+  ClassDB::register_class<mystery::GiveItemTask>();
+  ClassDB::register_class<mystery::PlayEffectTask>();
+  ClassDB::register_class<mystery::PresentEvidenceTask>();
+  ClassDB::register_class<mystery::SaveStateTask>();
+  ClassDB::register_class<mystery::LoadStateTask>();
 
   // Layer 2: Mystery template
   ClassDB::register_class<mystery::MysteryGameState>();
