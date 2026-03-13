@@ -33,7 +33,6 @@ public:
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
-  void set_background_id(const godot::String &id);
   godot::String get_background_id() const;
 };
 

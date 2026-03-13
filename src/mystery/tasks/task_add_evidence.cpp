@@ -10,13 +10,8 @@ using namespace godot;
 namespace mystery {
 
 void TaskAddEvidence::_bind_methods() {
-  // evidence_id プロパティ
-  ClassDB::bind_method(D_METHOD("set_evidence_id", "id"),
-                       &TaskAddEvidence::set_evidence_id);
   ClassDB::bind_method(D_METHOD("get_evidence_id"),
                        &TaskAddEvidence::get_evidence_id);
-  ADD_PROPERTY(PropertyInfo(Variant::STRING, "evidence_id"),
-               "set_evidence_id", "get_evidence_id");
 }
 
 // ------------------------------------------------------------------
@@ -63,10 +58,6 @@ void TaskAddEvidence::complete_instantly() {
 // ------------------------------------------------------------------
 // プロパティ
 // ------------------------------------------------------------------
-
-void TaskAddEvidence::set_evidence_id(const String &id) {
-  evidence_id_ = id;
-}
 
 String TaskAddEvidence::get_evidence_id() const {
   return evidence_id_;

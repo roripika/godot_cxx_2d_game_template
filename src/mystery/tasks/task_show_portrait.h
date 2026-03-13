@@ -34,10 +34,8 @@ public:
   godot::Error validate_and_setup(const godot::Dictionary &spec) override;
   void complete_instantly() override;
 
-  void set_character_id(const godot::String &id);
   godot::String get_character_id() const;
 
-  void set_emotion(const godot::String &emotion);
   godot::String get_emotion() const;
 };
 

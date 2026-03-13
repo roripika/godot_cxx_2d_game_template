@@ -55,16 +55,12 @@ public:
   // ------------------------------------------------------------------
   // プロパティ
   // ------------------------------------------------------------------
-  void set_action_runner_path(const godot::NodePath &path);
   godot::NodePath get_action_runner_path() const;
 
-  void set_camera_path(const godot::NodePath &path);
   godot::NodePath get_camera_path() const;
 
-  void set_target_zoom(const godot::Vector2 &zoom);
   godot::Vector2 get_target_zoom() const;
 
-  void set_duration(double secs);
   double get_duration() const;
 };
 

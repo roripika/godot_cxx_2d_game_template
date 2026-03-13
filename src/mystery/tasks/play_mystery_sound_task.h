@@ -58,13 +58,10 @@ public:
   // ------------------------------------------------------------------
   // プロパティ
   // ------------------------------------------------------------------
-  void set_effect_map_path(const godot::NodePath &path);
   godot::NodePath get_effect_map_path() const;
 
-  void set_preset_name(const godot::String &name);
   godot::String get_preset_name() const;
 
-  void set_se_path(const godot::String &path);
   godot::String get_se_path() const;
 };
 

@@ -53,7 +53,6 @@ public:
   // ------------------------------------------------------------------
   // evidence_id プロパティ
   // ------------------------------------------------------------------
-  void set_evidence_id(const godot::String &id);
   godot::String get_evidence_id() const;
 };
 

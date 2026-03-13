@@ -15,27 +15,16 @@ void ShowEvidenceUITask::_bind_methods() {
   ClassDB::bind_method(D_METHOD("_on_selection_finished", "is_correct", "selected_id"),
                        &ShowEvidenceUITask::_on_selection_finished);
 
-  ClassDB::bind_method(D_METHOD("set_evidence_presenter_path", "path"),
-                       &ShowEvidenceUITask::set_evidence_presenter_path);
   ClassDB::bind_method(D_METHOD("get_evidence_presenter_path"),
                        &ShowEvidenceUITask::get_evidence_presenter_path);
-  ClassDB::bind_method(D_METHOD("set_target_statement_id", "id"),
-                       &ShowEvidenceUITask::set_target_statement_id);
   ClassDB::bind_method(D_METHOD("get_target_statement_id"),
                        &ShowEvidenceUITask::get_target_statement_id);
-  ClassDB::bind_method(D_METHOD("set_candidate_ids", "ids"),
-                       &ShowEvidenceUITask::set_candidate_ids);
   ClassDB::bind_method(D_METHOD("get_candidate_ids"),
                        &ShowEvidenceUITask::get_candidate_ids);
   ClassDB::bind_method(D_METHOD("get_result_correct"),
                        &ShowEvidenceUITask::get_result_correct);
   ClassDB::bind_method(D_METHOD("get_result_selected_id"),
                        &ShowEvidenceUITask::get_result_selected_id);
-
-  ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "evidence_presenter_path"),
-               "set_evidence_presenter_path", "get_evidence_presenter_path");
-  ADD_PROPERTY(PropertyInfo(Variant::STRING, "target_statement_id"),
-               "set_target_statement_id", "get_target_statement_id");
 
   ADD_SIGNAL(MethodInfo("selection_result",
                         PropertyInfo(Variant::BOOL, "is_correct"),
@@ -105,23 +94,14 @@ void ShowEvidenceUITask::_on_selection_finished(bool is_correct,
 // プロパティ
 // ------------------------------------------------------------------
 
-void ShowEvidenceUITask::set_evidence_presenter_path(const NodePath &path) {
-  evidence_presenter_path_ = path;
-}
 NodePath ShowEvidenceUITask::get_evidence_presenter_path() const {
   return evidence_presenter_path_;
 }
 
-void ShowEvidenceUITask::set_target_statement_id(const String &id) {
-  target_statement_id_ = id;
-}
 String ShowEvidenceUITask::get_target_statement_id() const {
   return target_statement_id_;
 }
 
-void ShowEvidenceUITask::set_candidate_ids(const Array &ids) {
-  candidate_ids_ = ids;
-}
 Array ShowEvidenceUITask::get_candidate_ids() const {
   return candidate_ids_;
 }

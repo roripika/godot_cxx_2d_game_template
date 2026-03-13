@@ -7,12 +7,8 @@ using namespace godot;
 namespace mystery {
 
 void TaskChangeBackground::_bind_methods() {
-  ClassDB::bind_method(D_METHOD("set_background_id", "id"),
-                       &TaskChangeBackground::set_background_id);
   ClassDB::bind_method(D_METHOD("get_background_id"),
                        &TaskChangeBackground::get_background_id);
-  ADD_PROPERTY(PropertyInfo(Variant::STRING, "background_id"),
-               "set_background_id", "get_background_id");
 }
 
 // ------------------------------------------------------------------
@@ -45,9 +41,6 @@ void TaskChangeBackground::complete_instantly() {
   execute(0.0);
 }
 
-void TaskChangeBackground::set_background_id(const String &id) {
-  background_id_ = id;
-}
 String TaskChangeBackground::get_background_id() const {
   return background_id_;
 }

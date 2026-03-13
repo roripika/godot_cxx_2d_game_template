@@ -59,13 +59,10 @@ public:
   // ------------------------------------------------------------------
   // プロパティ
   // ------------------------------------------------------------------
-  void set_evidence_presenter_path(const godot::NodePath &path);
   godot::NodePath get_evidence_presenter_path() const;
 
-  void set_target_statement_id(const godot::String &id);
   godot::String get_target_statement_id() const;
 
-  void set_candidate_ids(const godot::Array &ids);
   godot::Array get_candidate_ids() const;
 
   bool get_result_correct() const;
