@@ -17,6 +17,7 @@
 #include "core/karakuri_game_state.h"
 #include "core/logger/karakuri_logger.h"
 #include "core/scenario/scenario_runner.h"
+#include "core/kernel_clock.h"
 #include "core/world_state.h"
 #include "core/services/action_runner.h"
 #include "core/services/input_service.h"
@@ -111,6 +112,7 @@
 // これにより、任意の Autoload ノードの _ready() より前に get_singleton()
 // が有効になる。
 static karakuri::ActionRegistry *s_action_registry = nullptr;
+static karakuri::KernelClock *s_kernel_clock = nullptr;
 
 using namespace godot;
 
@@ -145,6 +147,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::SaveService>();
   ClassDB::register_class<karakuri::SceneFlow>();
   ClassDB::register_class<karakuri::SoundService>();
+  ClassDB::register_class<karakuri::KernelClock>();
   ClassDB::register_class<karakuri::ScenarioRunner>();
 
   // Task sequence system (core)
@@ -229,6 +232,10 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   s_action_registry = memnew(karakuri::ActionRegistry);
   Engine::get_singleton()->register_singleton("ActionRegistry",
                                               s_action_registry);
+
+  s_kernel_clock = memnew(karakuri::KernelClock);
+  Engine::get_singleton()->register_singleton("KernelClock",
+                                              s_kernel_clock);
 }
 
 void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {
@@ -239,6 +246,11 @@ void uninitialize_sandbox_module(ModuleInitializationLevel p_level) {
     Engine::get_singleton()->unregister_singleton("ActionRegistry");
     memdelete(s_action_registry);
     s_action_registry = nullptr;
+  }
+  if (s_kernel_clock != nullptr) {
+    Engine::get_singleton()->unregister_singleton("KernelClock");
+    memdelete(s_kernel_clock);
+    s_kernel_clock = nullptr;
   }
 }
 

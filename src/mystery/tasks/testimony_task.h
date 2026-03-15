@@ -4,10 +4,19 @@
 #include "../../core/tasks/task_base.h"
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace karakuri { class ScenarioRunner; }
 
 namespace mystery {
+
+struct TestimonyTaskSpec {
+  godot::Array lines;
+  godot::Array on_success;
+  godot::Array on_failure;
+  int max_rounds = 3;
+};
+
 
 class TestimonyTask : public karakuri::TaskBase {
   GDCLASS(TestimonyTask, karakuri::TaskBase)
@@ -29,8 +38,8 @@ public:
 
   void set_runner(karakuri::ScenarioRunner *runner) override { runner_ = runner; }
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 };
 

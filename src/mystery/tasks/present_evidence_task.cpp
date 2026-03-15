@@ -10,7 +10,7 @@ using namespace godot;
 
 namespace mystery {
 
-karakuri::TaskResult PresentEvidenceTask::execute(double /*delta*/) {
+karakuri::TaskResult PresentEvidenceTask::execute() {
   if (!done_) {
     if (runner_ == nullptr) {
       UtilityFunctions::push_error(
@@ -35,41 +35,47 @@ karakuri::TaskResult PresentEvidenceTask::execute(double /*delta*/) {
 }
 
 godot::Error PresentEvidenceTask::validate_and_setup(
-    const godot::Dictionary &spec) {
-  if (!spec.has("value") || spec["value"].get_type() != Variant::DICTIONARY) {
-    UtilityFunctions::push_error(
+    const karakuri::TaskSpec &spec) {
+  PresentEvidenceTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (!payload.has("value") || payload["value"].get_type() != godot::Variant::DICTIONARY) {
+    godot::UtilityFunctions::push_error(
         "[PresentEvidenceTask] 'value' キーが DICTIONARY 型で必要です。");
     return godot::ERR_INVALID_DATA;
   }
 
-  const Dictionary params = spec["value"];
+  const godot::Dictionary params = payload["value"];
 
-  if (!params.has("item_id") || params["item_id"].get_type() != Variant::STRING) {
-    UtilityFunctions::push_error(
+  if (!params.has("item_id") || params["item_id"].get_type() != godot::Variant::STRING) {
+    godot::UtilityFunctions::push_error(
         "[PresentEvidenceTask] 'value.item_id' キーが STRING 型で必要です。");
     return godot::ERR_INVALID_DATA;
   }
-  item_id_ = params["item_id"];
+  ts.item_id = params["item_id"];
 
-  if (params.has("on_correct") && params["on_correct"].get_type() == Variant::ARRAY) {
-    on_correct_ = params["on_correct"];
+  if (params.has("on_correct") && params["on_correct"].get_type() == godot::Variant::ARRAY) {
+    ts.on_correct = params["on_correct"];
   }
-  if (params.has("on_wrong") && params["on_wrong"].get_type() == Variant::ARRAY) {
-    on_wrong_ = params["on_wrong"];
+  if (params.has("on_wrong") && params["on_wrong"].get_type() == godot::Variant::ARRAY) {
+    ts.on_wrong = params["on_wrong"];
   }
 
-  if (on_correct_.is_empty() && on_wrong_.is_empty()) {
-    UtilityFunctions::push_error(
+  if (ts.on_correct.is_empty() && ts.on_wrong.is_empty()) {
+    godot::UtilityFunctions::push_error(
         "[PresentEvidenceTask] 'on_correct' か 'on_wrong' の少なくとも一方が"
         "必要です。");
     return godot::ERR_INVALID_DATA;
   }
 
+  item_id_ = ts.item_id;
+  on_correct_ = ts.on_correct;
+  on_wrong_ = ts.on_wrong;
   return godot::OK;
 }
 
 void PresentEvidenceTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace mystery

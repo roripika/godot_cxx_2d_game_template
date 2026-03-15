@@ -45,7 +45,7 @@ void PlayMysterySoundTask::play_sound() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-karakuri::TaskResult PlayMysterySoundTask::execute(double /*delta*/) {
+karakuri::TaskResult PlayMysterySoundTask::execute() {
   if (!started_) {
     play_sound();
     started_ = true;
@@ -53,28 +53,34 @@ karakuri::TaskResult PlayMysterySoundTask::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-godot::Error PlayMysterySoundTask::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("preset_name")) {
-    preset_name_ = spec["preset_name"];
-  } else if (spec.has("preset")) {
-    preset_name_ = spec["preset"];
-  } else if (spec.has("se_path")) {
-    se_path_ = spec["se_path"];
+godot::Error PlayMysterySoundTask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  PlayMysterySoundTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("preset_name")) {
+    ts.preset_name = payload["preset_name"];
+  } else if (payload.has("preset")) {
+    ts.preset_name = payload["preset"];
+  } else if (payload.has("se_path")) {
+    ts.se_path = payload["se_path"];
   } else {
     // どちらも空の場合は何もしないタスクとして許容するか、エラーにする。
     // ここでは ERR_INVALID_DATA を返す。
     return godot::ERR_INVALID_DATA;
   }
 
-  if (spec.has("effect_map_path")) {
-    effect_map_path_ = spec["effect_map_path"];
+  if (payload.has("effect_map_path")) {
+    ts.effect_map_path = payload["effect_map_path"];
   }
 
+  preset_name_ = ts.preset_name;
+  se_path_ = ts.se_path;
+  effect_map_path_ = ts.effect_map_path;
   return godot::OK;
 }
 
 void PlayMysterySoundTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 // ------------------------------------------------------------------

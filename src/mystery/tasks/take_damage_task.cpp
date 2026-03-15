@@ -6,7 +6,7 @@ using namespace godot;
 
 namespace mystery {
 
-karakuri::TaskResult TakeDamageTask::execute(double /*delta*/) {
+karakuri::TaskResult TakeDamageTask::execute() {
   MysteryGameState *mgs = MysteryGameState::get_singleton();
   if (mgs) {
     for (int i = 0; i < amount_; ++i) mgs->take_damage();
@@ -14,14 +14,19 @@ karakuri::TaskResult TakeDamageTask::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-Error TakeDamageTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("value")) amount_ = (int)spec["value"];
-  else if (spec.has("amount")) amount_ = (int)spec["amount"];
-  return OK;
+godot::Error TakeDamageTask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  TakeDamageTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value")) ts.amount = (int)payload["value"];
+  else if (payload.has("amount")) ts.amount = (int)payload["amount"];
+
+  amount_ = ts.amount;
+  return godot::OK;
 }
 
 void TakeDamageTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace mystery

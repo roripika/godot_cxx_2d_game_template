@@ -2,7 +2,7 @@
 #define KARAKURI_TASK_BASE_H
 
 #include <godot_cpp/classes/ref_counted.hpp>
-#include <godot_cpp/variant/dictionary.hpp>
+#include "task_spec.h"
 #include <godot_cpp/core/error_macros.hpp>
 
 namespace karakuri {
@@ -31,15 +31,15 @@ public:
    * @param delta フレーム間の差分時間
    * @return TaskResult 実行結果
    */
-  virtual TaskResult execute(double delta) = 0;
+  virtual TaskResult execute() = 0;
 
   /**
-   * @brief シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。
+   * @brief シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。
    * ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。
-   * @param spec タスクの定義データ
+   * @param spec タスクの定義データ (TaskSpec IR)
    * @return Error OK またはエラーコード
    */
-  virtual godot::Error validate_and_setup(const godot::Dictionary &spec) = 0;
+  virtual godot::Error validate_and_setup(const TaskSpec &spec) = 0;
 
   /**
    * @brief スキップ時に呼ばれる。

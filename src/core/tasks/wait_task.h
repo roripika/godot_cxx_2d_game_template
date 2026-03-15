@@ -16,20 +16,32 @@
  * ```
  *
  * ## スキップ
- * complete_instantly() を呼ぶと elapsed_ = duration_ にセットされ、
+ * complete_instantly() を呼ぶと target_time_ = now() にセットされ、
  * is_finished() が即座に true を返すようになる。シグナル待機の場合も同様。
  */
 
 #include "task_base.h"
 #include <godot_cpp/variant/string.hpp>
+#include "task_spec.h"
 
 namespace karakuri {
+
+enum class WaitMode {
+  Timer,
+  Signal
+};
+
+struct WaitTaskSpec {
+  double duration;
+};
+
 
 class WaitTask : public TaskBase {
   GDCLASS(WaitTask, TaskBase)
 
+  WaitMode mode_ = WaitMode::Timer;
   double duration_ = 0.0;
-  double elapsed_ = 0.0;
+  double target_time_ = 0.0;
   bool signal_received_ = false;
 
   bool started_ = false;
@@ -44,8 +56,8 @@ public:
   // ------------------------------------------------------------------
   // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
-  TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  TaskResult execute() override;
+  godot::Error validate_and_setup(const TaskSpec &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

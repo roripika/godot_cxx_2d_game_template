@@ -25,10 +25,19 @@
  */
 
 #include "../../core/tasks/task_base.h"
+#include "../../core/tasks/task_base.h"
 #include <godot_cpp/variant/node_path.hpp>
 #include <godot_cpp/variant/string.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace mystery {
+
+struct PlayMysterySoundTaskSpec {
+  godot::String preset_name;
+  godot::String se_path;
+  godot::NodePath effect_map_path;
+};
+
 
 class PlayMysterySoundTask : public karakuri::TaskBase {
   GDCLASS(PlayMysterySoundTask, karakuri::TaskBase)
@@ -51,8 +60,8 @@ public:
   // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

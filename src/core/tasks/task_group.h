@@ -20,8 +20,14 @@
 
 #include "task_base.h"
 #include <godot_cpp/variant/array.hpp>
+#include "task_spec.h"
 
 namespace karakuri {
+
+struct TaskGroupSpec {
+  godot::Array tasks;
+};
+
 
 class TaskGroup : public TaskBase {
   GDCLASS(TaskGroup, TaskBase)
@@ -41,8 +47,8 @@ public:
   // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
 
-  TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  TaskResult execute() override;
+  godot::Error validate_and_setup(const TaskSpec &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

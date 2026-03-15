@@ -23,8 +23,17 @@
 #include "../../core/tasks/task_base.h"
 #include <godot_cpp/variant/node_path.hpp>
 #include <godot_cpp/variant/vector2.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace mystery {
+
+struct ZoomCameraTaskSpec {
+  godot::Vector2 target_zoom;
+  double duration = 0.5;
+  godot::NodePath camera_path;
+  godot::NodePath action_runner_path;
+};
+
 
 class ZoomCameraTask : public karakuri::TaskBase {
   GDCLASS(ZoomCameraTask, karakuri::TaskBase)
@@ -33,7 +42,7 @@ class ZoomCameraTask : public karakuri::TaskBase {
   godot::NodePath camera_path_;
   godot::Vector2 target_zoom_ = godot::Vector2(1.0f, 1.0f);
   double duration_ = 0.5;
-  double elapsed_ = 0.0;
+  double target_time_ = 0.0;
 
   bool started_ = false;
 
@@ -48,8 +57,8 @@ public:
   // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------

@@ -18,7 +18,7 @@ void TaskAddEvidence::_bind_methods() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-karakuri::TaskResult TaskAddEvidence::execute(double /*delta*/) {
+karakuri::TaskResult TaskAddEvidence::execute() {
   if (!started_) {
     MysteryGameState *mgs = MysteryGameState::get_singleton();
     if (mgs == nullptr) {
@@ -39,20 +39,25 @@ karakuri::TaskResult TaskAddEvidence::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-godot::Error TaskAddEvidence::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("value")) {
-    evidence_id_ = spec["value"];
-  } else if (spec.has("evidence_id")) {
-    evidence_id_ = spec["evidence_id"];
+godot::Error TaskAddEvidence::validate_and_setup(const karakuri::TaskSpec &spec) {
+  TaskAddEvidenceSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value")) {
+    ts.evidence_id = payload["value"];
+  } else if (payload.has("evidence_id")) {
+    ts.evidence_id = payload["evidence_id"];
   } else {
     // 証拠品追加タスクには最低限 ID が必要
     return godot::ERR_INVALID_DATA;
   }
+
+  evidence_id_ = ts.evidence_id;
   return godot::OK;
 }
 
 void TaskAddEvidence::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 // ------------------------------------------------------------------

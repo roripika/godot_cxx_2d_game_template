@@ -3,26 +3,24 @@
 
 /**
  * @file action_registry.h
- * @brief Karakuri Kernel ABI v1.5: アクション名 → C++ クラスのマッピングと
- *        ロード時コンパイル（型付き IR 生成）を担うファクトリ。
+ * @brief Karakuri Kernel Architecture v2.0: 安全な Task ファクトリ。
  *
- * ## 設計方針 (ABI v1.5)
- * - 動的プロパティ注入 (task->set(k, v)) を禁止。
- * - compile_task(spec) でクラスの instantiate と validate_and_setup() を一括実行。
+ * ## 設計方針 (Architecture v2.0)
+ * - ClassDBSingleton::instantiate の文字列依存を廃止し、std::function<TaskBase*()> を用いた型安全なファクトリへ移行。
+ * - TaskSpec を用いた Typed Scenario IR を導入。
  * - バリデーション失敗は Fail-Fast: null を返し、ロード段階でエラーを確定させる。
- * - 実行フェーズ (_process) は検証済みタスクを execute() するだけの状態機械となる。
- *
- * ## アーキテクチャ境界
- * - src/core/ にのみ置く。src/mystery/ を include しない（依存逆転防止）。
- * - Mystery 層の拡張タスクは MysteryGameState::_ready() で register_action() する。
  */
 
+#include <functional>
 #include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/variant/dictionary.hpp>
 #include <godot_cpp/variant/string.hpp>
 #include <godot_cpp/classes/ref.hpp>
+#include <godot_cpp/templates/hash_map.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
 
 #include "tasks/task_base.h"
+#include "tasks/task_spec.h"
 
 namespace karakuri {
 
@@ -31,8 +29,8 @@ class ActionRegistry : public godot::Object {
 
   static ActionRegistry *singleton_;
 
-  /// アクション名 → Godot クラス名 のマッピング
-  godot::Dictionary registry_;
+  /// アクション名 → TaskBase 生成ファクトリ関数のマッピング
+  godot::HashMap<godot::String, std::function<TaskBase*()>> typed_registry_;
 
 protected:
   static void _bind_methods();
@@ -42,7 +40,6 @@ public:
   ActionRegistry();
   ~ActionRegistry() override;
 
-  /** @brief シングルトンを返す。 */
   static ActionRegistry *get_singleton();
 
   // ------------------------------------------------------------------
@@ -50,24 +47,36 @@ public:
   // ------------------------------------------------------------------
 
   /**
-   * @brief アクション名と Godot クラス名を紐付ける。
+   * @brief アクション名と C++ タスククラスを紐付ける型安全なファクトリ登録。
    *
-   * @param action_name  YAML/JSON に書くアクション名 (例: "add_evidence")
-   * @param class_name   GDExtension に register_class された C++ クラス名 (例: "TaskAddEvidence")
-   *
-   * Mystery 層の初期化時（_ready() 等で）に一度だけ呼ぶこと。
+   * @tparam T           TaskBase を継承した C++ クラス
+   * @param action_name  YAML/JSON に書くアクション名 (例: "dialogue")
    */
-  void register_action(const godot::String &action_name,
-                       const godot::String &class_name);
+  template <typename T>
+  void register_action_class(const godot::String &action_name) {
+    typed_registry_[action_name] = []() -> TaskBase* {
+      return memnew(T);
+    };
+    godot::UtilityFunctions::print("[ActionRegistry] registered factory for: \"", action_name, "\"");
+  }
 
   /**
-   * @brief 辞書(spec)を受け取り、対応するクラスを Instantiate 後、即座に validate_and_setup() を呼び出す。
+   * @brief (非推奨) GDScript用バインディング。C++側では register_action_class<T>() を使用する。
+   */
+  void register_action_deprecated(const godot::String &action_name, const godot::String &class_name);
+
+  // ------------------------------------------------------------------
+  // 生成 API
+  // ------------------------------------------------------------------
+
+  /**
+   * @brief TaskSpec を受け取り、対応するクラスを生成後、即座に validate_and_setup() を呼び出す。
    * エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。
    *
-   * @param spec YAML/JSON で記述された1つのアクション定義 (必須キー: "action")
+   * @param spec シナリオロード時に展開された型付きIR (TaskSpec)
    * @return Ref<TaskBase> 検証に成功した実行可能なタスク、失敗時は null
    */
-  godot::Ref<TaskBase> compile_task(const godot::Dictionary &spec);
+  godot::Ref<TaskBase> compile_task(const TaskSpec &spec);
 
   /** @brief 登録されているアクション名の一覧を返す（デバッグ用）。 */
   godot::Array get_registered_actions() const;

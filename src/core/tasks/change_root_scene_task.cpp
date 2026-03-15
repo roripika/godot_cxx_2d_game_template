@@ -3,6 +3,7 @@
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/core/class_db.hpp>
+#include "../scenario/scenario_runner.h"
 
 using namespace godot;
 
@@ -10,24 +11,39 @@ namespace karakuri {
 
 void ChangeRootSceneTask::_bind_methods() {}
 
-TaskResult ChangeRootSceneTask::execute(double /*delta*/) {
-  // Engine シングルトン経由で SceneTree を取得する
-  // 実際には Node の get_tree() が楽だが、Task は Node ではない。
-  // ClassDB::instantiate するので、親がない。
-  // プロジェクト設定等のシングルトン経由でやるか、
-  // とりあえず実装
-  return TaskResult::Success; // TODO: 実際の実装 (SceneTree 操作)
+TaskResult ChangeRootSceneTask::execute() {
+  if (!transition_requested_) {
+    if (runner_) {
+      runner_->request_transition(scene_path_, params_);
+    }
+    transition_requested_ = true;
+    return TaskResult::Waiting;
+  }
+
+  if (runner_ && !runner_->is_waiting_for_transition()) {
+    return TaskResult::Success;
+  }
+
+  return TaskResult::Waiting;
 }
 
-Error ChangeRootSceneTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("value")) scene_path_ = spec["value"];
-  else if (spec.has("scene_path")) scene_path_ = spec["scene_path"];
-  else return ERR_INVALID_DATA;
-  return OK;
+godot::Error ChangeRootSceneTask::validate_and_setup(const TaskSpec &spec) {
+  ChangeRootSceneTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value")) ts.scene_path = payload["value"];
+  else if (payload.has("scene_path")) ts.scene_path = payload["scene_path"];
+  else return godot::ERR_INVALID_DATA;
+
+  ts.params = payload;
+
+  scene_path_ = ts.scene_path;
+  params_ = ts.params;
+  return godot::OK;
 }
 
 void ChangeRootSceneTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace karakuri

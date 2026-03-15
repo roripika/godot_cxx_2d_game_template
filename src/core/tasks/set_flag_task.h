@@ -4,8 +4,15 @@
 #include "task_base.h"
 #include <godot_cpp/variant/string.hpp>
 #include <godot_cpp/variant/variant.hpp>
+#include "task_spec.h"
 
 namespace karakuri {
+
+struct SetFlagTaskSpec {
+  godot::String key;
+  godot::Variant value;
+};
+
 
 class SetFlagTask : public TaskBase {
   GDCLASS(SetFlagTask, TaskBase)
@@ -20,8 +27,8 @@ public:
   SetFlagTask() = default;
   ~SetFlagTask() override = default;
 
-  TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  TaskResult execute() override;
+  godot::Error validate_and_setup(const TaskSpec &spec) override;
   void complete_instantly() override;
 };
 

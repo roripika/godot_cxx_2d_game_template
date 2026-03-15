@@ -10,7 +10,7 @@ namespace karakuri {
 
 void IfHasItemsTask::_bind_methods() {}
 
-TaskResult IfHasItemsTask::execute(double /*delta*/) {
+TaskResult IfHasItemsTask::execute() {
   if (runner_ == nullptr) return TaskResult::Failed;
 
   // アイテムの所持確認ロジック。
@@ -43,20 +43,27 @@ TaskResult IfHasItemsTask::execute(double /*delta*/) {
   return TaskResult::Success;
 }
 
-Error IfHasItemsTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("items")) {
-    required_items_ = spec["items"];
-    then_branch_ = spec.has("then") ? Array(spec["then"]) : Array();
-    else_branch_ = spec.has("else") ? Array(spec["else"]) : Array();
+Error IfHasItemsTask::validate_and_setup(const TaskSpec &spec) {
+  IfHasItemsTaskSpec ts;
+  const Dictionary &payload = spec.payload;
+
+  if (payload.has("items")) {
+    ts.required_items = payload["items"];
+    ts.then_branch = payload.has("then") ? Array(payload["then"]) : Array();
+    ts.else_branch = payload.has("else") ? Array(payload["else"]) : Array();
   } else {
     UtilityFunctions::push_error("IfHasItemsTask: 'items' key is missing from spec.");
     return ERR_INVALID_DATA;
   }
+  
+  required_items_ = ts.required_items;
+  then_branch_ = ts.then_branch;
+  else_branch_ = ts.else_branch;
   return OK;
 }
 
 void IfHasItemsTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace karakuri

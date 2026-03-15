@@ -26,8 +26,14 @@
 
 #include "../../core/tasks/task_base.h"
 #include <godot_cpp/variant/string.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace mystery {
+
+struct GiveEvidenceTaskSpec {
+  godot::String evidence_id;
+};
+
 
 class GiveEvidenceTask : public karakuri::TaskBase {
   GDCLASS(GiveEvidenceTask, karakuri::TaskBase)
@@ -42,8 +48,8 @@ public:
   GiveEvidenceTask() = default;
   ~GiveEvidenceTask() override = default;
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 
   godot::String get_evidence_id() const { return evidence_id_; }

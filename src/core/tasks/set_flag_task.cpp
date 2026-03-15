@@ -27,7 +27,7 @@ namespace {
   }
 } // anonymous namespace
 
-TaskResult SetFlagTask::execute(double /*delta*/) {
+TaskResult SetFlagTask::execute() {
   auto *ws = WorldState::get_singleton();
   if (ws && !key_.is_empty()) {
     auto a = parse_flag_expr(key_);
@@ -36,22 +36,28 @@ TaskResult SetFlagTask::execute(double /*delta*/) {
   return TaskResult::Success;
 }
 
-Error SetFlagTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("key")) {
-    key_ = spec["key"];
-    value_ = spec.has("value") ? spec["value"] : Variant(true);
-  } else if (spec.has("name")) {
-    key_ = spec["name"];
-    value_ = spec.has("value") ? spec["value"] : Variant(true);
+Error SetFlagTask::validate_and_setup(const TaskSpec &spec) {
+  SetFlagTaskSpec ts;
+  const Dictionary &payload = spec.payload;
+
+  if (payload.has("key")) {
+    ts.key = payload["key"];
+    ts.value = payload.has("value") ? payload["value"] : Variant(true);
+  } else if (payload.has("name")) {
+    ts.key = payload["name"];
+    ts.value = payload.has("value") ? payload["value"] : Variant(true);
   } else {
     UtilityFunctions::push_error("SetFlagTask: 'key' (or 'name') is missing from spec.");
     return ERR_INVALID_DATA;
   }
+  
+  key_ = ts.key;
+  value_ = ts.value;
   return OK;
 }
 
 void SetFlagTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace karakuri

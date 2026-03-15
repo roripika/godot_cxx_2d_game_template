@@ -59,7 +59,7 @@ void SequencePlayer::_process(double delta) {
     return;
   }
 
-  TaskResult res = current->execute(delta);
+  TaskResult res = current->execute();
 
   if (res == TaskResult::Success) {
     advance();

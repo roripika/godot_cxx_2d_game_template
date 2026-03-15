@@ -17,7 +17,7 @@ void TaskShowPortrait::_bind_methods() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-karakuri::TaskResult TaskShowPortrait::execute(double /*delta*/) {
+karakuri::TaskResult TaskShowPortrait::execute() {
   if (!started_) {
     MysteryGameState *mgs = MysteryGameState::get_singleton();
     if (mgs) {
@@ -28,26 +28,33 @@ karakuri::TaskResult TaskShowPortrait::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-godot::Error TaskShowPortrait::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("character_id")) {
-    character_id_ = spec["character_id"];
-  } else if (spec.has("id")) {
-    character_id_ = spec["id"];
-  } else if (spec.has("value")) {
-    character_id_ = spec["value"];
+godot::Error TaskShowPortrait::validate_and_setup(const karakuri::TaskSpec &spec) {
+  TaskShowPortraitSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("character_id")) {
+    ts.character_id = payload["character_id"];
+  } else if (payload.has("id")) {
+    ts.character_id = payload["id"];
+  } else if (payload.has("value")) {
+    ts.character_id = payload["value"];
   } else {
     return godot::ERR_INVALID_DATA;
   }
 
-  if (spec.has("emotion")) {
-    emotion_ = spec["emotion"];
+  if (payload.has("emotion")) {
+    ts.emotion = payload["emotion"];
+  } else {
+    ts.emotion = "default";
   }
   
+  character_id_ = ts.character_id;
+  emotion_ = ts.emotion;
   return godot::OK;
 }
 
 void TaskShowPortrait::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 String TaskShowPortrait::get_character_id() const { return character_id_; }

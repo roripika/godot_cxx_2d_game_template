@@ -13,7 +13,7 @@ void SaveStateTask::_bind_methods() {
   ClassDB::bind_method(D_METHOD("get_demo_id"), &SaveStateTask::get_demo_id);
 }
 
-karakuri::TaskResult SaveStateTask::execute(double /*delta*/) {
+karakuri::TaskResult SaveStateTask::execute() {
   if (!done_) {
     MysteryManager *mgr = MysteryManager::get_singleton();
     if (mgr == nullptr) {
@@ -33,16 +33,20 @@ karakuri::TaskResult SaveStateTask::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-godot::Error SaveStateTask::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("value") && spec["value"].get_type() == Variant::STRING) {
-    demo_id_ = spec["value"];
+godot::Error SaveStateTask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  SaveStateTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value") && payload["value"].get_type() == godot::Variant::STRING) {
+    ts.demo_id = payload["value"];
   }
-  // demo_id_ のデフォルトは "mystery" (コンストラクタで設定済み)
+  
+  demo_id_ = ts.demo_id;
   return godot::OK;
 }
 
 void SaveStateTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace mystery

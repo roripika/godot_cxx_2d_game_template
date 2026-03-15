@@ -20,7 +20,7 @@ void TaskGroup::_bind_methods() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-TaskResult TaskGroup::execute(double delta) {
+TaskResult TaskGroup::execute() {
   if (tasks_.is_empty()) {
     return TaskResult::Success;
   }
@@ -41,7 +41,7 @@ TaskResult TaskGroup::execute(double delta) {
 
     Ref<TaskBase> task = tasks_[i];
     if (task.is_valid()) {
-      TaskResult res = task->execute(delta);
+      TaskResult res = task->execute();
       if (res == TaskResult::Success) {
         completed_flags_[i] = true;
       } else if (res == TaskResult::Failed) {
@@ -57,11 +57,14 @@ TaskResult TaskGroup::execute(double delta) {
   return all_done ? TaskResult::Success : TaskResult::Waiting;
 }
 
-godot::Error TaskGroup::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("tasks")) {
-    Array arr = spec["tasks"];
-    for (int i = 0; i < arr.size(); ++i) {
-      add_task(arr[i]);
+godot::Error TaskGroup::validate_and_setup(const TaskSpec &spec) {
+  TaskGroupSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("tasks")) {
+    ts.tasks = payload["tasks"];
+    for (int i = 0; i < ts.tasks.size(); ++i) {
+      add_task(ts.tasks[i]);
     }
   }
   return godot::OK;

@@ -1,6 +1,7 @@
 #include "zoom_camera_task.h"
 
 #include "../../core/services/action_runner.h"
+#include "../../core/kernel_clock.h"
 
 #include <godot_cpp/classes/camera2d.hpp>
 #include <godot_cpp/classes/object.hpp>
@@ -30,40 +31,54 @@ void ZoomCameraTask::_bind_methods() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-karakuri::TaskResult ZoomCameraTask::execute(double delta) {
+karakuri::TaskResult ZoomCameraTask::execute() {
+  auto *clock = karakuri::KernelClock::get_singleton();
+  ERR_FAIL_NULL_V(clock, karakuri::TaskResult::Failed);
+
   if (!started_) {
-    elapsed_ = 0.0;
+    target_time_ = clock->now() + duration_;
     started_ = true;
     // zoom エフェクト本体のリクエストは本来ここで行うが、
-    // 現状は elapsed_ のトラッキングのみ行う（fire-and-forget 互換）。
+    // 現状は target_time_ のトラッキングのみ行う（fire-and-forget 互換）。
   }
 
-  elapsed_ += delta;
-  if (elapsed_ >= duration_) {
+  if (clock->now() >= target_time_) {
     return karakuri::TaskResult::Success;
   }
   return karakuri::TaskResult::Yielded;
 }
 
-godot::Error ZoomCameraTask::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("target_zoom")) {
-    target_zoom_ = spec["target_zoom"];
+godot::Error ZoomCameraTask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  ZoomCameraTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("target_zoom")) {
+    ts.target_zoom = payload["target_zoom"];
+  } else {
+    ts.target_zoom = godot::Vector2(1.0f, 1.0f);
   }
-  if (spec.has("duration")) {
-    duration_ = spec["duration"];
+  if (payload.has("duration")) {
+    ts.duration = payload["duration"];
   }
-  if (spec.has("camera_path")) {
-    camera_path_ = spec["camera_path"];
+  if (payload.has("camera_path")) {
+    ts.camera_path = payload["camera_path"];
   }
-  if (spec.has("action_runner_path")) {
-    action_runner_path_ = spec["action_runner_path"];
+  if (payload.has("action_runner_path")) {
+    ts.action_runner_path = payload["action_runner_path"];
   }
   
+  target_zoom_ = ts.target_zoom;
+  duration_ = ts.duration;
+  camera_path_ = ts.camera_path;
+  action_runner_path_ = ts.action_runner_path;
   return godot::OK;
 }
 
 void ZoomCameraTask::complete_instantly() {
-  elapsed_ = duration_;
+  auto *clock = karakuri::KernelClock::get_singleton();
+  if (clock) {
+    target_time_ = clock->now();
+  }
 }
 
 // ------------------------------------------------------------------

@@ -15,7 +15,7 @@ void TaskChangeBackground::_bind_methods() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-karakuri::TaskResult TaskChangeBackground::execute(double /*delta*/) {
+karakuri::TaskResult TaskChangeBackground::execute() {
   if (!started_) {
     MysteryGameState *mgs = MysteryGameState::get_singleton();
     if (mgs) {
@@ -26,19 +26,24 @@ karakuri::TaskResult TaskChangeBackground::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-godot::Error TaskChangeBackground::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("id")) {
-    background_id_ = spec["id"];
-  } else if (spec.has("value")) {
-    background_id_ = spec["value"];
+godot::Error TaskChangeBackground::validate_and_setup(const karakuri::TaskSpec &spec) {
+  TaskChangeBackgroundSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("id")) {
+    ts.background_id = payload["id"];
+  } else if (payload.has("value")) {
+    ts.background_id = payload["value"];
   } else {
     return godot::ERR_INVALID_DATA;
   }
+  
+  background_id_ = ts.background_id;
   return godot::OK;
 }
 
 void TaskChangeBackground::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 String TaskChangeBackground::get_background_id() const {

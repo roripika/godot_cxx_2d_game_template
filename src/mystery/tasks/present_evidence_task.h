@@ -30,10 +30,18 @@
 #include "../../core/tasks/task_base.h"
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/string.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace karakuri { class ScenarioRunner; }
 
 namespace mystery {
+
+struct PresentEvidenceTaskSpec {
+  godot::String item_id;
+  godot::Array on_correct;
+  godot::Array on_wrong;
+};
+
 
 class PresentEvidenceTask : public karakuri::TaskBase {
   GDCLASS(PresentEvidenceTask, karakuri::TaskBase)
@@ -54,8 +62,8 @@ public:
 
   void set_runner(karakuri::ScenarioRunner *runner) override { runner_ = runner; }
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 
   godot::String get_item_id() const { return item_id_; }

@@ -28,7 +28,7 @@ namespace {
   }
 } // anonymous namespace
 
-TaskResult IfFlagTask::execute(double /*delta*/) {
+TaskResult IfFlagTask::execute() {
   if (runner_ == nullptr) return TaskResult::Failed;
 
   auto *ws = WorldState::get_singleton();
@@ -47,21 +47,29 @@ TaskResult IfFlagTask::execute(double /*delta*/) {
   return TaskResult::Success;
 }
 
-Error IfFlagTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("key")) {
-    key_ = spec["key"];
-    expected_value_ = spec.has("value") ? spec["value"] : Variant(true);
-    then_branch_ = spec.has("then") ? Array(spec["then"]) : Array();
-    else_branch_ = spec.has("else") ? Array(spec["else"]) : Array();
+Error IfFlagTask::validate_and_setup(const TaskSpec &spec) {
+  IfFlagTaskSpec ts;
+  const Dictionary &payload = spec.payload;
+
+  if (payload.has("key")) {
+    ts.key = payload["key"];
+    ts.expected_value = payload.has("value") ? payload["value"] : Variant(true);
+    ts.then_branch = payload.has("then") ? Array(payload["then"]) : Array();
+    ts.else_branch = payload.has("else") ? Array(payload["else"]) : Array();
   } else {
     UtilityFunctions::push_error("IfFlagTask: 'key' is missing from spec.");
     return ERR_INVALID_DATA;
   }
+  
+  key_ = ts.key;
+  expected_value_ = ts.expected_value;
+  then_branch_ = ts.then_branch;
+  else_branch_ = ts.else_branch;
   return OK;
 }
 
 void IfFlagTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace karakuri

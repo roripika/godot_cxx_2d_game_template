@@ -72,6 +72,8 @@ public:
   void load_scenario();
   void load_scene_by_id(const godot::String &scene_id);
   void complete_custom_action();
+  void complete_transition();
+  void request_transition(const godot::String &target_scene, const godot::Dictionary &params);
 
   /**
    * @brief シナリオ（台詞）を一行進める。
@@ -103,6 +105,8 @@ public:
   void set_waiting_for_choice(bool w) { waiting_for_choice_ = w; }
   void set_pending_choice_actions(const godot::Array &a) { pending_choice_actions_ = a; }
 
+  bool is_waiting_for_transition() const { return waiting_for_transition_; }
+
 protected:
   static void _bind_methods();
 
@@ -123,13 +127,14 @@ private:
 
   bool waiting_for_dialogue_ = false;
   bool waiting_for_transition_ = false;
+  double transition_start_time_ = 0.0;
   bool waiting_for_custom_action_ = false;
 
   bool load_scenario_internal();
   godot::Ref<TaskBase> compile_action(const godot::Variant &v);
 
   void start_actions(const godot::Array &actions);
-  void step_actions(double delta);
+  void step_actions();
 
   void set_mode_input_enabled(bool enabled);
   void notify_mode_exit(const godot::String &current_mode,

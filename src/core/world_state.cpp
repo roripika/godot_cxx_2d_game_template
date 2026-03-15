@@ -71,7 +71,10 @@ void WorldState::_bind_methods() {
                         PropertyInfo(Variant::STRING,  "namespace"),
                         PropertyInfo(Variant::INT,     "scope"),
                         PropertyInfo(Variant::STRING,  "key"),
-                        PropertyInfo(Variant::NIL,     "value")));
+                        PropertyInfo(Variant::NIL,     "old_value"),
+                        PropertyInfo(Variant::NIL,     "new_value")));
+  ADD_SIGNAL(MethodInfo("scope_cleared",
+                        PropertyInfo(Variant::INT,     "scope")));
 }
 
 // ---------------------------------------------------------------------------
@@ -102,18 +105,21 @@ void WorldState::set_state(const String &ns, int scope,
                            const String &key, const Variant &value) {
   Dictionary *d = get_scope_dict(scope);
 
-  // namespace サブ辞書を取得 or 作成
+  Variant old_value;
   Dictionary ns_dict;
   if (d->has(ns)) {
     Variant v = (*d)[ns];
     if (v.get_type() == Variant::DICTIONARY) {
       ns_dict = Dictionary(v);
+      if (ns_dict.has(key)) {
+        old_value = ns_dict[key];
+      }
     }
   }
   ns_dict[key] = value;
   (*d)[ns] = ns_dict;
 
-  emit_signal("state_changed", ns, scope, key, value);
+  emit_signal("state_changed", ns, scope, key, old_value, value);
 }
 
 Variant WorldState::get_state(const String &ns, int scope,
@@ -142,6 +148,7 @@ bool WorldState::has_flag(const String &ns, int scope,
 void WorldState::clear_scope(int scope) {
   Dictionary *d = get_scope_dict(scope);
   d->clear();
+  emit_signal("scope_cleared", scope);
 }
 
 void WorldState::clear_namespace(const String &ns) {

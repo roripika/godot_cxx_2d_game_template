@@ -14,7 +14,7 @@ void GiveEvidenceTask::_bind_methods() {
                        &GiveEvidenceTask::get_evidence_id);
 }
 
-karakuri::TaskResult GiveEvidenceTask::execute(double /*delta*/) {
+karakuri::TaskResult GiveEvidenceTask::execute() {
   if (!done_) {
     if (evidence_id_.is_empty()) {
       UtilityFunctions::push_warning(
@@ -36,22 +36,27 @@ karakuri::TaskResult GiveEvidenceTask::execute(double /*delta*/) {
 }
 
 godot::Error GiveEvidenceTask::validate_and_setup(
-    const godot::Dictionary &spec) {
-  if (spec.has("value") && spec["value"].get_type() == Variant::STRING) {
-    evidence_id_ = spec["value"];
-  } else if (spec.has("evidence_id")) {
-    evidence_id_ = spec["evidence_id"];
+    const karakuri::TaskSpec &spec) {
+  GiveEvidenceTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value") && payload["value"].get_type() == Variant::STRING) {
+    ts.evidence_id = payload["value"];
+  } else if (payload.has("evidence_id")) {
+    ts.evidence_id = payload["evidence_id"];
   } else {
     UtilityFunctions::push_error(
         "[GiveEvidenceTask] 必須キー 'value' (または 'evidence_id') "
         "が見つかりません。");
     return godot::ERR_INVALID_DATA;
   }
+  
+  evidence_id_ = ts.evidence_id;
   return godot::OK;
 }
 
 void GiveEvidenceTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace mystery

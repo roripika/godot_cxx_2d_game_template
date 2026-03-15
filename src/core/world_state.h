@@ -45,7 +45,7 @@ public:
 
   /**
    * @brief 指定した名前空間・スコープにステート（値）を設定する。
-   * シグナル "state_changed(namespace, scope, key, value)" が発火する。
+   * シグナル "state_changed(namespace, scope, key, old_value, new_value)" が発火する。
    */
   void set_state(const godot::String &ns, int scope,
                  const godot::String &key, const godot::Variant &value);

@@ -39,7 +39,7 @@ void ShowEvidenceUITask::_bind_methods() {
 // ライフサイクル (ABI v1)
 // ------------------------------------------------------------------
 
-karakuri::TaskResult ShowEvidenceUITask::execute(double /*delta*/) {
+karakuri::TaskResult ShowEvidenceUITask::execute() {
   if (!started_) {
     result_correct_ = false;
     result_selected_id_ = "";
@@ -56,17 +56,23 @@ karakuri::TaskResult ShowEvidenceUITask::execute(double /*delta*/) {
   return karakuri::TaskResult::Waiting;
 }
 
-godot::Error ShowEvidenceUITask::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("target_statement_id")) {
-    target_statement_id_ = spec["target_statement_id"];
+godot::Error ShowEvidenceUITask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  ShowEvidenceUITaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("target_statement_id")) {
+    ts.target_statement_id = payload["target_statement_id"];
   }
-  if (spec.has("candidate_ids")) {
-    candidate_ids_ = spec["candidate_ids"];
+  if (payload.has("candidate_ids")) {
+    ts.candidate_ids = payload["candidate_ids"];
   }
-  if (spec.has("evidence_presenter_path")) {
-    evidence_presenter_path_ = spec["evidence_presenter_path"];
+  if (payload.has("evidence_presenter_path")) {
+    ts.evidence_presenter_path = payload["evidence_presenter_path"];
   }
   
+  target_statement_id_ = ts.target_statement_id;
+  candidate_ids_ = ts.candidate_ids;
+  evidence_presenter_path_ = ts.evidence_presenter_path;
   return godot::OK;
 }
 

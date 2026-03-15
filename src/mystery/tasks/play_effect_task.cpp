@@ -13,7 +13,7 @@ void PlayEffectTask::_bind_methods() {
   ClassDB::bind_method(D_METHOD("get_preset"), &PlayEffectTask::get_preset);
 }
 
-karakuri::TaskResult PlayEffectTask::execute(double /*delta*/) {
+karakuri::TaskResult PlayEffectTask::execute() {
   if (!done_) {
     MysteryEffectMap *emap = MysteryEffectMap::get_singleton();
     if (emap == nullptr) {
@@ -29,26 +29,31 @@ karakuri::TaskResult PlayEffectTask::execute(double /*delta*/) {
 }
 
 godot::Error PlayEffectTask::validate_and_setup(
-    const godot::Dictionary &spec) {
-  if (spec.has("value") && spec["value"].get_type() == Variant::STRING) {
-    preset_ = spec["value"];
-  } else if (spec.has("preset") && spec["preset"].get_type() == Variant::STRING) {
-    preset_ = spec["preset"];
+    const karakuri::TaskSpec &spec) {
+  PlayEffectTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value") && payload["value"].get_type() == godot::Variant::STRING) {
+    ts.preset = payload["value"];
+  } else if (payload.has("preset") && payload["preset"].get_type() == godot::Variant::STRING) {
+    ts.preset = payload["preset"];
   } else {
-    UtilityFunctions::push_error(
+    godot::UtilityFunctions::push_error(
         "[PlayEffectTask] 必須キー 'value' (または 'preset'、STRING型) "
         "が見つかりません。");
     return godot::ERR_INVALID_DATA;
   }
-  if (preset_.is_empty()) {
-    UtilityFunctions::push_error("[PlayEffectTask] preset が空文字列です。");
+  if (ts.preset.is_empty()) {
+    godot::UtilityFunctions::push_error("[PlayEffectTask] preset が空文字列です。");
     return godot::ERR_INVALID_DATA;
   }
+
+  preset_ = ts.preset;
   return godot::OK;
 }
 
 void PlayEffectTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace mystery

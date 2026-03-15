@@ -1,6 +1,21 @@
 #include "mystery_game_state.h"
 
 #include "core/action_registry.h"
+#include "../core/tasks/change_root_scene_task.h"
+#include "tasks/give_evidence_task.h"
+#include "tasks/task_show_portrait.h"
+#include "tasks/task_change_background.h"
+#include "tasks/play_mystery_sound_task.h"
+#include "tasks/show_evidence_ui_task.h"
+#include "tasks/zoom_camera_task.h"
+#include "tasks/take_damage_task.h"
+#include "tasks/testimony_task.h"
+#include "tasks/reset_game_task.h"
+#include "tasks/give_item_task.h"
+#include "tasks/present_evidence_task.h"
+#include "tasks/play_effect_task.h"
+#include "tasks/save_state_task.h"
+#include "tasks/load_state_task.h"
 
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
@@ -100,22 +115,22 @@ void MysteryGameState::_ready() {
   // Mystery 固有のアクションを登録する。
   // core 層は Mystery 層の型を知らない・インクルードしない。
   // 文字列のクラス名だけで登録し、ClassDBSingleton が動的生成する。
-  reg->register_action("give_evidence", "GiveEvidenceTask");
-  reg->register_action("show_portrait", "TaskShowPortrait");
-  reg->register_action("change_background", "TaskChangeBackground");
-  reg->register_action("play_sound", "PlayMysterySoundTask");
-  reg->register_action("show_evidence_ui", "ShowEvidenceUITask");
-  reg->register_action("zoom_camera", "ZoomCameraTask");
-  reg->register_action("take_damage", "TakeDamageTask");
-  reg->register_action("testimony", "TestimonyTask");
-  reg->register_action("reset_game", "ResetGameTask");
-  reg->register_action("change_root_scene", "ChangeRootSceneTask");
+  reg->register_action_class<GiveEvidenceTask>("give_evidence");
+  reg->register_action_class<TaskShowPortrait>("show_portrait");
+  reg->register_action_class<TaskChangeBackground>("change_background");
+  reg->register_action_class<PlayMysterySoundTask>("play_sound");
+  reg->register_action_class<ShowEvidenceUITask>("show_evidence_ui");
+  reg->register_action_class<ZoomCameraTask>("zoom_camera");
+  reg->register_action_class<TakeDamageTask>("take_damage");
+  reg->register_action_class<TestimonyTask>("testimony");
+  reg->register_action_class<ResetGameTask>("reset_game");
+  reg->register_action_class<karakuri::ChangeRootSceneTask>("change_root_scene");
   // Phase 4: 新規 Typed Tasks
-  reg->register_action("give_item", "GiveItemTask");
-  reg->register_action("present_evidence", "PresentEvidenceTask");
-  reg->register_action("play_effect", "PlayEffectTask");
-  reg->register_action("save", "SaveStateTask");
-  reg->register_action("load", "LoadStateTask");
+  reg->register_action_class<GiveItemTask>("give_item");
+  reg->register_action_class<PresentEvidenceTask>("present_evidence");
+  reg->register_action_class<PlayEffectTask>("play_effect");
+  reg->register_action_class<SaveStateTask>("save");
+  reg->register_action_class<LoadStateTask>("load");
 
   UtilityFunctions::print(
       "[MysteryGameState] Mystery アクションを登録しました。");

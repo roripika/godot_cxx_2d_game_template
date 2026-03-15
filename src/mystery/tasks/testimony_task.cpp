@@ -7,7 +7,7 @@ using namespace godot;
 
 namespace mystery {
 
-karakuri::TaskResult TestimonyTask::execute(double /*delta*/) {
+karakuri::TaskResult TestimonyTask::execute() {
   if (runner_ == nullptr) return karakuri::TaskResult::Failed;
 
   if (!started_) {
@@ -36,16 +36,24 @@ karakuri::TaskResult TestimonyTask::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-Error TestimonyTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("testimonies")) {
-    lines_ = spec["testimonies"];
-    on_success_ = spec.has("on_success") ? Array(spec["on_success"]) : Array();
-    on_failure_ = spec.has("on_failure") ? Array(spec["on_failure"]) : Array();
-    if (spec.has("max_rounds")) max_rounds_ = (int)spec["max_rounds"];
+godot::Error TestimonyTask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  TestimonyTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("testimonies")) {
+    ts.lines = payload["testimonies"];
+    ts.on_success = payload.has("on_success") ? godot::Array(payload["on_success"]) : godot::Array();
+    ts.on_failure = payload.has("on_failure") ? godot::Array(payload["on_failure"]) : godot::Array();
+    if (payload.has("max_rounds")) ts.max_rounds = (int)payload["max_rounds"];
   } else {
-    return ERR_INVALID_DATA;
+    return godot::ERR_INVALID_DATA;
   }
-  return OK; 
+  
+  lines_ = ts.lines;
+  on_success_ = ts.on_success;
+  on_failure_ = ts.on_failure;
+  max_rounds_ = ts.max_rounds;
+  return godot::OK; 
 }
 
 void TestimonyTask::complete_instantly() {

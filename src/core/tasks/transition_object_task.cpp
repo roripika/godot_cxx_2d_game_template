@@ -9,7 +9,7 @@ namespace karakuri {
 
 void TransitionObjectTask::_bind_methods() {}
 
-TaskResult TransitionObjectTask::execute(double /*delta*/) {
+TaskResult TransitionObjectTask::execute() {
   if (runner_ == nullptr) return TaskResult::Failed;
 
   if (!finished_) {
@@ -33,12 +33,17 @@ TaskResult TransitionObjectTask::execute(double /*delta*/) {
   return TaskResult::Success;
 }
 
-Error TransitionObjectTask::validate_and_setup(const Dictionary &spec) {
-  if (!spec.has("target")) {
+Error TransitionObjectTask::validate_and_setup(const TaskSpec &spec) {
+  TransitionObjectTaskSpec ts;
+  const Dictionary &payload = spec.payload;
+
+  if (!payload.has("target")) {
     UtilityFunctions::push_error("TransitionObjectTask: 'target' key is missing from spec.");
     return ERR_INVALID_DATA;
   }
-  params_ = spec;
+  
+  ts.params = payload;
+  params_ = ts.params;
   return OK;
 }
 

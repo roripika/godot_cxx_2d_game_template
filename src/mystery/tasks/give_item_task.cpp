@@ -13,7 +13,7 @@ void GiveItemTask::_bind_methods() {
   ClassDB::bind_method(D_METHOD("get_item_id"), &GiveItemTask::get_item_id);
 }
 
-karakuri::TaskResult GiveItemTask::execute(double /*delta*/) {
+karakuri::TaskResult GiveItemTask::execute() {
   if (!done_) {
     karakuri::ItemService *svc = karakuri::ItemService::get_singleton();
     if (svc == nullptr) {
@@ -28,26 +28,31 @@ karakuri::TaskResult GiveItemTask::execute(double /*delta*/) {
   return karakuri::TaskResult::Success;
 }
 
-godot::Error GiveItemTask::validate_and_setup(const godot::Dictionary &spec) {
-  if (spec.has("value") && spec["value"].get_type() == Variant::STRING) {
-    item_id_ = spec["value"];
-  } else if (spec.has("item_id")) {
-    item_id_ = spec["item_id"];
+godot::Error GiveItemTask::validate_and_setup(const karakuri::TaskSpec &spec) {
+  GiveItemTaskSpec ts;
+  const godot::Dictionary &payload = spec.payload;
+
+  if (payload.has("value") && payload["value"].get_type() == godot::Variant::STRING) {
+    ts.item_id = payload["value"];
+  } else if (payload.has("item_id")) {
+    ts.item_id = payload["item_id"];
   } else {
-    UtilityFunctions::push_error(
+    godot::UtilityFunctions::push_error(
         "[GiveItemTask] 必須キー 'value' (または 'item_id') "
         "が見つかりません。");
     return godot::ERR_INVALID_DATA;
   }
-  if (item_id_.is_empty()) {
-    UtilityFunctions::push_error("[GiveItemTask] item_id が空文字列です。");
+  if (ts.item_id.is_empty()) {
+    godot::UtilityFunctions::push_error("[GiveItemTask] item_id が空文字列です。");
     return godot::ERR_INVALID_DATA;
   }
+
+  item_id_ = ts.item_id;
   return godot::OK;
 }
 
 void GiveItemTask::complete_instantly() {
-  execute(0.0);
+  execute();
 }
 
 } // namespace mystery

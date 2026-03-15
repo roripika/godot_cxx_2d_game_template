@@ -1,4 +1,5 @@
 #include "scenario_runner.h"
+#include "kernel_clock.h"
 #include "../action_registry.h"
 #include "../logger/karakuri_logger.h"
 #include "../logic/condition_evaluator.h"
@@ -48,14 +49,14 @@ public:
   InlineHandlerTask(ScenarioRunner::ActionHandler h, Variant p)
       : handler_(std::move(h)), payload_(std::move(p)) {}
 
-  TaskResult execute(double /*delta*/) override {
+  TaskResult execute() override {
     if (!done_) {
       handler_(payload_);
       done_ = true;
     }
     return TaskResult::Success;
   }
-  godot::Error validate_and_setup(const godot::Dictionary &) override { return godot::OK; }
+  godot::Error validate_and_setup(const TaskSpec &) override { return godot::OK; }
   void complete_instantly() override { done_ = true; }
 };
 
@@ -109,6 +110,17 @@ void ScenarioRunner::complete_custom_action() {
   waiting_for_custom_action_ = false;
 }
 
+void ScenarioRunner::complete_transition() {
+  waiting_for_transition_ = false;
+  transition_start_time_ = 0.0;
+}
+
+void ScenarioRunner::request_transition(const godot::String &target_scene, const godot::Dictionary &params) {
+  waiting_for_transition_ = true;
+  transition_start_time_ = KernelClock::get_singleton()->now();
+  emit_signal("transition_requested", target_scene, params);
+}
+
 void ScenarioRunner::inject_steps(const Array &steps) {
   if (steps.is_empty())
     return;
@@ -145,6 +157,8 @@ void ScenarioRunner::_bind_methods() {
                        &ScenarioRunner::load_scene_by_id);
   ClassDB::bind_method(D_METHOD("complete_custom_action"),
                        &ScenarioRunner::complete_custom_action);
+  ClassDB::bind_method(D_METHOD("complete_transition"),
+                       &ScenarioRunner::complete_transition);
   ClassDB::bind_method(D_METHOD("inject_steps", "steps"),
                        &ScenarioRunner::inject_steps);
   ClassDB::bind_method(D_METHOD("get_current_scene_id"),
@@ -168,7 +182,8 @@ void ScenarioRunner::_bind_methods() {
                "set_scenario_path", "get_scenario_path");
 
   // Decoupling Signals
-  ADD_SIGNAL(MethodInfo("scene_change_requested", PropertyInfo(Variant::STRING, "scene_path")));
+  ADD_SIGNAL(MethodInfo("transition_requested", PropertyInfo(Variant::STRING, "target_scene"), PropertyInfo(Variant::DICTIONARY, "params")));
+  ADD_SIGNAL(MethodInfo("transition_failed", PropertyInfo(Variant::STRING, "reason")));
   ADD_SIGNAL(MethodInfo("dialogue_requested", PropertyInfo(Variant::STRING, "speaker"), PropertyInfo(Variant::STRING, "text")));
   ADD_SIGNAL(MethodInfo("choices_requested", PropertyInfo(Variant::ARRAY, "choices")));
   ADD_SIGNAL(MethodInfo("mode_input_enabled_changed", PropertyInfo(Variant::BOOL, "enabled")));
@@ -188,7 +203,13 @@ void ScenarioRunner::_ready() {
 }
 
 void ScenarioRunner::_process(double delta) {
-  step_actions(delta);
+  auto *clock = KernelClock::get_singleton();
+  if (!clock) {
+    godot::UtilityFunctions::push_error("[ScenarioRunner] KernelClock singleton missing");
+    return;
+  }
+  clock->advance(delta);
+  step_actions();
 }
 
 void ScenarioRunner::load_scenario() { load_scenario_internal(); }
@@ -290,13 +311,12 @@ Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
        payload["text"] = payload["value"];
     }
 
-    // ABI v1.5: we need to ensure payload has "action" key
-    payload["action"] = action_name;
+    // ABI v2.0: TaskSpec IR 作成
+    TaskSpec spec_ir(action_name, payload);
 
-    Ref<TaskBase> task = reg->compile_task(payload);
+    Ref<TaskBase> task = reg->compile_task(spec_ir);
     if (task.is_valid()) {
       task->set_runner(this);
-      
       return task;
     }
   }
@@ -339,7 +359,8 @@ void ScenarioRunner::load_scene_by_id(const String &scene_id) {
   current_scene_id_ = scene_id;
 
   if (!scene_path.is_empty()) {
-    emit_signal("scene_change_requested", scene_path);
+    Dictionary params;
+    request_transition(scene_path, params);
   }
 
   notify_mode_enter(scene_id, scene_dict);
@@ -360,9 +381,26 @@ void ScenarioRunner::start_actions(const Array &actions) {
   set_mode_input_enabled(false);
 }
 
-void ScenarioRunner::step_actions(double delta) {
+void ScenarioRunner::step_actions() {
   if (!is_executing_actions_)
     return;
+
+  if (waiting_for_transition_) {
+    auto *clock = KernelClock::get_singleton();
+    if (!clock) return;
+
+    if (clock->now() - transition_start_time_ > 5.0) { // 5秒タイムアウト
+      godot::UtilityFunctions::push_error("[ScenarioRunner] Scene transition timeout. complete_transition() was not called.");
+      emit_signal("transition_failed", "timeout");
+      waiting_for_transition_ = false;
+      transition_start_time_ = 0.0;
+      
+      // abort_current_task() & advance_to_next_task()
+      pending_action_index_++;
+    } else {
+      return;
+    }
+  }
 
   // consolidated execute loop: タスクの戻り値に基づいて進行を制御する
   while (pending_action_index_ < pending_actions_.size()) {
@@ -372,7 +410,7 @@ void ScenarioRunner::step_actions(double delta) {
       continue;
     }
 
-    TaskResult res = task->execute(delta);
+    TaskResult res = task->execute();
 
     if (res == TaskResult::Success) {
       pending_action_index_++;

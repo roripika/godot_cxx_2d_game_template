@@ -5,8 +5,17 @@
 #include <godot_cpp/variant/string.hpp>
 #include <godot_cpp/variant/variant.hpp>
 #include <godot_cpp/variant/array.hpp>
+#include "task_spec.h"
 
 namespace karakuri {
+
+struct IfFlagTaskSpec {
+  godot::String key;
+  godot::Variant expected_value;
+  godot::Array then_branch;
+  godot::Array else_branch;
+};
+
 
 class ScenarioRunner;
 
@@ -29,8 +38,8 @@ public:
 
   void set_runner(ScenarioRunner *r) override { runner_ = r; }
 
-  TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  TaskResult execute() override;
+  godot::Error validate_and_setup(const TaskSpec &spec) override;
   void complete_instantly() override;
 };
 

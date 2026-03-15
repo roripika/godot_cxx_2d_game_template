@@ -17,8 +17,14 @@
 
 #include "../../core/tasks/task_base.h"
 #include <godot_cpp/variant/string.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace mystery {
+
+struct LoadStateTaskSpec {
+  godot::String demo_id = "mystery";
+};
+
 
 class LoadStateTask : public karakuri::TaskBase {
   GDCLASS(LoadStateTask, karakuri::TaskBase)
@@ -33,8 +39,8 @@ public:
   LoadStateTask() = default;
   ~LoadStateTask() override = default;
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 
   godot::String get_demo_id() const { return demo_id_; }

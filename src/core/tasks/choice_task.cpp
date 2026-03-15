@@ -12,7 +12,7 @@ void ChoiceTask::_bind_methods() {
   ClassDB::bind_method(D_METHOD("get_choices"), &ChoiceTask::get_choices);
 }
 
-TaskResult ChoiceTask::execute(double /*delta*/) {
+TaskResult ChoiceTask::execute() {
   if (runner_ == nullptr) {
     return TaskResult::Failed;
   }
@@ -50,13 +50,18 @@ TaskResult ChoiceTask::execute(double /*delta*/) {
   return TaskResult::Success;
 }
 
-Error ChoiceTask::validate_and_setup(const Dictionary &spec) {
-  if (spec.has("choices")) {
-    choices_ = spec["choices"];
+Error ChoiceTask::validate_and_setup(const TaskSpec &spec) {
+  ChoiceTaskSpec ts;
+  const Dictionary &payload = spec.payload;
+
+  if (payload.has("choices")) {
+    ts.choices = payload["choices"];
   } else {
     UtilityFunctions::push_error("ChoiceTask: 'choices' key is missing from spec.");
     return ERR_INVALID_DATA;
   }
+  
+  choices_ = ts.choices;
   return OK;
 }
 

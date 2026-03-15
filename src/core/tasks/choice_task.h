@@ -3,8 +3,14 @@
 
 #include "task_base.h"
 #include <godot_cpp/variant/array.hpp>
+#include "task_spec.h"
 
 namespace karakuri {
+
+struct ChoiceTaskSpec {
+  godot::Array choices;
+};
+
 
 class ScenarioRunner;
 
@@ -25,8 +31,8 @@ public:
 
   void set_runner(ScenarioRunner *runner) override { runner_ = runner; }
 
-  TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  TaskResult execute() override;
+  godot::Error validate_and_setup(const TaskSpec &spec) override;
   void complete_instantly() override;
 
   godot::Array get_choices() const { return choices_; }

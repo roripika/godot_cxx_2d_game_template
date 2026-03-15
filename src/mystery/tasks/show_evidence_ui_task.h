@@ -20,8 +20,16 @@
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/node_path.hpp>
 #include <godot_cpp/variant/string.hpp>
+#include "../../core/tasks/task_spec.h"
 
 namespace mystery {
+
+struct ShowEvidenceUITaskSpec {
+  godot::String target_statement_id;
+  godot::Array candidate_ids;
+  godot::NodePath evidence_presenter_path;
+};
+
 
 class ShowEvidenceUITask : public karakuri::TaskBase {
   GDCLASS(ShowEvidenceUITask, karakuri::TaskBase)
@@ -47,8 +55,8 @@ public:
   // ライフサイクル (ABI v1)
   // ------------------------------------------------------------------
 
-  karakuri::TaskResult execute(double delta) override;
-  godot::Error validate_and_setup(const godot::Dictionary &spec) override;
+  karakuri::TaskResult execute() override;
+  godot::Error validate_and_setup(const karakuri::TaskSpec &spec) override;
   void complete_instantly() override;
 
   // ------------------------------------------------------------------
