@@ -4,7 +4,7 @@ var searchData=
   ['actionrunner_1',['ActionRunner',['../classkarakuri_1_1ActionRunner.html#acd5513f730c10ff3cb9ddfb06c122dbb',1,'karakuri::ActionRunner']]],
   ['add_5fitem_2',['add_item',['../classkarakuri_1_1Inventory.html#a5af41748786a55aaad77fb4ec8f14a3c',1,'karakuri::Inventory::add_item()'],['../classkarakuri_1_1ItemService.html#a907c6f05043a795d7a23bd36ee8e66c2',1,'karakuri::ItemService::add_item()']]],
   ['add_5ftask_3',['add_task',['../classkarakuri_1_1SequencePlayer.html#ab2ced195bf37a522702f91f266b70435',1,'karakuri::SequencePlayer::add_task()'],['../classkarakuri_1_1TaskGroup.html#af07d183ce8cb6956a1de340c5c618228',1,'karakuri::TaskGroup::add_task()']]],
-  ['advance_4',['advance',['../classkarakuri_1_1SequencePlayer.html#ad0c9c28f97e79e9f669c8b949b775456',1,'karakuri::SequencePlayer']]],
+  ['advance_4',['advance',['../classkarakuri_1_1KernelClock.html#ab559c216c05c5dc40b00218b926ab346',1,'karakuri::KernelClock::advance()'],['../classkarakuri_1_1SequencePlayer.html#ad0c9c28f97e79e9f669c8b949b775456',1,'karakuri::SequencePlayer::advance()']]],
   ['advance_5fdialogue_5',['advance_dialogue',['../classkarakuri_1_1ScenarioRunner.html#a8c1fa23314e6f94757c69b3539e40425',1,'karakuri::ScenarioRunner']]],
   ['apply_5ffade_6',['apply_fade',['../classkarakuri_1_1ActionRunner.html#adbce20017b7a340880a8ead1e966cba6',1,'karakuri::ActionRunner']]],
   ['apply_5fflash_7',['apply_flash',['../classkarakuri_1_1ActionRunner.html#ac5396500f01590e9901fae5384d2f7cf',1,'karakuri::ActionRunner']]],

@@ -4,5 +4,7 @@ var searchData=
   ['karakuri_5fgame_5fstate_2ecpp_1',['karakuri_game_state.cpp',['../karakuri__game__state_8cpp.html',1,'']]],
   ['karakuri_5fgame_5fstate_2eh_2',['karakuri_game_state.h',['../karakuri__game__state_8h.html',1,'']]],
   ['karakuri_5flogger_2ecpp_3',['karakuri_logger.cpp',['../karakuri__logger_8cpp.html',1,'']]],
-  ['karakuri_5flogger_2eh_4',['karakuri_logger.h',['../karakuri__logger_8h.html',1,'']]]
+  ['karakuri_5flogger_2eh_4',['karakuri_logger.h',['../karakuri__logger_8h.html',1,'']]],
+  ['kernel_5fclock_2ecpp_5',['kernel_clock.cpp',['../kernel__clock_8cpp.html',1,'']]],
+  ['kernel_5fclock_2eh_6',['kernel_clock.h',['../kernel__clock_8h.html',1,'']]]
 ];

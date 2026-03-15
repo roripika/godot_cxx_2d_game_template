@@ -102,27 +102,27 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 汎用アイテム管理サービス。 </p>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md28"></a>
 役割</h2>
 <ul>
 <li>アイテムマスターカタログ（JSON からロード可能）の管理。</li>
 <li>プレイヤーの現在所持アイテム（インベントリ）の管理。</li>
 <li>SaveService と連携した所持状態の保存・復元。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md29"></a>
 設計ポリシー (karakuri 層)</h2>
 <ul>
 <li>ミステリー固有の概念（証拠品・証言等）を一切知らない。</li>
 <li>mystery 層は ItemService を利用して「証拠品フィルタリング」等を行う。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 使い方</h2>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> *svc = <a class="code hl_function" href="classkarakuri_1_1ItemService.html#a71ae44b3c624e3b75d391d662d72bc1c">karakuri::ItemService::get_singleton</a>();</div>
 <div class="line">svc-&gt;register_item(<span class="stringliteral">&quot;knife&quot;</span>, { <span class="stringliteral">&quot;name&quot;</span>: <span class="stringliteral">&quot;血のナイフ&quot;</span>, ... });</div>
 <div class="line">svc-&gt;add_item(<span class="stringliteral">&quot;knife&quot;</span>);</div>
 <div class="line"><span class="keywordtype">bool</span> has = svc-&gt;has_item(<span class="stringliteral">&quot;knife&quot;</span>);  <span class="comment">// true</span></div>
 <div class="ttc" id="aclasskarakuri_1_1ItemService_html_a71ae44b3c624e3b75d391d662d72bc1c"><div class="ttname"><a href="classkarakuri_1_1ItemService.html#a71ae44b3c624e3b75d391d662d72bc1c">karakuri::ItemService::get_singleton</a></div><div class="ttdeci">static ItemService * get_singleton()</div><div class="ttdef"><b>Definition</b> item_service.cpp:26</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md31"></a>
 マスターカタログの Dictionary 形式</h2>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  &quot;id&quot;: &quot;knife&quot;,</div>

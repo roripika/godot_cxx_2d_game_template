@@ -85,11 +85,14 @@ $(function() {
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="task__base_8h_source.html">task_base.h</a>&quot;</code><br />
 <code>#include &lt;godot_cpp/variant/array.hpp&gt;</code><br />
+<code>#include &quot;<a class="el" href="task__spec_8h_source.html">task_spec.h</a>&quot;</code><br />
 </div>
 <p><a href="task__group_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkarakuri_1_1TaskGroupSpec.html">karakuri::TaskGroupSpec</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskGroup.html">karakuri::TaskGroup</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -100,10 +103,10 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 複数タスクを並列実行するコンテナタスク。 </p>
-<h2><a class="anchor" id="autotoc_md52"></a>
+<h2><a class="anchor" id="autotoc_md51"></a>
 役割</h2>
 <p>TaskGroup は複数の TaskBase を保持し、全てのタスクが is_finished() == true に なるまで on_update() を呼び続ける「AND ゲート」として機能する。</p>
-<h2><a class="anchor" id="autotoc_md53"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 使い方（GDScript）</h2>
 <div class="fragment"><div class="line">var group = TaskGroup.new()</div>
 <div class="line">group.add_task(zoom_task)</div>

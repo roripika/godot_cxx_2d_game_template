@@ -134,6 +134,10 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:ab2923fd2fb4eaade40637591760775bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc233c883e7d81d4bfe454c8c370c9c" id="r_a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a6cc233c883e7d81d4bfe454c8c370c9c">complete_custom_action</a> ()</td></tr>
 <tr class="separator:a6cc233c883e7d81d4bfe454c8c370c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a923603f0c9527c7f0ab0a7e0c803af60" id="r_a923603f0c9527c7f0ab0a7e0c803af60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a923603f0c9527c7f0ab0a7e0c803af60">complete_transition</a> ()</td></tr>
+<tr class="separator:a923603f0c9527c7f0ab0a7e0c803af60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c6bde9c8a8a868d94100cf59917fa05" id="r_a9c6bde9c8a8a868d94100cf59917fa05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a9c6bde9c8a8a868d94100cf59917fa05">request_transition</a> (const godot::String &amp;target_scene, const godot::Dictionary &amp;params)</td></tr>
+<tr class="separator:a9c6bde9c8a8a868d94100cf59917fa05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c1fa23314e6f94757c69b3539e40425" id="r_a8c1fa23314e6f94757c69b3539e40425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a8c1fa23314e6f94757c69b3539e40425">advance_dialogue</a> ()</td></tr>
 <tr class="memdesc:a8c1fa23314e6f94757c69b3539e40425"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオ（台詞）を一行進める。 View (GDScript) からのクリック等で呼ばれる。  <br /></td></tr>
 <tr class="separator:a8c1fa23314e6f94757c69b3539e40425"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +157,8 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:a0c601ff8fa14cb865611dec6a24c6d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39b81532ca85c90a03894101ccd68792" id="r_a39b81532ca85c90a03894101ccd68792"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a39b81532ca85c90a03894101ccd68792">set_pending_choice_actions</a> (const godot::Array &amp;a)</td></tr>
 <tr class="separator:a39b81532ca85c90a03894101ccd68792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf30848670c888b0ad03f951823d7d18" id="r_abf30848670c888b0ad03f951823d7d18"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#abf30848670c888b0ad03f951823d7d18">is_waiting_for_transition</a> () const</td></tr>
+<tr class="separator:abf30848670c888b0ad03f951823d7d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 静的限定公開メンバ関数</h2></td></tr>
@@ -167,8 +173,8 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:a0574e6e0a86b38d152b91c0391b3b7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e8a47e2ae6a81fb053e07ebadcc85aa" id="r_a5e8a47e2ae6a81fb053e07ebadcc85aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5e8a47e2ae6a81fb053e07ebadcc85aa">start_actions</a> (const godot::Array &amp;actions)</td></tr>
 <tr class="separator:a5e8a47e2ae6a81fb053e07ebadcc85aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aacfac50c4cb83def98929176a497a8" id="r_a2aacfac50c4cb83def98929176a497a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a2aacfac50c4cb83def98929176a497a8">step_actions</a> (double delta)</td></tr>
-<tr class="separator:a2aacfac50c4cb83def98929176a497a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f24e1fe609627daa48ce03f920e11f5" id="r_a3f24e1fe609627daa48ce03f920e11f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a3f24e1fe609627daa48ce03f920e11f5">step_actions</a> ()</td></tr>
+<tr class="separator:a3f24e1fe609627daa48ce03f920e11f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a702283c95079fb5d7a190085ebeff45c" id="r_a702283c95079fb5d7a190085ebeff45c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a702283c95079fb5d7a190085ebeff45c">set_mode_input_enabled</a> (bool enabled)</td></tr>
 <tr class="separator:a702283c95079fb5d7a190085ebeff45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a576e893e8fe435fbbbc45f3ea85ea662" id="r_a576e893e8fe435fbbbc45f3ea85ea662"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a576e893e8fe435fbbbc45f3ea85ea662">notify_mode_exit</a> (const godot::String &amp;current_mode, const godot::String &amp;next_scene_id)</td></tr>
@@ -204,6 +210,8 @@ karakuri::ScenarioRunner の継承関係図</div>
 <tr class="separator:a44ae67e4e423e2e9436a35531c92cc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a8946002ace4c31839c55f540129db1" id="r_a3a8946002ace4c31839c55f540129db1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a3a8946002ace4c31839c55f540129db1">waiting_for_transition_</a> = false</td></tr>
 <tr class="separator:a3a8946002ace4c31839c55f540129db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae05cdfa015825b9641d8d11f6f9e082e" id="r_ae05cdfa015825b9641d8d11f6f9e082e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#ae05cdfa015825b9641d8d11f6f9e082e">transition_start_time_</a> = 0.0</td></tr>
+<tr class="separator:ae05cdfa015825b9641d8d11f6f9e082e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c5de1d7a86f46031d98f727f4b4005d" id="r_a5c5de1d7a86f46031d98f727f4b4005d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a5c5de1d7a86f46031d98f727f4b4005d">waiting_for_custom_action_</a> = false</td></tr>
 <tr class="separator:a5c5de1d7a86f46031d98f727f4b4005d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a626d17d9c01259194eb4ddbb0a82ada6" id="r_a626d17d9c01259194eb4ddbb0a82ada6"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ScenarioRunner.html#a626d17d9c01259194eb4ddbb0a82ada6">current_mode_id_</a></td></tr>
@@ -406,6 +414,23 @@ karakuri::ScenarioRunner の継承関係図</div>
 
 </div>
 </div>
+<a id="a923603f0c9527c7f0ab0a7e0c803af60" name="a923603f0c9527c7f0ab0a7e0c803af60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a923603f0c9527c7f0ab0a7e0c803af60">&#9670;&#160;</a></span>complete_transition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::complete_transition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="afab3dd95e54c4e3d348f979d829c4cf9" name="afab3dd95e54c4e3d348f979d829c4cf9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afab3dd95e54c4e3d348f979d829c4cf9">&#9670;&#160;</a></span>get_current_scene_id()</h2>
 
@@ -539,6 +564,31 @@ karakuri::ScenarioRunner の継承関係図</div>
       <table class="memname">
         <tr>
           <td class="memname">bool karakuri::ScenarioRunner::is_waiting_for_dialogue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf30848670c888b0ad03f951823d7d18" name="abf30848670c888b0ad03f951823d7d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf30848670c888b0ad03f951823d7d18">&#9670;&#160;</a></span>is_waiting_for_transition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ScenarioRunner::is_waiting_for_transition </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -719,6 +769,34 @@ karakuri::ScenarioRunner の継承関係図</div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a9c6bde9c8a8a868d94100cf59917fa05" name="a9c6bde9c8a8a868d94100cf59917fa05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c6bde9c8a8a868d94100cf59917fa05">&#9670;&#160;</a></span>request_transition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ScenarioRunner::request_transition </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>target_scene</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -943,8 +1021,8 @@ karakuri::ScenarioRunner の継承関係図</div>
 
 </div>
 </div>
-<a id="a2aacfac50c4cb83def98929176a497a8" name="a2aacfac50c4cb83def98929176a497a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2aacfac50c4cb83def98929176a497a8">&#9670;&#160;</a></span>step_actions()</h2>
+<a id="a3f24e1fe609627daa48ce03f920e11f5" name="a3f24e1fe609627daa48ce03f920e11f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f24e1fe609627daa48ce03f920e11f5">&#9670;&#160;</a></span>step_actions()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -955,8 +1033,7 @@ karakuri::ScenarioRunner の継承関係図</div>
         <tr>
           <td class="memname">void karakuri::ScenarioRunner::step_actions </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1227,6 +1304,28 @@ karakuri::ScenarioRunner の継承関係図</div>
       <table class="memname">
         <tr>
           <td class="memname">godot::HashMap&lt;godot::String, <a class="el" href="structkarakuri_1_1CompiledScene.html">CompiledScene</a>&gt; karakuri::ScenarioRunner::scenes_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae05cdfa015825b9641d8d11f6f9e082e" name="ae05cdfa015825b9641d8d11f6f9e082e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae05cdfa015825b9641d8d11f6f9e082e">&#9670;&#160;</a></span>transition_start_time_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double karakuri::ScenarioRunner::transition_start_time_ = 0.0</td>
         </tr>
       </table>
   </td>

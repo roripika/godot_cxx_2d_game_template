@@ -113,7 +113,7 @@ karakuri::WorldState の継承関係図</div>
 <tr class="memitem:abd09e788c452ca1ad0d6ce0d759a2b04" id="r_abd09e788c452ca1ad0d6ce0d759a2b04"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1WorldState.html#abd09e788c452ca1ad0d6ce0d759a2b04">~WorldState</a> () override</td></tr>
 <tr class="separator:abd09e788c452ca1ad0d6ce0d759a2b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1027b5c12fe3690ce087848e77aa58b2" id="r_a1027b5c12fe3690ce087848e77aa58b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1WorldState.html#a1027b5c12fe3690ce087848e77aa58b2">set_state</a> (const godot::String &amp;<a class="el" href="if__flag__task_8cpp.html#a114ac1c71f41561fcde990af0ae3c587">ns</a>, int <a class="el" href="if__flag__task_8cpp.html#ae1af048ea44870cb8acef396ebc4ad09">scope</a>, const godot::String &amp;<a class="el" href="if__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b">key</a>, const godot::Variant &amp;value)</td></tr>
-<tr class="memdesc:a1027b5c12fe3690ce087848e77aa58b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した名前空間・スコープにステート（値）を設定する。 シグナル "state_changed(namespace, scope, key, value)" が発火する。  <br /></td></tr>
+<tr class="memdesc:a1027b5c12fe3690ce087848e77aa58b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した名前空間・スコープにステート（値）を設定する。 シグナル "state_changed(namespace, scope, key, old_value, new_value)" が発火する。  <br /></td></tr>
 <tr class="separator:a1027b5c12fe3690ce087848e77aa58b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b5e9354b8325ec54a99898bf4f7ed99" id="r_a3b5e9354b8325ec54a99898bf4f7ed99"><td class="memItemLeft" align="right" valign="top">godot::Variant&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1WorldState.html#a3b5e9354b8325ec54a99898bf4f7ed99">get_state</a> (const godot::String &amp;<a class="el" href="if__flag__task_8cpp.html#a114ac1c71f41561fcde990af0ae3c587">ns</a>, int <a class="el" href="if__flag__task_8cpp.html#ae1af048ea44870cb8acef396ebc4ad09">scope</a>, const godot::String &amp;<a class="el" href="if__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b">key</a>, const godot::Variant &amp;default_val=godot::Variant()) const</td></tr>
 <tr class="memdesc:a3b5e9354b8325ec54a99898bf4f7ed99"><td class="mdescLeft">&#160;</td><td class="mdescRight">指定した名前空間・スコープから値を取得する。  <br /></td></tr>
@@ -174,10 +174,10 @@ karakuri::WorldState の継承関係図</div>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Karakuri OS のメモリサンドボックス機構 (旧 FlagService)。 単一のグローバル辞書による状態汚染を防ぐため、名前空間（Namespace）と 生存期間（Scope）による厳格なメモリ管理・分離を行う。 </p>
-<h2><a class="anchor" id="autotoc_md57"></a>
+<h2><a class="anchor" id="autotoc_md56"></a>
 内部データ構造</h2>
 <p>スコープごとに独立した Dictionary を持ち、その中で Namespace により ツリー化する: { namespace: { key: value } }</p>
-<h2><a class="anchor" id="autotoc_md58"></a>
+<h2><a class="anchor" id="autotoc_md57"></a>
 後方互換 (旧 FlagService)</h2>
 <ul>
 <li>set_flag / get_flag / has_flag を namespace="core", scope=SCOPE_GLOBAL で ラップするメソッドとして提供。 </li>
@@ -635,7 +635,7 @@ karakuri::WorldState の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p>指定した名前空間・スコープにステート（値）を設定する。 シグナル "state_changed(namespace, scope, key, value)" が発火する。 </p>
+<p>指定した名前空間・スコープにステート（値）を設定する。 シグナル "state_changed(namespace, scope, key, old_value, new_value)" が発火する。 </p>
 
 </div>
 </div>

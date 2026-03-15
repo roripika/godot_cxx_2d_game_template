@@ -1,15 +1,22 @@
 var searchData=
 [
   ['target_5ftime_0',['target_time',['../classRhythmNote.html#a66f019619f781da921cad45b9c025060',1,'RhythmNote']]],
-  ['target_5fy_1',['target_y',['../classNoteLane.html#acbc14a9f711fd370c419ed3badcc7230',1,'NoteLane::target_y'],['../classRhythmNote.html#ac5a3fab04e8a8531209c81979b518384',1,'RhythmNote::target_y']]],
-  ['task_5fqueue_5f_2',['task_queue_',['../classkarakuri_1_1SequencePlayer.html#a2efe4542d46e083ffb2e3afcbd408773',1,'karakuri::SequencePlayer']]],
-  ['tasks_3',['tasks',['../structkarakuri_1_1CompiledScene.html#ac11e511ac1bb3c8ee890ea0d6206b730',1,'karakuri::CompiledScene']]],
-  ['tasks_5f_4',['tasks_',['../classkarakuri_1_1TaskGroup.html#a623a612065ced2c5560281e79ea516fe',1,'karakuri::TaskGroup']]],
-  ['text_5f_5',['text_',['../classkarakuri_1_1DialogueTask.html#a585dbed56509a90883e32fa00cb78fc6',1,'karakuri::DialogueTask']]],
-  ['text_5flabel_6',['text_label',['../classkarakuri_1_1DialogueUI.html#a41a352dc2ea5f7b36b87d7cd291e01ce',1,'karakuri::DialogueUI']]],
-  ['then_5fbranch_5f_7',['then_branch_',['../classkarakuri_1_1IfFlagTask.html#a42eeeec2f4d69d1420edb8951f6911a0',1,'karakuri::IfFlagTask::then_branch_'],['../classkarakuri_1_1IfHasItemsTask.html#a78683bacc479ebf0353c3ba7159b739a',1,'karakuri::IfHasItemsTask::then_branch_']]],
-  ['timer_5flabel_8',['timer_label',['../classFightingGameManager.html#a9289ac386b294af81edc4bb3d3754a1f',1,'FightingGameManager']]],
-  ['title_5fscene_5fpath_5f_9',['title_scene_path_',['../classkarakuri_1_1SceneFlow.html#a0fed4602c53f253d4ea1a6672e2ef6e0',1,'karakuri::SceneFlow']]],
-  ['tolerance_10',['tolerance',['../classRhythmCommandListener.html#a944a220c854536a9bccb0d895c17286b',1,'RhythmCommandListener']]],
-  ['type_5fspeed_11',['type_speed',['../classkarakuri_1_1DialogueUI.html#a033cb1091862580784200f611b0c979c',1,'karakuri::DialogueUI']]]
+  ['target_5ftime_5f_1',['target_time_',['../classkarakuri_1_1WaitTask.html#a607b55dafcd8d0aef84eadbd627ae3fa',1,'karakuri::WaitTask']]],
+  ['target_5fy_2',['target_y',['../classNoteLane.html#acbc14a9f711fd370c419ed3badcc7230',1,'NoteLane::target_y'],['../classRhythmNote.html#ac5a3fab04e8a8531209c81979b518384',1,'RhythmNote::target_y']]],
+  ['task_5fqueue_5f_3',['task_queue_',['../classkarakuri_1_1SequencePlayer.html#a2efe4542d46e083ffb2e3afcbd408773',1,'karakuri::SequencePlayer']]],
+  ['tasks_4',['tasks',['../structkarakuri_1_1CompiledScene.html#ac11e511ac1bb3c8ee890ea0d6206b730',1,'karakuri::CompiledScene::tasks'],['../structkarakuri_1_1TaskGroupSpec.html#a0bbe3c183ff8bfe1e5f9b71c9f426684',1,'karakuri::TaskGroupSpec::tasks']]],
+  ['tasks_5f_5',['tasks_',['../classkarakuri_1_1TaskGroup.html#a623a612065ced2c5560281e79ea516fe',1,'karakuri::TaskGroup']]],
+  ['text_6',['text',['../structkarakuri_1_1DialogueTaskSpec.html#a9d5b6e384f06c1cd5f71983cd157bfb5',1,'karakuri::DialogueTaskSpec']]],
+  ['text_5f_7',['text_',['../classkarakuri_1_1DialogueTask.html#a585dbed56509a90883e32fa00cb78fc6',1,'karakuri::DialogueTask']]],
+  ['text_5flabel_8',['text_label',['../classkarakuri_1_1DialogueUI.html#a41a352dc2ea5f7b36b87d7cd291e01ce',1,'karakuri::DialogueUI']]],
+  ['then_5fbranch_9',['then_branch',['../structkarakuri_1_1IfFlagTaskSpec.html#a8973e7ebb856e39674177a32e771a3d6',1,'karakuri::IfFlagTaskSpec::then_branch'],['../structkarakuri_1_1IfHasItemsTaskSpec.html#a4bab8edbdf8865b501baa46c1ba618fb',1,'karakuri::IfHasItemsTaskSpec::then_branch']]],
+  ['then_5fbranch_5f_10',['then_branch_',['../classkarakuri_1_1IfFlagTask.html#a42eeeec2f4d69d1420edb8951f6911a0',1,'karakuri::IfFlagTask::then_branch_'],['../classkarakuri_1_1IfHasItemsTask.html#a78683bacc479ebf0353c3ba7159b739a',1,'karakuri::IfHasItemsTask::then_branch_']]],
+  ['time_5f_11',['time_',['../classkarakuri_1_1KernelClock.html#a4f331ab03b3b3a7dead5bcbbef831174',1,'karakuri::KernelClock']]],
+  ['timer_5flabel_12',['timer_label',['../classFightingGameManager.html#a9289ac386b294af81edc4bb3d3754a1f',1,'FightingGameManager']]],
+  ['title_5fscene_5fpath_5f_13',['title_scene_path_',['../classkarakuri_1_1SceneFlow.html#a0fed4602c53f253d4ea1a6672e2ef6e0',1,'karakuri::SceneFlow']]],
+  ['tolerance_14',['tolerance',['../classRhythmCommandListener.html#a944a220c854536a9bccb0d895c17286b',1,'RhythmCommandListener']]],
+  ['transition_5frequested_5f_15',['transition_requested_',['../classkarakuri_1_1ChangeRootSceneTask.html#a4b0904b2536db4263730bd841484bf0f',1,'karakuri::ChangeRootSceneTask']]],
+  ['transition_5fstart_5ftime_5f_16',['transition_start_time_',['../classkarakuri_1_1ScenarioRunner.html#ae05cdfa015825b9641d8d11f6f9e082e',1,'karakuri::ScenarioRunner']]],
+  ['type_5fspeed_17',['type_speed',['../classkarakuri_1_1DialogueUI.html#a033cb1091862580784200f611b0c979c',1,'karakuri::DialogueUI']]],
+  ['typed_5fregistry_5f_18',['typed_registry_',['../classkarakuri_1_1ActionRegistry.html#ab1013d4a3b8107b072bda84693b93d8f',1,'karakuri::ActionRegistry']]]
 ];

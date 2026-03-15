@@ -99,12 +99,16 @@ karakuri::ActionRegistry の継承関係図</div>
 <tr class="separator:a87d4aa11d5ecead7e181a4f72012a96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9840f81b2a68cd552f8587763eb409c" id="r_ae9840f81b2a68cd552f8587763eb409c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#ae9840f81b2a68cd552f8587763eb409c">~ActionRegistry</a> () override</td></tr>
 <tr class="separator:ae9840f81b2a68cd552f8587763eb409c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eb5221a6457d18f3e9c1d54d7b5597d" id="r_a5eb5221a6457d18f3e9c1d54d7b5597d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#a5eb5221a6457d18f3e9c1d54d7b5597d">register_action</a> (const godot::String &amp;action_name, const godot::String &amp;class_name)</td></tr>
-<tr class="memdesc:a5eb5221a6457d18f3e9c1d54d7b5597d"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクション名と Godot クラス名を紐付ける。  <br /></td></tr>
-<tr class="separator:a5eb5221a6457d18f3e9c1d54d7b5597d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e75ebd56724d41f9366e09d5c6e569c" id="r_a7e75ebd56724d41f9366e09d5c6e569c"><td class="memItemLeft" align="right" valign="top">godot::Ref&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#a7e75ebd56724d41f9366e09d5c6e569c">compile_task</a> (const godot::Dictionary &amp;spec)</td></tr>
-<tr class="memdesc:a7e75ebd56724d41f9366e09d5c6e569c"><td class="mdescLeft">&#160;</td><td class="mdescRight">辞書(spec)を受け取り、対応するクラスを Instantiate 後、即座に validate_and_setup() を呼び出す。 エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。  <br /></td></tr>
-<tr class="separator:a7e75ebd56724d41f9366e09d5c6e569c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dd1341b735a97910073b74ae3e30c97" id="r_a0dd1341b735a97910073b74ae3e30c97"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a0dd1341b735a97910073b74ae3e30c97"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#a0dd1341b735a97910073b74ae3e30c97">register_action_class</a> (const godot::String &amp;action_name)</td></tr>
+<tr class="memdesc:a0dd1341b735a97910073b74ae3e30c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクション名と C++ タスククラスを紐付ける型安全なファクトリ登録。  <br /></td></tr>
+<tr class="separator:a0dd1341b735a97910073b74ae3e30c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a97fe6055b416a35f8efa7293708a4" id="r_af1a97fe6055b416a35f8efa7293708a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#af1a97fe6055b416a35f8efa7293708a4">register_action_deprecated</a> (const godot::String &amp;action_name, const godot::String &amp;class_name)</td></tr>
+<tr class="memdesc:af1a97fe6055b416a35f8efa7293708a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">(非推奨) GDScript用バインディング。C++側では <a class="el" href="classkarakuri_1_1ActionRegistry.html#a0dd1341b735a97910073b74ae3e30c97" title="アクション名と C++ タスククラスを紐付ける型安全なファクトリ登録。">register_action_class&lt;T&gt;()</a> を使用する。  <br /></td></tr>
+<tr class="separator:af1a97fe6055b416a35f8efa7293708a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f57404f3224321b7157d4b7f5ad7b3" id="r_ae3f57404f3224321b7157d4b7f5ad7b3"><td class="memItemLeft" align="right" valign="top">godot::Ref&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#ae3f57404f3224321b7157d4b7f5ad7b3">compile_task</a> (const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;spec)</td></tr>
+<tr class="memdesc:ae3f57404f3224321b7157d4b7f5ad7b3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a> を受け取り、対応するクラスを生成後、即座に validate_and_setup() を呼び出す。 エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。  <br /></td></tr>
+<tr class="separator:ae3f57404f3224321b7157d4b7f5ad7b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab06c2a6606f0b7262f410c4af701cd18" id="r_ab06c2a6606f0b7262f410c4af701cd18"><td class="memItemLeft" align="right" valign="top">godot::Array&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#ab06c2a6606f0b7262f410c4af701cd18">get_registered_actions</a> () const</td></tr>
 <tr class="memdesc:ab06c2a6606f0b7262f410c4af701cd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録されているアクション名の一覧を返す（デバッグ用）。  <br /></td></tr>
 <tr class="separator:ab06c2a6606f0b7262f410c4af701cd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,7 +119,6 @@ karakuri::ActionRegistry の継承関係図</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静的公開メンバ関数</h2></td></tr>
 <tr class="memitem:af8dd51b9700302cca1ad99e37de27af6" id="r_af8dd51b9700302cca1ad99e37de27af6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classkarakuri_1_1ActionRegistry.html">ActionRegistry</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#af8dd51b9700302cca1ad99e37de27af6">get_singleton</a> ()</td></tr>
-<tr class="memdesc:af8dd51b9700302cca1ad99e37de27af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">シングルトンを返す。  <br /></td></tr>
 <tr class="separator:af8dd51b9700302cca1ad99e37de27af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -130,9 +133,9 @@ karakuri::ActionRegistry の継承関係図</div>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 非公開変数類</h2></td></tr>
-<tr class="memitem:afe4e4c9151d86c234e331ffb148c2168" id="r_afe4e4c9151d86c234e331ffb148c2168"><td class="memItemLeft" align="right" valign="top">godot::Dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#afe4e4c9151d86c234e331ffb148c2168">registry_</a></td></tr>
-<tr class="memdesc:afe4e4c9151d86c234e331ffb148c2168"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクション名 → Godot クラス名 のマッピング  <br /></td></tr>
-<tr class="separator:afe4e4c9151d86c234e331ffb148c2168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1013d4a3b8107b072bda84693b93d8f" id="r_ab1013d4a3b8107b072bda84693b93d8f"><td class="memItemLeft" align="right" valign="top">godot::HashMap&lt; godot::String, std::function&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> *()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ActionRegistry.html#ab1013d4a3b8107b072bda84693b93d8f">typed_registry_</a></td></tr>
+<tr class="memdesc:ab1013d4a3b8107b072bda84693b93d8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクション名 → <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> 生成ファクトリ関数のマッピング  <br /></td></tr>
+<tr class="separator:ab1013d4a3b8107b072bda84693b93d8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
 静的非公開変数類</h2></td></tr>
@@ -208,8 +211,8 @@ karakuri::ActionRegistry の継承関係図</div>
 
 </div>
 </div>
-<a id="a7e75ebd56724d41f9366e09d5c6e569c" name="a7e75ebd56724d41f9366e09d5c6e569c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e75ebd56724d41f9366e09d5c6e569c">&#9670;&#160;</a></span>compile_task()</h2>
+<a id="ae3f57404f3224321b7157d4b7f5ad7b3" name="ae3f57404f3224321b7157d4b7f5ad7b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f57404f3224321b7157d4b7f5ad7b3">&#9670;&#160;</a></span>compile_task()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,17 +220,17 @@ karakuri::ActionRegistry の継承関係図</div>
         <tr>
           <td class="memname">Ref&lt; <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> &gt; karakuri::ActionRegistry::compile_task </td>
           <td>(</td>
-          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;&#160;</td>
           <td class="paramname"><em>spec</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>辞書(spec)を受け取り、対応するクラスを Instantiate 後、即座に validate_and_setup() を呼び出す。 エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。 </p>
+<p><a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a> を受け取り、対応するクラスを生成後、即座に validate_and_setup() を呼び出す。 エラーがあれば詳細をログに書き出し、null を返す (Fail-Fast)。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spec</td><td>YAML/JSON で記述された1つのアクション定義 (必須キー: "action") </td></tr>
+    <tr><td class="paramname">spec</td><td>シナリオロード時に展開された型付きIR (<a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a>) </td></tr>
   </table>
   </dd>
 </dl>
@@ -277,8 +280,6 @@ karakuri::ActionRegistry の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p>シングルトンを返す。 </p>
-
 </div>
 </div>
 <a id="a6b3e69577e11ac7ed81411f3eb9825db" name="a6b3e69577e11ac7ed81411f3eb9825db"></a>
@@ -326,14 +327,56 @@ karakuri::ActionRegistry の継承関係図</div>
 
 </div>
 </div>
-<a id="a5eb5221a6457d18f3e9c1d54d7b5597d" name="a5eb5221a6457d18f3e9c1d54d7b5597d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5eb5221a6457d18f3e9c1d54d7b5597d">&#9670;&#160;</a></span>register_action()</h2>
+<a id="a0dd1341b735a97910073b74ae3e30c97" name="a0dd1341b735a97910073b74ae3e30c97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dd1341b735a97910073b74ae3e30c97">&#9670;&#160;</a></span>register_action_class()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void karakuri::ActionRegistry::register_action_class </td>
+          <td>(</td>
+          <td class="paramtype">const godot::String &amp;&#160;</td>
+          <td class="paramname"><em>action_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>アクション名と C++ タスククラスを紐付ける型安全なファクトリ登録。 </p>
+<dl class="tparams"><dt>テンプレート引数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td><a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> を継承した C++ クラス </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action_name</td><td>YAML/JSON に書くアクション名 (例: "dialogue") </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af1a97fe6055b416a35f8efa7293708a4" name="af1a97fe6055b416a35f8efa7293708a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a97fe6055b416a35f8efa7293708a4">&#9670;&#160;</a></span>register_action_deprecated()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void karakuri::ActionRegistry::register_action </td>
+          <td class="memname">void karakuri::ActionRegistry::register_action_deprecated </td>
           <td>(</td>
           <td class="paramtype">const godot::String &amp;&#160;</td>
           <td class="paramname"><em>action_name</em>, </td>
@@ -352,43 +395,11 @@ karakuri::ActionRegistry の継承関係図</div>
       </table>
 </div><div class="memdoc">
 
-<p>アクション名と Godot クラス名を紐付ける。 </p>
-<dl class="params"><dt>引数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">action_name</td><td>YAML/JSON に書くアクション名 (例: "add_evidence") </td></tr>
-    <tr><td class="paramname">class_name</td><td>GDExtension に register_class された C++ クラス名 (例: "TaskAddEvidence")</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>Mystery 層の初期化時（_ready() 等で）に一度だけ呼ぶこと。 </p>
+<p>(非推奨) GDScript用バインディング。C++側では <a class="el" href="classkarakuri_1_1ActionRegistry.html#a0dd1341b735a97910073b74ae3e30c97" title="アクション名と C++ タスククラスを紐付ける型安全なファクトリ登録。">register_action_class&lt;T&gt;()</a> を使用する。 </p>
 
 </div>
 </div>
 <h2 class="groupheader">フィールド詳解</h2>
-<a id="afe4e4c9151d86c234e331ffb148c2168" name="afe4e4c9151d86c234e331ffb148c2168"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe4e4c9151d86c234e331ffb148c2168">&#9670;&#160;</a></span>registry_</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">godot::Dictionary karakuri::ActionRegistry::registry_</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>アクション名 → Godot クラス名 のマッピング </p>
-
-</div>
-</div>
 <a id="a3b201cb49c090e99d5ddb6988e426f0f" name="a3b201cb49c090e99d5ddb6988e426f0f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b201cb49c090e99d5ddb6988e426f0f">&#9670;&#160;</a></span>singleton_</h2>
 
@@ -408,6 +419,30 @@ karakuri::ActionRegistry の継承関係図</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1013d4a3b8107b072bda84693b93d8f" name="ab1013d4a3b8107b072bda84693b93d8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1013d4a3b8107b072bda84693b93d8f">&#9670;&#160;</a></span>typed_registry_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::HashMap&lt;godot::String, std::function&lt;<a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a>*()&gt; &gt; karakuri::ActionRegistry::typed_registry_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>アクション名 → <a class="el" href="classkarakuri_1_1TaskBase.html">TaskBase</a> 生成ファクトリ関数のマッピング </p>
 
 </div>
 </div>

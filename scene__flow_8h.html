@@ -105,24 +105,24 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 汎用シーン遷移スタック管理サービス。 </p>
-<h2><a class="anchor" id="autotoc_md33"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 役割</h2>
 <p><code>push</code>, <code>pop</code>, <code>replace</code> の3つのAPIで画面スタックを管理する。 Autoload として /root に配置することで、全シーンから参照できるシングルトンになる。</p>
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md33"></a>
 push / pop / replace の使い分け</h2>
-<h3><a class="anchor" id="autotoc_md35"></a>
+<h3><a class="anchor" id="autotoc_md34"></a>
 replace_scene(path, params)</h3>
 <p>履歴に残さず現在のシーンを置き換える。タイトル → ゲーム本編のように 「戻る必要がない遷移」に使う。</p>
-<h3><a class="anchor" id="autotoc_md36"></a>
+<h3><a class="anchor" id="autotoc_md35"></a>
 push_scene(path, params)</h3>
 <p>現在のシーンパスを履歴スタックに積んでから新しいシーンに移る。 ゲーム本編 → ポーズメニューのように「戻れる遷移」に使う。</p>
-<h3><a class="anchor" id="autotoc_md37"></a>
+<h3><a class="anchor" id="autotoc_md36"></a>
 pop_scene()</h3>
 <p>スタックから直前のシーンパスを取り出し、そのシーンに戻る。 スタックが空のときは何もしない（<code>can_pop()</code> で事前確認推奨）。</p>
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 パラメータ渡し（params）</h2>
 <p>遷移先のシーンは <code>SceneFlow::get_singleton()-&gt;get_current_params()</code> を 呼ぶことで、呼び出し元が渡した Dictionary を受け取れる。</p>
-<h2><a class="anchor" id="autotoc_md39"></a>
+<h2><a class="anchor" id="autotoc_md38"></a>
 使い方（GDScript）</h2>
 <div class="fragment"><div class="line"># 戻れない遷移</div>
 <div class="line">SceneFlow.replace_scene(&quot;res://scenes/game.tscn&quot;)</div>
@@ -134,22 +134,22 @@ pop_scene()</h3>
 <div class="line"> </div>
 <div class="line"># 遷移先でパラメータを受け取る</div>
 <div class="line">var params = SceneFlow.get_current_params()</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md40"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md39"></a>
 シグナル</h2>
-<h3><a class="anchor" id="autotoc_md41"></a>
+<h3><a class="anchor" id="autotoc_md40"></a>
 遷移イベント（スタック変化）</h3>
 <ul>
 <li><code>scene_replaced(from_path, to_path)</code></li>
 <li><code>scene_pushed(from_path, to_path)</code></li>
 <li><code>scene_popped(from_path, to_path)</code> : from=元いた画面, to=戻り先</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md42"></a>
+<h3><a class="anchor" id="autotoc_md41"></a>
 演出フック（フェードイン/アウト連携用）</h3>
 <ul>
 <li><code>transition_started(to_path)</code> : 遷移直前に発火。GDScript 側でフェードアウトを開始する。</li>
 <li><code>transition_finished()</code> : do_change_scene() 直後に発火。フェードイン開始の合図。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 &lt;tt&gt;return_to_title()&lt;/tt&gt; について</h2>
 <p><code>title_scene_path</code> プロパティに登録したシーンへ、履歴を全クリアして戻る。 タイトルへの「強制脱出」として使う。 </p>
 </div></div><!-- contents -->

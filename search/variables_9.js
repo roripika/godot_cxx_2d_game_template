@@ -1,7 +1,7 @@
 var searchData=
 [
   ['kcompatns_0',['kCompatNS',['../namespacekarakuri.html#a53961087cb2475414e78d6bbbbabbc14',1,'karakuri']]],
-  ['key_1',['key',['../if__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;if_flag_task.cpp'],['../set__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;set_flag_task.cpp']]],
+  ['key_1',['key',['../structkarakuri_1_1IfFlagTaskSpec.html#a37054ec8dc519955059917cba4f25b9c',1,'karakuri::IfFlagTaskSpec::key'],['../structkarakuri_1_1SetFlagTaskSpec.html#a02046145826b43982abb37dca1750731',1,'karakuri::SetFlagTaskSpec::key'],['../if__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;if_flag_task.cpp'],['../set__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;set_flag_task.cpp']]],
   ['key_5f_2',['key_',['../classkarakuri_1_1IfFlagTask.html#a675887e67b034b95f74cf44aa03d7e7e',1,'karakuri::IfFlagTask::key_'],['../classkarakuri_1_1SetFlagTask.html#ae7f4feed33a9e3a9ca29940e25864879',1,'karakuri::SetFlagTask::key_']]],
   ['kmajor_3',['kMajor',['../structkarakuri_1_1Version.html#a7a5754401395cf849d51b90913a41296',1,'karakuri::Version']]],
   ['kminor_4',['kMinor',['../structkarakuri_1_1Version.html#a134df6ec3dc52af8649682214397c3c7',1,'karakuri::Version']]],

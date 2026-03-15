@@ -76,7 +76,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">データ構造</a> &#124;
-<a href="#namespaces">名前空間</a>  </div>
+<a href="#namespaces">名前空間</a> &#124;
+<a href="#enum-members">列挙型</a>  </div>
   <div class="headertitle"><div class="title">wait_task.h ファイル</div></div>
 </div><!--header-->
 <div class="contents">
@@ -85,11 +86,14 @@ $(function() {
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="task__base_8h_source.html">task_base.h</a>&quot;</code><br />
 <code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
+<code>#include &quot;<a class="el" href="task__spec_8h_source.html">task_spec.h</a>&quot;</code><br />
 </div>
 <p><a href="wait__task_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 データ構造</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkarakuri_1_1WaitTaskSpec.html">karakuri::WaitTaskSpec</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1WaitTask.html">karakuri::WaitTask</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -97,10 +101,17 @@ $(function() {
 名前空間</h2></td></tr>
 <tr class="memitem:namespacekarakuri" id="r_namespacekarakuri"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html">karakuri</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+列挙型</h2></td></tr>
+<tr class="memitem:a59622cc40ec9b7a9cc686985936f91e5" id="r_a59622cc40ec9b7a9cc686985936f91e5"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekarakuri.html#a59622cc40ec9b7a9cc686985936f91e5">karakuri::WaitMode</a> { <a class="el" href="namespacekarakuri.html#a59622cc40ec9b7a9cc686985936f91e5aefb4777327e6f704fb1519c1882f93ec">karakuri::Timer</a>
+, <a class="el" href="namespacekarakuri.html#a59622cc40ec9b7a9cc686985936f91e5a085fea7abdc5d904fe69a3081efd7398">karakuri::Signal</a>
+ }</td></tr>
+<tr class="separator:a59622cc40ec9b7a9cc686985936f91e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 秒数またはシグナル待機タスク。 </p>
-<h2><a class="anchor" id="autotoc_md54"></a>
+<h2><a class="anchor" id="autotoc_md53"></a>
 使い方</h2>
 <div class="fragment"><div class="line"># 秒数待機</div>
 <div class="line">- action: wait</div>
@@ -108,9 +119,9 @@ $(function() {
 <div class="line"> </div>
 <div class="line"># シグナル待機（duration を省略または 0 にすると mark_signal_received() 待ちになる）</div>
 <div class="line">- action: wait</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md55"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md54"></a>
 スキップ</h2>
-<p>complete_instantly() を呼ぶと elapsed_ = duration_ にセットされ、 is_finished() が即座に true を返すようになる。シグナル待機の場合も同様。 </p>
+<p>complete_instantly() を呼ぶと target_time_ = now() にセットされ、 is_finished() が即座に true を返すようになる。シグナル待機の場合も同様。 </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

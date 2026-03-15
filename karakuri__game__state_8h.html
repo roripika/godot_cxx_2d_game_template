@@ -103,20 +103,20 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: ゲーム基盤ステート管理。 </p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md15"></a>
 責務（Karakuri 境界内）</h2>
 <ul>
 <li>ゲームリセットフックの DI（Mystery 等の上位層が登録する Callable）</li>
 <li>reset_game() の呼び出しとフック実行</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md16"></a>
 責務外（境界外 → 継承クラスへ）</h2>
 <ul>
 <li>HP 管理 → mystery::MysteryGameState</li>
 <li>シーン遷移 → <a class="el" href="classkarakuri_1_1SceneFlow.html">karakuri::SceneFlow</a></li>
 <li>フラグ管理 → karakuri::FlagService</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md17"></a>
 使い方</h2>
 <ul>
 <li>Godot Autoload として /root/KarakuriGameState に配置する。</li>

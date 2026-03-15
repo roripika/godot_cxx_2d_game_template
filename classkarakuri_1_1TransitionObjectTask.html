@@ -102,12 +102,12 @@ karakuri::TransitionObjectTask の継承関係図</div>
 <tr class="memitem:a6a3df3cc4444df59bffe925b8754acd7" id="r_a6a3df3cc4444df59bffe925b8754acd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a6a3df3cc4444df59bffe925b8754acd7">set_runner</a> (<a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a> *runner) override</td></tr>
 <tr class="memdesc:a6a3df3cc4444df59bffe925b8754acd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runner コンテキストの注入 (Option)  <br /></td></tr>
 <tr class="separator:a6a3df3cc4444df59bffe925b8754acd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a224224c526bcce27bb52d2d4a3514a90" id="r_a224224c526bcce27bb52d2d4a3514a90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a224224c526bcce27bb52d2d4a3514a90">execute</a> (double delta) override</td></tr>
-<tr class="memdesc:a224224c526bcce27bb52d2d4a3514a90"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
-<tr class="separator:a224224c526bcce27bb52d2d4a3514a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5af2a1876c8c71ee74a35a97b0e39b2b" id="r_a5af2a1876c8c71ee74a35a97b0e39b2b"><td class="memItemLeft" align="right" valign="top">godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a5af2a1876c8c71ee74a35a97b0e39b2b">validate_and_setup</a> (const godot::Dictionary &amp;spec) override</td></tr>
-<tr class="memdesc:a5af2a1876c8c71ee74a35a97b0e39b2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
-<tr class="separator:a5af2a1876c8c71ee74a35a97b0e39b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ee4a4f290121c09f6c3124e3d7dcabe" id="r_a2ee4a4f290121c09f6c3124e3d7dcabe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a2ee4a4f290121c09f6c3124e3d7dcabe">execute</a> () override</td></tr>
+<tr class="memdesc:a2ee4a4f290121c09f6c3124e3d7dcabe"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
+<tr class="separator:a2ee4a4f290121c09f6c3124e3d7dcabe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8311ba02e6f180d57a93a2a409b591f6" id="r_a8311ba02e6f180d57a93a2a409b591f6"><td class="memItemLeft" align="right" valign="top">godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a8311ba02e6f180d57a93a2a409b591f6">validate_and_setup</a> (const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;spec) override</td></tr>
+<tr class="memdesc:a8311ba02e6f180d57a93a2a409b591f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
+<tr class="separator:a8311ba02e6f180d57a93a2a409b591f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3dd3ee3f4af4385d286373bdb8c7eae" id="r_ad3dd3ee3f4af4385d286373bdb8c7eae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TransitionObjectTask.html#ad3dd3ee3f4af4385d286373bdb8c7eae">complete_instantly</a> () override</td></tr>
 <tr class="memdesc:ad3dd3ee3f4af4385d286373bdb8c7eae"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキップ時に呼ばれる。 演出をスキップし、このタスクがもたらすべき最終状態を即座に適用して終了させる。  <br /></td></tr>
 <tr class="separator:ad3dd3ee3f4af4385d286373bdb8c7eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -240,8 +240,8 @@ karakuri::TransitionObjectTask の継承関係図</div>
 
 </div>
 </div>
-<a id="a224224c526bcce27bb52d2d4a3514a90" name="a224224c526bcce27bb52d2d4a3514a90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a224224c526bcce27bb52d2d4a3514a90">&#9670;&#160;</a></span>execute()</h2>
+<a id="a2ee4a4f290121c09f6c3124e3d7dcabe" name="a2ee4a4f290121c09f6c3124e3d7dcabe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ee4a4f290121c09f6c3124e3d7dcabe">&#9670;&#160;</a></span>execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,8 +252,7 @@ karakuri::TransitionObjectTask の継承関係図</div>
         <tr>
           <td class="memname"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a> karakuri::TransitionObjectTask::execute </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -273,7 +272,7 @@ karakuri::TransitionObjectTask の継承関係図</div>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>TaskResult 実行結果 </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1TaskBase.html#afa2cfb0af3e68b324957617f9f8a888b">karakuri::TaskBase</a>を実装しています。</p>
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#a9bd7b759c20b1502fc576658b81aeccc">karakuri::TaskBase</a>を実装しています。</p>
 
 </div>
 </div>
@@ -307,8 +306,8 @@ karakuri::TransitionObjectTask の継承関係図</div>
 
 </div>
 </div>
-<a id="a5af2a1876c8c71ee74a35a97b0e39b2b" name="a5af2a1876c8c71ee74a35a97b0e39b2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5af2a1876c8c71ee74a35a97b0e39b2b">&#9670;&#160;</a></span>validate_and_setup()</h2>
+<a id="a8311ba02e6f180d57a93a2a409b591f6" name="a8311ba02e6f180d57a93a2a409b591f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8311ba02e6f180d57a93a2a409b591f6">&#9670;&#160;</a></span>validate_and_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +318,7 @@ karakuri::TransitionObjectTask の継承関係図</div>
         <tr>
           <td class="memname">Error karakuri::TransitionObjectTask::validate_and_setup </td>
           <td>(</td>
-          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;&#160;</td>
           <td class="paramname"><em>spec</em></td><td>)</td>
           <td></td>
         </tr>
@@ -331,16 +330,16 @@ karakuri::TransitionObjectTask の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p>シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
+<p>シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spec</td><td>タスクの定義データ </td></tr>
+    <tr><td class="paramname">spec</td><td>タスクの定義データ (<a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a> IR) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>Error OK またはエラーコード </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1TaskBase.html#abe4794ce6e7d9066c685059bb2508bc5">karakuri::TaskBase</a>を実装しています。</p>
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#afa6bb1699cd8a2de1773bd048800b4d8">karakuri::TaskBase</a>を実装しています。</p>
 
 </div>
 </div>

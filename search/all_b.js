@@ -1,7 +1,7 @@
 var searchData=
 [
   ['karakuri_0',['karakuri',['../namespacekarakuri.html',1,'']]],
-  ['karakuri_20層_1',['karakuri 層',['../sound__service_8h.html#autotoc_md45',1,'設計ポリシー (karakuri 層)'],['../item__service_8h.html#autotoc_md30',1,'設計ポリシー (karakuri 層)'],['../action__runner_8h.html#autotoc_md26',1,'設計ポリシー (karakuri 層)'],['../interaction__component_8h.html#autotoc_md3',1,'設計ポリシー (karakuri 層)']]],
+  ['karakuri_20層_1',['karakuri 層',['../sound__service_8h.html#autotoc_md44',1,'設計ポリシー (karakuri 層)'],['../item__service_8h.html#autotoc_md29',1,'設計ポリシー (karakuri 層)'],['../action__runner_8h.html#autotoc_md25',1,'設計ポリシー (karakuri 層)'],['../interaction__component_8h.html#autotoc_md2',1,'設計ポリシー (karakuri 層)']]],
   ['karakuri_2eh_2',['karakuri.h',['../karakuri_8h.html',1,'']]],
   ['karakuri_5fdebug_3',['KARAKURI_DEBUG',['../karakuri__logger_8h.html#ac5542d01eab8f31fbec4590496eb4aaa',1,'karakuri_logger.h']]],
   ['karakuri_5ferr_4',['KARAKURI_ERR',['../karakuri__logger_8h.html#aa077768238603038a9b10a31a2bacdfd',1,'karakuri_logger.h']]],
@@ -13,10 +13,13 @@ var searchData=
   ['karakuri_5fwarn_10',['KARAKURI_WARN',['../karakuri__logger_8h.html#a838e5e523840fc1130095ce8254b0607',1,'karakuri_logger.h']]],
   ['karakurigamestate_11',['karakurigamestate',['../classkarakuri_1_1KarakuriGameState.html#a21a7e29a8c0e9130b94cda6843776fad',1,'karakuri::KarakuriGameState::KarakuriGameState()'],['../classkarakuri_1_1KarakuriGameState.html',1,'karakuri::KarakuriGameState']]],
   ['kcompatns_12',['kCompatNS',['../namespacekarakuri.html#a53961087cb2475414e78d6bbbbabbc14',1,'karakuri']]],
-  ['key_13',['key',['../if__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;if_flag_task.cpp'],['../set__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;set_flag_task.cpp']]],
-  ['key_5f_14',['key_',['../classkarakuri_1_1SetFlagTask.html#ae7f4feed33a9e3a9ca29940e25864879',1,'karakuri::SetFlagTask::key_'],['../classkarakuri_1_1IfFlagTask.html#a675887e67b034b95f74cf44aa03d7e7e',1,'karakuri::IfFlagTask::key_']]],
-  ['kmajor_15',['kMajor',['../structkarakuri_1_1Version.html#a7a5754401395cf849d51b90913a41296',1,'karakuri::Version']]],
-  ['kminor_16',['kMinor',['../structkarakuri_1_1Version.html#a134df6ec3dc52af8649682214397c3c7',1,'karakuri::Version']]],
-  ['knockback_5fforce_17',['knockback_force',['../classkarakuri_1_1HitboxComponent.html#a526a8c21ffc62b5e3b45242db5a6e87c',1,'karakuri::HitboxComponent']]],
-  ['kpatch_18',['kPatch',['../structkarakuri_1_1Version.html#abd5e14ad4c2616932d50cd58a64dd166',1,'karakuri::Version']]]
+  ['kernel_5fclock_2ecpp_13',['kernel_clock.cpp',['../kernel__clock_8cpp.html',1,'']]],
+  ['kernel_5fclock_2eh_14',['kernel_clock.h',['../kernel__clock_8h.html',1,'']]],
+  ['kernelclock_15',['kernelclock',['../classkarakuri_1_1KernelClock.html',1,'karakuri::KernelClock'],['../classkarakuri_1_1KernelClock.html#a6c226b6f90aa0c938c2c3f94ca85e0a2',1,'karakuri::KernelClock::KernelClock()']]],
+  ['key_16',['key',['../if__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;if_flag_task.cpp'],['../set__flag__task_8cpp.html#a9295944786eaac08ccf5d53ca07fe18b',1,'key:&#160;set_flag_task.cpp'],['../structkarakuri_1_1SetFlagTaskSpec.html#a02046145826b43982abb37dca1750731',1,'karakuri::SetFlagTaskSpec::key'],['../structkarakuri_1_1IfFlagTaskSpec.html#a37054ec8dc519955059917cba4f25b9c',1,'karakuri::IfFlagTaskSpec::key']]],
+  ['key_5f_17',['key_',['../classkarakuri_1_1SetFlagTask.html#ae7f4feed33a9e3a9ca29940e25864879',1,'karakuri::SetFlagTask::key_'],['../classkarakuri_1_1IfFlagTask.html#a675887e67b034b95f74cf44aa03d7e7e',1,'karakuri::IfFlagTask::key_']]],
+  ['kmajor_18',['kMajor',['../structkarakuri_1_1Version.html#a7a5754401395cf849d51b90913a41296',1,'karakuri::Version']]],
+  ['kminor_19',['kMinor',['../structkarakuri_1_1Version.html#a134df6ec3dc52af8649682214397c3c7',1,'karakuri::Version']]],
+  ['knockback_5fforce_20',['knockback_force',['../classkarakuri_1_1HitboxComponent.html#a526a8c21ffc62b5e3b45242db5a6e87c',1,'karakuri::HitboxComponent']]],
+  ['kpatch_21',['kPatch',['../structkarakuri_1_1Version.html#abd5e14ad4c2616932d50cd58a64dd166',1,'karakuri::Version']]]
 ];

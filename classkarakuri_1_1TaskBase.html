@@ -107,12 +107,12 @@ karakuri::TaskBase の継承関係図</div>
 <tr class="separator:a8202e8b29387500221d48a70fced3421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a343b3419d3b6b349cd9bc07339480e09" id="r_a343b3419d3b6b349cd9bc07339480e09"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#a343b3419d3b6b349cd9bc07339480e09">~TaskBase</a> () override=default</td></tr>
 <tr class="separator:a343b3419d3b6b349cd9bc07339480e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa2cfb0af3e68b324957617f9f8a888b" id="r_afa2cfb0af3e68b324957617f9f8a888b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#afa2cfb0af3e68b324957617f9f8a888b">execute</a> (double delta)=0</td></tr>
-<tr class="memdesc:afa2cfb0af3e68b324957617f9f8a888b"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
-<tr class="separator:afa2cfb0af3e68b324957617f9f8a888b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe4794ce6e7d9066c685059bb2508bc5" id="r_abe4794ce6e7d9066c685059bb2508bc5"><td class="memItemLeft" align="right" valign="top">virtual godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#abe4794ce6e7d9066c685059bb2508bc5">validate_and_setup</a> (const godot::Dictionary &amp;spec)=0</td></tr>
-<tr class="memdesc:abe4794ce6e7d9066c685059bb2508bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
-<tr class="separator:abe4794ce6e7d9066c685059bb2508bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bd7b759c20b1502fc576658b81aeccc" id="r_a9bd7b759c20b1502fc576658b81aeccc"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#a9bd7b759c20b1502fc576658b81aeccc">execute</a> ()=0</td></tr>
+<tr class="memdesc:a9bd7b759c20b1502fc576658b81aeccc"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
+<tr class="separator:a9bd7b759c20b1502fc576658b81aeccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa6bb1699cd8a2de1773bd048800b4d8" id="r_afa6bb1699cd8a2de1773bd048800b4d8"><td class="memItemLeft" align="right" valign="top">virtual godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#afa6bb1699cd8a2de1773bd048800b4d8">validate_and_setup</a> (const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;spec)=0</td></tr>
+<tr class="memdesc:afa6bb1699cd8a2de1773bd048800b4d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
+<tr class="separator:afa6bb1699cd8a2de1773bd048800b4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afbf7f8f3eeb5cb67074c5d2afb991d95" id="r_afbf7f8f3eeb5cb67074c5d2afb991d95"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#afbf7f8f3eeb5cb67074c5d2afb991d95">complete_instantly</a> ()=0</td></tr>
 <tr class="memdesc:afbf7f8f3eeb5cb67074c5d2afb991d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキップ時に呼ばれる。 演出をスキップし、このタスクがもたらすべき最終状態を即座に適用して終了させる。  <br /></td></tr>
 <tr class="separator:afbf7f8f3eeb5cb67074c5d2afb991d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,8 +231,8 @@ karakuri::TaskBase の継承関係図</div>
 
 </div>
 </div>
-<a id="afa2cfb0af3e68b324957617f9f8a888b" name="afa2cfb0af3e68b324957617f9f8a888b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa2cfb0af3e68b324957617f9f8a888b">&#9670;&#160;</a></span>execute()</h2>
+<a id="a9bd7b759c20b1502fc576658b81aeccc" name="a9bd7b759c20b1502fc576658b81aeccc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bd7b759c20b1502fc576658b81aeccc">&#9670;&#160;</a></span>execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,8 +243,7 @@ karakuri::TaskBase の継承関係図</div>
         <tr>
           <td class="memname">virtual <a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a> karakuri::TaskBase::execute </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -264,7 +263,7 @@ karakuri::TaskBase の継承関係図</div>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>TaskResult 実行結果 </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a29e8318f08a592d76cb92592d0f4d8a5">karakuri::ChangeRootSceneTask</a>, <a class="el" href="classkarakuri_1_1ChoiceTask.html#a3f13055b279a5e974e4eb9d6f496b58f">karakuri::ChoiceTask</a>, <a class="el" href="classkarakuri_1_1DialogueTask.html#ab735c94f3afa8ad607822d95c2c14359">karakuri::DialogueTask</a>, <a class="el" href="classkarakuri_1_1GotoTask.html#ac1a3bad021b0685bfb28e79ba57b15e1">karakuri::GotoTask</a>, <a class="el" href="classkarakuri_1_1IfFlagTask.html#a014f95ba732e073f1261fb3b6d186f43">karakuri::IfFlagTask</a>, <a class="el" href="classkarakuri_1_1IfHasItemsTask.html#a44c79dd6eb3db5bb61ecddd138b5a256">karakuri::IfHasItemsTask</a>, <a class="el" href="classkarakuri_1_1SetFlagTask.html#acf4bdfd71ec0d5672c0930a76a80808d">karakuri::SetFlagTask</a>, <a class="el" href="classkarakuri_1_1TaskGroup.html#afc5af1c9547f5175cc8a8f19b335c11f">karakuri::TaskGroup</a>, <a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a224224c526bcce27bb52d2d4a3514a90">karakuri::TransitionObjectTask</a>, <a class="el" href="classkarakuri_1_1WaitTask.html#a1143e9142f8f9969bc94c174d45cf61a">karakuri::WaitTask</a>で実装されています。</p>
+<p><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a39faa22a00d484617b346be814ada016">karakuri::ChangeRootSceneTask</a>, <a class="el" href="classkarakuri_1_1ChoiceTask.html#afb0862e9d96f05ef09d571343f73953d">karakuri::ChoiceTask</a>, <a class="el" href="classkarakuri_1_1DialogueTask.html#ae7b04642eef17738b682d8c0e2c90411">karakuri::DialogueTask</a>, <a class="el" href="classkarakuri_1_1GotoTask.html#adb1c770831a54c7c424208d851ea89fe">karakuri::GotoTask</a>, <a class="el" href="classkarakuri_1_1IfFlagTask.html#a73c664795fa9dbdfd8b920bed85200d6">karakuri::IfFlagTask</a>, <a class="el" href="classkarakuri_1_1IfHasItemsTask.html#a1f53ac1ecb2d3ebcf22da5cd1963e948">karakuri::IfHasItemsTask</a>, <a class="el" href="classkarakuri_1_1SetFlagTask.html#a70d6f768380aeee167749bc5ea686f71">karakuri::SetFlagTask</a>, <a class="el" href="classkarakuri_1_1TaskGroup.html#ab0ec67da920ec549b887b336cb8bb843">karakuri::TaskGroup</a>, <a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a2ee4a4f290121c09f6c3124e3d7dcabe">karakuri::TransitionObjectTask</a>, <a class="el" href="classkarakuri_1_1WaitTask.html#a9de9326a1d3c03e0d52d1e41ad7a7238">karakuri::WaitTask</a>で実装されています。</p>
 
 </div>
 </div>
@@ -294,12 +293,12 @@ karakuri::TaskBase の継承関係図</div>
 
 <p>Runner コンテキストの注入 (Option) </p>
 
-<p><a class="el" href="classkarakuri_1_1IfFlagTask.html#afb2dc849ce8039735f0e516b4ba01fad">karakuri::IfFlagTask</a>, <a class="el" href="classkarakuri_1_1ChoiceTask.html#a4d943046fca7372bb72f51e1bc51b30f">karakuri::ChoiceTask</a>, <a class="el" href="classkarakuri_1_1DialogueTask.html#aaa7e39935d76117daeca22cd500e957c">karakuri::DialogueTask</a>, <a class="el" href="classkarakuri_1_1GotoTask.html#ac99c4fdcb639bf1310a4b1a5e5b4f695">karakuri::GotoTask</a>, <a class="el" href="classkarakuri_1_1IfHasItemsTask.html#ab22957e422fd0a3694c615376172b081">karakuri::IfHasItemsTask</a>, <a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a6a3df3cc4444df59bffe925b8754acd7">karakuri::TransitionObjectTask</a>で再実装されています。</p>
+<p><a class="el" href="classkarakuri_1_1IfFlagTask.html#afb2dc849ce8039735f0e516b4ba01fad">karakuri::IfFlagTask</a>, <a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#aab73a5c4c03d893b0283034ffdc02700">karakuri::ChangeRootSceneTask</a>, <a class="el" href="classkarakuri_1_1ChoiceTask.html#a4d943046fca7372bb72f51e1bc51b30f">karakuri::ChoiceTask</a>, <a class="el" href="classkarakuri_1_1DialogueTask.html#aaa7e39935d76117daeca22cd500e957c">karakuri::DialogueTask</a>, <a class="el" href="classkarakuri_1_1GotoTask.html#ac99c4fdcb639bf1310a4b1a5e5b4f695">karakuri::GotoTask</a>, <a class="el" href="classkarakuri_1_1IfHasItemsTask.html#ab22957e422fd0a3694c615376172b081">karakuri::IfHasItemsTask</a>, <a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a6a3df3cc4444df59bffe925b8754acd7">karakuri::TransitionObjectTask</a>で再実装されています。</p>
 
 </div>
 </div>
-<a id="abe4794ce6e7d9066c685059bb2508bc5" name="abe4794ce6e7d9066c685059bb2508bc5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe4794ce6e7d9066c685059bb2508bc5">&#9670;&#160;</a></span>validate_and_setup()</h2>
+<a id="afa6bb1699cd8a2de1773bd048800b4d8" name="afa6bb1699cd8a2de1773bd048800b4d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa6bb1699cd8a2de1773bd048800b4d8">&#9670;&#160;</a></span>validate_and_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -310,7 +309,7 @@ karakuri::TaskBase の継承関係図</div>
         <tr>
           <td class="memname">virtual godot::Error karakuri::TaskBase::validate_and_setup </td>
           <td>(</td>
-          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;&#160;</td>
           <td class="paramname"><em>spec</em></td><td>)</td>
           <td></td>
         </tr>
@@ -322,16 +321,16 @@ karakuri::TaskBase の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p>シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
+<p>シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spec</td><td>タスクの定義データ </td></tr>
+    <tr><td class="paramname">spec</td><td>タスクの定義データ (<a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a> IR) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>Error OK またはエラーコード </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a3c2ebbe58ddcfc14ac951eff926e81ce">karakuri::ChangeRootSceneTask</a>, <a class="el" href="classkarakuri_1_1ChoiceTask.html#a58a5e16927c9c8fdb4f6df8647a9b429">karakuri::ChoiceTask</a>, <a class="el" href="classkarakuri_1_1DialogueTask.html#a0ad187c846cd1e70b3e1d258488f99d3">karakuri::DialogueTask</a>, <a class="el" href="classkarakuri_1_1GotoTask.html#a150eb551e53bd83bf1383b6e5159c78d">karakuri::GotoTask</a>, <a class="el" href="classkarakuri_1_1IfFlagTask.html#ae1294881c8f4d1d3e6aed407c3b73a37">karakuri::IfFlagTask</a>, <a class="el" href="classkarakuri_1_1IfHasItemsTask.html#a068387eb9374d23d2269f968e64e7b2c">karakuri::IfHasItemsTask</a>, <a class="el" href="classkarakuri_1_1SetFlagTask.html#abac36b516b6f1703afcbd61e1392cd32">karakuri::SetFlagTask</a>, <a class="el" href="classkarakuri_1_1TaskGroup.html#a40070c144555b2f1f70c6ed2e1b7f5fb">karakuri::TaskGroup</a>, <a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a5af2a1876c8c71ee74a35a97b0e39b2b">karakuri::TransitionObjectTask</a>, <a class="el" href="classkarakuri_1_1WaitTask.html#a0ed8bc2ed1b00a7bd6c4366901dcabe0">karakuri::WaitTask</a>で実装されています。</p>
+<p><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#aae6f682c06dbfdf40ba46b17f4be85f0">karakuri::ChangeRootSceneTask</a>, <a class="el" href="classkarakuri_1_1ChoiceTask.html#a6bb7d0f777c1b97ba57f207995b2c3a5">karakuri::ChoiceTask</a>, <a class="el" href="classkarakuri_1_1DialogueTask.html#a6e0c18f82f1edaab94deb9ddf21a7700">karakuri::DialogueTask</a>, <a class="el" href="classkarakuri_1_1GotoTask.html#a227e3087c668c9500ae22a3de8b72256">karakuri::GotoTask</a>, <a class="el" href="classkarakuri_1_1IfFlagTask.html#aac24e0e6b08b2b4192689827dc09bb70">karakuri::IfFlagTask</a>, <a class="el" href="classkarakuri_1_1IfHasItemsTask.html#afb46b2c7efcafbcdbb303d9a9d01cf73">karakuri::IfHasItemsTask</a>, <a class="el" href="classkarakuri_1_1SetFlagTask.html#a5e9399f2eb915d458e6a2848ce416c19">karakuri::SetFlagTask</a>, <a class="el" href="classkarakuri_1_1TaskGroup.html#af1cea40a15d4c91c64a89b8fb748487e">karakuri::TaskGroup</a>, <a class="el" href="classkarakuri_1_1TransitionObjectTask.html#a8311ba02e6f180d57a93a2a409b591f6">karakuri::TransitionObjectTask</a>, <a class="el" href="classkarakuri_1_1WaitTask.html#a81b2375b5019ce9cd2552da2eb9cb272">karakuri::WaitTask</a>で実装されています。</p>
 
 </div>
 </div>

@@ -102,12 +102,12 @@ karakuri::GotoTask の継承関係図</div>
 <tr class="memitem:ac99c4fdcb639bf1310a4b1a5e5b4f695" id="r_ac99c4fdcb639bf1310a4b1a5e5b4f695"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1GotoTask.html#ac99c4fdcb639bf1310a4b1a5e5b4f695">set_runner</a> (<a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a> *runner) override</td></tr>
 <tr class="memdesc:ac99c4fdcb639bf1310a4b1a5e5b4f695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runner コンテキストの注入 (Option)  <br /></td></tr>
 <tr class="separator:ac99c4fdcb639bf1310a4b1a5e5b4f695"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1a3bad021b0685bfb28e79ba57b15e1" id="r_ac1a3bad021b0685bfb28e79ba57b15e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1GotoTask.html#ac1a3bad021b0685bfb28e79ba57b15e1">execute</a> (double delta) override</td></tr>
-<tr class="memdesc:ac1a3bad021b0685bfb28e79ba57b15e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
-<tr class="separator:ac1a3bad021b0685bfb28e79ba57b15e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a150eb551e53bd83bf1383b6e5159c78d" id="r_a150eb551e53bd83bf1383b6e5159c78d"><td class="memItemLeft" align="right" valign="top">godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1GotoTask.html#a150eb551e53bd83bf1383b6e5159c78d">validate_and_setup</a> (const godot::Dictionary &amp;spec) override</td></tr>
-<tr class="memdesc:a150eb551e53bd83bf1383b6e5159c78d"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
-<tr class="separator:a150eb551e53bd83bf1383b6e5159c78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb1c770831a54c7c424208d851ea89fe" id="r_adb1c770831a54c7c424208d851ea89fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1GotoTask.html#adb1c770831a54c7c424208d851ea89fe">execute</a> () override</td></tr>
+<tr class="memdesc:adb1c770831a54c7c424208d851ea89fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
+<tr class="separator:adb1c770831a54c7c424208d851ea89fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a227e3087c668c9500ae22a3de8b72256" id="r_a227e3087c668c9500ae22a3de8b72256"><td class="memItemLeft" align="right" valign="top">godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1GotoTask.html#a227e3087c668c9500ae22a3de8b72256">validate_and_setup</a> (const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;spec) override</td></tr>
+<tr class="memdesc:a227e3087c668c9500ae22a3de8b72256"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
+<tr class="separator:a227e3087c668c9500ae22a3de8b72256"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ca9e26d0154f7203c8fa151fd9ea9ad" id="r_a4ca9e26d0154f7203c8fa151fd9ea9ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1GotoTask.html#a4ca9e26d0154f7203c8fa151fd9ea9ad">complete_instantly</a> () override</td></tr>
 <tr class="memdesc:a4ca9e26d0154f7203c8fa151fd9ea9ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキップ時に呼ばれる。 演出をスキップし、このタスクがもたらすべき最終状態を即座に適用して終了させる。  <br /></td></tr>
 <tr class="separator:a4ca9e26d0154f7203c8fa151fd9ea9ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -240,8 +240,8 @@ karakuri::GotoTask の継承関係図</div>
 
 </div>
 </div>
-<a id="ac1a3bad021b0685bfb28e79ba57b15e1" name="ac1a3bad021b0685bfb28e79ba57b15e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1a3bad021b0685bfb28e79ba57b15e1">&#9670;&#160;</a></span>execute()</h2>
+<a id="adb1c770831a54c7c424208d851ea89fe" name="adb1c770831a54c7c424208d851ea89fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb1c770831a54c7c424208d851ea89fe">&#9670;&#160;</a></span>execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,8 +252,7 @@ karakuri::GotoTask の継承関係図</div>
         <tr>
           <td class="memname"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a> karakuri::GotoTask::execute </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -273,7 +272,7 @@ karakuri::GotoTask の継承関係図</div>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>TaskResult 実行結果 </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1TaskBase.html#afa2cfb0af3e68b324957617f9f8a888b">karakuri::TaskBase</a>を実装しています。</p>
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#a9bd7b759c20b1502fc576658b81aeccc">karakuri::TaskBase</a>を実装しています。</p>
 
 </div>
 </div>
@@ -332,8 +331,8 @@ karakuri::GotoTask の継承関係図</div>
 
 </div>
 </div>
-<a id="a150eb551e53bd83bf1383b6e5159c78d" name="a150eb551e53bd83bf1383b6e5159c78d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a150eb551e53bd83bf1383b6e5159c78d">&#9670;&#160;</a></span>validate_and_setup()</h2>
+<a id="a227e3087c668c9500ae22a3de8b72256" name="a227e3087c668c9500ae22a3de8b72256"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a227e3087c668c9500ae22a3de8b72256">&#9670;&#160;</a></span>validate_and_setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -344,7 +343,7 @@ karakuri::GotoTask の継承関係図</div>
         <tr>
           <td class="memname">Error karakuri::GotoTask::validate_and_setup </td>
           <td>(</td>
-          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;&#160;</td>
           <td class="paramname"><em>spec</em></td><td>)</td>
           <td></td>
         </tr>
@@ -356,16 +355,16 @@ karakuri::GotoTask の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p>シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
+<p>シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spec</td><td>タスクの定義データ </td></tr>
+    <tr><td class="paramname">spec</td><td>タスクの定義データ (<a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a> IR) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>Error OK またはエラーコード </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1TaskBase.html#abe4794ce6e7d9066c685059bb2508bc5">karakuri::TaskBase</a>を実装しています。</p>
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#afa6bb1699cd8a2de1773bd048800b4d8">karakuri::TaskBase</a>を実装しています。</p>
 
 </div>
 </div>

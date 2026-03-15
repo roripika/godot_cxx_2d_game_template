@@ -15,11 +15,13 @@ var searchData=
   ['dialogue_5fui_2ecpp_12',['dialogue_ui.cpp',['../dialogue__ui_8cpp.html',1,'']]],
   ['dialogue_5fui_2eh_13',['dialogue_ui.h',['../dialogue__ui_8h.html',1,'']]],
   ['dialoguetask_14',['dialoguetask',['../classkarakuri_1_1DialogueTask.html#affb0d089f0dac401142e25d10f283008',1,'karakuri::DialogueTask::DialogueTask()'],['../classkarakuri_1_1DialogueTask.html',1,'karakuri::DialogueTask']]],
-  ['dialogueui_15',['dialogueui',['../classkarakuri_1_1DialogueUI.html',1,'karakuri::DialogueUI'],['../classkarakuri_1_1DialogueUI.html#a1997728a2e84435451e8b870046923f4',1,'karakuri::DialogueUI::DialogueUI()']]],
-  ['dictionary_20形式_16',['マスターカタログの Dictionary 形式',['../item__service_8h.html#autotoc_md32',1,'']]],
-  ['do_5freplace_5fscene_17',['do_replace_scene',['../classkarakuri_1_1SceneFlow.html#ae61f6c525029a67f36e12bd7bd6f5a52',1,'karakuri::SceneFlow']]],
-  ['done_5f_18',['done_',['../scenario__runner_8cpp.html#aac774ec2d673bfab4851d001b6d01115',1,'scenario_runner.cpp']]],
-  ['dsl_19',['サポートする DSL',['../condition__evaluator_8h.html#autotoc_md6',1,'']]],
-  ['duplicate_20true_20ポリシー_20',['duplicate(true) ポリシー',['../state__snapshot_8h.html#autotoc_md51',1,'']]],
-  ['duration_5f_21',['duration_',['../classkarakuri_1_1WaitTask.html#a76f6c0a58f20d60f736a3311503ba92f',1,'karakuri::WaitTask']]]
+  ['dialoguetaskspec_15',['DialogueTaskSpec',['../structkarakuri_1_1DialogueTaskSpec.html',1,'karakuri']]],
+  ['dialogueui_16',['dialogueui',['../classkarakuri_1_1DialogueUI.html',1,'karakuri::DialogueUI'],['../classkarakuri_1_1DialogueUI.html#a1997728a2e84435451e8b870046923f4',1,'karakuri::DialogueUI::DialogueUI()']]],
+  ['dictionary_20形式_17',['マスターカタログの Dictionary 形式',['../item__service_8h.html#autotoc_md31',1,'']]],
+  ['do_5freplace_5fscene_18',['do_replace_scene',['../classkarakuri_1_1SceneFlow.html#ae61f6c525029a67f36e12bd7bd6f5a52',1,'karakuri::SceneFlow']]],
+  ['done_5f_19',['done_',['../scenario__runner_8cpp.html#aac774ec2d673bfab4851d001b6d01115',1,'scenario_runner.cpp']]],
+  ['dsl_20',['サポートする DSL',['../condition__evaluator_8h.html#autotoc_md5',1,'']]],
+  ['duplicate_20true_20ポリシー_21',['duplicate(true) ポリシー',['../state__snapshot_8h.html#autotoc_md50',1,'']]],
+  ['duration_22',['duration',['../structkarakuri_1_1WaitTaskSpec.html#a944f4d59f4ab5d13d7a003d71fdc1e0b',1,'karakuri::WaitTaskSpec']]],
+  ['duration_5f_23',['duration_',['../classkarakuri_1_1WaitTask.html#a76f6c0a58f20d60f736a3311503ba92f',1,'karakuri::WaitTask']]]
 ];

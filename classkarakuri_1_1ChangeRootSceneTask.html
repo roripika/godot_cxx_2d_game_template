@@ -99,12 +99,15 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
 <tr class="separator:ad038ffc7874eb0c005c5b4027c89bdda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a022cc6eea6e33afc3e8bed56111dfa3e" id="r_a022cc6eea6e33afc3e8bed56111dfa3e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a022cc6eea6e33afc3e8bed56111dfa3e">~ChangeRootSceneTask</a> () override=default</td></tr>
 <tr class="separator:a022cc6eea6e33afc3e8bed56111dfa3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29e8318f08a592d76cb92592d0f4d8a5" id="r_a29e8318f08a592d76cb92592d0f4d8a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a29e8318f08a592d76cb92592d0f4d8a5">execute</a> (double delta) override</td></tr>
-<tr class="memdesc:a29e8318f08a592d76cb92592d0f4d8a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
-<tr class="separator:a29e8318f08a592d76cb92592d0f4d8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c2ebbe58ddcfc14ac951eff926e81ce" id="r_a3c2ebbe58ddcfc14ac951eff926e81ce"><td class="memItemLeft" align="right" valign="top">godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a3c2ebbe58ddcfc14ac951eff926e81ce">validate_and_setup</a> (const godot::Dictionary &amp;spec) override</td></tr>
-<tr class="memdesc:a3c2ebbe58ddcfc14ac951eff926e81ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
-<tr class="separator:a3c2ebbe58ddcfc14ac951eff926e81ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab73a5c4c03d893b0283034ffdc02700" id="r_aab73a5c4c03d893b0283034ffdc02700"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#aab73a5c4c03d893b0283034ffdc02700">set_runner</a> (<a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a> *runner) override</td></tr>
+<tr class="memdesc:aab73a5c4c03d893b0283034ffdc02700"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runner コンテキストの注入 (Option)  <br /></td></tr>
+<tr class="separator:aab73a5c4c03d893b0283034ffdc02700"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39faa22a00d484617b346be814ada016" id="r_a39faa22a00d484617b346be814ada016"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a39faa22a00d484617b346be814ada016">execute</a> () override</td></tr>
+<tr class="memdesc:a39faa22a00d484617b346be814ada016"><td class="mdescLeft">&#160;</td><td class="mdescRight">タスクを実行する。毎フレーム呼ばれる。  <br /></td></tr>
+<tr class="separator:a39faa22a00d484617b346be814ada016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae6f682c06dbfdf40ba46b17f4be85f0" id="r_aae6f682c06dbfdf40ba46b17f4be85f0"><td class="memItemLeft" align="right" valign="top">godot::Error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#aae6f682c06dbfdf40ba46b17f4be85f0">validate_and_setup</a> (const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;spec) override</td></tr>
+<tr class="memdesc:aae6f682c06dbfdf40ba46b17f4be85f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。  <br /></td></tr>
+<tr class="separator:aae6f682c06dbfdf40ba46b17f4be85f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58b35abbd77e562edb79f5429a69f794" id="r_a58b35abbd77e562edb79f5429a69f794"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a58b35abbd77e562edb79f5429a69f794">complete_instantly</a> () override</td></tr>
 <tr class="memdesc:a58b35abbd77e562edb79f5429a69f794"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキップ時に呼ばれる。 演出をスキップし、このタスクがもたらすべき最終状態を即座に適用して終了させる。  <br /></td></tr>
 <tr class="separator:a58b35abbd77e562edb79f5429a69f794"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,9 +116,6 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
 <tr class="separator:a8202e8b29387500221d48a70fced3421 inherit pub_methods_classkarakuri_1_1TaskBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a343b3419d3b6b349cd9bc07339480e09 inherit pub_methods_classkarakuri_1_1TaskBase" id="r_a343b3419d3b6b349cd9bc07339480e09"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#a343b3419d3b6b349cd9bc07339480e09">~TaskBase</a> () override=default</td></tr>
 <tr class="separator:a343b3419d3b6b349cd9bc07339480e09 inherit pub_methods_classkarakuri_1_1TaskBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f7cd9ce86b31c9ccdc1946ae023046 inherit pub_methods_classkarakuri_1_1TaskBase" id="r_a39f7cd9ce86b31c9ccdc1946ae023046"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1TaskBase.html#a39f7cd9ce86b31c9ccdc1946ae023046">set_runner</a> (<a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a> *runner)</td></tr>
-<tr class="memdesc:a39f7cd9ce86b31c9ccdc1946ae023046 inherit pub_methods_classkarakuri_1_1TaskBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runner コンテキストの注入 (Option)  <br /></td></tr>
-<tr class="separator:a39f7cd9ce86b31c9ccdc1946ae023046 inherit pub_methods_classkarakuri_1_1TaskBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 静的限定公開メンバ関数</h2></td></tr>
@@ -129,6 +129,12 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
 非公開変数類</h2></td></tr>
 <tr class="memitem:a0466c66c4085616dc7a073c64ddd2c4e" id="r_a0466c66c4085616dc7a073c64ddd2c4e"><td class="memItemLeft" align="right" valign="top">godot::String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a0466c66c4085616dc7a073c64ddd2c4e">scene_path_</a></td></tr>
 <tr class="separator:a0466c66c4085616dc7a073c64ddd2c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca8c4fb65f27b8361af8a47c52483b9d" id="r_aca8c4fb65f27b8361af8a47c52483b9d"><td class="memItemLeft" align="right" valign="top">godot::Dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#aca8c4fb65f27b8361af8a47c52483b9d">params_</a></td></tr>
+<tr class="separator:aca8c4fb65f27b8361af8a47c52483b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b0904b2536db4263730bd841484bf0f" id="r_a4b0904b2536db4263730bd841484bf0f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a4b0904b2536db4263730bd841484bf0f">transition_requested_</a> = false</td></tr>
+<tr class="separator:a4b0904b2536db4263730bd841484bf0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a822152015d8218775dfa786ca0d74ce2" id="r_a822152015d8218775dfa786ca0d74ce2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkarakuri_1_1ChangeRootSceneTask.html#a822152015d8218775dfa786ca0d74ce2">runner_</a> = nullptr</td></tr>
+<tr class="separator:a822152015d8218775dfa786ca0d74ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">構築子と解体子</h2>
 <a id="ad038ffc7874eb0c005c5b4027c89bdda" name="ad038ffc7874eb0c005c5b4027c89bdda"></a>
@@ -236,8 +242,8 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
 
 </div>
 </div>
-<a id="a29e8318f08a592d76cb92592d0f4d8a5" name="a29e8318f08a592d76cb92592d0f4d8a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29e8318f08a592d76cb92592d0f4d8a5">&#9670;&#160;</a></span>execute()</h2>
+<a id="a39faa22a00d484617b346be814ada016" name="a39faa22a00d484617b346be814ada016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39faa22a00d484617b346be814ada016">&#9670;&#160;</a></span>execute()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,8 +254,7 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
         <tr>
           <td class="memname"><a class="el" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a> karakuri::ChangeRootSceneTask::execute </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>delta</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -269,12 +274,12 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>TaskResult 実行結果 </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1TaskBase.html#afa2cfb0af3e68b324957617f9f8a888b">karakuri::TaskBase</a>を実装しています。</p>
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#a9bd7b759c20b1502fc576658b81aeccc">karakuri::TaskBase</a>を実装しています。</p>
 
 </div>
 </div>
-<a id="a3c2ebbe58ddcfc14ac951eff926e81ce" name="a3c2ebbe58ddcfc14ac951eff926e81ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c2ebbe58ddcfc14ac951eff926e81ce">&#9670;&#160;</a></span>validate_and_setup()</h2>
+<a id="aab73a5c4c03d893b0283034ffdc02700" name="aab73a5c4c03d893b0283034ffdc02700"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab73a5c4c03d893b0283034ffdc02700">&#9670;&#160;</a></span>set_runner()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,9 +288,39 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Error karakuri::ChangeRootSceneTask::validate_and_setup </td>
+          <td class="memname">void karakuri::ChangeRootSceneTask::set_runner </td>
           <td>(</td>
-          <td class="paramtype">const godot::Dictionary &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runner コンテキストの注入 (Option) </p>
+
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#a39f7cd9ce86b31c9ccdc1946ae023046">karakuri::TaskBase</a>を再実装しています。</p>
+
+</div>
+</div>
+<a id="aae6f682c06dbfdf40ba46b17f4be85f0" name="aae6f682c06dbfdf40ba46b17f4be85f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae6f682c06dbfdf40ba46b17f4be85f0">&#9670;&#160;</a></span>validate_and_setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Error karakuri::ChangeRootSceneTask::validate_and_setup </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;&#160;</td>
           <td class="paramname"><em>spec</em></td><td>)</td>
           <td></td>
         </tr>
@@ -297,20 +332,64 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
 </table>
 </div><div class="memdoc">
 
-<p>シナリオデータ（Dictionary）を受け取り、初期化・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
+<p>シナリオデータを受け取り、型付きIRにコンパイル・検証を行う。 ロード時に一度だけ呼ばれる。必須パラメータが欠けている場合は Error を返す。 </p>
 <dl class="params"><dt>引数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">spec</td><td>タスクの定義データ </td></tr>
+    <tr><td class="paramname">spec</td><td>タスクの定義データ (<a class="el" href="structkarakuri_1_1TaskSpec.html" title="Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...">TaskSpec</a> IR) </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>Error OK またはエラーコード </dd></dl>
 
-<p><a class="el" href="classkarakuri_1_1TaskBase.html#abe4794ce6e7d9066c685059bb2508bc5">karakuri::TaskBase</a>を実装しています。</p>
+<p><a class="el" href="classkarakuri_1_1TaskBase.html#afa6bb1699cd8a2de1773bd048800b4d8">karakuri::TaskBase</a>を実装しています。</p>
 
 </div>
 </div>
 <h2 class="groupheader">フィールド詳解</h2>
+<a id="aca8c4fb65f27b8361af8a47c52483b9d" name="aca8c4fb65f27b8361af8a47c52483b9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca8c4fb65f27b8361af8a47c52483b9d">&#9670;&#160;</a></span>params_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">godot::Dictionary karakuri::ChangeRootSceneTask::params_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a822152015d8218775dfa786ca0d74ce2" name="a822152015d8218775dfa786ca0d74ce2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a822152015d8218775dfa786ca0d74ce2">&#9670;&#160;</a></span>runner_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkarakuri_1_1ScenarioRunner.html">ScenarioRunner</a>* karakuri::ChangeRootSceneTask::runner_ = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0466c66c4085616dc7a073c64ddd2c4e" name="a0466c66c4085616dc7a073c64ddd2c4e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0466c66c4085616dc7a073c64ddd2c4e">&#9670;&#160;</a></span>scene_path_</h2>
 
@@ -322,6 +401,28 @@ karakuri::ChangeRootSceneTask の継承関係図</div>
       <table class="memname">
         <tr>
           <td class="memname">godot::String karakuri::ChangeRootSceneTask::scene_path_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b0904b2536db4263730bd841484bf0f" name="a4b0904b2536db4263730bd841484bf0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b0904b2536db4263730bd841484bf0f">&#9670;&#160;</a></span>transition_requested_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool karakuri::ChangeRootSceneTask::transition_requested_ = false</td>
         </tr>
       </table>
   </td>

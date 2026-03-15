@@ -101,21 +101,21 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: プレイヤー周囲のインタラクト対象を検知するコンポーネント。 </p>
-<h2><a class="anchor" id="autotoc_md2"></a>
+<h2><a class="anchor" id="autotoc_md1"></a>
 役割</h2>
 <ul>
 <li>detection_radius_ 以内にある IInteractable ノード群の中から 最も近いものを「フォーカス中対象」として保持する。</li>
 <li>フォーカスが変わったとき <code>focus_changed(Node*, bool)</code> シグナルを発する。 UI はこれを受けて「！」アイコンを表示・非表示する。</li>
 <li>InputService 経由で "interact" アクションが押されたとき、 フォーカス中の IInteractable::on_interact() を呼び出す。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3"></a>
+<h2><a class="anchor" id="autotoc_md2"></a>
 設計ポリシー (karakuri 層)</h2>
 <ul>
 <li>mystery 層の具体型（MysteryObject 等）を一切 #include しない。</li>
 <li>IInteractable インターフェースのみを介して呼び出す。</li>
 <li>"interactable" グループに登録されたノードをスキャンする。 （対象ノード側が _ready() で add_to_group("interactable") を呼ぶ）</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md4"></a>
+<h2><a class="anchor" id="autotoc_md3"></a>
 Godot シーンでの使い方</h2>
 <ol type="1">
 <li>MysteryPlayer の子として InteractionComponent ノードを追加する。</li>

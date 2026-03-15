@@ -100,37 +100,37 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: JSON (Dictionary) 形式の条件式を評価する論理判定エンジン。 </p>
-<h2><a class="anchor" id="autotoc_md5"></a>
+<h2><a class="anchor" id="autotoc_md4"></a>
 目的</h2>
 <p>YAML / JSON で記述したシナリオ条件を C++ コードを一切変えずに評価できるようにする。 AI 生成シナリオや外部プランナーが書いた条件データをそのまま実行できるデータ駆動設計。</p>
-<h2><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 サポートする DSL</h2>
-<h3><a class="anchor" id="autotoc_md7"></a>
+<h3><a class="anchor" id="autotoc_md6"></a>
 AND 条件</h3>
 <div class="fragment"><div class="line">{ &quot;and&quot;: [ &lt;cond1&gt;, &lt;cond2&gt;, ... ] }</div>
 </div><!-- fragment --><p> 全ての要素が true のとき true。</p>
-<h3><a class="anchor" id="autotoc_md8"></a>
+<h3><a class="anchor" id="autotoc_md7"></a>
 OR 条件</h3>
 <div class="fragment"><div class="line">{ &quot;or&quot;: [ &lt;cond1&gt;, &lt;cond2&gt;, ... ] }</div>
 </div><!-- fragment --><p> いずれか 1 つが true のとき true。</p>
-<h3><a class="anchor" id="autotoc_md9"></a>
+<h3><a class="anchor" id="autotoc_md8"></a>
 NOT 条件</h3>
 <div class="fragment"><div class="line">{ &quot;not&quot;: &lt;cond&gt; }</div>
 </div><!-- fragment --><p> 内側の条件が false のとき true。</p>
-<h3><a class="anchor" id="autotoc_md10"></a>
+<h3><a class="anchor" id="autotoc_md9"></a>
 フラグ存在チェック (truthy 判定)</h3>
 <div class="fragment"><div class="line">{ &quot;flag&quot;: &quot;has_knife&quot; }</div>
 </div><!-- fragment --><p> <code>KarakuriGameState::get_flag("has_knife")</code> が truthy (bool true / 0 でない int / 空でない String) のとき true。</p>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md10"></a>
 等値チェック</h3>
 <div class="fragment"><div class="line">{ &quot;eq&quot;: [&quot;phase&quot;, 2] }</div>
 </div><!-- fragment --><p> <code>get_flag("phase") == 2</code> のとき true。</p>
-<h2><a class="anchor" id="autotoc_md12"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 使い方（GDScript）</h2>
 <div class="fragment"><div class="line">var cond = { &quot;and&quot;: [{ &quot;flag&quot;: &quot;is_raining&quot; }, { &quot;not&quot;: { &quot;flag&quot;: &quot;has_umbrella&quot; } }] }</div>
 <div class="line">if ConditionEvaluator.evaluate(cond):</div>
 <div class="line">    print(&quot;濡れる！&quot;)</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
 使い方（C++）</h2>
 <div class="fragment"><div class="line">Dictionary cond; cond[<span class="stringliteral">&quot;flag&quot;</span>] = <span class="stringliteral">&quot;has_knife&quot;</span>;</div>
 <div class="line"><span class="keywordtype">bool</span> result = <a class="code hl_function" href="classkarakuri_1_1ConditionEvaluator.html#a3b07fc70e13bad14c251f747e5b860c5">karakuri::ConditionEvaluator::evaluate</a>(cond);</div>

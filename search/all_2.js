@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['abi_20v1_205_0',['設計方針 (ABI v1.5)',['../action__registry_8h.html#autotoc_md0',1,'']]],
+  ['action_0',['action',['../structkarakuri_1_1TaskSpec.html#acfd1f3e5f801aa13caef25ff9a646ccf',1,'karakuri::TaskSpec']]],
   ['action_5fhandlers_5f_1',['action_handlers_',['../classkarakuri_1_1ScenarioRunner.html#ada576236783b80b01c994d4b92bb01b4',1,'karakuri::ScenarioRunner']]],
   ['action_5fregistry_2ecpp_2',['action_registry.cpp',['../action__registry_8cpp.html',1,'']]],
   ['action_5fregistry_2eh_3',['action_registry.h',['../action__registry_8h.html',1,'']]],
@@ -8,18 +8,18 @@ var searchData=
   ['action_5frunner_2eh_5',['action_runner.h',['../action__runner_8h.html',1,'']]],
   ['action_5frunner_5fpath_5f_6',['action_runner_path_',['../classkarakuri_1_1SequencePlayer.html#a34a70c86d06a9a70c0e8ff9f3898b024',1,'karakuri::SequencePlayer']]],
   ['actionhandler_7',['ActionHandler',['../classkarakuri_1_1ScenarioRunner.html#a416b4e5b1c36c12d1b20388c9a3b6ce7',1,'karakuri::ScenarioRunner']]],
-  ['actionregistry_8',['actionregistry',['../classkarakuri_1_1ActionRegistry.html#a87d4aa11d5ecead7e181a4f72012a96e',1,'karakuri::ActionRegistry::ActionRegistry()'],['../classkarakuri_1_1ActionRegistry.html',1,'karakuri::ActionRegistry']]],
-  ['actionrunner_9',['actionrunner',['../classkarakuri_1_1ActionRunner.html#acd5513f730c10ff3cb9ddfb06c122dbb',1,'karakuri::ActionRunner::ActionRunner()'],['../classkarakuri_1_1ActionRunner.html',1,'karakuri::ActionRunner']]],
+  ['actionregistry_8',['actionregistry',['../classkarakuri_1_1ActionRegistry.html',1,'karakuri::ActionRegistry'],['../classkarakuri_1_1ActionRegistry.html#a87d4aa11d5ecead7e181a4f72012a96e',1,'karakuri::ActionRegistry::ActionRegistry()']]],
+  ['actionrunner_9',['actionrunner',['../classkarakuri_1_1ActionRunner.html',1,'karakuri::ActionRunner'],['../classkarakuri_1_1ActionRunner.html#acd5513f730c10ff3cb9ddfb06c122dbb',1,'karakuri::ActionRunner::ActionRunner()']]],
   ['active_10',['active',['../classkarakuri_1_1InteractionManager.html#a4d48fb16335b2cc9d49326c2a819cff2',1,'karakuri::InteractionManager']]],
   ['active_5fnotes_11',['active_notes',['../classNoteLane.html#a54da3868c6e887ebd8e1dedb1240cca0',1,'NoteLane']]],
   ['active_5fpushed_5fscene_5f_12',['active_pushed_scene_',['../classkarakuri_1_1SceneFlow.html#a30af17a41e0eb74e64bd32cfa241ccba',1,'karakuri::SceneFlow']]],
   ['add_5fitem_13',['add_item',['../classkarakuri_1_1Inventory.html#a5af41748786a55aaad77fb4ec8f14a3c',1,'karakuri::Inventory::add_item()'],['../classkarakuri_1_1ItemService.html#a907c6f05043a795d7a23bd36ee8e66c2',1,'karakuri::ItemService::add_item()']]],
   ['add_5ftask_14',['add_task',['../classkarakuri_1_1SequencePlayer.html#ab2ced195bf37a522702f91f266b70435',1,'karakuri::SequencePlayer::add_task()'],['../classkarakuri_1_1TaskGroup.html#af07d183ce8cb6956a1de340c5c618228',1,'karakuri::TaskGroup::add_task()']]],
-  ['advance_15',['advance',['../classkarakuri_1_1SequencePlayer.html#ad0c9c28f97e79e9f669c8b949b775456',1,'karakuri::SequencePlayer']]],
+  ['advance_15',['advance',['../classkarakuri_1_1KernelClock.html#ab559c216c05c5dc40b00218b926ab346',1,'karakuri::KernelClock::advance()'],['../classkarakuri_1_1SequencePlayer.html#ad0c9c28f97e79e9f669c8b949b775456',1,'karakuri::SequencePlayer::advance()']]],
   ['advance_5fdialogue_16',['advance_dialogue',['../classkarakuri_1_1ScenarioRunner.html#a8c1fa23314e6f94757c69b3539e40425',1,'karakuri::ScenarioRunner']]],
   ['amount_17',['amount',['../structkarakuri_1_1InventorySlot.html#acb4f7371c9d36184fec5ab3e339a2011',1,'karakuri::InventorySlot::amount'],['../classkarakuri_1_1InventorySlotUI.html#a6e94618308d4223dc70908672af978bb',1,'karakuri::InventorySlotUI::amount']]],
   ['amount_5flabel_18',['amount_label',['../classkarakuri_1_1InventorySlotUI.html#a782a4e607e5bec568cac7eef92ce56d5',1,'karakuri::InventorySlotUI']]],
-  ['and_20条件_19',['AND 条件',['../condition__evaluator_8h.html#autotoc_md7',1,'']]],
+  ['and_20条件_19',['AND 条件',['../condition__evaluator_8h.html#autotoc_md6',1,'']]],
   ['apply_5ffade_20',['apply_fade',['../classkarakuri_1_1ActionRunner.html#adbce20017b7a340880a8ead1e966cba6',1,'karakuri::ActionRunner']]],
   ['apply_5fflash_21',['apply_flash',['../classkarakuri_1_1ActionRunner.html#ac5396500f01590e9901fae5384d2f7cf',1,'karakuri::ActionRunner']]],
   ['apply_5fhit_5fstop_22',['apply_hit_stop',['../classHitStopManager.html#ad48fba0d6b11eacf50a304ffd5837fac',1,'HitStopManager']]],
@@ -27,5 +27,6 @@ var searchData=
   ['apply_5fshake_24',['apply_shake',['../classkarakuri_1_1ActionRunner.html#a3e682c83590741964fa60431db6f2aa5',1,'karakuri::ActionRunner']]],
   ['apply_5fslow_5fmotion_25',['apply_slow_motion',['../classkarakuri_1_1ActionRunner.html#aa6531055f740233d67b30d4ea171adb1',1,'karakuri::ActionRunner']]],
   ['apply_5fzoom_26',['apply_zoom',['../classkarakuri_1_1ActionRunner.html#ade0d072e34f010605d60afe3cbf2b369',1,'karakuri::ActionRunner']]],
-  ['audio_5fplayer_27',['audio_player',['../classConductor.html#a1da528d3582f338eaa4cb4e6471a5e5c',1,'Conductor']]]
+  ['architecture_20v2_200_27',['設計方針 (Architecture v2.0)',['../action__registry_8h.html#autotoc_md0',1,'']]],
+  ['audio_5fplayer_28',['audio_player',['../classConductor.html#a1da528d3582f338eaa4cb4e6471a5e5c',1,'Conductor']]]
 ];

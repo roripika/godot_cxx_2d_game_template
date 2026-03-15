@@ -81,13 +81,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Karakuri Kernel ABI v1.5: アクション名 → C++ クラスのマッピングと ロード時コンパイル（型付き IR 生成）を担うファクトリ。  
+<p>Karakuri Kernel Architecture v2.0: 安全な Task ファクトリ。  
 <a href="#details">[詳解]</a></p>
-<div class="textblock"><code>#include &lt;godot_cpp/classes/object.hpp&gt;</code><br />
+<div class="textblock"><code>#include &lt;functional&gt;</code><br />
+<code>#include &lt;godot_cpp/classes/object.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/dictionary.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/variant/string.hpp&gt;</code><br />
 <code>#include &lt;godot_cpp/classes/ref.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/templates/hash_map.hpp&gt;</code><br />
+<code>#include &lt;godot_cpp/variant/utility_functions.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="task__base_8h_source.html">tasks/task_base.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="task__spec_8h_source.html">tasks/task_spec.h</a>&quot;</code><br />
 </div>
 <p><a href="action__registry_8h_source.html">[ソースコード]</a></p>
 <table class="memberdecls">
@@ -102,20 +106,13 @@ $(function() {
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p>Karakuri Kernel ABI v1.5: アクション名 → C++ クラスのマッピングと ロード時コンパイル（型付き IR 生成）を担うファクトリ。 </p>
+<div class="textblock"><p>Karakuri Kernel Architecture v2.0: 安全な Task ファクトリ。 </p>
 <h2><a class="anchor" id="autotoc_md0"></a>
-設計方針 (ABI v1.5)</h2>
+設計方針 (Architecture v2.0)</h2>
 <ul>
-<li>動的プロパティ注入 (task-&gt;set(k, v)) を禁止。</li>
-<li>compile_task(spec) でクラスの instantiate と validate_and_setup() を一括実行。</li>
-<li>バリデーション失敗は Fail-Fast: null を返し、ロード段階でエラーを確定させる。</li>
-<li>実行フェーズ (_process) は検証済みタスクを execute() するだけの状態機械となる。</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md1"></a>
-アーキテクチャ境界</h2>
-<ul>
-<li>src/core/ にのみ置く。src/mystery/ を include しない（依存逆転防止）。</li>
-<li>Mystery 層の拡張タスクは MysteryGameState::_ready() で register_action() する。 </li>
+<li>ClassDBSingleton::instantiate の文字列依存を廃止し、std::function&lt;TaskBase*()&gt; を用いた型安全なファクトリへ移行。</li>
+<li>TaskSpec を用いた Typed Scenario IR を導入。</li>
+<li>バリデーション失敗は Fail-Fast: null を返し、ロード段階でエラーを確定させる。 </li>
 </ul>
 </div></div><!-- contents -->
 <!-- start footer part -->

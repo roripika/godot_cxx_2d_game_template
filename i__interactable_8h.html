@@ -100,14 +100,14 @@ $(function() {
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>Basic Game Karakuri: 調査・インタラクト可能オブジェクトのインターフェース。 </p>
-<h2><a class="anchor" id="autotoc_md14"></a>
+<h2><a class="anchor" id="autotoc_md13"></a>
 設計ポリシー</h2>
 <ul>
 <li>このインターフェースは <b>karakuri 層のみ</b> に属する。</li>
 <li>実装クラス（MysteryObject 等）は mystery 層に存在してよい。</li>
 <li>InteractionComponent はこのインターフェースのみを参照し、 具体的なシナリオ・ミステリーの概念を知らない。</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 使い方</h2>
 <ol type="1">
 <li>調査対象の Node クラスに IInteractable を多重継承させる。</li>
