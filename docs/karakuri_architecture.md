@@ -81,18 +81,45 @@ if (KernelClock::get_singleton()->now() >= target_time_) {
 
 ---
 
-## 4. SCENARIO EXECUTION MODEL
+## 6. Scene Flow Rules
 
-`ScenarioRunner` is a PURE STATE MACHINE. It orchestrates tasks but does not own them.
+AI must distinguish between "Narrative Logic" and "Visual Presentation."
 
-### STRICT RULES
-- **NEVER** hold a `NodePath` or raw pointer to UI nodes in the Kernel.
-- **NEVER** call functions on Godot's `SceneTree` directly for scenario flow.
-- **ALWAYS** use **Signal Handshakes** for external interactions:
-    - `dialogue_requested`
-    - `choice_requested`
-    - `transition_requested`
-- **STRICT RULE**: All transitions MUST have a safety timeout (default 5 seconds). Transition tasks MUST yield until `complete_transition()` is called by the View Layer.
+| Operation | Method / Signal | Component Responsibility |
+| :--- | :--- | :--- |
+| **Narrative Jump** | `load_scene_by_id(id)` | **ScenarioRunner**: Changes the YAML scenario label/pointer. |
+| **Visual Transition** | `emit_signal("transition_requested")` | **View Layer**: Handles screen fades, asset loading, VFX. |
+| **UI Navigation** | Custom Signal via Runner | **View Layer**: Opens menus, inventory, or overlays. |
+
+### Allowed vs Forbidden
+| Operation | Allowed in Task? | Recommended Method |
+| :--- | :--- | :--- |
+| Branching story flow | ✅ YES | `runner->load_scene_by_id("next_label")` |
+| Loading a `.tscn` file | ❌ NO | `runner->emit_signal("transition_requested", "room_b")` |
+| Screen Fade-out/in | ❌ NO | Handled by View via `transition_requested` |
+| Logic-based Label Jump | ✅ YES | `runner->load_scene_by_id(target)` |
+
+---
+
+## 7. Signal Ownership Rules
+
+Signals ARE the ABI of the Kernel. Their ownership must be centralized.
+
+**CORE PRINCIPLE**: The `ScenarioRunner` is the central post office.
+
+- **Centralized Ownership**: All externally significant signals (View inputs/outputs) MUST be defined and emitted from `ScenarioRunner`.
+- **Task Role**: Tasks are **Signal Requesters**. They call the Runner API; they do not own the signals.
+- **View Role**: The View Layer connects ONLY to the `ScenarioRunner`.
+
+### Signal Responsibility Table
+| Signal Name | Owner | Triggered By | Usage |
+| :--- | :--- | :--- | :--- |
+| `dialogue_requested` | `ScenarioRunner` | `ShowDialogueTask` | Display text on UI |
+| `choice_requested` | `ScenarioRunner` | `ChoiceTask` | Show multiple options to user |
+| `transition_requested`| `ScenarioRunner` | `TransitionTask` | Request screen/room change |
+| `game_ended` | `ScenarioRunner` | `EndGameTask` | Show game over or credits |
+
+**RULE**: AI must NEVER define UI-related signals inside a `Task` class. Use the `ScenarioRunner` as the proxy.
 
 ---
 

@@ -49,7 +49,28 @@ AI assistants MUST run these checks before finalizing changes:
 - **STRICT RULE**: Use `godot::OK` and standard error codes for validation.
 - **ALWAYS** use `ERR_FAIL_NULL` macros for singleton access safety.
 
-## 7. FINAL WARNING
+## 7. AI-SAFE EXTENSION PROTOCOL
+AI assistants MUST follow these steps precisely when adding new functionality:
+1. **Inherit**: Create a new class inheriting from `karakuri::TaskBase`.
+2. **Modularize**: Place the class in the appropriate `karakuri::games::<module_name>` namespace.
+3. **Validate**: Implement `validate_and_setup(const TaskSpec& spec)` to verify all payload parameters at load-time.
+4. **Isolate**: Ensure all execution state is contained within the Task instance. NEVER use global/static variables.
+5. **Decouple**: Use `ScenarioRunner` API (e.g., `emit_signal`, `set_waiting_for_dialogue`) for interactions. NEVER use `get_node()` or `get_tree()`.
+6. **Register**: Add the task to `ActionRegistry` via `register_action_class<T>()` in the module's bootstrap/`register_types`.
+7. **Integrate**: Reference the task by its registered name in the YAML scenario.
+
+## 8. AI IMPLEMENTATION CHECKLIST
+Before finalizing any PR or commit, the AI MUST verify:
+- [ ] **No Direct Access**: Zero instances of `get_node()`, `get_tree()`, or `NodePath` in core/module logic.
+- [ ] **WorldState Only**: All persistent game state is stored in `WorldState` with correct scope.
+- [ ] **Typed IR**: Task initialization is handled exclusively via `TaskSpec`. No `task->set()`.
+- [ ] **Namespace Purity**: Game-specific classes are inside `karakuri::games::<name>`.
+- [ ] **Signal Ownership**: Visual/UI signals are owned by `ScenarioRunner`, not individual Tasks.
+- [ ] **No Reflection**: `ActionRegistry` is used for task creation; no custom factory or `ClassDB` hacks.
+- [ ] **Core Untouched**: No modifications made to `src/core/` unless strictly required and architecturally approved.
+- [ ] **Clock Determinism**: No frame-rate dependent logic (no `delta` usage).
+
+## 9. FINAL WARNING
 Violating the Architecture Contract WILL break the Game OS. If you are unsure about a design decision, HALT and request clarification from the human lead architect.
 
 **Protect the Kernel. Preserve Determinism. Stay Decoupled.**
