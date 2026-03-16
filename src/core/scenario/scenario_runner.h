@@ -1,7 +1,6 @@
 #ifndef KARAKURI_SCENARIO_RUNNER_H
 #define KARAKURI_SCENARIO_RUNNER_H
 
-#include <functional>
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/templates/hash_map.hpp>
 #include <godot_cpp/variant/array.hpp>

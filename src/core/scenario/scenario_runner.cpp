@@ -299,7 +299,8 @@ Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
 
   // 3. 未登録アクション: Fail-Fast
   UtilityFunctions::push_error(String("[ScenarioRunner] 未登録アクション: \"") + action_name + 
-    "\". ActionRegistry::register_action_class<T>() で Task として登録してください。ActionHandler による直接追加ルートは廃止されました。");
+    "\". ActionRegistry::register_action_class<T>() で Task として登録してください。"
+    "ラムダ/コールバック経由の直接追加ルートは廃止されました (ABI v2.0)。");
   return nullptr;
 }
 

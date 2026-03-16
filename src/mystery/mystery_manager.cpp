@@ -208,8 +208,8 @@ void MysteryManager::_ready() {
 }
 
 void MysteryManager::register_scenario_actions() {
-  // [ABI v1.5 Phase 4] 全アクションは ActionRegistry + Typed Task に移行済み。
-  // 登録は MysteryGameState::_ready() が ActionRegistry::register_action() 経由で行う。
+  // [ABI v2.0] 全アクションは ActionRegistry + Typed Task に移行済み。
+  // 登録は MysteryGameState::_ready() が ActionRegistry::register_action_class<T>() で行う。
   // このメソッドは後方互換のため宣言を維持するが、何もしない。
 }
 
