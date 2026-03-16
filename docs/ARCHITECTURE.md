@@ -26,10 +26,28 @@ Karakuri is a **Game OS Kernel** designed for AI-driven game generation. It is N
 Ref<TaskBase> task = registry->compile_task(spec);
 ```
 
-## 3. CORE RESPONSIBILITIES
-- **ScenarioRunner**: A pure state machine. MUST NOT manage UI state. MUST NOT handle `SceneTree` operations directly.
+## 3. SCENARIO RUNNER CONTRACT
+
+`ScenarioRunner` is a PURE STATE MACHINE. It orchestrates tasks but does not own them.
+
+### STRICT RULES
+- **STRICT RULE**: `ScenarioRunner` MUST NOT contain gameplay logic.
+- **NEVER** add methods like `give_item()`, `spawn_enemy()`, or `play_music()` to `ScenarioRunner`.
+- **NEVER** hold a `NodePath` or raw pointer to UI nodes in the Kernel.
+- **NEVER** call functions on Godot's `SceneTree` directly for scenario flow.
+
+### RESPONSIBILITIES
+`ScenarioRunner` responsibilities are limited to:
+- Scheduling and execution of Tasks.
+- Managing Scenario advancement.
+- Handling Scene Transitions.
+- Enforcing Execution Timeouts and Safety.
+
+**Gameplay logic MUST exist only in Tasks.** If new gameplay behavior is required, implement a new `Task`.
+
+### CORE COMPONENTS
 - **WorldState**: The ONLY place to store game data.
-- **KernelClock**: The ONLY source of time.
+- **KernelClock**: The ONLY source of time (See `KERNEL_CLOCK.md`).
 - **ActionRegistry**: The ONLY factory for Tasks.
 
 ## 4. EXTENDING THE SYSTEM

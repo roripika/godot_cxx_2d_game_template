@@ -56,7 +56,14 @@ The Kernel enforces strict load-time validation.
 - **STRICT RULE**: `validate_and_setup` MUST return `godot::OK` only if the `TaskSpec` is 100% valid.
 - **ALWAYS** return an error code (e.g., `ERR_INVALID_DATA`) immediately if keys are missing or types are incorrect.
 
-## 4. ACTION FACTORY CONTRACT
+## 4. TIME MODEL & MONOTONICITY
+The Kernel enforces a monotonic time progression (See `KERNEL_CLOCK.md`).
+
+- **STRICT RULE**: `KernelClock` MUST NOT be reset during scenario execution.
+- **STRICT RULE**: Resetting the clock is PERMITTED ONLY when loading a new scenario or starting a new session.
+- **NEVER** attempt to modify `KernelClock` state from a Task to implement "rewind" or "replay" without architectural approval.
+
+## 5. ACTION FACTORY CONTRACT
 All actions MUST be registered via the type-safe factory.
 
 - **NEVER** use `ClassDB::instantiate` or string-based reflection to create Tasks.
