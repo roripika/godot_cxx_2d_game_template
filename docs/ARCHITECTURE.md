@@ -37,11 +37,12 @@ Ref<TaskBase> task = registry->compile_task(spec);
 - **NEVER** call functions on Godot's `SceneTree` directly for scenario flow.
 
 ### RESPONSIBILITIES
-`ScenarioRunner` responsibilities are limited to:
 - Scheduling and execution of Tasks.
 - Managing Scenario advancement.
 - Handling Scene Transitions.
 - Enforcing Execution Timeouts and Safety.
+
+**STRICT RULE**: `ScenarioRunner` is NOT an extension point. Calling `register_action()` or injecting lambdas/callbacks is FORBIDDEN. All extensions must be formal `Task` classes.
 
 **Gameplay logic MUST exist only in Tasks.** If new gameplay behavior is required, implement a new `Task`.
 

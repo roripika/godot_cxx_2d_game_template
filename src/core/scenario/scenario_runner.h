@@ -26,23 +26,10 @@ class ScenarioRunner : public godot::Node {
   GDCLASS(ScenarioRunner, godot::Node)
 
 public:
-  /**
-   * @brief Mystery 層等から登録するカスタムアクションハンドラの型。
-   * 登録されたハンドラは compile_action() で InlineHandlerTask にラップされ、
-   * ロード時に CompiledScene.tasks に格納される。
-   */
-  using ActionHandler = std::function<bool(const godot::Variant &payload)>;
 
   ScenarioRunner();
   ~ScenarioRunner();
 
-  /**
-   * @brief Mystery 層からカスタムアクションを登録する拡張フック。
-   * @param kind     アクション名 (YAML の "action" 値と一致する文字列)
-   * @param handler  非ブロッキング (return false) またはブロッキング (return true) ラムダ
-   */
-  [[deprecated("Karakuri Kernel v2.0: Use ActionRegistry::register_action_class<T>() instead. Ad-hoc ActionHandlers will be removed in v2.x.")]]
-  void register_action(const godot::String &kind, ActionHandler handler);
 
   void set_scenario_path(const godot::String &path);
   godot::String get_scenario_path() const;
@@ -148,7 +135,6 @@ private:
   godot::String current_mode_id_;
   bool mode_input_enabled_ = true;
 
-  godot::HashMap<godot::String, ActionHandler> action_handlers_;
 };
 
 } // namespace karakuri

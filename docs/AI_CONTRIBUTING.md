@@ -38,6 +38,9 @@ AI assistants MUST run these checks before finalizing changes:
 | `elapsed_ += delta` | ANY | Violates Deterministic Clock principle |
 | `#include "mystery/` | Inside `src/core/` | Violates Layer Isolation |
 | `get_node(` | Inside `src/core/` | Violates View/Core separation |
+| `register_action(` | ANY | Violates Unified Task Extension (ABI v2.0) |
+| `ActionHandler` | ANY | Violates Unified Task Extension (ABI v2.0) |
+| `InlineHandlerTask` | ANY | Violates Unified Task Extension (ABI v2.0) |
 
 ## 6. CODING STYLE
 - **STRICT RULE**: Use the `karakuri::` namespace for all core classes.

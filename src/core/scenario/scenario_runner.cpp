@@ -38,37 +38,12 @@ static String dict_get_string(const Dictionary &d, const String &key,
              : def;
 }
 
-// --- InlineHandlerTask: ActionHandler ラムダを TaskBase にラップする ----------
-// GDCLASS 不使用 (Godot リフレクション不要の C++ 内部専用タスク)
-class InlineHandlerTask : public TaskBase {
-  ScenarioRunner::ActionHandler handler_;
-  Variant payload_;
-  bool done_ = false;
-
-public:
-  InlineHandlerTask(ScenarioRunner::ActionHandler h, Variant p)
-      : handler_(std::move(h)), payload_(std::move(p)) {}
-
-  TaskResult execute() override {
-    if (!done_) {
-      handler_(payload_);
-      done_ = true;
-    }
-    return TaskResult::Success;
-  }
-  godot::Error validate_and_setup(const TaskSpec &) override { return godot::OK; }
-  void complete_instantly() override { done_ = true; }
-};
 
 } // namespace
 
 ScenarioRunner::ScenarioRunner() {}
 ScenarioRunner::~ScenarioRunner() {}
 
-void ScenarioRunner::register_action(const String &kind, ActionHandler handler) {
-  UtilityFunctions::push_error(String("[ScenarioRunner] Deprecated: register_action(\"") + kind + "\") is called. Ad-hoc ActionHandlers are a security risk and will be removed in v2.x. Port this to a Task class.");
-  action_handlers_[kind] = handler;
-}
 
 void ScenarioRunner::set_scenario_path(const String &path) {
   scenario_path_ = path;
@@ -322,20 +297,9 @@ Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
     }
   }
 
-  // 3. ActionHandler フォールバック (Mystery 層カスタムアクション用)
-  // ロード時にラッパータスクを生成し、CompiledScene.tasks に格納する。
-  if (action_handlers_.has(action_name)) {
-    Variant call_payload = payload.is_empty()
-                               ? Variant(action_name)
-                               : Variant(payload);
-    Ref<InlineHandlerTask> task = memnew(InlineHandlerTask(
-        action_handlers_[action_name], call_payload));
-    task->set_runner(this);
-    return task;
-  }
-
-  // 4. 未登録アクション: Fail-Fast
-  UtilityFunctions::push_error(String("[ScenarioRunner] 未登録または未対応のアクション: \"") + action_name + "\". ActionRegistry に register_action() で登録してください。");
+  // 3. 未登録アクション: Fail-Fast
+  UtilityFunctions::push_error(String("[ScenarioRunner] 未登録アクション: \"") + action_name + 
+    "\". ActionRegistry::register_action_class<T>() で Task として登録してください。ActionHandler による直接追加ルートは廃止されました。");
   return nullptr;
 }
 
