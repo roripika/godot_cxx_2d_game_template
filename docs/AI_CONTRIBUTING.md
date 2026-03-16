@@ -41,6 +41,8 @@ AI assistants MUST run these checks before finalizing changes:
 | `register_action(` | ANY | Violates Unified Task Extension (ABI v2.0) |
 | `ActionHandler` | ANY | Violates Unified Task Extension (ABI v2.0) |
 | `InlineHandlerTask` | ANY | Violates Unified Task Extension (ABI v2.0) |
+| `std::function` | Inside `src/core` | Prohibited Pseudo-escape hatch |
+| `Variant payload` | ANY | Prohibited generic payload (Use `TaskSpec`) |
 
 ## 6. CODING STYLE
 - **STRICT RULE**: Use the `karakuri::` namespace for all core classes.

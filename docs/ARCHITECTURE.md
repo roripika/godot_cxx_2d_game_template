@@ -42,7 +42,9 @@ Ref<TaskBase> task = registry->compile_task(spec);
 - Handling Scene Transitions.
 - Enforcing Execution Timeouts and Safety.
 
-**STRICT RULE**: `ScenarioRunner` is NOT an extension point. Calling `register_action()` or injecting lambdas/callbacks is FORBIDDEN. All extensions must be formal `Task` classes.
+**STRICT RULE**: `ScenarioRunner` is NOT an extension point. Calling `register_action()` or injecting lambdas/callbacks is FORBIDDEN.
+**STRICT RULE**: `ScenarioRunner` MUST NOT expose any callback, lambda, or `std::function` based extension mechanism.
+All extensions must be formal `Task` classes registered through `ActionRegistry`.
 
 **Gameplay logic MUST exist only in Tasks.** If new gameplay behavior is required, implement a new `Task`.
 
