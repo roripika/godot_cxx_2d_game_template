@@ -7,5 +7,5 @@ var searchData=
   ['description_4',['description',['../classkarakuri_1_1GameItem.html#ab106a2875985c181d181ff5521e712b7',1,'karakuri::GameItem']]],
   ['detection_5fradius_5f_5',['detection_radius_',['../classkarakuri_1_1InteractionComponent.html#a6050e80cd66281f2ef242e1ca6f1d939',1,'karakuri::InteractionComponent']]],
   ['duration_6',['duration',['../structkarakuri_1_1WaitTaskSpec.html#a944f4d59f4ab5d13d7a003d71fdc1e0b',1,'karakuri::WaitTaskSpec']]],
-  ['duration_5f_7',['duration_',['../classkarakuri_1_1WaitTask.html#a76f6c0a58f20d60f736a3311503ba92f',1,'karakuri::WaitTask']]]
+  ['duration_5f_7',['duration_',['../classkarakuri_1_1TaskTemplate.html#a2566f7d076ee34278a74a0b3cce22a59',1,'karakuri::TaskTemplate::duration_'],['../classkarakuri_1_1WaitTask.html#a76f6c0a58f20d60f736a3311503ba92f',1,'karakuri::WaitTask::duration_']]]
 ];

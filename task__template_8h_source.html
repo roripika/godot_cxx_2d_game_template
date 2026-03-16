@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Basic Game Karakuri SDK: src/core/tasks/task_template.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Basic Game Karakuri SDK
+   </div>
+   <div id="projectbrief">Universal C++ API Reference</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">読み取り中…</div>
+<div class="SRStatus" id="Searching">検索中…</div>
+<div class="SRStatus" id="NoMatches">一致する文字列を見つけられません</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_3c623fb49c2c95ca25f6fe90d3efbb5b.html">tasks</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">task_template.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="task__template_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KARAKURI_TASK_TEMPLATE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KARAKURI_TASK_TEMPLATE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="task__base_8h.html">task_base.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacekarakuri.html">karakuri</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html">   16</a></span><span class="keyword">class </span><a class="code hl_class" href="classkarakuri_1_1TaskTemplate.html">TaskTemplate</a> : <span class="keyword">public</span> <a class="code hl_class" href="classkarakuri_1_1TaskBase.html">TaskBase</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    GDCLASS(<a class="code hl_class" href="classkarakuri_1_1TaskTemplate.html">TaskTemplate</a>, <a class="code hl_class" href="classkarakuri_1_1TaskBase.html">TaskBase</a>)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// パラメータ</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html#a6bacd4f28262a13aae73f81337ff77b9">   21</a></span>    godot::String <a class="code hl_variable" href="classkarakuri_1_1TaskTemplate.html#a6bacd4f28262a13aae73f81337ff77b9">some_param_</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html#a2566f7d076ee34278a74a0b3cce22a59">   22</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classkarakuri_1_1TaskTemplate.html#a2566f7d076ee34278a74a0b3cce22a59">duration_</a> = 0.0;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// 内部状態</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html#a300bd149a7c454f9f50f4651362acfa7">   25</a></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classkarakuri_1_1TaskTemplate.html#a300bd149a7c454f9f50f4651362acfa7">elapsed_</a> = 0.0;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html#a819490af6e7fc1c9f763d51d48ac54b4">   26</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classkarakuri_1_1TaskTemplate.html#a819490af6e7fc1c9f763d51d48ac54b4">finished_</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1TaskTemplate.html#a9c9a6eb88fb6e5feb3f8a8802ca0b183">_bind_methods</a>();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html#a0d068c440ca71bc95e92884a91301c7b">   32</a></span>    <a class="code hl_function" href="classkarakuri_1_1TaskTemplate.html#a0d068c440ca71bc95e92884a91301c7b">TaskTemplate</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classkarakuri_1_1TaskTemplate.html#a888cb9c1eb0587679b5d3019ceeecb5d">   33</a></span>    <a class="code hl_function" href="classkarakuri_1_1TaskTemplate.html#a888cb9c1eb0587679b5d3019ceeecb5d">~TaskTemplate</a>() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    godot::Error <a class="code hl_function" href="classkarakuri_1_1TaskTemplate.html#a4b6d382ae6d62a11d7a71a4076f65029">validate_and_setup</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structkarakuri_1_1TaskSpec.html">TaskSpec</a> &amp;spec) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <a class="code hl_enumeration" href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">TaskResult</a> <a class="code hl_function" href="classkarakuri_1_1TaskTemplate.html#a269e603e2a1e131a8bb17db86c5c1734">execute</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classkarakuri_1_1TaskTemplate.html#a1c9d9a16ed59592a873dd8b76e173a69">complete_instantly</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <span class="comment">// namespace karakuri</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif </span><span class="comment">// KARAKURI_TASK_TEMPLATE_H</span></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskBase_html"><div class="ttname"><a href="classkarakuri_1_1TaskBase.html">karakuri::TaskBase</a></div><div class="ttdef"><b>Definition</b> task_base.h:19</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html">karakuri::TaskTemplate</a></div><div class="ttdoc">[Action Name] アクションを実装するタスクのテンプレート。</div><div class="ttdef"><b>Definition</b> task_template.h:16</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a0d068c440ca71bc95e92884a91301c7b"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a0d068c440ca71bc95e92884a91301c7b">karakuri::TaskTemplate::TaskTemplate</a></div><div class="ttdeci">TaskTemplate()=default</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a1c9d9a16ed59592a873dd8b76e173a69"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a1c9d9a16ed59592a873dd8b76e173a69">karakuri::TaskTemplate::complete_instantly</a></div><div class="ttdeci">void complete_instantly() override</div><div class="ttdoc">[オプション] シナリオを「スキップ」や「一瞬で完了」させる必要がある場合に実装。</div><div class="ttdef"><b>Definition</b> task_template.cpp:42</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a2566f7d076ee34278a74a0b3cce22a59"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a2566f7d076ee34278a74a0b3cce22a59">karakuri::TaskTemplate::duration_</a></div><div class="ttdeci">double duration_</div><div class="ttdef"><b>Definition</b> task_template.h:22</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a269e603e2a1e131a8bb17db86c5c1734"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a269e603e2a1e131a8bb17db86c5c1734">karakuri::TaskTemplate::execute</a></div><div class="ttdeci">TaskResult execute() override</div><div class="ttdoc">毎フレーム呼ばれる実行ロジック。 Success を返すと次のアクションへ進む。</div><div class="ttdef"><b>Definition</b> task_template.cpp:27</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a300bd149a7c454f9f50f4651362acfa7"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a300bd149a7c454f9f50f4651362acfa7">karakuri::TaskTemplate::elapsed_</a></div><div class="ttdeci">double elapsed_</div><div class="ttdef"><b>Definition</b> task_template.h:25</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a4b6d382ae6d62a11d7a71a4076f65029"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a4b6d382ae6d62a11d7a71a4076f65029">karakuri::TaskTemplate::validate_and_setup</a></div><div class="ttdeci">godot::Error validate_and_setup(const TaskSpec &amp;spec) override</div><div class="ttdoc">シナリオロード時に一回だけ呼ばれるバリデーションとセットアップ。 payload から必要なデータを取り出し、型チェックを行う。</div><div class="ttdef"><b>Definition</b> task_template.cpp:13</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a6bacd4f28262a13aae73f81337ff77b9"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a6bacd4f28262a13aae73f81337ff77b9">karakuri::TaskTemplate::some_param_</a></div><div class="ttdeci">godot::String some_param_</div><div class="ttdef"><b>Definition</b> task_template.h:21</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a819490af6e7fc1c9f763d51d48ac54b4"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a819490af6e7fc1c9f763d51d48ac54b4">karakuri::TaskTemplate::finished_</a></div><div class="ttdeci">bool finished_</div><div class="ttdef"><b>Definition</b> task_template.h:26</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a888cb9c1eb0587679b5d3019ceeecb5d"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a888cb9c1eb0587679b5d3019ceeecb5d">karakuri::TaskTemplate::~TaskTemplate</a></div><div class="ttdeci">~TaskTemplate() override=default</div></div>
+<div class="ttc" id="aclasskarakuri_1_1TaskTemplate_html_a9c9a6eb88fb6e5feb3f8a8802ca0b183"><div class="ttname"><a href="classkarakuri_1_1TaskTemplate.html#a9c9a6eb88fb6e5feb3f8a8802ca0b183">karakuri::TaskTemplate::_bind_methods</a></div><div class="ttdeci">static void _bind_methods()</div><div class="ttdef"><b>Definition</b> task_template.cpp:9</div></div>
+<div class="ttc" id="anamespacekarakuri_html"><div class="ttname"><a href="namespacekarakuri.html">karakuri</a></div><div class="ttdef"><b>Definition</b> action_registry.cpp:19</div></div>
+<div class="ttc" id="anamespacekarakuri_html_a7b866ecf57d6173e927d9368fed1f3ea"><div class="ttname"><a href="namespacekarakuri.html#a7b866ecf57d6173e927d9368fed1f3ea">karakuri::TaskResult</a></div><div class="ttdeci">TaskResult</div><div class="ttdef"><b>Definition</b> task_base.h:10</div></div>
+<div class="ttc" id="astructkarakuri_1_1TaskSpec_html"><div class="ttname"><a href="structkarakuri_1_1TaskSpec.html">karakuri::TaskSpec</a></div><div class="ttdoc">Typed Scenario IR wrapper for task setup. Raw Dictionaries are parsed into TaskSpec at load time to p...</div><div class="ttdef"><b>Definition</b> task_spec.h:14</div></div>
+<div class="ttc" id="atask__base_8h_html"><div class="ttname"><a href="task__base_8h.html">task_base.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+</small></address>
+</body>
+</html>

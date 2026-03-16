@@ -1,6 +1,6 @@
 var indexSectionsWithContent =
 {
-  0: "0_abcdefghiklmnoprstuvwy~—→とにのアサシスパフポマ使内判境層形役後旧条演目等継複設責遷）",
+  0: "0_abcdefghiklmnoprstuvwy~—→とにのアサシスパフポマ使内判境層形役後旧条演目等継複設責遷開）",
   1: "abcdfghiklmnrstuvwy",
   2: "k",
   3: "abcdfghiklmnrstuwy",

@@ -47,8 +47,9 @@ var searchData=
   ['_7estatesnapshot_44',['~StateSnapshot',['../classkarakuri_1_1StateSnapshot.html#a73044b7a8adc7c5024c641b6235ca230',1,'karakuri::StateSnapshot']]],
   ['_7etaskbase_45',['~TaskBase',['../classkarakuri_1_1TaskBase.html#a343b3419d3b6b349cd9bc07339480e09',1,'karakuri::TaskBase']]],
   ['_7etaskgroup_46',['~TaskGroup',['../classkarakuri_1_1TaskGroup.html#ad75aa70da3cc999e58a3059dae44caf2',1,'karakuri::TaskGroup']]],
-  ['_7etransitionobjecttask_47',['~TransitionObjectTask',['../classkarakuri_1_1TransitionObjectTask.html#ad6782da4d70c68faa9468cdba86c5a9b',1,'karakuri::TransitionObjectTask']]],
-  ['_7euniversalworlddata_48',['~UniversalWorldData',['../classkarakuri_1_1UniversalWorldData.html#a327b1eee242b43dad702fa62f2e5b802',1,'karakuri::UniversalWorldData']]],
-  ['_7ewaittask_49',['~WaitTask',['../classkarakuri_1_1WaitTask.html#a7cfed914bd3ed6cfdc6cc3d2191904df',1,'karakuri::WaitTask']]],
-  ['_7eworldstate_50',['~WorldState',['../classkarakuri_1_1WorldState.html#abd09e788c452ca1ad0d6ce0d759a2b04',1,'karakuri::WorldState']]]
+  ['_7etasktemplate_47',['~TaskTemplate',['../classkarakuri_1_1TaskTemplate.html#a888cb9c1eb0587679b5d3019ceeecb5d',1,'karakuri::TaskTemplate']]],
+  ['_7etransitionobjecttask_48',['~TransitionObjectTask',['../classkarakuri_1_1TransitionObjectTask.html#ad6782da4d70c68faa9468cdba86c5a9b',1,'karakuri::TransitionObjectTask']]],
+  ['_7euniversalworlddata_49',['~UniversalWorldData',['../classkarakuri_1_1UniversalWorldData.html#a327b1eee242b43dad702fa62f2e5b802',1,'karakuri::UniversalWorldData']]],
+  ['_7ewaittask_50',['~WaitTask',['../classkarakuri_1_1WaitTask.html#a7cfed914bd3ed6cfdc6cc3d2191904df',1,'karakuri::WaitTask']]],
+  ['_7eworldstate_51',['~WorldState',['../classkarakuri_1_1WorldState.html#abd09e788c452ca1ad0d6ce0d759a2b04',1,'karakuri::WorldState']]]
 ];
