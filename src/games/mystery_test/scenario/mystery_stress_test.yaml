@@ -1,0 +1,481 @@
+# =============================================================================
+# mystery_stress_test.yaml
+# ScenarioRunner ストレステスト用シナリオ
+#
+# ノード数一覧:
+#   show_dialogue   : 50
+#   check_condition : 30
+#   add_evidence /
+#   discover_evidence: 20
+#   wait_for_signal  : 10
+#
+# 全条件は、それ以前のシーンで確実に収集済みの証拠を参照するため
+# 主線フローは常に if_true 側へ進み、end_game(solved) に到達する。
+# =============================================================================
+
+start_scene: lobby
+
+scenes:
+
+  # ===========================================================================
+  # ACT 1: 調査開始
+  # ===========================================================================
+  lobby:
+    on_enter:
+      - action: show_dialogue                                 # D1
+        payload: { speaker: narrator, text: "深夜の豪邸。三体の遺体と、消えた宝石。今夜この謎を解く。" }
+      - action: show_dialogue                                 # D2
+        payload: { speaker: detective, text: "晩餐会の招待客、使用人、そして屋敷の主。全員が容疑者だ。" }
+      - action: show_dialogue                                 # D3
+        payload: { speaker: detective, text: "まず屋敷の全体図を手に入れる。証拠になる。" }
+      - action: add_evidence                                  # E1
+        payload: { id: mansion_map, type: item }
+      - action: show_dialogue                                 # D4
+        payload: { speaker: system, text: "館の見取り図を入手した。" }
+      - action: wait_for_signal                               # T1
+        payload: { signal: start_investigation, timeout: 2.0 }
+      - action: check_condition                               # C1
+        payload:
+          any_of:
+            - evidence: mansion_map
+          if_true: hall_east
+          if_false: lobby_stuck
+
+  lobby_stuck:
+    on_enter:
+      - action: show_dialogue                                 # D5
+        payload: { speaker: narrator, text: "行き詰まった。見取り図なしでは動けない。" }
+      - action: end_game
+        payload: { result: lost }
+
+  # ===========================================================================
+  # ACT 2: 東翼調査
+  # ===========================================================================
+  hall_east:
+    on_enter:
+      - action: show_dialogue                                 # D6
+        payload: { speaker: narrator, text: "東翼の廊下。足音が石床に反響する。" }
+      - action: show_dialogue                                 # D7
+        payload: { speaker: detective, text: "書斎、寝室、研究室の三部屋が並んでいる。" }
+      - action: discover_evidence                             # E2
+        payload: { id: bloodstain_corridor, location: east_hall }
+      - action: show_dialogue                                 # D8
+        payload: { speaker: detective, text: "廊下に血の跡。引きずられた痕だ。" }
+      - action: check_condition                               # C2
+        payload:
+          evidence: bloodstain_corridor
+          if_true: study_room
+          if_false: hall_east
+
+  study_room:
+    on_enter:
+      - action: show_dialogue                                 # D9
+        payload: { speaker: narrator, text: "書斎。書類が乱れ、金庫は半開きだ。" }
+      - action: discover_evidence                             # E3
+        payload: { id: torn_will, location: study_desk }
+      - action: show_dialogue                                 # D10
+        payload: { speaker: detective, text: "遺言書が破られている。相続争いか。" }
+      - action: add_evidence                                  # E4
+        payload: { id: motive_inheritance, type: motive }
+      - action: wait_for_signal                               # T2
+        payload: { signal: examine_safe, timeout: 3.0 }
+      - action: check_condition                               # C3
+        payload:
+          evidence: torn_will
+          if_true: bedroom
+          if_false: study_room
+
+  bedroom:
+    on_enter:
+      - action: show_dialogue                                 # D11
+        payload: { speaker: narrator, text: "主人の寝室。ベッドが崩れたまま放置されている。" }
+      - action: discover_evidence                             # E5
+        payload: { id: sleeping_pills, location: nightstand }
+      - action: show_dialogue                                 # D12
+        payload: { speaker: detective, text: "睡眠薬の瓶。ラベルが剥がされている。" }
+      - action: check_condition                               # C4
+        payload:
+          evidence: sleeping_pills
+          if_true: lab_room
+          if_false: bedroom
+
+  lab_room:
+    on_enter:
+      - action: show_dialogue                                 # D13
+        payload: { speaker: narrator, text: "研究室。精密機器と化学薬品が整然と並ぶ。" }
+      - action: discover_evidence                             # E6
+        payload: { id: chemical_solvent, location: lab_shelf }
+      - action: show_dialogue                                 # D14
+        payload: { speaker: detective, text: "溶解剤だ。証拠隠滅に使える種類のものだ。" }
+      - action: add_evidence                                  # E7
+        payload: { id: motive_research_theft, type: motive }
+      - action: check_condition                               # C5
+        payload:
+          all_of:
+            - evidence: motive_inheritance
+            - evidence: chemical_solvent
+          if_true: hall_west
+          if_false: hall_east
+
+  # ===========================================================================
+  # ACT 3: 西翼調査
+  # ===========================================================================
+  hall_west:
+    on_enter:
+      - action: show_dialogue                                 # D15
+        payload: { speaker: narrator, text: "西翼。使用人たちの区画に入る。" }
+      - action: show_dialogue                                 # D16
+        payload: { speaker: detective, text: "使用人室、厨房、そして地下への階段がある。" }
+      - action: check_condition                               # C6
+        payload:
+          evidence: mansion_map
+          if_true: kitchen
+          if_false: hall_west
+
+  kitchen:
+    on_enter:
+      - action: show_dialogue                                 # D17
+        payload: { speaker: narrator, text: "厨房。昨夜の晩餐の痕跡が残っている。" }
+      - action: discover_evidence                             # E8
+        payload: { id: poisoned_wine_glass, location: kitchen_sink }
+      - action: show_dialogue                                 # D18
+        payload: { speaker: detective, text: "ワイングラスの底に白い粉末... 毒を盛られている。" }
+      - action: add_evidence                                  # E9
+        payload: { id: poison_present, type: evidence }
+      - action: wait_for_signal                               # T3
+        payload: { signal: analyze_glass, timeout: 4.0 }
+      - action: check_condition                               # C7
+        payload:
+          evidence: poisoned_wine_glass
+          if_true: servant_room
+          if_false: kitchen
+
+  servant_room:
+    on_enter:
+      - action: show_dialogue                                 # D19
+        payload: { speaker: narrator, text: "使用人室。質素だが整頓されている。" }
+      - action: discover_evidence                             # E10
+        payload: { id: servant_note, location: servant_drawer }
+      - action: show_dialogue                                 # D20
+        payload: { speaker: detective, text: "メモが残っている。『今夜決行。D氏への連絡済み』" }
+      - action: check_condition                               # C8
+        payload:
+          evidence: servant_note
+          if_true: cellar_stairs
+          if_false: hall_west
+
+  cellar_stairs:
+    on_enter:
+      - action: show_dialogue                                 # D21
+        payload: { speaker: narrator, text: "地下への階段。湿った空気と苔の匂い。" }
+      - action: show_dialogue                                 # D22
+        payload: { speaker: detective, text: "扉に新しい南京錠が取り付けられている。" }
+      - action: check_condition                               # C9
+        payload:
+          all_of:
+            - evidence: servant_note
+            - evidence: poison_present
+          if_true: cellar
+          if_false: hall_west
+
+  cellar:
+    on_enter:
+      - action: show_dialogue                                 # D23
+        payload: { speaker: narrator, text: "地下室。棚に大量の酒瓶と、隠された小部屋の扉。" }
+      - action: discover_evidence                             # E11
+        payload: { id: hidden_stash, location: cellar_wall }
+      - action: show_dialogue                                 # D24
+        payload: { speaker: detective, text: "壁の奥に隠し金庫... 宝石の一部がある！" }
+      - action: add_evidence                                  # E12
+        payload: { id: stolen_jewel_partial, type: evidence }
+      - action: wait_for_signal                               # T4
+        payload: { signal: document_scene, timeout: 2.0 }
+      - action: check_condition                               # C10
+        payload:
+          evidence: hidden_stash
+          if_true: garden_path
+          if_false: cellar_stairs
+
+  # ===========================================================================
+  # ACT 4: 外部調査
+  # ===========================================================================
+  garden_path:
+    on_enter:
+      - action: show_dialogue                                 # D25
+        payload: { speaker: narrator, text: "庭園。月明かりの下、影が揺れている。" }
+      - action: discover_evidence                             # E13
+        payload: { id: disturbed_soil, location: garden_bed }
+      - action: show_dialogue                                 # D26
+        payload: { speaker: detective, text: "植え込みが荒らされている。何かを埋めたのか？" }
+      - action: check_condition                               # C11
+        payload:
+          evidence: disturbed_soil
+          if_true: gazebo
+          if_false: garden_path
+
+  gazebo:
+    on_enter:
+      - action: show_dialogue                                 # D27
+        payload: { speaker: narrator, text: "庭園の東屋。二つのグラスがテーブルに残っている。" }
+      - action: discover_evidence                             # E14
+        payload: { id: meeting_traces, location: gazebo_table }
+      - action: show_dialogue                                 # D28
+        payload: { speaker: detective, text: "深夜の密会だ。二人が計画を立てていた証拠だ。" }
+      - action: add_evidence                                  # E15
+        payload: { id: conspiracy_evidence, type: evidence }
+      - action: check_condition                               # C12
+        payload:
+          all_of:
+            - evidence: meeting_traces
+            - evidence: servant_note
+          if_true: deduction_phase_1
+          if_false: garden_path
+
+  # ===========================================================================
+  # ACT 5: 推理フェーズ (Dialogue Marathon)
+  # ===========================================================================
+  deduction_phase_1:
+    on_enter:
+      - action: show_dialogue                                 # D29
+        payload: { speaker: detective, text: "証拠が揃ってきた。整理しよう。" }
+      - action: show_dialogue                                 # D30
+        payload: { speaker: detective, text: "死亡時刻は晩餐会の終わりから30分以内。" }
+      - action: show_dialogue                                 # D31
+        payload: { speaker: detective, text: "全員にアリバイがない時間帯が存在する。" }
+      - action: show_dialogue                                 # D32
+        payload: { speaker: detective, text: "しかし地下室への経路を知る者は限られる。" }
+      - action: check_condition                               # C13
+        payload:
+          evidence: mansion_map
+          if_true: deduction_phase_2
+          if_false: lobby
+
+  deduction_phase_2:
+    on_enter:
+      - action: show_dialogue                                 # D33
+        payload: { speaker: detective, text: "毒物の入手経路を考える。研究室が鍵だ。" }
+      - action: show_dialogue                                 # D34
+        payload: { speaker: detective, text: "研究室の鍵を持つのは被害者と... もう一人。" }
+      - action: show_dialogue                                 # D35
+        payload: { speaker: detective, text: "そのもう一人こそが共犯者の一人だ。" }
+      - action: wait_for_signal                               # T5
+        payload: { signal: cross_reference, timeout: 3.0 }
+      - action: check_condition                               # C14
+        payload:
+          evidence: chemical_solvent
+          if_true: deduction_phase_3
+          if_false: lobby
+
+  deduction_phase_3:
+    on_enter:
+      - action: show_dialogue                                 # D36
+        payload: { speaker: detective, text: "遺言書の件。相続を変更しようとしていた被害者。" }
+      - action: show_dialogue                                 # D37
+        payload: { speaker: detective, text: "それを知っていた者が複数いた。" }
+      - action: show_dialogue                                 # D38
+        payload: { speaker: detective, text: "しかし今夜行動したのは一人か、二人か。" }
+      - action: check_condition                               # C15
+        payload:
+          evidence: conspiracy_evidence
+          if_true: deduction_phase_4
+          if_false: lobby
+
+  deduction_phase_4:
+    on_enter:
+      - action: show_dialogue                                 # D39
+        payload: { speaker: detective, text: "東屋での密会。計画は二人によるものだった。" }
+      - action: show_dialogue                                 # D40
+        payload: { speaker: detective, text: "一人が毒を盛り、もう一人が逃走経路を確保。" }
+      - action: check_condition                               # C16
+        payload:
+          all_of:
+            - evidence: poison_present
+            - evidence: conspiracy_evidence
+          if_true: suspect_chain_1
+          if_false: lobby
+
+  # ===========================================================================
+  # ACT 6: 容疑者追跡チェーン (Node Depth Stress)
+  # ===========================================================================
+  suspect_chain_1:
+    on_enter:
+      - action: show_dialogue                                 # D41
+        payload: { speaker: system, text: "容疑者A: 執事 ディールス" }
+      - action: check_condition                               # C17
+        payload:
+          evidence: mansion_map
+          if_true: suspect_chain_2
+          if_false: lobby
+
+  suspect_chain_2:
+    on_enter:
+      - action: add_evidence                                  # E16
+        payload: { id: suspect_a_profile, type: trait }
+      - action: check_condition                               # C18
+        payload:
+          evidence: mansion_map
+          if_true: suspect_chain_3
+          if_false: lobby
+
+  suspect_chain_3:
+    on_enter:
+      - action: show_dialogue                                 # D42
+        payload: { speaker: system, text: "容疑者B: 秘書 アイリス" }
+      - action: add_evidence                                  # E17
+        payload: { id: suspect_b_profile, type: trait }
+      - action: wait_for_signal                               # T6
+        payload: { signal: compare_suspects, timeout: 1.0 }
+      - action: check_condition                               # C19
+        payload:
+          evidence: mansion_map
+          if_true: suspect_chain_4
+          if_false: lobby
+
+  suspect_chain_4:
+    on_enter:
+      - action: show_dialogue                                 # D43
+        payload: { speaker: system, text: "容疑者C: 姪 ベラ" }
+      - action: add_evidence                                  # E18
+        payload: { id: suspect_c_profile, type: trait }
+      - action: check_condition                               # C20
+        payload:
+          evidence: mansion_map
+          if_true: suspect_chain_5
+          if_false: lobby
+
+  suspect_chain_5:
+    on_enter:
+      - action: check_condition                               # C21
+        payload:
+          all_of:
+            - evidence: suspect_a_profile
+            - evidence: suspect_b_profile
+          if_true: suspect_chain_6
+          if_false: lobby
+
+  suspect_chain_6:
+    on_enter:
+      - action: check_condition                               # C22
+        payload:
+          all_of:
+            - evidence: suspect_b_profile
+            - evidence: suspect_c_profile
+          if_true: suspect_chain_7
+          if_false: lobby
+
+  suspect_chain_7:
+    on_enter:
+      - action: wait_for_signal                               # T7
+        payload: { signal: narrow_suspects, timeout: 2.0 }
+      - action: check_condition                               # C23
+        payload:
+          evidence: mansion_map
+          if_true: evidence_chain_1
+          if_false: lobby
+
+  # ===========================================================================
+  # ACT 7: 証拠連鎖チェーン (Evidence Chain Depth Stress)
+  # ===========================================================================
+  evidence_chain_1:
+    on_enter:
+      - action: check_condition                               # C24
+        payload:
+          evidence: bloodstain_corridor
+          if_true: evidence_chain_2
+          if_false: lobby
+
+  evidence_chain_2:
+    on_enter:
+      - action: check_condition                               # C25
+        payload:
+          evidence: torn_will
+          if_true: evidence_chain_3
+          if_false: lobby
+
+  evidence_chain_3:
+    on_enter:
+      - action: check_condition                               # C26
+        payload:
+          evidence: sleeping_pills
+          if_true: evidence_chain_4
+          if_false: lobby
+
+  evidence_chain_4:
+    on_enter:
+      - action: wait_for_signal                               # T8
+        payload: { signal: final_review, timeout: 5.0 }
+      - action: check_condition                               # C27
+        payload:
+          evidence: poisoned_wine_glass
+          if_true: evidence_chain_5
+          if_false: lobby
+
+  evidence_chain_5:
+    on_enter:
+      - action: check_condition                               # C28
+        payload:
+          all_of:
+            - evidence: stolen_jewel_partial
+            - evidence: motive_inheritance
+          if_true: final_confrontation
+          if_false: lobby
+
+  # ===========================================================================
+  # ACT 8: 最終対決
+  # ===========================================================================
+  final_confrontation:
+    on_enter:
+      - action: show_dialogue                                 # D44
+        payload: { speaker: narrator, text: "全員がホールに集まった。探偵が証拠を並べる。" }
+      - action: show_dialogue                                 # D45
+        payload: { speaker: detective, text: "犯人は二人。執事ディールスと秘書アイリスだ。" }
+      - action: show_dialogue                                 # D46
+        payload: { speaker: suspect, text: "証拠があるのか！？ でたらめを言うな！" }
+      - action: wait_for_signal                               # T9
+        payload: { signal: present_evidence, timeout: 10.0 }
+      - action: check_condition                               # C29
+        payload:
+          all_of:
+            - evidence: conspiracy_evidence
+            - evidence: poison_present
+            - evidence: servant_note
+          if_true: verdict_guilty
+          if_false: verdict_insufficient
+
+  verdict_guilty:
+    on_enter:
+      - action: show_dialogue                                 # D47
+        payload: { speaker: narrator, text: "執事と秘書は観念した。事件は解決した。" }
+      - action: show_dialogue                                 # D48
+        payload: { speaker: detective, text: "遺産目当ての共謀による連続殺人。全ての謎が解けた。" }
+      - action: add_evidence                                  # E19
+        payload: { id: case_solved, type: achievement }
+      - action: check_condition                               # C30
+        payload:
+          evidence: mansion_map
+          if_true: end_perfect
+          if_false: end_good
+
+  verdict_insufficient:
+    on_enter:
+      - action: show_dialogue                                 # D49
+        payload: { speaker: narrator, text: "証拠が不十分だった。容疑者たちは釈放された。" }
+      - action: end_game
+        payload: { result: wrong }
+
+  end_perfect:
+    on_enter:
+      - action: show_dialogue                                 # D50
+        payload: { speaker: system, text: "PERFECT ENDING: 真実への到達" }
+      - action: add_evidence                                  # E20
+        payload: { id: perfect_detective_badge, type: achievement }
+      - action: wait_for_signal                               # T10
+        payload: { signal: credits_roll, timeout: 1.0 }
+      - action: end_game
+        payload: { result: solved }
+
+  end_good:
+    on_enter:
+      - action: end_game
+        payload: { result: solved }
+

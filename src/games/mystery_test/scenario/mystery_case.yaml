@@ -6,20 +6,40 @@ scenes:
       - action: show_dialogue
         payload:
           speaker: narrator
-          text: "屋敷で殺人事件が起きた"
+          text: "屋敷のキッチンで調査を開始する..."
 
-      - action: add_evidence
+      - action: discover_evidence
         payload:
-          id: knife_found
+          id: knife
+          location: kitchen
 
       - action: show_dialogue
         payload:
           speaker: detective
-          text: "凶器を発見した"
+          text: "血のついた包丁を見つけた。さらに奥を調べよう。"
 
-      - action: check_evidence
+      # Timeout Test: ユーザーの入力を待つ（擬似）
+      - action: wait_for_signal
         payload:
-          id: knife_found
+          signal: user_confirm
+          timeout: 3.0
+
+      - action: discover_evidence
+        payload:
+          id: fingerprint
+          location: handle
+
+      - action: show_dialogue
+        payload:
+          speaker: detective
+          text: "指紋も検出した。これで条件は揃ったはずだ。"
+
+      # Multi-Condition Logic Test
+      - action: check_condition
+        payload:
+          all_of:
+            - evidence: knife
+            - evidence: fingerprint
           if_true: accuse_chef
           if_false: accuse_butler
 
@@ -28,7 +48,7 @@ scenes:
       - action: show_dialogue
         payload:
           speaker: detective
-          text: "料理人が犯人だ"
+          text: "包丁と指紋が一致した。犯人は料理人だ！"
 
       - action: end_game
         payload:
@@ -39,7 +59,7 @@ scenes:
       - action: show_dialogue
         payload:
           speaker: detective
-          text: "執事が怪しい"
+          text: "証拠が不十分だ...執事が怪しいが決め手がない。"
 
       - action: end_game
         payload:
