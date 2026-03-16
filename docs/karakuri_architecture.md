@@ -52,6 +52,28 @@ WorldState::get_singleton()->set_bool(
 ); // Managed, deterministic, and observable
 ```
 
+### WorldState Scope Decision Rules
+
+| Scope | Lifetime | Usage Examples | Specific Game Data Examples |
+| :--- | :--- | :--- | :--- |
+| **GLOBAL** | Application | System settings, unlocks | `config:volume`, `user:unlocked_chapters` |
+| **SESSION** | Current Play | Narrative progress, inventory | `mystery:evidence_list`, `story:current_flag_v3` |
+| **SCENE** | Single Scene | Local puzzle state, temporary | `puzzle:key_inserted`, `interaction:npc_met_count` |
+
+**RULE**: Default to `SESSION` for any data that should be part of a saved game. Use `SCENE` for "volatile" logic that should reset when leaving the area.
+
+---
+
+## 3. Namespace Rules
+
+To maintain a clean Kernel, strict namespacing is enforced:
+
+- **Kernel Core**: Use `namespace karakuri`. Reserved for `src/core/`.
+- **Game Modules**: Use `namespace karakuri::games::<module_name>`.
+    - Example: `karakuri::games::mystery_test`, `karakuri::games::billiards_test`.
+
+**RULE**: AI must NEVER place game-specific classes or types directly into the root `karakuri` namespace.
+
 ---
 
 ## 3. TIME MODEL (KernelClock)
