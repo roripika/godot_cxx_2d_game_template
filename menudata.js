@@ -105,7 +105,6 @@ var menudata={children:[
 {text:"t",url:"functions_vars_t.html#index_t"},
 {text:"v",url:"functions_vars_v.html#index_v"},
 {text:"w",url:"functions_vars_w.html#index_w"}]},
-{text:"型定義",url:"functions_type.html"},
 {text:"列挙型",url:"functions_enum.html"},
 {text:"列挙値",url:"functions_eval.html"}]}]},
 {text:"ファイル",url:"files.html",children:[

@@ -6,10 +6,9 @@ var indexSectionsWithContent =
   3: "abcdfghiklmnrstuwy",
   4: "_abcdefghiklmnoprstuvw~",
   5: "abcdefghiklmnoprstvw",
-  6: "a",
-  7: "gstw",
-  8: "cfrstwy",
-  9: "k"
+  6: "gstw",
+  7: "cfrstwy",
+  8: "k"
 };
 
 var indexSectionNames =
@@ -20,10 +19,9 @@ var indexSectionNames =
   3: "files",
   4: "functions",
   5: "variables",
-  6: "typedefs",
-  7: "enums",
-  8: "enumvalues",
-  9: "defines"
+  6: "enums",
+  7: "enumvalues",
+  8: "defines"
 };
 
 var indexSectionLabels =
@@ -34,9 +32,8 @@ var indexSectionLabels =
   3: "ファイル",
   4: "関数",
   5: "変数",
-  6: "型定義",
-  7: "列挙型",
-  8: "列挙値",
-  9: "マクロ定義"
+  6: "列挙型",
+  7: "列挙値",
+  8: "マクロ定義"
 };
 
