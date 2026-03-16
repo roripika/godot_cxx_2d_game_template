@@ -1,0 +1,46 @@
+start_scene: start
+
+scenes:
+  start:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: narrator
+          text: "屋敷で殺人事件が起きた"
+
+      - action: add_evidence
+        payload:
+          id: knife_found
+
+      - action: show_dialogue
+        payload:
+          speaker: detective
+          text: "凶器を発見した"
+
+      - action: check_evidence
+        payload:
+          id: knife_found
+          if_true: accuse_chef
+          if_false: accuse_butler
+
+  accuse_chef:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: detective
+          text: "料理人が犯人だ"
+
+      - action: end_game
+        payload:
+          result: solved
+
+  accuse_butler:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: detective
+          text: "執事が怪しい"
+
+      - action: end_game
+        payload:
+          result: wrong

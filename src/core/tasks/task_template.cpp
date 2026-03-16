@@ -1,7 +1,7 @@
 #include "task_template.h"
 
 #include "../scenario/scenario_runner.h"
-#include "../scenario/kernel_clock.h"
+#include "../kernel_clock.h"
 #include <godot_cpp/variant/utility_functions.hpp>
 
 namespace karakuri {

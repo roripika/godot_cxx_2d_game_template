@@ -60,7 +60,8 @@ root_sources = Glob("src/*.cpp")
 
 # Jolt ソースは jolt_env（NEON なし）でコンパイル
 jolt_objects   = jolt_env.SharedObject(jolt_sources + ["src/thirdparty/jolt_shim.cpp"])
-other_sources  = mystery_sources + invaders_sources + othello_sources + billiards_sources + plugin_sources + root_sources
+mystery_test_sources = get_recursive_cpp("src/games")
+other_sources  = mystery_sources + invaders_sources + othello_sources + billiards_sources + plugin_sources + root_sources + mystery_test_sources
 other_objects  = env.SharedObject(other_sources)
 
 sources = core_objects + other_objects + jolt_objects

@@ -103,6 +103,13 @@
 #include "plugins/views/rhythm/rhythm_note.h"
 #include "world_generator.h"
 
+// Mystery Test Game (Fitness Test)
+#include "games/mystery_test/mystery_test_game.h"
+#include "games/mystery_test/tasks/show_dialogue_task.h"
+#include "games/mystery_test/tasks/add_evidence_task.h"
+#include "games/mystery_test/tasks/check_evidence_task.h"
+#include "games/mystery_test/tasks/end_game_task.h"
+
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
@@ -223,6 +230,13 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
 
   // Billiards
   ClassDB::register_class<billiards::BilliardsManager>();
+
+  // Mystery Test Game
+  ClassDB::register_class<karakuri::MysteryTestGame>();
+  ClassDB::register_class<karakuri::ShowDialogueTask>();
+  ClassDB::register_class<karakuri::AddEvidenceTask>();
+  ClassDB::register_class<karakuri::CheckEvidenceTask>();
+  ClassDB::register_class<karakuri::EndGameTask>();
 
   // ------------------------------------------------------------------
   // Engine singleton: ActionRegistry
