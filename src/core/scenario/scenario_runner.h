@@ -41,6 +41,7 @@ public:
    * @param kind     アクション名 (YAML の "action" 値と一致する文字列)
    * @param handler  非ブロッキング (return false) またはブロッキング (return true) ラムダ
    */
+  [[deprecated("Karakuri Kernel v2.0: Use ActionRegistry::register_action_class<T>() instead. Ad-hoc ActionHandlers will be removed in v2.x.")]]
   void register_action(const godot::String &kind, ActionHandler handler);
 
   void set_scenario_path(const godot::String &path);

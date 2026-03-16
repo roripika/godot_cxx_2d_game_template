@@ -66,6 +66,7 @@ ScenarioRunner::ScenarioRunner() {}
 ScenarioRunner::~ScenarioRunner() {}
 
 void ScenarioRunner::register_action(const String &kind, ActionHandler handler) {
+  UtilityFunctions::push_error(String("[ScenarioRunner] Deprecated: register_action(\"") + kind + "\") is called. Ad-hoc ActionHandlers are a security risk and will be removed in v2.x. Port this to a Task class.");
   action_handlers_[kind] = handler;
 }
 

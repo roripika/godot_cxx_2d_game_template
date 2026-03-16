@@ -69,6 +69,7 @@ All actions MUST be registered via the type-safe factory.
 - **NEVER** use `ClassDB::instantiate` or string-based reflection to create Tasks.
 - **ALWAYS** use `ActionRegistry::register_action_class<T>("action_name")`.
 - **STRICT RULE**: Once an action name is established (e.g., "dialogue"), it MUST NOT be changed.
+- **STRICT RULE**: ScenarioRunner MUST NOT provide extension hooks for gameplay logic. NEVER register ad-hoc actions via callbacks, lambdas, or ActionHandler-like mechanisms. ALL executable scenario behavior MUST be implemented as Task classes and registered only through ActionRegistry.
 
 ❌ **Bad**
 ```cpp

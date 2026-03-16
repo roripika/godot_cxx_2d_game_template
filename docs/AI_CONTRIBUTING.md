@@ -12,6 +12,7 @@ Before making ANY change, you MUST have read and understood:
 Karakuri Kernel is designed to be immutable in its core but infinitely extendable via Tasks.
 
 - **STRICT RULE**: If a feature can be implemented as a `Task` inside a module, you MUST NOT modify `src/core/`.
+- **STRICT RULE**: ScenarioRunner MUST NOT provide extension hooks for gameplay logic. NEVER register ad-hoc actions via callbacks, lambdas, or ActionHandler-like mechanisms. ALL executable scenario behavior MUST be implemented as Task classes and registered only through ActionRegistry.
 - **NEVER** modify `ScenarioRunner.cpp` to add branching logic or game-specific behavior.
 
 ## 3. KERNEL MODIFICATION PROTOCOL
