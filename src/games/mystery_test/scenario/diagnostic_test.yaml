@@ -1,0 +1,103 @@
+# diagnostic_test.yaml
+# ====================
+# Karakuri Kernel Fitness Test — Diagnostic Scenario
+#
+# Kernel subsystems exercised:
+#   - WorldState SCOPE_GLOBAL serialize / clear / deserialize  (save_load_test)
+#   - Concurrent task execution                                (parallel)
+#   - SCOPE_GLOBAL single-flag branch                          (check_evidence)
+#   - SCOPE_SESSION discovery + compound branch                (discover_evidence + check_condition)
+#   - KernelClock timeout                                      (wait_for_signal)
+#   - Scenario termination                                     (end_game)
+#
+# This file should always pass:  python3 tools/validate_scenario.py
+
+start_scene: init
+
+scenes:
+
+  # --------------------------------------------------------------------------
+  # SCENE 1: save/load round-trip test
+  # --------------------------------------------------------------------------
+  init:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "診断テスト開始。WorldState 永続化チェックを実行します。"
+      - action: save_load_test
+        payload:
+          key: diagnostic_persistence_flag
+      - action: add_evidence
+        payload:
+          id: save_verified
+          type: achievement
+      - action: check_evidence
+        payload:
+          id: save_verified
+          if_true: parallel_test
+          if_false: fail_persistence
+
+  # --------------------------------------------------------------------------
+  # SCENE 2: parallel composite task test
+  # --------------------------------------------------------------------------
+  parallel_test:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "並列タスクテストを開始します。"
+      - action: parallel
+        payload:
+          tasks:
+            - action: show_dialogue
+              payload:
+                speaker: narrator
+                text: "並列ストリームA: 証拠を記録中..."
+            - action: wait_for_signal
+              payload:
+                signal: parallel_sync
+                timeout: 2.0
+      - action: discover_evidence
+        payload:
+          evidence_id: diagnostic_marker
+          location: test_bench
+      - action: check_condition
+        payload:
+          any_of:
+            - evidence: diagnostic_marker
+          if_true: success
+          if_false: fail_condition
+
+  # --------------------------------------------------------------------------
+  # Terminal scenes
+  # --------------------------------------------------------------------------
+  success:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "全診断テスト合格。Kernel は正常です。"
+      - action: end_game
+        payload:
+          result: solved
+
+  fail_persistence:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "FAIL: WorldState 永続化テストが失敗しました。"
+      - action: end_game
+        payload:
+          result: failed
+
+  fail_condition:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "FAIL: check_condition が diagnostic_marker を検出できませんでした。"
+      - action: end_game
+        payload:
+          result: failed

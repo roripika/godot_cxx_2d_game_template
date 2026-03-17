@@ -43,32 +43,61 @@ except ImportError:
 # ---------------------------------------------------------------------------
 # Schema: known actions and their required payload fields
 # ---------------------------------------------------------------------------
+#
+# SOURCE OF TRUTH: docs/mystery_test_task_catalog.md
+#
+# This dict is the single place that defines the set of valid YAML actions.
+# Whenever a new Task class is added to ActionRegistry, add a matching entry
+# here so that the validator stays in sync with the runtime.
+#
+# "required": list of field groups; at least one key per group must be present.
+# "optional": informational only — any extra payload keys are silently ignored.
+# "_special": if present, a dedicated function below handles this action.
 
-# If the payload key may appear under an alias the value is a list of accepted
-# keys where *at least one* must be present.
 ACTIONS = {
     "show_dialogue": {
         "required": [["speaker"], ["text"]],
         "optional": [],
     },
     "discover_evidence": {
-        # "evidence_id" is canonical; "id" is legacy fallback
+        # "evidence_id" is canonical; "id" is accepted as a legacy alias
         "required": [["evidence_id", "id"], ["location"]],
         "optional": [],
     },
     "add_evidence": {
-        "required": [["id"], ["type"]],
+        # "type" is optional — it is a semantic label for AI readability only
+        # and is NOT validated at runtime (docs/mystery_test_task_catalog.md §2)
+        "required": [["id"]],
+        "optional": ["type"],
+    },
+    "check_evidence": {
+        # Branch on a single SCOPE_GLOBAL evidence flag (pairs with add_evidence)
+        "required": [],
         "optional": [],
+        "_special": "check_evidence",
     },
     "wait_for_signal": {
-        "required": [["signal"], ["timeout"]],
-        "optional": [],
+        # "timeout" is optional; runtime default is 5.0 seconds
+        "required": [["signal"]],
+        "optional": ["timeout"],
     },
     "check_condition": {
-        # handled separately because it is structurally more complex
+        # Complex all_of / any_of structure — handled by a dedicated function
         "required": [],
         "optional": [],
         "_special": "check_condition",
+    },
+    "save_load_test": {
+        # Diagnostic task: exercises WorldState serialize/deserialize round-trip
+        # Do NOT use in story scenarios.
+        "required": [],
+        "optional": ["key"],
+    },
+    "parallel": {
+        # Composite task: runs sub-tasks concurrently — handled by a dedicated function
+        "required": [],
+        "optional": [],
+        "_special": "parallel",
     },
     "end_game": {
         "required": [["result"]],
@@ -120,6 +149,81 @@ def validate_payload_fields(required_groups, payload, filename, scene, idx, erro
             else:
                 msg = f"Missing required payload field: one of {group} must be present."
             errors.append(ValidationError(filename, scene, idx, msg))
+
+
+# Actions that are forbidden inside a parallel group because their side effects
+# (scene jumps, game-end signals) are not coordinated with sibling sub-tasks.
+PARALLEL_FORBIDDEN_ACTIONS = {"check_evidence", "check_condition", "end_game", "parallel"}
+
+
+def validate_check_evidence(payload, filename, scene, idx, errors, all_scene_ids):
+    """Validate the check_evidence action format."""
+    for field in ("id", "if_true", "if_false"):
+        if field not in payload:
+            errors.append(ValidationError(filename, scene, idx,
+                f"check_evidence is missing required field '{field}'."))
+
+    for field in ("if_true", "if_false"):
+        if field in payload and payload[field] not in all_scene_ids:
+            errors.append(ValidationError(filename, scene, idx,
+                f"check_evidence '{field}' references unknown scene '{payload[field]}'."))
+
+
+def validate_parallel(payload, filename, scene, idx, errors, all_scene_ids):
+    """Validate the parallel composite action and all its sub-tasks."""
+    if "tasks" not in payload:
+        errors.append(ValidationError(filename, scene, idx,
+            "parallel is missing required field 'tasks'."))
+        return
+
+    tasks = payload["tasks"]
+    if not isinstance(tasks, list):
+        errors.append(ValidationError(filename, scene, idx,
+            "parallel 'tasks' must be an array."))
+        return
+
+    if len(tasks) == 0:
+        errors.append(ValidationError(filename, scene, idx,
+            "parallel 'tasks' must not be empty."))
+        return
+
+    for sub_idx, sub_task in enumerate(tasks):
+        if not isinstance(sub_task, dict):
+            errors.append(ValidationError(filename, scene, idx,
+                f"parallel 'tasks[{sub_idx}]' must be a dict with 'action' and 'payload'."))
+            continue
+
+        if "action" not in sub_task:
+            errors.append(ValidationError(filename, scene, idx,
+                f"parallel 'tasks[{sub_idx}]' is missing the 'action' key."))
+            continue
+
+        sub_action = sub_task["action"]
+
+        if sub_action in PARALLEL_FORBIDDEN_ACTIONS:
+            errors.append(ValidationError(filename, scene, idx,
+                f"parallel 'tasks[{sub_idx}]' uses forbidden action '{sub_action}'. "
+                f"Branching, terminal, and nested parallel actions must not appear "
+                f"inside a parallel group. Forbidden: {sorted(PARALLEL_FORBIDDEN_ACTIONS)}."))
+            continue
+
+        if sub_action not in ACTIONS:
+            errors.append(ValidationError(filename, scene, idx,
+                f"parallel 'tasks[{sub_idx}]' uses unknown action '{sub_action}'. "
+                f"Valid actions: {sorted(ACTIONS.keys())}."))
+            continue
+
+        sub_payload = sub_task.get("payload", {})
+        if not isinstance(sub_payload, dict):
+            errors.append(ValidationError(filename, scene, idx,
+                f"parallel 'tasks[{sub_idx}]' payload must be a dict."))
+            continue
+
+        sub_schema = ACTIONS[sub_action]
+        validate_payload_fields(
+            sub_schema["required"], sub_payload,
+            filename, f"{scene}[parallel.tasks[{sub_idx}]]", 0, errors
+        )
 
 
 def validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids):
@@ -192,8 +296,16 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
     schema = ACTIONS[action_name]
 
     # Special handlers
+    if schema.get("_special") == "check_evidence":
+        validate_check_evidence(payload, filename, scene, idx, errors, all_scene_ids)
+        return
+
     if schema.get("_special") == "check_condition":
         validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids)
+        return
+
+    if schema.get("_special") == "parallel":
+        validate_parallel(payload, filename, scene, idx, errors, all_scene_ids)
         return
 
     # Generic required-field check
@@ -208,21 +320,25 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
                 f"got '{result}'."))
 
     if action_name == "add_evidence":
-        ev_type = payload.get("type", "")
-        if ev_type not in VALID_EVIDENCE_TYPES:
-            errors.append(ValidationError(filename, scene, idx,
-                f"add_evidence 'type' must be one of {sorted(VALID_EVIDENCE_TYPES)}, "
-                f"got '{ev_type}'."))
+        # "type" is optional — only validate it when present
+        if "type" in payload:
+            ev_type = payload["type"]
+            if ev_type not in VALID_EVIDENCE_TYPES:
+                errors.append(ValidationError(filename, scene, idx,
+                    f"add_evidence 'type' must be one of {sorted(VALID_EVIDENCE_TYPES)}, "
+                    f"got '{ev_type}'."))
 
     if action_name == "wait_for_signal":
-        try:
-            timeout = float(payload.get("timeout", -1))
-            if timeout <= 0:
+        # "timeout" is optional (runtime default 5.0) — only validate when present
+        if "timeout" in payload:
+            try:
+                timeout = float(payload["timeout"])
+                if timeout <= 0:
+                    errors.append(ValidationError(filename, scene, idx,
+                        f"wait_for_signal 'timeout' must be a positive number, got '{payload['timeout']}'."))
+            except (TypeError, ValueError):
                 errors.append(ValidationError(filename, scene, idx,
-                    f"wait_for_signal 'timeout' must be a positive number, got '{payload.get('timeout')}'."))
-        except (TypeError, ValueError):
-            errors.append(ValidationError(filename, scene, idx,
-                f"wait_for_signal 'timeout' must be a number, got '{payload.get('timeout')}'."))
+                    f"wait_for_signal 'timeout' must be a number, got '{payload['timeout']}'."))
 
 
 def validate_file(filepath: str) -> list:
