@@ -228,12 +228,77 @@ To add new functionality to the Game OS:
 
 ---
 
-## 9. FINAL WARNING
+## 10. KERNEL TEST MATRIX
 
-These rules are NOT suggestions. 
+The following matrix shows which game modules verify which core Kernel capabilities. This ensures full regression coverage for every Game OS update.
 
-Violating these rules WILL break the Karakuri Kernel, corrupt the `WorldState`, and destroy determinism. 
+```mermaid
+graph TD
+    subgraph "Kernel v2.0 Core Capabilities"
+        SR[ScenarioRunner: State Machine]
+        WS[WorldState: Memory Model]
+        AR[ActionRegistry: Type-Safe Factory]
+        KC[KernelClock: Determinism]
+        CO[Condition Engine]
+        PA[Parallel Execution]
+        SL[Save/Load Persistence]
+    end
 
-**IF YOU ARE UNSURE: DO NOT MODIFY `src/core/`.**
-Extend the system by adding new modules in `src/mystery/` or other game-specific directories. 
-Respect the abstraction. Keep the Kernel pure.
+    subgraph "Verification Modules"
+        MT["mystery_test (Fitness Test)"]
+        BT["billiards_test (Physics Test)"]
+        RT["rhythm_test (Timing Test)"]
+    end
+
+    MT --> SR
+    MT --> WS
+    MT --> AR
+    MT --> CO
+    MT --> PA
+    MT --> SL
+    MT --> KC
+
+    BT --> SR
+    BT --> KC
+    BT --> WS
+
+    RT --> KC
+    RT --> AR
+```
+
+---
+
+### mystery_test: Kernel Fitness Test
+
+`mystery_test` is **not a sample game**. It is a formal Kernel Fitness Test for Karakuri v2.0.
+
+Its sole purpose is to verify that a fully functional narrative game can be built using only:
+- `Task` classes (no `src/core/` modifications)
+- YAML scenario files
+- `WorldState` (SESSION scope mutations)
+- `ActionRegistry` (type-safe task registration)
+- `ScenarioRunner` (state-machine execution)
+
+This proves the Kernel extension model is complete and that game logic belongs exclusively in modules.
+
+#### Coverage Table
+
+| mystery_test capability | Kernel feature verified |
+| --- | --- |
+| `show_dialogue` | Signal handshake / `Waiting` state lifecycle |
+| `discover_evidence` | `WorldState` SESSION mutation + duplicate guard |
+| `check_condition` | Condition engine (all_of / any_of, compound branching) |
+| `wait_for_signal` | `KernelClock` timeout safety (deadlock prevention) |
+| `end_game` | External signal dispatch via `ScenarioRunner` |
+| `mystery_stress_test.yaml` | ScenarioRunner large graph (50 dialogue / 30 condition / 20 evidence / 10 timeout nodes) |
+| `mystery_timeout_test.yaml` | Timeout fallback path isolation |
+
+#### Why This Matters
+
+If `mystery_test` runs correctly end-to-end without touching `src/core/`, it demonstrates that the Kernel's
+extension contract is sound. Any regression in `mystery_test` is a signal that a Kernel API has broken its
+contract — not that the game logic is wrong.
+
+---
+
+## 11. FINAL WARNING

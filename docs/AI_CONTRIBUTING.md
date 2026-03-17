@@ -70,7 +70,30 @@ Before finalizing any PR or commit, the AI MUST verify:
 - [ ] **Core Untouched**: No modifications made to `src/core/` unless strictly required and architecturally approved.
 - [ ] **Clock Determinism**: No frame-rate dependent logic (no `delta` usage).
 
-## 9. FINAL WARNING
+## 9. MYSTERY_TEST: KERNEL FITNESS TEST
+
+`src/games/mystery_test/` is **not a sample game**. It is the primary Kernel Fitness Test for v2.0.
+
+Before submitting any change to the repository, AI assistants MUST understand what `mystery_test` is verifying:
+
+- **Narrative control flow**: `ScenarioRunner` state-machine advances through YAML scenes correctly.
+- **WorldState mutation discipline**: Evidence flags are written to SESSION scope and never leak to GLOBAL.
+- **Compound condition evaluation**: `CheckConditionTask` evaluates `all_of` / `any_of` against live `WorldState`.
+- **Deterministic wait / timeout safety**: `WaitForSignalTask` must not deadlock; `KernelClock` drives the timeout.
+- **Action registration contract**: Every task is registered via `ActionRegistry`; no reflection or inline handlers.
+- **Task-level game extension model**: The entire module runs without modifying `src/core/`.
+
+| mystery_test capability | Kernel feature verified |
+| --- | --- |
+| `show_dialogue` | Signal handshake / waiting state |
+| `discover_evidence` | `WorldState` mutation (SESSION scope) |
+| `check_condition` | Condition engine (all_of / any_of) |
+| `wait_for_signal` | `KernelClock` timeout safety |
+| `end_game` | External signal dispatch |
+
+If `mystery_test` regresses, a **Kernel API contract has been broken**. Fix the Kernel, do not patch the test.
+
+## 10. FINAL WARNING
 Violating the Architecture Contract WILL break the Game OS. If you are unsure about a design decision, HALT and request clarification from the human lead architect.
 
 **Protect the Kernel. Preserve Determinism. Stay Decoupled.**

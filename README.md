@@ -129,6 +129,22 @@ ls samples/
 - `docs/demo_plan.md`: 各デモで「何を作るか」「共通Utilityをどう再利用するか」の計画書
 - `docs/mystery_design.md`: Adventure(Mystery) デモの詳細設計
 
+## Kernel Fitness Test (mystery_test)
+
+`src/games/mystery_test/` はサンプルゲームではなく、**Karakuri Kernel v2.0 の適合性テストモジュール**です。
+
+`src/core/` を一切変更せずに、Task + YAML + WorldState + ActionRegistry + ScenarioRunner だけでナラティブゲームが成立することを証明します。
+
+| mystery_test 機能 | 検証するカーネル機能 |
+| --- | --- |
+| `show_dialogue` | シグナルハンドシェイク / 待機状態 |
+| `discover_evidence` | WorldState ミューテーション (SESSION スコープ) |
+| `check_condition` | 複合条件エンジン (all_of / any_of) |
+| `wait_for_signal` | KernelClock タイムアウト安全性 |
+| `end_game` | 外部シグナルディスパッチ |
+
+詳細は `docs/karakuri_architecture.md` の **§10 Kernel Test Matrix** を参照してください。
+
 ## Godotエディタ設定
 
 ### SandboxWorld ノードの設定

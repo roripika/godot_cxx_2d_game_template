@@ -63,7 +63,8 @@ scenes:
         payload: { speaker: detective, text: "廊下に血の跡。引きずられた痕だ。" }
       - action: check_condition                               # C2
         payload:
-          evidence: bloodstain_corridor
+          any_of:
+            - evidence: bloodstain_corridor
           if_true: study_room
           if_false: hall_east
 
@@ -81,7 +82,8 @@ scenes:
         payload: { signal: examine_safe, timeout: 3.0 }
       - action: check_condition                               # C3
         payload:
-          evidence: torn_will
+          any_of:
+            - evidence: torn_will
           if_true: bedroom
           if_false: study_room
 
@@ -95,7 +97,8 @@ scenes:
         payload: { speaker: detective, text: "睡眠薬の瓶。ラベルが剥がされている。" }
       - action: check_condition                               # C4
         payload:
-          evidence: sleeping_pills
+          any_of:
+            - evidence: sleeping_pills
           if_true: lab_room
           if_false: bedroom
 
@@ -128,7 +131,8 @@ scenes:
         payload: { speaker: detective, text: "使用人室、厨房、そして地下への階段がある。" }
       - action: check_condition                               # C6
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: kitchen
           if_false: hall_west
 
@@ -146,7 +150,8 @@ scenes:
         payload: { signal: analyze_glass, timeout: 4.0 }
       - action: check_condition                               # C7
         payload:
-          evidence: poisoned_wine_glass
+          any_of:
+            - evidence: poisoned_wine_glass
           if_true: servant_room
           if_false: kitchen
 
@@ -160,7 +165,8 @@ scenes:
         payload: { speaker: detective, text: "メモが残っている。『今夜決行。D氏への連絡済み』" }
       - action: check_condition                               # C8
         payload:
-          evidence: servant_note
+          any_of:
+            - evidence: servant_note
           if_true: cellar_stairs
           if_false: hall_west
 
@@ -192,7 +198,8 @@ scenes:
         payload: { signal: document_scene, timeout: 2.0 }
       - action: check_condition                               # C10
         payload:
-          evidence: hidden_stash
+          any_of:
+            - evidence: hidden_stash
           if_true: garden_path
           if_false: cellar_stairs
 
@@ -209,7 +216,8 @@ scenes:
         payload: { speaker: detective, text: "植え込みが荒らされている。何かを埋めたのか？" }
       - action: check_condition                               # C11
         payload:
-          evidence: disturbed_soil
+          any_of:
+            - evidence: disturbed_soil
           if_true: gazebo
           if_false: garden_path
 
@@ -246,7 +254,8 @@ scenes:
         payload: { speaker: detective, text: "しかし地下室への経路を知る者は限られる。" }
       - action: check_condition                               # C13
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: deduction_phase_2
           if_false: lobby
 
@@ -262,7 +271,8 @@ scenes:
         payload: { signal: cross_reference, timeout: 3.0 }
       - action: check_condition                               # C14
         payload:
-          evidence: chemical_solvent
+          any_of:
+            - evidence: chemical_solvent
           if_true: deduction_phase_3
           if_false: lobby
 
@@ -276,7 +286,8 @@ scenes:
         payload: { speaker: detective, text: "しかし今夜行動したのは一人か、二人か。" }
       - action: check_condition                               # C15
         payload:
-          evidence: conspiracy_evidence
+          any_of:
+            - evidence: conspiracy_evidence
           if_true: deduction_phase_4
           if_false: lobby
 
@@ -303,7 +314,8 @@ scenes:
         payload: { speaker: system, text: "容疑者A: 執事 ディールス" }
       - action: check_condition                               # C17
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: suspect_chain_2
           if_false: lobby
 
@@ -313,7 +325,8 @@ scenes:
         payload: { id: suspect_a_profile, type: trait }
       - action: check_condition                               # C18
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: suspect_chain_3
           if_false: lobby
 
@@ -327,7 +340,8 @@ scenes:
         payload: { signal: compare_suspects, timeout: 1.0 }
       - action: check_condition                               # C19
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: suspect_chain_4
           if_false: lobby
 
@@ -339,7 +353,8 @@ scenes:
         payload: { id: suspect_c_profile, type: trait }
       - action: check_condition                               # C20
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: suspect_chain_5
           if_false: lobby
 
@@ -369,7 +384,8 @@ scenes:
         payload: { signal: narrow_suspects, timeout: 2.0 }
       - action: check_condition                               # C23
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: evidence_chain_1
           if_false: lobby
 
@@ -380,7 +396,8 @@ scenes:
     on_enter:
       - action: check_condition                               # C24
         payload:
-          evidence: bloodstain_corridor
+          any_of:
+            - evidence: bloodstain_corridor
           if_true: evidence_chain_2
           if_false: lobby
 
@@ -388,7 +405,8 @@ scenes:
     on_enter:
       - action: check_condition                               # C25
         payload:
-          evidence: torn_will
+          any_of:
+            - evidence: torn_will
           if_true: evidence_chain_3
           if_false: lobby
 
@@ -396,7 +414,8 @@ scenes:
     on_enter:
       - action: check_condition                               # C26
         payload:
-          evidence: sleeping_pills
+          any_of:
+            - evidence: sleeping_pills
           if_true: evidence_chain_4
           if_false: lobby
 
@@ -406,7 +425,8 @@ scenes:
         payload: { signal: final_review, timeout: 5.0 }
       - action: check_condition                               # C27
         payload:
-          evidence: poisoned_wine_glass
+          any_of:
+            - evidence: poisoned_wine_glass
           if_true: evidence_chain_5
           if_false: lobby
 
@@ -452,7 +472,8 @@ scenes:
         payload: { id: case_solved, type: achievement }
       - action: check_condition                               # C30
         payload:
-          evidence: mansion_map
+          any_of:
+            - evidence: mansion_map
           if_true: end_perfect
           if_false: end_good
 

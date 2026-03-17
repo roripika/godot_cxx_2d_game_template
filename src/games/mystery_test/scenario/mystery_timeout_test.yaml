@@ -1,0 +1,75 @@
+# =============================================================================
+# mystery_timeout_test.yaml
+#
+# Purpose : Timeout safety test for Karakuri Game OS Kernel v2.0
+# Verifies : Deadlock protection via WaitForSignalTask timeout mechanism.
+#            Ensures ScenarioRunner never waits forever when external input
+#            does not arrive within the specified threshold.
+#
+# Part of Kernel v2.0 fitness tests (mystery_test module).
+#
+# Scene flow:
+#
+#   start
+#     +--(signal arrives in time)--> success_branch --> end_game(solved)
+#     +--(timeout expires)---------> timeout_branch --> end_game(timeout)
+# =============================================================================
+
+start_scene: start
+
+scenes:
+
+  # ---------------------------------------------------------------------------
+  # Entry: display context, then wait for an external signal.
+  # ---------------------------------------------------------------------------
+  start:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: narrator
+          text: "タイムアウト安全テストを開始します。外部シグナルの到着を待ちます。"
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "シグナルが規定時間内に届かない場合、タイムアウトパスへ分岐します。"
+      - action: wait_for_signal
+        payload:
+          signal: user_respond
+          timeout: 5.0
+      # After the wait resolves (signal arrived) execution continues here.
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "シグナルを受信しました。"
+      - action: check_condition
+        payload:
+          any_of:
+            - evidence: signal_received
+          if_true: success_branch
+          if_false: timeout_branch
+
+  # ---------------------------------------------------------------------------
+  # Success path: signal arrived within timeout window.
+  # ---------------------------------------------------------------------------
+  success_branch:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: detective
+          text: "シグナルは時間内に届いた。デッドロックなし。カーネルは正常に応答した。"
+      - action: end_game
+        payload:
+          result: solved
+
+  # ---------------------------------------------------------------------------
+  # Timeout path: signal did not arrive; kernel must not deadlock.
+  # ---------------------------------------------------------------------------
+  timeout_branch:
+    on_enter:
+      - action: show_dialogue
+        payload:
+          speaker: system
+          text: "タイムアウト。シグナルは届かなかった。カーネルはデッドロックせず正常に継続した。"
+      - action: end_game
+        payload:
+          result: timeout
