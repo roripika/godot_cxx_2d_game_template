@@ -1,0 +1,43 @@
+# billiards_corrupted.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Invalid billiards scenario — used as a negative test fixture for the
+# validate_scenario.py validator. This file must NEVER be loaded at runtime.
+#
+# Each action below contains at least one deliberate error:
+#   1. unknown_billiards_action  → unknown action name
+#   2. wait_for_billiards_event  → unknown event name "ball_fell_into_ocean"
+#   3. record_billiards_event    → missing required 'event' key
+#   4. evaluate_billiards_round  → missing required 'if_clear' key
+#   5. end_game                  → invalid result "cleared" (must be solved/failed)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: bad_scene
+
+scenes:
+  bad_scene:
+    on_enter:
+      # Error 1: completely unknown action
+      - action: unknown_billiards_action
+        payload:
+          foo: bar
+
+      # Error 2: invalid event name
+      - action: wait_for_billiards_event
+        payload:
+          events: [ball_fell_into_ocean]
+          timeout: 5.0
+
+      # Error 3: missing required 'event' key
+      - action: record_billiards_event
+        payload:
+          wrong_key: shot_committed
+
+      # Error 4: missing required 'if_clear' (only if_fail and if_continue given)
+      - action: evaluate_billiards_round
+        payload:
+          if_fail:     bad_scene
+          if_continue: bad_scene
+
+      # Error 5: invalid end_game result
+      - action: end_game
+        payload:
+          result: cleared

@@ -110,6 +110,13 @@
 #include "games/mystery_test/tasks/check_evidence_task.h"
 #include "games/mystery_test/tasks/end_game_task.h"
 
+// Billiards Test Game (Fitness Test)
+#include "games/billiards_test/billiards_test_game.h"
+#include "games/billiards_test/tasks/setup_billiards_round_task.h"
+#include "games/billiards_test/tasks/wait_for_billiards_event_task.h"
+#include "games/billiards_test/tasks/record_billiards_event_task.h"
+#include "games/billiards_test/tasks/evaluate_billiards_round_task.h"
+
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
@@ -237,6 +244,13 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::AddEvidenceTask>();
   ClassDB::register_class<karakuri::CheckEvidenceTask>();
   ClassDB::register_class<karakuri::EndGameTask>();
+
+  // Billiards Test Game
+  ClassDB::register_class<karakuri::games::billiards_test::BilliardsTestGame>();
+  ClassDB::register_class<karakuri::games::billiards_test::SetupBilliardsRoundTask>();
+  ClassDB::register_class<karakuri::games::billiards_test::WaitForBilliardsEventTask>();
+  ClassDB::register_class<karakuri::games::billiards_test::RecordBilliardsEventTask>();
+  ClassDB::register_class<karakuri::games::billiards_test::EvaluateBilliardsRoundTask>();
 
   // ------------------------------------------------------------------
   // Engine singleton: ActionRegistry

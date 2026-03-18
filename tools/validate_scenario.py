@@ -103,12 +103,49 @@ ACTIONS = {
         "required": [["result"]],
         "optional": [],
     },
+    # ------------------------------------------------------------------
+    # Billiards Test tasks
+    # ------------------------------------------------------------------
+    "setup_billiards_round": {
+        # Both fields are optional; runtime defaults: shot_limit=5, target_count=2
+        "required": [],
+        "optional": ["shot_limit", "target_count"],
+    },
+    "wait_for_billiards_event": {
+        # 'events' is required (validated in the special handler)
+        "required": [],
+        "optional": [],
+        "_special": "wait_for_billiards_event",
+    },
+    "record_billiards_event": {
+        "required": [["event"]],
+        "optional": [],
+    },
+    "evaluate_billiards_round": {
+        # all three scene refs are required (validated in the special handler)
+        "required": [],
+        "optional": [],
+        "_special": "evaluate_billiards_round",
+    },
 }
 
 VALID_END_GAME_RESULTS = {"solved", "wrong", "failed", "lost", "timeout"}
 VALID_EVIDENCE_TYPES = {
     "item", "motive", "state", "tool", "trait",
     "discovery", "evidence", "achievement", "dummy",
+}
+VALID_BILLIARDS_EVENTS = {
+    "shot_committed", "ball_pocketed", "cue_ball_pocketed", "balls_stopped",
+}
+
+# Known payload keys for actions that use _special handlers.
+# Used by the unknown-key guard in validate_action().
+SPECIAL_KNOWN_KEYS = {
+    "check_evidence":          {"id", "if_true", "if_false"},
+    "check_condition":         {"all_of", "any_of", "if_true", "if_false"},
+    "parallel":                {"tasks"},
+    "wait_for_billiards_event": {"events", "timeout"},
+    "evaluate_billiards_round": {"if_clear", "if_fail", "if_continue"},
 }
 
 # ---------------------------------------------------------------------------
@@ -226,6 +263,47 @@ def validate_parallel(payload, filename, scene, idx, errors, all_scene_ids):
         )
 
 
+def validate_wait_for_billiards_event(payload, filename, scene, idx, errors):
+    """Validate the wait_for_billiards_event action."""
+    if "events" not in payload:
+        errors.append(ValidationError(filename, scene, idx,
+            "wait_for_billiards_event is missing required field 'events'."))
+        return
+
+    events = payload["events"]
+    if not isinstance(events, list) or len(events) == 0:
+        errors.append(ValidationError(filename, scene, idx,
+            "wait_for_billiards_event 'events' must be a non-empty array."))
+        return
+
+    for ev in events:
+        if ev not in VALID_BILLIARDS_EVENTS:
+            errors.append(ValidationError(filename, scene, idx,
+                f"wait_for_billiards_event: unknown event '{ev}'. "
+                f"Valid events: {sorted(VALID_BILLIARDS_EVENTS)}."))
+
+    if "timeout" in payload:
+        try:
+            t = float(payload["timeout"])
+            if t <= 0:
+                errors.append(ValidationError(filename, scene, idx,
+                    f"wait_for_billiards_event 'timeout' must be > 0, got '{payload['timeout']}'"))
+        except (TypeError, ValueError):
+            errors.append(ValidationError(filename, scene, idx,
+                f"wait_for_billiards_event 'timeout' must be a number, got '{payload['timeout']}'"))
+
+
+def validate_evaluate_billiards_round(payload, filename, scene, idx, errors, all_scene_ids):
+    """Validate the evaluate_billiards_round action."""
+    for field in ("if_clear", "if_fail", "if_continue"):
+        if field not in payload:
+            errors.append(ValidationError(filename, scene, idx,
+                f"evaluate_billiards_round is missing required field '{field}'."))
+        elif payload[field] not in all_scene_ids:
+            errors.append(ValidationError(filename, scene, idx,
+                f"evaluate_billiards_round '{field}' references unknown scene '{payload[field]}'."))
+
+
 def validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids):
     """Validate the check_condition action format."""
     has_all = "all_of" in payload
@@ -295,18 +373,47 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
 
     schema = ACTIONS[action_name]
 
-    # Special handlers
-    if schema.get("_special") == "check_evidence":
+    # --- Unknown payload key guard (for _special handlers) ----------
+    special_name = schema.get("_special")
+    if special_name and special_name in SPECIAL_KNOWN_KEYS:
+        known = SPECIAL_KNOWN_KEYS[special_name]
+        for key in payload:
+            if key not in known:
+                errors.append(ValidationError(filename, scene, idx,
+                    f"Unknown payload key '{key}' for action '{action_name}'. "
+                    f"Known keys: {sorted(known)}."))
+
+    if special_name == "check_evidence":
         validate_check_evidence(payload, filename, scene, idx, errors, all_scene_ids)
         return
 
-    if schema.get("_special") == "check_condition":
+    if special_name == "check_condition":
         validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids)
         return
 
-    if schema.get("_special") == "parallel":
+    if special_name == "parallel":
         validate_parallel(payload, filename, scene, idx, errors, all_scene_ids)
         return
+
+    if special_name == "wait_for_billiards_event":
+        validate_wait_for_billiards_event(payload, filename, scene, idx, errors)
+        return
+
+    if special_name == "evaluate_billiards_round":
+        validate_evaluate_billiards_round(payload, filename, scene, idx, errors, all_scene_ids)
+        return
+
+    # --- Generic required-field check -----------------------------------
+    # Unknown key guard for non-special actions
+    all_known_keys = set()
+    for group in schema["required"]:
+        all_known_keys.update(group)
+    all_known_keys.update(schema["optional"])
+    for key in payload:
+        if key not in all_known_keys:
+            errors.append(ValidationError(filename, scene, idx,
+                f"Unknown payload key '{key}' for action '{action_name}'. "
+                f"Known keys: {sorted(all_known_keys)}."))
 
     # Generic required-field check
     validate_payload_fields(schema["required"], payload, filename, scene, idx, errors)
@@ -443,9 +550,15 @@ def main():
     if len(sys.argv) > 1:
         targets = sys.argv[1:]
     else:
-        targets = sorted(str(p) for p in (repo_root / "src/games/mystery_test/scenario").glob("*.yaml"))
+        scenario_dirs = [
+            repo_root / "src/games/mystery_test/scenario",
+            repo_root / "src/games/billiards_test/scenario",
+        ]
+        targets = []
+        for d in scenario_dirs:
+            targets.extend(sorted(str(p) for p in d.glob("*.yaml")))
         if not targets:
-            print(f"No scenario files found under {repo_root / 'src/games/mystery_test/scenario'}")
+            print(f"No scenario files found under src/games/*/scenario/")
             sys.exit(0)
 
     total_errors = 0

@@ -1,0 +1,76 @@
+# billiards_fake_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Billiards Kernel Fitness Test — Fake-event minimal smoke scenario
+#
+# 目的: 実際の物理エンジンを使わず WaitForBilliardsEventTask のタイムアウト機構を
+#       利用して一連のタスク連鎖が正常動作することを確認する。
+#
+# フロー:
+#   setup_round
+#     → wait_event (timeout → balls_stopped)
+#       → record_shot_committed
+#         → record_ball_pocketed
+#           → evaluate (pocketed=1 >= target_count=1 → clear)
+#             → victory → end (solved)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: setup_round
+
+scenes:
+  # 1. ラウンド初期化 ─────────────────────────────────────────────────────────
+  setup_round:
+    on_enter:
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   3
+          target_count: 1
+
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1      # フェイクテスト用: すぐタイムアウトさせる
+
+      - action: record_billiards_event
+        payload:
+          event: shot_committed
+
+      - action: record_billiards_event
+        payload:
+          event: ball_pocketed
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again
+
+  # 2. クリア ─────────────────────────────────────────────────────────────────
+  victory:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  # 3. 失敗 ─────────────────────────────────────────────────────────────────
+  defeat:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed
+
+  # 4. 続行（ショット上限未達でポケット不足） ─────────────────────────────────
+  shoot_again:
+    on_enter:
+      - action: wait_for_billiards_event
+        payload:
+          events:  [shot_committed, balls_stopped]
+          timeout: 0.1
+
+      - action: record_billiards_event
+        payload:
+          event: ball_pocketed
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: defeat
