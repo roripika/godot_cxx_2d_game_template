@@ -3,7 +3,30 @@
 本ドキュメントは、プロジェクトの現在の進捗、実装済み機能、および内部タスクへのリンクをまとめたものです。
 
 ## 現在のフェーズ (Current Phase)
-**Phase 5.5: Asset Generation** / **Phase 6: Fighting Game Framework**
+**Phase 2: Kernel Fitness Test（整理完了）** — 2026-03-19
+
+> 詳細レポート: [docs/reports/phase2_diff_audit_report.md](docs/reports/phase2_diff_audit_report.md)
+
+### Phase 2 完了サマリー
+| コミット | 内容 |
+|---|---|
+| `a6c5364` | fix(phase2): 差分整理 — Core 変更を差し戻し、A 分類のみコミット |
+| `121f686` | feat: billiards_test 最小骨格 (4 タスク) + validator ガードレール |
+| `a9da471` | fix: validator 9 アクション同期 + diagnostic_test.yaml |
+
+#### 確定済み（Category A）
+- `mystery_test` 未追跡タスク群をコミット（parallel / save_load / wait_for_signal）
+- `ScenarioValidator` C++ 実装 + `register_types.cpp` 登録
+- `check_condition_task.cpp` UB バグ修正（return 文欠如）
+- `billiards_test` タスクの `const char*` クラッシュ対策
+- `tools/test_validator.py` 回帰テスト 7 ケース全 PASS
+
+#### 保留（Category B — 別 PR 候補）
+- `src/core/action_registry` の GDExtension 起動クラッシュ対策（Core 変更が必要なため保留）
+
+---
+
+**Phase 5.5 / Phase 6 ステータス（旧記録）**
 
 ## 実装済み機能 (Implemented Features)
 
