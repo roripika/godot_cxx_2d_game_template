@@ -7,7 +7,7 @@
 namespace karakuri::games::billiards_test {
 
 // Valid event names that a billiards scenario can wait on.
-static const godot::String VALID_EVENTS[] = {
+static const char* VALID_EVENTS[] = {
     "shot_committed",
     "ball_pocketed",
     "cue_ball_pocketed",

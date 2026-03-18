@@ -15,10 +15,10 @@ godot::Error RecordBilliardsEventTask::validate_and_setup(const TaskSpec &spec) 
     const godot::String ev = spec.payload["event"];
 
     // Validate against the canonical list.
-    static const godot::String VALID[] = {
+    static const char* VALID[] = {
         "shot_committed", "ball_pocketed", "cue_ball_pocketed", "balls_stopped"};
     bool found = false;
-    for (const auto &v : VALID) {
+    for (const char* v : VALID) {
         if (ev == v) { found = true; break; }
     }
     if (!found) {

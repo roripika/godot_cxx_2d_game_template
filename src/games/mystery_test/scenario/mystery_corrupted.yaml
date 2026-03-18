@@ -1,0 +1,17 @@
+# Mystery Corrupted Scenario (For Validation Testing)
+scenes:
+  start:
+    on_enter:
+      - action: show_dialogue
+        payload: { text: "これは正常なダイアログです", speaker: "System" }
+      - action: unknown_action_xyz
+        payload: { something: 1 }
+      - action: add_evidence
+        payload: { wrong_key: "knife" } # 'id' is required
+      - action: check_evidence
+        payload: { id: "invalid_key_no_namespace", if_true: "non_existent_scene", if_false: "start" }
+  
+  victory:
+    on_enter:
+      - action: end_game
+        payload: { result: "win" }

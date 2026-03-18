@@ -92,3 +92,8 @@ TaskResult CheckConditionTask::execute() {
     if (runner_) {
         runner_->load_scene_by_id(target);
     }
+
+    return TaskResult::Success;
+}
+
+} // namespace karakuri::games::mystery_test

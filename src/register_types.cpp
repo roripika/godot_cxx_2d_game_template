@@ -109,6 +109,7 @@
 #include "games/mystery_test/tasks/add_evidence_task.h"
 #include "games/mystery_test/tasks/check_evidence_task.h"
 #include "games/mystery_test/tasks/end_game_task.h"
+#include "games/mystery_test/utils/scenario_validator.h"
 
 // Billiards Test Game (Fitness Test)
 #include "games/billiards_test/billiards_test_game.h"
@@ -244,6 +245,7 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::AddEvidenceTask>();
   ClassDB::register_class<karakuri::CheckEvidenceTask>();
   ClassDB::register_class<karakuri::EndGameTask>();
+  ClassDB::register_class<karakuri::ScenarioValidator>();
 
   // Billiards Test Game
   ClassDB::register_class<karakuri::games::billiards_test::BilliardsTestGame>();
