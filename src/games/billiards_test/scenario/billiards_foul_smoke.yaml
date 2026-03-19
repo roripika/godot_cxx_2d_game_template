@@ -1,0 +1,73 @@
+# billiards_foul_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Billiards Kernel Fitness Test — Fake-event smoke scenario (foul / fail path)
+#
+# 目的: cue_ball_pocketed イベントを記録したとき EvaluateBilliardsRoundTask が
+#       if_fail へ遷移することを確認する。
+#
+# カバーするパス: foul → fail
+#   shot_committed → cue_ball_pocketed → cue_ball_pocketed=true → fail
+#
+# WorldState keys (spec準拠):
+#   round:cue_ball_pocketed  bool  true になることが期待値
+#   round:result             str   "fail" が期待値
+#   event:last_name          str   "cue_ball_pocketed"
+#
+# フロー:
+#   setup_round
+#     → wait_event (timeout → balls_stopped)
+#       → record_shot_committed  (shots_taken=1)
+#         → record_cue_ball_pocketed  (cue_ball_pocketed=true)
+#           → evaluate (cue_ball_pocketed=true → if_fail)
+#             → defeat → end (failed)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: setup_round
+
+scenes:
+  # 1. ラウンド初期化 ─────────────────────────────────────────────────────────
+  setup_round:
+    on_enter:
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   3
+          target_count: 1
+
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1      # fake: すぐタイムアウト
+
+      - action: record_billiards_event
+        payload:
+          event: shot_committed
+
+      - action: record_billiards_event
+        payload:
+          event: cue_ball_pocketed   # ← ファウル発生
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory   # 到達しないはず
+          if_fail:     defeat    # ← cue_ball_pocketed=true なのでここへ
+          if_continue: shoot_again
+
+  # 2. クリア（このシナリオでは到達しない）─────────────────────────────────
+  victory:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  # 3. 失敗（ファウルによる期待値パス）────────────────────────────────────────
+  defeat:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed
+
+  # 4. 続行（このシナリオでは到達しない）─────────────────────────────────────
+  shoot_again:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed

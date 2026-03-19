@@ -1,0 +1,81 @@
+# billiards_continue_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Billiards Kernel Fitness Test — Fake-event smoke scenario (continue path)
+#
+# 目的: ショットを打ったがポケットせず、かつ shot_limit 未達のとき
+#       EvaluateBilliardsRoundTask が if_continue へ戻ることを確認する。
+#
+# カバーするパス: continue → (2周目で) fail
+#   1周目: shot_committed → balls_stopped → pocketed=0, shots=1 < shot_limit=3 → continue
+#   2周目: shot_committed → balls_stopped → pocketed=0, shots=2 < shot_limit=3 → continue
+#   3周目: shot_committed → balls_stopped → pocketed=0, shots=3 >= shot_limit=3 → fail
+#
+# WorldState keys (spec準拠):
+#   round:shots_taken        int   各ループで +1 される
+#   round:target_1_pocketed  bool  依然として false
+#   round:result             str   最終的に "fail"
+#   event:last_name          str   "balls_stopped"
+#
+# フロー:
+#   setup_round
+#     → wait_event (timeout) → record_shot → evaluate → shoot_again (continue)
+#     → wait_event (timeout) → record_shot → evaluate → shoot_again (continue)
+#     → wait_event (timeout) → record_shot → evaluate → defeat (shot_limit 超過)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: setup_round
+
+scenes:
+  # 1. ラウンド初期化 ─────────────────────────────────────────────────────────
+  setup_round:
+    on_enter:
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   3
+          target_count: 1
+
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+
+      - action: record_billiards_event
+        payload:
+          event: shot_committed   # shots_taken=1, ポケットなし
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again   # ←shots_taken=1 < shot_limit=3 なのでここへ
+
+  # 2. 続行ループ ─────────────────────────────────────────────────────────────
+  shoot_again:
+    on_enter:
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+
+      - action: record_billiards_event
+        payload:
+          event: shot_committed   # shots_taken が累積される
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat     # ← shot_limit 達成時はここへ
+          if_continue: shoot_again
+
+  # 3. クリア（このシナリオでは到達しない）─────────────────────────────────
+  victory:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  # 4. 失敗（shot_limit を使い果たした期待値パス）─────────────────────────────
+  defeat:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed

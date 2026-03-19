@@ -48,6 +48,10 @@ TESTS = [
     # ── billiards_test: valid scenarios ───────────────────────────────────
     ("billiards_fake_smoke.yaml is valid",
      BILLIARDS_DIR / "billiards_fake_smoke.yaml",            0),
+    ("billiards_foul_smoke.yaml is valid",
+     BILLIARDS_DIR / "billiards_foul_smoke.yaml",            0),
+    ("billiards_continue_smoke.yaml is valid",
+     BILLIARDS_DIR / "billiards_continue_smoke.yaml",        0),
 
     # ── billiards_test: invalid fixture ───────────────────────────────────
     ("billiards_corrupted.yaml is REJECTED",
