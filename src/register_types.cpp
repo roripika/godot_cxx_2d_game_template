@@ -118,6 +118,16 @@
 #include "games/billiards_test/tasks/record_billiards_event_task.h"
 #include "games/billiards_test/tasks/evaluate_billiards_round_task.h"
 
+// Roguelike Test Game (Fitness Test)
+#include "games/roguelike_test/roguelike_test_game.h"
+#include "games/roguelike_test/tasks/setup_roguelike_round_task.h"
+#include "games/roguelike_test/tasks/load_fake_player_command_task.h"
+#include "games/roguelike_test/tasks/apply_player_move_task.h"
+#include "games/roguelike_test/tasks/apply_player_attack_task.h"
+#include "games/roguelike_test/tasks/apply_enemy_turn_task.h"
+#include "games/roguelike_test/tasks/resolve_roguelike_turn_task.h"
+#include "games/roguelike_test/tasks/evaluate_roguelike_round_task.h"
+
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
@@ -253,6 +263,16 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::games::billiards_test::WaitForBilliardsEventTask>();
   ClassDB::register_class<karakuri::games::billiards_test::RecordBilliardsEventTask>();
   ClassDB::register_class<karakuri::games::billiards_test::EvaluateBilliardsRoundTask>();
+
+  // Roguelike Test Game
+  ClassDB::register_class<karakuri::games::roguelike_test::RoguelikeTestGame>();
+  ClassDB::register_class<karakuri::games::roguelike_test::SetupRoguelikeRoundTask>();
+  ClassDB::register_class<karakuri::games::roguelike_test::LoadFakePlayerCommandTask>();
+  ClassDB::register_class<karakuri::games::roguelike_test::ApplyPlayerMoveTask>();
+  ClassDB::register_class<karakuri::games::roguelike_test::ApplyPlayerAttackTask>();
+  ClassDB::register_class<karakuri::games::roguelike_test::ApplyEnemyTurnTask>();
+  ClassDB::register_class<karakuri::games::roguelike_test::ResolveRoguelikeTurnTask>();
+  ClassDB::register_class<karakuri::games::roguelike_test::EvaluateRoguelikeRoundTask>();
 
   // ------------------------------------------------------------------
   // Engine singleton: ActionRegistry

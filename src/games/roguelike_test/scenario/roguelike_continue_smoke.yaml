@@ -1,0 +1,63 @@
+# roguelike_continue_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Roguelike Kernel Fitness Test — Continue path smoke scenario
+#
+# 目的: 1ターン終了後に round:result が "" のまま (clear でも fail でもない) の場合、
+#       evaluate_roguelike_round が if_continue へジャンプすることを確認する。
+#
+# 初期配置 (デフォルト):
+#   player: (1,1) hp=3
+#   enemy_1: (3,3) hp=2  ← player と距離 4。1ターンで接触しない
+#   goal: (4,4)
+#
+# カバーするパス: continue (→ 2周目で fail 確認)
+#   1周目: move_right (1,1)→(2,1). ゴール未到達・敵未接触 → continue
+#   2周目以降のループ検証は行わない (スモーク用途)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: boot
+
+scenes:
+  # 1. 初期化 + 1ターン実行 ────────────────────────────────────────────────────
+  boot:
+    on_enter:
+      - action: setup_roguelike_round
+        payload:
+          player_hp: 3
+          enemy_hp:  2
+
+      - action: load_fake_player_command
+        payload:
+          command: move_right
+
+      - action: apply_player_move
+
+      - action: apply_enemy_turn
+
+      - action: resolve_roguelike_turn
+
+      - action: evaluate_roguelike_round
+        payload:
+          if_clear:    clear
+          if_fail:     fail
+          if_continue: timeout_end
+
+  # 2. continue 時の脱出用シーン (スモーク検証終了) ──────────────────────────
+  timeout_end:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed
+
+  # 3. クリア（このシナリオでは到達しない）──────────────────────────────────────
+  clear:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  # 4. 失敗（このシナリオでは到達しない）──────────────────────────────────────
+  fail:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed

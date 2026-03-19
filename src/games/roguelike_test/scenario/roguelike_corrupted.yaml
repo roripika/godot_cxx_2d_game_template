@@ -1,0 +1,42 @@
+# roguelike_corrupted.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Invalid roguelike scenario — used as a negative test fixture for the
+# validate_scenario.py validator. This file must NEVER be loaded at runtime.
+#
+# Deliberate errors (one per action):
+#   1. unknown_roguelike_action       → unknown action name
+#   2. load_fake_player_command       → unknown command value "teleport"
+#   3. apply_player_attack            → missing required 'target' key
+#   4. evaluate_roguelike_round       → missing required 'if_clear' key
+#   5. end_game                       → invalid result "victory" (not in valid set)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: bad_scene
+
+scenes:
+  bad_scene:
+    on_enter:
+      # Error 1: completely unknown action
+      - action: unknown_roguelike_action
+        payload:
+          foo: bar
+
+      # Error 2: invalid command value
+      - action: load_fake_player_command
+        payload:
+          command: teleport
+
+      # Error 3: missing required 'target' key
+      - action: apply_player_attack
+        payload:
+          wrong_key: enemy_1
+
+      # Error 4: missing required 'if_clear'
+      - action: evaluate_roguelike_round
+        payload:
+          if_fail:     bad_scene
+          if_continue: bad_scene
+
+      # Error 5: invalid end_game result
+      - action: end_game
+        payload:
+          result: victory

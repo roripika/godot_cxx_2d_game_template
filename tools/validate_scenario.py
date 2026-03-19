@@ -127,6 +127,42 @@ ACTIONS = {
         "optional": [],
         "_special": "evaluate_billiards_round",
     },
+    # ------------------------------------------------------------------
+    # Roguelike Test tasks
+    # ------------------------------------------------------------------
+    "setup_roguelike_round": {
+        # hp and position overrides are all optional
+        "required": [],
+        "optional": ["player_hp", "enemy_hp", "player_x", "player_y", "enemy_1_x", "enemy_1_y"],
+    },
+    "load_fake_player_command": {
+        # 'command' is required (validated in the special handler)
+        "required": [],
+        "optional": [],
+        "_special": "load_fake_player_command",
+    },
+    "apply_player_move": {
+        "required": [],
+        "optional": [],
+    },
+    "apply_player_attack": {
+        "required": [["target"]],
+        "optional": [],
+    },
+    "apply_enemy_turn": {
+        "required": [],
+        "optional": [],
+    },
+    "resolve_roguelike_turn": {
+        "required": [],
+        "optional": [],
+    },
+    "evaluate_roguelike_round": {
+        # all three scene refs are required (validated in the special handler)
+        "required": [],
+        "optional": [],
+        "_special": "evaluate_roguelike_round",
+    },
 }
 
 VALID_END_GAME_RESULTS = {"solved", "wrong", "failed", "lost", "timeout"}
@@ -137,15 +173,20 @@ VALID_EVIDENCE_TYPES = {
 VALID_BILLIARDS_EVENTS = {
     "shot_committed", "ball_pocketed", "cue_ball_pocketed", "balls_stopped",
 }
+VALID_PLAYER_COMMANDS = {
+    "move_up", "move_down", "move_left", "move_right", "attack",
+}
 
 # Known payload keys for actions that use _special handlers.
 # Used by the unknown-key guard in validate_action().
 SPECIAL_KNOWN_KEYS = {
-    "check_evidence":          {"id", "if_true", "if_false"},
-    "check_condition":         {"all_of", "any_of", "if_true", "if_false"},
-    "parallel":                {"tasks"},
+    "check_evidence":           {"id", "if_true", "if_false"},
+    "check_condition":          {"all_of", "any_of", "if_true", "if_false"},
+    "parallel":                 {"tasks"},
     "wait_for_billiards_event": {"events", "timeout"},
     "evaluate_billiards_round": {"if_clear", "if_fail", "if_continue"},
+    "load_fake_player_command": {"command"},
+    "evaluate_roguelike_round": {"if_clear", "if_fail", "if_continue"},
 }
 
 # ---------------------------------------------------------------------------
@@ -304,6 +345,30 @@ def validate_evaluate_billiards_round(payload, filename, scene, idx, errors, all
                 f"evaluate_billiards_round '{field}' references unknown scene '{payload[field]}'."))
 
 
+def validate_load_fake_player_command(payload, filename, scene, idx, errors):
+    """Validate the load_fake_player_command action."""
+    if "command" not in payload:
+        errors.append(ValidationError(filename, scene, idx,
+            "load_fake_player_command is missing required field 'command'."))
+        return
+    cmd = payload["command"]
+    if cmd not in VALID_PLAYER_COMMANDS:
+        errors.append(ValidationError(filename, scene, idx,
+            f"load_fake_player_command: unknown command '{cmd}'. "
+            f"Valid commands: {sorted(VALID_PLAYER_COMMANDS)}."))
+
+
+def validate_evaluate_roguelike_round(payload, filename, scene, idx, errors, all_scene_ids):
+    """Validate the evaluate_roguelike_round action."""
+    for field in ("if_clear", "if_fail", "if_continue"):
+        if field not in payload:
+            errors.append(ValidationError(filename, scene, idx,
+                f"evaluate_roguelike_round is missing required field '{field}'."))
+        elif payload[field] not in all_scene_ids:
+            errors.append(ValidationError(filename, scene, idx,
+                f"evaluate_roguelike_round '{field}' references unknown scene '{payload[field]}'."))
+
+
 def validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids):
     """Validate the check_condition action format."""
     has_all = "all_of" in payload
@@ -401,6 +466,14 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
 
     if special_name == "evaluate_billiards_round":
         validate_evaluate_billiards_round(payload, filename, scene, idx, errors, all_scene_ids)
+        return
+
+    if special_name == "load_fake_player_command":
+        validate_load_fake_player_command(payload, filename, scene, idx, errors)
+        return
+
+    if special_name == "evaluate_roguelike_round":
+        validate_evaluate_roguelike_round(payload, filename, scene, idx, errors, all_scene_ids)
         return
 
     # --- Generic required-field check -----------------------------------
@@ -553,6 +626,7 @@ def main():
         scenario_dirs = [
             repo_root / "src/games/mystery_test/scenario",
             repo_root / "src/games/billiards_test/scenario",
+            repo_root / "src/games/roguelike_test/scenario",
         ]
         targets = []
         for d in scenario_dirs:

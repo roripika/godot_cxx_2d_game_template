@@ -1,0 +1,57 @@
+# roguelike_clear_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Roguelike Kernel Fitness Test — Clear path smoke scenario
+#
+# 目的: プレイヤーがゴールマスに到達し round:result = "clear" になることを確認する。
+#
+# 初期配置オーバーライド:
+#   player: (4, 3)  ← ゴール (4,4) の 1 マス手前
+#   enemy_1: (3,3)  ← デフォルト。プレイヤー経路に干渉しない
+#   goal: (4, 4)    ← デフォルト
+#
+# カバーするパス: clear
+#   boot → load move_down → apply_player_move (4,3)→(4,4)=goal → clear
+#         → evaluate → clear scene → end_game solved
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: boot
+
+scenes:
+  # 1. 初期化 + プレイヤーターン実行 ──────────────────────────────────────────
+  boot:
+    on_enter:
+      - action: setup_roguelike_round
+        payload:
+          player_hp: 3
+          enemy_hp:  2
+          player_x:  4
+          player_y:  3
+
+      - action: load_fake_player_command
+        payload:
+          command: move_down
+
+      - action: apply_player_move
+
+      - action: apply_enemy_turn
+
+      - action: resolve_roguelike_turn
+
+      - action: evaluate_roguelike_round
+        payload:
+          if_clear:    clear
+          if_fail:     fail
+          if_continue: boot
+
+  # 2. クリア ──────────────────────────────────────────────────────────────────
+  clear:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  # 3. 失敗（このシナリオでは到達しない）──────────────────────────────────────
+  fail:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed

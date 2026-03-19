@@ -25,6 +25,7 @@ REPO_ROOT   = Path(__file__).resolve().parent.parent
 VALIDATOR   = REPO_ROOT / "tools" / "validate_scenario.py"
 MYSTERY_DIR = REPO_ROOT / "src" / "games" / "mystery_test" / "scenario"
 BILLIARDS_DIR = REPO_ROOT / "src" / "games" / "billiards_test" / "scenario"
+ROGUELIKE_DIR = REPO_ROOT / "src" / "games" / "roguelike_test" / "scenario"
 
 # ---------------------------------------------------------------------------
 # Test definitions
@@ -56,6 +57,18 @@ TESTS = [
     # ── billiards_test: invalid fixture ───────────────────────────────────
     ("billiards_corrupted.yaml is REJECTED",
      BILLIARDS_DIR / "billiards_corrupted.yaml",             1),
+
+    # ── roguelike_test: valid scenarios ───────────────────────────────────
+    ("roguelike_clear_smoke.yaml is valid",
+     ROGUELIKE_DIR / "roguelike_clear_smoke.yaml",           0),
+    ("roguelike_fail_smoke.yaml is valid",
+     ROGUELIKE_DIR / "roguelike_fail_smoke.yaml",            0),
+    ("roguelike_continue_smoke.yaml is valid",
+     ROGUELIKE_DIR / "roguelike_continue_smoke.yaml",        0),
+
+    # ── roguelike_test: invalid fixture ───────────────────────────────────
+    ("roguelike_corrupted.yaml is REJECTED",
+     ROGUELIKE_DIR / "roguelike_corrupted.yaml",             1),
 ]
 
 # ---------------------------------------------------------------------------

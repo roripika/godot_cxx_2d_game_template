@@ -1,0 +1,60 @@
+# roguelike_fail_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Roguelike Kernel Fitness Test — Fail path smoke scenario
+#
+# 目的: enemy_1 がプレイヤーを攻撃して倒し round:result = "fail" になることを確認する。
+#
+# 初期配置オーバーライド:
+#   player: (1,1)  hp=1  ← 1撃で倒される
+#   enemy_1: (2,1) hp=3  ← player に隣接 (Manhattan distance=1)
+#   goal: (4,4)    ← デフォルト
+#
+# カバーするパス: fail
+#   boot → player attacks enemy (hp 3→2, alive)
+#         → enemy attacks player (hp 1→0) → round:result="fail"
+#         → resolve → evaluate → fail scene → end_game failed
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: boot
+
+scenes:
+  # 1. 初期化 + 1ターン実行 ────────────────────────────────────────────────────
+  boot:
+    on_enter:
+      - action: setup_roguelike_round
+        payload:
+          player_hp:  1
+          enemy_hp:   3
+          enemy_1_x:  2
+          enemy_1_y:  1
+
+      - action: load_fake_player_command
+        payload:
+          command: attack
+
+      - action: apply_player_attack
+        payload:
+          target: enemy_1
+
+      - action: apply_enemy_turn
+
+      - action: resolve_roguelike_turn
+
+      - action: evaluate_roguelike_round
+        payload:
+          if_clear:    clear
+          if_fail:     fail
+          if_continue: boot
+
+  # 2. クリア（このシナリオでは到達しない）──────────────────────────────────────
+  clear:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  # 3. 失敗（期待値パス）──────────────────────────────────────────────────────
+  fail:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed
