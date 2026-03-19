@@ -9,11 +9,12 @@ namespace karakuri::games::billiards_test {
 // appropriate scene via ScenarioRunner::load_scene_by_id().
 //
 // Evaluation priority (checked in order):
-//   1. round:foul == true                          → if_fail
-//   2. round:targets_pocketed >= round:target_count → if_clear
-//   3. round:shots_fired >= round:shot_limit        → if_fail
-//   4. otherwise                                   → if_continue
+//   1. round:cue_ball_pocketed == true               → if_fail
+//   2. (target_1_pocketed + target_2_pocketed) >= target_count → if_clear
+//   3. round:shots_taken >= round:shot_limit          → if_fail
+//   4. otherwise                                     → if_continue
 //
+// Writes round:result = "clear" / "fail" / "active" accordingly.
 // Returns Failed if WorldState or runner is null.
 class EvaluateBilliardsRoundTask : public TaskBase {
     GDCLASS(EvaluateBilliardsRoundTask, TaskBase)

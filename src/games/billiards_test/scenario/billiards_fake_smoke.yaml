@@ -1,15 +1,26 @@
 # billiards_fake_smoke.yaml
 # ──────────────────────────────────────────────────────────────────────────────
-# Billiards Kernel Fitness Test — Fake-event minimal smoke scenario
+# Billiards Kernel Fitness Test — Fake-event smoke scenario (clear path)
 #
 # 目的: 実際の物理エンジンを使わず WaitForBilliardsEventTask のタイムアウト機構を
 #       利用して一連のタスク連鎖が正常動作することを確認する。
 #
+# カバーするパス: clear
+#   shot_committed → ball_pocketed → pocketed=1 >= target_count=1 → clear
+#
+# WorldState keys (spec準拠):
+#   round:shots_taken        int   shot_committed の累積
+#   round:target_1_pocketed  bool  1球目ポケット済み
+#   round:target_2_pocketed  bool  2球目ポケット済み (今回は未使用)
+#   round:cue_ball_pocketed  bool  ファウル判定
+#   round:result             str   "clear" / "fail" / "active"
+#   event:last_name          str   最後に記録されたイベント名
+#
 # フロー:
 #   setup_round
 #     → wait_event (timeout → balls_stopped)
-#       → record_shot_committed
-#         → record_ball_pocketed
+#       → record_shot_committed  (shots_taken=1)
+#         → record_ball_pocketed  (target_1_pocketed=true)
 #           → evaluate (pocketed=1 >= target_count=1 → clear)
 #             → victory → end (solved)
 # ──────────────────────────────────────────────────────────────────────────────

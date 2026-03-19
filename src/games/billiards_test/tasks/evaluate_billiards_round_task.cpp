@@ -29,20 +29,22 @@ TaskResult EvaluateBilliardsRoundTask::execute() {
 
     const int S = karakuri::WorldState::SCOPE_SESSION;
 
-    bool foul            = static_cast<bool>(ws->get_state("billiards_test", S, "round:foul",             false));
-    int  pocketed        = static_cast<int> (ws->get_state("billiards_test", S, "round:targets_pocketed",  0));
-    int  target_count    = static_cast<int> (ws->get_state("billiards_test", S, "round:target_count",      1));
-    int  shots_fired     = static_cast<int> (ws->get_state("billiards_test", S, "round:shots_fired",       0));
-    int  shot_limit      = static_cast<int> (ws->get_state("billiards_test", S, "round:shot_limit",        5));
+    bool cue_foul    = static_cast<bool>(ws->get_state("billiards_test", S, "round:cue_ball_pocketed", false));
+    bool t1          = static_cast<bool>(ws->get_state("billiards_test", S, "round:target_1_pocketed", false));
+    bool t2          = static_cast<bool>(ws->get_state("billiards_test", S, "round:target_2_pocketed", false));
+    int  pocketed    = (t1 ? 1 : 0) + (t2 ? 1 : 0);
+    int  target_count = static_cast<int>(ws->get_state("billiards_test", S, "round:target_count",      1));
+    int  shots_taken  = static_cast<int>(ws->get_state("billiards_test", S, "round:shots_taken",       0));
+    int  shot_limit   = static_cast<int>(ws->get_state("billiards_test", S, "round:shot_limit",        5));
 
     godot::String target;
-    if (foul) {
+    if (cue_foul) {
         target = if_fail_;
-        godot::UtilityFunctions::print("[EvaluateBilliardsRoundTask] Foul → ", target);
+        godot::UtilityFunctions::print("[EvaluateBilliardsRoundTask] Cue-ball foul → ", target);
     } else if (pocketed >= target_count) {
         target = if_clear_;
         godot::UtilityFunctions::print("[EvaluateBilliardsRoundTask] Clear → ", target);
-    } else if (shots_fired >= shot_limit) {
+    } else if (shots_taken >= shot_limit) {
         target = if_fail_;
         godot::UtilityFunctions::print("[EvaluateBilliardsRoundTask] Shot limit reached → ", target);
     } else {
@@ -50,7 +52,7 @@ TaskResult EvaluateBilliardsRoundTask::execute() {
         godot::UtilityFunctions::print("[EvaluateBilliardsRoundTask] Continue → ", target);
     }
 
-    ws->set_state("billiards_test", S, "round:status",
+    ws->set_state("billiards_test", S, "round:result",
         (target == if_clear_) ? godot::String("clear")
         : (target == if_fail_) ? godot::String("fail")
         : godot::String("active"));

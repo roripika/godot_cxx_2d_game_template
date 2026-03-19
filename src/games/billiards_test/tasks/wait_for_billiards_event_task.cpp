@@ -64,7 +64,7 @@ TaskResult WaitForBilliardsEventTask::execute() {
         godot::UtilityFunctions::print("[WaitForBilliardsEventTask] Timeout: injecting balls_stopped.");
         if (auto ws = karakuri::WorldState::get_singleton()) {
             ws->set_state("billiards_test", karakuri::WorldState::SCOPE_SESSION,
-                          "round:last_event", godot::String("balls_stopped"));
+                          "event:last_name", godot::String("balls_stopped"));
         }
         return TaskResult::Success;
     }
@@ -75,7 +75,7 @@ TaskResult WaitForBilliardsEventTask::execute() {
 void WaitForBilliardsEventTask::complete_instantly() {
     if (auto ws = karakuri::WorldState::get_singleton()) {
         ws->set_state("billiards_test", karakuri::WorldState::SCOPE_SESSION,
-                      "round:last_event", godot::String("balls_stopped"));
+                      "event:last_name", godot::String("balls_stopped"));
     }
 }
 

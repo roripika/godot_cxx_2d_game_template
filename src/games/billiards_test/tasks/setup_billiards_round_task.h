@@ -9,13 +9,14 @@ namespace karakuri::games::billiards_test {
 // WorldState SCOPE_SESSION under the namespace "billiards_test".
 //
 // Keys written:
-//   billiards_test  SCOPE_SESSION  round:status             = "active"
-//   billiards_test  SCOPE_SESSION  round:shots_fired        = 0
-//   billiards_test  SCOPE_SESSION  round:shot_limit         = shot_limit
-//   billiards_test  SCOPE_SESSION  round:targets_pocketed   = 0
-//   billiards_test  SCOPE_SESSION  round:target_count       = target_count
-//   billiards_test  SCOPE_SESSION  round:foul               = false
-//   billiards_test  SCOPE_SESSION  round:last_event         = ""
+//   billiards_test  SCOPE_SESSION  round:shots_taken        = 0
+//   billiards_test  SCOPE_SESSION  round:shot_limit         = shot_limit  (config)
+//   billiards_test  SCOPE_SESSION  round:target_count       = target_count (config)
+//   billiards_test  SCOPE_SESSION  round:target_1_pocketed  = false
+//   billiards_test  SCOPE_SESSION  round:target_2_pocketed  = false
+//   billiards_test  SCOPE_SESSION  round:cue_ball_pocketed  = false
+//   billiards_test  SCOPE_SESSION  round:result             = ""
+//   billiards_test  SCOPE_SESSION  event:last_name          = ""
 //
 // Does NOT store physical coordinates or velocities.
 class SetupBilliardsRoundTask : public TaskBase {

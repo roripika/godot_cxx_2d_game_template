@@ -8,13 +8,14 @@ namespace karakuri::games::billiards_test {
 // Records a single billiards event into WorldState SCOPE_SESSION.
 //
 // Event effects (all writes to ns="billiards_test", SCOPE_SESSION):
-//   shot_committed     → round:shots_fired += 1
-//                        round:last_event  = "shot_committed"
-//   ball_pocketed      → round:targets_pocketed += 1
-//                        round:last_event  = "ball_pocketed"
-//   cue_ball_pocketed  → round:foul        = true
-//                        round:last_event  = "cue_ball_pocketed"
-//   balls_stopped      → round:last_event  = "balls_stopped"
+//   shot_committed     → round:shots_taken += 1
+//                        event:last_name  = "shot_committed"
+//   ball_pocketed      → round:target_1_pocketed = true (first call)
+//                        round:target_2_pocketed = true (second call)
+//                        event:last_name  = "ball_pocketed"
+//   cue_ball_pocketed  → round:cue_ball_pocketed = true
+//                        event:last_name  = "cue_ball_pocketed"
+//   balls_stopped      → event:last_name  = "balls_stopped"
 //
 // Returns Failed if WorldState is null or the event is unknown.
 class RecordBilliardsEventTask : public TaskBase {

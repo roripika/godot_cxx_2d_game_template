@@ -33,13 +33,14 @@ TaskResult SetupBilliardsRoundTask::execute() {
     }
 
     const int S = karakuri::WorldState::SCOPE_SESSION;
-    ws->set_state("billiards_test", S, "round:status",           godot::String("active"));
-    ws->set_state("billiards_test", S, "round:shots_fired",      0);
-    ws->set_state("billiards_test", S, "round:shot_limit",       shot_limit_);
-    ws->set_state("billiards_test", S, "round:targets_pocketed", 0);
-    ws->set_state("billiards_test", S, "round:target_count",     target_count_);
-    ws->set_state("billiards_test", S, "round:foul",             false);
-    ws->set_state("billiards_test", S, "round:last_event",       godot::String(""));
+    ws->set_state("billiards_test", S, "round:shots_taken",       0);
+    ws->set_state("billiards_test", S, "round:shot_limit",        shot_limit_);
+    ws->set_state("billiards_test", S, "round:target_count",      target_count_);
+    ws->set_state("billiards_test", S, "round:target_1_pocketed", false);
+    ws->set_state("billiards_test", S, "round:target_2_pocketed", false);
+    ws->set_state("billiards_test", S, "round:cue_ball_pocketed", false);
+    ws->set_state("billiards_test", S, "round:result",            godot::String(""));
+    ws->set_state("billiards_test", S, "event:last_name",         godot::String(""));
 
     godot::UtilityFunctions::print(
         "[SetupBilliardsRoundTask] Round initialised: shot_limit=", shot_limit_,
