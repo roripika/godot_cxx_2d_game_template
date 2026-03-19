@@ -3,13 +3,16 @@
 本ドキュメントは、プロジェクトの現在の進捗、実装済み機能、および内部タスクへのリンクをまとめたものです。
 
 ## 現在のフェーズ (Current Phase)
-**Phase 2: Kernel Fitness Test（整理完了）** — 2026-03-19
+**Phase 2: Kernel Fitness Test（仕上げ完了）** — 2026-03-19
 
 > 詳細レポート: [docs/reports/phase2_diff_audit_report.md](docs/reports/phase2_diff_audit_report.md)
 
 ### Phase 2 完了サマリー
 | コミット | 内容 |
 |---|---|
+| `3a0d7dd` | test(billiards): fake-event 3系統回帰シナリオ追加（全9テスト PASS） |
+| `b81b065` | refactor(billiards): WorldState key を spec 準拠名へリネーム |
+| `0e4816d` | docs: Phase 2 差分整理レポート作成・DEV_STATUS 更新 |
 | `a6c5364` | fix(phase2): 差分整理 — Core 変更を差し戻し、A 分類のみコミット |
 | `121f686` | feat: billiards_test 最小骨格 (4 タスク) + validator ガードレール |
 | `a9da471` | fix: validator 9 アクション同期 + diagnostic_test.yaml |
@@ -19,7 +22,9 @@
 - `ScenarioValidator` C++ 実装 + `register_types.cpp` 登録
 - `check_condition_task.cpp` UB バグ修正（return 文欠如）
 - `billiards_test` タスクの `const char*` クラッシュ対策
-- `tools/test_validator.py` 回帰テスト 7 ケース全 PASS
+- `billiards_test` WorldState key を spec 準拠名（個別フラグ方式）に統一
+- fake-event 3系統シナリオ（clear / foul-fail / continue）
+- `tools/test_validator.py` 回帰テスト 9 ケース全 PASS
 
 #### 保留（Category B — 別 PR 候補）
 - `src/core/action_registry` の GDExtension 起動クラッシュ対策（Core 変更が必要なため保留）

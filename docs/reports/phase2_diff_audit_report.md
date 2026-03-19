@@ -144,3 +144,87 @@ $ git diff HEAD -- src/core/
 1. **別 PR**: `fix/action-registry-gdextension-init-crash` — Category B の ActionRegistry クラッシュ対策を Core 変更なしで解決
 2. **billiards_test WorldState キー名確定**: 仕様書指定の個別フラグ方式に合わせるか、現状の集約 int 方式のままにするか決定
 3. **Phase 3 の準備**: Template / Assist / Generator は Phase 3 以降。今回は触らない
+
+---
+
+## Phase 2 仕上げ作業 — 2026-03-19 追記
+
+前回レポート確定後、以下の2コミットで Phase 2 差分を最終形に仕上げた。
+
+### Commit C `b81b065` — billiards WorldState key を spec 準拠名へリネーム
+
+未解決事項 #2（キー名不整合）を解消。集約 int ベースから個別フラグ中心に変更。
+
+**変更前 → 変更後 対応表**
+
+| 変更前キー | 変更後キー | 型変更 |
+|---|---|---|
+| `round:shots_fired` (int) | `round:shots_taken` (int) | なし |
+| `round:targets_pocketed` (int) | `round:target_1_pocketed` (bool) + `round:target_2_pocketed` (bool) | int → 個別 bool |
+| `round:foul` (bool) | `round:cue_ball_pocketed` (bool) | キー名変更 |
+| `round:status` (str) | `round:result` (str) | キー名変更 |
+| `round:last_event` (str) | `event:last_name` (str) | namespace 変更 |
+
+`round:shot_limit` / `round:target_count` はそのまま維持。
+
+**変更ファイル（8ファイル）:**
+- `tasks/setup_billiards_round_task.h/.cpp`
+- `tasks/wait_for_billiards_event_task.cpp`
+- `tasks/record_billiards_event_task.h/.cpp`
+- `tasks/evaluate_billiards_round_task.h/.cpp`
+- `scenario/billiards_fake_smoke.yaml`（ヘッダーコメントに WorldState key 一覧追記）
+
+`src/core` 変更なし。Public contract 変更なし。
+
+---
+
+### Commit D `3a0d7dd` — fake event 3系統回帰シナリオ追加
+
+EvaluateBilliardsRoundTask の3分岐すべてを YAML + fake event で確認できるようにした。
+
+**追加シナリオ:**
+
+| ファイル | カバーするパス | 期待値 |
+|---|---|---|
+| `billiards_fake_smoke.yaml` | **clear** | ball_pocketed → pocketed >= target_count → if_clear |
+| `billiards_foul_smoke.yaml` | **fail (foul)** | cue_ball_pocketed → round:cue_ball_pocketed=true → if_fail |
+| `billiards_continue_smoke.yaml` | **continue → fail** | shots_taken < shot_limit を繰り返し、shot_limit 到達で if_fail |
+| `billiards_corrupted.yaml` | **negative fixture** | validator に REJECTED される（既存） |
+
+`tools/test_validator.py` に2ケース追加（7 → 9テスト）。全9テスト PASS。
+
+```
+$ python3 tools/test_validator.py
+  PASS  mystery_case.yaml is valid
+  PASS  mystery_stress_test.yaml is valid
+  PASS  mystery_timeout_test.yaml is valid
+  PASS  diagnostic_test.yaml is valid
+  PASS  mystery_corrupted.yaml is REJECTED
+  PASS  billiards_fake_smoke.yaml is valid
+  PASS  billiards_foul_smoke.yaml is valid
+  PASS  billiards_continue_smoke.yaml is valid
+  PASS  billiards_corrupted.yaml is REJECTED
+
+ALL 9 TESTS PASSED
+```
+
+---
+
+### Phase 2 最終コミット履歴（更新）
+
+| ハッシュ | 内容 |
+|---|---|
+| `3a0d7dd` | test(billiards): add fake-event regression scenarios for all 3 paths |
+| `b81b065` | refactor(billiards): align WorldState keys to spec naming |
+| `0e4816d` | docs: add Phase 2 diff audit report and update DEV_STATUS |
+| `a6c5364` | fix(phase2): clean diff — Phase 2 scope only; revert Core changes |
+| `121f686` | feat: add billiards_test skeleton (4 tasks, fake-event scenario) + validator guard rails |
+
+### Phase 2 最終の未解決事項
+
+| # | 内容 | 優先度 |
+|---|:---|:---:|
+| 1 | ActionRegistry GDExtension 起動クラッシュ（Category B）— 別 PR `fix/action-registry-gdextension-init-crash` で対応 | 高 |
+| 2 | billiards_test が target_count > 2 のシナリオに未対応（target_N_pocketed が 1/2 固定） | 低 |
+| 3 | 本物の physics callback 統合 — Phase 3 以降 | Phase 3 |
+
