@@ -1,5 +1,5 @@
 #pragma once
-#include "games/task_base.h"
+#include "core/tasks/task_base.h"
 
 namespace karakuri::games::roguelike_test {
 
@@ -10,8 +10,8 @@ namespace karakuri::games::roguelike_test {
 //   round:result == "clear"  → if_clear
 //   round:result == "fail"   → if_fail
 //   otherwise                → if_continue
-class EvaluateRoguelikeRoundTask : public karakuri::games::TaskBase {
-    GDCLASS(EvaluateRoguelikeRoundTask, karakuri::games::TaskBase)
+class EvaluateRoguelikeRoundTask : public karakuri::TaskBase {
+    GDCLASS(EvaluateRoguelikeRoundTask, karakuri::TaskBase)
 
 protected:
     static void _bind_methods();
