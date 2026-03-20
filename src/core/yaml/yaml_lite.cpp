@@ -337,6 +337,34 @@ static Variant parse_sequence(const PackedStringArray &lines, int &io_index,
         d[key] = parse_scalar(value);
         io_index++;
       }
+      // 続コキー: "- key: val\n  key2: val2\n  key3: val3" 形式のサポート
+      // シーケンスアイテムの indent+2 にある追加の key:value ペアを同じ dict に追加
+      while (io_index < lines.size()) {
+        String cont_line = strip_comment(lines[io_index]);
+        if (is_blank(cont_line)) {
+          io_index++;
+          continue;
+        }
+        const int cont_indent = count_indent_spaces(cont_line, err);
+        if (cont_indent < 0) return Variant();
+        if (cont_indent != indent + 2) break; // この dict の終わり
+        String cont_no_indent = cont_line.substr(cont_indent);
+        if (cont_no_indent.begins_with("-")) break; // 次の sequence item
+        // key: value または key: (nested block)
+        String cont_key, cont_val;
+        if (!split_key_value(cont_no_indent, cont_key, cont_val, err)) {
+          return Variant();
+        }
+        if (cont_val.is_empty()) {
+          io_index++;
+          const Variant child = parse_block(lines, io_index, cont_indent + 2, err);
+          if (!err.is_empty()) return Variant();
+          d[cont_key] = child;
+        } else {
+          d[cont_key] = parse_scalar(cont_val);
+          io_index++;
+        }
+      }
       arr.append(d);
       continue;
     }

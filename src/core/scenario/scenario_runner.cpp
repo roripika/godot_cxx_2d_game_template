@@ -262,8 +262,19 @@ Ref<TaskBase> ScenarioRunner::compile_action(const Variant &action) {
   // 1. 形式の判別
   if (d.has("action")) {
     // 明示的形式: { action: "dialogue", text: "..." }
+    // または: { action: "foo", payload: { key: val } }
     action_name = d["action"];
     payload = d;
+    // ネストされた payload: { ... } キーをフラット展開してタスクが直接参照できるよ
+    // うにする（YamlLite は - action: / payload: の2行にまたがる形式をサポートしないた
+    // め、scenario_runner 側で吸収する）
+    if (d.has("payload") && Variant(d["payload"]).get_type() == Variant::DICTIONARY) {
+      Dictionary nested = d["payload"];
+      Array nested_keys = nested.keys();
+      for (int k = 0; k < nested_keys.size(); k++) {
+        payload[nested_keys[k]] = nested[nested_keys[k]];
+      }
+    }
   } else if (d.size() == 1) {
     // 短縮形式: { dialogue: "..." } または { dialogue: { text: "..." } }
     action_name = d.keys()[0];
