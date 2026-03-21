@@ -50,7 +50,7 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
 |---|---|---|---|---|
 | `mystery_test` | Narrative / branching / state | ScenarioRunner state machine, WorldState SESSION mutation, compound condition evaluation (`all_of`/`any_of`), KernelClock timeout safety, signal handshake, save/load round-trip | `ShowDialogueTask`, `DiscoverEvidenceTask`, `CheckConditionTask`, `WaitForSignalTask`, `EndGameTask`, `SaveLoadTestTask` | **Active** |
 | `billiards_test` | Physics / event reaction | Event-driven task dispatch, collision-triggered WorldState updates, transient SCENE-scope state, ScenarioRunner re-entry from physics layer | `CollisionReactTask`, `ScoreUpdateTask`, `ResetBallTask` | Planned |
-| `roguelike_test` | Entity / turn / progression | Turn-order scheduling via ScenarioRunner, entity-level WorldState mutation, SESSION-scope progression persistence, ActionRegistry multi-entity registration | `TurnAdvanceTask`, `EnemyMoveTask`, `LevelUpTask`, `PersistProgressTask` | Planned |
+| `roguelike_test` | Entity / turn / progression | Turn-order scheduling via ScenarioRunner, entity-level WorldState mutation, SESSION-scope progression persistence, ActionRegistry task registration, clear/fail/continue branch evaluation | `SetupRoguelikeRoundTask`, `ApplyPlayerMoveTask`, `ApplyPlayerAttackTask`, `ApplyEnemyTurnTask`, `ResolveRoguelikeTurnTask`, `EvaluateRoguelikeRoundTask` | **Active** |
 | `rhythm_test` | Time / clock / deterministic scheduling | KernelClock frame-independent scheduling, deterministic beat timing, high-frequency task dispatch, clock drift detection | `BeatScheduleTask`, `InputJudgeTask`, `ScoreComboTask` | Planned |
 | `sandbox_test` | Scale / dynamic state / large world mutation | High-frequency WorldState writes, large-graph ScenarioRunner execution, dynamic task registration via ActionRegistry, GLOBAL-scope persistence at scale | `TileUpdateTask`, `ResourceHarvestTask`, `WorldChunkLoadTask` | Planned |
 
@@ -69,6 +69,14 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
 | Condition Logic | full | planned | partial | planned | partial |
 | Save/Load Safety | partial | planned | full | planned | full |
 | High-Scale Mutation | partial | planned | partial | planned | full |
+
+### Roguelike Runtime Note (2026-03-21)
+
+- Runtime verification completed for all three smoke paths: `clear`, `fail`, `continue`.
+- Observed state transitions are consistent with scenario expectations:
+  - `clear`: goal reached, `round:result = clear`.
+  - `fail`: player HP reached 0, `round:result = fail`.
+  - `continue`: turn advanced with coordinate updates while `round:result` remained empty.
 
 **Key:** `full` = primary coverage target for this module · `partial` = incidental coverage · `planned` = intended, not yet implemented
 
