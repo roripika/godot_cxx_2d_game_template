@@ -50,7 +50,7 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
 |---|---|---|---|---|
 | `mystery_test` | Narrative / branching / state | ScenarioRunner state machine, WorldState SESSION mutation, compound condition evaluation (`all_of`/`any_of`), KernelClock timeout safety, signal handshake, save/load round-trip | `ShowDialogueTask`, `DiscoverEvidenceTask`, `CheckConditionTask`, `WaitForSignalTask`, `EndGameTask`, `SaveLoadTestTask` | **Active** |
 | `billiards_test` | Physics / event reaction | Event-driven task dispatch, collision-triggered WorldState updates, transient SCENE-scope state, ScenarioRunner re-entry from physics layer | `CollisionReactTask`, `ScoreUpdateTask`, `ResetBallTask` | Planned |
-| `roguelike_test` | Entity / turn / progression | Turn-order scheduling via ScenarioRunner, entity-level WorldState mutation, SESSION-scope progression persistence, ActionRegistry task registration, clear/fail/continue branch evaluation | `SetupRoguelikeRoundTask`, `ApplyPlayerMoveTask`, `ApplyPlayerAttackTask`, `ApplyEnemyTurnTask`, `ResolveRoguelikeTurnTask`, `EvaluateRoguelikeRoundTask` | **Active** |
+| `roguelike_test` | Entity / turn / progression | Turn progression scheduling, entity WorldState mutation (position/HP), fixed-grid movement, occupancy/collision-safe resolution, SESSION-scope progression persistence, clear/fail/continue branch evaluation | `SetupRoguelikeRoundTask`, `ApplyPlayerMoveTask`, `ApplyPlayerAttackTask`, `ApplyEnemyTurnTask`, `ResolveRoguelikeTurnTask`, `EvaluateRoguelikeRoundTask` | **Active** |
 | `rhythm_test` | Time / clock / deterministic scheduling | KernelClock frame-independent scheduling, deterministic beat timing, high-frequency task dispatch, clock drift detection | `BeatScheduleTask`, `InputJudgeTask`, `ScoreComboTask` | Planned |
 | `sandbox_test` | Scale / dynamic state / large world mutation | High-frequency WorldState writes, large-graph ScenarioRunner execution, dynamic task registration via ActionRegistry, GLOBAL-scope persistence at scale | `TileUpdateTask`, `ResourceHarvestTask`, `WorldChunkLoadTask` | Planned |
 
@@ -74,6 +74,9 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
 
 - Runtime verification completed for all three smoke paths: `clear`, `fail`, `continue`.
 - Observed state transitions are consistent with scenario expectations:
+  - turn progression confirmed (`turn:index` advance).
+  - entity state updates confirmed (player/enemy position and HP).
+  - grid movement and occupancy/collision-safe behavior confirmed.
   - `clear`: goal reached, `round:result = clear`.
   - `fail`: player HP reached 0, `round:result = fail`.
   - `continue`: turn advanced with coordinate updates while `round:result` remained empty.
