@@ -163,6 +163,35 @@ ACTIONS = {
         "optional": [],
         "_special": "evaluate_roguelike_round",
     },
+    # ------------------------------------------------------------------
+    # Rhythm Test tasks
+    # ------------------------------------------------------------------
+    "setup_rhythm_round": {
+        "required": [],
+        "optional": [],
+        "_special": "setup_rhythm_round",
+    },
+    "load_fake_tap": {
+        "required": [],
+        "optional": [],
+    },
+    "advance_rhythm_clock": {
+        "required": [],
+        "optional": [],
+    },
+    "judge_rhythm_note": {
+        "required": [],
+        "optional": [],
+    },
+    "resolve_rhythm_progress": {
+        "required": [],
+        "optional": [],
+    },
+    "evaluate_rhythm_round": {
+        "required": [],
+        "optional": [],
+        "_special": "evaluate_rhythm_round",
+    },
 }
 
 VALID_END_GAME_RESULTS = {"solved", "wrong", "failed", "lost", "timeout"}
@@ -187,6 +216,8 @@ SPECIAL_KNOWN_KEYS = {
     "evaluate_billiards_round": {"if_clear", "if_fail", "if_continue"},
     "load_fake_player_command": {"command"},
     "evaluate_roguelike_round": {"if_clear", "if_fail", "if_continue"},
+    "setup_rhythm_round": {"notes", "taps", "advance_ms", "perfect_window_ms", "good_window_ms", "clear_hit_count", "max_miss_count"},
+    "evaluate_rhythm_round": {"if_clear", "if_fail", "if_continue"},
 }
 
 # ---------------------------------------------------------------------------
@@ -369,6 +400,80 @@ def validate_evaluate_roguelike_round(payload, filename, scene, idx, errors, all
                 f"evaluate_roguelike_round '{field}' references unknown scene '{payload[field]}'."))
 
 
+def validate_setup_rhythm_round(payload, filename, scene, idx, errors):
+    """Validate the setup_rhythm_round action."""
+    for field in ("notes", "taps"):
+        if field not in payload:
+            errors.append(ValidationError(filename, scene, idx,
+                f"setup_rhythm_round is missing required field '{field}'."))
+    if "notes" not in payload or "taps" not in payload:
+        return
+
+    notes = payload["notes"]
+    taps = payload["taps"]
+    if not isinstance(notes, list) or not isinstance(taps, list):
+        errors.append(ValidationError(filename, scene, idx,
+            "setup_rhythm_round 'notes' and 'taps' must both be arrays."))
+        return
+
+    if not (3 <= len(notes) <= 5):
+        errors.append(ValidationError(filename, scene, idx,
+            "setup_rhythm_round 'notes' length must be in [3, 5]."))
+    if len(taps) != len(notes):
+        errors.append(ValidationError(filename, scene, idx,
+            "setup_rhythm_round 'taps' length must match 'notes'."))
+
+    prev = None
+    for i, note in enumerate(notes):
+        if not isinstance(note, (int, float)):
+            errors.append(ValidationError(filename, scene, idx,
+                f"setup_rhythm_round notes[{i}] must be numeric."))
+            continue
+        if note <= 0:
+            errors.append(ValidationError(filename, scene, idx,
+                f"setup_rhythm_round notes[{i}] must be > 0."))
+        if prev is not None and note <= prev:
+            errors.append(ValidationError(filename, scene, idx,
+                "setup_rhythm_round note times must be strictly ascending."))
+        prev = note
+
+    for i, tap in enumerate(taps):
+        if not isinstance(tap, (int, float)):
+            errors.append(ValidationError(filename, scene, idx,
+                f"setup_rhythm_round taps[{i}] must be numeric."))
+            continue
+        if tap < -1:
+            errors.append(ValidationError(filename, scene, idx,
+                f"setup_rhythm_round taps[{i}] must be >= -1."))
+
+    for field in ("advance_ms", "perfect_window_ms", "good_window_ms", "clear_hit_count", "max_miss_count"):
+        if field in payload and not isinstance(payload[field], (int, float)):
+            errors.append(ValidationError(filename, scene, idx,
+                f"setup_rhythm_round '{field}' must be numeric."))
+
+    if "advance_ms" in payload and payload["advance_ms"] <= 0:
+        errors.append(ValidationError(filename, scene, idx,
+            "setup_rhythm_round 'advance_ms' must be > 0."))
+    if "perfect_window_ms" in payload and payload["perfect_window_ms"] <= 0:
+        errors.append(ValidationError(filename, scene, idx,
+            "setup_rhythm_round 'perfect_window_ms' must be > 0."))
+    if "good_window_ms" in payload and "perfect_window_ms" in payload:
+        if payload["good_window_ms"] < payload["perfect_window_ms"]:
+            errors.append(ValidationError(filename, scene, idx,
+                "setup_rhythm_round 'good_window_ms' must be >= 'perfect_window_ms'."))
+
+
+def validate_evaluate_rhythm_round(payload, filename, scene, idx, errors, all_scene_ids):
+    """Validate the evaluate_rhythm_round action."""
+    for field in ("if_clear", "if_fail", "if_continue"):
+        if field not in payload:
+            errors.append(ValidationError(filename, scene, idx,
+                f"evaluate_rhythm_round is missing required field '{field}'."))
+        elif payload[field] not in all_scene_ids:
+            errors.append(ValidationError(filename, scene, idx,
+                f"evaluate_rhythm_round '{field}' references unknown scene '{payload[field]}'."))
+
+
 def validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids):
     """Validate the check_condition action format."""
     has_all = "all_of" in payload
@@ -474,6 +579,14 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
 
     if special_name == "evaluate_roguelike_round":
         validate_evaluate_roguelike_round(payload, filename, scene, idx, errors, all_scene_ids)
+        return
+
+    if special_name == "setup_rhythm_round":
+        validate_setup_rhythm_round(payload, filename, scene, idx, errors)
+        return
+
+    if special_name == "evaluate_rhythm_round":
+        validate_evaluate_rhythm_round(payload, filename, scene, idx, errors, all_scene_ids)
         return
 
     # --- Generic required-field check -----------------------------------

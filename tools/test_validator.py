@@ -26,6 +26,7 @@ VALIDATOR   = REPO_ROOT / "tools" / "validate_scenario.py"
 MYSTERY_DIR = REPO_ROOT / "src" / "games" / "mystery_test" / "scenario"
 BILLIARDS_DIR = REPO_ROOT / "src" / "games" / "billiards_test" / "scenario"
 ROGUELIKE_DIR = REPO_ROOT / "src" / "games" / "roguelike_test" / "scenario"
+RHYTHM_DIR = REPO_ROOT / "src" / "games" / "rhythm_test" / "scenario"
 
 # ---------------------------------------------------------------------------
 # Test definitions
@@ -69,6 +70,18 @@ TESTS = [
     # ── roguelike_test: invalid fixture ───────────────────────────────────
     ("roguelike_corrupted.yaml is REJECTED",
      ROGUELIKE_DIR / "roguelike_corrupted.yaml",             1),
+
+    # ── rhythm_test: valid scenarios ─────────────────────────────────────
+    ("rhythm_clear_smoke.yaml is valid",
+     RHYTHM_DIR / "rhythm_clear_smoke.yaml",                 0),
+    ("rhythm_fail_smoke.yaml is valid",
+     RHYTHM_DIR / "rhythm_fail_smoke.yaml",                  0),
+    ("rhythm_continue_smoke.yaml is valid",
+     RHYTHM_DIR / "rhythm_continue_smoke.yaml",              0),
+
+    # ── rhythm_test: invalid fixture ─────────────────────────────────────
+    ("rhythm_corrupted.yaml is REJECTED",
+     RHYTHM_DIR / "rhythm_corrupted.yaml",                   1),
 ]
 
 # ---------------------------------------------------------------------------
