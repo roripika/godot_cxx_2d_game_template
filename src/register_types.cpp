@@ -128,6 +128,15 @@
 #include "games/roguelike_test/tasks/resolve_roguelike_turn_task.h"
 #include "games/roguelike_test/tasks/evaluate_roguelike_round_task.h"
 
+// Rhythm Test Game (Fitness Test)
+#include "games/rhythm_test/rhythm_test_game.h"
+#include "games/rhythm_test/tasks/setup_rhythm_round_task.h"
+#include "games/rhythm_test/tasks/load_fake_tap_task.h"
+#include "games/rhythm_test/tasks/advance_rhythm_clock_task.h"
+#include "games/rhythm_test/tasks/judge_rhythm_note_task.h"
+#include "games/rhythm_test/tasks/resolve_rhythm_progress_task.h"
+#include "games/rhythm_test/tasks/evaluate_rhythm_round_task.h"
+
 #include <godot_cpp/classes/engine.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
@@ -273,6 +282,15 @@ void initialize_sandbox_module(ModuleInitializationLevel p_level) {
   ClassDB::register_class<karakuri::games::roguelike_test::ApplyEnemyTurnTask>();
   ClassDB::register_class<karakuri::games::roguelike_test::ResolveRoguelikeTurnTask>();
   ClassDB::register_class<karakuri::games::roguelike_test::EvaluateRoguelikeRoundTask>();
+
+  // Rhythm Test Game
+  ClassDB::register_class<karakuri::games::rhythm_test::RhythmTestGame>();
+  ClassDB::register_class<karakuri::games::rhythm_test::SetupRhythmRoundTask>();
+  ClassDB::register_class<karakuri::games::rhythm_test::LoadFakeTapTask>();
+  ClassDB::register_class<karakuri::games::rhythm_test::AdvanceRhythmClockTask>();
+  ClassDB::register_class<karakuri::games::rhythm_test::JudgeRhythmNoteTask>();
+  ClassDB::register_class<karakuri::games::rhythm_test::ResolveRhythmProgressTask>();
+  ClassDB::register_class<karakuri::games::rhythm_test::EvaluateRhythmRoundTask>();
 
   // ------------------------------------------------------------------
   // Engine singleton: ActionRegistry

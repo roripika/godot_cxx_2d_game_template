@@ -1,0 +1,72 @@
+# rhythm_continue_smoke.yaml
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_rhythm_round
+        payload:
+          notes: [1000, 2000, 3000]
+          taps: [1000, -1, -1]
+          advance_ms: 1000
+          clear_hit_count: 3
+          max_miss_count: 3
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: advance
+
+  advance:
+    on_enter:
+      - action: advance_rhythm_clock
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: judge
+
+  judge:
+    on_enter:
+      - action: load_fake_tap
+      - action: judge_rhythm_note
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: resolve
+
+  resolve:
+    on_enter:
+      - action: resolve_rhythm_progress
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: check_round
+
+  check_round:
+    on_enter:
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: continue_observed
+
+  continue_observed:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed
+
+  clear:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  fail:
+    on_enter:
+      - action: end_game
+        payload:
+          result: failed

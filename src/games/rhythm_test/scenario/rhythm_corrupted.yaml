@@ -1,0 +1,25 @@
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_rhythm_round
+        payload:
+          notes: [1000, 900, 3000]
+          taps: [1000, -1]
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: missing_scene
+
+  clear:
+    on_enter:
+      - action: end_game
+        payload:
+          result: solved
+
+  fail:
+    on_enter:
+      - action: unknown_rhythm_action
+        payload: {}
