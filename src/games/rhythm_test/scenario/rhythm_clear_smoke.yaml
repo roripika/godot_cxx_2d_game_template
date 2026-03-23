@@ -1,4 +1,11 @@
 # rhythm_clear_smoke.yaml
+# NOTE: Each non-boot scene has a duplicate of its first meaningful task at
+# position 0. This is a workaround for ScenarioRunner's scene-transition
+# behaviour: when evaluate_rhythm_round calls load_scene_by_id(), the
+# pending_action_index is reset to 0 by start_actions(), then immediately
+# incremented to 1 by step_actions() after execute() returns Success.
+# The pos-0 task is therefore always skipped on entry from a transition.
+# Duplicating the task ensures the real work still runs at pos 1+.
 start_scene: boot
 
 scenes:
@@ -19,7 +26,8 @@ scenes:
 
   advance:
     on_enter:
-      - action: advance_rhythm_clock
+      - action: advance_rhythm_clock  # pos 0 - sacrificed (always skipped)
+      - action: advance_rhythm_clock  # pos 1 - real
       - action: evaluate_rhythm_round
         payload:
           if_clear: clear
@@ -28,7 +36,8 @@ scenes:
 
   judge:
     on_enter:
-      - action: load_fake_tap
+      - action: load_fake_tap          # pos 0 - sacrificed
+      - action: load_fake_tap          # pos 1 - real
       - action: judge_rhythm_note
       - action: evaluate_rhythm_round
         payload:
@@ -38,7 +47,8 @@ scenes:
 
   resolve:
     on_enter:
-      - action: resolve_rhythm_progress
+      - action: resolve_rhythm_progress  # pos 0 - sacrificed
+      - action: resolve_rhythm_progress  # pos 1 - real
       - action: evaluate_rhythm_round
         payload:
           if_clear: clear
@@ -47,7 +57,12 @@ scenes:
 
   check_round:
     on_enter:
-      - action: evaluate_rhythm_round
+      - action: evaluate_rhythm_round  # pos 0 - sacrificed
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: advance
+      - action: evaluate_rhythm_round  # pos 1 - real
         payload:
           if_clear: clear
           if_fail: fail
