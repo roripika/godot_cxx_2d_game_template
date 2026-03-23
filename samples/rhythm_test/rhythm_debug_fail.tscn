@@ -6,6 +6,8 @@
 
 [node name="WorldState" type="WorldState" parent="."]
 
+[node name="MysteryTestGame" type="MysteryTestGame" parent="."]
+
 [node name="RhythmTestGame" type="RhythmTestGame" parent="."]
 
 [node name="ScenarioRunner" type="ScenarioRunner" parent="."]
