@@ -16,6 +16,8 @@
 ### 2.3 ScenarioRunner / Task 実行
 - **Task の並列実行 (ParallelTask)**: 現在の `parallel` アクションは時分割擬似並列だが、CPU コアを活かした真の並列実行が必要かどうかの再判定。
 - **分岐の可視化**: 複雑な `if_flag` や `check_condition` のネストを、グラフ図として自動出力する機能。
+- **pos-0 タスクスキップ (known issue)**: `evaluate_rhythm_round` 等のシーン遷移タスクが `load_scene_by_id()` を呼ぶと `start_actions()` が `pending_action_index_` を 0 にリセットするが、直後に `step_actions()` が `++` するため、遷移先シーンの pos 0 タスクが常にスキップされる。現在は rhythm_test シナリオの各シーン pos 0 に同一タスクの複製を「犠牲スロット」として配置することで回避中。根本修正は `step_actions()` のインデックス制御ロジックの見直しが必要。
+- **end_game 共有タスクの登録依存**: `end_game` アクションは `MysteryTestGame._ready()` で登録される `EndGameTask` に依存する。rhythm_test 等の他モジュール debug scene でも `MysteryTestGame` ノードを配置しなければ利用できない。`end_game` をより汎用的な登録経路（ActionRegistry の `init_builtin_actions` など）に昇格させることを検討。
 
 ### 2.4 WorldState
 - **大規模データの永続化**: 1,000件を超えるエビデンスやアイテムがある場合のセーブ・ロード時間の最適化。
