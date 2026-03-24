@@ -51,7 +51,7 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
 | `mystery_test` | Narrative / branching / state | ScenarioRunner state machine, WorldState SESSION mutation, compound condition evaluation (`all_of`/`any_of`), KernelClock timeout safety, signal handshake, save/load round-trip | `ShowDialogueTask`, `DiscoverEvidenceTask`, `CheckConditionTask`, `WaitForSignalTask`, `EndGameTask`, `SaveLoadTestTask` | **Active** |
 | `billiards_test` | Physics / event reaction | Event-driven task dispatch, collision-triggered WorldState updates, transient SCENE-scope state, ScenarioRunner re-entry from physics layer | `CollisionReactTask`, `ScoreUpdateTask`, `ResetBallTask` | Planned |
 | `roguelike_test` | Entity / turn / progression | Turn progression scheduling, entity WorldState mutation (position/HP), fixed-grid movement, occupancy/collision-safe resolution, SESSION-scope progression persistence, clear/fail/continue branch evaluation | `SetupRoguelikeRoundTask`, `ApplyPlayerMoveTask`, `ApplyPlayerAttackTask`, `ApplyEnemyTurnTask`, `ResolveRoguelikeTurnTask`, `EvaluateRoguelikeRoundTask` | **Active** |
-| `rhythm_test` | Time / clock / deterministic scheduling | KernelClock frame-independent scheduling, deterministic beat timing, high-frequency task dispatch, clock drift detection | `BeatScheduleTask`, `InputJudgeTask`, `ScoreComboTask` | Planned |
+| `rhythm_test` | Time / clock / deterministic scheduling | KernelClock frame-independent scheduling, deterministic beat timing, high-frequency task dispatch, clock drift detection, clear/fail/continue branch evaluation | `SetupRhythmRoundTask`, `AdvanceRhythmClockTask`, `JudgeRhythmNoteTask`, `LoadFakeTapTask`, `ResolveRhythmProgressTask`, `EvaluateRhythmRoundTask` | **Active** |
 | `sandbox_test` | Scale / dynamic state / large world mutation | High-frequency WorldState writes, large-graph ScenarioRunner execution, dynamic task registration via ActionRegistry, GLOBAL-scope persistence at scale | `TileUpdateTask`, `ResourceHarvestTask`, `WorldChunkLoadTask` | Planned |
 
 ---
@@ -60,18 +60,19 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
 
 | Kernel Subsystem | mystery | billiards | roguelike | rhythm | sandbox |
 |---|---|---|---|---|---|
-| ScenarioRunner | full | partial | full | partial | full |
-| TaskSpec | full | partial | full | partial | partial |
-| ActionRegistry | full | partial | full | partial | full |
-| WorldState | full | partial | full | partial | full |
+| ScenarioRunner | full | partial | full | full | full |
+| TaskSpec | full | partial | full | full | partial |
+| ActionRegistry | full | partial | full | full | full |
+| WorldState | full | partial | full | full | full |
 | KernelClock | partial | partial | partial | full | partial |
 | Signal Handshake | full | partial | planned | planned | planned |
 | Condition Logic | full | planned | partial | planned | partial |
 | Save/Load Safety | partial | planned | full | planned | full |
 | High-Scale Mutation | partial | planned | partial | planned | full |
 
-### Roguelike Runtime Note (2026-03-21)
+### Module Runtime Verification Logs
 
+#### Roguelike Test (2026-03-21)
 - Runtime verification completed for all three smoke paths: `clear`, `fail`, `continue`.
 - Observed state transitions are consistent with scenario expectations:
   - turn progression confirmed (`turn:index` advance).
@@ -80,6 +81,13 @@ vehicle to force a specific Kernel subsystem into its hardest operating conditio
   - `clear`: goal reached, `round:result = clear`.
   - `fail`: player HP reached 0, `round:result = fail`.
   - `continue`: turn advanced with coordinate updates while `round:result` remained empty.
+
+#### Rhythm Test (2026-03-23)
+- Runtime verification completed for all three smoke paths: `clear`, `fail`, `continue`.
+- Verified deterministic judgment using `KernelClock` syncing with fake tap events.
+- `clear`: all notes hit within perfect window, `round:result = clear`.
+- `fail`: missed notes exceeding threshold, `round:result = fail`.
+- `continue`: partial note processing with no terminal result state.
 
 **Key:** `full` = primary coverage target for this module · `partial` = incidental coverage · `planned` = intended, not yet implemented
 

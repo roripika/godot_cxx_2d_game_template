@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfd25v48aocw4"
-path="res://.godot/imported/mystery_capture_inventory.png-1850f1b7502fa3e162db8ec82ca5c612.ctex"
+path="res://.godot/imported/mystery_capture_inventory.png-b0638178cc3ff816be6f074bcb2eba48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mystery_capture_inventory.png"
-dest_files=["res://.godot/imported/mystery_capture_inventory.png-1850f1b7502fa3e162db8ec82ca5c612.ctex"]
+source_file="res://docs/images/screenshots/mystery_capture_inventory.png"
+dest_files=["res://.godot/imported/mystery_capture_inventory.png-b0638178cc3ff816be6f074bcb2eba48.ctex"]
 
 [params]
 

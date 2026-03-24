@@ -43,6 +43,14 @@ It is a preparation memo for the next phase, not an implementation spec.
   - Grid movement and occupancy/collision-safe behavior.
   - 3-way branch (`clear` / `fail` / `continue`) runtime confirmation.
 
+### `rhythm_test`
+
+- Focus: time-driven strictness, KernelClock precision, and timing window judgment.
+- Main proof points:
+  - `KernelClock`-based frame-independent scheduling.
+  - Deterministic hit judgment (Perfect/Good/Miss) against fixed chart.
+  - Clear/Fail/Continue branching under time-sensitive conditions.
+
 ---
 
 ## 3. Coverage already secured
@@ -53,12 +61,15 @@ Current modules now cover:
 - Conditional branching correctness
 - Event-driven progression bridge
 - Turn-driven progression with entity mutation
+- Time-driven strictly deterministic scheduling (`KernelClock`)
+- Deterministic timing window judgment (rhythm engine)
 - Deterministic smoke execution and regression paths
 
 Runtime evidence exists for:
 
 - `roguelike_test` `clear` / `fail` / `continue`
-- Debug observer visibility of position/HP/result transitions
+- `rhythm_test` `clear` / `fail` / `continue`
+- Debug observer visibility of position/HP/clock/result transitions
 
 ---
 
@@ -66,25 +77,21 @@ Runtime evidence exists for:
 
 The main weak areas remain:
 
-- Time-driven strictness (`KernelClock` precision under continuous scheduling)
-- Timing window judgment under deterministic frame progression
 - Real input bridge (currently mocked/fake-driven)
+- Multi-threaded task execution (Core is currently single-threaded)
 - Massive parallel stress (kept out intentionally for now)
 
 ---
 
-## 5. Why `rhythm_test` is the first next candidate
+`rhythm_test` was selected and implemented because:
 
-`rhythm_test` is selected as first candidate because:
-
-1. It directly targets time-driven behavior not covered by current modules.
-2. It exercises deterministic scheduling pressure via beat/timing windows.
-3. It complements existing patterns:
+1. It directly proved time-driven behavior not covered by previous modules.
+2. It exercised deterministic scheduling pressure via beat/timing windows.
+3. It completed the "quadrant" of fitness tests:
    - `mystery_test`: condition/graph-driven
    - `billiards_test`: event-driven
    - `roguelike_test`: state/turn-driven
    - `rhythm_test`: time/clock-driven
-4. It can stay minimal without requiring heavy rendering or advanced physics.
 
 ---
 
@@ -115,6 +122,6 @@ If entered later, minimum entry conditions should include:
 
 ## 8. Next minimal step
 
-- Start `rhythm_test` preparation only (docs/plan level).
-- Freeze implementation scope to time-driven fitness behavior.
-- Avoid adding new runtime features in this step.
+- Freeze Phase 2 implementation.
+- Focus on design memos for next phases (Real Input, Stress Strategy).
+- Define entry conditions for Phase 3 (Template / Generator).
