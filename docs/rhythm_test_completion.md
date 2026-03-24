@@ -21,27 +21,32 @@
 
 debug overlay で確認した WorldState キーの期待値:
 
-### A. Clear Path — `rhythm_debug_clear.tscn`
+### A. Clear Path — `rhythm_debug_clear.tscn` ✅ CONFIRMED (2026-03-24)
 - **入力条件**: notes=[1000,2000,3000], taps=[1000,2000,3000], clear_hit_count=3, max_miss=0
-- **期待 WorldState**:
+- **実測 WorldState**:
   - `chart:index = 3`, `chart:note_count = 3`
   - `judge:perfect_count = 3`, `judge:good_count = 0`, `judge:miss_count = 0`
   - `round:status = cleared`, `round:result = clear`
-  - note bar: `PPP`
+  - `clock:now_ms = 3000`（advance_ms=1000 × 3ステップ）
+  - note bar: `PPP`、judge label: **perfect**（緑）
 
-### B. Fail Path — `rhythm_debug_fail.tscn`
+### B. Fail Path — `rhythm_debug_fail.tscn` ✅ CONFIRMED (2026-03-24)
 - **入力条件**: notes=[1000,2000,3000], taps=[-1,-1,-1], clear_hit_count=3, max_miss=1
-- **期待 WorldState**:
-  - `judge:miss_count >= 2` (max_miss=1 超過)
+- **実測 WorldState**:
+  - `chart:index = 2`, `chart:note_count = 3`
+  - `judge:perfect_count = 0`, `judge:good_count = 0`, `judge:miss_count = 2`
   - `round:status = failed`, `round:result = fail`
-  - note bar: `XX` または `XXX`
+  - `clock:now_ms = 2400`（miss×2 で max_miss=1 超過 → 早期終了）
+  - note bar: `XX>`（2ノート miss 後に打ち切り）、judge label: **miss**（赤）
 
-### C. Continue Path — `rhythm_debug_continue.tscn`
+### C. Continue Path — `rhythm_debug_continue.tscn` ✅ CONFIRMED (2026-03-24)
 - **入力条件**: notes=[1000,2000,3000], taps=[1000,-1,-1], clear_hit_count=3, max_miss=3
-- **期待 WorldState**:
-  - `chart:index = 1`, `judge:perfect_count = 1`
+- **実測 WorldState**:
+  - `chart:index = 1`, `chart:note_count = 3`
+  - `judge:perfect_count = 1`, `judge:good_count = 0`, `judge:miss_count = 0`
   - `round:status = playing`, `round:result = (pending)`
-  - note bar: `P..` (1ノート処理済み、2ノート未到達)
+  - `clock:now_ms = 1000`（1ステップ後に continue_observed へ遷移）
+  - note bar: `P>`（1ノート perfect、残2ノート未到達）、judge label: **perfect**（緑）
 
 ## 4. 確認済みスコープ
 
