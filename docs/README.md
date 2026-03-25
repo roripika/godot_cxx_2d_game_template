@@ -29,6 +29,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`infrastructure_backlog.md`](infrastructure_backlog.md) — 既知制約と回避策（pos-0 skip など）
 - [`phase3_planning.md`](phase3_planning.md) — Phase 3 全体ロードマップ
 - [`phase3_a_execution_plan.md`](phase3_a_execution_plan.md) — Phase 3-A 実行計画
+- [`template_package_spec.md`](template_package_spec.md) — Template Package 最小構成定義（Phase 3-A T1）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
