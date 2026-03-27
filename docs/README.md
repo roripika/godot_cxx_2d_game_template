@@ -33,6 +33,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`../examples/templates/turn_grid_basic/`](../examples/templates/turn_grid_basic/) — Turn/Grid Basic テンプレート 4 点セット（Phase 3-A T2）
 - [`../examples/templates/branching_basic/`](../examples/templates/branching_basic/) — Branching Basic テンプレート 4 点セット（Phase 3-A T3）
 - [`../examples/templates/time_clock_basic/`](../examples/templates/time_clock_basic/) — Time/Clock Basic テンプレート 4 点セット（Phase 3-A T4）
+- [`template_selection_guide.md`](template_selection_guide.md) — 3 テンプレート横断選択ガイド・比較表・移行パス（Phase 3-A T5）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
