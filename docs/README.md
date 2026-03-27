@@ -30,6 +30,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`phase3_planning.md`](phase3_planning.md) — Phase 3 全体ロードマップ
 - [`phase3_a_execution_plan.md`](phase3_a_execution_plan.md) — Phase 3-A 実行計画
 - [`template_package_spec.md`](template_package_spec.md) — Template Package 最小構成定義（Phase 3-A T1）
+- [`../examples/templates/turn_grid_basic/`](../examples/templates/turn_grid_basic/) — Turn/Grid Basic テンプレート 4 点セット（Phase 3-A T2）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

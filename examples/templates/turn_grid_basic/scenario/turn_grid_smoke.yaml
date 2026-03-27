@@ -1,0 +1,107 @@
+# turn_grid_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Turn/Grid Basic Template — 最小 smoke シナリオ（テンプレート版）
+#
+# このファイルは「Turn/Grid Basic テンプレート」の構造例です。
+# 実際のゲームに使う際は以下を置き換えてください:
+#   - `<your_game>` → 実際のゲーム名（例: my_dungeon）
+#   - action 名 → 自ゲームの Task 登録名
+#   - payload 値 → ゲームに合わせた初期配置
+#
+# カバーする経路: clear / fail / continue の 3 分岐
+#
+# --- グリッド前提（このテンプレートのデフォルト想定）---
+#   グリッドサイズ: 5×5
+#   プレイヤー初期位置: (4,3) ← clear 経路のデフォルト
+#   エネミー初期位置:  (3,3)
+#   ゴール位置:       (4,4)
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: boot
+
+scenes:
+
+  # ============================================================
+  # boot: 初期化 + 1 ターン実行
+  # ============================================================
+  boot:
+    on_enter:
+      # --- Sacrifice slot (pos-0 skip バグ回避) ---
+      # シーン遷移後 pos-0 がスキップされる既知バグを回避するため、
+      # boot 以外から遷移してきたケースに備えてダミーを pos-0 に置く。
+      # boot は start_scene なので通常は不要だが、念のため記載ルールを統一する。
+      # boot がスタートシーンの場合はダミー不要のため、実際のアクションを pos-0 に置いてよい。
+      - action: setup_<your_game>_round
+        payload:
+          player_hp: 3    # プレイヤー初期 HP
+          enemy_hp:  2    # エネミー初期 HP
+          player_x:  4    # プレイヤー初期 X
+          player_y:  3    # プレイヤー初期 Y (ゴール (4,4) の 1 マス手前)
+
+      # コマンドを WorldState に書き込む（smoke = FakeCommand）
+      - action: load_fake_player_command
+        payload:
+          command: move_down   # (4,3) → (4,4) = ゴールに到達
+
+      # プレイヤーターン
+      - action: apply_player_move
+
+      # プレイヤー攻撃（隣接エネミーがいれば攻撃）
+      - action: apply_player_attack
+
+      # エネミーターン
+      - action: apply_enemy_turn
+
+      # ターン後処理（インデックス・フェーズ更新）
+      - action: resolve_<your_game>_turn
+
+      # 勝敗判定 + 次シーン分岐
+      - action: evaluate_<your_game>_round
+        payload:
+          if_clear:    clear       # round:result == "clear" のとき
+          if_fail:     fail        # round:result == "fail" のとき
+          if_continue: boot        # 継続（ループ）
+
+  # ============================================================
+  # clear: ゴール到達
+  # ============================================================
+  clear:
+    on_enter:
+      # pos-0 sacrifice（non-boot シーンのバグ回避）
+      - action: end_game
+        payload:
+          result: solved
+
+      - action: end_game
+        payload:
+          result: solved
+
+  # ============================================================
+  # fail: プレイヤー HP 0
+  # ============================================================
+  fail:
+    on_enter:
+      # pos-0 sacrifice
+      - action: end_game
+        payload:
+          result: failed
+
+      - action: end_game
+        payload:
+          result: failed
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 補足: 3 経路の初期配置早見表
+#
+# [clear 経路]
+#   player_x: 4, player_y: 3, command: move_down
+#   → player が (4,4) = goal に到達 → round:result = "clear"
+#
+# [fail 経路]
+#   player_x: 1, player_y: 1, player_hp: 1, enemy_hp: 3, command: move_right（等）
+#   敵の攻撃でプレイヤー HP が 0 になるよう配置を調整する
+#   → round:result = "fail"
+#
+# [continue 経路]
+#   player_x: 1, player_y: 1, command: move_right
+#   → ゴール未到達 + HP残存 → round:result = "" → boot をループ
+# ──────────────────────────────────────────────────────────────────────────────
