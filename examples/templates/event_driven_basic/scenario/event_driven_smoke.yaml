@@ -1,0 +1,137 @@
+# event_driven_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Event-Driven Basic Template — 最小 smoke シナリオ（テンプレート版）
+#
+# このファイルは「Event-Driven Basic テンプレート」の構造例です。
+# 実際のゲームに使う際は以下を置き換えてください:
+#   - `<your_game>`        → 実際のゲーム名（例: billiards_test）
+#   - `<your_event_A>`     → 記録するイベント名 A（例: ball_pocketed）
+#   - `<your_event_B>`     → 記録するイベント名 B（例: cue_ball_pocketed）
+#   - `<your_event_stop>`  → サイクル区切りイベント（例: balls_stopped）
+#   - action 名            → 自ゲームの Task 登録名に変更する
+#
+# カバーする経路（4 パターン）:
+#   1. clear:       イベント累積が条件を満たす → victory
+#   2. foul/fail:   ファウル系イベントが来る → defeat
+#   3. limit/fail:  コスト上限（ショット数等）超過 → defeat
+#   4. continue:    条件未達・上限未満 → shoot_again でループ
+#
+# smoke テストの仕組み:
+#   - wait_for_billiards_event の timeout を 0.1 に設定
+#   - KernelClock が 0.1 秒進むとタイムアウト → <your_event_stop> を自動注入
+#   - 物理エンジンなしで決定論的に再現可能
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: setup_round
+
+scenes:
+
+  # ============================================================
+  # setup_round: ラウンド初期化 + 最初のショットサイクル（clear 経路）
+  # ============================================================
+  setup_round:
+    on_enter:
+      # ラウンドを初期化
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   3    # <your_game> 用に変更
+          target_count: 1    # <your_game> 用に変更
+
+      # 外部イベントを待機（smoke 用: timeout で balls_stopped を注入）
+      # timeout は smoke では 0.1、本番では 30.0 程度に設定する
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]         # <your_event_stop> に変更
+          timeout: 0.1                     # smoke 用の短いタイムアウト
+
+      # clear 経路: ポケットイベントを記録
+      - action: record_billiards_event
+        payload:
+          event: shot_committed            # <your_event_A> に変更
+
+      - action: record_billiards_event
+        payload:
+          event: ball_pocketed             # <your_event_A> に変更（pocketed=1）
+
+      # 分岐判定: clear/fail/continue を決定する唯一の分岐点
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory             # pocketed >= target_count → クリア
+          if_fail:     defeat              # cue_foul or shot_limit → 失敗
+          if_continue: shoot_again         # 未達・上限未満 → ループ
+
+  # ============================================================
+  # shoot_again: 続行ショットサイクル（if_continue からのループ）
+  # ============================================================
+  shoot_again:
+    on_enter:
+      # pos-0 sacrifice（non-start シーンのバグ回避）
+      # シーン遷移直後の pos-0 はスキップされる既知バグのため同一 Task を複製
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+
+      # 続行ショット: 今度はポケットなし → shots_taken のみ増加
+      - action: record_billiards_event
+        payload:
+          event: shot_committed            # shots_taken が累積される
+
+      # 再評価: shots_taken >= shot_limit なら defeat
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again         # まだ上限未満なら再ループ
+
+  # ============================================================
+  # victory: クリアエンディング
+  # ============================================================
+  victory:
+    on_enter:
+      # pos-0 sacrifice（non-start シーンのバグ回避）
+      - action: end_game
+        payload:
+          result: solved
+
+  # ============================================================
+  # defeat: 失敗エンディング（foul / shot_limit 両方が到達）
+  # ============================================================
+  defeat:
+    on_enter:
+      # pos-0 sacrifice（non-start シーンのバグ回避）
+      - action: end_game
+        payload:
+          result: failed
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 【YAML 設計メモ】
+#
+# ■ 4 経路 payload 早見表
+#
+# 経路        | 記録するイベント列              | if_* 到達先
+# ------------|----------------------------------|------------------
+# clear       | shot_committed → ball_pocketed  | if_clear → victory
+# foul-fail   | shot_committed → cue_ball_pocketed | if_fail → defeat
+# limit-fail  | shot_committed×3 (ポケなし)     | if_fail → defeat (shots=3 >= limit=3)
+# continue    | setup_round でのloop内 shots<limit | if_continue → shoot_again
+#
+# ■ Fake-event タイムアウトの設計指針
+#
+# - timeout: 0.1  → smoke テスト専用（物理なしで即タイムアウト）
+# - timeout: 30.0 → 本番ゲーム用（物理エンジンが complete_instantly() で早期終了）
+# - タイムアウト発生時はかならず <your_event_stop> (= balls_stopped) が注入される
+#
+# ■ pos-0 sacrifice が必要なシーン
+#
+# - setup_round:  start_scene なので sacrifice 不要
+# - shoot_again:  if_continue から遷移 → sacrifice 必要（pos-0 にダミーを置く）
+# - victory:      if_clear から遷移  → sacrifice 必要
+# - defeat:       if_fail から遷移   → sacrifice 必要
+#
+# ■ evaluate の判定順序（変更厳禁）
+#
+#   1. cue_ball_pocketed == true → if_fail（ファウル最優先）
+#   2. pocketed >= target_count  → if_clear
+#   3. shots_taken >= shot_limit → if_fail
+#   4. else                      → if_continue
+# ══════════════════════════════════════════════════════════════════════════════

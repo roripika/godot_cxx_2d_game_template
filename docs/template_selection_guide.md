@@ -182,28 +182,56 @@ Time/Clock テンプレートの `advance_rhythm_clock` パターンを Turn/Gri
 
 ---
 
-## 8. 次ステップ（T6 検討材料）
+## 8. Event-Driven Basic テンプレートの追加（T6 完了）
 
-### billiards_test を formalize するか？
+**Phase 3-A T6 として `examples/templates/event_driven_basic/` を追加しました。**
 
-billiards_test が既存の 3 テンプレートのどれに該当するかを確認してください。
+### billiards_test 調査結果（2026-03-28）
 
-| 確認項目 | 調べ方 |
+billiards_test は既存 3 テンプレートには収まりません。以下の 2 点が根本的な差異です。
+
+| 差異 | 内容 |
 | :--- | :--- |
-| KernelClock を使っているか | `src/games/billiards_test/tasks/` 内で `clock->advance` を grep |
-| グリッド座標か物理座標か | WorldState キーに `x` / `y` / `angle` / `velocity` 等があるか |
-| FakeCommand の形式 | `load_fake_*` Task が存在するか |
-| ループ構造 | YAML シナリオの `if_continue:` / ループバックシーンがあるか |
+| **TaskResult::Waiting** | `WaitForBilliardsEventTask` がポーリングで待機。他テンプレートは Success/Failed のみ |
+| **Fake-event タイムアウト** | 入力モックを「タイムアウト経過 = balls_stopped」として注入。FakeCommand/FakeTap とは異なる方式 |
 
-**予測**: billiards_test が物理演算（速度・角度）を扱う場合は既存の 3 テンプレートには収まらず、  
-**Event-Driven / Physics Basic** という新カテゴリのテンプレートが必要になる可能性があります。
+### クイック選択フロー（4 テンプレート版）
+
+```
+ゲームの主軸は何か？
+│
+├─ 「時間（ms）」で入力と定刻イベントを比較する（リズム・QTE）
+│    └─→  Time/Clock Basic
+│
+├─ 「証拠・フラグ」を集め、その組み合わせで結末が分岐する（ADV・推理）
+│    └─→  Branching Basic
+│
+├─ 「ターン制・グリッド・HP」で勝敗を管理する（RPG・ローグライク）
+│    └─→  Turn/Grid Basic
+│
+└─ 「外部システムのイベント待機」が主軸（物理・ネットワーク・センサー）
+     └─→  Event-Driven Basic  ← T6 で追加
+```
+
+### 4 テンプレート横断比較（T6 追加版）
+
+| 項目 | Branching | Turn/Grid | Time/Clock | **Event-Driven** |
+| :--- | :--- | :--- | :--- | :--- |
+| TaskResult::Waiting | なし | なし | なし | **あり** |
+| 入力モック方式 | 不要 | FakeCommand | FakeTap | **Fake-event タイムアウト** |
+| KernelClock 用途 | 不使用 | 不使用 | advance + now | **now のみ（タイムアウト計測）** |
+| 物理座標の WorldState | なし | なし | なし | なし（イベント名のみ） |
+| ループ構造 | なし | boot ループ | 4シーンループ | **shoot_again 自己参照ループ** |
+| シーン数（smoke） | 3 | 3 | 7 | **4** |
+| 難易度 | ★☆☆ | ★★☆ | ★★★ | ★★☆ |
 
 ### 草案レビュー後の推奨工程
 
 1. このガイドを実際の新ゲーム開発で 1 回適用してフィードバックを得る
-2. billiards_test 調査で T6 カテゴリを確定する（既存テンプレートの拡張 or 新規）
-3. 必要であれば `examples/templates/README.md`（インデックスファイル）を追加する
+2. 必要であれば `examples/templates/README.md`（インデックスファイル）を追加する
+3. Waiting パターンを活用した実ゲーム（ピンボール・落下物等）で event_driven_basic を検証する
 
 ---
 
-*このドキュメントは Phase 3-A T5 の成果物です。3 テンプレートの横断レビューに基づく草案であり、実際のゲーム開発での適用後に更新してください。*
+*このドキュメントは Phase 3-A T5 の成果物です（T6 にて Event-Driven Basic 追加・更新）。*  
+*4 テンプレートの横断レビューに基づく草案であり、実際のゲーム開発での適用後に更新してください。*
