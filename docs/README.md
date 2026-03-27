@@ -31,12 +31,13 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`phase3_a_execution_plan.md`](phase3_a_execution_plan.md) — Phase 3-A 実行計画
 - [`template_package_spec.md`](template_package_spec.md) — Template Package 最小構成定義（Phase 3-A T1）
 - [`../examples/templates/turn_grid_basic/`](../examples/templates/turn_grid_basic/) — Turn/Grid Basic テンプレート 4 点セット（Phase 3-A T2）
+- [`../examples/templates/branching_basic/`](../examples/templates/branching_basic/) — Branching Basic テンプレート 4 点セット（Phase 3-A T3）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
 | モジュール | 設計書 | 完了メモ |
 | :--- | :--- | :--- |
-| mystery_test | [`mystery_design.md`](mystery_design.md) | — |
+| mystery_test | [`mystery_design.md`](mystery_design.md) | [`mystery_test_completion.md`](mystery_test_completion.md) |
 | roguelike_test | [`roguelike_test_design.md`](roguelike_test_design.md) | [`roguelike_test_completion.md`](roguelike_test_completion.md) |
 | rhythm_test | [`rhythm_test_design.md`](rhythm_test_design.md) | [`rhythm_test_completion.md`](rhythm_test_completion.md) |
 

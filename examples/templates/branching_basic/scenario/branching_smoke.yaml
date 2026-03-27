@@ -1,0 +1,110 @@
+# branching_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Branching Basic Template — 最小 smoke シナリオ（テンプレート版）
+#
+# このファイルは「Branching Basic テンプレート」の構造例です。
+# 実際のゲームに使う際は以下を置き換えてください:
+#   - `<your_game>` → 実際のゲーム名（例: my_mystery）
+#   - `<evidence_A>` / `<evidence_B>` → 実際の証拠 ID（snake_case 推奨）
+#   - `<location_A>` / `<location_B>` → 証拠の発見場所（ログ用）
+#   - action 名 → 自ゲームの Task 登録名（mystery_test で登録済みのものをそのまま使う場合は変更不要）
+#
+# カバーする経路:
+#   - solved: 全証拠が揃い check_condition → if_true を通る
+#   - wrong: 証拠が不足し check_condition → if_false を通る
+#
+# mystery_test の特徴:
+#   - Turn/Grid と異なり「continue（ループ）」経路は存在しない
+#   - 証拠収集後は必ずいずれかのエンディングに到達する
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: investigation
+
+scenes:
+
+  # ============================================================
+  # investigation: 証拠収集フェーズ
+  # ============================================================
+  investigation:
+    on_enter:
+      # 証拠 A を発見（SCOPE_SESSION に書き込む）
+      - action: discover_evidence
+        payload:
+          evidence_id: <evidence_A>   # 例: knife
+          location: <location_A>      # 例: kitchen
+
+      # 証拠 B を発見（SCOPE_SESSION に書き込む）
+      - action: discover_evidence
+        payload:
+          evidence_id: <evidence_B>   # 例: fingerprint
+          location: <location_B>      # 例: handle
+
+      # 条件評価: 全証拠が揃っているか？
+      # SESSION スコープを読み取る → check_condition を使う
+      - action: check_condition
+        payload:
+          all_of:
+            - evidence: <evidence_A>  # 例: knife
+            - evidence: <evidence_B>  # 例: fingerprint
+          if_true: solved_scene       # 全条件 true のとき
+          if_false: wrong_scene       # いずれか false のとき
+
+  # ============================================================
+  # solved_scene: 正解エンディング（全証拠揃い）
+  # ============================================================
+  solved_scene:
+    on_enter:
+      # pos-0 sacrifice（non-start シーンのバグ回避）
+      - action: end_game
+        payload:
+          result: solved
+
+      - action: end_game
+        payload:
+          result: solved
+
+  # ============================================================
+  # wrong_scene: 誤答エンディング（証拠不足）
+  # ============================================================
+  wrong_scene:
+    on_enter:
+      # pos-0 sacrifice
+      - action: end_game
+        payload:
+          result: wrong
+
+      - action: end_game
+        payload:
+          result: wrong
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 補足: 2 経路の証拠配置早見表
+#
+# [solved 経路]
+#   evidence_A と evidence_B の両方を discover_evidence で発見する
+#   → check_condition all_of が true → solved_scene
+#
+# [wrong 経路]
+#   evidence_B の discover_evidence をコメントアウト or 削除する
+#   → check_condition all_of が false（evidence_B が SESSION にない）
+#   → wrong_scene
+#
+# ──────────────────────────────────────────────────────────────────────────────
+# 応用パターン: any_of（どれか 1 つで true）
+#
+#   - action: check_condition
+#     payload:
+#       any_of:
+#         - evidence: witness_a
+#         - evidence: witness_b
+#       if_true: guilty
+#       if_false: innocent
+#
+# ──────────────────────────────────────────────────────────────────────────────
+# 注意: GLOBAL スコープの証拠を使う場合（セッションをまたぐ場合）
+#
+#   書き込み: add_evidence（SCOPE_GLOBAL）
+#   読み取り: check_evidence（SCOPE_GLOBAL、単一証拠の分岐）
+#
+#   check_condition は SCOPE_SESSION しか読まないため mixing 禁止。
+#   詳細は contract.md「禁止パターン」を参照。
+# ──────────────────────────────────────────────────────────────────────────────
