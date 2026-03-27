@@ -32,6 +32,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`template_package_spec.md`](template_package_spec.md) — Template Package 最小構成定義（Phase 3-A T1）
 - [`../examples/templates/turn_grid_basic/`](../examples/templates/turn_grid_basic/) — Turn/Grid Basic テンプレート 4 点セット（Phase 3-A T2）
 - [`../examples/templates/branching_basic/`](../examples/templates/branching_basic/) — Branching Basic テンプレート 4 点セット（Phase 3-A T3）
+- [`../examples/templates/time_clock_basic/`](../examples/templates/time_clock_basic/) — Time/Clock Basic テンプレート 4 点セット（Phase 3-A T4）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

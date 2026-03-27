@@ -1,0 +1,173 @@
+# time_clock_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# Time/Clock Basic Template — 最小 smoke シナリオ（テンプレート版）
+#
+# このファイルは「Time/Clock Basic テンプレート」の構造例です。
+# 実際のゲームに使う際は以下を置き換えてください:
+#   - `<your_game>` → 実際のゲーム名（例: my_rhythm）
+#   - action 名 → 自ゲームの Task 登録名
+#   - notes / taps / advance_ms → ゲームのノーツ配置とタップシーケンス
+#
+# カバーする経路:
+#   - clear:    全ノーツを taps に完全一致（diff=0）→ perfect×3 → clear
+#   - fail:     全ノーツを未入力（tap=-1）→ miss×2 でmax_miss超過 → early fail
+#   - continue: 1 ノーツのみ perfect → 残2ノーツ未到達 → continue（ループ）
+#
+# シーン構成:
+#   boot → advance → judge → resolve → check_round → advance（ループ）
+#                                                   → clear
+#                                                   → fail
+#
+# [重要] pos-0 sacrifice パターン:
+#   boot 以外のすべてのシーンで pos-0 に同一 Task のダミーを置く。
+#   ScenarioRunner はシーン遷移後 start_actions()→step_actions() で
+#   pending_action_index が 0→1 に進むため pos-0 が常にスキップされる。
+#   詳細: docs/infrastructure_backlog.md
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ============================================================
+# [clear 経路] 3 ノーツすべてを完全一致タップ
+# notes = [1000, 2000, 3000], taps = [1000, 2000, 3000]
+# advance_ms = 1000 → clock が 1000ms ずつ進み各ノーツに一致
+# clear_hit_count = 3, max_miss_count = 0
+# ============================================================
+start_scene: boot
+
+scenes:
+
+  # ============================================================
+  # boot: チャート初期化 + 初回評価
+  # ============================================================
+  boot:
+    on_enter:
+      - action: setup_<your_game>_round
+        payload:
+          notes: [1000, 2000, 3000]   # ノーツ配置時刻（ms, 昇順, 3〜5要素）
+          taps:  [1000, 2000, 3000]   # FakeTap 時刻（-1=未入力、clear 経路は完全一致）
+          advance_ms: 1000            # 1 ステップで KernelClock を進める量（ms）
+          clear_hit_count: 3          # クリアに必要な hit 数
+          max_miss_count: 0           # 許容ミス数（0 = ミス1つで即 fail）
+          # 省略可能パラメータ（デフォルト値）:
+          # perfect_window_ms: 50
+          # good_window_ms: 150
+
+      # 初回評価（bootは start_scene なので pos-0 sacrifice 不要）
+      - action: evaluate_<your_game>_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: advance
+
+  # ============================================================
+  # advance: KernelClock を advance_ms ms 進める
+  # ============================================================
+  advance:
+    on_enter:
+      - action: advance_<your_game>_clock   # pos-0 sacrifice（スキップされる）
+      - action: advance_<your_game>_clock   # pos-1 実処理
+      - action: evaluate_<your_game>_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: judge
+
+  # ============================================================
+  # judge: FakeTap を注入し、ノーツと突き合わせる
+  # ============================================================
+  judge:
+    on_enter:
+      - action: load_fake_tap               # pos-0 sacrifice
+      - action: load_fake_tap               # pos-1 実処理
+      - action: judge_<your_game>_note
+      - action: evaluate_<your_game>_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: resolve
+
+  # ============================================================
+  # resolve: judge 結果をカウンタに反映し chart:index を +1
+  # ============================================================
+  resolve:
+    on_enter:
+      - action: resolve_<your_game>_progress  # pos-0 sacrifice
+      - action: resolve_<your_game>_progress  # pos-1 実処理
+      - action: evaluate_<your_game>_round
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: check_round
+
+  # ============================================================
+  # check_round: 全ノーツ消化確認 / ループ or 終了
+  # ============================================================
+  check_round:
+    on_enter:
+      - action: evaluate_<your_game>_round   # pos-0 sacrifice
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: advance
+      - action: evaluate_<your_game>_round   # pos-1 実処理
+        payload:
+          if_clear: clear
+          if_fail: fail
+          if_continue: advance
+
+  # ============================================================
+  # clear: クリアエンディング
+  # ============================================================
+  clear:
+    on_enter:
+      - action: end_game        # pos-0 sacrifice
+        payload:
+          result: solved
+      - action: end_game        # pos-1 実処理
+        payload:
+          result: solved
+
+  # ============================================================
+  # fail: フェイルエンディング
+  # ============================================================
+  fail:
+    on_enter:
+      - action: end_game        # pos-0 sacrifice
+        payload:
+          result: failed
+      - action: end_game        # pos-1 実処理
+        payload:
+          result: failed
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3 経路の payload 早見表
+#
+# [clear 経路]
+#   notes = [1000, 2000, 3000]
+#   taps  = [1000, 2000, 3000]  ← diff=0 → perfect×3
+#   advance_ms = 1000, clear_hit_count = 3, max_miss_count = 0
+#   期待結果: perfect=3, miss=0, clock:now_ms=3000, round:result="clear"
+#
+# [fail 経路]（notes/taps のみ変更）
+#   notes = [1000, 2000, 3000]
+#   taps  = [-1, -1, -1]       ← 未入力 → miss×2 で早期終了（max_miss=1）
+#   advance_ms = 1200, clear_hit_count = 3, max_miss_count = 1
+#   期待結果: miss=2 > max_miss=1 → fail, chart:index=2, clock:now_ms=2400
+#
+# [continue 経路]（notes/taps + max_miss のみ変更）
+#   notes = [1000, 2000, 3000]
+#   taps  = [1000, -1, -1]     ← 1 ノーツ perfect、残 2 は未到達
+#   advance_ms = 1000, clear_hit_count = 3, max_miss_count = 3
+#   期待結果: perfect=1, miss=0, chart:index=1, clock:now_ms=1000,
+#            round:result="" → continueシーンに遷移（boot外続行観察用）
+#
+# ──────────────────────────────────────────────────────────────────────────────
+# timing window の設計メモ
+#
+#   diff = |tap_time_ms - note_time_ms|
+#   diff <= perfect_window_ms(50)  → "perfect"
+#   diff <= good_window_ms(150)    → "good"
+#   それ以外 or tap=-1かつnow>note+good_win  → "miss"
+#
+# advance_ms を note 間隔と揃えることで決定論的な diff=0（perfect）を作れる。
+# advance_ms > note 間隔 だと clock が先に進みすぎて miss になることがある。
+# ──────────────────────────────────────────────────────────────────────────────
