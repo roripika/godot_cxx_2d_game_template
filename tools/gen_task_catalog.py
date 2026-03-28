@@ -13,6 +13,13 @@ src/games/*/tasks/*.cpp を走査し、各 Task の
 Usage:
     python3 tools/gen_task_catalog.py [--out docs/task_catalog.md]
 
+スコープ定義 (T7.1):
+    対象: src/games/*/tasks/*.cpp  (ヘッダ .h は参照しない)
+    除外: src/core/ 配下の TaskBase 等のカーネル Task (改変禁止領域)
+    カウント根拠: billiards_test(4) + mystery_test(9) + rhythm_test(6) + roguelike_test(7) = 26
+    ※ 開発ログに「30 tasks」と記載されている箇所があるが、これは 2026-03-28 の
+       初期ナレーションにおける計算ミスであり正しい値は 26 です。
+
 制約:
     - src/core/ および実装コードには一切変更を加えない (読み取り専用)
     - docs/ への Markdown 出力のみ
@@ -185,6 +192,15 @@ def render_markdown(catalog: dict[str, list[TaskInfo]], generated_date: str) -> 
         "",
         "> AI がシナリオを書く際の「どの Task を使うか」判断を支援するカタログ。  ",
         "> `src/core` には一切変更を加えていません。",
+        "",
+        "## スコープ定義 (T7.1)",
+        "",
+        "| 項目 | 値 |",
+        "|:---|:---|",
+        "| 走査対象 | `src/games/*/tasks/*.cpp`（`.h` は除外） |",
+        "| 除外領域 | `src/core/`（Kernel = 改変禁止領域） |",
+        "| カウント根拠 | billiards_test(4) + mystery_test(9) + rhythm_test(6) + roguelike_test(7) = **26** |",
+        "| 注意 | 開発ログ内に「30 tasks」との記述があるが、これは 2026-03-28 の初期ナレーションにおける計算ミス。正しい値は **26**。 |",
         "",
         "---",
         "",

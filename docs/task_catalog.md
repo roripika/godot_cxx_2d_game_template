@@ -1,11 +1,20 @@
 # Task Catalog
 
-**Generated**: 2026-03-28  
+**Generated**: 2026-03-29  
 **Source**: `src/games/*/tasks/*.cpp` (read-only scan)  
 **Generator**: `tools/gen_task_catalog.py`  
 
 > AI がシナリオを書く際の「どの Task を使うか」判断を支援するカタログ。  
 > `src/core` には一切変更を加えていません。
+
+## スコープ定義 (T7.1)
+
+| 項目 | 値 |
+|:---|:---|
+| 走査対象 | `src/games/*/tasks/*.cpp`（`.h` は除外） |
+| 除外領域 | `src/core/`（Kernel = 改変禁止領域） |
+| カウント根拠 | billiards_test(4) + mystery_test(9) + rhythm_test(6) + roguelike_test(7) = **26** |
+| 注意 | 開発ログ内に「30 tasks」との記述があるが、これは 2026-03-28 の初期ナレーションにおける計算ミス。正しい値は **26**。 |
 
 ---
 

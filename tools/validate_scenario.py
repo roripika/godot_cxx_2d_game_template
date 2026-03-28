@@ -2,13 +2,20 @@
 """
 validate_scenario.py
 ====================
-Static validator for Karakuri mystery_test YAML scenario files.
+Static validator for Karakuri YAML scenario files.
+Phase 3-B guidance upgrade: each error now includes a SUGGEST line with a
+fix hint (Did you mean? / Add to payload / Available scenes).
 
 Purpose
 -------
 Detect invalid scenario DSL **before runtime** so AI-generated scenarios
 fail fast with human-readable errors instead of causing ScenarioRunner
 crashes or silent logic bugs.
+
+Guide structure (per error):
+  ERROR  <file>  scene='...'  action[N]
+         <what is wrong>
+         SUGGEST: <how to fix it>
 
 Usage
 -----
@@ -32,6 +39,7 @@ Exit codes
 import sys
 import os
 import glob
+import difflib
 from pathlib import Path
 
 try:
@@ -224,18 +232,32 @@ SPECIAL_KNOWN_KEYS = {
 # Error collector
 # ---------------------------------------------------------------------------
 
+def _did_you_mean(word: str, candidates, n: int = 1) -> str:
+    """Return 'Did you mean: X?' string if a close match exists, else empty string."""
+    matches = difflib.get_close_matches(word, candidates, n=n, cutoff=0.6)
+    if not matches:
+        return ""
+    if len(matches) == 1:
+        return f"Did you mean: '{matches[0]}'?"
+    return "Did you mean one of: " + ", ".join(f"'{m}'" for m in matches) + "?"
+
+
 class ValidationError:
-    def __init__(self, filename: str, scene: str, action_index: int, message: str):
-        self.filename    = filename
-        self.scene       = scene
+    def __init__(self, filename: str, scene: str, action_index: int, message: str, suggestion: str = ""):
+        self.filename     = filename
+        self.scene        = scene
         self.action_index = action_index
-        self.message     = message
+        self.message      = message
+        self.suggestion   = suggestion
 
     def __str__(self) -> str:
         loc = f"{self.filename}  scene='{self.scene}'"
         if self.action_index >= 0:
             loc += f"  action[{self.action_index}]"
-        return f"  ERROR  {loc}\n         {self.message}"
+        out = f"  ERROR  {loc}\n         {self.message}"
+        if self.suggestion:
+            out += f"\n         SUGGEST: {self.suggestion}"
+        return out
 
 
 # ---------------------------------------------------------------------------
@@ -254,10 +276,13 @@ def validate_payload_fields(required_groups, payload, filename, scene, idx, erro
     for group in required_groups:
         if not any(k in payload for k in group):
             if len(group) == 1:
-                msg = f"Missing required payload field '{group[0]}'."
+                key = group[0]
+                msg = f"Missing required payload field '{key}'."
+                sug = f"Add to payload:  {key}: <value>"
             else:
                 msg = f"Missing required payload field: one of {group} must be present."
-            errors.append(ValidationError(filename, scene, idx, msg))
+                sug = f"Add one of these to payload: " + "  OR  ".join(f"{k}: <value>" for k in group)
+            errors.append(ValidationError(filename, scene, idx, msg, suggestion=sug))
 
 
 # Actions that are forbidden inside a parallel group because their side effects
@@ -270,12 +295,19 @@ def validate_check_evidence(payload, filename, scene, idx, errors, all_scene_ids
     for field in ("id", "if_true", "if_false"):
         if field not in payload:
             errors.append(ValidationError(filename, scene, idx,
-                f"check_evidence is missing required field '{field}'."))
+                f"check_evidence is missing required field '{field}'.",
+                suggestion=f"Add to payload:  {field}: <value>"))
 
     for field in ("if_true", "if_false"):
         if field in payload and payload[field] not in all_scene_ids:
+            ref = payload[field]
+            hint = _did_you_mean(ref, all_scene_ids)
+            sug = f"Available scenes: {sorted(all_scene_ids)}"
+            if hint:
+                sug = f"{hint}  Available scenes: {sorted(all_scene_ids)}"
             errors.append(ValidationError(filename, scene, idx,
-                f"check_evidence '{field}' references unknown scene '{payload[field]}'."))
+                f"check_evidence '{field}' references unknown scene '{ref}'.",
+                suggestion=sug))
 
 
 def validate_parallel(payload, filename, scene, idx, errors, all_scene_ids):
@@ -350,19 +382,25 @@ def validate_wait_for_billiards_event(payload, filename, scene, idx, errors):
 
     for ev in events:
         if ev not in VALID_BILLIARDS_EVENTS:
+            hint = _did_you_mean(ev, VALID_BILLIARDS_EVENTS)
+            sug = f"Valid events: {sorted(VALID_BILLIARDS_EVENTS)}"
+            if hint:
+                sug = f"{hint}  Valid events: {sorted(VALID_BILLIARDS_EVENTS)}"
             errors.append(ValidationError(filename, scene, idx,
-                f"wait_for_billiards_event: unknown event '{ev}'. "
-                f"Valid events: {sorted(VALID_BILLIARDS_EVENTS)}."))
+                f"wait_for_billiards_event: unknown event '{ev}'.",
+                suggestion=sug))
 
     if "timeout" in payload:
         try:
             t = float(payload["timeout"])
             if t <= 0:
                 errors.append(ValidationError(filename, scene, idx,
-                    f"wait_for_billiards_event 'timeout' must be > 0, got '{payload['timeout']}'"))
+                    f"wait_for_billiards_event 'timeout' must be > 0, got '{payload['timeout']}'",
+                    suggestion="timeout: 10.0  # seconds; omit to use the runtime default of 10.0"))
         except (TypeError, ValueError):
             errors.append(ValidationError(filename, scene, idx,
-                f"wait_for_billiards_event 'timeout' must be a number, got '{payload['timeout']}'"))
+                f"wait_for_billiards_event 'timeout' must be a number, got '{payload['timeout']}'",
+                suggestion="timeout: 10.0  # numeric seconds"))
 
 
 def validate_evaluate_billiards_round(payload, filename, scene, idx, errors, all_scene_ids):
@@ -370,23 +408,35 @@ def validate_evaluate_billiards_round(payload, filename, scene, idx, errors, all
     for field in ("if_clear", "if_fail", "if_continue"):
         if field not in payload:
             errors.append(ValidationError(filename, scene, idx,
-                f"evaluate_billiards_round is missing required field '{field}'."))
+                f"evaluate_billiards_round is missing required field '{field}'.",
+                suggestion=f"Add to payload:  {field}: <scene_name>"))
         elif payload[field] not in all_scene_ids:
+            ref = payload[field]
+            hint = _did_you_mean(ref, all_scene_ids)
+            sug = f"Available scenes: {sorted(all_scene_ids)}"
+            if hint:
+                sug = f"{hint}  Available scenes: {sorted(all_scene_ids)}"
             errors.append(ValidationError(filename, scene, idx,
-                f"evaluate_billiards_round '{field}' references unknown scene '{payload[field]}'."))
+                f"evaluate_billiards_round '{field}' references unknown scene '{ref}'.",
+                suggestion=sug))
 
 
 def validate_load_fake_player_command(payload, filename, scene, idx, errors):
     """Validate the load_fake_player_command action."""
     if "command" not in payload:
         errors.append(ValidationError(filename, scene, idx,
-            "load_fake_player_command is missing required field 'command'."))
+            "load_fake_player_command is missing required field 'command'.",
+            suggestion=f"Add to payload:  command: <cmd>  Valid commands: {sorted(VALID_PLAYER_COMMANDS)}"))
         return
     cmd = payload["command"]
     if cmd not in VALID_PLAYER_COMMANDS:
+        hint = _did_you_mean(cmd, VALID_PLAYER_COMMANDS)
+        sug = f"Valid commands: {sorted(VALID_PLAYER_COMMANDS)}"
+        if hint:
+            sug = f"{hint}  Valid commands: {sorted(VALID_PLAYER_COMMANDS)}"
         errors.append(ValidationError(filename, scene, idx,
-            f"load_fake_player_command: unknown command '{cmd}'. "
-            f"Valid commands: {sorted(VALID_PLAYER_COMMANDS)}."))
+            f"load_fake_player_command: unknown command '{cmd}'.",
+            suggestion=sug))
 
 
 def validate_evaluate_roguelike_round(payload, filename, scene, idx, errors, all_scene_ids):
@@ -394,10 +444,17 @@ def validate_evaluate_roguelike_round(payload, filename, scene, idx, errors, all
     for field in ("if_clear", "if_fail", "if_continue"):
         if field not in payload:
             errors.append(ValidationError(filename, scene, idx,
-                f"evaluate_roguelike_round is missing required field '{field}'."))
+                f"evaluate_roguelike_round is missing required field '{field}'.",
+                suggestion=f"Add to payload:  {field}: <scene_name>"))
         elif payload[field] not in all_scene_ids:
+            ref = payload[field]
+            hint = _did_you_mean(ref, all_scene_ids)
+            sug = f"Available scenes: {sorted(all_scene_ids)}"
+            if hint:
+                sug = f"{hint}  Available scenes: {sorted(all_scene_ids)}"
             errors.append(ValidationError(filename, scene, idx,
-                f"evaluate_roguelike_round '{field}' references unknown scene '{payload[field]}'."))
+                f"evaluate_roguelike_round '{field}' references unknown scene '{ref}'.",
+                suggestion=sug))
 
 
 def validate_setup_rhythm_round(payload, filename, scene, idx, errors):
@@ -468,10 +525,17 @@ def validate_evaluate_rhythm_round(payload, filename, scene, idx, errors, all_sc
     for field in ("if_clear", "if_fail", "if_continue"):
         if field not in payload:
             errors.append(ValidationError(filename, scene, idx,
-                f"evaluate_rhythm_round is missing required field '{field}'."))
+                f"evaluate_rhythm_round is missing required field '{field}'.",
+                suggestion=f"Add to payload:  {field}: <scene_name>"))
         elif payload[field] not in all_scene_ids:
+            ref = payload[field]
+            hint = _did_you_mean(ref, all_scene_ids)
+            sug = f"Available scenes: {sorted(all_scene_ids)}"
+            if hint:
+                sug = f"{hint}  Available scenes: {sorted(all_scene_ids)}"
             errors.append(ValidationError(filename, scene, idx,
-                f"evaluate_rhythm_round '{field}' references unknown scene '{payload[field]}'."))
+                f"evaluate_rhythm_round '{field}' references unknown scene '{ref}'.",
+                suggestion=sug))
 
 
 def validate_check_condition(payload, filename, scene, idx, errors, all_scene_ids):
@@ -508,10 +572,17 @@ def validate_check_condition(payload, filename, scene, idx, errors, all_scene_id
     for field in ("if_true", "if_false"):
         if field not in payload:
             errors.append(ValidationError(filename, scene, idx,
-                f"check_condition is missing required field '{field}'."))
+                f"check_condition is missing required field '{field}'.",
+                suggestion=f"Add to payload:  {field}: <scene_name>"))
         elif payload[field] not in all_scene_ids:
+            ref = payload[field]
+            hint = _did_you_mean(ref, all_scene_ids)
+            sug = f"Available scenes: {sorted(all_scene_ids)}"
+            if hint:
+                sug = f"{hint}  Available scenes: {sorted(all_scene_ids)}"
             errors.append(ValidationError(filename, scene, idx,
-                f"check_condition '{field}' references unknown scene '{payload[field]}'."))
+                f"check_condition '{field}' references unknown scene '{ref}'.",
+                suggestion=sug))
 
 
 def validate_action(action_dict, scene: str, idx: int, filename: str,
@@ -530,9 +601,13 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
     action_name = action_dict["action"]
 
     if action_name not in ACTIONS:
+        hint = _did_you_mean(action_name, ACTIONS.keys())
+        sug = f"Valid actions: {sorted(ACTIONS.keys())}"
+        if hint:
+            sug = f"{hint}  Valid actions: {sorted(ACTIONS.keys())}"
         errors.append(ValidationError(filename, scene, idx,
-            f"Unknown action '{action_name}'. "
-            f"Valid actions: {sorted(ACTIONS.keys())}."))
+            f"Unknown action '{action_name}'.",
+            suggestion=sug))
         return
 
     payload = action_dict.get("payload", {})
@@ -549,9 +624,13 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
         known = SPECIAL_KNOWN_KEYS[special_name]
         for key in payload:
             if key not in known:
+                hint = _did_you_mean(key, known)
+                sug = f"Known keys for '{action_name}': {sorted(known)}"
+                if hint:
+                    sug = f"{hint}  Known keys for '{action_name}': {sorted(known)}"
                 errors.append(ValidationError(filename, scene, idx,
-                    f"Unknown payload key '{key}' for action '{action_name}'. "
-                    f"Known keys: {sorted(known)}."))
+                    f"Unknown payload key '{key}' for action '{action_name}'.",
+                    suggestion=sug))
 
     if special_name == "check_evidence":
         validate_check_evidence(payload, filename, scene, idx, errors, all_scene_ids)
@@ -597,9 +676,13 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
     all_known_keys.update(schema["optional"])
     for key in payload:
         if key not in all_known_keys:
+            hint = _did_you_mean(key, all_known_keys)
+            sug = f"Known keys for '{action_name}': {sorted(all_known_keys)}" if all_known_keys else f"Action '{action_name}' takes no payload keys."
+            if hint:
+                sug = f"{hint}  {sug}"
             errors.append(ValidationError(filename, scene, idx,
-                f"Unknown payload key '{key}' for action '{action_name}'. "
-                f"Known keys: {sorted(all_known_keys)}."))
+                f"Unknown payload key '{key}' for action '{action_name}'.",
+                suggestion=sug))
 
     # Generic required-field check
     validate_payload_fields(schema["required"], payload, filename, scene, idx, errors)
@@ -608,18 +691,28 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
     if action_name == "end_game":
         result = payload.get("result", "")
         if result not in VALID_END_GAME_RESULTS:
+            hint = _did_you_mean(result, VALID_END_GAME_RESULTS)
+            sug = f"Valid results: {sorted(VALID_END_GAME_RESULTS)}"
+            if hint:
+                sug = f"{hint}  Valid results: {sorted(VALID_END_GAME_RESULTS)}"
             errors.append(ValidationError(filename, scene, idx,
                 f"end_game 'result' must be one of {sorted(VALID_END_GAME_RESULTS)}, "
-                f"got '{result}'."))
+                f"got '{result}'.",
+                suggestion=sug))
 
     if action_name == "add_evidence":
         # "type" is optional — only validate it when present
         if "type" in payload:
             ev_type = payload["type"]
             if ev_type not in VALID_EVIDENCE_TYPES:
+                hint = _did_you_mean(ev_type, VALID_EVIDENCE_TYPES)
+                sug = f"Valid types: {sorted(VALID_EVIDENCE_TYPES)}"
+                if hint:
+                    sug = f"{hint}  Valid types: {sorted(VALID_EVIDENCE_TYPES)}"
                 errors.append(ValidationError(filename, scene, idx,
                     f"add_evidence 'type' must be one of {sorted(VALID_EVIDENCE_TYPES)}, "
-                    f"got '{ev_type}'."))
+                    f"got '{ev_type}'.",
+                    suggestion=sug))
 
     if action_name == "wait_for_signal":
         # "timeout" is optional (runtime default 5.0) — only validate when present
@@ -628,10 +721,12 @@ def validate_action(action_dict, scene: str, idx: int, filename: str,
                 timeout = float(payload["timeout"])
                 if timeout <= 0:
                     errors.append(ValidationError(filename, scene, idx,
-                        f"wait_for_signal 'timeout' must be a positive number, got '{payload['timeout']}'."))
+                        f"wait_for_signal 'timeout' must be a positive number, got '{payload['timeout']}'.",
+                        suggestion="timeout: 5.0  # seconds; omit to use the runtime default of 5.0"))
             except (TypeError, ValueError):
                 errors.append(ValidationError(filename, scene, idx,
-                    f"wait_for_signal 'timeout' must be a number, got '{payload['timeout']}'."))
+                    f"wait_for_signal 'timeout' must be a number, got '{payload['timeout']}'.",
+                    suggestion="timeout: 5.0  # numeric seconds"))
 
 
 def validate_file(filepath: str) -> list:
