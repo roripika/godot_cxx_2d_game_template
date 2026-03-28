@@ -36,6 +36,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`template_selection_guide.md`](template_selection_guide.md) — 4 テンプレート横断選択ガイド・比較表・移行パス（Phase 3-A T5、T6 更新済み）
 - [`../examples/templates/event_driven_basic/`](../examples/templates/event_driven_basic/) — Event-Driven Basic テンプレート 4 点セット（Phase 3-A T6）
 - [`phase3_a_completion.md`](phase3_a_completion.md) — Phase 3-A 完了メモ（T1〜T6、2026-03-28）
+- [`task_catalog.md`](task_catalog.md) — Task カタログ（自動生成 / 26 tasks / Phase 3-B T7）`tools/gen_task_catalog.py` で再生成。
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
