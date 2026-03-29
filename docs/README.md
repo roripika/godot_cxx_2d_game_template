@@ -37,6 +37,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`../examples/templates/event_driven_basic/`](../examples/templates/event_driven_basic/) — Event-Driven Basic テンプレート 4 点セット（Phase 3-A T6）
 - [`phase3_a_completion.md`](phase3_a_completion.md) — Phase 3-A 完了メモ（T1〜T6、2026-03-28）
 - [`task_catalog.md`](task_catalog.md) — Task カタログ（自動生成 / 26 tasks / Phase 3-B T7）`tools/gen_task_catalog.py` で再生成。
+- [`validate_scenario_guidance.md`](validate_scenario_guidance.md) — validate_scenario.py Guidance 仕様（エラー種別・SUGGEST 対応表 / Phase 3-B T9）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
