@@ -38,6 +38,8 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`phase3_a_completion.md`](phase3_a_completion.md) — Phase 3-A 完了メモ（T1〜T6、2026-03-28）
 - [`task_catalog.md`](task_catalog.md) — Task カタログ（自動生成 / 26 tasks / Phase 3-B T7）`tools/gen_task_catalog.py` で再生成。
 - [`validate_scenario_guidance.md`](validate_scenario_guidance.md) — validate_scenario.py Guidance 仕様（エラー種別・SUGGEST 対応表 / Phase 3-B T9）
+- [`validate_scenario_guidance.md`](validate_scenario_guidance.md) — validate_scenario.py Guidance 仕様（エラー種別・SUGGEST 対応表 / Phase 3-B T9）
+- [`few_shot_prompts.md`](few_shot_prompts.md) — 4 テンプレート × few-shot 入力例・選択理由・最小 YAML・よくある間違い（Phase 3-B T10）
 - [`phase3_b_first_half_completion.md`](phase3_b_first_half_completion.md) — Phase 3-B 前半完了メモ（T7〜T9、2026-03-30）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
