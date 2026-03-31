@@ -1,0 +1,65 @@
+# roguelike_r1_clear_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# R-1 クリアパス検証: boot → boot ループ後に goal 到達で clear 終了
+#
+# 目的:
+#   ループ 2 ターン目に goal (4,4) に到達し、
+#   evaluate_roguelike_round → clear → end_game:solved で正常終了することを確認。
+#
+# 設計:
+#   player: (2, 4)  goal: (4, 4) [デフォルト]  enemy: (0, 0) 遠方
+#   command: move_right (固定)
+#
+#   期待フロー:
+#     反復 1 (_ready()): setup 実行 → player (2,4)
+#                        move_right → (3,4) → 未ゴール → continue → boot
+#     反復 2 (ループ): setup スキップ → player (3,4) 保持
+#                      move_right → (4,4) = GOAL → round:result=clear
+#                      → evaluate → clear scene → end_game solved
+#
+# 合格条件: [EndGameTask] Game ended with result: solved
+# 参照: docs/generator_spec_schema.md T12-6 R-1
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_roguelike_round
+        payload:
+          player_hp: 3
+          enemy_hp:  2
+          player_x:  2
+          player_y:  4
+          enemy_1_x: 0
+          enemy_1_y: 0
+
+      - action: load_fake_player_command
+        payload:
+          command: move_right
+
+      - action: apply_player_move
+
+      - action: apply_enemy_turn
+
+      - action: resolve_roguelike_turn
+
+      - action: evaluate_roguelike_round
+        payload:
+          if_clear:    clear
+          if_fail:     fail
+          if_continue: boot
+
+  clear:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  fail:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}

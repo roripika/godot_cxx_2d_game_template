@@ -333,8 +333,10 @@ evaluate_roguelike_round
       payload: {result: failed}
 ```
 
-> **注意**: `boot` シーンは `start_scene` として最初から開始されるため pos-0 sacrifice 不要。  
-> pos-0 skip は **シーン遷移直後のみ** 発生する。`evaluate_roguelike_round` → `boot`（ループ）の場合はシーン遷移が発生するため、boot の pos-0 sacrifice 要否は HG-4 で検証が必要（R-1）。
+> **確定（R-1 HG-4 smoke 済み）**: `boot` に **pos-0 sacrifice は不要**。  
+> - 初回（`_ready()` 経由 `load_scene_by_id`）: index=0 から開始するため `setup_roguelike_round` が正常実行される。  
+> - ループ 2 回目以降（`evaluate_roguelike_round` → `boot`）: `load_scene_by_id` から `start_actions`(index=0) → 呼び出しタスクが Success を返す → `step_actions` が index++ → `setup_roguelike_round`（pos-0）がスキップされ、WorldState の状態（player 座標・HP）が保持される。**これは仕様通りの動作**。  
+> - terminal シーン（clear / fail）は `load_scene_by_id` から直接遷移するため pos-0 sacrifice が必要（従来通り）。
 
 ---
 
@@ -346,19 +348,19 @@ evaluate_roguelike_round
 | FakeCommand | 不要 | 必須（`load_fake_player_command`） |
 | エンティティ | エビデンス/条件のみ | Player + Enemy（複数対応） |
 | 結果分岐 | 2 経路（true/false） | 3 経路（clear/fail/continue） |
-| pos-0 sacrifice | terminal 2 シーン | terminal 2 シーン（boot は要調査） |
+| pos-0 sacrifice | terminal 2 シーン | terminal 2 シーン のみ（boot は不要・確定） |
 | Task 数 | 3〜5（シーン構成による） | 6〜7 固定 |
 
 ---
 
-## T12-6. 未解決リスク（実装前に確定が必要）
+## T12-6. リスク解決状況
 
-| # | リスク | 優先度 | 解決方針 |
+| # | リスク | 状態 | 結果 |
 |:---:|:---|:---:|:---|
-| R-1 | `evaluate_roguelike_round` → `boot` ループ時の pos-0 skip 発生有無 | 高 | T12 実装前に手動 YAML で HG-4 smoke を走らせて確認 |
-| R-2 | 複数 enemy（2〜4 体）の `setup_roguelike_round` payload 仕様（`enemy_2_hp` 等の扱い） | 中 | `task_catalog.md` / roguelike コードを確認 |
-| R-3 | `apply_player_attack.target` に `enemy_2` 以降を指定できるか | 中 | `src/games/roguelike_test/` の Task 実装を確認 |
-| R-4 | `apply_player_move` 方向のパラメータ渡し方（payload なしで `first_command` が使われるか） | 高 | `load_fake_player_command` が global state に書き `apply_player_move` が読む実装か確認 |
+| R-1 | `evaluate_roguelike_round` → `boot` ループ時の pos-0 skip 発生有無 | ✅ **確定** | pos-0 skip は発生する。`setup_roguelike_round`（pos-0）がループ時にスキップされ WorldState の状態が保持される。`boot` に sacrifice **不要**。smoke YAML: `roguelike_r1_clear_smoke.yaml` |
+| R-2 | 複数 enemy（2〜4 体）の `setup_roguelike_round` payload 仕様 | ⚪ **v1.0 スコープ外** | v1.0 は enemy 1 体のみ対応。`enemy_hp` フィールドのみ使用。 |
+| R-3 | `apply_player_attack.target` に `enemy_2` 以降を指定できるか | ⚪ **v1.0 スコープ外** | v1.0 は `target: enemy_1` 固定。 |
+| R-4 | `apply_player_move` の方向パラメータ渡し | ✅ **確定** | `load_fake_player_command` が `WorldState(last_action:type)` に書き込み、`apply_player_move` がそれを読む。`apply_player_move` に payload **不要**。コード + HG-4 smoke で確認済み。 |
 
 ---
 

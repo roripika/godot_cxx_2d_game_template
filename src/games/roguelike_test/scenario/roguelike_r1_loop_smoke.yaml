@@ -1,0 +1,68 @@
+# roguelike_r1_loop_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# R-1 検証: boot → boot ループ時の pos-0 skip 挙動確認
+#
+# 目的:
+#   evaluate_roguelike_round が if_continue: boot でループしたとき、
+#   boot の pos-0 (setup_roguelike_round) がスキップされ、
+#   player の位置がターンをまたいで保持されることを確認する。
+#
+# 設計:
+#   player: (2, 3)  goal: (4, 3)  enemy: (0, 0) 遠方
+#   command: move_right (固定)
+#
+#   期待フロー:
+#     初回 (_ready() 経由): pos-0 setup 実行 → player (2,3)
+#                           move_right → player (3,3) → 未ゴール → continue
+#     ループ 2 回目:        pos-0 setup スキップ → player 位置は (3,3) を保持
+#                           move_right → player (4,3) = GOAL → clear → end_game solved
+#
+# 合格条件: result: solved で終了すること
+#   (pos-0 がスキップされず setup が再実行されると (2,3) にリセットされ
+#    永久ループまたは別パスになる)
+#
+# 参照: docs/generator_spec_schema.md T12-6 R-1
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_roguelike_round
+        payload:
+          player_hp: 3
+          enemy_hp:  2
+          player_x:  2
+          player_y:  3
+          enemy_1_x: 0
+          enemy_1_y: 0
+
+      - action: load_fake_player_command
+        payload:
+          command: move_right
+
+      - action: apply_player_move
+
+      - action: apply_enemy_turn
+
+      - action: resolve_roguelike_turn
+
+      - action: evaluate_roguelike_round
+        payload:
+          if_clear:    clear
+          if_fail:     fail
+          if_continue: boot
+
+  clear:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  fail:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}
