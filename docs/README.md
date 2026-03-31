@@ -40,6 +40,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`validate_scenario_guidance.md`](validate_scenario_guidance.md) — validate_scenario.py Guidance 仕様（エラー種別・SUGGEST 対応表 / Phase 3-B T9）
 - [`few_shot_prompts.md`](few_shot_prompts.md) — ⚠️ **YAML 作成時のみ参照**（常時参照不要）4 テンプレート × 入力例・選択理由・最小 YAML・よくある間違い（Phase 3-B T10）
 - [`phase3_b_completion.md`](phase3_b_completion.md) — Phase 3-B 完了メモ（AI Assist Tooling T7〜T10 / 到達点・限界・次段への入口、2026-03-31）
+- [`phase3_c_generator_entry.md`](phase3_c_generator_entry.md) — Phase 3-C Generator 入口設計メモ（スコープ定義・Human Gate・Branching First 戦略、2026-04-01）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
