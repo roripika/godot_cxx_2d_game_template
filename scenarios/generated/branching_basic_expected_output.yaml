@@ -1,0 +1,45 @@
+# goal:
+#   clear_condition: 指紋と目撃証言が両方揃えば逮捕できる
+#   fail_condition:  どちらか一方でも欠けていたら釈放になる
+#
+# このファイルは Generator の期待出力サンプルです。
+# validate_scenario.py exit 0 確認済み（Phase 3-B T10）。
+# 入力 Structured Spec: docs/generator_spec_schema.md セクション 2「推奨構成」に対応。
+
+start_scene: investigation
+
+scenes:
+
+  investigation:
+    on_enter:
+      - action: discover_evidence
+        payload:
+          evidence_id: fingerprint
+          location: display_case
+
+      - action: discover_evidence
+        payload:
+          evidence_id: testimony
+          location: security_desk
+
+      - action: check_condition
+        payload:
+          all_of:
+            - evidence: fingerprint
+            - evidence: testimony
+          if_true:  arrest_scene
+          if_false: release_scene
+
+  arrest_scene:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  release_scene:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: wrong}
+      - action: end_game
+        payload: {result: wrong}
