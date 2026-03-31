@@ -43,6 +43,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`phase3_c_generator_entry.md`](phase3_c_generator_entry.md) — Phase 3-C Generator 入口設計メモ（スコープ定義・Human Gate・Branching First 戦略、2026-04-01）
 - [`generator_spec_schema.md`](generator_spec_schema.md) — Branching Basic 用 Structured Spec 入力スキーマ（V-01〜V-11 バリデーション規則・入力→YAML マッピング、2026-04-01）
 - [`t11_gen_branching_completion.md`](t11_gen_branching_completion.md) — T11 完了メモ（gen_scenario_branching.py / 入力スコープ・自動補完・HG依存・smoke結果・既知制約、2026-04-01）
+- [`generated_dir_policy.md`](generated_dir_policy.md) — `scenarios/generated/` 運用方針（review.md 位置づけ・git ルール・ライフサイクル・クリーンアップ、2026-04-01）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

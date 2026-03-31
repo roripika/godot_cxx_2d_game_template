@@ -37,3 +37,10 @@ log.txt
 samples/mystery/scripts/verify_*.gd
 remove_bg.gd
 remove_magenta_bg.py
+
+# Generator 生成物（scenarios/generated/）
+# タイムスタンプ付き YAML はHG-4通過後に人間が git add -f で手動登録する
+# review.md はバージョン管理しない（作業メモ）
+# 期待出力サンプル（branching_basic_expected_output.yaml）は対象外（追跡済み）
+scenarios/generated/*_[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9][0-9][0-9][0-9][0-9].yaml
+scenarios/generated/*_review.md
