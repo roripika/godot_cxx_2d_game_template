@@ -198,3 +198,253 @@ scenarios/generated/
 | `docs/few_shot_prompts.md` | Shot 1（期待出力サンプルの出典） |
 | `docs/validate_scenario_guidance.md` | HG-3 向けエラー対処表 |
 | `scenarios/generated/branching_basic_expected_output.yaml` | 期待出力サンプル（validate 通過確認済み） |
+
+---
+
+---
+
+# Turn/Grid Basic — Generator 入口設計
+
+**ステータス**: 設計確定・実装未着手（Phase 3-C）  
+**バージョン**: v1.0-entry  
+**前提**: `docs/roguelike_test_design.md` / `docs/roguelike_test_completion.md`
+
+---
+
+## T12-1. 概要
+
+Turn/Grid Basic 用 Generator は Branching Basic（T11）の次に実装するスキャフォールドジェネレーターである。  
+入力として **Structured Spec** を受け取り、`setup_roguelike_round / load_fake_player_command / apply_player_attack or apply_player_move / apply_enemy_turn / resolve_roguelike_turn / evaluate_roguelike_round` を含む YAML 骨格を生成する。
+
+```
+[Structured Spec YAML]
+         │  template: turn_grid_basic
+         ▼
+   [gen_scenario_turn_grid.py]     (T12 で実装する想定)
+         │ pos-0 sacrifice 自動配置（clear / fail シーン）
+         │ __FILL_IN__ 挿入（省略フィールド）
+         ▼
+   [YAML 骨格]   → HG-2 → validate_scenario.py → HG-3 → runtime → HG-4
+```
+
+---
+
+## T12-2. 入力フィールド仕様
+
+### 2-1. 共通フィールド（Branching Basic と同一）
+
+| フィールド | 型 | 必須 | 説明 |
+|:---|:---:|:---:|:---|
+| `template` | string | ✅ | 固定値 `"turn_grid_basic"` |
+| `scenario_name` | string | ✅ | YAML ファイル名の一部（英数字・アンダースコアのみ） |
+| `description` | string | — | 人間向けコメント（YAML ヘッダに出力） |
+
+### 2-2. ターン制固有フィールド
+
+| フィールド | 型 | 必須 | 説明 |
+|:---|:---:|:---:|:---|
+| `player.hp` | int | ✅ | プレイヤー初期 HP（1〜10） |
+| `player.start_x` | int | — | プレイヤー初期 X 座標（0〜9。省略時はデフォルト） |
+| `player.start_y` | int | — | プレイヤー初期 Y 座標（0〜9。省略時はデフォルト） |
+| `enemies` | list | ✅ | 1〜4 体のリスト |
+| `enemies[].id` | string | ✅ | `enemy_1`〜`enemy_4` 形式 |
+| `enemies[].hp` | int | ✅ | 敵初期 HP（1〜10） |
+| `enemies[].x` | int | — | 敵初期 X 座標（0〜9。省略時はデフォルト） |
+| `enemies[].y` | int | — | 敵初期 Y 座標（0〜9。省略時はデフォルト） |
+| `first_command` | string | ✅ | プレイヤーの最初の行動（下表参照） |
+| `terminal_clear` | string | ✅ | クリア時の遷移先シーン名 |
+| `terminal_fail` | string | ✅ | 失敗時の遷移先シーン名 |
+
+**`first_command` 許可値**:
+
+| 値 | 生成される Task |
+|:---|:---|
+| `attack` | `apply_player_attack` `{target: enemy_1}` |
+| `move_up` | `apply_player_move`（payload なし） |
+| `move_down` | `apply_player_move`（payload なし） |
+| `move_left` | `apply_player_move`（payload なし） |
+| `move_right` | `apply_player_move`（payload なし） |
+
+---
+
+## T12-3. バリデーション規則
+
+| 規則 ID | 対象 | 内容 |
+|:---|:---|:---|
+| V-TG-01 | `template` | `"turn_grid_basic"` と完全一致すること |
+| V-TG-02 | `scenario_name` | 英数字・アンダースコアのみ。空文字・スペース禁止 |
+| V-TG-03 | `player.hp` | 1〜10 の整数 |
+| V-TG-04 | `enemies` | 1〜4 要素のリスト |
+| V-TG-05 | `enemies[].id` | `enemy_[1-4]` パターン。重複不可 |
+| V-TG-06 | `enemies[].hp` | 1〜10 の整数 |
+| V-TG-07 | `first_command` | `attack/move_up/move_down/move_left/move_right` のいずれか |
+| V-TG-08 | `terminal_clear` / `terminal_fail` | 互いに異なること。空文字禁止 |
+| V-TG-09 | 座標フィールド | 0〜9 の整数（省略は許可） |
+
+---
+
+## T12-4. Spec → YAML マッピング規則
+
+### 4-1. boot シーン（生成される Task 列）
+
+```
+setup_roguelike_round
+    player_hp:  <player.hp>
+    enemy_hp:   <enemies[0].hp>            # v1.0: 1 体目の hp を採用
+    [player_x:  <player.start_x>]          # 省略可
+    [player_y:  <player.start_y>]          # 省略可
+    [enemy_1_x: <enemies[0].x>]            # 省略可
+    [enemy_1_y: <enemies[0].y>]            # 省略可
+
+load_fake_player_command
+    command: <first_command>
+
+--- first_command が "attack" の場合 ---
+apply_player_attack
+    target: enemy_1                        # v1.0: 常に enemy_1（先頭のみ）
+
+--- first_command が "move_*" の場合 ---
+apply_player_move                          # payload なし
+
+apply_enemy_turn                           # payload なし
+resolve_roguelike_turn                     # payload なし
+
+evaluate_roguelike_round
+    if_clear:    <terminal_clear>
+    if_fail:     <terminal_fail>
+    if_continue: boot                      # 固定（ループで boot に戻る）
+```
+
+### 4-2. terminal シーン（clear / fail — pos-0 sacrifice 適用）
+
+```yaml
+<terminal_clear>:
+  on_enter:
+    - action: end_game          # pos-0 sacrifice（スキップされる）
+      payload: {result: solved}
+    - action: end_game          # 実際に実行される
+      payload: {result: solved}
+
+<terminal_fail>:
+  on_enter:
+    - action: end_game          # pos-0 sacrifice（スキップされる）
+      payload: {result: failed}
+    - action: end_game          # 実際に実行される
+      payload: {result: failed}
+```
+
+> **注意**: `boot` シーンは `start_scene` として最初から開始されるため pos-0 sacrifice 不要。  
+> pos-0 skip は **シーン遷移直後のみ** 発生する。`evaluate_roguelike_round` → `boot`（ループ）の場合はシーン遷移が発生するため、boot の pos-0 sacrifice 要否は HG-4 で検証が必要（R-1）。
+
+---
+
+## T12-5. Branching Basic との差異
+
+| 観点 | Branching Basic | Turn/Grid Basic |
+|:---|:---|:---|
+| シーン構造 | 線形（start → terminal） | ループあり（boot → boot） |
+| FakeCommand | 不要 | 必須（`load_fake_player_command`） |
+| エンティティ | エビデンス/条件のみ | Player + Enemy（複数対応） |
+| 結果分岐 | 2 経路（true/false） | 3 経路（clear/fail/continue） |
+| pos-0 sacrifice | terminal 2 シーン | terminal 2 シーン（boot は要調査） |
+| Task 数 | 3〜5（シーン構成による） | 6〜7 固定 |
+
+---
+
+## T12-6. 未解決リスク（実装前に確定が必要）
+
+| # | リスク | 優先度 | 解決方針 |
+|:---:|:---|:---:|:---|
+| R-1 | `evaluate_roguelike_round` → `boot` ループ時の pos-0 skip 発生有無 | 高 | T12 実装前に手動 YAML で HG-4 smoke を走らせて確認 |
+| R-2 | 複数 enemy（2〜4 体）の `setup_roguelike_round` payload 仕様（`enemy_2_hp` 等の扱い） | 中 | `task_catalog.md` / roguelike コードを確認 |
+| R-3 | `apply_player_attack.target` に `enemy_2` 以降を指定できるか | 中 | `src/games/roguelike_test/` の Task 実装を確認 |
+| R-4 | `apply_player_move` 方向のパラメータ渡し方（payload なしで `first_command` が使われるか） | 高 | `load_fake_player_command` が global state に書き `apply_player_move` が読む実装か確認 |
+
+---
+
+## T12-7. 最小 Spec 例
+
+```yaml
+template: turn_grid_basic
+scenario_name: dungeon_escape
+
+player:
+  hp: 3
+  start_x: 1
+  start_y: 1
+
+enemies:
+  - id: enemy_1
+    hp: 2
+    x: 2
+    y: 1
+
+first_command: attack
+
+terminal_clear: victory
+terminal_fail:  defeat
+```
+
+### 期待出力 YAML 骨格
+
+```yaml
+start_scene: boot
+
+scenes:
+
+  boot:
+    on_enter:
+      - action: setup_roguelike_round
+        payload:
+          player_hp: 3
+          enemy_hp:  2
+          player_x:  1
+          player_y:  1
+          enemy_1_x: 2
+          enemy_1_y: 1
+
+      - action: load_fake_player_command
+        payload:
+          command: attack
+
+      - action: apply_player_attack
+        payload:
+          target: enemy_1
+
+      - action: apply_enemy_turn
+
+      - action: resolve_roguelike_turn
+
+      - action: evaluate_roguelike_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: boot
+
+  victory:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  defeat:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}
+```
+
+---
+
+## T12-8. 実装予定ファイル
+
+| ファイル | 役割 |
+|:---|:---|
+| `tools/gen_scenario_turn_grid.py` | Turn/Grid Basic Scaffold Generator 本体 |
+| `scenarios/generated/turn_grid_basic_expected_output.yaml` | 期待出力サンプル（T12 実装後に追加） |
+| `docs/t12_gen_turn_grid_completion.md` | T12 完了メモ（T12 実装後に作成） |
+
+> **実装制約**: この節（T12-1〜T12-8）は設計確定済みだが、  
+> **R-1 / R-4 のリスクを HG-4 smoke で解消してから Generator 本体を実装すること。**
