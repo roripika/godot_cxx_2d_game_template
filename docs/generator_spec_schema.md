@@ -764,3 +764,324 @@ scenes:
 
 > **実装制約**: この節（T13-1〜T13-8）は設計確定済み。  
 > **R-5 / R-6 / R-7 はいずれも headless HG-4 smoke で確認済み**（2026-04-01）。Generator 本体の実装に進める。
+
+---
+
+---
+
+# Event-Driven Basic — Generator 入口設計
+
+**ステータス**: 設計確定・実装未着手（Phase 3-C）  
+**バージョン**: v1.0-entry  
+**前提**: `docs/billiards_test_completion.md`
+
+---
+
+## T14-1. 概要
+
+Event-Driven Basic 用 Generator は Time/Clock Basic（T13）の次に実装するスキャフォールドジェネレーターである。  
+`billiards_test` モジュールの Task 群（`setup_billiards_round` / `wait_for_billiards_event` / `record_billiards_event` / `evaluate_billiards_round`）を使い、**`TaskResult::Waiting` によるイベント待機ループ**を持つ YAML 骨格を生成する。
+
+```
+[Structured Spec YAML]
+         │  template: event_driven_basic
+         ▼
+   [gen_scenario_event_driven.py]     (T14 で実装)
+         │ boot(setup_round): pos-0 sacrifice 不要（_ready() 起動）
+         │ continue(shoot_again): pos-0 sacrifice 必要（×2 配置）
+         │ terminal:              pos-0 sacrifice 必要（×2 配置）
+         │ __FILL_IN__ 挿入（省略フィールド）
+         ▼
+   [YAML 骨格]   → HG-2 → validate_scenario.py → HG-3 → runtime → HG-4
+```
+
+### シーン構成（boot + continue ループ + 2 terminal）
+
+```
+setup_round  (boot: _ready() 起動)
+  └─ setup_billiards_round
+  └─ wait_for_billiards_event   ← timeout → balls_stopped 注入
+  └─ record_billiards_event × N  (boot_records)
+  └─ evaluate_billiards_round
+       ├── if_clear    → <terminal_clear>  (pos-0 sacrifice)
+       ├── if_fail     → <terminal_fail>   (pos-0 sacrifice)
+       └── if_continue → <continue_scene>  (pos-0 sacrifice)
+
+<continue_scene>  (continue: evaluate 経由)
+  └─ wait_for_billiards_event  [sacrifice, pos-0 skip]
+  └─ wait_for_billiards_event  [actual]
+  └─ record_billiards_event × M  (continue_records)
+  └─ evaluate_billiards_round (同様の3分岐)
+       └── if_continue → <continue_scene>  (自己ループ)
+
+<terminal_clear>  (terminal: evaluate 経由, pos-0 sacrifice)
+  └─ end_game(sacrifice)
+  └─ end_game
+
+<terminal_fail>   (terminal: evaluate 経由, pos-0 sacrifice)
+  └─ end_game(sacrifice)
+  └─ end_game
+```
+
+---
+
+## T14-2. 入力フィールド仕様
+
+### 2-1. 共通フィールド（前 Generator と同一）
+
+| フィールド | 型 | 必須 | 説明 |
+|:---|:---:|:---:|:---|
+| `template` | string | ✅ | 固定値 `"event_driven_basic"` |
+| `scenario_name` | string | ✅ | YAML ファイル名の一部（英数字・アンダースコアのみ） |
+| `description` | string | — | 人間向けコメント（YAML ヘッダに出力） |
+
+### 2-2. ラウンド設定固有フィールド
+
+| フィールド | 型 | 必須 | デフォルト | 説明 |
+|:---|:---:|:---:|:---:|:---|
+| `setup.shot_limit` | int | ✅ | — | ショット上限（1〜10） |
+| `setup.target_count` | int | ✅ | — | クリア必要ポケット数（1〜2） |
+| `wait_events` | list(string) | — | `[balls_stopped]` | 待機イベント名のリスト（各要素は有効イベント名） |
+| `wait_timeout` | float | — | `0.1` | タイムアウト秒数（headless smoke 用: > 0.0） |
+| `boot_records` | list(string) | — | `[]` | boot シーンで記録するイベント名リスト（有効イベント名のみ） |
+| `continue_records` | list(string) | — | `[]` | continue シーンで記録するイベント名リスト（有効イベント名のみ） |
+
+**有効イベント名**（`WaitForBilliardsEventTask` / `RecordBilliardsEventTask` 共通）:  
+`shot_committed`, `ball_pocketed`, `cue_ball_pocketed`, `balls_stopped`
+
+### 2-3. シーン名フィールド
+
+| フィールド | 型 | 必須 | 制約 | 説明 |
+|:---|:---:|:---:|:---|:---|
+| `scenes.continue` | string | — | 予約語禁止・英数字アンダースコア | continue 遷移先シーン名（デフォルト: `shoot_again`） |
+| `scenes.terminal_clear` | string | ✅ | 予約語禁止・`terminal_fail` と異なる | clear 遷移先シーン名 |
+| `scenes.terminal_fail` | string | ✅ | 予約語禁止・`terminal_clear` と異なる | fail 遷移先シーン名 |
+| `terminal_result.clear` | string | — | 有効 result 値 | デフォルト: `solved` |
+| `terminal_result.fail` | string | — | 有効 result 値 | デフォルト: `failed` |
+
+**予約済み内部シーン名**（`scenes.*` に使用不可）:  
+`setup_round`（boot シーン名は常に `setup_round` 固定）
+
+---
+
+## T14-3. バリデーション規則
+
+| 規則 ID | 対象 | 内容 |
+|:---|:---|:---|
+| V-ED-01 | `template` | `"event_driven_basic"` と完全一致すること |
+| V-ED-02 | `scenario_name` | `[a-z0-9_]` のみ。空文字・スペース禁止 |
+| V-ED-03 | `setup.shot_limit` | 1〜10 の整数 |
+| V-ED-04 | `setup.target_count` | 1〜2 の整数 |
+| V-ED-05 | `wait_events` | 非空リスト。各要素は `shot_committed/ball_pocketed/cue_ball_pocketed/balls_stopped` のいずれか |
+| V-ED-06 | `wait_timeout` | 浮動小数 > 0.0 |
+| V-ED-07 | `boot_records` | 各要素が有効イベント名であること |
+| V-ED-08 | `continue_records` | 各要素が有効イベント名であること |
+| V-ED-09 | `scenes.terminal_clear/fail` | 両方指定必須。互いに異なること。空文字禁止 |
+| V-ED-10 | `scenes.terminal_*` / `scenes.continue` | 予約語 `setup_round` は使用不可 |
+| V-ED-11 | `scenes.continue` | `terminal_clear` / `terminal_fail` と異なること |
+| V-ED-12 | `terminal_result.clear/fail` | 省略可。指定時は `solved/wrong/failed/lost/timeout` のいずれか |
+
+---
+
+## T14-4. Spec → YAML マッピング規則
+
+### 4-1. boot シーン（`setup_round` — pos-0 sacrifice 不要）
+
+```yaml
+setup_round:
+  on_enter:
+    - action: setup_billiards_round
+      payload:
+        shot_limit:   <setup.shot_limit>
+        target_count: <setup.target_count>
+
+    - action: wait_for_billiards_event
+      payload:
+        events:  <wait_events>
+        timeout: <wait_timeout>
+
+    # boot_records の各要素を順に出力（空の場合はなし）
+    - action: record_billiards_event
+      payload:
+        event: <boot_records[i]>
+
+    - action: evaluate_billiards_round
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: <scenes.continue>
+```
+
+> **R-1 準拠（確定）**: `boot` シーンは `_ready()` 経由で `load_scene_by_id(start_id)` → `start_actions(index=0)` → `_process()` で index=0 から実行。pos-0 sacrifice **不要**。
+
+### 4-2. continue シーン（pos-0 sacrifice 必要）
+
+`evaluate_billiards_round::execute()` → `load_scene_by_id(continue_scene)` → `start_actions(index=0)` → `execute()` が Success → `step_actions()` で `index++` → pos-0 スキップ。
+
+```yaml
+<scenes.continue>:
+  on_enter:
+    - action: wait_for_billiards_event  # pos-0 sacrifice（スキップされる）
+      payload:
+        events:  <wait_events>
+        timeout: <wait_timeout>
+    - action: wait_for_billiards_event  # 実際に実行される
+      payload:
+        events:  <wait_events>
+        timeout: <wait_timeout>
+
+    # continue_records の各要素を順に出力（空の場合はなし）
+    - action: record_billiards_event
+      payload:
+        event: <continue_records[i]>
+
+    - action: evaluate_billiards_round
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: <scenes.continue>
+```
+
+### 4-3. terminal シーン（clear / fail — pos-0 sacrifice 必要）
+
+```yaml
+<terminal_clear>:
+  on_enter:
+    - action: end_game          # pos-0 sacrifice（スキップされる）
+      payload: {result: <terminal_result.clear>}
+    - action: end_game          # 実際に実行される
+      payload: {result: <terminal_result.clear>}
+
+<terminal_fail>:
+  on_enter:
+    - action: end_game          # pos-0 sacrifice（スキップされる）
+      payload: {result: <terminal_result.fail>}
+    - action: end_game          # 実際に実行される
+      payload: {result: <terminal_result.fail>}
+```
+
+> **R-10（未確認）**: terminal シーンの pos-0 skip は T13/R-5 と同じメカニズムのはずだが、  
+> billiards_test では未 smoke 確認（`billiards_test_completion.md` セクション 9 参照）。  
+> 手動 smoke（headless HG-4）で確認後に「確定」とする。
+
+---
+
+## T14-5. Time/Clock Basic との差異
+
+| 観点 | Time/Clock Basic (T13) | Event-Driven Basic (T14) |
+|:---|:---|:---|
+| 時間管理 | `KernelClock.advance(ms)` による離散 step | `KernelClock.now()` による実時間タイムアウト |
+| フレーム依存 | なし（同期的 Task 実行） | あり（`TaskResult::Waiting` が `_process()` フレームを消費） |
+| Fake 入力方式 | `load_fake_tap` → 即時 WorldState 書き込み | `wait_for_billiards_event` timeout → `balls_stopped` 自動注入 |
+| ループ構造 | 4 中間シーン（advance/judge/resolve/loop_gate） | 1 continue シーン（自己ループ） |
+| pos-0 sacrifice | boot 不要 / 全中間シーン + terminal 必要 | boot 不要 / continue + terminal 必要 |
+| 結果分岐 | 3 経路（clear/fail/continue）× 4 中間シーン | 3 経路（clear/fail/continue）× 1 continue シーン |
+| Task 数 / boot | 2（setup + evaluate） | 3+N（setup + wait + records[N] + evaluate） |
+| headless 実行時間 | 即時（全 Task が同フレーム完了） | `wait_timeout × loop_count` 秒（フレーム待機必要） |
+
+---
+
+## T14-6. 未解決リスク
+
+| # | リスク | 状態 | 確認方法 |
+|:---:|:---|:---:|:---|
+| R-8 | `TaskResult::Waiting` が headless で正常動作するか。`_process(delta)` → `clock->advance(delta)` が正しく呼ばれ、`timeout: 0.1` 後に `balls_stopped` が注入されるか | ⚠️ **未確認** | `billiards_r8_waiting_smoke.yaml` + headless HG-4 |
+| R-9 | continue シーン（`shoot_again`）の pos-0 `wait_for_billiards_event` に sacrifice パターンを適用した場合、2つ目の wait が正常動作するか | ⚠️ **未確認** | `billiards_r9_continue_smoke.yaml` + headless HG-4 |
+| R-10 | terminal（`victory`/`defeat`）の pos-0 `end_game` に sacrifice を適用した場合、pos-1 の `end_game` が正常実行されるか（`billiards_test_completion.md` では未確認扱い） | ⚠️ **未確認** | R-8 smoke の terminal で兼用確認 |
+
+---
+
+## T14-7. 最小 Spec 例
+
+```yaml
+template: event_driven_basic
+scenario_name: billiards_clear
+
+setup:
+  shot_limit:   2
+  target_count: 1
+
+boot_records:
+  - shot_committed
+  - ball_pocketed
+
+scenes:
+  terminal_clear: victory
+  terminal_fail:  defeat
+```
+
+### 期待出力 YAML 骨格（抜粋）
+
+```yaml
+start_scene: setup_round
+
+scenes:
+  setup_round:
+    on_enter:
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   2
+          target_count: 1
+
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+
+      - action: record_billiards_event
+        payload:
+          event: shot_committed
+
+      - action: record_billiards_event
+        payload:
+          event: ball_pocketed
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again
+
+  shoot_again:
+    on_enter:
+      - action: wait_for_billiards_event  # pos-0 sacrifice
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again
+
+  victory:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  defeat:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}
+```
+
+---
+
+## T14-8. 実装予定ファイル
+
+| ファイル | 役割 |
+|:---|:---|
+| `tools/gen_scenario_event_driven.py` | Event-Driven Basic Scaffold Generator 本体 |
+| `scenarios/generated/event_driven_basic_expected_output.yaml` | 期待出力サンプル（T14 実装後に追加） |
+| `docs/t14_gen_event_driven_completion.md` | T14 完了メモ（T14 実装後に作成） |
+
+> **実装制約**: この節（T14-1〜T14-8）は設計確定済みだが、  
+> **R-8 / R-9 / R-10 を headless HG-4 smoke で解消してから Generator 本体を実装すること。**
