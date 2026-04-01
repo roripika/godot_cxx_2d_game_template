@@ -659,8 +659,8 @@ loop_gate:
       payload: {result: <terminal_result.fail>}
 ```
 
-> **R-5 注意（HG-4 smoke 確認待ち）**: terminal シーンも `load_scene_by_id` 経由で遷移するため pos-0 sacrifice が必要と想定。  
-> `scenario_runner.cpp` のコード解析では確定的だが、headless smoke で実証が必要。
+> **R-5 確定（headless HG-4 smoke 済み）**: terminal シーンも `load_scene_by_id` 経由で遷移するため pos-0 sacrifice が必要。  
+> `rhythm_r5_clear_smoke.yaml` / `rhythm_r5_fail_smoke.yaml` で `[EndGameTask] Game ended with result: solved/failed` を確認済み。
 
 ---
 
@@ -677,13 +677,17 @@ loop_gate:
 
 ---
 
-## T13-6. 未解決リスク
+## T13-6. リスク解決状況
 
-| # | リスク | 状態 | 確認方法 |
+| # | リスク | 状態 | 結果 |
 |:---:|:---|:---:|:---|
-| R-5 | `clear`/`fail` terminal シーンで pos-0 skip が発生し `end_game` が実行されないか | ⚠️ **要確認** | headless smoke で `[EndGameTask] Game ended with result:` ログ確認 |
-| R-6 | `advance`/`judge`/`resolve`/`loop_gate` 各中間シーンで sacrifice パターンが正しく動作するか | ⚠️ **要確認** | headless smoke で全ノーツサイクル完走確認 |
-| R-7 | headless の `_process()` frame delta が `advance_rhythm_clock` の `advance_ms` と干渉して `load_fake_tap` の `scheduled_tap <= now_ms` 判定を狂わせるか | ⚠️ **要確認** | headless smoke で perfect 判定ログ確認 |
+| R-5 | `clear`/`fail` terminal シーンで pos-0 skip が発生し `end_game` が実行されないか | ✅ **確定** | pos-0 skip 発生する。terminal に pos-0 sacrifice **必要**。pos-1 の `end_game` が正常実行され、`[EndGameTask] Game ended with result: solved/failed` を確認。smoke YAML: `rhythm_r5_clear_smoke.yaml` / `rhythm_r5_fail_smoke.yaml` |
+| R-6 | `advance`/`judge`/`resolve`/`loop_gate` 各中間シーンで sacrifice パターンが正しく動作するか | ✅ **確定** | 全中間シーン pos-0 sacrifice 必要・正常動作。3 ノーツ = 3 サイクル（advance→judge→resolve→loop_gate）を完走し `rhythm_clear` に到達。headless 実行で確認。 |
+| R-7 | headless の `_process()` frame delta が `advance_rhythm_clock` の `advance_ms` と干渉して `load_fake_tap` の `scheduled_tap <= now_ms` 判定を狂わせるか | ✅ **確定** | 干渉なし。headless での frame delta は `advance_ms` 進行量に対して無視できる範囲。`taps=[1000,2000,3000]` / `notes=[1000,2000,3000]` / `advance_ms=1000` で全 perfect 判定 → `result: solved` 確認。 |
+
+また、`scenario_runner.cpp` のコード解析により以下の動作が確定した:
+- `boot` 以外の全シーンは `evaluate_rhythm_round::execute()` → `load_scene_by_id()` → `execute()` returns Success → `step_actions()` while ループが `pending_action_index_++` → pos-0 がスキップされる
+- これは Turn/Grid Basic（R-1 確定）と同一のメカニズム
 
 ---
 
@@ -758,5 +762,5 @@ scenes:
 | `scenarios/generated/time_clock_basic_expected_output.yaml` | 期待出力サンプル（T13 実装後に追加） |
 | `docs/t13_gen_time_clock_completion.md` | T13 完了メモ（T13 実装後に作成） |
 
-> **実装制約**: この節（T13-1〜T13-8）は設計確定済みだが、  
-> **R-5 / R-6 / R-7 のリスクを headless HG-4 smoke で解消してから Generator 本体を実装すること。**
+> **実装制約**: この節（T13-1〜T13-8）は設計確定済み。  
+> **R-5 / R-6 / R-7 はいずれも headless HG-4 smoke で確認済み**（2026-04-01）。Generator 本体の実装に進める。

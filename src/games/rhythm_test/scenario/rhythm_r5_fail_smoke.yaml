@@ -1,0 +1,88 @@
+# rhythm_r5_fail_smoke.yaml
+#
+# 目的: R-5 headless HG-4 smoke — fail terminal 検証
+#   R-5: fail terminal に pos-0 sacrifice が必要か（end_game at pos-1 が実行されるか）
+#
+# 仕様: notes=[100,200,300], taps=[-1,-1,-1], advance_ms=1000
+#       max_miss_count=0 → 1回の advance 後 note_time=100 < now_ms=1000 + window → miss
+#       miss_count=1 > max_miss_count=0 → resolve の評価で即 fail
+#
+# 期待ログ:
+#   [JudgeRhythmNoteTask] (または同等の処理)
+#   [EndGameTask] Game ended with result: failed  ← R-5 検証
+
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_rhythm_round
+        payload:
+          notes: [100, 200, 300]
+          taps:  [-1, -1, -1]
+          advance_ms: 1000
+          clear_hit_count: 3
+          max_miss_count: 0
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+
+  advance:
+    on_enter:
+      - action: advance_rhythm_clock  # pos-0 sacrifice
+      - action: advance_rhythm_clock  # clock → ~1000ms（100+150=250 を超過 → miss 確定）
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: judge
+
+  judge:
+    on_enter:
+      - action: load_fake_tap        # pos-0 sacrifice
+      - action: load_fake_tap        # tap=-1（タップなし）
+      - action: judge_rhythm_note    # now=1000 > 100+150=250 → miss
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: resolve
+
+  resolve:
+    on_enter:
+      - action: resolve_rhythm_progress  # pos-0 sacrifice
+      - action: resolve_rhythm_progress  # miss_count=1, chart_index=1
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: loop_gate
+
+  loop_gate:
+    on_enter:
+      - action: evaluate_rhythm_round  # pos-0 sacrifice
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+      - action: evaluate_rhythm_round  # miss(1)>max(0) → fail
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+
+  rhythm_clear:
+    on_enter:
+      - action: end_game
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  rhythm_fail:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice（R-5 検証）
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}

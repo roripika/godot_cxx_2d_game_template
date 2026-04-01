@@ -1,0 +1,93 @@
+# rhythm_r5_clear_smoke.yaml
+#
+# 目的: R-5/R-6/R-7 headless HG-4 smoke
+#   R-5: clear terminal に pos-0 sacrifice が必要か（terminal_clear への遷移で end_game 実行確認）
+#   R-6: advance/judge/resolve/loop_gate 各中間シーンの sacrifice パターン動作確認
+#   R-7: headless _process() frame delta が advance_ms ベースの clock に干渉しないか確認
+#
+# 仕様: notes=[1000,2000,3000], taps=[1000,2000,3000], advance_ms=1000
+#       clear_hit_count=3, max_miss_count=0  → 全 perfect → result: solved 期待
+#
+# pos-0 sacrifice パターン（T13-4 設計通り）:
+#   boot:      sacrifice 不要（_ready() 起動）
+#   advance:   advance_rhythm_clock ×2（sacrifice + real）
+#   judge:     load_fake_tap ×2（sacrifice + real）
+#   resolve:   resolve_rhythm_progress ×2（sacrifice + real）
+#   loop_gate: evaluate_rhythm_round ×2（sacrifice + real）
+#   terminal:  end_game ×2（sacrifice + real）  ← R-5 検証箇所
+
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_rhythm_round
+        payload:
+          notes: [1000, 2000, 3000]
+          taps:  [1000, 2000, 3000]
+          advance_ms: 1000
+          clear_hit_count: 3
+          max_miss_count: 0
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+
+  advance:
+    on_enter:
+      - action: advance_rhythm_clock  # pos-0 sacrifice（スキップされる）
+      - action: advance_rhythm_clock  # 実際に実行される
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: judge
+
+  judge:
+    on_enter:
+      - action: load_fake_tap        # pos-0 sacrifice
+      - action: load_fake_tap        # 実際に実行される
+      - action: judge_rhythm_note
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: resolve
+
+  resolve:
+    on_enter:
+      - action: resolve_rhythm_progress  # pos-0 sacrifice
+      - action: resolve_rhythm_progress  # 実際に実行される
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: loop_gate
+
+  loop_gate:
+    on_enter:
+      - action: evaluate_rhythm_round  # pos-0 sacrifice
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+      - action: evaluate_rhythm_round  # 実際に実行される
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+
+  rhythm_clear:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice（R-5 検証：スキップされる）
+        payload: {result: solved}
+      - action: end_game              # 実際に実行される
+        payload: {result: solved}
+
+  rhythm_fail:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}
