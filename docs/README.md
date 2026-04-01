@@ -46,6 +46,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`generated_dir_policy.md`](generated_dir_policy.md) — `scenarios/generated/` 運用方針（review.md 位置づけ・git ルール・ライフサイクル・クリーンアップ、2026-04-01）
 - [`generator_spec_schema.md`](generator_spec_schema.md) — Branching Basic + **Turn/Grid Basic 入口設計**（Spec スキーマ・V-TG-01〜V-TG-09・マッピング規則・R-1/R-4 確定済み、2026-04-01 更新）
 - [`t12_gen_turn_grid_completion.md`](t12_gen_turn_grid_completion.md) — T12 完了メモ（gen_scenario_turn_grid.py / R-1 smoke 結果・出力仕様・既知制限、2026-04-01）
+- [`generator_spec_schema.md`](generator_spec_schema.md) — **Time/Clock Basic 入口設計追加**（T13 節: V-TC-01〜V-TC-12・R-5/R-6/R-7 未解決リスク・全シーン sacrifice マッピング、2026-04-01 更新）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

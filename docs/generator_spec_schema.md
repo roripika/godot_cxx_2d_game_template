@@ -450,3 +450,313 @@ scenes:
 
 > **実装制約**: この節（T12-1〜T12-8）は設計確定済みだが、  
 > **R-1 / R-4 のリスクを HG-4 smoke で解消してから Generator 本体を実装すること。**
+
+---
+
+---
+
+# Time/Clock Basic — Generator 入口設計
+
+**ステータス**: 設計確定・実装未着手（Phase 3-C）  
+**バージョン**: v1.0-entry  
+**前提**: `docs/rhythm_test_design.md` / `docs/rhythm_test_completion.md`
+
+---
+
+## T13-1. 概要
+
+Time/Clock Basic 用 Generator は Turn/Grid Basic（T12）の次に実装するスキャフォールドジェネレーターである。  
+`rhythm_test` モジュールの Task 群（`setup_rhythm_round` / `advance_rhythm_clock` / `load_fake_tap` / `judge_rhythm_note` / `resolve_rhythm_progress` / `evaluate_rhythm_round`）を使い、**時間軸同期型の判定ループ**を持つ YAML 骨格を生成する。
+
+```
+[Structured Spec YAML]
+         │  template: time_clock_basic
+         ▼
+   [gen_scenario_time_clock.py]     (T13 で実装)
+         │ boot:             pos-0 sacrifice 不要（_ready() 起動）
+         │ 中間シーン:       pos-0 sacrifice 必要（×2 配置）
+         │ terminal:         pos-0 sacrifice 必要（×2 配置）
+         │ __FILL_IN__ 挿入（省略フィールド）
+         ▼
+   [YAML 骨格]   → HG-2 → validate_scenario.py → HG-3 → runtime → HG-4
+```
+
+### シーン構成（固定 4 中間シーン + 2 terminal）
+
+```
+boot
+ └──(evaluate → if_continue)──▶ advance
+                                   └──(evaluate → if_continue)──▶ judge
+                                                                      └──(evaluate → if_continue)──▶ resolve
+                                                                                                        └──(evaluate → if_continue)──▶ loop_gate
+                                                                                                                                          └──(evaluate → if_continue)──▶ advance  ← ループ
+                                                           ↓ if_clear                                ↓ if_clear                              ↓ if_clear
+                                                         terminal_clear                           terminal_clear                         terminal_clear
+                                                           ↓ if_fail                                 ↓ if_fail                               ↓ if_fail
+                                                         terminal_fail                            terminal_fail                          terminal_fail
+```
+
+---
+
+## T13-2. 入力フィールド仕様
+
+### 2-1. 共通フィールド
+
+| フィールド | 型 | 必須 | 説明 |
+|:---|:---:|:---:|:---|
+| `template` | string | ✅ | 固定値 `"time_clock_basic"` |
+| `scenario_name` | string | ✅ | YAML ファイル名の一部（英数字・アンダースコアのみ） |
+| `description` | string | — | 人間向けコメント（YAML ヘッダに出力） |
+
+### 2-2. 譜面・タイミング固有フィールド
+
+| フィールド | 型 | 必須 | デフォルト | 説明 |
+|:---|:---:|:---:|:---:|:---|
+| `notes` | list(int) | ✅ | — | ノーツ時刻 ms（3〜5 要素、正数、厳密昇順） |
+| `taps` | list(int) | ✅ | — | タップ時刻 ms（`notes` と同数、-1 = タップなし） |
+| `advance_ms` | int | — | `1000` | 1 ステップごとのクロック進行 ms |
+| `perfect_window_ms` | int | — | `50` | perfect 判定幅 ms |
+| `good_window_ms` | int | — | `150` | good 判定幅 ms（`>= perfect_window_ms`） |
+| `clear_hit_count` | int | — | `notes.length` | クリアに必要な hit 数（perfect + good） |
+| `max_miss_count` | int | — | `1` | 許容 miss 数（0 = 1 miss で即 fail） |
+
+### 2-3. シーン名フィールド
+
+| フィールド | 型 | 必須 | 制約 | 説明 |
+|:---|:---:|:---:|:---|:---|
+| `scenes.terminal_clear` | string | ✅ | 予約語禁止・`terminal_fail` と異なる | クリア時の遷移先シーン名 |
+| `scenes.terminal_fail` | string | ✅ | 予約語禁止・`terminal_clear` と異なる | 失敗時の遷移先シーン名 |
+| `terminal_result.clear` | string | — | 有効 result 値 | デフォルト: `solved` |
+| `terminal_result.fail` | string | — | 有効 result 値 | デフォルト: `failed` |
+
+**予約済み内部シーン名**（`terminal_clear` / `terminal_fail` に使用不可）:  
+`boot`, `advance`, `judge`, `resolve`, `loop_gate`
+
+---
+
+## T13-3. バリデーション規則
+
+| 規則 ID | 対象 | 内容 |
+|:---|:---|:---|
+| V-TC-01 | `template` | `"time_clock_basic"` と完全一致すること |
+| V-TC-02 | `scenario_name` | `[a-z0-9_]` のみ。空文字・スペース禁止 |
+| V-TC-03 | `notes` | 3〜5 要素のリスト。各要素は正整数（> 0）かつ厳密昇順 |
+| V-TC-04 | `taps` | `notes` と同数。各要素は整数 `>= -1`（-1 = タップなし） |
+| V-TC-05 | `advance_ms` | 正整数（> 0） |
+| V-TC-06 | `clear_hit_count` | 1 〜 `len(notes)` の範囲内。省略時は `len(notes)` |
+| V-TC-07 | `max_miss_count` | 0 以上の整数。省略時は `1` |
+| V-TC-08 | `scenes.terminal_clear/fail` | 両方指定必須。互いに異なること。空文字禁止 |
+| V-TC-09 | `scenes.terminal_clear/fail` | 予約済みシーン名（`boot/advance/judge/resolve/loop_gate`）は使用不可 |
+| V-TC-10 | `terminal_result.clear/fail` | 省略可。指定時は `solved/wrong/failed/lost/timeout` のいずれか |
+| V-TC-11 | `perfect_window_ms` | 正整数（> 0） |
+| V-TC-12 | `good_window_ms` | `>= perfect_window_ms` |
+
+---
+
+## T13-4. Spec → YAML マッピング規則
+
+### 4-1. boot シーン
+
+```
+setup_rhythm_round
+    notes:             <notes>
+    taps:              <taps>
+    advance_ms:        <advance_ms>          # 省略可（デフォルト 1000）
+    [perfect_window_ms: <perfect_window_ms>] # 省略可
+    [good_window_ms:    <good_window_ms>]     # 省略可
+    [clear_hit_count:   <clear_hit_count>]   # 省略可
+    [max_miss_count:    <max_miss_count>]    # 省略可
+
+evaluate_rhythm_round
+    if_clear:    <terminal_clear>
+    if_fail:     <terminal_fail>
+    if_continue: advance                     # 固定
+```
+
+> **R-1 準拠（確定）**: `boot` に **pos-0 sacrifice 不要**。  
+> `_ready()` 経由の起動では `start_actions(0)` が pos-0 から正常実行するため。
+
+### 4-2. 中間シーン（全シーンに pos-0 sacrifice 必要）
+
+タスク内から `evaluate_rhythm_round` → `load_scene_by_id()` が呼ばれる → `execute()` が Success を返す → `step_actions()` while ループが `pending_action_index_++` → pos-0 がスキップ。  
+**`boot` 以外の全シーンで pos-0 sacrifice（同一タスクの複製）が必要**。
+
+#### advance シーン
+
+```yaml
+advance:
+  on_enter:
+    - action: advance_rhythm_clock  # pos-0 sacrifice（スキップされる）
+    - action: advance_rhythm_clock  # 実際に実行される
+    - action: evaluate_rhythm_round
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: judge
+```
+
+#### judge シーン
+
+```yaml
+judge:
+  on_enter:
+    - action: load_fake_tap          # pos-0 sacrifice
+    - action: load_fake_tap          # 実際に実行される
+    - action: judge_rhythm_note
+    - action: evaluate_rhythm_round
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: resolve
+```
+
+#### resolve シーン
+
+```yaml
+resolve:
+  on_enter:
+    - action: resolve_rhythm_progress  # pos-0 sacrifice
+    - action: resolve_rhythm_progress  # 実際に実行される
+    - action: evaluate_rhythm_round
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: loop_gate
+```
+
+#### loop_gate シーン（ループ継続判定）
+
+```yaml
+loop_gate:
+  on_enter:
+    - action: evaluate_rhythm_round  # pos-0 sacrifice
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: advance
+    - action: evaluate_rhythm_round  # 実際に実行される
+      payload:
+        if_clear:    <terminal_clear>
+        if_fail:     <terminal_fail>
+        if_continue: advance
+```
+
+### 4-3. terminal シーン（clear / fail）
+
+```yaml
+<terminal_clear>:
+  on_enter:
+    - action: end_game          # pos-0 sacrifice（スキップされる）
+      payload: {result: <terminal_result.clear>}
+    - action: end_game          # 実際に実行される
+      payload: {result: <terminal_result.clear>}
+
+<terminal_fail>:
+  on_enter:
+    - action: end_game          # pos-0 sacrifice（スキップされる）
+      payload: {result: <terminal_result.fail>}
+    - action: end_game          # 実際に実行される
+      payload: {result: <terminal_result.fail>}
+```
+
+> **R-5 注意（HG-4 smoke 確認待ち）**: terminal シーンも `load_scene_by_id` 経由で遷移するため pos-0 sacrifice が必要と想定。  
+> `scenario_runner.cpp` のコード解析では確定的だが、headless smoke で実証が必要。
+
+---
+
+## T13-5. Turn/Grid Basic との差異
+
+| 観点 | Turn/Grid Basic (T12) | Time/Clock Basic (T13) |
+|:---|:---|:---|
+| ループ構造 | 単一 boot ループ | 4 中間シーン（advance/judge/resolve/loop_gate）ループ |
+| pos-0 sacrifice | boot 不要 / terminal 必要 | boot 不要 / **全中間シーン + terminal 必要** |
+| Task 数 / シーン | boot: 5〜7, terminal: 2 | boot: 2, 中間: 各 2〜4, terminal: 2 |
+| 時間軸 | なし（ターン制） | `KernelClock` による ms 単位の時間管理 |
+| 入力モデル | `load_fake_player_command` → WorldState | `load_fake_tap` → WorldState |
+| 結果分岐 | 3 経路（clear/fail/continue） | 3 経路（clear/fail/continue）× 4 シーン |
+
+---
+
+## T13-6. 未解決リスク
+
+| # | リスク | 状態 | 確認方法 |
+|:---:|:---|:---:|:---|
+| R-5 | `clear`/`fail` terminal シーンで pos-0 skip が発生し `end_game` が実行されないか | ⚠️ **要確認** | headless smoke で `[EndGameTask] Game ended with result:` ログ確認 |
+| R-6 | `advance`/`judge`/`resolve`/`loop_gate` 各中間シーンで sacrifice パターンが正しく動作するか | ⚠️ **要確認** | headless smoke で全ノーツサイクル完走確認 |
+| R-7 | headless の `_process()` frame delta が `advance_rhythm_clock` の `advance_ms` と干渉して `load_fake_tap` の `scheduled_tap <= now_ms` 判定を狂わせるか | ⚠️ **要確認** | headless smoke で perfect 判定ログ確認 |
+
+---
+
+## T13-7. 最小 Spec 例
+
+```yaml
+template: time_clock_basic
+scenario_name: rhythm_minimal
+
+notes: [1000, 2000, 3000]
+taps:  [1000, 2000, 3000]
+
+scenes:
+  terminal_clear: rhythm_clear
+  terminal_fail:  rhythm_fail
+```
+
+（`advance_ms`=1000 / `clear_hit_count`=3 / `max_miss_count`=1 が暗黙デフォルト）
+
+### 期待出力 YAML 骨格（抜粋）
+
+```yaml
+start_scene: boot
+
+scenes:
+  boot:
+    on_enter:
+      - action: setup_rhythm_round
+        payload:
+          notes: [1000, 2000, 3000]
+          taps:  [1000, 2000, 3000]
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: advance
+
+  advance:
+    on_enter:
+      - action: advance_rhythm_clock  # pos-0 sacrifice
+      - action: advance_rhythm_clock
+      - action: evaluate_rhythm_round
+        payload:
+          if_clear:    rhythm_clear
+          if_fail:     rhythm_fail
+          if_continue: judge
+
+  # ... judge / resolve / loop_gate （各シーン pos-0 sacrifice 適用）
+
+  rhythm_clear:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice
+        payload: {result: solved}
+      - action: end_game
+        payload: {result: solved}
+
+  rhythm_fail:
+    on_enter:
+      - action: end_game              # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}
+```
+
+---
+
+## T13-8. 実装予定ファイル
+
+| ファイル | 役割 |
+|:---|:---|
+| `tools/gen_scenario_time_clock.py` | Time/Clock Basic Scaffold Generator 本体 |
+| `scenarios/generated/time_clock_basic_expected_output.yaml` | 期待出力サンプル（T13 実装後に追加） |
+| `docs/t13_gen_time_clock_completion.md` | T13 完了メモ（T13 実装後に作成） |
+
+> **実装制約**: この節（T13-1〜T13-8）は設計確定済みだが、  
+> **R-5 / R-6 / R-7 のリスクを headless HG-4 smoke で解消してから Generator 本体を実装すること。**
