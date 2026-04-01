@@ -1,0 +1,96 @@
+# billiards_r9_continue_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# T14 Risk R-9 確認用 headless smoke
+#
+# 目的:
+#   R-9: continue シーン (shoot_again) の pos-0 sacrifice が正常動作するか
+#        → evaluate_billiards_round → load_scene_by_id(shoot_again) → pos-0 skip
+#        → pos-0 の wait_for_billiards_event（sacrifice）がスキップされ、
+#           pos-1 の wait_for_billiards_event（actual）が timeout まで Waiting
+#           → balls_stopped 注入 → record ball_pocketed → clear → victory
+#
+# カバーするパス: continue → clear
+#   setup_round:
+#     wait (0.1) → shot_committed (shots=1) → evaluate: shots<limit, pocketed<target → continue
+#   shoot_again (continue, evaluated → pos-0 skip):
+#     [pos-0 sacrifice skip] → wait (actual, 0.1) → ball_pocketed → clear → victory
+#   victory: pos-0 sacrifice → end_game(solved)
+#
+# WorldState 期待値（clear 到達時）:
+#   round:shots_taken        1
+#   round:target_1_pocketed  true
+#   round:cue_ball_pocketed  false
+#   round:result             "clear"
+#   event:last_name          "ball_pocketed"
+#
+# 期待ログ:
+#   1周目: [WaitForBilliardsEventTask] Timeout: injecting balls_stopped.
+#          [EvaluateBilliardsRoundTask] Continue → shoot_again
+#   2周目: [WaitForBilliardsEventTask] Timeout: injecting balls_stopped.
+#          [EvaluateBilliardsRoundTask] Clear → victory
+#          [EndGameTask] Game ended with result: solved
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: setup_round
+
+scenes:
+  # 1. boot（_ready() 起動: pos-0 sacrifice 不要） ────────────────────────────
+  setup_round:
+    on_enter:
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   3
+          target_count: 1
+
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+
+      - action: record_billiards_event
+        payload:
+          event: shot_committed   # shots_taken=1
+
+      # shots(1) < limit(3), pocketed(0) < target(1) → continue
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again
+
+  # 2. continue ─ pos-0 sacrifice 適用（R-9 確認） ────────────────────────────
+  shoot_again:
+    on_enter:
+      - action: wait_for_billiards_event  # pos-0 sacrifice（スキップされる）
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+      - action: wait_for_billiards_event  # 実際に実行される（Waiting → timeout → Success）
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1
+
+      - action: record_billiards_event
+        payload:
+          event: ball_pocketed    # target_1_pocketed=true → pocketed(1) >= target(1)
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: defeat   # 3周目以降に到達した場合は fail（このシナリオでは到達しない）
+
+  # 3. clear terminal（pos-0 sacrifice 適用） ─────────────────────────────────
+  victory:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice（スキップされる）
+        payload: {result: solved}
+      - action: end_game          # 実際に実行される
+        payload: {result: solved}
+
+  # 4. fail terminal（pos-0 sacrifice 適用） ─────────────────────────────────
+  defeat:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice（スキップされる）
+        payload: {result: failed}
+      - action: end_game          # 実際に実行される
+        payload: {result: failed}

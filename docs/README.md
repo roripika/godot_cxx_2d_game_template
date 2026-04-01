@@ -49,6 +49,7 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`generator_spec_schema.md`](generator_spec_schema.md) — **Time/Clock Basic 入口設計追加**（T13 節: V-TC-01〜V-TC-12・R-5/R-6/R-7 未解決リスク・全シーン sacrifice マッピング、2026-04-01 更新）
 - [`t13_gen_time_clock_completion.md`](t13_gen_time_clock_completion.md) — T13 完了メモ（gen_scenario_time_clock.py / R-5/R-6/R-7 smoke 結果・出力仕様・既知制限、2026-04-01）
 - [`generator_spec_schema.md`](generator_spec_schema.md) — **Event-Driven Basic 入口設計追加**（T14 節: V-ED-01〜V-ED-12・R-8/R-9/R-10 未解決リスク・continue/terminal sacrifice マッピング、2026-04-01 更新）
+- [`t14_gen_event_driven_completion.md`](t14_gen_event_driven_completion.md) — T14 完了メモ（gen_scenario_event_driven.py / R-8/R-9/R-10 smoke 結果・出力仕様・既知制限、2026-04-01）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

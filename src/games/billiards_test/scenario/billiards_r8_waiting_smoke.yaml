@@ -1,0 +1,79 @@
+# billiards_r8_waiting_smoke.yaml
+# ──────────────────────────────────────────────────────────────────────────────
+# T14 Risk R-8 + R-10 確認用 headless smoke
+#
+# 目的:
+#   R-8: TaskResult::Waiting が headless で正常動作するか
+#        → _process(delta) → KernelClock::advance(delta) が呼ばれ、
+#          timeout: 0.1s 後に balls_stopped が注入されるか
+#   R-10: terminal (victory / defeat) の pos-0 sacrifice が正常動作するか
+#         → evaluate_billiards_round → load_scene_by_id(victory) → pos-0 skip
+#            → pos-1 の end_game が実行されるか
+#
+# カバーするパス: clear
+#   setup_round:
+#     wait (timeout 0.1) → balls_stopped 注入 → ball_pocketed 記録
+#     → evaluate: pocketed(1) >= target_count(1) → victory (clear)
+#   victory: pos-0 sacrifice → pos-1 end_game(solved)
+#
+# WorldState keys:
+#   round:shots_taken        int    0 (shot_committed 未記録)
+#   round:target_1_pocketed  bool   true
+#   round:cue_ball_pocketed  bool   false
+#   round:result             str    "clear"
+#   event:last_name          str    "ball_pocketed"
+#
+# 期待ログ:
+#   [WaitForBilliardsEventTask] Timeout: injecting balls_stopped.
+#   [EvaluateBilliardsRoundTask] Clear → victory
+#   [EndGameTask] Game ended with result: solved
+# ──────────────────────────────────────────────────────────────────────────────
+start_scene: setup_round
+
+scenes:
+  # 1. boot（_ready() 起動: pos-0 sacrifice 不要） ────────────────────────────
+  setup_round:
+    on_enter:
+      - action: setup_billiards_round
+        payload:
+          shot_limit:   3
+          target_count: 1
+
+      - action: wait_for_billiards_event
+        payload:
+          events:  [balls_stopped]
+          timeout: 0.1        # R-8: timeout 経由で balls_stopped を注入
+
+      - action: record_billiards_event
+        payload:
+          event: ball_pocketed  # pocketed=1 >= target_count=1 → clear
+
+      - action: evaluate_billiards_round
+        payload:
+          if_clear:    victory
+          if_fail:     defeat
+          if_continue: shoot_again
+
+  # 2. continue（このシナリオでは未到達） ─────────────────────────────────────
+  shoot_again:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice
+        payload: {result: failed}
+      - action: end_game
+        payload: {result: failed}
+
+  # 3. clear terminal（R-10: pos-0 sacrifice 適用） ──────────────────────────
+  victory:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice（スキップされる）
+        payload: {result: solved}
+      - action: end_game          # 実際に実行される
+        payload: {result: solved}
+
+  # 4. fail terminal（R-10: pos-0 sacrifice 適用） ───────────────────────────
+  defeat:
+    on_enter:
+      - action: end_game          # pos-0 sacrifice（スキップされる）
+        payload: {result: failed}
+      - action: end_game          # 実際に実行される
+        payload: {result: failed}

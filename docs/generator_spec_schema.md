@@ -960,9 +960,8 @@ setup_round:
       payload: {result: <terminal_result.fail>}
 ```
 
-> **R-10（未確認）**: terminal シーンの pos-0 skip は T13/R-5 と同じメカニズムのはずだが、  
-> billiards_test では未 smoke 確認（`billiards_test_completion.md` セクション 9 参照）。  
-> 手動 smoke（headless HG-4）で確認後に「確定」とする。
+> **R-10 確定（headless HG-4 smoke 済み）**: terminal シーンの pos-0 skip は T13/R-5 と同じメカニズム。  
+> `billiards_r8_waiting_smoke.yaml` の `victory` Action count: 2.0 → pos-0 skip → pos-1 `end_game(solved)` 実行確認。
 
 ---
 
@@ -981,13 +980,18 @@ setup_round:
 
 ---
 
-## T14-6. 未解決リスク
+## T14-6. リスク解決状況
 
-| # | リスク | 状態 | 確認方法 |
+| # | リスク | 状態 | 結果 |
 |:---:|:---|:---:|:---|
-| R-8 | `TaskResult::Waiting` が headless で正常動作するか。`_process(delta)` → `clock->advance(delta)` が正しく呼ばれ、`timeout: 0.1` 後に `balls_stopped` が注入されるか | ⚠️ **未確認** | `billiards_r8_waiting_smoke.yaml` + headless HG-4 |
-| R-9 | continue シーン（`shoot_again`）の pos-0 `wait_for_billiards_event` に sacrifice パターンを適用した場合、2つ目の wait が正常動作するか | ⚠️ **未確認** | `billiards_r9_continue_smoke.yaml` + headless HG-4 |
-| R-10 | terminal（`victory`/`defeat`）の pos-0 `end_game` に sacrifice を適用した場合、pos-1 の `end_game` が正常実行されるか（`billiards_test_completion.md` では未確認扱い） | ⚠️ **未確認** | R-8 smoke の terminal で兼用確認 |
+| R-8 | `TaskResult::Waiting` が headless で正常動作するか。`_process(delta)` → `clock->advance(delta)` が正しく呼ばれ、`timeout: 0.1` 後に `balls_stopped` が注入されるか | ✅ **確定** | 正常動作。`[WaitForBilliardsEventTask] Timeout: injecting balls_stopped.` → evaluate → `solved` を確認。smoke YAML: `billiards_r8_waiting_smoke.yaml` |
+| R-9 | continue シーン（`shoot_again`）の pos-0 `wait_for_billiards_event` に sacrifice パターンを適用した場合、2つ目の wait が正常動作するか | ✅ **確定** | pos-0 sacrifice スキップ → pos-1 の actual wait が `Waiting` ポーリング → timeout → `balls_stopped` 注入 → `evaluate Clear → victory → solved` を確認。smoke YAML: `billiards_r9_continue_smoke.yaml` |
+| R-10 | terminal（`victory`/`defeat`）の pos-0 `end_game` に sacrifice を適用した場合、pos-1 の `end_game` が正常実行されるか（`billiards_test_completion.md` では未確認扱い） | ✅ **確定** | `victory` Action count: 2.0 → pos-0 skip → pos-1 `end_game(solved)` 実行確認。R-8 smoke の terminal で兼用確認。 |
+
+また、`scenario_runner.cpp` のコード解析により以下の動作が確定した:
+- `setup_round`（boot シーン）は `_ready()` 経由の `load_scene_by_id` → `start_actions(index=0)` → `_process()` で index=0 から実行。pos-0 sacrifice **不要**。
+- `shoot_again`（continue シーン）は `evaluate_billiards_round::execute()` → `load_scene_by_id()` → `execute()` returns Success → `step_actions()` while ループ `pending_action_index_++` → pos-0 スキップ。**sacrifice 必要**。
+- terminal（`victory`/`defeat`）は continue と同じメカニズム。**sacrifice 必要**。
 
 ---
 
@@ -1083,5 +1087,5 @@ scenes:
 | `scenarios/generated/event_driven_basic_expected_output.yaml` | 期待出力サンプル（T14 実装後に追加） |
 | `docs/t14_gen_event_driven_completion.md` | T14 完了メモ（T14 実装後に作成） |
 
-> **実装制約**: この節（T14-1〜T14-8）は設計確定済みだが、  
-> **R-8 / R-9 / R-10 を headless HG-4 smoke で解消してから Generator 本体を実装すること。**
+> **実装制約**: この節（T14-1〜T14-8）は設計確定済み。  
+> **R-8 / R-9 / R-10 はいずれも headless HG-4 smoke で確認済み**（2026-04-01）。Generator 本体の実装に進める。
