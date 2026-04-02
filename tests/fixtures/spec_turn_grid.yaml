@@ -1,0 +1,17 @@
+# turn_grid_basic spec fixture
+# scenarios/generated/turn_grid_basic_expected_output.yaml と同じ出力を生成する spec。
+# 座標省略（hp のみ）の最小構成
+template: turn_grid_basic
+scenario_name: dungeon_escape
+
+player:
+  hp: 3
+
+enemies:
+  - id: enemy_1
+    hp: 2
+
+first_command: attack
+
+terminal_clear: victory
+terminal_fail:  defeat

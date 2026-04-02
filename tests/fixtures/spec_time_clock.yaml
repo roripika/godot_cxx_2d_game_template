@@ -1,0 +1,12 @@
+# time_clock_basic spec fixture
+# scenarios/generated/time_clock_basic_expected_output.yaml と同じ出力を生成する spec。
+# 最小構成（notes 3 件・全オプション省略）
+template: time_clock_basic
+scenario_name: rhythm_minimal
+
+notes: [1000, 2000, 3000]
+taps:  [1000, 2000, 3000]
+
+scenes:
+  terminal_clear: rhythm_clear
+  terminal_fail:  rhythm_fail
