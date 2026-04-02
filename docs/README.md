@@ -19,6 +19,15 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 | [`kernel_test_matrix.md`](kernel_test_matrix.md) | 全モジュールの現状とカバレッジ地図 |
 | **この README.md** | ゲートウェイ（本ファイル） |
 
+### Phase 4 最短導線（まずこの順で読む）
+
+Phase 4 系タスクに着手する場合は、以下 4 本を先に読む。
+
+1. [`phase4_entry.md`](phase4_entry.md) — 境界条件（in-scope / out-of-scope / HG 維持）
+2. [`phase4_backlog.md`](phase4_backlog.md) — 実行順（P0/P1/P2）と現在ステータス
+3. [`human_gate_decision_matrix.md`](human_gate_decision_matrix.md) — HG-1〜HG-4 判定基準
+4. [`generator_commonization_candidates.md`](generator_commonization_candidates.md) — 共通化候補/非候補
+
 ### 層B — 必要時のみ参照
 
 特定のモジュールや移行作業をする場合のみ読む。
