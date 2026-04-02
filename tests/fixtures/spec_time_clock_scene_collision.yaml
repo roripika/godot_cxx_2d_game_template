@@ -1,0 +1,11 @@
+# time_clock_scene_collision fixture (GTC-05)
+# terminal シーン名衝突で generator が失敗することを確認する。
+template: time_clock_basic
+scenario_name: rhythm_minimal
+
+notes: [1000, 2000, 3000]
+taps:  [1000, 2000, 3000]
+
+scenes:
+  terminal_clear: same_terminal
+  terminal_fail:  same_terminal

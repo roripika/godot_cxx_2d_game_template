@@ -2,7 +2,7 @@
 """
 tests/test_generators.py
 ========================
-4 Generator の統合 smoke テスト（Batch A 対応）。
+4 Generator の統合 smoke テスト（Batch B 対応）。
 
 パイプライン:
   spec fixture → generator 実行 → validate_scenario.py → expected output 照合
@@ -13,10 +13,14 @@ tests/test_generators.py
   Step 2: validate_scenario.py で生成 YAML を検証し、exit 0 を確認
   Step 3: 生成 YAML を PyYAML でロードし、expected output と構造的に一致するか比較
 
-負ケース（GTC-02 / GTC-03）は以下を確認する:
+負ケース（GTC-02 / GTC-03 / GTC-04 / GTC-05）は以下を確認する:
   - generator が non-zero exit を返す
   - YAML を生成しない
   - GTC-03 は失敗理由に主要キーワード（SPEC ERROR など）を含む
+
+補助ケース:
+  - GTC-06: 正常系実行時に *_review.md が生成される
+  - GTC-07: --generator <name> で指定 1 件のみ実行される
 
 Usage:
   python3 tests/test_generators.py
@@ -39,6 +43,7 @@ except ImportError:
 
 # ── パス定義 ────────────────────────────────────────────────────────────────
 WORKSPACE = Path(__file__).parent.parent
+SCRIPT_PATH = Path(__file__).resolve()
 VENV_PYTHON = WORKSPACE / ".temp_venv/bin/python3"
 PYTHON = str(VENV_PYTHON) if VENV_PYTHON.exists() else sys.executable
 
@@ -65,6 +70,17 @@ NEG_FIXTURES_MISSING = {
     "turn_grid":    WORKSPACE / "tests/fixtures/spec_turn_grid_missing_required.yaml",
     "time_clock":   WORKSPACE / "tests/fixtures/spec_time_clock_missing_required.yaml",
     "event_driven": WORKSPACE / "tests/fixtures/spec_event_driven_missing_required.yaml",
+}
+NEG_FIXTURES_RANGE = {
+    "turn_grid":    WORKSPACE / "tests/fixtures/spec_turn_grid_value_out_of_range.yaml",
+    "time_clock":   WORKSPACE / "tests/fixtures/spec_time_clock_value_out_of_range.yaml",
+    "event_driven": WORKSPACE / "tests/fixtures/spec_event_driven_value_out_of_range.yaml",
+}
+NEG_FIXTURES_SCENE_COLLISION = {
+    "branching":    WORKSPACE / "tests/fixtures/spec_branching_scene_collision.yaml",
+    "turn_grid":    WORKSPACE / "tests/fixtures/spec_turn_grid_scene_collision.yaml",
+    "time_clock":   WORKSPACE / "tests/fixtures/spec_time_clock_scene_collision.yaml",
+    "event_driven": WORKSPACE / "tests/fixtures/spec_event_driven_scene_collision.yaml",
 }
 EXPECTED = {
     "branching":    WORKSPACE / "scenarios/generated/branching_basic_expected_output.yaml",
@@ -197,6 +213,14 @@ def step_expect_generate_failure(
     return True, ""
 
 
+def step_check_review_generated(out_dir: str) -> tuple[bool, str]:
+    """review.md 生成を確認する。"""
+    reviews = [f for f in glob.glob(f"{out_dir}/*_review.md")]
+    if not reviews:
+        return False, "review.md が生成されていない"
+    return True, ""
+
+
 def step_validate(yaml_path: str, verbose: bool) -> tuple[bool, str]:
     """Step 2: validate_scenario.py で生成 YAML を検証する。"""
     result = subprocess.run(
@@ -287,11 +311,65 @@ def run_negative_test(
     return True
 
 
+def run_review_generation_test(name: str, verbose: bool) -> bool:
+    """正常系 fixture で review.md 生成を確認する。"""
+    label = f"[{name}/review_generation]"
+    print(f"{label:<30}", end=" ", flush=True)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        ok, info = step_generate(name, tmpdir, verbose)
+        if not ok:
+            print(f"FAIL  step=generate  {info}")
+            return False
+
+        ok, info = step_check_review_generated(tmpdir)
+        if not ok:
+            print(f"FAIL  {info}")
+            return False
+
+    print("PASS")
+    return True
+
+
+def run_single_generator_cli_test(target: str, verbose: bool) -> bool:
+    """--generator <name> 単体実行で対象 1 件のみ走ることを確認する。"""
+    label = f"[cli/--generator={target}]"
+    print(f"{label:<30}", end=" ", flush=True)
+
+    result = subprocess.run(
+        [PYTHON, str(SCRIPT_PATH), "--generator", target, "--skip-gtc07"],
+        capture_output=True, text=True
+    )
+
+    if result.returncode != 0:
+        msg = f"exit={result.returncode}"
+        if verbose:
+            msg += f"\n  STDOUT: {result.stdout.strip()}\n  STDERR: {result.stderr.strip()}"
+        print(f"FAIL  {msg}")
+        return False
+
+    stdout = result.stdout
+    if "Generator smoke test  (1 generators)" not in stdout:
+        print("FAIL  単体実行の件数表示が 1 generators ではない")
+        return False
+
+    for other in GENERATORS.keys():
+        if other == target:
+            continue
+        if f"[{other}]" in stdout or f"[{other}/" in stdout:
+            print(f"FAIL  対象外 generator が実行された: {other}")
+            return False
+
+    print("PASS")
+    return True
+
+
 # ── エントリポイント ─────────────────────────────────────────────────────────
 
 def main() -> None:
     args = sys.argv[1:]
     verbose = "--verbose" in args or "-v" in args
+    skip_gtc07 = "--skip-gtc07" in args
 
     # --generator <name> で単体実行
     if "--generator" in args:
@@ -338,20 +416,86 @@ def main() -> None:
             verbose=verbose,
         )
 
+    # GTC-04: 値範囲違反（turn_grid / time_clock / event_driven）
+    negative_range: dict[str, bool] = {}
+    for name in names:
+        fixture_path = NEG_FIXTURES_RANGE.get(name)
+        if fixture_path is None:
+            continue
+        negative_range[name] = run_negative_test(
+            name=name,
+            case_label="value_out_of_range",
+            fixture_path=fixture_path,
+            require_error_hint=False,
+            verbose=verbose,
+        )
+
+    # GTC-05: シーン名衝突（4 generator）
+    negative_scene_collision: dict[str, bool] = {}
+    for name in names:
+        negative_scene_collision[name] = run_negative_test(
+            name=name,
+            case_label="scene_collision",
+            fixture_path=NEG_FIXTURES_SCENE_COLLISION[name],
+            require_error_hint=False,
+            verbose=verbose,
+        )
+
+    # GTC-06: review.md 生成確認（4 generator）
+    review_generation: dict[str, bool] = {}
+    for name in names:
+        review_generation[name] = run_review_generation_test(name, verbose)
+
+    # GTC-07: --generator <name> 単体実行確認
+    single_generator_cli: dict[str, bool] = {}
+    if not skip_gtc07 and "--generator" not in args:
+        for name in GENERATORS.keys():
+            single_generator_cli[name] = run_single_generator_cli_test(name, verbose)
+
     print("-" * 50)
-    total = len(names) * 3
-    passed = sum(results.values()) + sum(negative_template.values()) + sum(negative_missing.values())
+    total = (
+        len(results)
+        + len(negative_template)
+        + len(negative_missing)
+        + len(negative_range)
+        + len(negative_scene_collision)
+        + len(review_generation)
+        + len(single_generator_cli)
+    )
+    passed = (
+        sum(results.values())
+        + sum(negative_template.values())
+        + sum(negative_missing.values())
+        + sum(negative_range.values())
+        + sum(negative_scene_collision.values())
+        + sum(review_generation.values())
+        + sum(single_generator_cli.values())
+    )
     for name in names:
         s1 = "PASS" if results[name] else "FAIL"
         s2 = "PASS" if negative_template[name] else "FAIL"
         s3 = "PASS" if negative_missing[name] else "FAIL"
-        print(f"  {name}: GTC-01={s1}  GTC-02={s2}  GTC-03={s3}")
+        s4 = "PASS" if negative_range.get(name, True) else "FAIL"
+        s4 = "N/A" if name not in NEG_FIXTURES_RANGE else s4
+        s5 = "PASS" if negative_scene_collision[name] else "FAIL"
+        s6 = "PASS" if review_generation[name] else "FAIL"
+        s7 = "PASS" if single_generator_cli.get(name, True) else "FAIL"
+        s7 = "N/A" if name not in single_generator_cli else s7
+        print(
+            f"  {name}: "
+            f"GTC-01={s1}  GTC-02={s2}  GTC-03={s3}  "
+            f"GTC-04={s4}  GTC-05={s5}  GTC-06={s6}  GTC-07={s7}"
+        )
     print(f"\n{passed}/{total} checks passed")
 
     all_ok = (
         all(results.values())
         and all(negative_template.values())
         and all(negative_missing.values())
+        and all(negative_range.values())
+        and all(negative_scene_collision.values())
+        and all(review_generation.values())
+        and all(single_generator_cli.values())
     )
     sys.exit(0 if all_ok else 1)
 

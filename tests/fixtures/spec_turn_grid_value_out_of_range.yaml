@@ -1,0 +1,16 @@
+# turn_grid_value_out_of_range fixture (GTC-04)
+# player.hp の範囲違反で generator が失敗することを確認する。
+template: turn_grid_basic
+scenario_name: dungeon_escape
+
+player:
+  hp: 99
+
+enemies:
+  - id: enemy_1
+    hp: 2
+
+first_command: attack
+
+terminal_clear: victory
+terminal_fail:  defeat

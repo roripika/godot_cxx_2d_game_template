@@ -1,0 +1,11 @@
+# time_clock_value_out_of_range fixture (GTC-04)
+# notes の値範囲違反（正整数違反）で generator が失敗することを確認する。
+template: time_clock_basic
+scenario_name: rhythm_minimal
+
+notes: [0, 2000, 3000]
+taps:  [0, 2000, 3000]
+
+scenes:
+  terminal_clear: rhythm_clear
+  terminal_fail:  rhythm_fail

@@ -1,0 +1,16 @@
+# turn_grid_scene_collision fixture (GTC-05)
+# terminal シーン名衝突で generator が失敗することを確認する。
+template: turn_grid_basic
+scenario_name: dungeon_escape
+
+player:
+  hp: 3
+
+enemies:
+  - id: enemy_1
+    hp: 2
+
+first_command: attack
+
+terminal_clear: same_terminal
+terminal_fail:  same_terminal

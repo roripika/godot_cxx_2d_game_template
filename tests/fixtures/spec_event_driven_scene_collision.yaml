@@ -1,0 +1,16 @@
+# event_driven_scene_collision fixture (GTC-05)
+# terminal シーン名衝突で generator が失敗することを確認する。
+template: event_driven_basic
+scenario_name: billiards_clear
+
+setup:
+  shot_limit:   2
+  target_count: 1
+
+boot_records:
+  - shot_committed
+  - ball_pocketed
+
+scenes:
+  terminal_clear: same_terminal
+  terminal_fail:  same_terminal
