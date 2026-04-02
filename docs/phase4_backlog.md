@@ -43,12 +43,15 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 | P4-06 | P1 | `generated_lifecycle_check_sync` | Done | `docs/generated_dir_policy.md`（必要最小更新） | HG-2/HG-3/HG-4 ライフサイクル記述が現運用と一致している |
 | P4-07 | P2 | `generator_test_case_backlog` | Done | `docs/generator_test_case_backlog.md` | テストケースの優先順・期待結果・除外条件が定義されている |
 | P4-08 | P2 | `phase4_midpoint_review` | Done | `docs/phase4_midpoint_review.md` | P0/P1 の実績を反映した中間レビューが作成されている |
+| P4-09 | P2 | `generator_regression_batch_b_implementation` | Ready | `tests/test_generators.py`, `tests/fixtures/`, `reports/generator_regression_batch_b_implementation_report.md` | GTC-04〜GTC-07 が実装され、既存 GTC-01〜GTC-03 を壊さない |
 
 ---
 
 ## 5. 直近実行順（推奨）
 
-1. `Phase 4 docs バックログは完了（次段は実装タスクを起票）`
+1. `P4-09 generator_regression_batch_b_implementation` を起票済み契約（Ready）として実行
+2. `spec_input_normalization` の最小実装タスクを起票
+3. 共通化候補 C-01/C-02 の PoC タスクを起票
 
 ---
 
