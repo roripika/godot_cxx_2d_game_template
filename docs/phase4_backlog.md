@@ -38,7 +38,7 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 | P4-01 | P0 | `generator_commonization_candidates` | Done | `docs/generator_commonization_candidates.md` | 共通化候補・非候補・段階導入順が明記されている |
 | P4-02 | P0 | `human_gate_decision_matrix` | Done | `docs/human_gate_decision_matrix.md` | HG-1〜HG-4 の判定条件・入力・停止条件が表形式で定義されている |
 | P4-03 | P0 | `docs_readme_phase4_navigation` | Done | `docs/README.md`（導線整理） | Phase 4 関連 docs への最短導線が追加されている |
-| P4-04 | P1 | `generator_regression_expansion_plan` | Ready | `docs/generator_regression_expansion_plan.md` | 追加すべき回帰ケースと実行順が定義されている |
+| P4-04 | P1 | `generator_regression_expansion_plan` | Done | `docs/generator_regression_expansion_plan.md` | 追加すべき回帰ケースと実行順が定義されている |
 | P4-05 | P1 | `spec_input_normalization_note` | Ready | `docs/spec_input_normalization_note.md` | Structured Spec の揺れと統一案が整理されている |
 | P4-06 | P1 | `generated_lifecycle_check_sync` | Ready | `docs/generated_dir_policy.md`（必要最小更新） | HG-2/HG-3/HG-4 ライフサイクル記述が現運用と一致している |
 | P4-07 | P2 | `generator_test_case_backlog` | Ready | `docs/generator_test_case_backlog.md` | テストケースの優先順・期待結果・除外条件が定義されている |
@@ -48,10 +48,10 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 
 ## 5. 直近実行順（推奨）
 
-1. `P4-04 generator_regression_expansion_plan`
-2. `P4-05 spec_input_normalization_note`
-3. `P4-06 generated_lifecycle_check_sync`
-4. `P4-07 generator_test_case_backlog`
+1. `P4-05 spec_input_normalization_note`
+2. `P4-06 generated_lifecycle_check_sync`
+3. `P4-07 generator_test_case_backlog`
+4. `P4-08 phase4_midpoint_review`（P1 実績が揃ってから）
 
 ---
 
