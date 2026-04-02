@@ -51,6 +51,8 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`generator_spec_schema.md`](generator_spec_schema.md) — **Event-Driven Basic 入口設計追加**（T14 節: V-ED-01〜V-ED-12・R-8/R-9/R-10 未解決リスク・continue/terminal sacrifice マッピング、2026-04-01 更新）
 - [`t14_gen_event_driven_completion.md`](t14_gen_event_driven_completion.md) — T14 完了メモ（gen_scenario_event_driven.py / R-8/R-9/R-10 smoke 結果・出力仕様・既知制限、2026-04-01）
 - [`phase3_c_completion.md`](phase3_c_completion.md) — **Phase 3-C 完了レポート**（4 Generator 到達点・共通アーキテクチャ・pos-0 sacrifice 統一規則・HG 依存・限界・次段候補 A〜D、2026-04-01）
+- [`phase4_entry.md`](phase4_entry.md) — **Phase 4 入口定義メモ**（開始条件・in-scope/out-of-scope・Human Gate 維持・generated 隔離継続・次候補優先順、2026-04-02）
+- [`phase4_backlog.md`](phase4_backlog.md) — **Phase 4 実行バックログ**（小タスク連続投入の優先順・Deliverables・Done/保留条件、2026-04-02）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 
