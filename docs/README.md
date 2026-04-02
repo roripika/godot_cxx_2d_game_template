@@ -53,6 +53,8 @@ AI エージェント・人間担当者とも、**まずこのファイルを読
 - [`phase3_c_completion.md`](phase3_c_completion.md) — **Phase 3-C 完了レポート**（4 Generator 到達点・共通アーキテクチャ・pos-0 sacrifice 統一規則・HG 依存・限界・次段候補 A〜D、2026-04-01）
 - [`phase4_entry.md`](phase4_entry.md) — **Phase 4 入口定義メモ**（開始条件・in-scope/out-of-scope・Human Gate 維持・generated 隔離継続・次候補優先順、2026-04-02）
 - [`phase4_backlog.md`](phase4_backlog.md) — **Phase 4 実行バックログ**（小タスク連続投入の優先順・Deliverables・Done/保留条件、2026-04-02）
+- [`human_gate_decision_matrix.md`](human_gate_decision_matrix.md) — **Human Gate 判定表**（HG-1〜HG-4 の PASS/REWORK/STOP 条件・証跡・テンプレート別 HG-2 重点、2026-04-02）
+- [`generator_commonization_candidates.md`](generator_commonization_candidates.md) — **Generator 共通化候補整理**（共通化候補/非候補・優先度・段階導入順、2026-04-02）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

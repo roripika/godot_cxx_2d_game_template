@@ -35,8 +35,8 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 
 | ID | Priority | Task Name | Status | Deliverables | Completion Criteria |
 |:---|:---:|:---|:---:|:---|:---|
-| P4-01 | P0 | `generator_commonization_candidates` | Ready | `docs/generator_commonization_candidates.md` | 共通化候補・非候補・段階導入順が明記されている |
-| P4-02 | P0 | `human_gate_decision_matrix` | Ready | `docs/human_gate_decision_matrix.md` | HG-1〜HG-4 の判定条件・入力・停止条件が表形式で定義されている |
+| P4-01 | P0 | `generator_commonization_candidates` | Done | `docs/generator_commonization_candidates.md` | 共通化候補・非候補・段階導入順が明記されている |
+| P4-02 | P0 | `human_gate_decision_matrix` | Done | `docs/human_gate_decision_matrix.md` | HG-1〜HG-4 の判定条件・入力・停止条件が表形式で定義されている |
 | P4-03 | P0 | `docs_readme_phase4_navigation` | Ready | `docs/README.md`（導線整理） | Phase 4 関連 docs への最短導線が追加されている |
 | P4-04 | P1 | `generator_regression_expansion_plan` | Ready | `docs/generator_regression_expansion_plan.md` | 追加すべき回帰ケースと実行順が定義されている |
 | P4-05 | P1 | `spec_input_normalization_note` | Ready | `docs/spec_input_normalization_note.md` | Structured Spec の揺れと統一案が整理されている |
@@ -88,4 +88,3 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 - HG を維持したままでは成立しない案しか残らない
 - 複数の設計分岐があり優先案を決められない
 - validator 失敗原因が既存不具合か新規変更か切り分け不能
-
