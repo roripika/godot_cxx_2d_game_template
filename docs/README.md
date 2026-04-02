@@ -67,6 +67,7 @@ Phase 4 系タスクに着手する場合は、以下 4 本を先に読む。
 - [`generator_regression_expansion_plan.md`](generator_regression_expansion_plan.md) — **Generator 回帰強化計画**（追加ケース ID・段階導入順・実装スコープ境界、2026-04-02）
 - [`spec_input_normalization_note.md`](spec_input_normalization_note.md) — **Spec 入力正規化メモ**（キー揺れ整理・Canonical v2・v1/v2 互換方針、2026-04-02）
 - [`generator_test_case_backlog.md`](generator_test_case_backlog.md) — **Generator テストケース台帳**（優先順・期待結果・除外条件つきの実装バックログ、2026-04-02）
+- [`phase4_midpoint_review.md`](phase4_midpoint_review.md) — **Phase 4 中間レビュー**（P0/P1 実績整理・P2 到達点・次段移行判定、2026-04-03）
 
 **モジュール設計・完了メモ**（触るモジュールのファイルのみ読む）
 

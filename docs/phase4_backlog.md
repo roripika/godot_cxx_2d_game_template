@@ -42,13 +42,13 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 | P4-05 | P1 | `spec_input_normalization_note` | Done | `docs/spec_input_normalization_note.md` | Structured Spec の揺れと統一案が整理されている |
 | P4-06 | P1 | `generated_lifecycle_check_sync` | Done | `docs/generated_dir_policy.md`（必要最小更新） | HG-2/HG-3/HG-4 ライフサイクル記述が現運用と一致している |
 | P4-07 | P2 | `generator_test_case_backlog` | Done | `docs/generator_test_case_backlog.md` | テストケースの優先順・期待結果・除外条件が定義されている |
-| P4-08 | P2 | `phase4_midpoint_review` | Ready | `docs/phase4_midpoint_review.md` | P0/P1 の実績を反映した中間レビューが作成されている |
+| P4-08 | P2 | `phase4_midpoint_review` | Done | `docs/phase4_midpoint_review.md` | P0/P1 の実績を反映した中間レビューが作成されている |
 
 ---
 
 ## 5. 直近実行順（推奨）
 
-1. `P4-08 phase4_midpoint_review`
+1. `Phase 4 docs バックログは完了（次段は実装タスクを起票）`
 
 ---
 
