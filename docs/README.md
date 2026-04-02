@@ -82,6 +82,7 @@ Phase 4 系タスクに着手する場合は、以下 4 本を先に読む。
 
 - [`design/real_input_bridge.md`](design/real_input_bridge.md)
 - [`design/stress_test_strategy.md`](design/stress_test_strategy.md)
+- [`asset_pipeline_overview.md`](asset_pipeline_overview.md) — **Asset Pipeline 全体俯瞰**（主軸 repo と各生成ライン repo の境界・共通契約の叩き台）
 
 ### 層C — 原則無視（人間向け記録）
 
