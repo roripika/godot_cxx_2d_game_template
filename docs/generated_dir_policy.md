@@ -1,8 +1,8 @@
 # scenarios/generated/ 運用方針 — Generator 生成物管理
 
-**バージョン**: v1.0  
-**作成日**: 2026-04-01  
-**前提**: `docs/phase3_c_generator_entry.md` セクション 6・7 に基づく
+**バージョン**: v1.1  
+**作成日**: 2026-04-02  
+**前提**: `docs/phase3_c_generator_entry.md` セクション 6・7、`docs/human_gate_decision_matrix.md`
 
 ---
 
@@ -13,8 +13,10 @@ scenarios/generated/
 │
 ├── .gitkeep                               # ディレクトリ確保。追跡対象 ✅
 │
-├── branching_basic_expected_output.yaml   # 期待出力サンプル。追跡対象 ✅
-│                                          # validate 通過確認済み（Phase 3-B T10）
+├── branching_basic_expected_output.yaml    # 期待出力サンプル。追跡対象 ✅
+├── turn_grid_basic_expected_output.yaml    # 期待出力サンプル。追跡対象 ✅
+├── time_clock_basic_expected_output.yaml   # 期待出力サンプル。追跡対象 ✅
+├── event_driven_basic_expected_output.yaml # 期待出力サンプル。追跡対象 ✅
 │
 ├── <name>_<YYYYMMDD_HHMMSS>.yaml          # Generator 生成物。追跡対象外 ❌
 │                                          # HG-4 通過後に手動で git add する
@@ -68,18 +70,26 @@ HG-2: 確認（review.md を開いてチェックリストを消化）
 
 ---
 
-## 3. 生成 YAML のライフサイクル
+## 3. 生成 YAML のライフサイクル（HG-2/HG-3/HG-4 同期）
 
 ```
 [Generator 実行]
     │ <name>_<ts>.yaml 生成（gitignore 対象）
     ▼
 [HG-2] review.md でシーン構成・Task 列を目視確認
+    │ PASS   → HG-3 へ進む
+    │ REWORK → YAML を手修正して HG-2 を再実行
+    │ STOP   → このタスクを停止して設計判断へ戻す
     ▼
 [HG-3] validate_scenario.py → exit 0 確認
-    │ exit 1 → SUGGEST を読んで手動修正 → 再 validate
+    │ PASS   → HG-4 へ進む
+    │ REWORK → exit 1 + SUGGEST を読んで手修正 → 再 validate
+    │ STOP   → 原因切り分け不能（既存不具合/今回変更）なら停止
     ▼
 [HG-4] Godot runtime 煙テスト（3 経路）
+    │ PASS   → 正式採用判断へ進む
+    │ REWORK → YAML/設定を手修正して HG-2 または HG-3 へ戻る
+    │ STOP   → Core/設計変更なしで成立しない場合は停止
     ▼
 [正式採用] 人間が手動で git add → commit
     │  git add -f scenarios/generated/<name>_<ts>.yaml
@@ -87,6 +97,14 @@ HG-2: 確認（review.md を開いてチェックリストを消化）
     ▼
 [長期保管] scenarios/ (non-generated) に配置を推奨
 ```
+
+### HG 判定ステータスの扱い
+
+- `PASS`: 次 Gate へ進む
+- `REWORK`: 修正して同じ Gate から再開する
+- `STOP`: 実装を止めて設計判断へ戻す
+
+判定基準の詳細は `docs/human_gate_decision_matrix.md` を参照する。
 
 ### HG-4 通過後の git add 手順
 
@@ -125,6 +143,9 @@ rm scenarios/generated/*_review.md
 | ファイル | 管理方針 |
 |:---|:---|
 | `branching_basic_expected_output.yaml` | 追跡済みの品質基準。削除・上書き禁止 |
+| `turn_grid_basic_expected_output.yaml` | 追跡済みの品質基準。削除・上書き禁止 |
+| `time_clock_basic_expected_output.yaml` | 追跡済みの品質基準。削除・上書き禁止 |
+| `event_driven_basic_expected_output.yaml` | 追跡済みの品質基準。削除・上書き禁止 |
 | 追加テンプレートの期待出力サンプル | 各 Generator 実装時に人間が手動で commit する |
 
 期待出力サンプルは **Generator の内部仕様変更時のみ更新し、必ず `validate_scenario.py` exit 0 確認後に commit する**。
@@ -136,5 +157,6 @@ rm scenarios/generated/*_review.md
 | ファイル | 役割 |
 |:---|:---|
 | `docs/phase3_c_generator_entry.md` | Generator 全体方針・HG 定義 |
+| `docs/human_gate_decision_matrix.md` | HG-2/HG-3/HG-4 の PASS/REWORK/STOP 判定基準 |
 | `docs/t11_gen_branching_completion.md` | gen_scenario_branching.py の出力仕様詳細 |
 | `.gitignore` | タイムスタンプ付き生成物の除外パターン |

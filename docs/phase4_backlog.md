@@ -40,7 +40,7 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 | P4-03 | P0 | `docs_readme_phase4_navigation` | Done | `docs/README.md`（導線整理） | Phase 4 関連 docs への最短導線が追加されている |
 | P4-04 | P1 | `generator_regression_expansion_plan` | Done | `docs/generator_regression_expansion_plan.md` | 追加すべき回帰ケースと実行順が定義されている |
 | P4-05 | P1 | `spec_input_normalization_note` | Done | `docs/spec_input_normalization_note.md` | Structured Spec の揺れと統一案が整理されている |
-| P4-06 | P1 | `generated_lifecycle_check_sync` | Ready | `docs/generated_dir_policy.md`（必要最小更新） | HG-2/HG-3/HG-4 ライフサイクル記述が現運用と一致している |
+| P4-06 | P1 | `generated_lifecycle_check_sync` | Done | `docs/generated_dir_policy.md`（必要最小更新） | HG-2/HG-3/HG-4 ライフサイクル記述が現運用と一致している |
 | P4-07 | P2 | `generator_test_case_backlog` | Ready | `docs/generator_test_case_backlog.md` | テストケースの優先順・期待結果・除外条件が定義されている |
 | P4-08 | P2 | `phase4_midpoint_review` | Blocked | `docs/phase4_midpoint_review.md` | P0/P1 の実績を反映した中間レビューが作成されている |
 
@@ -48,9 +48,8 @@ Phase 4 を「小タスク連続投入」で進めるための実行バックロ
 
 ## 5. 直近実行順（推奨）
 
-1. `P4-06 generated_lifecycle_check_sync`
-2. `P4-07 generator_test_case_backlog`
-3. `P4-08 phase4_midpoint_review`（P1 実績が揃ってから）
+1. `P4-07 generator_test_case_backlog`
+2. `P4-08 phase4_midpoint_review`（P1 実績が揃ってから）
 
 ---
 
