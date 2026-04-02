@@ -1,0 +1,15 @@
+# event_driven_missing_required fixture (GTC-03)
+# 必須項目 setup.shot_limit 欠落で generator が失敗することを確認する。
+template: event_driven_basic
+scenario_name: billiards_clear
+
+setup:
+  target_count: 1
+
+boot_records:
+  - shot_committed
+  - ball_pocketed
+
+scenes:
+  terminal_clear: victory
+  terminal_fail:  defeat

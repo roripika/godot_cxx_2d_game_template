@@ -1,0 +1,7 @@
+# time_clock_missing_required fixture (GTC-03)
+# 必須項目 scenes 欠落で generator が失敗することを確認する。
+template: time_clock_basic
+scenario_name: rhythm_minimal
+
+notes: [1000, 2000, 3000]
+taps:  [1000, 2000, 3000]

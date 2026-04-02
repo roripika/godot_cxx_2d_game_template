@@ -1,0 +1,16 @@
+# turn_grid_invalid_template fixture (GTC-02)
+# template 不一致で generator が失敗することを確認する。
+template: turn_grid_invalid
+scenario_name: dungeon_escape
+
+player:
+  hp: 3
+
+enemies:
+  - id: enemy_1
+    hp: 2
+
+first_command: attack
+
+terminal_clear: victory
+terminal_fail:  defeat

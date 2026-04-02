@@ -1,0 +1,16 @@
+# event_driven_invalid_template fixture (GTC-02)
+# template 不一致で generator が失敗することを確認する。
+template: event_driven_invalid
+scenario_name: billiards_clear
+
+setup:
+  shot_limit:   2
+  target_count: 1
+
+boot_records:
+  - shot_committed
+  - ball_pocketed
+
+scenes:
+  terminal_clear: victory
+  terminal_fail:  defeat

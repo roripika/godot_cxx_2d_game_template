@@ -2,15 +2,21 @@
 """
 tests/test_generators.py
 ========================
-4 Generator の統合 smoke テスト（最小退行検知）。
+4 Generator の統合 smoke テスト（Batch A 対応）。
 
 パイプライン:
   spec fixture → generator 実行 → validate_scenario.py → expected output 照合
 
-各テストは以下の 3 ステップを順に実行し、いずれか失敗した時点で FAIL とする:
+正常系（GTC-01）は以下の 3 ステップを順に実行し、
+いずれか失敗した時点で FAIL とする:
   Step 1: Generator を spec fixture で呼び出し、exit 0 と YAML 出力を確認
   Step 2: validate_scenario.py で生成 YAML を検証し、exit 0 を確認
   Step 3: 生成 YAML を PyYAML でロードし、expected output と構造的に一致するか比較
+
+負ケース（GTC-02 / GTC-03）は以下を確認する:
+  - generator が non-zero exit を返す
+  - YAML を生成しない
+  - GTC-03 は失敗理由に主要キーワード（SPEC ERROR など）を含む
 
 Usage:
   python3 tests/test_generators.py
@@ -47,6 +53,18 @@ FIXTURES = {
     "turn_grid":    WORKSPACE / "tests/fixtures/spec_turn_grid.yaml",
     "time_clock":   WORKSPACE / "tests/fixtures/spec_time_clock.yaml",
     "event_driven": WORKSPACE / "tests/fixtures/spec_event_driven.yaml",
+}
+NEG_FIXTURES_TEMPLATE = {
+    "branching":    WORKSPACE / "tests/fixtures/spec_branching_invalid_template.yaml",
+    "turn_grid":    WORKSPACE / "tests/fixtures/spec_turn_grid_invalid_template.yaml",
+    "time_clock":   WORKSPACE / "tests/fixtures/spec_time_clock_invalid_template.yaml",
+    "event_driven": WORKSPACE / "tests/fixtures/spec_event_driven_invalid_template.yaml",
+}
+NEG_FIXTURES_MISSING = {
+    "branching":    WORKSPACE / "tests/fixtures/spec_branching_missing_required.yaml",
+    "turn_grid":    WORKSPACE / "tests/fixtures/spec_turn_grid_missing_required.yaml",
+    "time_clock":   WORKSPACE / "tests/fixtures/spec_time_clock_missing_required.yaml",
+    "event_driven": WORKSPACE / "tests/fixtures/spec_event_driven_missing_required.yaml",
 }
 EXPECTED = {
     "branching":    WORKSPACE / "scenarios/generated/branching_basic_expected_output.yaml",
@@ -112,17 +130,28 @@ def diff_data(actual, expected, path: str = "") -> list[str]:
 
 # ── 各ステップ実行 ───────────────────────────────────────────────────────────
 
-def step_generate(name: str, out_dir: str, verbose: bool) -> tuple[bool, str]:
-    """Step 1: Generator を spec fixture で呼び出す。
-    成功時は (True, 生成 YAML パス) を返す。失敗時は (False, "") を返す。
-    """
+def run_generator(name: str, spec_path: Path, out_dir: str) -> subprocess.CompletedProcess:
+    """Generator を 1 回実行して subprocess.CompletedProcess を返す。"""
     gen_path = GENERATORS[name]
-    spec_path = FIXTURES[name]
-
-    result = subprocess.run(
+    return subprocess.run(
         [PYTHON, str(gen_path), str(spec_path), "--out-dir", out_dir],
         capture_output=True, text=True
     )
+
+
+def step_generate(
+    name: str,
+    out_dir: str,
+    verbose: bool,
+    spec_path: Path | None = None
+) -> tuple[bool, str]:
+    """Step 1: Generator を spec fixture で呼び出す。
+    成功時は (True, 生成 YAML パス) を返す。失敗時は (False, "") を返す。
+    """
+    if spec_path is None:
+        spec_path = FIXTURES[name]
+
+    result = run_generator(name, spec_path, out_dir)
 
     if result.returncode != 0:
         msg = f"Generator exit {result.returncode}"
@@ -137,6 +166,35 @@ def step_generate(name: str, out_dir: str, verbose: bool) -> tuple[bool, str]:
         return False, "Generator が YAML を出力しなかった"
 
     return True, yamls[0]
+
+
+def step_expect_generate_failure(
+    name: str,
+    spec_path: Path,
+    out_dir: str,
+    require_error_hint: bool,
+    verbose: bool
+) -> tuple[bool, str]:
+    """負ケース: Generator が non-zero で失敗し、YAML を生成しないことを確認する。"""
+    result = run_generator(name, spec_path, out_dir)
+
+    if result.returncode == 0:
+        return False, "Generator が成功終了した（失敗を期待）"
+
+    yamls = [f for f in glob.glob(f"{out_dir}/*.yaml")]
+    if yamls:
+        return False, f"失敗ケースで YAML が生成された: {yamls}"
+
+    combined = f"{result.stdout}\n{result.stderr}"
+    if require_error_hint:
+        has_hint = ("SPEC ERROR" in combined) or ("[V-" in combined) or ("rule" in combined.lower())
+        if not has_hint:
+            msg = "失敗理由に主要キーワード（SPEC ERROR / [V- / rule）が見つからない"
+            if verbose:
+                msg += f"\n  STDOUT: {result.stdout.strip()}\n  STDERR: {result.stderr.strip()}"
+            return False, msg
+
+    return True, ""
 
 
 def step_validate(yaml_path: str, verbose: bool) -> tuple[bool, str]:
@@ -202,6 +260,33 @@ def run_test(name: str, verbose: bool) -> bool:
     return True
 
 
+def run_negative_test(
+    name: str,
+    case_label: str,
+    fixture_path: Path,
+    require_error_hint: bool,
+    verbose: bool
+) -> bool:
+    """1 Generator の負ケースを実行する。"""
+    label = f"[{name}/{case_label}]"
+    print(f"{label:<30}", end=" ", flush=True)
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        ok, info = step_expect_generate_failure(
+            name=name,
+            spec_path=fixture_path,
+            out_dir=tmpdir,
+            require_error_hint=require_error_hint,
+            verbose=verbose,
+        )
+        if not ok:
+            print(f"FAIL  {info}")
+            return False
+
+    print("PASS")
+    return True
+
+
 # ── エントリポイント ─────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -226,18 +311,49 @@ def main() -> None:
     print("-" * 50)
 
     results: dict[str, bool] = {}
+
+    # GTC-01: 正常系
     for name in names:
         results[name] = run_test(name, verbose)
 
-    print("-" * 50)
-    passed = sum(results.values())
-    total = len(results)
-    for name, ok in results.items():
-        status = "PASS" if ok else "FAIL"
-        print(f"  {status}  {name}")
-    print(f"\n{passed}/{total} passed")
+    # GTC-02: template 不一致（non-zero + YAML 未生成）
+    negative_template: dict[str, bool] = {}
+    for name in names:
+        negative_template[name] = run_negative_test(
+            name=name,
+            case_label="template_mismatch",
+            fixture_path=NEG_FIXTURES_TEMPLATE[name],
+            require_error_hint=False,
+            verbose=verbose,
+        )
 
-    sys.exit(0 if passed == total else 1)
+    # GTC-03: 必須欠落（non-zero + YAML 未生成 + 失敗理由キーワード）
+    negative_missing: dict[str, bool] = {}
+    for name in names:
+        negative_missing[name] = run_negative_test(
+            name=name,
+            case_label="missing_required",
+            fixture_path=NEG_FIXTURES_MISSING[name],
+            require_error_hint=True,
+            verbose=verbose,
+        )
+
+    print("-" * 50)
+    total = len(names) * 3
+    passed = sum(results.values()) + sum(negative_template.values()) + sum(negative_missing.values())
+    for name in names:
+        s1 = "PASS" if results[name] else "FAIL"
+        s2 = "PASS" if negative_template[name] else "FAIL"
+        s3 = "PASS" if negative_missing[name] else "FAIL"
+        print(f"  {name}: GTC-01={s1}  GTC-02={s2}  GTC-03={s3}")
+    print(f"\n{passed}/{total} checks passed")
+
+    all_ok = (
+        all(results.values())
+        and all(negative_template.values())
+        and all(negative_missing.values())
+    )
+    sys.exit(0 if all_ok else 1)
 
 
 if __name__ == "__main__":

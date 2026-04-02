@@ -1,0 +1,13 @@
+# turn_grid_missing_required fixture (GTC-03)
+# 必須項目 player 欠落で generator が失敗することを確認する。
+template: turn_grid_basic
+scenario_name: dungeon_escape
+
+enemies:
+  - id: enemy_1
+    hp: 2
+
+first_command: attack
+
+terminal_clear: victory
+terminal_fail:  defeat

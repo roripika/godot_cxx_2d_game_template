@@ -1,0 +1,17 @@
+# branching_missing_required fixture (GTC-03)
+# 必須項目 branches 欠落で generator が失敗することを確認する。
+template: branching_basic
+scenario_name: museum_heist
+
+goal:
+  clear_condition: |
+    指紋と目撃証言が両方揃えば逮捕できる
+  fail_condition: |
+    どちらか一方でも欠けていたら釈放になる
+
+check_type: all_of
+
+scenes:
+  start:          investigation
+  terminal_clear: arrest_scene
+  terminal_fail:  release_scene
