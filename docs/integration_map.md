@@ -149,6 +149,7 @@
 - `asset_pipeline_overview.md`
 - `asset_contracts.md`
 - `integration_map.md`
+- `human_gate_asset_policy.md`
 
 必要に応じて追加:
 

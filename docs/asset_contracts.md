@@ -203,5 +203,6 @@ scenario generator 本体は別系統だが、asset metadata / status / integrat
 
 1. `asset_pipeline_overview.md` と本 contract を相互参照にする
 2. `integration_map.md` を追加し、各 asset line の接続先を明示する
-3. UI line を最初の具体例として contract 適用する
-4. audio / character / motion / fx / movie を同型で展開する
+3. `human_gate_asset_policy.md` を追加し、asset type ごとの AG 観点差を固定する
+4. UI line を最初の具体例として contract 適用する
+5. audio / character / motion / fx / movie を同型で展開する

@@ -85,6 +85,7 @@ Phase 4 系タスクに着手する場合は、以下 4 本を先に読む。
 - [`asset_pipeline_overview.md`](asset_pipeline_overview.md) — **Asset Pipeline 全体俯瞰**（主軸 repo と各生成ライン repo の境界・共通契約の叩き台）
 - [`asset_contracts.md`](asset_contracts.md) — **Asset 共通契約**（ID / metadata / status / Human Gate / integration の共通ルール）
 - [`integration_map.md`](integration_map.md) — **Asset 接続マップ**（どのラインがどのゲーム機能・層へ接続するかの俯瞰）
+- [`human_gate_asset_policy.md`](human_gate_asset_policy.md) — **Asset Human Gate 方針**（asset type ごとの AG-1〜AG-4 観点差と判定証跡）
 
 ### 層C — 原則無視（人間向け記録）
 
