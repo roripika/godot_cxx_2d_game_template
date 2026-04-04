@@ -153,7 +153,6 @@
 
 必要に応じて追加:
 
-- `human_gate_asset_policy.md`
 - `asset_id_registry.md`
 - `integration_backlog.md`
 
