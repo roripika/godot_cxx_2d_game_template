@@ -50,7 +50,7 @@
 
 | ID | 優先度 | task | status | deliverable | completion criteria |
 |:---|:---:|:---|:---:|:---|:---|
-| IB-01 | P0 | UI line responsibility note | Ready | `docs/ui_pipeline_responsibility.md` | UI line の責務・主軸 repo との境界・対象外が明文化されている |
+| IB-01 | P0 | UI line responsibility note | Done | `docs/ui_pipeline_responsibility.md` | UI line の責務・主軸 repo との境界・対象外が明文化されている |
 | IB-02 | P0 | UI line integration contract | Ready | `docs/ui_integration_contract.md` | UI line の入出力、asset_id、metadata、出力配置、連携方法が固定されている |
 | IB-03 | P0 | UI line human gate checklist | Ready | `docs/ui_human_gate_checklist.md` | UI 向け AG-1〜AG-4 の具体チェック項目が固定されている |
 | IB-04 | P1 | UI line first integration scenario | Ready | `docs/ui_first_integration_scenario.md` | 最初に接続する画面・UI 種別・成果物・統合手順が決まっている |
@@ -175,10 +175,9 @@
 
 ## 9. 次アクション
 
-1. `IB-01 UI line responsibility note` を起票する
-2. 続けて `IB-02 UI line integration contract` を起票する
-3. `IB-03 UI line human gate checklist` でレビュー運用を具体化する
-4. `IB-04 UI line first integration scenario` で最初の接続対象を 1 件に絞る
+1. `IB-02 UI line integration contract` を起票する
+2. `IB-03 UI line human gate checklist` でレビュー運用を具体化する
+3. `IB-04 UI line first integration scenario` で最初の接続対象を 1 件に絞る
 
 ---
 

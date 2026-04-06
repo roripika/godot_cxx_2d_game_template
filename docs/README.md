@@ -87,6 +87,7 @@ Phase 4 系タスクに着手する場合は、以下 4 本を先に読む。
 - [`integration_map.md`](integration_map.md) — **Asset 接続マップ**（どのラインがどのゲーム機能・層へ接続するかの俯瞰）
 - [`human_gate_asset_policy.md`](human_gate_asset_policy.md) — **Asset Human Gate 方針**（asset type ごとの AG-1〜AG-4 観点差と判定証跡）
 - [`integration_backlog.md`](integration_backlog.md) — **Asset 統合実行バックログ**（UI line 先行の順序付きタスク管理）
+- [`ui_pipeline_responsibility.md`](ui_pipeline_responsibility.md) — **UI 責務境界メモ**（主軸 repo と UI line repo の責務分離）
 
 ### 層C — 原則無視（人間向け記録）
 
