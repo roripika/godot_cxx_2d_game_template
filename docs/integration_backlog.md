@@ -51,11 +51,11 @@
 | ID | 優先度 | task | status | deliverable | completion criteria |
 |:---|:---:|:---|:---:|:---|:---|
 | IB-01 | P0 | UI line responsibility note | Done | `docs/ui_pipeline_responsibility.md` | UI line の責務・主軸 repo との境界・対象外が明文化されている |
-| IB-02 | P0 | UI line integration contract | Ready | `docs/ui_integration_contract.md` | UI line の入出力、asset_id、metadata、出力配置、連携方法が固定されている |
-| IB-03 | P0 | UI line human gate checklist | Ready | `docs/ui_human_gate_checklist.md` | UI 向け AG-1〜AG-4 の具体チェック項目が固定されている |
-| IB-04 | P1 | UI line first integration scenario | Ready | `docs/ui_first_integration_scenario.md` | 最初に接続する画面・UI 種別・成果物・統合手順が決まっている |
-| IB-05 | P1 | UI line task execution contract template | Ready | `docs/ui_task_execution_contract_template.md` | UI line 用の契約駆動テンプレートが固定されている |
-| IB-06 | P1 | audio line rollout note | Ready | `docs/audio_pipeline_rollout_note.md` | audio line を UI line の次に接続する責務表と順序が整理されている |
+| IB-02 | P0 | UI line integration contract | Done | `docs/ui_integration_contract.md` | UI line の入出力、asset_id、metadata、出力配置、連携方法が固定されている |
+| IB-03 | P0 | UI line human gate checklist | Done | `docs/ui_human_gate_checklist.md` | UI 向け AG-1〜AG-4 の具体チェック項目が固定されている |
+| IB-04 | P1 | UI line first integration scenario | Done | `docs/ui_first_integration_scenario.md` | 最初に接続する画面・UI 種別・成果物・統合手順が決まっている |
+| IB-05 | P1 | UI line task execution contract template | Done | `docs/ui_task_execution_contract_template.md` | UI line 用の契約駆動テンプレートが固定されている |
+| IB-06 | P1 | audio line rollout note | Done | `docs/audio_pipeline_rollout_note.md` | audio line を UI line の次に接続する責務表と順序が整理されている |
 
 ---
 
@@ -175,9 +175,9 @@
 
 ## 9. 次アクション
 
-1. `IB-02 UI line integration contract` を起票する
-2. `IB-03 UI line human gate checklist` でレビュー運用を具体化する
-3. `IB-04 UI line first integration scenario` で最初の接続対象を 1 件に絞る
+1. `ui/title/primary_button_001` を対象に、最初の UI task 契約を作る
+2. `audio_integration_contract.md` を起票し、SFX / BGM の入出力契約を固定する
+3. `asset_id_registry.md` の要否を判断し、必要なら UI/SFX/BGM の例を追加する
 
 ---
 

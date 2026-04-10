@@ -88,6 +88,11 @@ Phase 4 系タスクに着手する場合は、以下 4 本を先に読む。
 - [`human_gate_asset_policy.md`](human_gate_asset_policy.md) — **Asset Human Gate 方針**（asset type ごとの AG-1〜AG-4 観点差と判定証跡）
 - [`integration_backlog.md`](integration_backlog.md) — **Asset 統合実行バックログ**（UI line 先行の順序付きタスク管理）
 - [`ui_pipeline_responsibility.md`](ui_pipeline_responsibility.md) — **UI 責務境界メモ**（主軸 repo と UI line repo の責務分離）
+- [`ui_integration_contract.md`](ui_integration_contract.md) — **UI 統合契約**（入力/出力/asset_id/metadata/status/失敗時契約の固定）
+- [`ui_human_gate_checklist.md`](ui_human_gate_checklist.md) — **UI Human Gate チェックリスト**（AG-1〜AG-4 の実運用判定項目）
+- [`ui_first_integration_scenario.md`](ui_first_integration_scenario.md) — **UI 初回統合シナリオ**（最初に接続する UI ケースを 1 件に固定）
+- [`ui_task_execution_contract_template.md`](ui_task_execution_contract_template.md) — **UI Task 契約テンプレート**（1 task 1 asset で起票する実行契約の型）
+- [`audio_pipeline_rollout_note.md`](audio_pipeline_rollout_note.md) — **Audio 展開メモ**（SFX/BGM/voice の切り分けと初期 rollout 方針）
 
 ### 層C — 原則無視（人間向け記録）
 
